@@ -1,15 +1,22 @@
+from src.modules.MedicalQuestion import MedicalQuestion
 from src.graphrag.entity_processor import EntityProcessor
-from src.modules.data_format import Question, OptionKey, EntityPairs
-import pandas as pd
-from tests.example import question, question_analysis
+from tests.example import questions
+from pathlib import Path
 
-def test_entity_processor():
-    entity_processor = EntityProcessor()
-    assert entity_processor.process_question(question) is not None
+question = MedicalQuestion.from_cache(Path('../cache/original'), str(questions[0].question), questions[0].options)
+processor = EntityProcessor()
 
 
-def test_pairs_processor():
-    entity_processor = EntityProcessor()
-    for pair in question_analysis.entity_pairs:
-        print(entity_processor.process_entity_pairs(pair))
+def test_text():
+    assert len(processor.process_text(question.question)) > 0
+    assert len(processor.process_text(question.options.get('opa'))) > 0
 
+
+def test_pairs():
+    assert len(processor.process_entity_pairs(question)) > 0
+
+
+def test_batch_convert():
+    cuis = ['C0032961', 'C0043210', 'C0027750', 'C0680063', 'C0150600', 'C0013080']
+    assert len(processor.batch_get_names(cuis)) == len(cuis)
+    assert set(cuis) == set(processor.batch_get_cuis(processor.batch_get_names(cuis)))

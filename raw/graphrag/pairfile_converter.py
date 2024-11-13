@@ -88,13 +88,13 @@ class EntityCUIConverter:
             cui_pair = {
                 "start": {
                     "cui": start_cui,
-                    "text": pair['start'],
+                    "question": pair['start'],
                     "matched_name": start_name,
                     "confidence": round(start_score, 3)
                 },
                 "end": {
                     "cui": end_cui,
-                    "text": pair['end'],
+                    "question": pair['end'],
                     "matched_name": end_name,
                     "confidence": round(end_score, 3)
                 },
@@ -134,9 +134,9 @@ class EntityCUIConverter:
                 # 收集未匹配的实体
                 for pair in processed_question['analysis_result']['entity_pairs']:
                     if not pair['start']['cui']:
-                        unmatched_entities.append(pair['start']['text'])
+                        unmatched_entities.append(pair['start']['question'])
                     if not pair['end']['cui']:
-                        unmatched_entities.append(pair['end']['text'])
+                        unmatched_entities.append(pair['end']['question'])
 
             # 保存结果
             with open(output_file, 'w', encoding='utf-8') as f:
@@ -169,13 +169,13 @@ def main():
         for pair in example_pairs:
             print(f"\n实体对转换结果:")
             print(f"起始实体:")
-            print(f"  原文: {pair['start']['text']}")
+            print(f"  原文: {pair['start']['question']}")
             print(f"  CUI: {pair['start']['cui']}")
             print(f"  匹配名称: {pair['start']['matched_name']}")
             print(f"  置信度: {pair['start']['confidence']}")
 
             print(f"终止实体:")
-            print(f"  原文: {pair['end']['text']}")
+            print(f"  原文: {pair['end']['question']}")
             print(f"  CUI: {pair['end']['cui']}")
             print(f"  匹配名称: {pair['end']['matched_name']}")
             print(f"  置信度: {pair['end']['confidence']}")

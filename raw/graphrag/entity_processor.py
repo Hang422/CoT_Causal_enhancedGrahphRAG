@@ -120,7 +120,7 @@ class MedicalCUIExtractor:
                 cui, score = ent._.kb_ents[0]
                 entity_info = self.get_entity_info(cui)
 
-                if not entity_info or ent.text.lower() in self.blacklist:
+                if not entity_info or ent.question.lower() in self.blacklist:
                     continue
 
                 # 检查语义类型

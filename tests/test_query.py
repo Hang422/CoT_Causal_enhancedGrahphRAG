@@ -1,33 +1,27 @@
 from typing import List
 
+import src.graphrag.query_processor
 from src.graphrag.query_processor import QueryProcessor
 import pandas as pd
-from src.llm.interactor import LLMInteraction
-from src.modules.data_format import Question, OptionKey
-from tests.example import question, question_graph_result, question_analysis
-from src.graphrag.entity_processor import EntityProcessor
-from src.llm.interactor import LLMInteraction
+from tests.example import questions
 from config import config
+from pathlib import Path
+from src.modules.MedicalQuestion import MedicalQuestion
 
-entity_processor = EntityProcessor()
-questionCUIs = entity_processor.process_question(question)
+question = MedicalQuestion.from_cache(Path('../cache/original'), str(questions[0].question), questions[0].options)
 
 
 def test_query_casual_graph():
+    config.set_database('casual')
     processor = QueryProcessor()
-    casual_graph = processor.query_question_cuis(questionCUIs)
-    print(casual_graph)
+    processor.process_casual_paths(question)
+    print(question.casual_paths)
 
 
-def test_query_entities():
-    config.set_database("knowledge")
+def test_query_kg_graph():
+    config.set_database('knowledge')
     processor = QueryProcessor()
-
-    # One-liner version
-    pairs_with_paths = [(pair, processor.query_entity_pairs(pair))
-                        for pair in question_analysis.entity_pairs]
-
-    print(pairs_with_paths)
-
-
-
+    pair = {'start': ["Myelinated nerve fiber", "oncotic pressure of fluid leaving capillaries"], 'end': ["Impulse conduction speed", "glucose concentration in glomerular filtrate"]}
+    question.entities_original_pairs = pair
+    processor.process_entity_pairs(question)
+    print(question.KG_paths)

@@ -38,8 +38,8 @@ Options:
 
     prompt += "\nVerified causal paths between key entities:\n"
     for pair in entity_pairs_paths:
-        start_entity = pair['start']['text']
-        end_entity = pair['end']['text']
+        start_entity = pair['start']['question']
+        end_entity = pair['end']['question']
         prompt += f"\nRelationship between '{start_entity}' and '{end_entity}':\n"
         for path in pair['paths']:
             prompt += f"- {path}\n"

@@ -5,7 +5,7 @@ from enum import Enum
 import os
 from pathlib import Path
 from datetime import datetime
-from src.modules.data_format import DataFormat, OptionKey
+from src.modules.MedicalQuestion import DataFormat, OptionKey
 
 T = TypeVar('T')
 
