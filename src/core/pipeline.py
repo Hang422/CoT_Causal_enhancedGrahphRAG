@@ -7,7 +7,7 @@ from src.llm.interactor import LLMProcessor
 from src.graphrag.entity_processor import EntityProcessor
 from src.graphrag.query_processor import QueryProcessor
 from config import config
-
+from src.modules.AccuracyAnalysis import QuestionAnalyzer
 
 class QuestionProcessor:
     """处理医学问题的流水线处理器"""
@@ -17,26 +17,34 @@ class QuestionProcessor:
         self.llm = LLMProcessor()
         self.logger = config.get_logger("question_processor")
 
-        # 设置缓存目录
-        self.cache_root = Path("cache")
+        # 使用config中定义的缓存根目录
+        self.cache_root = config.paths["cache"]
+
+        # 设置不同类型缓存的子目录
         self.cache_paths = {
-            'original': self.cache_root / 'original',
-            'causal': self.cache_root / 'causal',
-            'reasoning': self.cache_root / 'reasoning',
-            'final': self.cache_root / 'final'
+            'original': self.cache_root / 'questions' / 'original',
+            'derelict': self.cache_root / 'questions' / 'derelict',
+            'casual': self.cache_root / 'questions' / 'casual',
+            'reasoning': self.cache_root / 'questions' / 'reasoning',
+            'final': self.cache_root / 'questions' / 'final'
         }
 
         self.processor = QueryProcessor()
-        # 创建缓存目录
+
+        # 创建缓存子目录
         for path in self.cache_paths.values():
             path.mkdir(parents=True, exist_ok=True)
+
+        self.logger.info(f"Initialized cache directories under {self.cache_root}")
 
     @staticmethod
     def load_questions_from_csv(file_path: str) -> List[MedicalQuestion]:
         """从CSV文件加载问题"""
         questions = []
+        data_path = config.paths["data"] / file_path
+
         try:
-            df = pd.read_csv(file_path)
+            df = pd.read_csv(data_path)
             for _, row in df.iterrows():
                 question = MedicalQuestion(
                     question=row['question'],
@@ -56,7 +64,7 @@ class QuestionProcessor:
                 )
                 questions.append(question)
         except Exception as e:
-            raise Exception(f"Error loading questions from CSV: {str(e)}")
+            raise Exception(f"Error loading questions from {data_path}: {str(e)}")
 
         return questions
 
@@ -67,27 +75,45 @@ class QuestionProcessor:
 
             try:
                 # 1. 保存原始问题
-                question.set_cache_paths(self.cache_paths['original'])
-                question.to_cache()
-
-                # 2. 直接回答并缓存
                 cached_question = MedicalQuestion.from_cache(
-                    self.cache_paths['causal'],
+                    self.cache_paths['original'],
                     question.question,
                     question.options
                 )
 
-                # 测试连接不同的数据库
-                config.set_database('casual')
-                self.processor.process_casual_paths(question)
-
                 if not cached_question:
-                    self.llm.causal_enhanced_answer(question)
-                    question.set_cache_paths(self.cache_paths['causal'])
+                    question.set_cache_paths(self.cache_paths['original'])
                     question.to_cache()
                 else:
                     question = cached_question
 
+                cached_question_derelict = MedicalQuestion.from_cache(
+                    self.cache_paths['derelict'],
+                    question.question,
+                    question.options
+                )
+
+                if not cached_question_derelict:
+                    self.llm.direct_answer(question)
+                    question.set_cache_paths(self.cache_paths['derelict'])
+                    question.to_cache()
+                else:
+                    question = cached_question
+
+                cached_question = MedicalQuestion.from_cache(
+                    self.cache_paths['casual'],
+                    question.question,
+                    question.options
+                )
+
+                if not cached_question:
+                    config.set_database('casual')
+                    self.processor.process_casual_paths(question)
+                    self.llm.causal_enhanced_answer(question)
+                    question.set_cache_paths(self.cache_paths['casual'])
+                    question.to_cache()
+                else:
+                    question = cached_question
 
                 # 3. 生成推理链和实体对并缓存
                 cached_question = MedicalQuestion.from_cache(
@@ -97,16 +123,13 @@ class QuestionProcessor:
                 )
 
                 if not cached_question:
+                    config.set_database('knowledge')
                     self.llm.generate_reasoning_chain(question)
+                    self.processor.process_entity_pairs(question)
                     question.set_cache_paths(self.cache_paths['reasoning'])
                     question.to_cache()
                 else:
                     question = cached_question
-
-                config.set_database('knowledge')
-                self.processor.process_entity_pairs(question)
-                print(question.KG_paths)
-                question.to_cache()
 
                 # 4. 最终答案并缓存
                 cached_question = MedicalQuestion.from_cache(
@@ -140,9 +163,12 @@ def main():
     """主函数示例"""
     processor = QuestionProcessor()
 
-    # 处理单个文件
-    file_path = '../../data/testdata/test_sample.csv'
+    # 使用相对于data目录的路径
+    file_path = 'testdata/samples.csv'
     processor.batch_process_file(file_path)
+
+    analyzer = QuestionAnalyzer()
+    analyzer.save_report()
 
 
 if __name__ == "__main__":

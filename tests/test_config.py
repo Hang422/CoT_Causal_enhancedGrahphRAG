@@ -30,7 +30,7 @@ def test_paths():
 
 def test_logger():
     logger = config.get_logger("test")
-    assert logger.name == "medical_qa.test"
+    assert logger.name == "casual_graphrag.test"
 
     # Test log file creation
     log_path = config.paths["logs"] / "medical_qa.log"

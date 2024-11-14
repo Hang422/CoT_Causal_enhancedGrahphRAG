@@ -52,7 +52,7 @@ Options:
 Please analyze and select the most appropriate answer. Respond in the following format:
 
 Analysis: (Your medical reasoning)
-Answer: (Option letter)
+Answer: (Option letter,only opa,opb,opc or opd, no addtional information)
 Confidence: (A number from 0-100 indicating your confidence)
 """
 
@@ -99,7 +99,7 @@ Options:
 Based on the question, options, and causal relationships, please provide:
 
 Analysis: (Explain your reasoning using the causal relationships)
-Answer: (Option letter)
+Answer: (Option letter,only opa,opb,opc or opd, no addtional information)
 Confidence: (A number from 0-100)
 """
 
@@ -274,7 +274,7 @@ Options:
 Based on all the above information, please provide:
 
 Final Analysis: (Synthesize all available information)
-Answer: (Option letter)
+Answer: (Option letter,only opa,opb,opc or opd, no addtional information)
 Confidence: (A number from 0-100)
 """
 

@@ -122,7 +122,6 @@ class EntityProcessor:
                     if self._is_valid_entity(ent, cui, score) and score > best_score:
                         best_entity = (cui, score)
                         best_score = score
-            print(ent)
             return best_entity[0] if best_entity else None
 
         except Exception as e:
@@ -197,9 +196,6 @@ class EntityProcessor:
             cuis = []
 
             for ent in doc.ents:
-                if debug:
-                    print(f"\nEntity: {ent.text}")
-
                 if ent._.kb_ents:
                     cui, score = ent._.kb_ents[0]
 

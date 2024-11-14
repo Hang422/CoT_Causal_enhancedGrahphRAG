@@ -65,7 +65,6 @@ class QueryProcessor:
                         start_cui,
                         end_cui
                     )
-                    print(path)
                     if path:
                         KG_nodes.append(self.entity_processor.batch_get_names(path['node_cuis'],True))
                         KG_relationships.append(path['relationships'])
@@ -75,8 +74,6 @@ class QueryProcessor:
         question.KG_nodes.extend(KG_nodes)
         question.KG_relationships.extend(KG_relationships)
         question.generate_paths()  # Update path strings
-        print(question.KG_nodes)
-        print(question.KG_relationships)
 
     def process_casual_paths(self, question: MedicalQuestion) -> None:
         """Find supporting KG paths for casual relationships"""
