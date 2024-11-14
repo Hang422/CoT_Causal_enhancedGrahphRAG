@@ -75,6 +75,8 @@ class QueryProcessor:
         question.KG_nodes.extend(KG_nodes)
         question.KG_relationships.extend(KG_relationships)
         question.generate_paths()  # Update path strings
+        print(question.KG_nodes)
+        print(question.KG_relationships)
 
     def process_casual_paths(self, question: MedicalQuestion) -> None:
         """Find supporting KG paths for casual relationships"""
