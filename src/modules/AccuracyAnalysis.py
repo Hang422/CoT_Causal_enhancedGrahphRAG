@@ -10,10 +10,10 @@ import logging
 class QuestionAnalyzer:
     """分析不同阶段问题处理结果的分析器"""
 
-    def __init__(self):
+    def __init__(self, path):
         """初始化分析器"""
         self.logger = config.get_logger("question_analyzer")
-        self.cache_root = config.paths["cache"] / "questions"
+        self.cache_root = config.paths["cache"] / path
         self.stages = ['derelict', 'casual', 'final']
 
     def load_stage_questions(self, stage: str) -> List[MedicalQuestion]:
@@ -158,7 +158,7 @@ class QuestionAnalyzer:
 
 
 def main():
-    analyzer = QuestionAnalyzer()
+    analyzer = QuestionAnalyzer('casual-1_knowledge')
     analyzer.save_report()
 
 

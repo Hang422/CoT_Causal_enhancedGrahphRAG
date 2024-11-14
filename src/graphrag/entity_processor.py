@@ -68,20 +68,6 @@ class EntityProcessor:
             'common', 'typical', 'usual', 'general', 'specific'
         }
 
-        # Low-information semantic types
-        self.excluded_semantic_types: Set[str] = {
-            'T033',  # Finding
-            'T034',  # Laboratory or Test Result
-            'T038',  # Biologic Function
-            'T064',  # Temporal Concept
-            'T077',  # Conceptual Entity
-            'T079',  # Temporal Concept
-            'T080',  # Qualitative Concept
-            'T081',  # Quantitative Concept
-            'T169',  # Functional Concept
-            'T170'  # Intellectual Product
-        }
-
     def get_cui_name(self, cui: str) -> Optional[str]:
         """
         Get canonical name for a CUI
@@ -143,9 +129,9 @@ class EntityProcessor:
             cui = self.get_name_cui(name)
             if cui:
                 all_cuis.append(cui)
-        return list(set(all_cuis)) if not duplicate else all_cuis # Remove duplicates
+        return list(set(all_cuis)) if not duplicate else all_cuis  # Remove duplicates
 
-    def batch_get_names(self, cuis: List[str], duplicate:bool) -> List[str]:
+    def batch_get_names(self, cuis: List[str], duplicate: bool) -> List[str]:
         """
         Convert multiple CUIs to names
 
@@ -175,8 +161,8 @@ class EntityProcessor:
         if not question.entities_original_pairs:
             return [], []
 
-        start_cuis = self.batch_get_cuis(question.entities_original_pairs['start'],True)
-        end_cuis = self.batch_get_cuis(question.entities_original_pairs['end'],True)
+        start_cuis = self.batch_get_cuis(question.entities_original_pairs['start'], True)
+        end_cuis = self.batch_get_cuis(question.entities_original_pairs['end'], True)
 
         return start_cuis, end_cuis
 
@@ -228,9 +214,6 @@ class EntityProcessor:
                 entity_info = self.linker.kb.cui_to_entity[cui]
                 entity_type = entity_info.types
                 semantic_types = {t.split('@')[1] if '@' in t else t for t in entity_type}
-
-                if any(st in self.excluded_semantic_types for st in semantic_types):
-                    return False
 
                 return True
 

@@ -9,10 +9,11 @@ from src.graphrag.query_processor import QueryProcessor
 from config import config
 from src.modules.AccuracyAnalysis import QuestionAnalyzer
 
+
 class QuestionProcessor:
     """处理医学问题的流水线处理器"""
 
-    def __init__(self):
+    def __init__(self, path):
         """初始化处理器"""
         self.llm = LLMProcessor()
         self.logger = config.get_logger("question_processor")
@@ -20,13 +21,15 @@ class QuestionProcessor:
         # 使用config中定义的缓存根目录
         self.cache_root = config.paths["cache"]
 
+        self.cache_path = path
+
         # 设置不同类型缓存的子目录
         self.cache_paths = {
-            'original': self.cache_root / 'questions' / 'original',
-            'derelict': self.cache_root / 'questions' / 'derelict',
-            'casual': self.cache_root / 'questions' / 'casual',
-            'reasoning': self.cache_root / 'questions' / 'reasoning',
-            'final': self.cache_root / 'questions' / 'final'
+            'original': self.cache_root / self.cache_path / 'original',
+            'derelict': self.cache_root / self.cache_path / 'derelict',
+            'casual': self.cache_root / self.cache_path / 'casual',
+            'reasoning': self.cache_root / self.cache_path / 'reasoning',
+            'final': self.cache_root / self.cache_path / 'final'
         }
 
         self.processor = QueryProcessor()
@@ -38,13 +41,27 @@ class QuestionProcessor:
         self.logger.info(f"Initialized cache directories under {self.cache_root}")
 
     @staticmethod
-    def load_questions_from_csv(file_path: str) -> List[MedicalQuestion]:
-        """从CSV文件加载问题"""
+    def load_questions_from_parquet(file_path: str, sample_size: Optional[int] = None) -> List[MedicalQuestion]:
+        """从 Parquet 文件加载问题，支持随机抽样。
+
+        参数：
+            file_path (str): Parquet 文件的相对路径。
+            sample_size (Optional[int]): 可选参数，指定要随机选择的问题数量。
+
+        返回：
+            List[MedicalQuestion]: 包含问题的列表。
+        """
         questions = []
         data_path = config.paths["data"] / file_path
 
         try:
-            df = pd.read_csv(data_path)
+            # 读取 Parquet 文件
+            df = pd.read_parquet(data_path)
+
+            # 如果指定了 sample_size，并且小于数据总量，则进行随机抽样
+            if sample_size is not None and sample_size < len(df):
+                df = df.sample(n=sample_size, random_state=42).reset_index(drop=True)
+
             for _, row in df.iterrows():
                 question = MedicalQuestion(
                     question=row['question'],
@@ -64,7 +81,7 @@ class QuestionProcessor:
                 )
                 questions.append(question)
         except Exception as e:
-            raise Exception(f"Error loading questions from {data_path}: {str(e)}")
+            raise Exception(f"加载问题时出错：{data_path}，错误信息：{str(e)}")
 
         return questions
 
@@ -107,8 +124,7 @@ class QuestionProcessor:
                 )
 
                 if not cached_question:
-                    config.set_database('casual')
-                    self.processor.process_casual_paths(question)
+                    self.processor.process_casual_paths(question, 'casual-1')
                     self.llm.causal_enhanced_answer(question)
                     question.set_cache_paths(self.cache_paths['casual'])
                     question.to_cache()
@@ -123,9 +139,8 @@ class QuestionProcessor:
                 )
 
                 if not cached_question:
-                    config.set_database('knowledge')
                     self.llm.generate_reasoning_chain(question)
-                    self.processor.process_entity_pairs(question)
+                    self.processor.process_entity_pairs(question, 'knowledge')
                     question.set_cache_paths(self.cache_paths['reasoning'])
                     question.to_cache()
                 else:
@@ -149,10 +164,10 @@ class QuestionProcessor:
                 self.logger.error(f"Error processing question {i + 1}: {str(e)}")
                 continue
 
-    def batch_process_file(self, file_path: str) -> None:
+    def batch_process_file(self, file_path: str, sample_size: Optional[int] = None) -> None:
         """处理整个CSV文件"""
         try:
-            questions = self.load_questions_from_csv(file_path)
+            questions = self.load_questions_from_parquet(file_path, sample_size)
             self.logger.info(f"Loaded {len(questions)} questions from {file_path}")
             self.process_questions(questions)
         except Exception as e:
@@ -161,13 +176,13 @@ class QuestionProcessor:
 
 def main():
     """主函数示例"""
-    processor = QuestionProcessor()
-
+    path = '80-shortest-casual1-knowledge'
+    processor = QuestionProcessor(path)
     # 使用相对于data目录的路径
-    file_path = 'testdata/samples.csv'
-    processor.batch_process_file(file_path)
+    file_path = 'testdata/validation.parquet'
+    processor.batch_process_file(file_path, 80)
 
-    analyzer = QuestionAnalyzer()
+    analyzer = QuestionAnalyzer('80-shortest-casual1-knowledge')
     analyzer.save_report()
 
 

@@ -41,13 +41,12 @@ class QueryProcessor:
             max_connection_lifetime=3600,
             max_connection_pool_size=db_config["max_connections"],
         )
-        self.database = db_config["database"]
         self.entity_processor = EntityProcessor()  # Still needed for name-to-CUI conversion
 
-    def process_entity_pairs(self, question: MedicalQuestion) -> None:
+    def process_entity_pairs(self, question: MedicalQuestion,database) -> None:
         """Process entity pairs to find paths between them"""
         try:
-            with self.driver.session(database=self.database) as session:
+            with self.driver.session(database=database) as session:
                 KG_nodes = []
                 KG_relationships = []
                 for start_name,end_name in zip(question.entities_original_pairs['start'],question.entities_original_pairs['end']):
@@ -75,10 +74,10 @@ class QueryProcessor:
         question.KG_relationships.extend(KG_relationships)
         question.generate_paths()  # Update path strings
 
-    def process_casual_paths(self, question: MedicalQuestion) -> None:
+    def process_casual_paths(self, question: MedicalQuestion, database) -> None:
         """Find supporting KG paths for casual relationships"""
         try:
-            with self.driver.session(database=self.database) as session:
+            with self.driver.session(database=database) as session:
                 question_cuis = self.entity_processor.process_text(question.question)
                 options_cuis = []
                 for option in question.options:
