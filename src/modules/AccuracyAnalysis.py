@@ -158,7 +158,7 @@ class QuestionAnalyzer:
 
 
 def main():
-    analyzer = QuestionAnalyzer('casual-1_knowledge')
+    analyzer = QuestionAnalyzer('80-shortest-casual-knowledge-05')
     analyzer.save_report()
 
 

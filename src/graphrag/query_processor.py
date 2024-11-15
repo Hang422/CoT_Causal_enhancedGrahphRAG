@@ -43,16 +43,17 @@ class QueryProcessor:
         )
         self.entity_processor = EntityProcessor()  # Still needed for name-to-CUI conversion
 
-    def process_entity_pairs(self, question: MedicalQuestion,database) -> None:
+    def process_entity_pairs(self, question: MedicalQuestion, database) -> None:
         """Process entity pairs to find paths between them"""
+        paths = []
         try:
             with self.driver.session(database=database) as session:
-                KG_nodes = []
-                KG_relationships = []
-                for start_name,end_name in zip(question.entities_original_pairs['start'],question.entities_original_pairs['end']):
+                for start_name, end_name in zip(question.entities_original_pairs['start'],
+                                                question.entities_original_pairs['end']):
                     # Convert names to CUIs
                     start_cui = self.entity_processor.get_name_cui(start_name)
                     end_cui = self.entity_processor.get_name_cui(end_name)
+                    print(start_cui, end_cui)
                     if not start_cui or not end_cui:
                         continue
 
@@ -64,45 +65,41 @@ class QueryProcessor:
                         start_cui,
                         end_cui
                     )
-                    if path:
-                        KG_nodes.append(self.entity_processor.batch_get_names(path['node_cuis'],True))
-                        KG_relationships.append(path['relationships'])
+                    if path is not None and path not in paths:
+                        question.KG_nodes.append(self.entity_processor.batch_get_names(path['node_cuis'], True))
+                        question.KG_relationships.append(path['relationships'])
+                        paths.append(path)
         except Exception as e:
             self.logger.error(f"Error processing question: {str(e)}", exc_info=True)
 
-        question.KG_nodes.extend(KG_nodes)
-        question.KG_relationships.extend(KG_relationships)
         question.generate_paths()  # Update path strings
 
     def process_casual_paths(self, question: MedicalQuestion, database) -> None:
         """Find supporting KG paths for casual relationships"""
         try:
             with self.driver.session(database=database) as session:
-                question_cuis = self.entity_processor.process_text(question.question)
-                options_cuis = []
-                for option in question.options:
-                    options_cuis.extend(self.entity_processor.process_text(option))
+                # 获取问题中的CUIs
+                question_cuis = set(self.entity_processor.process_text(question.question))
 
-                # 存储所有找到的路径
-                casual_nodes = []
-                casual_relationships = []
+                # 分别获取每个选项的CUIs
+                options_cuis = set()
+                for option_text in question.options.values():  # 使用values()获取选项文本
+                    option_cuis = set(self.entity_processor.process_text(option_text))
+                    options_cuis.update(option_cuis)
 
-                # Find paths between consecutive nodes
-                for start in question_cuis:
-                    for end in options_cuis:
-                        path = _find_shortest_path(
-                            session,
-                            start,
-                            end
-                        )
+                # 查找路径
+                for start_cui in question_cuis:
+                    for end_cui in options_cuis:
+                        if start_cui == end_cui:
+                            continue
+                        path = _find_shortest_path(session, start_cui, end_cui)
                         if path:
-                            casual_nodes.append(self.entity_processor.batch_get_names(path['node_cuis'],False))
-                            casual_relationships.append(path['relationships'])
+                            question.casual_nodes.append(self.entity_processor.batch_get_names(path['node_cuis'], True))
+                            question.casual_relationships.append(path['relationships'])
 
         except Exception as e:
             self.logger.error(f"Error processing question: {str(e)}", exc_info=True)
-        question.casual_nodes.extend(casual_nodes)
-        question.casual_relationships.extend(casual_relationships)
+
         question.generate_paths()  # Update path strings
 
     def close(self):
@@ -118,7 +115,20 @@ class QueryProcessor:
 
 
 if __name__ == '__main__':
+    question = MedicalQuestion("Heavy forces on periodontal ligament causes:", {
+        "opa": "Hyalinization",
+        "opb": "Osteoclastic activity around tooth",
+        "opc": "Osteoblastic activity around tooth",
+        "opd": "Crest bone resorption"})
     processor = QueryProcessor()
-    start = "C0027750"
-    end = "C4330852"
-    print(_find_shortest_path(processor.driver.session(database='knowledge'), start, end))
+    question.entities_original_pairs = {
+        "start": [
+            "Dorsal respiratory group",
+            "Ventral respiratory neurons"
+        ],
+        "end": [
+            "Pre-Botzinger complex",
+            "Pneumotaxic center"
+        ]}
+    processor.process_entity_pairs(question, 'knowledge')
+    print(question.KG_paths)

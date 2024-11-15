@@ -61,24 +61,31 @@ class MedicalQuestion:
         """生成人类可读的路径表示"""
         # 生成因果路径
         self.casual_paths = []
-        for nodes, rels in zip(self.casual_nodes, self.casual_relationships):
+
+        # casual_nodes 是一个二维列表 [[a,b], [c,d]]
+        # casual_relationships 是一个二维列表 [[cause], [affect]]
+        for node_list, rel_list in zip(self.casual_nodes, self.casual_relationships):
             path = ""
-            for i, node in enumerate(nodes):
+            # 遍历单个路径中的节点
+            for i, node in enumerate(node_list):
                 path += f"({node})"
-                if i < len(rels):
-                    path += f"-{rels[i]}->"
+                # 如果还有关系要添加
+                if i < len(rel_list):
+                    path += f"-{rel_list[i]}->"
             self.casual_paths.append(path)
 
         # 生成知识图谱路径
         self.KG_paths = []
-        for nodes, rels in zip(self.KG_nodes, self.KG_relationships):
+        # KG_nodes 结构与 casual_nodes 相同
+        for node_list, rel_list in zip(self.KG_nodes, self.KG_relationships):
             path = ""
-            for i, node in enumerate(nodes):
+            # 遍历单个路径中的节点
+            for i, node in enumerate(node_list):
                 path += f"({node})"
-                if i < len(rels):
-                    path += f"-{rels[i]}->"
+                # 如果还有关系要添加
+                if i < len(rel_list):
+                    path += f"-{rel_list[i]}->"
             self.KG_paths.append(path)
-
     @property
     def is_correct(self) -> bool:
         """检查答案是否正确"""

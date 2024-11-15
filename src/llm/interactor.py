@@ -145,34 +145,38 @@ Confidence: (A number from 0-100)
                 prompt += f"- {path}\n"
 
         prompt += """
-    Based on the question and known relationships, please provide:
+        Based on the medical question, provided options, and known causal pathways, please provide:
 
-    1. A step-by-step reasoning chain for answering this question
-    2. Key medical entity pairs that need verification
+        1. A step-by-step reasoning chain for answering this question. The reasoning chain must be correct, even if incomplete. You do not need to use all the causal pathways; include them only if they are relevant. Missing parts can be supplemented by retrieving entity pairs.
 
-    Format your response EXACTLY as follows:
+        2. Key medical entity pairs, where 'start' and 'end' correspond one-to-one, whose relationships and pathways, when retrieved, can help complete the reasoning chain and significantly aid in answering the question. Try to align these entities with professional UMLS entities but do not force them to be present in the UMLS knowledge graph.
 
-    {
-        "reasoning_chain": [
-            "step 1: First analyze...",
-            "step 2: Then consider...",
-            "step 3: Finally evaluate..."
-        ],
-        "entity_pairs_to_retrieve": [
-            {
-                "start": ["main term", "alternative term"],
-                "end": ["main term", "alternative term"],
-                "reasoning": "explanation"
-            }
-        ]
-    }
+        Format your response EXACTLY as follows:
 
-    IMPORTANT:
-    - Use precise medical terms
-    - Provide clear, logical steps
-    - Response must be valid JSON
-    - Each entity pair should include main and alternative terms
-    """
+        {
+            "reasoning_chain": [
+                "Step 1: First analyze...",
+                "Step 2: Then consider...",
+                "Step 3: Finally evaluate..."
+            ],
+            "entity_pairs_to_retrieve": [
+                {
+                    "start": ["start1, "start2"],
+                    "end": ["end1", "end2"],
+                    "reasoning": "Explanation of how this entity pair is relevant and helps complete the reasoning chain and answer the question" for each pair
+                }
+                // Ensuring 'start' and 'end' correspond one-to-one
+            ]
+        }
+
+        IMPORTANT:
+        - Use precise medical terms.
+        - Provide clear, logical steps.
+        - The reasoning chain must be correct, even if incomplete.
+        - Response must be valid JSON.
+        - Each entity pair should include main and alternative terms.
+        - Do not force the entities to be present in the UMLS knowledge graph but try to align them with professional UMLS entities.
+        """
 
         try:
             messages = [

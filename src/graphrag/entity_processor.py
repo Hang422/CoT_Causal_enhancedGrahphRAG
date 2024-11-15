@@ -11,7 +11,7 @@ import pandas as pd
 class EntityProcessor:
     """Medical entity processor for converting between entity names and UMLS CUIs"""
 
-    def __init__(self, threshold: float = 0.8):
+    def __init__(self, threshold: float = 0.6):
         """
         Initialize the entity processor
 
@@ -166,7 +166,7 @@ class EntityProcessor:
 
         return start_cuis, end_cuis
 
-    def process_text(self, text: str, debug: bool = False) -> List[str]:
+    def process_text(self, text: str) -> List[str]:
         """
         Process text and extract valid entity CUIs
 
@@ -233,5 +233,5 @@ if __name__ == '__main__':
             "C0032961",
             "C0013080"]
     processor = EntityProcessor()
-    print(processor.batch_get_names(cuis))
-    print(processor.batch_get_cuis(processor.batch_get_names(cuis)))
+    text = "Which of the following hormone is/are under inhibitory of hypothalamus?"
+    print(processor.batch_get_names(processor.process_text(text),False))

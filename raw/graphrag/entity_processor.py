@@ -7,13 +7,14 @@ import warnings
 from typing import List, Dict, Optional, Tuple
 from dataclasses import dataclass
 
-# 抑制警告
+# Suppress warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
 warnings.filterwarnings("ignore", category=UserWarning)
 
+
 @dataclass
 class EntityInfo:
-    """实体信息数据类"""
+    """Entity information data class"""
     name: str
     types: List[str]
     aliases: List[str]
@@ -24,7 +25,7 @@ class EntityInfo:
 
 @dataclass
 class ProcessedEntityPair:
-    """处理后的实体对数据类"""
+    """Processed entity pair data class"""
     original_start: str
     original_end: str
     reasoning: str
@@ -35,15 +36,15 @@ class ProcessedEntityPair:
 
 
 class MedicalCUIExtractor:
-    """医学实体CUI提取器类"""
+    """Medical Entity CUI Extractor"""
 
     def __init__(self, threshold: float = 0.85):
-        """初始化NLP模型和实体链接器"""
+        """Initialize the NLP model and entity linker"""
         self._initialize_nlp(threshold)
         self._setup_filters()
 
     def _initialize_nlp(self, threshold: float) -> None:
-        """初始化NLP模型和链接器"""
+        """Initialize the NLP model and linker"""
         try:
             self.nlp = en_core_sci_md.load()
             if 'scispacy_linker' not in self.nlp.pipe_names:
@@ -55,10 +56,10 @@ class MedicalCUIExtractor:
                                   })
             self.linker = self.nlp.get_pipe("scispacy_linker")
         except Exception as e:
-            raise RuntimeError(f"NLP模型初始化失败: {str(e)}")
+            raise RuntimeError(f"NLP model initialization failed: {str(e)}")
 
     def _setup_filters(self) -> None:
-        """设置实体过滤器"""
+        """Set up entity filters"""
         self.blacklist = {
             'source', 'type', 'procedure', 'study', 'treatment', 'patient',
             'following', 'process', 'structure', 'device', 'method'
@@ -78,13 +79,13 @@ class MedicalCUIExtractor:
 
     def get_cui_name(self, cui: str) -> Optional[str]:
         """
-        获取CUI对应的实体名称
+        Get the entity name corresponding to the CUI
 
         Args:
-            cui: UMLS CUI编码
+            cui: UMLS CUI code
 
         Returns:
-            str: 实体名称，如果未找到返回None
+            str: Entity name, or None if not found
         """
         try:
             entity = self.linker.kb.cui_to_entity[cui]
@@ -93,7 +94,7 @@ class MedicalCUIExtractor:
             return None
 
     def get_entity_info(self, cui: str) -> Optional[EntityInfo]:
-        """获取CUI的详细信息"""
+        """Get detailed information for a CUI"""
         try:
             entity = self.linker.kb.cui_to_entity[cui]
             return EntityInfo(
@@ -106,11 +107,11 @@ class MedicalCUIExtractor:
         except KeyError:
             return None
         except Exception as e:
-            print(f"获取实体信息时出错 (CUI: {cui}): {str(e)}")
+            print(f"Error retrieving entity info (CUI: {cui}): {str(e)}")
             return None
 
     def filter_entities(self, ents) -> List[Tuple[str, float]]:
-        """过滤和评分实体"""
+        """Filter and score entities"""
         filtered_ents = []
         for ent in ents:
             try:
@@ -120,10 +121,10 @@ class MedicalCUIExtractor:
                 cui, score = ent._.kb_ents[0]
                 entity_info = self.get_entity_info(cui)
 
-                if not entity_info or ent.question.lower() in self.blacklist:
+                if not entity_info or ent.text.lower() in self.blacklist:
                     continue
 
-                # 检查语义类型
+                # Check semantic types
                 has_important_type = any(t in self.important_semantic_types
                                          for t in entity_info.types)
                 if has_important_type:
@@ -131,13 +132,13 @@ class MedicalCUIExtractor:
 
                 filtered_ents.append((cui, score))
             except Exception as e:
-                print(f"实体过滤时出错: {str(e)}")
+                print(f"Error during entity filtering: {str(e)}")
                 continue
 
         return filtered_ents
 
     def get_cuis_with_context(self, text: str) -> Dict:
-        """从文本中提取CUI列表并包含上下文信息"""
+        """Extract a list of CUIs from text along with context information"""
         if pd.isna(text) or not str(text).strip():
             return {'cuis': [], 'entities': []}
 
@@ -158,11 +159,11 @@ class MedicalCUIExtractor:
 
             return {'cuis': cuis, 'entities': entities}
         except Exception as e:
-            print(f"处理文本时出错: {str(e)}")
+            print(f"Error processing text: {str(e)}")
             return {'cuis': [], 'entities': []}
 
     def process_entity_pair(self, pair: Dict) -> ProcessedEntityPair:
-        """处理单个实体对并提取CUI"""
+        """Process a single entity pair and extract CUIs"""
         try:
             start_results = self.get_cuis_with_context(pair['start'])
             end_results = self.get_cuis_with_context(pair['end'])
@@ -177,7 +178,7 @@ class MedicalCUIExtractor:
                 end_entity=EntityInfo(**end_results['entities'][0]) if end_results['entities'] else None
             )
         except Exception as e:
-            print(f"处理实体对时出错: {str(e)}")
+            print(f"Error processing entity pair: {str(e)}")
             return ProcessedEntityPair(
                 original_start=pair['start'],
                 original_end=pair['end'],
@@ -188,3 +189,12 @@ class MedicalCUIExtractor:
                 end_entity=None
             )
 
+
+if __name__ == '__main__':
+    text = "Which of the following hormone is/are under inhibitory of hypothalamus?"
+    processor = MedicalCUIExtractor()
+    results = processor.get_cuis_with_context(text)
+    print("Extracted CUIs:", results['cuis'])
+    print("Entities:")
+    for entity in results['entities']:
+        print(entity)
