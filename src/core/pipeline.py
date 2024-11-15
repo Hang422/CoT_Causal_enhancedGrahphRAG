@@ -2,6 +2,8 @@ import pandas as pd
 from pathlib import Path
 from typing import List, Optional
 import logging
+
+import src.modules.CrossAnalysis
 from src.modules.MedicalQuestion import MedicalQuestion
 from src.llm.interactor import LLMProcessor
 from src.graphrag.entity_processor import EntityProcessor
@@ -123,7 +125,6 @@ class QuestionProcessor:
         """处理问题列表"""
         for i, question in enumerate(questions):
             self.logger.info(f"Processing question {i + 1}/{len(questions)}")
-            self.processor.process_casual_paths(question, 'casual-1')
             try:
                 # 1. 保存原始问题
                 cached_question = MedicalQuestion.from_cache(
@@ -158,7 +159,7 @@ class QuestionProcessor:
                 )
 
                 if not cached_question:
-                    self.processor.process_casual_paths(question, 'casual')
+                    self.processor.process_casual_paths(question, 'casual-1')
                     self.llm.causal_enhanced_answer(question)
                     question.set_cache_paths(self.cache_paths['casual'])
                     question.to_cache()
@@ -213,12 +214,14 @@ class QuestionProcessor:
 
 def main():
     """主函数示例"""
-    path = '80-shortest-casual-knowledge-05'
+    path = '40-4o-casual-knowledge-0.6-shortest'
     processor = QuestionProcessor(path)
     # 使用相对于data目录的路径
-    file_path = 'testdata/validation.parquet'
-    processor.batch_process_file(file_path, 80, False)
-
+    file_path = 'testdata/samples.csv'
+    processor.batch_process_file(file_path, 40, False)
+    analyzer = QuestionAnalyzer(path)
+    analyzer.save_report()
+    src.modules.CrossAnalysis.analyse(path)
 
 if __name__ == "__main__":
     main()

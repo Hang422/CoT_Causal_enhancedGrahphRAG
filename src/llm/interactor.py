@@ -91,9 +91,13 @@ Options:
         for key, text in question.options.items():
             prompt += f"{key}. {text}\n"
 
-        prompt += "\nRelevant causal relationships found in medical knowledge:\n"
-        for path in question.casual_paths:
-            prompt += f"- {path}\n"
+        if question.casual_paths:
+            prompt += "\nCausal relationships for each option:\n"
+            for option in ['opa', 'opb', 'opc', 'opd']:
+                if question.casual_paths.get(option):
+                    prompt += f"\nOption {option} related causal paths:\n"
+                    for path in question.casual_paths[option]:
+                        prompt += f"- {path}\n"
 
         prompt += """
 Based on the question, options, and causal relationships, please provide:
@@ -140,9 +144,12 @@ Confidence: (A number from 0-100)
             prompt += f"{key}. {text}\n"
 
         if question.casual_paths:
-            prompt += "\nKnown causal relationships:\n"
-            for path in question.casual_paths:
-                prompt += f"- {path}\n"
+            prompt += "\nCausal relationships for each option:\n"
+            for option in ['opa', 'opb', 'opc', 'opd']:
+                if question.casual_paths.get(option):
+                    prompt += f"\nOption {option} related causal paths:\n"
+                    for path in question.casual_paths[option]:
+                        prompt += f"- {path}\n"
 
         prompt += """
         Based on the medical question, provided options, and known causal pathways, please provide:
@@ -260,9 +267,12 @@ Options:
 
         # Add causal paths
         if question.casual_paths:
-            prompt += "\nCausal relationships:\n"
-            for path in question.casual_paths:
-                prompt += f"- {path}\n"
+            prompt += "\nCausal relationships for each option:\n"
+            for option in ['opa', 'opb', 'opc', 'opd']:
+                if question.casual_paths.get(option):
+                    prompt += f"\nOption {option} related causal paths:\n"
+                    for path in question.casual_paths[option]:
+                        prompt += f"- {path}\n"
 
         # Add reasoning chain
         if question.reasoning:

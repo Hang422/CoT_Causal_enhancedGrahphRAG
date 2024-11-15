@@ -174,8 +174,8 @@ class QuestionAnalyzer:
         self.logger.info(f"Analysis results saved to {output_path}")
 
 
-def main():
-    analyzer = QuestionAnalyzer('80-shortest-casual-knowledge-05')
+def analyse(path):
+    analyzer = QuestionAnalyzer(path)
 
     # 生成分析数据
     vis_data = analyzer.generate_visualization_data()

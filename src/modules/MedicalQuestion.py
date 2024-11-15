@@ -16,9 +16,9 @@ class MedicalQuestion:
     correct_answer: Optional[str] = None  # 0-3 对应 A-D
 
     # Casual knowledge elements
-    casual_nodes: List[List[str]] = None  # [[a,b][c,d]]
-    casual_relationships: List[List[str]] = None  # [[cause],[affect]]
-    casual_paths: List[str] = None  # ["A-cause->B", "C-affect->D"]
+    casual_nodes: Dict[str, List[List[str]]] = None  # [a:[[a,b][c,d]],b:[[a,b][c,d]]]
+    casual_relationships: Dict[str, List[List[str]]] = None  # [a:[cause],b:[affect]]
+    casual_paths: Dict[str, List[str]] = None  # [a:"A-cause->B", b:"C-affect->D"]
 
     # Knowledge elements
     entities_original_pairs: Dict[str, List] = None  # 'start'=[a,b,c] 'end' = [c,d,e]
@@ -40,11 +40,11 @@ class MedicalQuestion:
 
         # 初始化列表类型的属性
         if self.casual_nodes is None:
-            self.casual_nodes = []
+            self.casual_nodes = {'opa': [], 'opb': [], 'opc': [], 'opd': []}
         if self.casual_relationships is None:
-            self.casual_relationships = []
+            self.casual_relationships = {'opa': [], 'opb': [], 'opc': [], 'opd': []}
         if self.casual_paths is None:
-            self.casual_paths = []
+            self.casual_paths = {'opa': [], 'opb': [], 'opc': [], 'opd': []}
         if self.entities_original_pairs is None:
             self.entities_original_pairs = {'start': [], 'end': []}
         if self.KG_nodes is None:
@@ -59,32 +59,26 @@ class MedicalQuestion:
 
     def generate_paths(self) -> None:
         """生成人类可读的路径表示"""
-        # 生成因果路径
-        self.casual_paths = []
-
-        # casual_nodes 是一个二维列表 [[a,b], [c,d]]
-        # casual_relationships 是一个二维列表 [[cause], [affect]]
-        for node_list, rel_list in zip(self.casual_nodes, self.casual_relationships):
-            path = ""
-            # 遍历单个路径中的节点
-            for i, node in enumerate(node_list):
-                path += f"({node})"
-                # 如果还有关系要添加
-                if i < len(rel_list):
-                    path += f"-{rel_list[i]}->"
-            self.casual_paths.append(path)
+        # 为每个选项生成因果路径
+        for option in ['opa', 'opb', 'opc', 'opd']:
+            self.casual_paths[option] = []
+            if option in self.casual_nodes and option in self.casual_relationships:
+                for nodes, rels in zip(self.casual_nodes[option], self.casual_relationships[option]):
+                    path = ""
+                    for i, node in enumerate(nodes):
+                        path += f"({node})"
+                        if i < len(rels):
+                            path += f"-{rels[i]}->"
+                    self.casual_paths[option].append(path)
 
         # 生成知识图谱路径
         self.KG_paths = []
-        # KG_nodes 结构与 casual_nodes 相同
-        for node_list, rel_list in zip(self.KG_nodes, self.KG_relationships):
+        for nodes, rels in zip(self.KG_nodes, self.KG_relationships):
             path = ""
-            # 遍历单个路径中的节点
-            for i, node in enumerate(node_list):
+            for i, node in enumerate(nodes):
                 path += f"({node})"
-                # 如果还有关系要添加
-                if i < len(rel_list):
-                    path += f"-{rel_list[i]}->"
+                if i < len(rels):
+                    path += f"-{rels[i]}->"
             self.KG_paths.append(path)
     @property
     def is_correct(self) -> bool:

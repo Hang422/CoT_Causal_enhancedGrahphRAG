@@ -158,7 +158,7 @@ class QuestionAnalyzer:
 
 
 def main():
-    analyzer = QuestionAnalyzer('80-shortest-casual-knowledge-05')
+    analyzer = QuestionAnalyzer('GPT-3.5-Turbo-samples')
     analyzer.save_report()
 
 

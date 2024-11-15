@@ -53,7 +53,6 @@ class QueryProcessor:
                     # Convert names to CUIs
                     start_cui = self.entity_processor.get_name_cui(start_name)
                     end_cui = self.entity_processor.get_name_cui(end_name)
-                    print(start_cui, end_cui)
                     if not start_cui or not end_cui:
                         continue
 
@@ -80,27 +79,39 @@ class QueryProcessor:
             with self.driver.session(database=database) as session:
                 # 获取问题中的CUIs
                 question_cuis = set(self.entity_processor.process_text(question.question))
-
+                keys =['opa', 'opb', 'opc', 'opd']
                 # 分别获取每个选项的CUIs
-                options_cuis = set()
-                for option_text in question.options.values():  # 使用values()获取选项文本
-                    option_cuis = set(self.entity_processor.process_text(option_text))
-                    options_cuis.update(option_cuis)
+                options_cuis_a = set(self.entity_processor.process_text(question.options.get('opa')))
+                options_cuis_b = set(self.entity_processor.process_text(question.options.get('opb')))
+                options_cuis_c = set(self.entity_processor.process_text(question.options.get('opc')))
+                options_cuis_d = set(self.entity_processor.process_text(question.options.get('opd')))
+                cuis = [options_cuis_a, options_cuis_b, options_cuis_c, options_cuis_d]
 
                 # 查找路径
-                for start_cui in question_cuis:
-                    for end_cui in options_cuis:
-                        if start_cui == end_cui:
-                            continue
-                        path = _find_shortest_path(session, start_cui, end_cui)
-                        if path:
-                            question.casual_nodes.append(self.entity_processor.batch_get_names(path['node_cuis'], True))
-                            question.casual_relationships.append(path['relationships'])
+                for option_cuis, key in zip(cuis,keys):
+                    self._set_shortest_path_question_option(question,key,question_cuis, option_cuis, database)
 
         except Exception as e:
             self.logger.error(f"Error processing question: {str(e)}", exc_info=True)
 
         question.generate_paths()  # Update path strings
+
+    def _set_shortest_path_question_option(self, question: MedicalQuestion, key, question_cuis: set[str], option_cuis:set[str], database) -> None:
+        try:
+            with self.driver.session(database=database) as session:
+                for start_cui in question_cuis:
+                    for end_cui in option_cuis:
+                        if start_cui == end_cui:
+                            continue
+                        path = _find_shortest_path(session, start_cui, end_cui)
+                        if path:
+                            question.casual_nodes.get(key).append(self.entity_processor.batch_get_names(path['node_cuis'], True))
+                            question.casual_relationships.get(key).append(path['relationships'])
+        except Exception as e:
+            self.logger.error(f"Error processing question: {str(e)}", exc_info=True)
+
+        question.generate_paths()  # Update path strings
+
 
     def close(self):
         """Close database connection"""
@@ -130,5 +141,5 @@ if __name__ == '__main__':
             "Pre-Botzinger complex",
             "Pneumotaxic center"
         ]}
-    processor.process_entity_pairs(question, 'knowledge')
-    print(question.KG_paths)
+    processor.process_casual_paths(question, 'knowledge')
+    print(question.casual_paths)
