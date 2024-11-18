@@ -266,13 +266,14 @@ Options:
             prompt += f"{key}. {text}\n"
 
         # Add causal paths
-        if question.casual_paths:
-            prompt += "\nCausal relationships for each option:\n"
-            for option in ['opa', 'opb', 'opc', 'opd']:
-                if question.casual_paths.get(option):
-                    prompt += f"\nOption {option} related causal paths:\n"
-                    for path in question.casual_paths[option]:
-                        prompt += f"- {path}\n"
+        if False:
+            if question.casual_paths:
+                prompt += "\nCausal relationships for each option:\n"
+                for option in ['opa', 'opb', 'opc', 'opd']:
+                    if question.casual_paths.get(option):
+                        prompt += f"\nOption {option} related causal paths:\n"
+                        for path in question.casual_paths[option]:
+                            prompt += f"- {path}\n"
 
         # Add reasoning chain
         if question.reasoning:
@@ -291,6 +292,51 @@ Final Analysis: (Synthesize all available information)
 Answer: (Option letter,only opa,opb,opc or opd, no addtional information)
 Confidence: (A number from 0-100)
 """
+
+        try:
+            messages = [
+                {"role": "system",
+                 "content": "You are a medical expert making decisions based on comprehensive evidence."},
+                {"role": "user", "content": prompt}
+            ]
+
+            response = self._get_completion(messages)
+
+            for line in response.split('\n'):
+                if line.startswith('Final Analysis:'):
+                    question.reasoning = line.replace('Final Analysis:', '').strip()
+                elif line.startswith('Answer:'):
+                    question.answer = line.replace('Answer:', '').strip().lower()
+                elif line.startswith('Confidence:'):
+                    try:
+                        question.confidence = float(line.replace('Confidence:', '').strip().rstrip('%'))
+                    except ValueError:
+                        question.confidence = 0
+
+        except Exception as e:
+            self.logger.error(f"Error in final answer generation: {str(e)}", exc_info=True)
+
+    def answer_with_reasoning(self, question: MedicalQuestion) -> None:
+        prompt = f"""As a medical expert, please analyze this question using all available information:
+
+        Question: {question.question}
+
+        Options:
+        """
+        for key, text in question.options.items():
+            prompt += f"{key}. {text}\n"
+
+        # Add reasoning chain
+        if question.reasoning:
+            prompt += f"\nReasoning process:\n{question.reasoning}\n"
+
+        prompt += """
+        Based on all the above information, please provide:
+
+        Final Analysis: (Synthesize all available information)
+        Answer: (Option letter,only opa,opb,opc or opd, no addtional information)
+        Confidence: (A number from 0-100)
+        """
 
         try:
             messages = [

@@ -27,6 +27,42 @@ def _find_shortest_path(session, start_cui: str, end_cui: str) -> Optional[Dict]
     return record if record else None
 
 
+def _find_shortest_path1(session, start_cui: str, end_cui: str) -> Optional[Dict]:
+    """Find highest scoring path between two CUIs"""
+    query = """
+   MATCH path = allShortestPaths((start:Entity)-[*..5]->(end:Entity))
+   WHERE start.cui = $start_cui AND end.cui = $end_cui
+   RETURN 
+       [node in nodes(path) | node.cui] as node_cuis,
+       [rel in relationships(path) | rel.name] as relationships,
+       length(path) as path_length
+   LIMIT 5
+   """
+
+    relation_scores = {
+        'CAUSES': 5, 'PRODUCES': 5, 'INDUCES': 5, 'induces': 5,
+        'cause_of': 5, 'causative_agent_of': 5, 'has_causative_agent': 5,
+        'STIMULATES': 4, 'INHIBITS': 4, 'AFFECTS': 4, 'DISRUPTS': 4,
+        'positively_regulates': 4, 'negatively_regulates': 4, 'regulates': 4,
+        'has_process_output': 3, 'has_result': 3, 'result_of': 3, 'CONVERTS_TO': 3,
+        'PREVENTS': 2, 'TREATS': 2, 'AUGMENTS': 2,
+        'INTERACTS_WITH': 1, 'ISA': 1, 'disease_has_finding': 1, 'MANIFESTATION_OF': 1
+    }
+
+    result = session.run(query, start_cui=start_cui, end_cui=end_cui)
+    best_path = None
+    best_score = -1
+
+    for record in result:
+        score = sum(relation_scores.get(rel, 1) for rel in record['relationships'])
+        score *= 1.0 / (1 + record['path_length'])
+        if score > best_score:
+            best_score = score
+            best_path = record
+
+    return best_path
+
+
 class QueryProcessor:
     """Neo4j query processor for medical question path finding"""
 
@@ -141,5 +177,5 @@ if __name__ == '__main__':
             "Pre-Botzinger complex",
             "Pneumotaxic center"
         ]}
-    processor.process_casual_paths(question, 'knowledge')
+    processor.process_casual_paths(question, 'casual')
     print(question.casual_paths)

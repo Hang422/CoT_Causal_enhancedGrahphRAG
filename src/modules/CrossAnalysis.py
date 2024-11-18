@@ -155,12 +155,12 @@ class QuestionAnalyzer:
             'counts': analysis['counts']
         }
 
-    def save_analysis(self, output_path: Optional[str] = None) -> None:
+    def save_analysis(self, file_name,output_path: Optional[str] = None) -> None:
         """保存分析结果"""
         analysis_data = self.get_cross_model_analysis()
 
         if output_path is None:
-            output_path = config.paths["output"] / "cross_model_analysis.json"
+            output_path = config.paths["output"] / file_name
         else:
             output_path = Path(output_path)
 
@@ -200,8 +200,8 @@ def analyse(path):
         print(f"  Total correct: {model['withPath'] + model['withoutPath']}%")
 
     # 保存分析结果
-    analyzer.save_analysis()
+    analyzer.save_analysis(f"{path}/analysis.json")
 
 
 if __name__ == "__main__":
-    main()
+    analyse('20-4o-casual-knowledge-0.6-shortest')

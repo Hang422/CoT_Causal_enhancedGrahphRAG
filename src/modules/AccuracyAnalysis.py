@@ -5,7 +5,7 @@ import pandas as pd
 from src.modules.MedicalQuestion import MedicalQuestion
 from config import config
 import logging
-
+from src.modules.CrossAnalysis import analyse
 
 class QuestionAnalyzer:
     """分析不同阶段问题处理结果的分析器"""
@@ -136,12 +136,12 @@ class QuestionAnalyzer:
 
         return pd.DataFrame(comparison_data)
 
-    def save_report(self, output_path: Optional[str] = None) -> None:
+    def save_report(self, file_name, output_path: Optional[str] = None) -> None:
         """保存分析报告"""
         df = self.generate_report()
 
         if output_path is None:
-            output_path = config.paths["output"] / "analysis_report.xlsx"
+            output_path = config.paths["output"] / file_name
         else:
             output_path = Path(output_path)
 
@@ -158,9 +158,10 @@ class QuestionAnalyzer:
 
 
 def main():
-    analyzer = QuestionAnalyzer('GPT-3.5-Turbo-samples')
-    analyzer.save_report()
-
+    path = '40-4omini-adaptive-knowledge-0.75-shortest'
+    analyzer = QuestionAnalyzer(path)
+    analyzer.save_report(f"{path}/report.xlsx")
+    analyse(path)
 
 if __name__ == "__main__":
     main()

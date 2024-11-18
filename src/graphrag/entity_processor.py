@@ -11,7 +11,7 @@ import pandas as pd
 class EntityProcessor:
     """Medical entity processor for converting between entity names and UMLS CUIs"""
 
-    def __init__(self, threshold: float = 0.6):
+    def __init__(self, threshold: float = 0.75):
         """
         Initialize the entity processor
 
@@ -196,13 +196,15 @@ class EntityProcessor:
 
             return []
 
-    def _is_valid_entity(self, entity, cui: str, score: float) -> bool:
+    def _is_valid_entity(self, entity, cui: str, score: float, threshold=None) -> bool:
         """
         Check if an entity is valid based on filters
         """
+        if threshold is None:
+            threshold = self.threshold
         try:
             # 检查分数
-            if score < self.threshold:
+            if score < threshold:
                 return False
 
             # 检查实体文本
