@@ -178,7 +178,7 @@ class QuestionProcessor:
 
                 if not cached_question:
                     self.llm.generate_reasoning_chain(question)
-                    self.processor.process_entity_pairs(question, 'knowledge')
+                    self.processor.process_entity_pairs_enhance(question, 'knowledge')
                     question.set_cache_paths(self.cache_paths['reasoning'])
                     question.to_cache()
                 else:
@@ -243,13 +243,13 @@ class QuestionProcessor:
 
 def main():
     """主函数示例"""
-    cache_path = '40-4omini-adaptive-knowledge-0.75-shortest'
-    save_path = f"{cache_path}-change-final"
+    cache_path = '20-gpt-4omini-adaptive-knowledge-0.75-shortest-enhance'
+    save_path = f"{cache_path}"
     processor = QuestionProcessor(save_path)
     # 使用相对于data目录的路径
     samples = 'testdata/samples.csv'
-    # processor.batch_process_file(file_path, 40, False)
-    processor.process_from_cache(cache_path)
+    processor.batch_process_file(samples, 100, True)
+    #processor.process_from_cache(cache_path)
 
     analyzer = QuestionAnalyzer(save_path)
     analyzer.save_report(f"{save_path}/report.xlsx")

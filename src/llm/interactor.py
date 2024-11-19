@@ -13,7 +13,7 @@ class LLMProcessor:
     def __init__(self):
         """使用全局配置初始化处理器"""
         self.client = OpenAI(api_key=config.openai["api_key"])
-        self.model = config.openai.get("model", "gpt-4o-mini")
+        self.model = config.openai.get("model")
         self.temperature = config.openai.get("temperature", 0.3)
         self.logger = config.get_logger("llm_interaction")
         self.logger.info(f"Initialized LLM interaction with model: {self.model}")
@@ -266,14 +266,14 @@ Options:
             prompt += f"{key}. {text}\n"
 
         # Add causal paths
-        if False:
-            if question.casual_paths:
-                prompt += "\nCausal relationships for each option:\n"
-                for option in ['opa', 'opb', 'opc', 'opd']:
-                    if question.casual_paths.get(option):
-                        prompt += f"\nOption {option} related causal paths:\n"
-                        for path in question.casual_paths[option]:
-                            prompt += f"- {path}\n"
+
+        if question.casual_paths:
+            prompt += "\nCausal relationships for each option:\n"
+            for option in ['opa', 'opb', 'opc', 'opd']:
+                if question.casual_paths.get(option):
+                    prompt += f"\nOption {option} related causal paths:\n"
+                    for path in question.casual_paths[option]:
+                        prompt += f"- {path}\n"
 
         # Add reasoning chain
         if question.reasoning:

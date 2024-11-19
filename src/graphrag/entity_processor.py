@@ -61,7 +61,7 @@ class EntityProcessor:
             'onset', 'course', 'history',
 
             # People related
-            'patient', 'person', 'doctor', 'physician', 'specialist',
+            'patients', 'person', 'doctor', 'physician', 'specialist',
 
             # General terms
             'normal', 'abnormal', 'routine', 'standard', 'regular',
