@@ -10,7 +10,7 @@ from src.graphrag.entity_processor import EntityProcessor
 def _find_shortest_path(session, start_cui: str, end_cui: str) -> Optional[Dict]:
     """Find shortest path between two CUIs"""
     query = """
-    MATCH path = shortestPath((start:Entity)-[*..5]->(end:Entity))
+    MATCH path = shortestPath((start)-[*..5]->(end))
     WHERE start.cui = $start_cui AND end.cui = $end_cui
     RETURN 
         [node in nodes(path) | node.cui] as node_cuis,
@@ -27,17 +27,25 @@ def _find_shortest_path(session, start_cui: str, end_cui: str) -> Optional[Dict]
     return record if record else None
 
 
-def _find_shortest_path_score(session, start_cui: str, end_cui: str) -> Optional[Dict]:
-    """Find highest scoring path between two CUIs"""
+def _find_shortest_path_score(session, start_cui: str, end_cui: str) -> List[Dict]:
+    """Find highest scoring paths between two CUIs with length constraints"""
     query = """
-   MATCH path = allShortestPaths((start:Entity)-[*..5]->(end:Entity))
-   WHERE start.cui = $start_cui AND end.cui = $end_cui
-   RETURN 
-       [node in nodes(path) | node.cui] as node_cuis,
-       [rel in relationships(path) | rel.name] as relationships,
-       length(path) as path_length
-   LIMIT 5
-   """
+    MATCH path = allShortestPaths((start)-[*..5]->(end))
+    WHERE start.cui = $start_cui AND end.cui = $end_cui
+    WITH path, length(path) as len
+    ORDER BY len ASC
+    WITH collect({
+        nodes: [node in nodes(path) | node.cui],
+        rels: [rel in relationships(path) | rel.name],
+        length: len
+    }) as paths,
+    min(len) as shortest_len
+    UNWIND [p in paths WHERE p.length <= shortest_len + 1] as filtered_path
+    RETURN 
+        filtered_path.nodes as node_cuis,
+        filtered_path.rels as relationships,
+        filtered_path.length as path_length
+    """
 
     relation_scores = {
         'CAUSES': 5, 'PRODUCES': 5, 'INDUCES': 5, 'induces': 5,
@@ -49,22 +57,84 @@ def _find_shortest_path_score(session, start_cui: str, end_cui: str) -> Optional
         'INTERACTS_WITH': 1, 'ISA': 1, 'disease_has_finding': 1, 'MANIFESTATION_OF': 1
     }
 
+    scored_paths = []
     result = session.run(query, start_cui=start_cui, end_cui=end_cui)
-    best_path = None
-    best_score = -1
 
     for record in result:
         score = sum(relation_scores.get(rel, 1) for rel in record['relationships'])
         score *= 1.0 / (1 + record['path_length'])
-        if score > best_score:
-            best_score = score
-            best_path = record
+        scored_paths.append({
+            'node_cuis': record['node_cuis'],
+            'relationships': record['relationships'],
+            'path_length': record['path_length'],
+            'score': score
+        })
 
-    return best_path
+    scored_paths.sort(key=lambda x: x['score'], reverse=True)
+    return scored_paths[:3]
 
 
 def _find_shortest_path_score_both_directions(session, start_cui: str, end_cui: str) -> Optional[Dict]:
     pass
+
+
+def _find_shortest_path_enhance(session, start_cui: str, end_cui: str) -> List[Dict]:
+    """Enhanced path finding that returns alternative shorter paths with scoring"""
+    query = """
+    // Get original shortest path and length
+    MATCH (start {cui: $start_cui}), (end {cui: $end_cui})
+    OPTIONAL MATCH initialPath = shortestPath((start)-[*..4]->(end))
+    WITH start, end, 
+         CASE WHEN initialPath IS NULL THEN -1 ELSE length(initialPath) END as original_length
+    WHERE original_length > 0
+
+    // Get neighbors and find shorter paths
+    MATCH (start)-[r1]->(neighbor)
+    WHERE neighbor <> end
+    OPTIONAL MATCH alterPath = shortestPath((neighbor)-[*..3]->(end))
+    WITH start, neighbor, r1, alterPath, original_length,
+         CASE WHEN alterPath IS NULL THEN -1 ELSE length(alterPath) END as path_length
+    WHERE alterPath IS NOT NULL AND path_length < original_length
+
+    // Return complete path information including start node
+    RETURN DISTINCT
+           [start.cui] + [neighbor.cui] + [node in nodes(alterPath)[1..] | node.cui] as node_cuis,
+           [r1.name] + [rel in relationships(alterPath) | rel.name] as relationships,
+           path_length + 1 as total_length
+    ORDER BY total_length ASC
+    LIMIT 5
+    """
+
+    relation_scores = {
+        'CAUSES': 5, 'PRODUCES': 5, 'INDUCES': 5, 'induces': 5,
+        'cause_of': 5, 'causative_agent_of': 5, 'has_causative_agent': 5,
+        'STIMULATES': 4, 'INHIBITS': 4, 'AFFECTS': 4, 'DISRUPTS': 4,
+        'positively_regulates': 4, 'negatively_regulates': 4, 'regulates': 4,
+        'has_process_output': 3, 'has_result': 3, 'result_of': 3, 'CONVERTS_TO': 3,
+        'PREVENTS': 2, 'TREATS': 2, 'AUGMENTS': 2,
+        'INTERACTS_WITH': 1, 'ISA': 1, 'disease_has_finding': 1, 'MANIFESTATION_OF': 1
+    }
+
+    results = []
+    try:
+        result = session.run(query, start_cui=start_cui, end_cui=end_cui)
+        for record in result:
+            if record:
+                score = sum(relation_scores.get(rel, 1) for rel in record['relationships'])
+                score *= 1.0 / (1 + record['total_length'])
+                results.append({
+                    'node_cuis': record['node_cuis'],
+                    'relationships': record['relationships'],
+                    'path_length': record['total_length'],
+                    'score': score
+                })
+
+        results.sort(key=lambda x: x['score'], reverse=True)
+
+    except Exception as e:
+        logging.error(f"Error in enhanced path finding: {str(e)}")
+
+    return results
 
 
 class QueryProcessor:
@@ -113,7 +183,7 @@ class QueryProcessor:
 
         question.generate_paths()  # Update path strings
 
-    def process_casual_paths(self, question: MedicalQuestion, database) -> None:
+    def process_casual_paths_direct(self, question: MedicalQuestion, database) -> None:
         """Find supporting KG paths for casual relationships"""
         try:
             with self.driver.session(database=database) as session:
@@ -178,7 +248,6 @@ class QueryProcessor:
                     # Convert names to CUIs
                     start_cui = self.entity_processor.get_name_cui(start_name)
                     end_cui = self.entity_processor.get_name_cui(end_name)
-
                     if not start_cui or not end_cui:
                         continue
 
@@ -186,7 +255,7 @@ class QueryProcessor:
                         continue
 
                     # 使用增强版路径查找
-                    paths = _find_shortest_path_enhance(
+                    paths = _find_shortest_path_score(
                         session,
                         start_cui,
                         end_cui
@@ -211,121 +280,133 @@ class QueryProcessor:
         except Exception as e:
             self.logger.error(f"Error in enhanced entity pairs processing: {str(e)}", exc_info=True)
 
+        try:
+            with self.driver.session(database='casual') as session:
+                for start_name, end_name in zip(question.casual_paths_nodes_refine['start'],
+                                                question.casual_paths_nodes_refine['end']):
+                    # Convert names to CUIs
+                    start_cui = self.entity_processor.get_name_cui(start_name)
+                    end_cui = self.entity_processor.get_name_cui(end_name)
+                    if not start_cui or not end_cui:
+                        continue
+
+                    if start_cui == end_cui:
+                        continue
+
+                    # 使用增强版路径查找
+                    paths = _find_shortest_path_score(
+                        session,
+                        start_cui,
+                        end_cui
+                    )
+
+                    # 处理找到的多条路径
+                    for path in paths:
+                        # 创建用于去重的路径标识
+                        path_identifier = (
+                            tuple(path['node_cuis']),
+                            tuple(path['relationships'])
+                        )
+
+                        # 如果是新路径，添加到结果中
+                        if path_identifier not in seen_paths:
+                            seen_paths.add(path_identifier)
+                            question.KG_nodes.append(
+                                self.entity_processor.batch_get_names(path['node_cuis'], True)
+                            )
+                            question.KG_relationships.append(path['relationships'])
+
+        except Exception as e:
+            self.logger.error(f"Error in enhanced entity pairs processing: {str(e)}", exc_info=True)
+
+
+
+        question.generate_paths()  # Update path strings
+
+    def process_casual_paths_enhance(self, question: MedicalQuestion, database) -> None:
+        """Enhanced version of process_casual_paths that returns multiple shorter paths"""
+        try:
+            with self.driver.session(database=database) as session:
+                # 获取问题中的CUIs
+                question_cuis = set(self.entity_processor.process_text(question.question))
+                keys = ['opa', 'opb', 'opc', 'opd']
+                # 分别获取每个选项的CUIs
+                options_cuis = {
+                    'opa': set(self.entity_processor.process_text(question.options.get('opa'))),
+                    'opb': set(self.entity_processor.process_text(question.options.get('opb'))),
+                    'opc': set(self.entity_processor.process_text(question.options.get('opc'))),
+                    'opd': set(self.entity_processor.process_text(question.options.get('opd')))
+                }
+
+                # 用于去重的集合
+                seen_paths = set()
+
+                # 查找路径
+                for key in keys:
+                    if key not in question.casual_nodes:
+                        question.casual_nodes[key] = []
+                    if key not in question.casual_relationships:
+                        question.casual_relationships[key] = []
+
+                    for start_cui in question_cuis:
+                        for end_cui in options_cuis[key]:
+                            if start_cui == end_cui:
+                                continue
+
+                            paths = _find_shortest_path_enhance(session, start_cui, end_cui)
+
+                            for path in paths:
+                                # 创建用于去重的路径标识
+                                path_identifier = (
+                                    tuple(path['node_cuis']),
+                                    tuple(path['relationships'])
+                                )
+
+                                # 如果是新路径，添加到结果中
+                                if path_identifier not in seen_paths:
+                                    seen_paths.add(path_identifier)
+                                    question.casual_nodes[key].append(
+                                        self.entity_processor.batch_get_names(path['node_cuis'], True)
+                                    )
+                                    question.casual_relationships[key].append(path['relationships'])
+
+        except Exception as e:
+            self.logger.error(f"Error in enhanced casual paths processing: {str(e)}", exc_info=True)
+
         question.generate_paths()  # Update path strings
 
 
-def _find_shortest_path_enhance(session, start_cui: str, end_cui: str) -> List[Dict]:
-    """Enhanced path finding that returns alternative shorter paths"""
-    query = """
-    // 获取原始最短路径和长度
-    MATCH (start:Entity {cui: $start_cui}), (end:Entity {cui: $end_cui})
-    OPTIONAL MATCH initialPath = shortestPath((start)-[*..4]->(end))
-    WITH start, end, 
-         CASE WHEN initialPath IS NULL THEN -1 ELSE length(initialPath) END as original_length
-    WHERE original_length > 0
-
-    // 获取邻居并寻找更短的路径
-    MATCH (start)-[r1]-(neighbor)
-    WHERE neighbor <> end
-    OPTIONAL MATCH alterPath = shortestPath((neighbor)-[*..3]->(end))
-    WITH start, neighbor, alterPath, original_length,
-         CASE WHEN alterPath IS NULL THEN -1 ELSE length(alterPath) END as path_length
-    WHERE alterPath IS NOT NULL AND path_length < original_length
-
-    // 返回完整路径信息
-    RETURN DISTINCT
-           [node in nodes(alterPath) | node.cui] as node_cuis,
-           [rel in relationships(alterPath) | rel.name] as relationships,
-           path_length
-    ORDER BY path_length ASC
-    LIMIT 5
-    """
-
-    results = []
-    try:
-        result = session.run(query, start_cui=start_cui, end_cui=end_cui)
-        for record in result:
-            if record:
-                results.append({
-                    'node_cuis': record['node_cuis'],
-                    'relationships': record['relationships'],
-                    'path_length': record['path_length']
-                })
-    except Exception as e:
-        logging.error(f"Error in enhanced path finding: {str(e)}")
-
-    return results
-
-def process_casual_paths_enhance(self, question: MedicalQuestion, database) -> None:
-    """Enhanced version of process_casual_paths that returns multiple shorter paths"""
-    try:
-        with self.driver.session(database=database) as session:
-            # 获取问题中的CUIs
-            question_cuis = set(self.entity_processor.process_text(question.question))
-            keys = ['opa', 'opb', 'opc', 'opd']
-            # 分别获取每个选项的CUIs
-            options_cuis = {
-                'opa': set(self.entity_processor.process_text(question.options.get('opa'))),
-                'opb': set(self.entity_processor.process_text(question.options.get('opb'))),
-                'opc': set(self.entity_processor.process_text(question.options.get('opc'))),
-                'opd': set(self.entity_processor.process_text(question.options.get('opd')))
-            }
-
-            # 用于去重的集合
-            seen_paths = set()
-
-            # 查找路径
-            for key in keys:
-                if key not in question.casual_nodes:
-                    question.casual_nodes[key] = []
-                if key not in question.casual_relationships:
-                    question.casual_relationships[key] = []
-
-                for start_cui in question_cuis:
-                    for end_cui in options_cuis[key]:
-                        if start_cui == end_cui:
-                            continue
-
-                        paths = _find_shortest_path_enhance(session, start_cui, end_cui)
-
-                        for path in paths:
-                            # 创建用于去重的路径标识
-                            path_identifier = (
-                                tuple(path['node_cuis']),
-                                tuple(path['relationships'])
-                            )
-
-                            # 如果是新路径，添加到结果中
-                            if path_identifier not in seen_paths:
-                                seen_paths.add(path_identifier)
-                                question.casual_nodes[key].append(
-                                    self.entity_processor.batch_get_names(path['node_cuis'], True)
-                                )
-                                question.casual_relationships[key].append(path['relationships'])
-
-    except Exception as e:
-        self.logger.error(f"Error in enhanced casual paths processing: {str(e)}", exc_info=True)
-
-    question.generate_paths()  # Update path strings
-
-
 if __name__ == '__main__':
-    question = MedicalQuestion("Heavy forces on periodontal ligament causes:", {
-        "opa": "Hyalinization",
-        "opb": "Osteoclastic activity around tooth",
-        "opc": "Osteoblastic activity around tooth",
-        "opd": "Crest bone resorption"})
+    question = MedicalQuestion(
+        question="Sugar restricted to diet was beneficial in presence of unfavorable hygiene was from which study?",
+        options={
+            "opa": "Hopewood",
+            "opb": "Experimental",
+            "opc": "Vipeholm",
+            "opd": "Turku"}, topic_name='null')
     processor = QueryProcessor()
     question.entities_original_pairs = {
         "start": [
-            "lactase deficiency",
-            "yogurt",
-            "condensed milk"
+            "Nitrates",
+            "Nitrates"
         ],
         "end": [
-            "lactose",
-            "live cultures",
-            "lactose content"
+            "Coronary vasodilator",
+            "Decrease in preload"
         ]}
-    processor.process_entity_pairs_enhance(question, 'casual')
+    processor.process_entity_pairs_enhance(question, 'knowledge')
+    var = ['(Nitrates)-AFFECTS->(Flow)-MANIFESTATION_OF->(Exocytosis)-AFFECTS->(Reduced)',
+           '(Nitrates)-DISRUPTS->(Flow)-MANIFESTATION_OF->(Exocytosis)-AFFECTS->(Reduced)',
+           '(Nitrates)-STIMULATES->(SPRING1 gene)-STIMULATES->(Down-Regulation)-NEG_AFFECTS->(Reduced)']
+
+    var = ['(Nitrates)-AFFECTS->(Flow)-MANIFESTATION_OF->(Exocytosis)-AFFECTS->(Reduced)',
+           '(Nitrates)-DISRUPTS->(Flow)-MANIFESTATION_OF->(Exocytosis)-AFFECTS->(Reduced)',
+           '(Nitrates)-STIMULATES->(SPRING1 gene)-STIMULATES->(Down-Regulation)-NEG_AFFECTS->(Reduced)']
+
+    var = ['(Nitrates)-AFFECTS->(Flow)-MANIFESTATION_OF->(Exocytosis)-AFFECTS->(Reduced)',
+           '(Nitrates)-DISRUPTS->(Flow)-MANIFESTATION_OF->(Exocytosis)-AFFECTS->(Reduced)',
+           '(Nitrates)-STIMULATES->(SPRING1 gene)-STIMULATES->(Down-Regulation)-NEG_AFFECTS->(Reduced)',
+           '(Nitrates)-INTERACTS_WITH->(malate)-CAUSES->(Down-Regulation)-NEG_AFFECTS->(Reduced)',
+           '(Nitrates)-COEXISTS_WITH->(SPRING1 gene)-STIMULATES->(Down-Regulation)-NEG_AFFECTS->(Reduced)']
+
     print(question.KG_paths)

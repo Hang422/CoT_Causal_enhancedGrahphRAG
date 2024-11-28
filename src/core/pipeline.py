@@ -85,7 +85,8 @@ class QuestionProcessor:
                         'opc' if row['cop'] == 2 else
                         'opd' if row['cop'] == 3 else
                         None
-                    )
+                    ),
+                    topic_name=row['subject_name']
                 )
                 questions.append(question)
         except Exception as e:
@@ -116,7 +117,8 @@ class QuestionProcessor:
                         'opc' if row['cop'] == 2 else
                         'opd' if row['cop'] == 3 else
                         None
-                    )
+                    ),
+                    topic_name=row['topic_name']
                 )
                 questions.append(question)
         except Exception as e:
@@ -162,7 +164,7 @@ class QuestionProcessor:
                 )
 
                 if not cached_question:
-                    self.processor.process_casual_paths(question, 'casual-1')
+                    self.processor.process_casual_paths_enhance(question, 'casual')
                     self.llm.causal_enhanced_answer(question)
                     question.set_cache_paths(self.cache_paths['casual'])
                     question.to_cache()
@@ -178,7 +180,7 @@ class QuestionProcessor:
 
                 if not cached_question:
                     self.llm.generate_reasoning_chain(question)
-                    self.processor.process_entity_pairs_enhance(question, 'knowledge')
+                    self.processor.process_entity_pairs(question, 'knowledge')
                     question.set_cache_paths(self.cache_paths['reasoning'])
                     question.to_cache()
                 else:
@@ -243,13 +245,14 @@ class QuestionProcessor:
 
 def main():
     """主函数示例"""
-    cache_path = '20-gpt-4omini-adaptive-knowledge-0.75-shortest-enhance'
+    cache_path = '20-gpt-4o-adaptive-knowledge-0.75-shortest-enhance-v3'
     save_path = f"{cache_path}"
     processor = QuestionProcessor(save_path)
     # 使用相对于data目录的路径
     samples = 'testdata/samples.csv'
-    processor.batch_process_file(samples, 100, True)
-    #processor.process_from_cache(cache_path)
+    # 200-2k
+    processor.batch_process_file(samples, 5, False)
+    # processor.process_from_cache(cache_path)
 
     analyzer = QuestionAnalyzer(save_path)
     analyzer.save_report(f"{save_path}/report.xlsx")

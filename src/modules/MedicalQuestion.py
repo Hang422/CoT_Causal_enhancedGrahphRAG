@@ -12,6 +12,7 @@ class MedicalQuestion:
     """Medical question with all necessary information"""
     # Basic information
     question: str
+    topic_name: str
     options: Dict[str, str]  # 使用 'opa', 'opb', 'opc', 'opd' 作为键
     correct_answer: Optional[str] = None  # 0-3 对应 A-D
 
@@ -19,6 +20,12 @@ class MedicalQuestion:
     casual_nodes: Dict[str, List[List[str]]] = None  # [a:[[a,b][c,d]],b:[[a,b][c,d]]]
     casual_relationships: Dict[str, List[List[str]]] = None  # [a:[cause],b:[affect]]
     casual_paths: Dict[str, List[str]] = None  # [a:"A-cause->B", b:"C-affect->D"]
+    casual_paths_nodes_refine: Dict[str, List] = None
+
+    casual_relationships_refine: Dict[str, List[List[str]]] = None  # [a:[cause],b:[affect]]
+    CG_nodes: List[str] = None
+    CG_relationships: List[List[str]] = None
+    CG_paths: List[str] = None
 
     # Knowledge elements
     entities_original_pairs: Dict[str, List] = None  # 'start'=[a,b,c] 'end' = [c,d,e]
@@ -53,9 +60,11 @@ class MedicalQuestion:
             self.KG_relationships = []
         if self.KG_paths is None:
             self.KG_paths = []
+        if self.casual_paths_nodes_refine is None:
+            self.casual_paths_nodes_refine = {'start': [], 'end': []}
+        if self.casual_relationships_refine is None:
+            self.casual_relationships_refine = {'start': [], 'end': []}
 
-        # 生成路径
-        self.generate_paths()
 
     def generate_paths(self) -> None:
         """生成人类可读的路径表示"""

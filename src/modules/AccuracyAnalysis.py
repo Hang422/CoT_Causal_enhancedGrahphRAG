@@ -82,7 +82,7 @@ class QuestionAnalyzer:
 
         # 路径和推理分析
         has_reasoning = sum(1 for q in questions if q.reasoning is not None)
-        has_casual_paths = sum(1 for q in questions if q.casual_paths and len(q.casual_paths) > 0)
+        has_casual_paths = sum(1 for q in questions if any(q.casual_paths.get(opt) for opt in ['opa', 'opb', 'opc', 'opd']))
         has_kg_paths = sum(1 for q in questions if q.KG_paths and len(q.KG_paths) > 0)
 
         return {

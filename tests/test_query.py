@@ -14,7 +14,7 @@ question = MedicalQuestion.from_cache(Path('../cache/original'), str(questions[0
 def test_query_casual_graph():
     config.set_database('casual')
     processor = QueryProcessor()
-    processor.process_casual_paths(question)
+    processor.process_casual_paths_direct(question)
     print(question.casual_paths)
 
 

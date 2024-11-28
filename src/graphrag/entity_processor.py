@@ -235,5 +235,7 @@ if __name__ == '__main__':
             "C0032961",
             "C0013080"]
     processor = EntityProcessor()
-    text = "Which of the following hormone is/are under inhibitory of hypothalamus?"
+    text = "Decrease in preload"
     print(processor.batch_get_names(processor.process_text(text),False))
+    print(processor.get_name_cui(text))
+    print(processor.get_cui_name('C0392756'))
