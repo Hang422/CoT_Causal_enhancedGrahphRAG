@@ -29,8 +29,8 @@ def test_paths():
 
 
 def test_logger():
-    logger = config.get_logger("test")
-    assert logger.name == "casual_graphrag.test"
+    logger = config.get_logger("20-gpt-4-adaptive-knowledge-0.75-shortest-enhance-ultra2")
+    assert logger.name == "casual_graphrag.20-gpt-4-adaptive-knowledge-0.75-shortest-enhance-ultra2"
 
     # Test log file creation
     log_path = config.paths["logs"] / "medical_qa.log"
