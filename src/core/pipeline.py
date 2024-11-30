@@ -34,7 +34,8 @@ class QuestionProcessor:
             'derelict': self.cache_root / self.cache_path / 'derelict',
             'casual': self.cache_root / self.cache_path / 'casual',
             'reasoning': self.cache_root / self.cache_path / 'reasoning',
-            'final': self.cache_root / self.cache_path / 'final'
+            'final': self.cache_root / self.cache_path / 'final',
+            'enhancement': self.cache_root / self.cache_path / 'enhancement'
         }
 
         self.processor = QueryProcessor()
@@ -59,7 +60,7 @@ class QuestionProcessor:
         questions = []
         data_path = config.paths["data"] / file_path
 
-        splits = {'train': 'data/train-00000-of-00001.parquet', 'test': 'data/test-00000-of-00001.parquet',
+        splits = {'train': 'data/train-00000-of-00001.parquet', '20-gpt-4-adaptive-knowledge-0.75-shortest-enhance-ultra2': 'data/20-gpt-4-adaptive-knowledge-0.75-shortest-enhance-ultra2-00000-of-00001.parquet',
                   'validation': 'data/validation-00000-of-00001.parquet'}
         df = pd.read_parquet("hf://datasets/openlifescienceai/medmcqa/" + splits["validation"])
 
@@ -165,7 +166,7 @@ class QuestionProcessor:
 
                 if not cached_question:
                     self.processor.process_casual_paths_enhance(question, 'casual')
-                    self.llm.causal_enhanced_answer(question)
+                    # self.llm.causal_enhanced_answer(question)
                     question.set_cache_paths(self.cache_paths['casual'])
                     question.to_cache()
                 else:
@@ -180,7 +181,7 @@ class QuestionProcessor:
 
                 if not cached_question:
                     self.llm.generate_reasoning_chain(question)
-                    self.processor.process_entity_pairs(question, 'knowledge')
+                    self.processor.process_entity_pairs_enhance(question, 'knowledge')
                     question.set_cache_paths(self.cache_paths['reasoning'])
                     question.to_cache()
                 else:
@@ -194,11 +195,26 @@ class QuestionProcessor:
                 )
 
                 if not cached_question:
-                    self.llm.final_answer_with_all_paths(question)
+                    # self.llm.final_answer_with_all_paths(question)
                     question.set_cache_paths(self.cache_paths['final'])
                     question.to_cache()
                 else:
                     question = cached_question
+
+                cached_question = MedicalQuestion.from_cache(
+                    self.cache_paths['enhancement'],
+                    question.question,
+                    question.options
+                )
+
+                if not cached_question:
+                    self.llm.enhance_information(question)
+                    self.llm.answer_with_enhanced_information(question)
+                    question.set_cache_paths(self.cache_paths['enhancement'])
+                    question.to_cache()
+                else:
+                    question = cached_question
+
 
             except Exception as e:
                 self.logger.error(f"Error processing question {i + 1}: {str(e)}")
@@ -220,7 +236,8 @@ class QuestionProcessor:
                     question = MedicalQuestion(
                         question=data['question'],
                         options=data['options'],
-                        correct_answer=data['correct_answer']
+                        correct_answer=data['correct_answer'],
+                        topic_name=data['topic_name']
                     )
                     questions.append(question)
             except Exception as e:
@@ -245,13 +262,13 @@ class QuestionProcessor:
 
 def main():
     """主函数示例"""
-    cache_path = '20-gpt-4o-adaptive-knowledge-0.75-shortest-enhance-v3'
+    cache_path = '30-gpt-3.5-adaptive-ultra-for4'
     save_path = f"{cache_path}"
     processor = QuestionProcessor(save_path)
     # 使用相对于data目录的路径
     samples = 'testdata/samples.csv'
     # 200-2k
-    processor.batch_process_file(samples, 5, False)
+    processor.batch_process_file(samples, 30, False)
     # processor.process_from_cache(cache_path)
 
     analyzer = QuestionAnalyzer(save_path)

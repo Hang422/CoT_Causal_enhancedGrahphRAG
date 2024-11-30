@@ -148,7 +148,7 @@ class Config:
         # OpenAI configuration
         self.openai = {
             "api_key": os.getenv("OPENAI_API_KEY", ""),
-            "model": os.getenv("OPENAI_MODEL", "gpt-4o"),
+            "model": os.getenv("OPENAI_MODEL", "gpt-3.5-turbo"),
             "temperature": float(os.getenv("OPENAI_TEMPERATURE", "0.3")),
         }
 

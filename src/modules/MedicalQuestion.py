@@ -20,10 +20,9 @@ class MedicalQuestion:
     casual_nodes: Dict[str, List[List[str]]] = None  # [a:[[a,b][c,d]],b:[[a,b][c,d]]]
     casual_relationships: Dict[str, List[List[str]]] = None  # [a:[cause],b:[affect]]
     casual_paths: Dict[str, List[str]] = None  # [a:"A-cause->B", b:"C-affect->D"]
-    casual_paths_nodes_refine: Dict[str, List] = None
 
-    casual_relationships_refine: Dict[str, List[List[str]]] = None  # [a:[cause],b:[affect]]
-    CG_nodes: List[str] = None
+    casual_paths_nodes_refine: Dict[str, List] = None
+    CG_nodes: List[List[str]] = None
     CG_relationships: List[List[str]] = None
     CG_paths: List[str] = None
 
@@ -32,6 +31,9 @@ class MedicalQuestion:
     KG_nodes: List[List[str]] = None  # [[a,x,c][b,x,d][c,x,e]]
     KG_relationships: List[List[str]] = None  # [[cause,cause],[affect,affect][affect,affect]]
     KG_paths: List[str] = None  # ["A-cause->B-affect->C"]
+
+    reasoning_chain : Optional[str] = None
+    enhanced_information: Optional[str] = None  # 改为使用 Optional[str]
 
     # Reasoning and answer
     reasoning: Optional[str] = None
@@ -62,8 +64,16 @@ class MedicalQuestion:
             self.KG_paths = []
         if self.casual_paths_nodes_refine is None:
             self.casual_paths_nodes_refine = {'start': [], 'end': []}
-        if self.casual_relationships_refine is None:
-            self.casual_relationships_refine = {'start': [], 'end': []}
+        if self.CG_nodes is None:
+            self.CG_nodes = []
+        if self.CG_relationships is None:
+            self.CG_relationships = []
+        if self.CG_paths is None:
+            self.CG_paths = []
+        if self.enhanced_information is None:
+            self.enhanced_information = ""  # 初始化为空字符串而不是 None
+        if self.reasoning_chain is None:
+            self.reasoning_chain = ""  # 初始化为空字符串而不是 None
 
 
     def generate_paths(self) -> None:
@@ -89,6 +99,15 @@ class MedicalQuestion:
                 if i < len(rels):
                     path += f"-{rels[i]}->"
             self.KG_paths.append(path)
+
+        self.CG_paths = []
+        for nodes, rels in zip(self.CG_nodes, self.CG_relationships):
+            path = ""
+            for i, node in enumerate(nodes):
+                path += f"({node})"
+                if i < len(rels):
+                    path += f"-{rels[i]}->"
+            self.CG_paths.append(path)
     @property
     def is_correct(self) -> bool:
         """检查答案是否正确"""

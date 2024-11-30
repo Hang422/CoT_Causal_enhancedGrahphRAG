@@ -11,10 +11,9 @@ class QuestionAnalyzer:
     """分析不同阶段问题处理结果的分析器"""
 
     def __init__(self, path):
-        """初始化分析器"""
         self.logger = config.get_logger("question_analyzer")
         self.cache_root = config.paths["cache"] / path
-        self.stages = ['derelict', 'casual', 'final']
+        self.stages = ['derelict', 'casual', 'enhancement', 'final']
 
     def load_stage_questions(self, stage: str) -> List[MedicalQuestion]:
         """加载某个阶段的所有问题"""
@@ -38,21 +37,22 @@ class QuestionAnalyzer:
         return questions
 
     def get_cross_model_analysis(self) -> Dict:
-        """对三个模型进行交叉分析"""
-        # 加载所有阶段的问题
+        """对模型进行交叉分析，包含CG、KG和Enhanced Information的分析"""
         baseline_questions = {q.question: q for q in self.load_stage_questions('derelict')}
         casual_questions = {q.question: q for q in self.load_stage_questions('casual')}
+        enhancement_questions = {q.question: q for q in self.load_stage_questions('enhancement')}
         final_questions = {q.question: q for q in self.load_stage_questions('final')}
 
-        # 初始化结果统计
         analysis = {
             'baseline_correct': {
-                'casual_model': {'with_path': 0, 'without_path': 0, 'total': 0},
-                'final_model': {'with_path': 0, 'without_path': 0, 'total': 0},
+                'casual_model': {'with_cg': 0, 'with_kg': 0, 'with_both': 0, 'without_paths': 0, 'total': 0},
+                'enhancement_model': {'with_cg': 0, 'with_kg': 0, 'with_both': 0, 'without_paths': 0, 'total': 0},
+                'final_model': {'with_cg': 0, 'with_kg': 0, 'with_both': 0, 'without_paths': 0, 'total': 0}
             },
             'baseline_incorrect': {
-                'casual_model': {'with_path': 0, 'without_path': 0, 'total': 0},
-                'final_model': {'with_path': 0, 'without_path': 0, 'total': 0},
+                'casual_model': {'with_cg': 0, 'with_kg': 0, 'with_both': 0, 'without_paths': 0, 'total': 0},
+                'enhancement_model': {'with_cg': 0, 'with_kg': 0, 'with_both': 0, 'without_paths': 0, 'total': 0},
+                'final_model': {'with_cg': 0, 'with_kg': 0, 'with_both': 0, 'without_paths': 0, 'total': 0}
             },
             'counts': {
                 'baseline_correct': 0,
@@ -60,66 +60,64 @@ class QuestionAnalyzer:
             }
         }
 
-        # 遍历基线模型的所有问题
+        def check_paths(question):
+            has_cg = any(question.casual_paths.get(opt) for opt in ['opa', 'opb', 'opc', 'opd'])
+            has_kg = bool(question.KG_paths and len(question.KG_paths) > 0)
+            return has_cg, has_kg
+
+        def check_enhancement_paths(question):
+            # Check CG through casual_paths_nodes_refine
+            has_cg = (hasattr(question, 'casual_paths_nodes_refine') and
+                      question.casual_paths_nodes_refine.get('start') and
+                      question.casual_paths_nodes_refine.get('end'))
+
+            # Check KG through entities_original_pairs
+            has_kg = (hasattr(question, 'entities_original_pairs') and
+                      question.entities_original_pairs.get('start') and
+                      question.entities_original_pairs.get('end'))
+
+            return has_cg, has_kg
+
         for question, baseline_q in baseline_questions.items():
             casual_q = casual_questions.get(question)
+            enhancement_q = enhancement_questions.get(question)
             final_q = final_questions.get(question)
 
-            if not all([casual_q, final_q]):
+            if not all([casual_q, enhancement_q, final_q]):
                 continue
 
-            # 确定是基线正确还是错误的case
-            if baseline_q.is_correct:
-                analysis['counts']['baseline_correct'] += 1
+            target_category = 'baseline_correct' if baseline_q.is_correct else 'baseline_incorrect'
+            analysis['counts'][target_category] += 1
 
-                # 分析casual模型表现
-                if casual_q.is_correct:
-                    if casual_q.has_complete_paths():
-                        analysis['baseline_correct']['casual_model']['with_path'] += 1
+            # Analyze each model
+            for model_type, model_q in [('casual_model', casual_q),
+                                        ('enhancement_model', enhancement_q),
+                                        ('final_model', final_q)]:
+                if model_q.is_correct:
+                    # Use different path checking for enhancement model
+                    if model_type == 'enhancement_model':
+                        has_cg, has_kg = check_enhancement_paths(model_q)
                     else:
-                        analysis['baseline_correct']['casual_model']['without_path'] += 1
-                analysis['baseline_correct']['casual_model']['total'] += 1
+                        has_cg, has_kg = check_paths(model_q)
 
-                # 分析final模型表现
-                if final_q.is_correct:
-                    if final_q.has_complete_paths():
-                        analysis['baseline_correct']['final_model']['with_path'] += 1
+                    if has_cg and has_kg:
+                        analysis[target_category][model_type]['with_both'] += 1
+                    elif has_cg:
+                        analysis[target_category][model_type]['with_cg'] += 1
+                    elif has_kg:
+                        analysis[target_category][model_type]['with_kg'] += 1
                     else:
-                        analysis['baseline_correct']['final_model']['without_path'] += 1
-                analysis['baseline_correct']['final_model']['total'] += 1
+                        analysis[target_category][model_type]['without_paths'] += 1
+                analysis[target_category][model_type]['total'] += 1
 
-            else:
-                analysis['counts']['baseline_incorrect'] += 1
-
-                # 分析casual模型表现
-                if casual_q.is_correct:
-                    if casual_q.has_complete_paths():
-                        analysis['baseline_incorrect']['casual_model']['with_path'] += 1
-                    else:
-                        analysis['baseline_incorrect']['casual_model']['without_path'] += 1
-                analysis['baseline_incorrect']['casual_model']['total'] += 1
-
-                # 分析final模型表现
-                if final_q.is_correct:
-                    if final_q.has_complete_paths():
-                        analysis['baseline_incorrect']['final_model']['with_path'] += 1
-                    else:
-                        analysis['baseline_incorrect']['final_model']['without_path'] += 1
-                analysis['baseline_incorrect']['final_model']['total'] += 1
-
-        # 计算百分比
+        # Calculate percentages
         for baseline_result in ['baseline_correct', 'baseline_incorrect']:
             total = analysis['counts'][baseline_result]
             if total > 0:
-                for model in ['casual_model', 'final_model']:
-                    model_total = analysis[baseline_result][model]['total']
-                    if model_total > 0:
-                        with_path = analysis[baseline_result][model]['with_path']
-                        without_path = analysis[baseline_result][model]['without_path']
-
-                        # 转换为百分比
-                        analysis[baseline_result][model]['with_path'] = (with_path / total) * 100
-                        analysis[baseline_result][model]['without_path'] = (without_path / total) * 100
+                for model in ['casual_model', 'enhancement_model', 'final_model']:
+                    for key in ['with_cg', 'with_kg', 'with_both', 'without_paths']:
+                        current_value = analysis[baseline_result][model][key]
+                        analysis[baseline_result][model][key] = (current_value / total) * 100
 
         return analysis
 
@@ -131,31 +129,53 @@ class QuestionAnalyzer:
             'baselineCorrect': [
                 {
                     'model': 'Causal Model',
-                    'withPath': round(analysis['baseline_correct']['casual_model']['with_path'], 1),
-                    'withoutPath': round(analysis['baseline_correct']['casual_model']['without_path'], 1),
+                    'withCG': round(analysis['baseline_correct']['casual_model']['with_cg'], 1),
+                    'withKG': round(analysis['baseline_correct']['casual_model']['with_kg'], 1),
+                    'withBoth': round(analysis['baseline_correct']['casual_model']['with_both'], 1),
+                    'withoutPaths': round(analysis['baseline_correct']['casual_model']['without_paths'], 1),
+                },
+                {
+                    'model': 'Enhancement Model',
+                    'withCG': round(analysis['baseline_correct']['enhancement_model']['with_cg'], 1),
+                    'withKG': round(analysis['baseline_correct']['enhancement_model']['with_kg'], 1),
+                    'withBoth': round(analysis['baseline_correct']['enhancement_model']['with_both'], 1),
+                    'withoutPaths': round(analysis['baseline_correct']['enhancement_model']['without_paths'], 1),
                 },
                 {
                     'model': 'Final Model',
-                    'withPath': round(analysis['baseline_correct']['final_model']['with_path'], 1),
-                    'withoutPath': round(analysis['baseline_correct']['final_model']['without_path'], 1),
+                    'withCG': round(analysis['baseline_correct']['final_model']['with_cg'], 1),
+                    'withKG': round(analysis['baseline_correct']['final_model']['with_kg'], 1),
+                    'withBoth': round(analysis['baseline_correct']['final_model']['with_both'], 1),
+                    'withoutPaths': round(analysis['baseline_correct']['final_model']['without_paths'], 1),
                 }
             ],
             'baselineIncorrect': [
                 {
                     'model': 'Causal Model',
-                    'withPath': round(analysis['baseline_incorrect']['casual_model']['with_path'], 1),
-                    'withoutPath': round(analysis['baseline_incorrect']['casual_model']['without_path'], 1),
+                    'withCG': round(analysis['baseline_incorrect']['casual_model']['with_cg'], 1),
+                    'withKG': round(analysis['baseline_incorrect']['casual_model']['with_kg'], 1),
+                    'withBoth': round(analysis['baseline_incorrect']['casual_model']['with_both'], 1),
+                    'withoutPaths': round(analysis['baseline_incorrect']['casual_model']['without_paths'], 1),
+                },
+                {
+                    'model': 'Enhancement Model',
+                    'withCG': round(analysis['baseline_incorrect']['enhancement_model']['with_cg'], 1),
+                    'withKG': round(analysis['baseline_incorrect']['enhancement_model']['with_kg'], 1),
+                    'withBoth': round(analysis['baseline_incorrect']['enhancement_model']['with_both'], 1),
+                    'withoutPaths': round(analysis['baseline_incorrect']['enhancement_model']['without_paths'], 1),
                 },
                 {
                     'model': 'Final Model',
-                    'withPath': round(analysis['baseline_incorrect']['final_model']['with_path'], 1),
-                    'withoutPath': round(analysis['baseline_incorrect']['final_model']['without_path'], 1),
+                    'withCG': round(analysis['baseline_incorrect']['final_model']['with_cg'], 1),
+                    'withKG': round(analysis['baseline_incorrect']['final_model']['with_kg'], 1),
+                    'withBoth': round(analysis['baseline_incorrect']['final_model']['with_both'], 1),
+                    'withoutPaths': round(analysis['baseline_incorrect']['final_model']['without_paths'], 1),
                 }
             ],
             'counts': analysis['counts']
         }
 
-    def save_analysis(self, file_name,output_path: Optional[str] = None) -> None:
+    def save_analysis(self, file_name, output_path: Optional[str] = None) -> None:
         """保存分析结果"""
         analysis_data = self.get_cross_model_analysis()
 
@@ -164,10 +184,8 @@ class QuestionAnalyzer:
         else:
             output_path = Path(output_path)
 
-        # 确保输出目录存在
         output_path.parent.mkdir(parents=True, exist_ok=True)
 
-        # 保存为JSON文件
         with output_path.open('w', encoding='utf-8') as f:
             json.dump(analysis_data, f, indent=2, ensure_ascii=False)
 
@@ -176,11 +194,8 @@ class QuestionAnalyzer:
 
 def analyse(path):
     analyzer = QuestionAnalyzer(path)
-
-    # 生成分析数据
     vis_data = analyzer.generate_visualization_data()
 
-    # 打印分析结果
     print("\nAnalysis Results:")
     print(f"Total questions answered correctly by baseline: {vis_data['counts']['baseline_correct']}")
     print(f"Total questions answered incorrectly by baseline: {vis_data['counts']['baseline_incorrect']}")
@@ -188,20 +203,23 @@ def analyse(path):
     print("\nPerformance on Baseline Correct Questions:")
     for model in vis_data['baselineCorrect']:
         print(f"\n{model['model']}:")
-        print(f"  Correct with path: {model['withPath']}%")
-        print(f"  Correct without path: {model['withoutPath']}%")
-        print(f"  Total correct: {model['withPath'] + model['withoutPath']}%")
+        print(f"  Correct with CG only: {model['withCG']}%")
+        print(f"  Correct with KG only: {model['withKG']}%")
+        print(f"  Correct with both CG and KG: {model['withBoth']}%")
+        print(f"  Correct without paths: {model['withoutPaths']}%")
+        print(f"  Total correct: {model['withCG'] + model['withKG'] + model['withBoth'] + model['withoutPaths']}%")
 
     print("\nPerformance on Baseline Incorrect Questions:")
     for model in vis_data['baselineIncorrect']:
         print(f"\n{model['model']}:")
-        print(f"  Correct with path: {model['withPath']}%")
-        print(f"  Correct without path: {model['withoutPath']}%")
-        print(f"  Total correct: {model['withPath'] + model['withoutPath']}%")
+        print(f"  Correct with CG only: {model['withCG']}%")
+        print(f"  Correct with KG only: {model['withKG']}%")
+        print(f"  Correct with both CG and KG: {model['withBoth']}%")
+        print(f"  Correct without paths: {model['withoutPaths']}%")
+        print(f"  Total correct: {model['withCG'] + model['withKG'] + model['withBoth'] + model['withoutPaths']}%")
 
-    # 保存分析结果
     analyzer.save_analysis(f"{path}/analysis.json")
 
 
 if __name__ == "__main__":
-    analyse('20-4o-casual-knowledge-0.6-shortest')
+    analyse('20-gpt-4o-adaptive-knowledge-0.75-shortest-enhance')

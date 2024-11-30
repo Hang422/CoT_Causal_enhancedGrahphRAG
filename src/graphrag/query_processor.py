@@ -311,15 +311,13 @@ class QueryProcessor:
                         # 如果是新路径，添加到结果中
                         if path_identifier not in seen_paths:
                             seen_paths.add(path_identifier)
-                            question.KG_nodes.append(
+                            question.CG_nodes.append(
                                 self.entity_processor.batch_get_names(path['node_cuis'], True)
                             )
-                            question.KG_relationships.append(path['relationships'])
+                            question.CG_relationships.append(path['relationships'])
 
         except Exception as e:
             self.logger.error(f"Error in enhanced entity pairs processing: {str(e)}", exc_info=True)
-
-
 
         question.generate_paths()  # Update path strings
 
@@ -385,7 +383,7 @@ if __name__ == '__main__':
             "opc": "Vipeholm",
             "opd": "Turku"}, topic_name='null')
     processor = QueryProcessor()
-    question.entities_original_pairs = {
+    question.casual_paths_nodes_refine = {
         "start": [
             "Nitrates",
             "Nitrates"
@@ -394,19 +392,25 @@ if __name__ == '__main__':
             "Coronary vasodilator",
             "Decrease in preload"
         ]}
+    question.entities_original_pairs = {"start": [
+            "Nitrates",
+            "Venodilation"
+        ],
+        "end": [
+            "Venodilation",
+            "Decrease in preload"
+        ]}
+    processor.entity_processor.threshold = 0.25
     processor.process_entity_pairs_enhance(question, 'knowledge')
-    var = ['(Nitrates)-AFFECTS->(Flow)-MANIFESTATION_OF->(Exocytosis)-AFFECTS->(Reduced)',
-           '(Nitrates)-DISRUPTS->(Flow)-MANIFESTATION_OF->(Exocytosis)-AFFECTS->(Reduced)',
-           '(Nitrates)-STIMULATES->(SPRING1 gene)-STIMULATES->(Down-Regulation)-NEG_AFFECTS->(Reduced)']
-
-    var = ['(Nitrates)-AFFECTS->(Flow)-MANIFESTATION_OF->(Exocytosis)-AFFECTS->(Reduced)',
-           '(Nitrates)-DISRUPTS->(Flow)-MANIFESTATION_OF->(Exocytosis)-AFFECTS->(Reduced)',
-           '(Nitrates)-STIMULATES->(SPRING1 gene)-STIMULATES->(Down-Regulation)-NEG_AFFECTS->(Reduced)']
-
-    var = ['(Nitrates)-AFFECTS->(Flow)-MANIFESTATION_OF->(Exocytosis)-AFFECTS->(Reduced)',
-           '(Nitrates)-DISRUPTS->(Flow)-MANIFESTATION_OF->(Exocytosis)-AFFECTS->(Reduced)',
-           '(Nitrates)-STIMULATES->(SPRING1 gene)-STIMULATES->(Down-Regulation)-NEG_AFFECTS->(Reduced)',
-           '(Nitrates)-INTERACTS_WITH->(malate)-CAUSES->(Down-Regulation)-NEG_AFFECTS->(Reduced)',
-           '(Nitrates)-COEXISTS_WITH->(SPRING1 gene)-STIMULATES->(Down-Regulation)-NEG_AFFECTS->(Reduced)']
-
+    print(question.CG_paths)
     print(question.KG_paths)
+    var = ['(Nitrates)-INHIBITS->(ethanol)-STIMULATES->(Coronary vasodilator (product))',
+           '(Nitrates)-INHIBITS->(nitric oxide)-STIMULATES->(Coronary vasodilator (product))',
+           '(Nitrates)-STIMULATES->(nitric oxide)-STIMULATES->(Coronary vasodilator (product))',
+           '(Nitrates)-CAUSES->(Oxidative Stress)-AFFECTS->(Exocytosis)-AFFECTS->(Reduced)',
+           '(Nitrates)-AFFECTS->(Cell Communication)-CAUSES->(Exocytosis)-AFFECTS->(Reduced)',
+           '(Nitrates)-STIMULATES->(calcium)-CAUSES->(Exocytosis)-AFFECTS->(Reduced)']
+    var = ['(Nitrates)-INTERACTS_WITH->(Coronary vasodilator (product))',
+           '(Nitrates)-STIMULATES->(iron)-CAUSES->(Exocytosis)-AFFECTS->(Reduced)',
+           '(Nitrates)-INHIBITS->(ascorbic acid)-CAUSES->(Exocytosis)-AFFECTS->(Reduced)',
+           '(Nitrates)-STIMULATES->(ascorbic acid)-CAUSES->(Exocytosis)-AFFECTS->(Reduced)']
