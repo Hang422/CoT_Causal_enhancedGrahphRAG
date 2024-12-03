@@ -165,7 +165,7 @@ class QuestionProcessor:
                 )
 
                 if not cached_question:
-                    self.processor.process_casual_paths_enhance(question, 'casual')
+                    self.processor.process_casual_paths_enhance(question, 'casual') # 初步检索
                     # self.llm.causal_enhanced_answer(question)
                     question.set_cache_paths(self.cache_paths['casual'])
                     question.to_cache()
@@ -180,8 +180,8 @@ class QuestionProcessor:
                 )
 
                 if not cached_question:
-                    self.llm.generate_reasoning_chain(question)
-                    self.processor.process_entity_pairs_enhance(question, 'knowledge')
+                    self.llm.generate_reasoning_chain(question) # 初步检索-实体对指导检索和裁剪
+                    self.processor.process_entity_pairs_enhance(question, 'knowledge') # 基于因果裁剪的检索。
                     question.set_cache_paths(self.cache_paths['reasoning'])
                     question.to_cache()
                 else:
@@ -208,7 +208,7 @@ class QuestionProcessor:
                 )
 
                 if not cached_question:
-                    self.llm.enhance_information(question)
+                    self.llm.enhance_information(question) # 增强
                     self.llm.answer_with_enhanced_information(question)
                     question.set_cache_paths(self.cache_paths['enhancement'])
                     question.to_cache()
@@ -262,13 +262,14 @@ class QuestionProcessor:
 
 def main():
     """主函数示例"""
-    cache_path = '30-gpt-3.5-adaptive-ultra-for4'
+    cache_path = '100-gpt-3.5-adaptive-enhance-ultra-version2'
+    # cache_path = 'correct'
     save_path = f"{cache_path}"
     processor = QuestionProcessor(save_path)
     # 使用相对于data目录的路径
     samples = 'testdata/samples.csv'
     # 200-2k
-    processor.batch_process_file(samples, 30, False)
+    processor.batch_process_file(samples, 100, False)
     # processor.process_from_cache(cache_path)
 
     analyzer = QuestionAnalyzer(save_path)

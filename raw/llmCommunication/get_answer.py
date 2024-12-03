@@ -325,7 +325,7 @@ if __name__ == "__main__":
     llm = MedicalQAGPT(api_key)
 
     # 读取问题数据
-    questions_df = pd.read_csv('../../data/testdata/samples.csv')
+    questions_df = pd.read_csv('../../data/Construction/testdata/samples.csv')
 
     # 读取因果路径数据
     with open('../../data/results/middleResults/causal_paths_v0.json', 'r', encoding='utf-8') as f:

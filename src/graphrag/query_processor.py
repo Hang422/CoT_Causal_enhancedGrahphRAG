@@ -153,59 +153,6 @@ class QueryProcessor:
         )
         self.entity_processor = EntityProcessor()  # Still needed for name-to-CUI conversion
 
-    def process_entity_pairs(self, question: MedicalQuestion, database) -> None:
-        """Process entity pairs to find paths between them"""
-        paths = []
-        try:
-            with self.driver.session(database=database) as session:
-                for start_name, end_name in zip(question.entities_original_pairs['start'],
-                                                question.entities_original_pairs['end']):
-                    # Convert names to CUIs
-                    start_cui = self.entity_processor.get_name_cui(start_name)
-                    end_cui = self.entity_processor.get_name_cui(end_name)
-                    if not start_cui or not end_cui:
-                        continue
-
-                    if start_cui == end_cui:
-                        continue
-
-                    path = _find_shortest_path_score(
-                        session,
-                        start_cui,
-                        end_cui
-                    )
-                    if path is not None and path not in paths:
-                        question.KG_nodes.append(self.entity_processor.batch_get_names(path['node_cuis'], True))
-                        question.KG_relationships.append(path['relationships'])
-                        paths.append(path)
-        except Exception as e:
-            self.logger.error(f"Error processing question: {str(e)}", exc_info=True)
-
-        question.generate_paths()  # Update path strings
-
-    def process_casual_paths_direct(self, question: MedicalQuestion, database) -> None:
-        """Find supporting KG paths for casual relationships"""
-        try:
-            with self.driver.session(database=database) as session:
-                # 获取问题中的CUIs
-                question_cuis = set(self.entity_processor.process_text(question.question))
-                keys = ['opa', 'opb', 'opc', 'opd']
-                # 分别获取每个选项的CUIs
-                options_cuis_a = set(self.entity_processor.process_text(question.options.get('opa')))
-                options_cuis_b = set(self.entity_processor.process_text(question.options.get('opb')))
-                options_cuis_c = set(self.entity_processor.process_text(question.options.get('opc')))
-                options_cuis_d = set(self.entity_processor.process_text(question.options.get('opd')))
-                cuis = [options_cuis_a, options_cuis_b, options_cuis_c, options_cuis_d]
-
-                # 查找路径
-                for option_cuis, key in zip(cuis, keys):
-                    self._set_shortest_path_question_option(question, key, question_cuis, option_cuis, database)
-
-        except Exception as e:
-            self.logger.error(f"Error processing question: {str(e)}", exc_info=True)
-
-        question.generate_paths()  # Update path strings
-
     def _set_shortest_path_question_option(self, question: MedicalQuestion, key, question_cuis: set[str],
                                            option_cuis: set[str], database) -> None:
         try:
@@ -214,7 +161,7 @@ class QueryProcessor:
                     for end_cui in option_cuis:
                         if start_cui == end_cui:
                             continue
-                        path = _find_shortest_path_score(session, start_cui, end_cui)
+                        path = _find_shortest_path_score(session, start_cui, end_cui)[:1]
                         if path:
                             question.casual_nodes.get(key).append(
                                 self.entity_processor.batch_get_names(path['node_cuis'], True))
@@ -235,7 +182,7 @@ class QueryProcessor:
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.close()
 
-    def process_entity_pairs_enhance(self, question: MedicalQuestion, database) -> None:
+    def process_entity_pairs_enhance(self, question: MedicalQuestion, database='knowledge') -> None:
         """Enhanced version of process_entity_pairs that finds multiple shorter paths"""
 
         # 用于去重的集合
@@ -259,7 +206,7 @@ class QueryProcessor:
                         session,
                         start_cui,
                         end_cui
-                    )
+                    )[:2]
 
                     # 处理找到的多条路径
                     for path in paths:
@@ -298,7 +245,7 @@ class QueryProcessor:
                         session,
                         start_cui,
                         end_cui
-                    )
+                    )[:2]
 
                     # 处理找到的多条路径
                     for path in paths:

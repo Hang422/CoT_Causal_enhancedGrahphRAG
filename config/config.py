@@ -149,7 +149,7 @@ class Config:
         self.openai = {
             "api_key": os.getenv("OPENAI_API_KEY", ""),
             "model": os.getenv("OPENAI_MODEL", "gpt-3.5-turbo"),
-            "temperature": float(os.getenv("OPENAI_TEMPERATURE", "0.3")),
+            "temperature": float(os.getenv("OPENAI_TEMPERATURE", "0")),
         }
 
     def get_db_config(self, database: Optional[str] = None) -> Dict:

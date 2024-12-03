@@ -250,14 +250,14 @@ def print_empty_answer_analysis(path: str):
 
 
 def main():
-    path = '20-gpt-4-adaptive-knowledge-0.75-shortest-enhance-ultra2'
+    path = '30-gpt-4o-mini-adaptive-enhance-ultra'
     analyzer = QuestionAnalyzer(path)
     analyzer.save_report(f"{path}/report.xlsx")
     analyse(path)
 
 
 if __name__ == "__main__":
-    path = '20-gpt-4-adaptive-knowledge-0.75-shortest-enhance-ultra1'
-    path = '20-gpt-4-adaptive-knowledge-0.75-shortest-enhance-ultra2'
+    # path = '20-gpt-4-adaptive-knowledge-0.75-shortest-enhance-ultra1'
+    path = '30-gpt-4o-mini-adaptive-enhance-ultra'
     print_empty_answer_analysis(path)
     main()

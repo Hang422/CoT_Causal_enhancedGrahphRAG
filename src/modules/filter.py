@@ -83,7 +83,7 @@ def extract_correct_questions(path: str) -> None:
 
 def main():
     # 示例路径
-    path = 'test'
+    path = '100-gpt-4-adaptive-enhance-ultra-version2'
     extract_correct_questions(path)
 
 

@@ -8,7 +8,7 @@ from config import config
 from datetime import datetime
 from pathlib import Path
 import hashlib
-
+from src.graphrag.query_processor import QueryProcessor
 
 class GPTLogger:
     def __init__(self, output_dir: Path):
@@ -175,8 +175,14 @@ Confidence: (A number from 0-100)
 
         # 构建初始 Prompt
         prompt = f"""You are a medical expert specializing in the field of {question.topic_name}. Your task involves two main objectives:
-        1. **Causal Identification**: Analyze the provided causal pathways (if any) and identify the core causal entities (start and end) that are critical for understanding the relationships. These pathways are preliminary and may include irrelevant or incorrectly directed entities. If no causal pathways are provided, infer causal entities directly from the question and options.
-        2. **Reasoning Chain and Additional Entities**: Develop a logical reasoning chain to answer the question. Identify additional entity pairs (start and end) that are not covered in the causal pathways but are crucial for completing the reasoning chain.
+
+        1. **Generate Causal Chains (Causal Analysis)**: Analyze the provided causal relationships (if any) or infer them directly from the question and options. The goal is to identify direct relationships between entities (e.g., symptoms, organisms, anatomical structures, pathways) relevant to answering the question.
+
+        2. **Infer Additional Entity Pairs**: Extend the reasoning chain by identifying additional causal entity pairs (start and end) that are required to form a complete reasoning chain but are not explicitly covered in the original pathways.
+
+        ### Important Note on Provided Causal Relationships
+        - The causal relationships provided in `question.casual_paths` are **preliminary and rough**. They may include irrelevant or incorrect information and are only intended as an initial reference.
+        - If no causal relationships are provided or if they are unhelpful, infer causal entities directly from the question and options based on your domain knowledge and expertise.
 
         ### Question
         {question.question}
@@ -186,7 +192,7 @@ Confidence: (A number from 0-100)
         for key, text in question.options.items():
             prompt += f"{key}. {text}\n"
 
-        # 添加因果路径（如果有）
+        # Add causal paths if provided
         if question.casual_paths:
             prompt += "\n### Provided Causal Relationships for Each Option\n"
             for option in ['opa', 'opb', 'opc', 'opd']:
@@ -197,53 +203,44 @@ Confidence: (A number from 0-100)
         else:
             prompt += "\nNo causal relationships are provided for this question."
 
-        # 指定任务与输出格式，添加示例和具体要求
+        # Specify task and output format
         prompt += f"""
 
-### Task 1: Causal Identification
-- From each causal pathway, extract the **start** and **end** entities that form the core causal relationship.
-- Focus only on relevant causal entities and ignore redundant or irrelevant nodes.
-- If no causal pathways are provided, directly infer the most relevant causal entities (start and end) from the question and options.
-- **Ensure that the entities are precise medical terms that can be found in standard medical knowledge graphs like UMLS.**
-- **Focus on causal relationships that directly lead to the correct answer ('Decrease in preload').**
-- **For example, consider 'Nitrates' leading to 'Venodilation' leading to 'Decrease in preload'.**
+        ### Task
+        Your task is to:
+        1. **Causal Analysis**:
+           - Extract and refine the causal relationships provided in the question (if any) by identifying `start` and `end` entities for each causal pathway. Ensure all entities align with UMLS standards and avoid vague modifiers like "Decreased" or "Inhibition."
+           - If no causal pathways are provided, infer the most relevant causal entities based on the question and options.
 
-### Task 2: Reasoning Chain and Additional Entities
-- Create a clear and logical reasoning chain to answer the question. Use the causal relationships if applicable.
-- Identify additional **start** and **end** entity pairs that are essential for completing the reasoning chain but are not covered in the provided causal pathways (if any).
-- Ensure each reasoning step corresponds to at least one entity pair.
-- **Again, use precise medical terms aligned with UMLS standards, and focus on mechanisms related to 'Decrease in preload'.**
+        2. **Reasoning Chain and Additional Entity Pairs**:
+           - Generate a clear and logical reasoning chain for answering the question. 
+           - Convert the reasoning chain into structured causal relationships expressed as `start` and `end` pairs.
+           - Identify additional causal entity pairs (start and end) that are necessary to complete the reasoning chain but are not part of the initial causal pathways.
 
-        ### Output Format (ensure valid JSON):
+        ### Output Format
+        The output should be in the following JSON format:
+
         {{
             "causal_analysis": {{
                 "start": ["Entity1", "Entity2", "Entity3"],
                 "end": ["Entity4", "Entity5", "Entity6"]
             }},
-            "reasoning_chain": [
-                "Step 1: Analyze...",
-                "Step 2: Consider...",
-                "Step 3: Finally evaluate..."
-            ],
             "additional_entity_pairs": {{
                 "start": ["EntityA", "EntityB"],
-                "end": ["EntityC", "EntityD"],
-                "reasoning": [
-                    "EntityA connects to EntityC because...",
-                    "EntityB connects to EntityD because..."
-                ]
+                "end": ["EntityC", "EntityD"]
             }}
         }}
 
-        ### Key Requirements
-        - Ensure 'start' and 'end' arrays are of **equal length** and correspond **one-to-one**, this is very important!!!.
-        - All entities must be **full terms** and belong to the **medical domain**. Avoid abbreviations, shorthand, or non-medical terms. this is very important!!!.
-        - **Use precise medical terms and align entities with clinical or UMLS standards where possible.**
-        - **Provide entities that can be directly used to query standard medical knowledge graphs like UMLS.**
-        - If no causal pathways are provided, infer the most relevant causal entities directly from the question context.
-        - Reasoning chains must be logical and accurate, even if incomplete.
-        - No repeated entity pairs in additional_entity_pairs and additional_entity_pairs
+        ### Key Guidelines
+        1. Ensure that the `start` and `end` arrays are **one-to-one aligned** and represent meaningful causal relationships.
+        2. Use **precise UMLS-standardized terms** for all entities, avoiding abbreviations or vague modifiers.
+        3. If no causal relationships are provided or useful, infer the causal entities based on medical knowledge and question context.
+        4. The `causal_analysis` should focus on key causal chains relevant to answering the question, while `additional_entity_pairs` should extend the reasoning process.
+        5. Avoid explanations or justifications in the output; stick to structured `start` and `end` pairs.
+        6. Ensure terms can be directly queried in UMLS or similar medical knowledge graphs.
         """
+
+        self.logger.debug(f"Prompt sent to LLM:\n{prompt}")
 
         # 调用 LLM 获取结果的代码保持不变
 
@@ -272,7 +269,7 @@ Confidence: (A number from 0-100)
             result = json.loads(response)
 
             # 验证响应结构
-            if "reasoning_chain" not in result or "causal_analysis" not in result:
+            if "additional_entity_pairs" not in result or "causal_analysis" not in result:
                 raise ValueError("Missing required fields in response")
 
             # 提取因果分析结果
@@ -282,11 +279,6 @@ Confidence: (A number from 0-100)
                     'end': result["causal_analysis"].get("end", [])
                 }
                 self.logger.debug(f"Extracted causal analysis: {question.casual_paths_nodes_refine}")
-
-            # 提取推理链
-            if result.get("reasoning_chain"):
-                question.reasoning_chain = "\n".join(result["reasoning_chain"])
-                self.logger.debug(f"Extracted reasoning chain: {question.reasoning_chain}")
 
             # 提取额外实体对
             if result.get("additional_entity_pairs"):
@@ -443,26 +435,19 @@ Confidence: (A number from 0-100)
         ### Task
         - Analyze and synthesize all the above information.
         - Verify the truthfulness and accuracy of the information.
-        - Focus on the most relevant mechanisms and information that directly support the correct answer.
-        - Trim irrelevant, redundant, or misleading parts.
+        - **Trim irrelevant, redundant, or misleading parts.**
         - Merge and integrate relevant data from different sources coherently.
         - Ensure that the enhanced information is accurate, relevant, and logically supports the correct answer.
         - Prepare a concise and coherent summary that can be used to directly answer the question.
         - Do NOT provide the final answer to the question at this stage, nor should you make it obvious which option is correct.
+        - **Ensure all information is accurate and based on established medical knowledge.**
+        - **Avoid including any misleading or incorrect information.**
+        - Do not provide the final answer.
 
         ### Output Format
         Provide your enhanced information in valid JSON format:
         {"enhanced_information": "Your synthesized and enhanced information"}
 
-        ### Key Requirements
-        - Be precise and use correct medical terminology.
-        - Emphasize the key mechanisms and information that lead to the correct answer.
-        - Minimize or exclude information that is not directly related to the correct answer.
-        - Ensure that the enhanced information is logically coherent and directly relevant to the question.
-        - **Ensure all information is accurate and based on established medical knowledge.**
-        - **Avoid including any misleading or incorrect information.**
-        - Do not include irrelevant information.
-        - Do not provide the final answer.
         """
 
         try:
@@ -611,27 +596,15 @@ Confidence: (A number from 0-100)
 
 if __name__ == '__main__':
     var = {
-        "question": "Major mechanism of action of nitrates in acute attack of angina is:",
+        "question": "Which of the following hormone is/are under inhibitory of hypothalamus?",
         "topic_name": "Pharmacology",
         "options": {
-            "opa": "Coronary vasodilation",
-            "opb": "Decrease in preload",
-            "opc": "Decrease in afterload",
-            "opd": "Decrease in heart rate"
+            "opa": "Prolactin",
+            "opb": "Only prolactin",
+            "opc": "Only growth hormone",
+            "opd": "Both prolactin and growth hormone"
         },
-        "correct_answer": "opb",
-        "casual_paths": {
-            # 您的因果路径数据
-        },
-        "KG_paths": [
-            "(Nitrates)-CAUSES->(Venodilation)-REDUCES->(Preload)",
-            "(Nitrates)-CAUSES->(Coronary vasodilation)-INCREASES->(Oxygen supply)"
-        ],
-        "CG_paths": [
-            "(Nitrates)-DECREASES->(Myocardial oxygen demand)-RELIEVES->(Angina)",
-            "(Nitrates)-CAUSES->(Venous pooling)-REDUCES->(Preload)"
-        ],
-        "reasoning": "Nitrates primarily cause vasodilation, which decreases preload and reduces myocardial oxygen demand, relieving angina symptoms."
+        "correct_answer": "opd"
     }
 
     question = MedicalQuestion(
@@ -640,12 +613,23 @@ if __name__ == '__main__':
         correct_answer=var.get('correct_answer'),
         topic_name=var.get('topic_name')
     )
-    question.casual_paths = var.get('casual_paths')
+
+    llm = LLMProcessor()
+    llm.generate_reasoning_chain(question)
+    print(f"casual_nodes_refine:{question.casual_paths_nodes_refine}")
+    print(f"question.entities_original_pairs:{question.entities_original_pairs}")
+
+    processor = QueryProcessor()
+    processor.process_entity_pairs_enhance(question)
+    print(f"question.CG_paths:{question.CG_paths}")
+    print(f"question.KG_paths:{question.KG_paths}")
+
+
+    """question.casual_paths = var.get('casual_paths')
     question.KG_paths = var.get('KG_paths')
     question.CG_paths = var.get('CG_paths')
     question.reasoning = var.get('reasoning')
 
-    llm = LLMProcessor()
     print(question.enhanced_information)
     llm.enhance_information(question)
     print("Enhanced Information:")
@@ -656,4 +640,4 @@ if __name__ == '__main__':
     print("Answer:", question.answer)
     print("Confidence:", question.confidence)
     # 在单独的步骤中，使用增强后的信息来回答问题
-    # 您可以添加一个新的方法，或者使用现有的方法
+    # 您可以添加一个新的方法，或者使用现有的方法"""

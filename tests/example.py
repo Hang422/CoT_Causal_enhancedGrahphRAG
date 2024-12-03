@@ -3,7 +3,7 @@ from src.graphrag.entity_processor import EntityProcessor
 import pandas as pd
 
 questions = []
-df = pd.read_csv('../data/testdata/samples.csv')
+df = pd.read_csv('../data/Construction/testdata/samples.csv')
 for _, row in df.iterrows():
     question = MedicalQuestion(
         question=row['question'],

@@ -11,7 +11,7 @@ import pandas as pd
 class EntityProcessor:
     """Medical entity processor for converting between entity names and UMLS CUIs"""
 
-    def __init__(self, threshold: float = 0.75):
+    def __init__(self, threshold: float = 0.9):
         """
         Initialize the entity processor
 
@@ -235,7 +235,7 @@ if __name__ == '__main__':
             "C0032961",
             "C0013080"]
     processor = EntityProcessor()
-    text = "Decrease in preload"
+    text = "Are secretory phospholipases A2 secreted from ciliated cells and increase mucin and eicosanoid secretion from goblet cells?"
     print(processor.batch_get_names(processor.process_text(text),False))
     print(processor.get_name_cui(text))
     print(processor.get_cui_name('C0392756'))

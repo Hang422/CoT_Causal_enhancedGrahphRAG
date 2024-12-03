@@ -14,7 +14,6 @@ question = MedicalQuestion.from_cache(Path('../cache/original'), str(questions[0
 def test_query_casual_graph():
     config.set_database('casual')
     processor = QueryProcessor()
-    processor.process_casual_paths_direct(question)
     print(question.casual_paths)
 
 
@@ -23,5 +22,4 @@ def test_query_kg_graph():
     processor = QueryProcessor()
     pair = {'start': ["Myelinated nerve fiber", "oncotic pressure of fluid leaving capillaries"], 'end': ["Impulse conduction speed", "glucose concentration in glomerular filtrate"]}
     question.entities_original_pairs = pair
-    processor.process_entity_pairs(question)
     print(question.KG_paths)

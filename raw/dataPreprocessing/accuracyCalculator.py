@@ -194,7 +194,7 @@ def main():
     # 初始化计算器
     calculator = AccuracyCalculator(
         predictions_file='../../data/results/middleResults/final_answers_kg.json',
-        answers_file='../../data/testdata/samples.csv'
+        answers_file='../../data/Construction/testdata/samples.csv'
     )
 
     # 生成报告
