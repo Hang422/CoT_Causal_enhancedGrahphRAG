@@ -8,16 +8,143 @@ import logging
 from src.modules.CrossAnalysis import analyse
 
 
-class QuestionAnalyzer:
-    """分析不同阶段问题处理结果的分析器"""
+class UnifiedAnalyzer:
+    """Unified analysis system for all types of evaluations"""
 
     def __init__(self, path):
-        self.logger = config.get_logger("question_analyzer")
+        self.logger = config.get_logger("unified_analyzer")
         self.cache_root = config.paths["cache"] / path
-        self.stages = ['derelict', 'casual', 'enhancement', 'final']  # 添加 enhancement
+        self.stages = {
+            'derelict': 'Direct Answer',
+            'enhanced': 'Enhanced Answer',
+            'knowledge_graph': 'Knowledge Graph Only',
+            'causal_graph': 'Causal Graph Only',
+            'graph_enhanced': 'Graph Enhancement',
+            'llm_enhanced': 'LLM Enhancement'
+        }
 
-    def load_stage_questions(self, stage: str) -> List[MedicalQuestion]:
-        """加载某个阶段的所有问题"""
+    def get_accuracy(self, stage: str) -> float:
+        """Get accuracy for a specific stage"""
+        questions = self._load_questions(stage)
+        if not questions:
+            return 0.0
+        return sum(1 for q in questions if q.is_correct) / len(questions)
+
+    def get_basic_analysis(self) -> Dict[str, float]:
+        """Get basic accuracy analysis for all stages"""
+        return {
+            stage_name: self.get_accuracy(stage_key)
+            for stage_key, stage_name in self.stages.items()
+        }
+
+    def cross_analysis(self, stage1: str, stage2: str) -> Dict:
+        """Cross analysis between two stages"""
+        questions1 = {q.question: q for q in self._load_questions(stage1)}
+        questions2 = {q.question: q for q in self._load_questions(stage2)}
+
+        common_questions = set(questions1.keys()) & set(questions2.keys())
+
+        if not common_questions:
+            return {
+                'total_questions': 0,
+                'comparison': {},
+                'details': []
+            }
+
+        results = {
+            'total_questions': len(common_questions),
+            'comparison': {
+                'both_correct': 0,
+                'both_wrong': 0,
+                f'{stage1}_only_correct': 0,
+                f'{stage2}_only_correct': 0
+            },
+            'details': []
+        }
+
+        for question in common_questions:
+            q1 = questions1[question]
+            q2 = questions2[question]
+
+            detail = {
+                'question': question,
+                'is_multi_choice': q1.is_multi_choice,
+                f'{stage1}_answer': q1.answer,
+                f'{stage2}_answer': q2.answer,
+                'correct_answer': q1.correct_answer,
+                f'{stage1}_correct': q1.is_correct,
+                f'{stage2}_correct': q2.is_correct
+            }
+            results['details'].append(detail)
+
+            if q1.is_correct and q2.is_correct:
+                results['comparison']['both_correct'] += 1
+            elif not q1.is_correct and not q2.is_correct:
+                results['comparison']['both_wrong'] += 1
+            elif q1.is_correct:
+                results['comparison'][f'{stage1}_only_correct'] += 1
+            else:
+                results['comparison'][f'{stage2}_only_correct'] += 1
+
+        total = len(common_questions)
+        results['comparison_percentage'] = {
+            key: (value / total * 100) if total > 0 else 0
+            for key, value in results['comparison'].items()
+        }
+
+        return results
+
+    def get_performance_improvement(self, base_stage: str, compare_stage: str) -> Dict:
+        """Analyze performance improvements"""
+        analysis = self.cross_analysis(base_stage, compare_stage)
+        if analysis['total_questions'] == 0:
+            return {'improvement': 0, 'degradation': 0}
+
+        total = analysis['total_questions']
+        improvement = analysis['comparison'][f'{compare_stage}_only_correct'] / total * 100
+        degradation = analysis['comparison'][f'{base_stage}_only_correct'] / total * 100
+
+        return {
+            'improvement': improvement,
+            'degradation': degradation,
+            'net_change': improvement - degradation
+        }
+
+    def generate_report(self, output_path: Optional[str] = None) -> None:
+        """Generate complete analysis report"""
+        report = {
+            'basic_accuracy': self.get_basic_analysis(),
+            'cross_analysis': {
+                'derelict_vs_enhanced': self.cross_analysis('derelict', 'enhanced'),
+                'knowledge_vs_causal': self.cross_analysis('knowledge_graph', 'causal_graph'),
+                'graph_vs_llm': self.cross_analysis('graph_enhanced', 'llm_enhanced')
+            },
+            'improvements': {
+                'baseline_to_enhanced': self.get_performance_improvement('derelict', 'enhanced'),
+                'knowledge_to_causal': self.get_performance_improvement('knowledge_graph', 'causal_graph'),
+                'graph_to_llm': self.get_performance_improvement('graph_enhanced', 'llm_enhanced')
+            }
+        }
+
+        if output_path is None:
+            output_path = self.cache_root / 'analysis_report.json'
+
+        with open(output_path, 'w', encoding='utf-8') as f:
+            json.dump(report, f, ensure_ascii=False, indent=2)
+
+        print("\n=== Basic Accuracy Analysis ===")
+        for stage_name, accuracy in report['basic_accuracy'].items():
+            print(f"{stage_name}: {accuracy:.2%}")
+
+        print("\n=== Performance Improvement Analysis ===")
+        for comparison, stats in report['improvements'].items():
+            print(f"\n{comparison}:")
+            print(f"Improvement: {stats['improvement']:.2%}")
+            print(f"Degradation: {stats['degradation']:.2%}")
+            print(f"Net Change: {stats['net_change']:.2%}")
+
+    def _load_questions(self, stage: str) -> List[MedicalQuestion]:
+        """Load questions from a specific stage"""
         questions = []
         stage_path = self.cache_root / stage
 
@@ -33,231 +160,11 @@ class QuestionAnalyzer:
                     questions.append(question)
             except Exception as e:
                 self.logger.error(f"Error loading {cache_file}: {str(e)}")
-                continue
 
         return questions
 
-    def analyze_stage(self, questions: List[MedicalQuestion]) -> Dict:
-        if not questions:
-            return {
-                'total_questions': 0,
-                'correct_count': 0,
-                'accuracy': 0,
-                'average_confidence': 0,
-                'questions_with_confidence': 0,
-                'confidence_distribution': {},
-                'has_reasoning_count': 0,
-                'has_casual_paths_count': 0,
-                'has_kg_paths_count': 0,
-                'has_enhancement_count': 0
-            }
 
-        total = len(questions)
-        correct = sum(1 for q in questions if q.is_correct)
-
-        confidences = [q.confidence for q in questions if q.confidence is not None]
-        confidence_count = len(confidences)
-
-        confidence_ranges = {
-            '0-0.2': 0, '0.2-0.4': 0, '0.4-0.6': 0, '0.6-0.8': 0, '0.8-1.0': 0
-        }
-
-        for conf in confidences:
-            if 0 <= conf < 0.2:
-                confidence_ranges['0-0.2'] += 1
-            elif 0.2 <= conf < 0.4:
-                confidence_ranges['0.2-0.4'] += 1
-            elif 0.4 <= conf < 0.6:
-                confidence_ranges['0.4-0.6'] += 1
-            elif 0.6 <= conf < 0.8:
-                confidence_ranges['0.6-0.8'] += 1
-            else:
-                confidence_ranges['0.8-1.0'] += 1
-
-        has_reasoning = sum(1 for q in questions if q.reasoning is not None)
-        has_casual_paths = sum(
-            1 for q in questions if any(q.casual_paths.get(opt) for opt in ['opa', 'opb', 'opc', 'opd']))
-        has_kg_paths = sum(1 for q in questions if q.KG_paths and len(q.KG_paths) > 0)
-        has_enhancement = sum(1 for q in questions if hasattr(q, 'integrated_paths') and q.integrated_paths)
-
-        return {
-            'total_questions': total,
-            'correct_count': correct,
-            'accuracy': correct / total if total > 0 else 0,
-            'average_confidence': sum(confidences) / confidence_count if confidence_count > 0 else 0,
-            'questions_with_confidence': confidence_count,
-            'confidence_distribution': {k: v / confidence_count if confidence_count > 0 else 0 for k, v in
-                                        confidence_ranges.items()},
-            'has_reasoning_count': has_reasoning,
-            'has_casual_paths_count': has_casual_paths,
-            'has_kg_paths_count': has_kg_paths,
-            'has_enhancement_count': has_enhancement
-        }
-
-    def analyze_all_stages(self) -> Dict[str, Dict]:
-        """分析所有阶段的结果"""
-        results = {}
-        for stage in self.stages:
-            questions = self.load_stage_questions(stage)
-            results[stage] = self.analyze_stage(questions)
-        return results
-
-    def generate_report(self) -> pd.DataFrame:
-        results = self.analyze_all_stages()
-        comparison_data = []
-
-        for stage, stats in results.items():
-            row = {
-                'Stage': stage,
-                'Total Questions': stats['total_questions'],
-                'Correct Count': stats['correct_count'],
-                'Accuracy': f"{stats['accuracy']:.2%}",
-                'Avg Confidence': f"{stats['average_confidence']:.2%}",
-                'With Confidence': f"{stats['questions_with_confidence']}/{stats['total_questions']}",
-                'With Reasoning': f"{stats['has_reasoning_count']}/{stats['total_questions']}",
-                'With Casual Paths': f"{stats['has_casual_paths_count']}/{stats['total_questions']}",
-                'With KG Paths': f"{stats['has_kg_paths_count']}/{stats['total_questions']}",
-                'With Enhancement': f"{stats['has_enhancement_count']}/{stats['total_questions']}"
-            }
-
-            for range_name, percentage in stats['confidence_distribution'].items():
-                row[f'Conf {range_name}'] = f"{percentage:.2%}"
-
-            comparison_data.append(row)
-
-        return pd.DataFrame(comparison_data)
-
-    def save_report(self, file_name, output_path: Optional[str] = None) -> None:
-        """保存分析报告"""
-        df = self.generate_report()
-
-        if output_path is None:
-            output_path = config.paths["output"] / file_name
-        else:
-            output_path = Path(output_path)
-
-        # 确保输出目录存在
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-
-        # 保存为Excel文件
-        df.to_excel(output_path, index=False)
-        self.logger.info(f"Analysis report saved to {output_path}")
-
-        # 打印到控制台
-        print("\nAnalysis Report:")
-        print(df.to_string())
-
-
-from pathlib import Path
-from typing import Dict, List, Optional
-import json
-from src.modules.MedicalQuestion import MedicalQuestion
-from config import config
-import logging
-
-
-def analyze_empty_answers(path: str) -> Dict:
-    """分析 enhancement 阶段中的空答案情况"""
-    logger = config.get_logger("empty_answer_analyzer")
-    cache_root = config.paths["cache"] / path
-    stage_path = cache_root / 'enhancement'
-
-    if not stage_path.exists():
-        logger.warning(f"Enhancement stage directory not found: {stage_path}")
-        return {}
-
-    # 统计结果
-    stats = {
-        'total_questions': 0,
-        'empty_answers': 0,
-        'empty_answer_details': [],
-        'has_paths_empty': 0,  # 有路径但答案为空的数量
-        'no_paths_empty': 0  # 无路径且答案为空的数量
-    }
-
-    # 加载并分析问题
-    for cache_file in stage_path.glob("*.json"):
-        try:
-            with cache_file.open('r', encoding='utf-8') as f:
-                data = json.load(f)
-                question = MedicalQuestion(**data)
-
-            stats['total_questions'] += 1
-
-            if not question.answer:  # 答案为空
-                stats['empty_answers'] += 1
-
-                # 检查是否有路径
-                has_casual_paths = (hasattr(question, 'casual_paths_nodes_refine') and
-                                    question.casual_paths_nodes_refine.get('start') and
-                                    question.casual_paths_nodes_refine.get('end'))
-
-                has_kg_paths = (hasattr(question, 'entities_original_pairs') and
-                                question.entities_original_pairs.get('start') and
-                                question.entities_original_pairs.get('end'))
-
-                # 记录详细信息
-                detail = {
-                    'question': question.question,
-                    'correct_answer': question.correct_answer,
-                    'has_casual_paths': has_casual_paths,
-                    'has_kg_paths': has_kg_paths
-                }
-                stats['empty_answer_details'].append(detail)
-
-                # 统计有无路径的空答案数量
-                if has_casual_paths or has_kg_paths:
-                    stats['has_paths_empty'] += 1
-                else:
-                    stats['no_paths_empty'] += 1
-
-        except Exception as e:
-            logger.error(f"Error processing {cache_file}: {str(e)}")
-            continue
-
-    # 计算百分比
-    if stats['total_questions'] > 0:
-        stats['empty_answer_percentage'] = (stats['empty_answers'] / stats['total_questions']) * 100
-
-    if stats['empty_answers'] > 0:
-        stats['has_paths_empty_percentage'] = (stats['has_paths_empty'] / stats['empty_answers']) * 100
-        stats['no_paths_empty_percentage'] = (stats['no_paths_empty'] / stats['empty_answers']) * 100
-
-    return stats
-
-
-def print_empty_answer_analysis(path: str):
-    """打印空答案分析结果"""
-    stats = analyze_empty_answers(path)
-
-    if not stats:
-        print("No enhancement stage data found.")
-        return
-
-    print("\nEmpty Answer Analysis for Enhancement Stage:")
-    print(f"Total questions analyzed: {stats['total_questions']}")
-    print(f"Questions with empty answers: {stats['empty_answers']} ({stats.get('empty_answer_percentage', 0):.2f}%)")
-    print(f"\nAmong empty answers:")
-    print(f"- With paths: {stats['has_paths_empty']} ({stats.get('has_paths_empty_percentage', 0):.2f}%)")
-    print(f"- Without paths: {stats['no_paths_empty']} ({stats.get('no_paths_empty_percentage', 0):.2f}%)")
-
-    print("\nDetailed list of questions with empty answers:")
-    for idx, detail in enumerate(stats['empty_answer_details'], 1):
-        print(f"\n{idx}. Question: {detail['question']}")
-        print(f"   Correct Answer: {detail['correct_answer']}")
-        print(f"   Has Casual Paths: {'Yes' if detail['has_casual_paths'] else 'No'}")
-        print(f"   Has KG Paths: {'Yes' if detail['has_kg_paths'] else 'No'}")
-
-
-def main():
-    path = '30-gpt-4o-mini-adaptive-enhance-ultra'
-    analyzer = QuestionAnalyzer(path)
-    analyzer.save_report(f"{path}/report.xlsx")
-    analyse(path)
-
-
-if __name__ == "__main__":
-    # path = '20-gpt-4-adaptive-knowledge-0.75-shortest-enhance-ultra1'
-    path = '30-gpt-4o-mini-adaptive-enhance-ultra'
-    print_empty_answer_analysis(path)
-    main()
+def analyze_experiment(path: str):
+    """Convenience function for running analysis"""
+    analyzer = UnifiedAnalyzer(path)
+    analyzer.generate_report()

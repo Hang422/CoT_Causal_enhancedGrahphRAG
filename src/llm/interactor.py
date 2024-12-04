@@ -10,6 +10,7 @@ from pathlib import Path
 import hashlib
 from src.graphrag.query_processor import QueryProcessor
 
+
 class GPTLogger:
     def __init__(self, output_dir: Path):
         self.output_dir = output_dir / "gpt_logs"
@@ -36,6 +37,22 @@ class GPTLogger:
         with open(log_file, "w", encoding="utf-8") as f:
             json.dump(log_entry, f, ensure_ascii=False, indent=2)
 
+
+def _clean_json_response(response: str) -> str:
+    """清理LLM响应中的JSON文本"""
+    response = response.strip()
+    if response.startswith('```json'):
+        response = response[7:]
+    if response.endswith('```'):
+        response = response[:-3]
+
+    start_idx = response.find('{')
+    end_idx = response.rfind('}') + 1
+    if start_idx != -1 and end_idx != -1:
+        return response[start_idx:end_idx]
+    raise ValueError("No JSON object found in response")
+
+
 class LLMProcessor:
     """处理与LLM的所有交互"""
 
@@ -43,10 +60,9 @@ class LLMProcessor:
         """使用全局配置初始化处理器"""
         self.client = OpenAI(api_key=config.openai["api_key"])
         self.model = config.openai.get("model")
-        self.temperature = config.openai.get("temperature", 0.3)
+        self.temperature = config.openai.get("temperature")
         self.logger = config.get_logger("llm_interaction")
         self.logger.info(f"Initialized LLM interaction with model: {self.model}")
-        # 初始化 GPT 日志记录器
         self.gpt_logger = GPTLogger(config.paths["output"])
 
     @retry(
@@ -64,14 +80,7 @@ class LLMProcessor:
                 temperature=temperature or self.temperature
             )
             response_text = response.choices[0].message.content
-
-            # 记录交互
-            self.gpt_logger.log_interaction(
-                messages=messages,
-                response=response_text,
-                interaction_type="completion"
-            )
-
+            self.gpt_logger.log_interaction(messages, response_text, "completion")
             return response_text
         except Exception as e:
             self.logger.error(f"Error calling OpenAI API: {str(e)}", exc_info=True)
@@ -79,102 +88,60 @@ class LLMProcessor:
 
     def direct_answer(self, question: MedicalQuestion) -> None:
         """直接回答问题，不使用任何额外知识"""
-        prompt = f"""As a medical expert in the filed of {question.topic_name}, please help answer this multiple choice question:
+        if question.topic_name is None:
+            prompt = f"""You are a medical expert specializing in the field of {question.topic_name}."""
+        else:
+            prompt = f"""You are a medical expert."""
+
+        prompt += f"""Please help answer this {'' if not question.is_multi_choice else 'multiple choice'} question:
 
 Question: {question.question}
-
-Options:
 """
-        for key, text in question.options.items():
-            prompt += f"{key}. {text}\n"
+        if question.is_multi_choice:
+            prompt += "\nOptions:\n"
+            for key, text in question.options.items():
+                prompt += f"{key}. {text}\n"
 
         prompt += """
-Please analyze and select the most appropriate answer. Respond in the following format:
-
-Answer: (Option letter,only opa,opb,opc or opd, no addtional information)
-Confidence: (A number from 0-100 indicating your confidence)
-"""
-
-        try:
-            messages = [
-                {"role": "system", "content": "You are a medical expert helping to answer multiple choice questions."},
-                {"role": "user", "content": prompt}
-            ]
-
-            response = self._get_completion(messages)
-
-            # Parse response and update question object
-            for line in response.split('\n'):
-                if line.startswith('Analysis:'):
-                    question.reasoning = line.replace('Analysis:', '').strip()
-                elif line.startswith('Answer:'):
-                    question.answer = line.replace('Answer:', '').strip().lower()
-                elif line.startswith('Confidence:'):
-                    try:
-                        question.confidence = float(line.replace('Confidence:', '').strip().rstrip('%'))
-                    except ValueError:
-                        self.logger.warning("Failed to parse confidence value")
-                        question.confidence = 0
-
-        except Exception as e:
-            self.logger.error(f"Error in direct answer: {str(e)}", exc_info=True)
-
-    def causal_enhanced_answer(self, question: MedicalQuestion) -> None:
-        """利用因果路径增强的回答"""
-        prompt = f"""As a medical expert in the filed of {question.topic_name}, please help answer this multiple choice question using the provided causal relationships:
-
-Question: {question.question}
-
-Options:
-"""
-        for key, text in question.options.items():
-            prompt += f"{key}. {text}\n"
-
-        if question.casual_paths:
-            prompt += "\nCausal relationships for each option:\n"
-            for option in ['opa', 'opb', 'opc', 'opd']:
-                if question.casual_paths.get(option):
-                    prompt += f"\nOption {option} related causal paths:\n"
-                    for path in question.casual_paths[option]:
-                        prompt += f"- {path}\n"
-
-        prompt += """
-Based on the question, options, and causal relationships, please provide:
-
-Analysis: (Explain your reasoning using the causal relationships)
-Answer: (Option letter,only opa,opb,opc or opd, no addtional information)
-Confidence: (A number from 0-100)
-"""
+        ### Output Format
+        Provide your response in valid JSON format:
+        {
+            "final_analysis": "Your concise analysis following the above structure",
+            "answer": "Option key from the available options (only key,like opa, no additional information)",
+            "confidence": Score between 0-100 based on alignment with established medical facts
+        }
+        """
 
         try:
             messages = [
                 {"role": "system",
-                 "content": "You are a medical expert analyzing questions using causal relationships."},
+                 "content": "You are a medical expert making decisions based on enhanced information."},
                 {"role": "user", "content": prompt}
             ]
-
             response = self._get_completion(messages)
+            response = _clean_json_response(response)
+            result = json.loads(response)
 
-            for line in response.split('\n'):
-                if line.startswith('Analysis:'):
-                    question.reasoning = line.replace('Analysis:', '').strip()
-                elif line.startswith('Answer:'):
-                    question.answer = line.replace('Answer:', '').strip().lower()
-                elif line.startswith('Confidence:'):
-                    try:
-                        question.confidence = float(line.replace('Confidence:', '').strip().rstrip('%'))
-                    except ValueError:
-                        question.confidence = 0
+            question.analysis = result.get("final_analysis", "")
+            question.answer = result.get("answer", "").lower()
+            question.confidence = float(result.get("confidence", 0.0))
 
         except Exception as e:
-            self.logger.error(f"Error in causal enhanced answer: {str(e)}", exc_info=True)
+            self.logger.error(f"Error in final answer generation: {str(e)}")
+            question.analysis = "Error processing final answer"
+            question.answer = ""
+            question.confidence = 0.0
 
     def generate_reasoning_chain(self, question: MedicalQuestion) -> None:
         """基于因果路径生成推理链和需要验证的实体对"""
-        self.logger.debug(f"Starting reasoning chain analysis")
+
+        if question.topic_name is None:
+            prompt = f"""You are a medical expert specializing in the field of {question.topic_name}."""
+        else:
+            prompt = f"""You are a medical expert."""
 
         # 构建初始 Prompt
-        prompt = f"""You are a medical expert specializing in the field of {question.topic_name}. Your task involves two main objectives:
+        prompt += f""" Your task involves two main objectives:
 
         1. **Generate Causal Chains (Causal Analysis)**: Analyze the provided causal relationships (if any) or infer them directly from the question and options. The goal is to identify direct relationships between entities (e.g., symptoms, organisms, anatomical structures, pathways) relevant to answering the question.
 
@@ -186,19 +153,20 @@ Confidence: (A number from 0-100)
 
         ### Question
         {question.question}
-
-        ### Options
         """
-        for key, text in question.options.items():
-            prompt += f"{key}. {text}\n"
+
+        if question.is_multi_choice:
+            prompt += "\n### Options\n"
+            for key, text in question.options.items():
+                prompt += f"{key}. {text}\n"
 
         # Add causal paths if provided
-        if question.casual_paths:
+        if question.initial_casual_paths is not None and len(question.initial_casual_paths) > 0:
             prompt += "\n### Provided Causal Relationships for Each Option\n"
-            for option in ['opa', 'opb', 'opc', 'opd']:
-                if question.casual_paths.get(option):
-                    prompt += f"\nOption {option} causal paths:\n"
-                    for path in question.casual_paths[option]:
+            for key, paths in question.initial_casual_paths.items():
+                if paths:
+                    prompt += f"\nOption {key} related causal paths:\n"
+                    for path in paths:
                         prompt += f"- {path}\n"
         else:
             prompt += "\nNo causal relationships are provided for this question."
@@ -245,189 +213,65 @@ Confidence: (A number from 0-100)
         # 调用 LLM 获取结果的代码保持不变
 
         try:
-            # 调用 LLM 获取结果
             messages = [
                 {"role": "system",
                  "content": "You are a medical expert analyzing questions. Always respond with valid JSON."},
                 {"role": "user", "content": prompt}
             ]
             response = self._get_completion(messages)
-            self.logger.debug(f"Raw LLM response: {response}")
 
-            # 清理响应确保有效 JSON
-            response = response.strip()
-            if response.startswith('```json'):
-                response = response[7:]
-            if response.endswith('```'):
-                response = response[:-3]
-
-            start_idx = response.find('{')
-            end_idx = response.rfind('}') + 1
-            if start_idx != -1 and end_idx != -1:
-                response = response[start_idx:end_idx]
-
+            # 处理JSON响应
+            response = _clean_json_response(response)
             result = json.loads(response)
 
-            # 验证响应结构
-            if "additional_entity_pairs" not in result or "causal_analysis" not in result:
-                raise ValueError("Missing required fields in response")
-
-            # 提取因果分析结果
-            if result.get("causal_analysis"):
-                question.casual_paths_nodes_refine = {
+            if "causal_analysis" in result:
+                question.causal_graph.entities_pairs = {
                     'start': result["causal_analysis"].get("start", []),
                     'end': result["causal_analysis"].get("end", [])
                 }
-                self.logger.debug(f"Extracted causal analysis: {question.casual_paths_nodes_refine}")
 
-            # 提取额外实体对
-            if result.get("additional_entity_pairs"):
-                question.entities_original_pairs = {
+            if "additional_entity_pairs" in result:
+                question.knowledge_graph.entities_pairs = {
                     'start': result["additional_entity_pairs"].get("start", []),
                     'end': result["additional_entity_pairs"].get("end", [])
                 }
-                self.logger.debug(f"Extracted additional entity pairs: {question.entities_original_pairs}")
 
-        except json.JSONDecodeError as e:
-            self.logger.error(f"JSON parsing error: {str(e)}\nResponse: {response}")
+        except Exception as e:
+            self.logger.error(f"Error in reasoning chain generation: {str(e)}")
             question.casual_paths_nodes_refine = {'start': [], 'end': []}
             question.entities_original_pairs = {'start': [], 'end': []}
-            question.reasoning = "Error processing reasoning chain"
-
-        except Exception as e:
-            self.logger.error(f"Error processing reasoning chain: {str(e)}, Response: {response}")
-            question.casual_paths_nodes_refine = {'start': [], 'end': []}
-            question.entities_original_pairs = {'start': [], 'end': []}
-            question.reasoning = "Error processing reasoning chain"
-
-    def final_answer_with_all_paths(self, question: MedicalQuestion) -> None:
-        """基于所有信息（因果路径、思维链、KG路径）生成最终答案"""
-        prompt = f"""As a medical expert in the field of {question.topic_name}, please analyze this question using all available information:
-
-Question: {question.question}
-
-Options:
-"""
-        for key, text in question.options.items():
-            prompt += f"{key}. {text}\n"
-
-        # Add causal paths
-
-        if question.CG_paths:
-            prompt += "\nVerified casual graph relationships:\n"
-            for path in question.CG_paths:
-                prompt += f"- {path}\n"
-
-        # Add reasoning chain
-        if question.reasoning_chain:
-            prompt += f"\nReasoning process:\n{question.reasoning}\n"
-
-        # Add KG paths
-        if question.KG_paths:
-            prompt += "\nVerified knowledge graph relationships:\n"
-            for path in question.KG_paths:
-                prompt += f"- {path}\n"
-
-        prompt += """
-Based on all the above information, please provide:
-
-Final Analysis: (Synthesize all available information)
-Answer: (Option letter,only opa,opb,opc or opd, no addtional information)
-Confidence: (A number from 0-100)
-"""
-
-        try:
-            messages = [
-                {"role": "system",
-                 "content": "You are a medical expert making decisions based on comprehensive evidence."},
-                {"role": "user", "content": prompt}
-            ]
-
-            response = self._get_completion(messages)
-
-            for line in response.split('\n'):
-                if line.startswith('Final Analysis:'):
-                    question.reasoning = line.replace('Final Analysis:', '').strip()
-                elif line.startswith('Answer:'):
-                    question.answer = line.replace('Answer:', '').strip().lower()
-                elif line.startswith('Confidence:'):
-                    try:
-                        question.confidence = float(line.replace('Confidence:', '').strip().rstrip('%'))
-                    except ValueError:
-                        question.confidence = 0
-
-        except Exception as e:
-            self.logger.error(f"Error in final answer generation: {str(e)}", exc_info=True)
-
-    def answer_with_reasoning(self, question: MedicalQuestion) -> None:
-        prompt = f"""As a medical expert, please analyze this question using all available information:
-
-        Question: {question.question}
-
-        Options:
-        """
-        for key, text in question.options.items():
-            prompt += f"{key}. {text}\n"
-
-        # Add reasoning chain
-        if question.reasoning:
-            prompt += f"\nReasoning process:\n{question.reasoning}\n"
-
-        prompt += """
-        Based on all the above information, please provide:
-
-        Final Analysis: (Synthesize all available information)
-        Answer: (Option letter,only opa,opb,opc or opd, no addtional information)
-        Confidence: (A number from 0-100)
-        """
-
-        try:
-            messages = [
-                {"role": "system",
-                 "content": "You are a medical expert making decisions based on comprehensive evidence."},
-                {"role": "user", "content": prompt}
-            ]
-
-            response = self._get_completion(messages)
-
-            for line in response.split('\n'):
-                if line.startswith('Final Analysis:'):
-                    question.reasoning = line.replace('Final Analysis:', '').strip()
-                elif line.startswith('Answer:'):
-                    question.answer = line.replace('Answer:', '').strip().lower()
-                elif line.startswith('Confidence:'):
-                    try:
-                        question.confidence = float(line.replace('Confidence:', '').strip().rstrip('%'))
-                    except ValueError:
-                        question.confidence = 0
-
-        except Exception as e:
-            self.logger.error(f"Error in final answer generation: {str(e)}", exc_info=True)
 
     def enhance_information(self, question: MedicalQuestion) -> None:
         """融合所有信息，生成增强后的信息"""
         self.logger.debug(f"Starting information enhancement")
 
-        prompt = f"""You are a medical expert specializing in the field of {question.topic_name}. Your task is to integrate all the provided information, ensuring its truthfulness and relevance, enhance it by trimming irrelevant or misleading parts, and prepare it for answering the question.
+        if question.topic_name is None:
+            prompt = f"""You are a medical expert specializing in the field of {question.topic_name}."""
+        else:
+            prompt = f"""You are a medical expert."""
+
+        prompt += f"""Your task is to integrate all the provided information, ensuring its truthfulness and relevance, enhance it by trimming irrelevant or misleading parts, and prepare it for answering the question.
 
         ### Question
         {question.question}
-
-        ### Options
         """
-        for key, text in question.options.items():
-            prompt += f"{key}. {text}\n"
 
-        # 添加KG_paths（如果有）
-        if question.KG_paths:
+        if question.is_multi_choice:
+            prompt += "\n### Options\n"
+            for key, text in question.options.items():
+                prompt += f"{key}. {text}\n"
+
+        causal_paths = question.get_all_paths().get('causal_paths')
+        kg_paths = question.get_all_paths().get('KG_paths')
+
+        if causal_paths:
             prompt += "\n### Knowledge Graph Paths\n"
-            for path in question.KG_paths:
+            for path in causal_paths:
                 prompt += f"- {path}\n"
 
-        # 添加CG_paths（如果有）
-        if hasattr(question, 'CG_paths') and question.CG_paths:
+        if kg_paths:
             prompt += "\n### Causal Graph Paths\n"
-            for path in question.CG_paths:
+            for path in kg_paths:
                 prompt += f"- {path}\n"
 
         # 指定任务与输出格式
@@ -457,39 +301,21 @@ Confidence: (A number from 0-100)
                 {"role": "user", "content": prompt}
             ]
             response = self._get_completion(messages)
-            self.logger.debug(f"Raw LLM response: {response}")
-
-            # 解析大模型的回复，确保是有效的JSON格式
-            response = response.strip()
-            if response.startswith('```json'):
-                response = response[7:]
-            if response.endswith('```'):
-                response = response[:-3]
-
-            start_idx = response.find('{')
-            end_idx = response.rfind('}') + 1
-            if start_idx != -1 and end_idx != -1:
-                response = response[start_idx:end_idx]
-
+            response = _clean_json_response(response)
             result = json.loads(response)
-
-            if "enhanced_information" not in result:
-                raise ValueError("Missing 'enhanced_information' in response")
-
-            # 更新问题对象
-            question.enhanced_information = result["enhanced_information"]
-
-        except json.JSONDecodeError as e:
-            self.logger.error(f"JSON parsing error: {str(e)}\nResponse: {response}")
-            question.enhanced_information = "Error processing enhanced information"
-
+            question.enhanced_information = result.get("enhanced_information", "")
         except Exception as e:
-            self.logger.error(f"Error in enhancing information: {str(e)}, Response: {response}")
+            self.logger.error(f"Error in information enhancement: {str(e)}")
             question.enhanced_information = "Error processing enhanced information"
 
     def answer_with_enhanced_information(self, question: MedicalQuestion) -> None:
         """使用增强后的信息生成最终答案"""
-        prompt = f"""As a medical expert in the field of {question.topic_name}, please answer the following question using a structured approach.
+        if question.topic_name is None:
+            prompt = f"""You are a medical expert specializing in the field of {question.topic_name}."""
+        else:
+            prompt = f"""You are a medical expert."""
+
+        prompt = f"""Please answer the following question using a structured approach.
 
         ### Question
         {question.question}
@@ -555,7 +381,6 @@ Confidence: (A number from 0-100)
         - Use enhanced information as support, not primary evidence
         - Avoid speculation or overcomplication
         """
-
         try:
             messages = [
                 {"role": "system",
@@ -563,67 +388,100 @@ Confidence: (A number from 0-100)
                 {"role": "user", "content": prompt}
             ]
             response = self._get_completion(messages)
-            self.logger.debug(f"Raw LLM response: {response}")
-
-            # 确保响应是有效的 JSON
-            response = response.strip()
-            if response.startswith('```json'):
-                response = response[7:]
-            if response.endswith('```'):
-                response = response[:-3]
-
-            # 提取 JSON 部分
-            start_idx = response.find('{')
-            end_idx = response.rfind('}') + 1
-            if start_idx != -1 and end_idx != -1:
-                response = response[start_idx:end_idx]
-            else:
-                raise ValueError("No JSON object found in the response.")
-
-            # 解析 JSON
+            response = _clean_json_response(response)
             result = json.loads(response)
 
-            # 提取结果
-            question.reasoning = result.get("final_analysis", "")
+            question.analysis = result.get("final_analysis", "")
             question.answer = result.get("answer", "").lower()
             question.confidence = float(result.get("confidence", 0.0))
 
         except Exception as e:
-            self.logger.error(f"Error in final answer generation: {str(e)}", exc_info=True)
-            question.reasoning = "Error processing final answer"
+            self.logger.error(f"Error in final answer generation: {str(e)}")
+            question.analysis = "Error processing final answer"
             question.answer = ""
             question.confidence = 0.0
 
+
 if __name__ == '__main__':
     var = {
-        "question": "Which of the following hormone is/are under inhibitory of hypothalamus?",
-        "topic_name": "Pharmacology",
-        "options": {
-            "opa": "Prolactin",
-            "opb": "Only prolactin",
-            "opc": "Only growth hormone",
-            "opd": "Both prolactin and growth hormone"
-        },
-        "correct_answer": "opd"
+        "question": "Are group 2 innate lymphoid cells ( ILC2s ) increased in chronic rhinosinusitis with nasal polyps or eosinophilia?",
+        "context": """{ "contexts": [ "Chronic rhinosinusitis (CRS) is a heterogeneous disease with an uncertain pathogenesis. Group 2 innate lymphoid cells (ILC2s) represent a recently discovered cell population which has been implicated in driving Th2 inflammation in CRS; however, their relationship with clinical disease characteristics has yet to be investigated.", "The aim of this study was to identify ILC2s in sinus mucosa in patients with CRS and controls and compare ILC2s across characteristics of disease.", "A cross-sectional study of patients with CRS undergoing endoscopic sinus surgery was conducted. Sinus mucosal biopsies were obtained during surgery and control tissue from patients undergoing pituitary tumour resection through transphenoidal approach. ILC2s were identified as CD45(+) Lin(-) CD127(+) CD4(-) CD8(-) CRTH2(CD294)(+) CD161(+) cells in single cell suspensions through flow cytometry. ILC2 frequencies, measured as a percentage of CD45(+) cells, were compared across CRS phenotype, endotype, inflammatory CRS subtype and other disease characteristics including blood eosinophils, serum IgE, asthma status and nasal symptom score.", "35 patients (40% female, age 48 ± 17 years) including 13 with eosinophilic CRS (eCRS), 13 with non-eCRS and 9 controls were recruited. ILC2 frequencies were associated with the presence of nasal polyps (P = 0.002) as well as high tissue eosinophilia (P = 0.004) and eosinophil-dominant CRS (P = 0.001) (Mann-Whitney U). They were also associated with increased blood eosinophilia (P = 0.005). There were no significant associations found between ILC2s and serum total IgE and allergic disease. In the CRS with nasal polyps (CRSwNP) population, ILC2s were increased in patients with co-existing asthma (P = 0.03). ILC2s were also correlated with worsening nasal symptom score in CRS (P = 0.04)." ], "labels": [ "BACKGROUND", "OBJECTIVE", "METHODS", "RESULTS" ], "meshes": [ "Adult", "Aged", "Antigens, Surface", "Case-Control Studies", "Chronic Disease", "Eosinophilia", "Female", "Humans", "Hypersensitivity", "Immunity, Innate", "Immunoglobulin E", "Immunophenotyping", "Leukocyte Count", "Lymphocyte Subsets", "Male", "Middle Aged", "Nasal Mucosa", "Nasal Polyps", "Neutrophil Infiltration", "Patient Outcome Assessment", "Rhinitis", "Sinusitis", "Young Adult" ] }""",
+        "correct_answer": "yes",
     }
 
+    var1 = {
+        "causal_analysis": {
+            "start": [
+                "Group 2 innate lymphoid cells",
+                "Group 2 innate lymphoid cells",
+                "Group 2 innate lymphoid cells",
+                "Eosinophilia",
+                "Chronic rhinosinusitis with nasal polyps"
+            ],
+            "end": [
+                "Th2 inflammation",
+                "Increased eosinophils in sinus mucosa",
+                "Worsening nasal symptom score",
+                "Chronic rhinosinusitis",
+                "Increased Group 2 innate lymphoid cells"
+            ]
+        },
+        "additional_entity_pairs": {
+            "start": [
+                "Th2 inflammation",
+                "Nasal polyps",
+                "Asthma",
+                "Blood eosinophilia"
+            ],
+            "end": [
+                "Increased Group 2 innate lymphoid cells",
+                "Worsening nasal symptom score",
+                "Increased Group 2 innate lymphoid cells",
+                "Eosinophilic chronic rhinosinusitis"
+            ]
+        }
+    }
     question = MedicalQuestion(
         question=var.get('question'),
         options=var.get('options'),
         correct_answer=var.get('correct_answer'),
-        topic_name=var.get('topic_name')
+        is_multi_choice=False
     )
 
     llm = LLMProcessor()
-    llm.generate_reasoning_chain(question)
-    print(f"casual_nodes_refine:{question.casual_paths_nodes_refine}")
-    print(f"question.entities_original_pairs:{question.entities_original_pairs}")
-
+    # llm.generate_reasoning_chain(question)
+    question.causal_graph.entities_pairs = {
+            "start": [
+                "Group 2 innate lymphoid cells",
+                "Group 2 innate lymphoid cells",
+                "Group 2 innate lymphoid cells",
+                "Eosinophilia",
+                "Chronic rhinosinusitis with nasal polyps"
+            ],
+            "end": [
+                "Th2 inflammation",
+                "Increased eosinophils in sinus mucosa",
+                "Worsening nasal symptom score",
+                "Chronic rhinosinusitis",
+                "Increased Group 2 innate lymphoid cells"
+            ]
+        }
+    question.knowledge_graph.entities_pairs = {"start": [
+        "Th2 inflammation",
+        "Nasal polyps",
+        "Asthma",
+        "Blood eosinophilia"
+    ],
+        "end": [
+            "Increased Group 2 innate lymphoid cells",
+            "Worsening nasal symptom score",
+            "Increased Group 2 innate lymphoid cells",
+            "Eosinophilic chronic rhinosinusitis"
+        ]}
     processor = QueryProcessor()
-    processor.process_entity_pairs_enhance(question)
-    print(f"question.CG_paths:{question.CG_paths}")
-    print(f"question.KG_paths:{question.KG_paths}")
-
+    processor.process_all_entity_pairs_enhance(question)
+    print(f"question.CG_paths:{question.causal_graph.paths}")
+    print(f"question.KG_paths:{question.knowledge_graph.paths}")
 
     """question.casual_paths = var.get('casual_paths')
     question.KG_paths = var.get('KG_paths')

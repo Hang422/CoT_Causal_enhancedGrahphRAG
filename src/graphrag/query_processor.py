@@ -163,7 +163,7 @@ class QueryProcessor:
                             continue
                         path = _find_shortest_path_score(session, start_cui, end_cui)[:1]
                         if path:
-                            question.casual_nodes.get(key).append(
+                            question.casual_paths.no.get(key).append(
                                 self.entity_processor.batch_get_names(path['node_cuis'], True))
                             question.casual_relationships.get(key).append(path['relationships'])
         except Exception as e:
@@ -182,16 +182,14 @@ class QueryProcessor:
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.close()
 
-    def process_entity_pairs_enhance(self, question: MedicalQuestion, database='knowledge') -> None:
+    def process_all_entity_pairs_enhance(self, question: MedicalQuestion) -> None:
         """Enhanced version of process_entity_pairs that finds multiple shorter paths"""
 
-        # 用于去重的集合
-        seen_paths = set()
-
         try:
-            with self.driver.session(database=database) as session:
-                for start_name, end_name in zip(question.entities_original_pairs['start'],
-                                                question.entities_original_pairs['end']):
+            seen_paths = set()
+            with self.driver.session(database='knowledge') as session:
+                for start_name, end_name in zip(question.knowledge_graph.entities_pairs['start'],
+                                                question.knowledge_graph.entities_pairs['end']):
                     # Convert names to CUIs
                     start_cui = self.entity_processor.get_name_cui(start_name)
                     end_cui = self.entity_processor.get_name_cui(end_name)
@@ -219,68 +217,70 @@ class QueryProcessor:
                         # 如果是新路径，添加到结果中
                         if path_identifier not in seen_paths:
                             seen_paths.add(path_identifier)
-                            question.KG_nodes.append(
+                            question.knowledge_graph.nodes.append(
                                 self.entity_processor.batch_get_names(path['node_cuis'], True)
                             )
-                            question.KG_relationships.append(path['relationships'])
+                            question.knowledge_graph.relationships.append(path['relationships'])
 
         except Exception as e:
             self.logger.error(f"Error in enhanced entity pairs processing: {str(e)}", exc_info=True)
 
+        try:
+            seen_paths = set()
+            with self.driver.session(database='casual') as session:
+                for start_name, end_name in zip(question.causal_graph.entities_pairs['start'],
+                                                question.causal_graph.entities_pairs['end']):
+                    # Convert names to CUIs
+                    start_cui = self.entity_processor.get_name_cui(start_name)
+                    end_cui = self.entity_processor.get_name_cui(end_name)
+                    if not start_cui or not end_cui:
+                        continue
+
+                    if start_cui == end_cui:
+                        continue
+
+                        # 使用增强版路径查找
+                    paths = _find_shortest_path_score(
+                        session,
+                        start_cui,
+                        end_cui
+                    )[:2]
+
+                    # 处理找到的多条路径
+                    for path in paths:
+                        # 创建用于去重的路径标识
+                        path_identifier = (
+                            tuple(path['node_cuis']),
+                            tuple(path['relationships'])
+                        )
+
+                        # 如果是新路径，添加到结果中
+                        if path_identifier not in seen_paths:
+                            seen_paths.add(path_identifier)
+                            question.causal_graph.nodes.append(
+                                self.entity_processor.batch_get_names(path['node_cuis'], True)
+                            )
+                            question.causal_graph.relationships.append(path['relationships'])
+
+        except Exception as e:
+            self.logger.error(f"Error in enhanced entity pairs processing: {str(e)}", exc_info=True)
+
+        question.generate_paths()
+
+    def process_casual_paths_enhance(self, question: MedicalQuestion, control) -> None:
+        """Enhanced version of process_casual_paths that returns multiple shorter paths"""
+        if control:
+            return
         try:
             with self.driver.session(database='casual') as session:
-                for start_name, end_name in zip(question.casual_paths_nodes_refine['start'],
-                                                question.casual_paths_nodes_refine['end']):
-                    # Convert names to CUIs
-                    start_cui = self.entity_processor.get_name_cui(start_name)
-                    end_cui = self.entity_processor.get_name_cui(end_name)
-                    if not start_cui or not end_cui:
-                        continue
-
-                    if start_cui == end_cui:
-                        continue
-
-                    # 使用增强版路径查找
-                    paths = _find_shortest_path_score(
-                        session,
-                        start_cui,
-                        end_cui
-                    )[:2]
-
-                    # 处理找到的多条路径
-                    for path in paths:
-                        # 创建用于去重的路径标识
-                        path_identifier = (
-                            tuple(path['node_cuis']),
-                            tuple(path['relationships'])
-                        )
-
-                        # 如果是新路径，添加到结果中
-                        if path_identifier not in seen_paths:
-                            seen_paths.add(path_identifier)
-                            question.CG_nodes.append(
-                                self.entity_processor.batch_get_names(path['node_cuis'], True)
-                            )
-                            question.CG_relationships.append(path['relationships'])
-
-        except Exception as e:
-            self.logger.error(f"Error in enhanced entity pairs processing: {str(e)}", exc_info=True)
-
-        question.generate_paths()  # Update path strings
-
-    def process_casual_paths_enhance(self, question: MedicalQuestion, database) -> None:
-        """Enhanced version of process_casual_paths that returns multiple shorter paths"""
-        try:
-            with self.driver.session(database=database) as session:
                 # 获取问题中的CUIs
                 question_cuis = set(self.entity_processor.process_text(question.question))
-                keys = ['opa', 'opb', 'opc', 'opd']
+                keys = list(question.options.keys())
+
                 # 分别获取每个选项的CUIs
                 options_cuis = {
-                    'opa': set(self.entity_processor.process_text(question.options.get('opa'))),
-                    'opb': set(self.entity_processor.process_text(question.options.get('opb'))),
-                    'opc': set(self.entity_processor.process_text(question.options.get('opc'))),
-                    'opd': set(self.entity_processor.process_text(question.options.get('opd')))
+                    key: set(self.entity_processor.process_text(question.options.get(key)))
+                    for key in keys
                 }
 
                 # 用于去重的集合
@@ -328,9 +328,9 @@ if __name__ == '__main__':
             "opa": "Hopewood",
             "opb": "Experimental",
             "opc": "Vipeholm",
-            "opd": "Turku"}, topic_name='null')
+            "opd": "Turku"}, topic_name='null', is_multi_choice=True, correct_answer='opa')
     processor = QueryProcessor()
-    question.casual_paths_nodes_refine = {
+    question.causal_graph.entities_pairs = {
         "start": [
             "Nitrates",
             "Nitrates"
@@ -339,18 +339,18 @@ if __name__ == '__main__':
             "Coronary vasodilator",
             "Decrease in preload"
         ]}
-    question.entities_original_pairs = {"start": [
-            "Nitrates",
-            "Venodilation"
-        ],
+    question.knowledge_graph.entities_pairs = {"start": [
+        "Nitrates",
+        "Venodilation"
+    ],
         "end": [
-            "Venodilation",
+            "Coronary vasodilator",
             "Decrease in preload"
         ]}
     processor.entity_processor.threshold = 0.25
-    processor.process_entity_pairs_enhance(question, 'knowledge')
-    print(question.CG_paths)
-    print(question.KG_paths)
+    processor.process_all_entity_pairs_enhance(question)
+    print(question.causal_graph.paths)
+    print(question.knowledge_graph.paths)
     var = ['(Nitrates)-INHIBITS->(ethanol)-STIMULATES->(Coronary vasodilator (product))',
            '(Nitrates)-INHIBITS->(nitric oxide)-STIMULATES->(Coronary vasodilator (product))',
            '(Nitrates)-STIMULATES->(nitric oxide)-STIMULATES->(Coronary vasodilator (product))',
