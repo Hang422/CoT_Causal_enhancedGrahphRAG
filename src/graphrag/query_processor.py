@@ -7,42 +7,22 @@ from src.modules.MedicalQuestion import MedicalQuestion
 from src.graphrag.entity_processor import EntityProcessor
 
 
-def _find_shortest_path(session, start_cui: str, end_cui: str) -> Optional[Dict]:
-    """Find shortest path between two CUIs"""
-    query = """
-    MATCH path = shortestPath((start)-[*..5]->(end))
-    WHERE start.cui = $start_cui AND end.cui = $end_cui
-    RETURN 
-        [node in nodes(path) | node.cui] as node_cuis,
-        [rel in relationships(path) | rel.name] as relationships
-    LIMIT 1
-    """
-
-    result = session.run(
-        query,
-        start_cui=start_cui,
-        end_cui=end_cui
-    )
-    record = result.single()
-    return record if record else None
-
-
 def _find_shortest_path_score(session, start_cui: str, end_cui: str) -> List[Dict]:
     """Find highest scoring paths between two CUIs with length constraints"""
     query = """
     MATCH path = allShortestPaths((start)-[*..5]->(end))
-    WHERE start.cui = $start_cui AND end.cui = $end_cui
+    WHERE start.CUI = $start_cui AND end.CUI = $end_cui
     WITH path, length(path) as len
     ORDER BY len ASC
     WITH collect({
-        nodes: [node in nodes(path) | node.cui],
+        nodes: [node in nodes(path) | node.Name],  -- Use node.Name instead of node.CUI
         rels: [rel in relationships(path) | rel.name],
         length: len
     }) as paths,
     min(len) as shortest_len
     UNWIND [p in paths WHERE p.length <= shortest_len + 1] as filtered_path
     RETURN 
-        filtered_path.nodes as node_cuis,
+        filtered_path.nodes as node_names,
         filtered_path.rels as relationships,
         filtered_path.length as path_length
     """
@@ -64,25 +44,21 @@ def _find_shortest_path_score(session, start_cui: str, end_cui: str) -> List[Dic
         score = sum(relation_scores.get(rel, 1) for rel in record['relationships'])
         score *= 1.0 / (1 + record['path_length'])
         scored_paths.append({
-            'node_cuis': record['node_cuis'],
+            'node_names': record['node_names'],
             'relationships': record['relationships'],
             'path_length': record['path_length'],
             'score': score
         })
 
     scored_paths.sort(key=lambda x: x['score'], reverse=True)
-    return scored_paths[:3]
-
-
-def _find_shortest_path_score_both_directions(session, start_cui: str, end_cui: str) -> Optional[Dict]:
-    pass
+    return scored_paths[:5]  # Return top 5 paths
 
 
 def _find_shortest_path_enhance(session, start_cui: str, end_cui: str) -> List[Dict]:
     """Enhanced path finding that returns alternative shorter paths with scoring"""
     query = """
     // Get original shortest path and length
-    MATCH (start {cui: $start_cui}), (end {cui: $end_cui})
+    MATCH (start {CUI: $start_CUI}), (end {CUI: $end_CUI})
     OPTIONAL MATCH initialPath = shortestPath((start)-[*..4]->(end))
     WITH start, end, 
          CASE WHEN initialPath IS NULL THEN -1 ELSE length(initialPath) END as original_length
@@ -137,6 +113,34 @@ def _find_shortest_path_enhance(session, start_cui: str, end_cui: str) -> List[D
     return results
 
 
+def process_knowledge_graph_paths(self, start_cui: str, end_cui: str) -> List[Dict]:
+    """Query and process paths in the knowledge graph."""
+    query = """
+    MATCH path = allShortestPaths((start)-[*..5]->(end))
+    WHERE start.CUI = $start_cui AND end.CUI = $end_cui
+    RETURN 
+        [node IN nodes(path) | node.Name] AS node_names,
+        [rel IN relationships(path) | type(rel)] AS relationships,
+        length(path) AS path_length
+    ORDER BY path_length ASC
+    LIMIT 3
+    """
+
+    with self.driver.session(database='knowledge') as session:
+        result = session.run(query, start_cui=start_cui, end_cui=end_cui)
+        paths = []
+
+        for record in result:
+            paths.append({
+                'node_names': record['node_names'],
+                'relationships': record['relationships'],
+                'path_length': record['path_length']
+            })
+
+        # 直接返回最短的3条路径
+        return paths
+
+
 class QueryProcessor:
     """Neo4j query processor for medical question path finding"""
 
@@ -182,88 +186,162 @@ class QueryProcessor:
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.close()
 
+    def process_causal_graph_paths(self, start_cui: str, end_cui: str) -> List[Dict]:
+        """Query and process paths in the causal graph."""
+        query = """
+        MATCH path = allShortestPaths((start)-[*..5]->(end))
+        WHERE start.CUI = $start_cui AND end.CUI = $end_cui
+        RETURN 
+            [node IN nodes(path) | node.Name] AS node_names,
+            [rel IN relationships(path) | type(rel)] AS relationships,
+            [rel IN relationships(path) | COALESCE(toFloat(rel.Strength), 0.0)] AS scores,
+            length(path) AS path_length
+        ORDER BY path_length ASC
+        LIMIT 10
+        """
+
+        with self.driver.session(database='Causal') as session:
+            result = session.run(query, start_cui=start_cui, end_cui=end_cui)
+            paths = []
+
+            for record in result:
+                paths.append({
+                    'node_names': record['node_names'],
+                    'relationships': record['relationships'],
+                    'scores': record['scores'],
+                    'path_length': record['path_length']
+                })
+
+            # 删除路径长度大于最短路径长度+1的路径
+            if paths:
+                shortest_length = paths[0]['path_length']
+                paths = [path for path in paths if path['path_length'] <= shortest_length + 1]
+
+            # 对每组相同节点的路径，根据分数选择最高分路径
+            unique_paths = {}
+            for path in paths:
+                key = tuple(path['node_names'])
+                score = sum(path['scores']) / (1 + path['path_length'])  # 打分逻辑
+
+                if key not in unique_paths or unique_paths[key]['score'] < score:
+                    unique_paths[key] = {
+                        'node_names': path['node_names'],
+                        'relationships': path['relationships'],
+                        'path_length': path['path_length'],
+                        'score': score
+                    }
+
+            # 返回处理后的路径
+            return list(unique_paths.values())
+
+    def process_knowledge_graph_paths(self, start_cui: str, end_cui: str) -> List[Dict]:
+        """Query and process paths in the knowledge graph."""
+        query = """
+        MATCH path = allShortestPaths((start)-[*..5]->(end))
+        WHERE start.CUI = $start_cui AND end.CUI = $end_cui
+        RETURN 
+            [node IN nodes(path) | node.Name] AS node_names,
+            [rel IN relationships(path) | type(rel)] AS relationships,
+            length(path) AS path_length
+        ORDER BY path_length ASC
+        LIMIT 3
+        """
+
+        with self.driver.session(database='Knowledge') as session:
+            result = session.run(query, start_cui=start_cui, end_cui=end_cui)
+            paths = []
+
+            for record in result:
+                paths.append({
+                    'node_names': record['node_names'],
+                    'relationships': record['relationships'],
+                    'path_length': record['path_length']
+                })
+
+            # 直接返回最短的3条路径
+            return paths
+
     def process_all_entity_pairs_enhance(self, question: MedicalQuestion) -> None:
-        """Enhanced version of process_entity_pairs that finds multiple shorter paths"""
+        """Enhanced version of process_entity_pairs that queries and processes paths."""
 
-        try:
+        def process_wrong_pairs(entity_pairs, graph, is_causal_graph):
             seen_paths = set()
-            with self.driver.session(database='knowledge') as session:
-                for start_name, end_name in zip(question.knowledge_graph.entities_pairs['start'],
-                                                question.knowledge_graph.entities_pairs['end']):
+            for start_name in entity_pairs['start']:
+                for end_name in entity_pairs['end']:
                     # Convert names to CUIs
                     start_cui = self.entity_processor.get_name_cui(start_name)
                     end_cui = self.entity_processor.get_name_cui(end_name)
-                    if not start_cui or not end_cui:
+                    if not start_cui or not end_cui or start_cui == end_cui:
                         continue
 
-                    if start_cui == end_cui:
-                        continue
+                    # 根据图类型查询并处理路径
+                    if is_causal_graph:
+                        paths = self.process_causal_graph_paths(start_cui, end_cui)
+                    else:
+                        paths = self.process_knowledge_graph_paths(start_cui, end_cui)
 
-                    # 使用增强版路径查找
-                    paths = _find_shortest_path_score(
-                        session,
-                        start_cui,
-                        end_cui
-                    )[:2]
-
-                    # 处理找到的多条路径
                     for path in paths:
                         # 创建用于去重的路径标识
                         path_identifier = (
-                            tuple(path['node_cuis']),
+                            tuple(path['node_names']),
                             tuple(path['relationships'])
                         )
 
                         # 如果是新路径，添加到结果中
                         if path_identifier not in seen_paths:
                             seen_paths.add(path_identifier)
-                            question.knowledge_graph.nodes.append(
-                                self.entity_processor.batch_get_names(path['node_cuis'], True)
-                            )
-                            question.knowledge_graph.relationships.append(path['relationships'])
+                            graph.nodes.append(path['node_names'])
+                            graph.relationships.append(path['relationships'])
 
-        except Exception as e:
-            self.logger.error(f"Error in enhanced entity pairs processing: {str(e)}", exc_info=True)
+        def process_aligned_pairs(entity_pairs, graph, is_causal_graph):
+            seen_paths = set()
+            for start_name, end_name in zip(entity_pairs['start'], entity_pairs['end']):
+                # Convert names to CUIs
+                start_cui = self.entity_processor.get_name_cui(start_name)
+                end_cui = self.entity_processor.get_name_cui(end_name)
+                if not start_cui or not end_cui or start_cui == end_cui:
+                    continue
+
+                # 根据图类型查询并处理路径
+                if is_causal_graph:
+                    paths = self.process_causal_graph_paths(start_cui, end_cui)
+                else:
+                    paths = self.process_knowledge_graph_paths(start_cui, end_cui)
+
+                for path in paths:
+                    # 创建用于去重的路径标识
+                    path_identifier = (
+                        tuple(path['node_names']),
+                        tuple(path['relationships'])
+                    )
+
+                    # 如果是新路径，添加到结果中
+                    if path_identifier not in seen_paths:
+                        seen_paths.add(path_identifier)
+                        graph.nodes.append(path['node_names'])
+                        graph.relationships.append(path['relationships'])
 
         try:
-            seen_paths = set()
-            with self.driver.session(database='casual') as session:
-                for start_name, end_name in zip(question.causal_graph.entities_pairs['start'],
-                                                question.causal_graph.entities_pairs['end']):
-                    # Convert names to CUIs
-                    start_cui = self.entity_processor.get_name_cui(start_name)
-                    end_cui = self.entity_processor.get_name_cui(end_name)
-                    if not start_cui or not end_cui:
-                        continue
-
-                    if start_cui == end_cui:
-                        continue
-
-                        # 使用增强版路径查找
-                    paths = _find_shortest_path_score(
-                        session,
-                        start_cui,
-                        end_cui
-                    )[:2]
-
-                    # 处理找到的多条路径
-                    for path in paths:
-                        # 创建用于去重的路径标识
-                        path_identifier = (
-                            tuple(path['node_cuis']),
-                            tuple(path['relationships'])
-                        )
-
-                        # 如果是新路径，添加到结果中
-                        if path_identifier not in seen_paths:
-                            seen_paths.add(path_identifier)
-                            question.causal_graph.nodes.append(
-                                self.entity_processor.batch_get_names(path['node_cuis'], True)
-                            )
-                            question.causal_graph.relationships.append(path['relationships'])
-
+            if len(question.knowledge_graph.entities_pairs['start']) == len(
+                    question.knowledge_graph.entities_pairs['end']):
+                process_aligned_pairs(question.knowledge_graph.entities_pairs, question.knowledge_graph,
+                                      is_causal_graph=False)
+            else:
+                process_wrong_pairs(question.knowledge_graph.entities_pairs, question.knowledge_graph,
+                                      is_causal_graph=False)
         except Exception as e:
-            self.logger.error(f"Error in enhanced entity pairs processing: {str(e)}", exc_info=True)
+            self.logger.error(f"Error processing knowledge graph entity pairs: {str(e)}", exc_info=True)
+
+        try:
+            if len(question.causal_graph.entities_pairs['start']) == len(
+                    question.causal_graph.entities_pairs['end']):
+                process_aligned_pairs(question.causal_graph.entities_pairs, question.causal_graph,
+                                      is_causal_graph=False)
+            else:
+                process_wrong_pairs(question.causal_graph.entities_pairs, question.causal_graph,
+                                    is_causal_graph=False)
+        except Exception as e:
+            self.logger.error(f"Error processing causal graph entity pairs: {str(e)}", exc_info=True)
 
         question.generate_paths()
 
@@ -321,32 +399,31 @@ class QueryProcessor:
         question.generate_paths()  # Update path strings
 
 
-if __name__ == '__main__':
+def main():
+    var = {
+        "causal_analysis": {
+            "start": ["vWF", "vWF", "Endothelial cells"],
+            "end": ["Blood coagulation", "Platelet adhesion", "vWF"]
+        },
+        "additional_entity_pairs": {
+            "start": ["Endothelial cells", "Endothelial cells", "Weibel-Palade bodies"],
+            "end": ["Weibel-Palade bodies", "Blood vessel", "vWF"]
+        }
+    }
     question = MedicalQuestion(
         question="Sugar restricted to diet was beneficial in presence of unfavorable hygiene was from which study?",
         options={
-            "opa": "Hopewood",
-            "opb": "Experimental",
-            "opc": "Vipeholm",
-            "opd": "Turku"}, topic_name='null', is_multi_choice=True, correct_answer='opa')
+            "opa": "Renin",
+            "opb": "Angiotensin Converting Enzyme",
+            "opc": "Chymase",
+            "opd": "Carboxypeptidase"}, topic_name='null', is_multi_choice=True, correct_answer='opa')
     processor = QueryProcessor()
     question.causal_graph.entities_pairs = {
-        "start": [
-            "Nitrates",
-            "Nitrates"
-        ],
-        "end": [
-            "Coronary vasodilator",
-            "Decrease in preload"
-        ]}
-    question.knowledge_graph.entities_pairs = {"start": [
-        "Nitrates",
-        "Venodilation"
-    ],
-        "end": [
-            "Coronary vasodilator",
-            "Decrease in preload"
-        ]}
+        "start": ["vWF", "vWF", "Endothelial cells"],
+        "end": ["Blood coagulation", "Platelet adhesion", "vWF"]}
+    question.knowledge_graph.entities_pairs = {
+        "start": ["Endothelial cells", "Endothelial cells", "Weibel-Palade bodies"],
+        "end": ["Weibel-Palade bodies", "Blood vessel", "vWF"]}
     processor.entity_processor.threshold = 0.25
     processor.process_all_entity_pairs_enhance(question)
     print(question.causal_graph.paths)
@@ -361,3 +438,13 @@ if __name__ == '__main__':
            '(Nitrates)-STIMULATES->(iron)-CAUSES->(Exocytosis)-AFFECTS->(Reduced)',
            '(Nitrates)-INHIBITS->(ascorbic acid)-CAUSES->(Exocytosis)-AFFECTS->(Reduced)',
            '(Nitrates)-STIMULATES->(ascorbic acid)-CAUSES->(Exocytosis)-AFFECTS->(Reduced)']
+
+
+if __name__ == '__main__':
+    """ processor = QueryProcessor()
+    processor1 = EntityProcessor()
+    start = processor1.get_name_cui('Trismus')
+    end = processor1.get_name_cui('Inflammation')
+    with processor.driver.session(database='Causal') as session:
+        print(process_paths(_find_shortest_paths(session,start,end)))"""
+    main()

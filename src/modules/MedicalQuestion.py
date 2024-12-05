@@ -136,6 +136,9 @@ class MedicalQuestion:
         self.causal_graph.generate_paths()
         self.knowledge_graph.generate_paths()
 
+        if len(self.causal_graph.paths) == 0:
+            self.causal_graph.paths = "There is no obvious causal relationship."
+
     @property
     def is_correct(self) -> bool:
         """检查答案是否正确"""

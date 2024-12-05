@@ -215,7 +215,9 @@ if __name__ == '__main__':
             "C0032961",
             "C0013080"]
     processor = EntityProcessor()
-    text = "Please answer with one of the option in the bracket Q:A 51-year-old woman comes to the physician because of a 1-day history of right flank pain and bloody urine. Over the past 2 weeks, she has also developed progressive lower extremity swelling and a 3-kg (7-lb) weight gain. She has a history of chronic hepatitis B infection, which was diagnosed 10 years ago. She frequently flies from California to New York for business. She appears fatigued. Her pulse is 98/min, respirations are 18/min, and blood pressure is 135/75 mm Hg. Examination shows periorbital edema, a distended abdomen, and 2+ edema of the lower extremities. The lungs are clear to auscultation. A CT scan of the abdomen shows a nodular liver with ascites, a large right kidney with abundant collateral vessels, and a filling defect in the right renal vein. Urinalysis shows 4+ protein, positive glucose, and fatty casts. Which of the following is the most likely underlying cause of this patient's renal vein findings?? {'A': 'Acquired factor VIII deficiency', 'B': 'Loss of antithrombin III', 'C': 'Impaired estrogen degradation', 'D': 'Antiphospholipid antibodies', 'E': 'Paraneoplastic erythropoietin production'}, B: Loss of antithrombin III"
-    # print(processor.batch_get_names(processor.process_text(text),False))
-    # print(processor.get_name_cui(text))
-    # print(processor.get_cui_name('C0392756'))
+    text = "Sulcular Epithelium"
+    text1 = 'Bacterial Products'
+    print(processor.batch_get_names(processor.process_text(text),False))
+    print(processor.get_name_cui(text))
+    print(processor.get_name_cui(text1))
+    # print(processor.get_cui_name('C0011854'))

@@ -80,7 +80,7 @@ class LLMProcessor:
                 temperature=temperature or self.temperature
             )
             response_text = response.choices[0].message.content
-            self.gpt_logger.log_interaction(messages, response_text, "completion")
+            # self.gpt_logger.log_interaction(messages, response_text, "completion")
             return response_text
         except Exception as e:
             self.logger.error(f"Error calling OpenAI API: {str(e)}", exc_info=True)
@@ -88,7 +88,7 @@ class LLMProcessor:
 
     def direct_answer(self, question: MedicalQuestion) -> None:
         """直接回答问题，不使用任何额外知识"""
-        if question.topic_name is None:
+        if question.topic_name is not None:
             prompt = f"""You are a medical expert specializing in the field of {question.topic_name}."""
         else:
             prompt = f"""You are a medical expert."""
@@ -105,7 +105,7 @@ Question: {question.question}
         prompt += """
         ### Output Format
         Provide your response in valid JSON format:
-        {
+        {   
             "final_analysis": "Your concise analysis following the above structure",
             "answer": "Option key from the available options (only key,like opa, no additional information)",
             "confidence": Score between 0-100 based on alignment with established medical facts
@@ -135,7 +135,7 @@ Question: {question.question}
     def generate_reasoning_chain(self, question: MedicalQuestion) -> None:
         """基于因果路径生成推理链和需要验证的实体对"""
 
-        if question.topic_name is None:
+        if question.topic_name is not None:
             prompt = f"""You are a medical expert specializing in the field of {question.topic_name}."""
         else:
             prompt = f"""You are a medical expert."""
@@ -143,13 +143,13 @@ Question: {question.question}
         # 构建初始 Prompt
         prompt += f""" Your task involves two main objectives:
 
-        1. **Generate Causal Chains (Causal Analysis)**: Analyze the provided causal relationships (if any) or infer them directly from the question and options. The goal is to identify direct relationships between entities (e.g., symptoms, organisms, anatomical structures, pathways) relevant to answering the question.
+        1. **Generate Causal Chains (Causal Analysis)**: Generate a chain of thought by identifying direct relationships between **medical entities** (e.g., symptoms, organisms, anatomical structures, pathways) relevant to answering the question.
 
-        2. **Infer Additional Entity Pairs**: Extend the reasoning chain by identifying additional causal entity pairs (start and end) that are required to form a complete reasoning chain but are not explicitly covered in the original pathways.
+        2. **Infer Additional Entity Pairs**: Identify additional entity relationships that need to be retrieved to further confirm or exclude options, enhancing the certainty of the answer.
 
         ### Important Note on Provided Causal Relationships
         - The causal relationships provided in `question.casual_paths` are **preliminary and rough**. They may include irrelevant or incorrect information and are only intended as an initial reference.
-        - If no causal relationships are provided or if they are unhelpful, infer causal entities directly from the question and options based on your domain knowledge and expertise.
+        - If no causal relationships are provided or if they are unhelpful, generate the causal chain directly from the question and options based on your domain knowledge and expertise.
 
         ### Question
         {question.question}
@@ -160,7 +160,7 @@ Question: {question.question}
             for key, text in question.options.items():
                 prompt += f"{key}. {text}\n"
 
-        # Add causal paths if provided
+        # 添加因果路径（如果提供）
         if question.initial_casual_paths is not None and len(question.initial_casual_paths) > 0:
             prompt += "\n### Provided Causal Relationships for Each Option\n"
             for key, paths in question.initial_casual_paths.items():
@@ -171,23 +171,62 @@ Question: {question.question}
         else:
             prompt += "\nNo causal relationships are provided for this question."
 
-        # Specify task and output format
+        # 指定任务和输出格式
         prompt += f"""
 
         ### Task
         Your task is to:
         1. **Causal Analysis**:
-           - Extract and refine the causal relationships provided in the question (if any) by identifying `start` and `end` entities for each causal pathway. Ensure all entities align with UMLS standards and avoid vague modifiers like "Decreased" or "Inhibition."
-           - If no causal pathways are provided, infer the most relevant causal entities based on the question and options.
+           - Generate a chain of thought by identifying `start` and `end` **medical entities** that form direct relationships relevant to answering the question.
+           - **Ensure all entities are precise medical nouns without any modifiers, adjectives, abbreviations, or vague descriptors.**
 
-        2. **Reasoning Chain and Additional Entity Pairs**:
-           - Generate a clear and logical reasoning chain for answering the question. 
-           - Convert the reasoning chain into structured causal relationships expressed as `start` and `end` pairs.
-           - Identify additional causal entity pairs (start and end) that are necessary to complete the reasoning chain but are not part of the initial causal pathways.
+        2. **Additional Entity Pairs**:
+           - Identify additional entity relationships (start and end) that need to be retrieved to further confirm or exclude options.
+           - These additional entities should help enhance the certainty of the answer or assist in eliminating incorrect options.
 
         ### Output Format
         The output should be in the following JSON format:
 
+        {{
+            "causal_analysis": {{
+                "start": ["Entity1", "Entity2", ...],
+                "end": ["Entity3", "Entity4", ...]
+            }},
+            "additional_entity_pairs": {{
+                "start": ["EntityA", "EntityB", ...],
+                "end": ["EntityC", "EntityD", ...]
+            }}
+        }}
+
+        ### Key Guidelines
+        1. Ensure that the `start` and `end` arrays in both `causal_analysis` and `additional_entity_pairs` are **one-to-one aligned** and represent meaningful relationships. Notice: one to one !!!!
+        2. Use **precise medical noun entities** for all terms, avoiding any modifiers, adjectives, abbreviations, or vague descriptors.
+        3. The `causal_analysis` should reflect your chain of thought leading to the answer.
+        4. The `additional_entity_pairs` should include entities that, if retrieved, would further confirm the correct option or help exclude the incorrect ones.
+        5. **Do not include any explanations or justifications** in the output; only provide the structured `start` and `end` pairs.
+        6. Ensure all terms can be directly queried in UMLS or similar medical knowledge graphs.
+
+        ### Example
+
+        **Question**: Which of the following hormone is/are under inhibitory control of the hypothalamus?
+
+        **Options**:
+        A. Prolactin  
+        B. Only prolactin  
+        C. Only growth hormone  
+        D. Both prolactin and growth hormone
+
+        **Task Execution**:
+
+        1. **Causal Analysis** (Chain of Thought):
+           - **Start**: ["Hypothalamus", "Hypothalamus"]
+           - **End**: ["Prolactin Inhibitory Hormone", "Growth Hormone Inhibitory Hormone"]
+
+        2. **Additional Entity Pairs** (To Confirm or Exclude Options):
+           - **Start**: ["Prolactin"]
+           - **End**: ["Anterior Pituitary Gland"]
+        ### Output Format, **Notice: the direction of, from start to end.**
+        The output should be in the following JSON format:
         {{
             "causal_analysis": {{
                 "start": ["Entity1", "Entity2", "Entity3"],
@@ -198,14 +237,6 @@ Question: {question.question}
                 "end": ["EntityC", "EntityD"]
             }}
         }}
-
-        ### Key Guidelines
-        1. Ensure that the `start` and `end` arrays are **one-to-one aligned** and represent meaningful causal relationships.
-        2. Use **precise UMLS-standardized terms** for all entities, avoiding abbreviations or vague modifiers.
-        3. If no causal relationships are provided or useful, infer the causal entities based on medical knowledge and question context.
-        4. The `causal_analysis` should focus on key causal chains relevant to answering the question, while `additional_entity_pairs` should extend the reasoning process.
-        5. Avoid explanations or justifications in the output; stick to structured `start` and `end` pairs.
-        6. Ensure terms can be directly queried in UMLS or similar medical knowledge graphs.
         """
 
         self.logger.debug(f"Prompt sent to LLM:\n{prompt}")
@@ -225,12 +256,16 @@ Question: {question.question}
             result = json.loads(response)
 
             if "causal_analysis" in result:
+                if len(result["causal_analysis"].get("start", [])) != len(result["causal_analysis"].get("end", [])):
+                    self.logger.error(f"Question {hashlib.md5(question.question.encode()).hexdigest()}'s causal analysis did not match one to one format.")
                 question.causal_graph.entities_pairs = {
                     'start': result["causal_analysis"].get("start", []),
                     'end': result["causal_analysis"].get("end", [])
                 }
 
             if "additional_entity_pairs" in result:
+                if len(result["additional_entity_pairs"].get("start", [])) != len(result["additional_entity_pairs"].get("end", [])):
+                    self.logger.error(f"Question {hashlib.md5(question.question.encode()).hexdigest()}'s knowledge analysis did not match one to one format.")
                 question.knowledge_graph.entities_pairs = {
                     'start': result["additional_entity_pairs"].get("start", []),
                     'end': result["additional_entity_pairs"].get("end", [])
@@ -243,55 +278,62 @@ Question: {question.question}
 
     def enhance_information(self, question: MedicalQuestion) -> None:
         """融合所有信息，生成增强后的信息"""
-        self.logger.debug(f"Starting information enhancement")
+        self.logger.debug(f"Starting reasoning chain generation")
 
-        if question.topic_name is None:
-            prompt = f"""You are a medical expert specializing in the field of {question.topic_name}."""
+        if question.topic_name is not None:
+            prompt = f"""You are a medical expert specializing in {question.topic_name}."""
         else:
-            prompt = f"""You are a medical expert."""
+            prompt = """You are a medical expert."""
 
-        prompt += f"""Your task is to integrate all the provided information, ensuring its truthfulness and relevance, enhance it by trimming irrelevant or misleading parts, and prepare it for answering the question.
+        prompt += f"""Your task is to analyze this medical question and generate entity relationship pairs that, when verified and queried in medical knowledge bases, would provide strong evidence for answering the question. These entity pairs will be used to retrieve concrete relationships from knowledge graphs to support the answer.
 
         ### Question
         {question.question}
+
+        ### Options
         """
+        for key, text in question.options.items():
+            prompt += f"{key}. {text}\n"
 
-        if question.is_multi_choice:
-            prompt += "\n### Options\n"
-            for key, text in question.options.items():
-                prompt += f"{key}. {text}\n"
-
-        causal_paths = question.get_all_paths().get('causal_paths')
-        kg_paths = question.get_all_paths().get('KG_paths')
-
-        if causal_paths:
-            prompt += "\n### Knowledge Graph Paths\n"
-            for path in causal_paths:
-                prompt += f"- {path}\n"
-
-        if kg_paths:
-            prompt += "\n### Causal Graph Paths\n"
-            for path in kg_paths:
-                prompt += f"- {path}\n"
-
-        # 指定任务与输出格式
         prompt += """
         ### Task
-        - Analyze and synthesize all the above information.
-        - Verify the truthfulness and accuracy of the information.
-        - **Trim irrelevant, redundant, or misleading parts.**
-        - Merge and integrate relevant data from different sources coherently.
-        - Ensure that the enhanced information is accurate, relevant, and logically supports the correct answer.
-        - Prepare a concise and coherent summary that can be used to directly answer the question.
-        - Do NOT provide the final answer to the question at this stage, nor should you make it obvious which option is correct.
-        - **Ensure all information is accurate and based on established medical knowledge.**
-        - **Avoid including any misleading or incorrect information.**
-        - Do not provide the final answer.
+        1. First, determine if answering the question requires:
+           - Verifying causal relationships (e.g., "What causes X?", "What effect does Y have?", "How does Z work?")
+           - Verifying non-causal relationships (e.g., location, composition, function, classification)
+           - Both types of relationships
+
+        2. Generate entity pairs that, when verified in knowledge bases, would provide evidence to answer the question:
+           - For causal relationships: Use "causal_analysis" with start->end entity pairs
+             These pairs will be verified in causal knowledge graphs to find cause-effect evidence
+           - For non-causal relationships: Use "additional_entity_pairs" with start->end entity pairs
+             These pairs will be verified in general medical knowledge graphs to find supporting evidence
+           - Each entity pair represents a relationship that, when verified, helps answer the question
+           - All entities must be standard medical terms (those with UMLS CUIs)
+
+        3. The entity pairs you generate will be used to:
+           - Query medical knowledge bases for relationship evidence
+           - Validate the existence and strength of relationships
+           - Build evidence chains supporting or ruling out different options
+           - Provide concrete, verifiable paths to the correct answer
 
         ### Output Format
-        Provide your enhanced information in valid JSON format:
-        {"enhanced_information": "Your synthesized and enhanced information"}
+        {
+            "causal_analysis": {
+                "start": ["Entity1", "Entity2"],  # Entities to verify causal relationships
+                "end": ["Entity3", "Entity4"]     # Each maps one-to-one with start entities
+            },
+            "additional_entity_pairs": {
+                "start": ["EntityA", "EntityB"],  # Entities to verify non-causal relationships
+                "end": ["EntityC", "EntityD"]     # Each maps one-to-one with start entities
+            }
+        }
 
+        ### Key Requirements
+        - Use only concrete medical entities that can be found in knowledge bases
+        - **Maintain one-to-one mapping between start and end entities**
+        - Each entity pair should, when verified, provide clear evidence for answering the question
+        - Generated pairs must be verifiable through knowledge graph queries
+        - All pairs should contribute to distinguishing between the given options
         """
 
         try:
@@ -301,6 +343,8 @@ Question: {question.question}
                 {"role": "user", "content": prompt}
             ]
             response = self._get_completion(messages)
+
+            # 处理JSON响应
             response = _clean_json_response(response)
             result = json.loads(response)
             question.enhanced_information = result.get("enhanced_information", "")
@@ -310,7 +354,7 @@ Question: {question.question}
 
     def answer_with_enhanced_information(self, question: MedicalQuestion) -> None:
         """使用增强后的信息生成最终答案"""
-        if question.topic_name is None:
+        if question.topic_name is not None:
             prompt = f"""You are a medical expert specializing in the field of {question.topic_name}."""
         else:
             prompt = f"""You are a medical expert."""
@@ -442,44 +486,23 @@ if __name__ == '__main__':
         }
     }
     question = MedicalQuestion(
-        question=var.get('question'),
-        options=var.get('options'),
+        question='Which enzyme is responsible for converting angiotensin I to angiotensin II?',
+        options={
+            "opa": "Renin",
+            "opb": "Angiotensin Converting Enzyme",
+            "opc": "Chymase",
+            "opd": "Carboxypeptidase"},
         correct_answer=var.get('correct_answer'),
         is_multi_choice=False
     )
 
     llm = LLMProcessor()
-    # llm.generate_reasoning_chain(question)
-    question.causal_graph.entities_pairs = {
-            "start": [
-                "Group 2 innate lymphoid cells",
-                "Group 2 innate lymphoid cells",
-                "Group 2 innate lymphoid cells",
-                "Eosinophilia",
-                "Chronic rhinosinusitis with nasal polyps"
-            ],
-            "end": [
-                "Th2 inflammation",
-                "Increased eosinophils in sinus mucosa",
-                "Worsening nasal symptom score",
-                "Chronic rhinosinusitis",
-                "Increased Group 2 innate lymphoid cells"
-            ]
-        }
-    question.knowledge_graph.entities_pairs = {"start": [
-        "Th2 inflammation",
-        "Nasal polyps",
-        "Asthma",
-        "Blood eosinophilia"
-    ],
-        "end": [
-            "Increased Group 2 innate lymphoid cells",
-            "Worsening nasal symptom score",
-            "Increased Group 2 innate lymphoid cells",
-            "Eosinophilic chronic rhinosinusitis"
-        ]}
+    llm.generate_reasoning_chain(question)
+
     processor = QueryProcessor()
     processor.process_all_entity_pairs_enhance(question)
+    print(f"question.causal_graph.entities_pairs: {question.causal_graph.entities_pairs}")
+    print(f"question.knowledge_graph.entities_pairs: {question.knowledge_graph.entities_pairs}")
     print(f"question.CG_paths:{question.causal_graph.paths}")
     print(f"question.KG_paths:{question.knowledge_graph.paths}")
 

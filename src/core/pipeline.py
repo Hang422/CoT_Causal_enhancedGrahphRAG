@@ -11,7 +11,7 @@ from src.llm.interactor import LLMProcessor
 from src.graphrag.entity_processor import EntityProcessor
 from src.graphrag.query_processor import QueryProcessor
 from config import config
-from src.modules.AccuracyAnalysis import UnifiedAnalyzer, analyze_experiment
+from src.modules.AccuracyAnalysis import CrossPathAnalyzer
 from src.modules.CrossAnalysis import analyse
 
 
@@ -208,7 +208,7 @@ class QuestionProcessor:
                 )
 
                 if not cached_question:
-                    self.processor.process_casual_paths_enhance(question, True)  # 初步检索
+                    # self.processor.process_casual_paths_enhance(question, True)  # 初步检索
                     # self.llm.causal_enhanced_answer(question)
                     question.set_cache_paths(self.cache_paths['causal_graph'])
                     question.to_cache()
@@ -276,7 +276,8 @@ class QuestionProcessor:
                         question=data['question'],
                         options=data['options'],
                         correct_answer=data['correct_answer'],
-                        topic_name=data['topic_name']
+                        topic_name=data['topic_name'],
+                        is_multi_choice=True
                     )
                     questions.append(question)
             except Exception as e:
@@ -297,32 +298,18 @@ class QuestionProcessor:
 
 def main():
     """主函数示例"""
-    cache_path = '50-gpt-3.5-version1-test1'
-    # cache_path = 'correct'
-    save_path = f"{cache_path}"
-    processor = QuestionProcessor(save_path)
+    cache_to_path = '30-3.5-test2'
+    # cache_to_path = 'test'
 
-    processor.batch_process_file('test1', 50)
-    # processor.process_from_cache(cache_path)
+    processor = QuestionProcessor(cache_to_path)
 
-    analyze_experiment(cache_path)
+    processor.batch_process_file('test2', 30)
+    # processor.process_from_cache(cache_to_path)
+
+    analyzer = CrossPathAnalyzer(cache_to_path)
+    analyzer.print_analysis()
+
 
 
 if __name__ == "__main__":
-    var1 = {
-        "question": "Most useful test in vesicovaginal fistula?",
-        "topic_name": "Gynaecology & Obstetrics",
-        "options": {
-            "opa": "Cystoscopy",
-            "opb": "Three swab test",
-            "opc": "Urine culture",
-            "opd": "Intravenous pyelogram"
-        },
-        "correct_answer": "opa"}
-
-    question = MedicalQuestion(question=var1.get('question'), options=var1.get('options'),
-                               correct_answer=var1.get('correct_answer'), topic_name=var1.get('topic_name'),
-                               is_multi_choice=True)
-    processor = QuestionProcessor('temp')
-    questions = [question]
-    processor.process_questions(questions)
+    main()
