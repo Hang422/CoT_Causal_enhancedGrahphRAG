@@ -70,7 +70,7 @@ class QuestionProcessor:
                 df = pd.DataFrame(dataset['train'])
 
                 if sample_size is not None and sample_size < len(df):
-                    df = df.sample(n=sample_size, random_state=42).reset_index(drop=True)
+                    df = df.head(sample_size).reset_index(drop=True)
 
                 for idx, row in df.iterrows():
                     try:
@@ -193,8 +193,6 @@ class QuestionProcessor:
                     question.to_cache()
                     question.set_cache_paths(self.cache_paths['knowledge_graph'])
                     question.to_cache()
-                    question.set_cache_paths(self.cache_paths['causal_graph'])
-                    question.to_cache()
                     question.set_cache_paths(self.cache_paths['graph_enhanced'])
                     question.to_cache()
                     question.set_cache_paths(self.cache_paths['llm_enhanced'])
@@ -208,8 +206,8 @@ class QuestionProcessor:
                 )
 
                 if not cached_question:
-                    # self.processor.process_casual_paths_enhance(question, True)  # 初步检索
-                    # self.llm.causal_enhanced_answer(question)
+                    self.processor.generate_initial_causal_graph(question)  # 初步检索
+                    # self.llm.causal_only_answer(question)
                     question.set_cache_paths(self.cache_paths['causal_graph'])
                     question.to_cache()
                 else:
@@ -298,17 +296,18 @@ class QuestionProcessor:
 
 def main():
     """主函数示例"""
-    cache_to_path = '30-3.5-test2'
-    # cache_to_path = 'test'
+    final1 = 'final_test1_set_3.5'
+    final2 = 'final_test1_set_4'
+    test = 'test1'
+    cache_to_path = 'origin-test2'
+    process_path = test
+    processor = QuestionProcessor(process_path)
 
-    processor = QuestionProcessor(cache_to_path)
+    # processor.batch_process_file('test2', 2000)
+    processor.process_from_cache(process_path)
 
-    processor.batch_process_file('test2', 30)
-    # processor.process_from_cache(cache_to_path)
-
-    analyzer = CrossPathAnalyzer(cache_to_path)
-    analyzer.print_analysis()
-
+    analyzer = CrossPathAnalyzer(process_path)
+    analyzer.analyze_all_stages()
 
 
 if __name__ == "__main__":

@@ -8,6 +8,11 @@ import logging
 from src.modules.CrossAnalysis import analyse
 
 
+def _is_correct(question: Dict) -> bool:
+    """Check if the answer matches correct_answer"""
+    return question.get('answer') == question.get('correct_answer')
+
+
 class CrossPathAnalyzer:
     def __init__(self, path):
         self.logger = config.get_logger("cross_path_analyzer")
@@ -32,17 +37,14 @@ class CrossPathAnalyzer:
                 self.logger.error(f"Error loading {cache_file}: {str(e)}")
         return questions
 
-    def _is_correct(self, question: Dict) -> bool:
-        """Check if the answer matches correct_answer"""
-        return question.get('answer') == question.get('correct_answer')
-
     def analyze(self, stage: str) -> Dict:
-        """Analyze path presence for baseline correct/incorrect questions"""
+        """Analyze path presence and accuracies comparing baseline and stage results"""
         baseline_questions = {q['question']: q for q in self._load_questions('derelict')}
         stage_questions = {q['question']: q for q in self._load_questions(stage)}
 
         results = {
             "baseline_correct": {
+                "with_initial_cg": 0,
                 "with_cg": 0,
                 "with_kg": 0,
                 "with_both": 0,
@@ -50,6 +52,7 @@ class CrossPathAnalyzer:
                 "total": 0
             },
             "baseline_incorrect": {
+                "with_initial_cg": 0,
                 "with_cg": 0,
                 "with_kg": 0,
                 "with_both": 0,
@@ -57,6 +60,7 @@ class CrossPathAnalyzer:
                 "total": 0
             },
             "path_accuracies": {
+                "with_initial_cg": {"correct": 0, "total": 0},
                 "with_cg": {"correct": 0, "total": 0},
                 "with_kg": {"correct": 0, "total": 0},
                 "with_both": {"correct": 0, "total": 0},
@@ -64,25 +68,33 @@ class CrossPathAnalyzer:
             }
         }
 
-        # 分析每个问题
+        baseline_correct_count = 0
+        baseline_incorrect_count = 0
+
         for question in set(baseline_questions.keys()) & set(stage_questions.keys()):
             baseline_q = baseline_questions[question]
             stage_q = stage_questions[question]
 
-            # 确定基线正确/错误
-            category = "baseline_correct" if self._is_correct(baseline_q) else "baseline_incorrect"
-            results[category]["total"] += 1
+            # Check baseline correctness
+            baseline_correct = _is_correct(baseline_q)
+            stage_correct = _is_correct(stage_q)
 
-            # 检查路径存在情况
+            # Determine path presence
+            has_initial_causal = bool(stage_q['initial_causal_graph']['paths'] and
+                                      len(stage_q['initial_causal_graph']['paths']) > 0 and
+                                      stage_q['initial_causal_graph'][
+                                          'paths'] != "There is no obvious causal relationship.")
             has_causal = bool(stage_q['causal_graph']['paths'] and
                               len(stage_q['causal_graph']['paths']) > 0 and
                               stage_q['causal_graph']['paths'] != "There is no obvious causal relationship.")
             has_knowledge = bool(stage_q['knowledge_graph']['paths'] and
                                  len(stage_q['knowledge_graph']['paths']) > 0)
 
-            # 确定路径类别
+            # Determine path category
             if has_causal and has_knowledge:
                 path_category = "with_both"
+            elif has_initial_causal:
+                path_category = "with_initial_cg"
             elif has_causal:
                 path_category = "with_cg"
             elif has_knowledge:
@@ -90,36 +102,34 @@ class CrossPathAnalyzer:
             else:
                 path_category = "without_paths"
 
-            # 更新路径类别的总数和正确数
+            # Update path accuracies
             results["path_accuracies"][path_category]["total"] += 1
-            if self._is_correct(stage_q):
+            if stage_correct:
                 results["path_accuracies"][path_category]["correct"] += 1
-                if category == "baseline_correct":
-                    results[category][path_category] += 1
-                elif category == "baseline_incorrect":
-                    results[category][path_category] += 1
 
-        # 转换为百分比
-        for category in ["baseline_correct", "baseline_incorrect"]:
-            total = results[category]["total"]
-            if total > 0:
-                for key in ["with_cg", "with_kg", "with_both", "without_paths"]:
-                    results[category][key] = (results[category][key] / total) * 100
+            # Update baseline categories
+            if baseline_correct:
+                baseline_correct_count += 1
+                if stage_correct:
+                    results["baseline_correct"][path_category] += 1
+                    results["baseline_correct"]["total"] += 1
+            else:
+                baseline_incorrect_count += 1
+                if stage_correct:
+                    results["baseline_incorrect"][path_category] += 1
+                    results["baseline_incorrect"]["total"] += 1
 
-        # 计算每种路径情况的正确率
-        results["path_overall_accuracies"] = {}
-        for path_type in ["with_cg", "with_kg", "with_both", "without_paths"]:
+        # Calculate path accuracies
+        for path_type in ["with_initial_cg", "with_cg", "with_kg", "with_both", "without_paths"]:
             total = results["path_accuracies"][path_type]["total"]
-            correct = results["path_accuracies"][path_type]["correct"]
-            accuracy = (correct / total * 100) if total > 0 else 0
-            results["path_overall_accuracies"][path_type] = accuracy
+            if total > 0:
+                correct = results["path_accuracies"][path_type]["correct"]
+                results["path_accuracies"][path_type] = {"accuracy": (correct / total * 100), "total": total}
 
-        # 计算总体正确率
+        # Calculate overall accuracy
         all_questions = self._load_questions(stage)
-        correct_count = sum(1 for q in all_questions if self._is_correct(q))
-        overall_accuracy = (correct_count / len(all_questions)) * 100 if all_questions else 0
-
-        results["overall_accuracy"] = overall_accuracy
+        correct_count = sum(1 for q in all_questions if _is_correct(q))
+        results["overall_accuracy"] = (correct_count / len(all_questions) * 100) if all_questions else 0
 
         return results
 
@@ -145,15 +155,12 @@ class CrossPathAnalyzer:
                 print(f"  {key}: {analysis['baseline_incorrect'][key]:.2f}%")
             print(f"  Total count: {analysis['baseline_incorrect']['total']}")
 
-
-
-
     def analyze_all_stages(self) -> Dict:
         """分析所有阶段"""
         analyses = {stage: self.analyze(stage) for stage in self.stages}
 
         # 保存到 output 目录
-        output_dir = config.paths["output"] / self.cache_root.name
+        output_dir = self.cache_root / str(config.openai.get("model"))
         output_dir.mkdir(parents=True, exist_ok=True)
 
         # 保存 JSON 分析结果

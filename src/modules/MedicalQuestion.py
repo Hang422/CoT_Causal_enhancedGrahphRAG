@@ -61,6 +61,7 @@ class SubGraph:
 
         return True
 
+
 @dataclass
 class MedicalQuestion:
     """Medical question with all necessary information"""
@@ -74,10 +75,7 @@ class MedicalQuestion:
     context: Optional[str] = None
 
     # Casual knowledge elements
-    initial_casual_nodes: Dict[str, List[List[str]]] = None  # [a:[[a,b][c,d]],b:[[a,b][c,d]]]
-    initial_casual_relationships: Dict[str, List[List[str]]] = None  # [a:[cause],b:[affect]]
-    initial_casual_paths: Dict[str, List[str]] = None  # [a:"A-cause->B", b:"C-affect->D"]
-
+    initial_causal_graph: SubGraph = None
     causal_graph: SubGraph = None
     knowledge_graph: SubGraph = None
 
@@ -99,18 +97,8 @@ class MedicalQuestion:
 
         self.causal_graph = SubGraph()
         self.knowledge_graph = SubGraph()
+        self.initial_causal_graph = SubGraph()
 
-        # 根据问题类型初始化属性
-        if self.is_multi_choice and self.options:
-            # 根据实际选项数量动态创建选项键
-            option_keys = [f'op{chr(97 + i)}' for i in range(len(self.options))]
-
-            if self.initial_casual_nodes is None:
-                self.casual_nodes = {key: [] for key in option_keys}
-            if self.initial_casual_relationships is None:
-                self.casual_relationships = {key: [] for key in option_keys}
-            if self.initial_casual_paths is None:
-                self.casual_paths = {key: [] for key in option_keys}
 
         # 通用属性初始化
         if self.enhanced_information is None:
@@ -121,20 +109,13 @@ class MedicalQuestion:
     def generate_paths(self) -> None:
         """生成人类可读的路径表示"""
         # 为每个选项生成因果路径
-        if self.is_multi_choice:
-            for option in self.options.keys():
-                self.casual_paths[option] = []
-                if option in self.casual_nodes and option in self.casual_relationships:
-                    for nodes, rels in zip(self.casual_nodes[option], self.casual_relationships[option]):
-                        path = ""
-                        for i, node in enumerate(nodes):
-                            path += f"({node})"
-                            if i < len(rels):
-                                path += f"-{rels[i]}->"
-                        self.casual_paths[option].append(path)
 
+        self.initial_causal_graph.generate_paths()
         self.causal_graph.generate_paths()
         self.knowledge_graph.generate_paths()
+
+        if len(self.initial_causal_graph.paths) == 0:
+            self.initial_causal_graph.paths = "There is no obvious causal relationship."
 
         if len(self.causal_graph.paths) == 0:
             self.causal_graph.paths = "There is no obvious causal relationship."

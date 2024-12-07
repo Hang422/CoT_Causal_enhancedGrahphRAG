@@ -157,24 +157,6 @@ class QueryProcessor:
         )
         self.entity_processor = EntityProcessor()  # Still needed for name-to-CUI conversion
 
-    def _set_shortest_path_question_option(self, question: MedicalQuestion, key, question_cuis: set[str],
-                                           option_cuis: set[str], database) -> None:
-        try:
-            with self.driver.session(database=database) as session:
-                for start_cui in question_cuis:
-                    for end_cui in option_cuis:
-                        if start_cui == end_cui:
-                            continue
-                        path = _find_shortest_path_score(session, start_cui, end_cui)[:1]
-                        if path:
-                            question.casual_paths.no.get(key).append(
-                                self.entity_processor.batch_get_names(path['node_cuis'], True))
-                            question.casual_relationships.get(key).append(path['relationships'])
-        except Exception as e:
-            self.logger.error(f"Error processing question: {str(e)}", exc_info=True)
-
-        question.generate_paths()  # Update path strings
-
     def close(self):
         """Close database connection"""
         if hasattr(self, 'driver'):
@@ -232,7 +214,8 @@ class QueryProcessor:
                     }
 
             # 返回处理后的路径
-            return list(unique_paths.values())
+            sorted_paths = sorted(unique_paths.values(), key=lambda x: x['score'], reverse=True)
+            return sorted_paths[:3]
 
     def process_knowledge_graph_paths(self, start_cui: str, end_cui: str) -> List[Dict]:
         """Query and process paths in the knowledge graph."""
@@ -328,7 +311,7 @@ class QueryProcessor:
                                       is_causal_graph=False)
             else:
                 process_wrong_pairs(question.knowledge_graph.entities_pairs, question.knowledge_graph,
-                                      is_causal_graph=False)
+                                    is_causal_graph=False)
         except Exception as e:
             self.logger.error(f"Error processing knowledge graph entity pairs: {str(e)}", exc_info=True)
 
@@ -336,62 +319,72 @@ class QueryProcessor:
             if len(question.causal_graph.entities_pairs['start']) == len(
                     question.causal_graph.entities_pairs['end']):
                 process_aligned_pairs(question.causal_graph.entities_pairs, question.causal_graph,
-                                      is_causal_graph=False)
+                                      is_causal_graph=True)
             else:
                 process_wrong_pairs(question.causal_graph.entities_pairs, question.causal_graph,
-                                    is_causal_graph=False)
+                                    is_causal_graph=True)
         except Exception as e:
             self.logger.error(f"Error processing causal graph entity pairs: {str(e)}", exc_info=True)
 
         question.generate_paths()
 
-    def process_casual_paths_enhance(self, question: MedicalQuestion, control) -> None:
+    def generate_initial_causal_graph(self, question: MedicalQuestion) -> None:
         """Enhanced version of process_casual_paths that returns multiple shorter paths"""
-        if control:
-            return
         try:
-            with self.driver.session(database='casual') as session:
+            with self.driver.session(database='causal') as session:
                 # 获取问题中的CUIs
                 question_cuis = set(self.entity_processor.process_text(question.question))
                 keys = list(question.options.keys())
 
                 # 分别获取每个选项的CUIs
-                options_cuis = {
-                    key: set(self.entity_processor.process_text(question.options.get(key)))
-                    for key in keys
-                }
+                options_cuis = set()
+
+                for key in keys:
+                    # 假设 `keys` 是一个字典或列表，`key` 用来获取文本
+                    text = keys[key] if isinstance(keys, dict) else key
+                    processed_cuis = self.entity_processor.process_text(text)  # 处理文本提取 CUIs
+                    options_cuis = options_cuis.union(set(processed_cuis))  # 将结果合并到 `options_cuis` 中
 
                 # 用于去重的集合
                 seen_paths = set()
 
-                # 查找路径
-                for key in keys:
-                    if key not in question.casual_nodes:
-                        question.casual_nodes[key] = []
-                    if key not in question.casual_relationships:
-                        question.casual_relationships[key] = []
+                for start_cui in options_cuis:
+                    for end_cui in question_cuis:
+                        if start_cui == end_cui:
+                            continue
 
-                    for start_cui in question_cuis:
-                        for end_cui in options_cuis[key]:
-                            if start_cui == end_cui:
-                                continue
+                        paths = self.process_causal_graph_paths(start_cui, end_cui)
+                        for path in paths:
+                            # 创建用于去重的路径标识
+                            path_identifier = (
+                                tuple(path['node_names']),
+                                tuple(path['relationships'])
+                            )
 
-                            paths = _find_shortest_path_enhance(session, start_cui, end_cui)
+                            # 如果是新路径，添加到结果中
+                            if path_identifier not in seen_paths:
+                                seen_paths.add(path_identifier)
+                                question.initial_causal_graph.nodes.append(path['node_names'])
+                                question.initial_causal_graph.relationships.append(path['relationships'])
 
-                            for path in paths:
-                                # 创建用于去重的路径标识
-                                path_identifier = (
-                                    tuple(path['node_cuis']),
-                                    tuple(path['relationships'])
-                                )
+                for start_cui in question_cuis:
+                    for end_cui in options_cuis:
+                        if start_cui == end_cui:
+                            continue
 
-                                # 如果是新路径，添加到结果中
-                                if path_identifier not in seen_paths:
-                                    seen_paths.add(path_identifier)
-                                    question.casual_nodes[key].append(
-                                        self.entity_processor.batch_get_names(path['node_cuis'], True)
-                                    )
-                                    question.casual_relationships[key].append(path['relationships'])
+                        paths = self.process_causal_graph_paths(start_cui, end_cui)
+                        for path in paths:
+                            # 创建用于去重的路径标识
+                            path_identifier = (
+                                tuple(path['node_names']),
+                                tuple(path['relationships'])
+                            )
+
+                            # 如果是新路径，添加到结果中
+                            if path_identifier not in seen_paths:
+                                seen_paths.add(path_identifier)
+                                question.initial_causal_graph.nodes.append(path['node_names'])
+                                question.initial_causal_graph.relationships.append(path['relationships'])
 
         except Exception as e:
             self.logger.error(f"Error in enhanced casual paths processing: {str(e)}", exc_info=True)
@@ -441,10 +434,8 @@ def main():
 
 
 if __name__ == '__main__':
-    """ processor = QueryProcessor()
+    processor = QueryProcessor()
     processor1 = EntityProcessor()
     start = processor1.get_name_cui('Trismus')
     end = processor1.get_name_cui('Inflammation')
-    with processor.driver.session(database='Causal') as session:
-        print(process_paths(_find_shortest_paths(session,start,end)))"""
-    main()
+
