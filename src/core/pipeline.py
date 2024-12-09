@@ -6,7 +6,7 @@ from typing import List, Optional
 import logging
 
 import src.modules.CrossAnalysis
-from src.modules.MedicalQuestion import MedicalQuestion
+from src.modules.MedicalQuestion import MedicalQuestion, SubGraph
 from src.llm.interactor import LLMProcessor
 from src.graphrag.entity_processor import EntityProcessor
 from src.graphrag.query_processor import QueryProcessor
@@ -206,8 +206,8 @@ class QuestionProcessor:
                 )
 
                 if not cached_question:
-                    self.processor.generate_initial_causal_graph(question)  # 初步检索
-                    # self.llm.causal_only_answer(question)
+                    # self.processor.generate_initial_causal_graph(question)  # 初步检索
+                    self.llm.causal_only_answer(question)
                     question.set_cache_paths(self.cache_paths['causal_graph'])
                     question.to_cache()
                 else:
@@ -266,24 +266,44 @@ class QuestionProcessor:
             return
 
         questions = []
+        loaded_count = 0
+        error_count = 0
+
         for file in original_path.glob('*.json'):
             try:
                 with open(file, 'r', encoding='utf-8') as f:
                     data = json.load(f)
+
+                    # 处理 SubGraph 结构
+                    initial_causal_graph = SubGraph.from_dict(data.get('initial_causal_graph', {}))
+
+                    # 创建 MedicalQuestion 实例，包含所有字段
                     question = MedicalQuestion(
                         question=data['question'],
-                        options=data['options'],
+                        is_multi_choice=data['is_multi_choice'],
                         correct_answer=data['correct_answer'],
+                        options=data['options'],
                         topic_name=data['topic_name'],
-                        is_multi_choice=True
+                        initial_causal_graph=initial_causal_graph
                     )
+
                     questions.append(question)
+                    loaded_count += 1
+
+                    if loaded_count % 100 == 0:
+                        self.logger.info(f"Processed {loaded_count} questions...")
+
             except Exception as e:
-                print(f"Error loading question from {file}: {str(e)}")
+                self.logger.error(f"Error loading question from {file}: {str(e)}")
+                error_count += 1
                 continue
 
-        self.logger.info(f"Loaded {len(questions)} questions from {original_path}")
-        self.process_questions(questions)
+        self.logger.info(f"Successfully loaded {loaded_count} questions")
+        if error_count > 0:
+            self.logger.warning(f"Encountered {error_count} errors while loading questions")
+
+        if questions:
+            self.process_questions(questions)
 
     def batch_process_file(self, file_path: str, sample_size: Optional[int] = None) -> None:
         try:
@@ -298,12 +318,12 @@ def main():
     """主函数示例"""
     final1 = 'final_test1_set_3.5'
     final2 = 'final_test1_set_4'
-    test = 'test1'
+    test = 'test'
     cache_to_path = 'origin-test2'
     process_path = test
     processor = QuestionProcessor(process_path)
 
-    # processor.batch_process_file('test2', 2000)
+    # processor.batch_process_file('test2', 1)
     processor.process_from_cache(process_path)
 
     analyzer = CrossPathAnalyzer(process_path)

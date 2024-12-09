@@ -19,6 +19,27 @@ class SubGraph:
     relationships: List[List[str]] = None  # [[cause,cause], [affect,affect], [affect,affect]]
     paths: List[str] = None  # ["A-cause->B-affect->C"]
 
+    def to_dict(self) -> Dict:
+        """转换为可序列化的字典"""
+        return {
+            'entities_pairs': self.entities_pairs,
+            'nodes': self.nodes,
+            'relationships': self.relationships,
+            'paths': self.paths if isinstance(self.paths, list) else []
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict) -> 'SubGraph':
+        """从字典创建实例"""
+        if data is None:
+            return cls()
+        return cls(
+            entities_pairs=data.get('entities_pairs', {'start': [], 'end': []}),
+            nodes=data.get('nodes', []),
+            relationships=data.get('relationships', []),
+            paths=data.get('paths', [])
+        )
+
     def __post_init__(self):
         """Initialize empty collections if None"""
         if self.entities_pairs is None:
@@ -95,9 +116,12 @@ class MedicalQuestion:
         self.cache_dir = Path("../../cache")
         self.cache_dir.mkdir(parents=True, exist_ok=True)
 
-        self.causal_graph = SubGraph()
-        self.knowledge_graph = SubGraph()
-        self.initial_causal_graph = SubGraph()
+        if self.causal_graph is None:
+            self.causal_graph = SubGraph()
+        if self.knowledge_graph is None:
+            self.knowledge_graph = SubGraph()
+        if self.initial_causal_graph is None:
+            self.initial_causal_graph = SubGraph()
 
 
         # 通用属性初始化
@@ -136,7 +160,48 @@ class MedicalQuestion:
 
     def to_dict(self) -> Dict:
         """转换为字典格式"""
-        return asdict(self)
+        data = {
+            'question': self.question,
+            'is_multi_choice': self.is_multi_choice,
+            'correct_answer': self.correct_answer,
+            'options': self.options,
+            'topic_name': self.topic_name,
+            'context': self.context,
+            'initial_causal_graph': self.initial_causal_graph.to_dict() if self.initial_causal_graph else None,
+            'causal_graph': self.causal_graph.to_dict() if self.causal_graph else None,
+            'knowledge_graph': self.knowledge_graph.to_dict() if self.knowledge_graph else None,
+            'reasoning_chain': self.reasoning_chain,
+            'enhanced_information': self.enhanced_information,
+            'analysis': self.analysis,
+            'answer': self.answer,
+            'confidence': self.confidence
+        }
+        return data
+
+    @classmethod
+    def from_cache(cls, cachepath, question_text: str) -> Optional['MedicalQuestion']:
+        """从缓存加载问题数据"""
+        cache_id = hashlib.md5(question_text.encode()).hexdigest()
+        cache_path = cachepath / f"{cache_id}.json"
+
+        if cache_path.exists():
+            try:
+                with cache_path.open('r', encoding='utf-8') as f:
+                    data = json.load(f)
+
+                # 处理 SubGraph 对象
+                if 'initial_causal_graph' in data:
+                    data['initial_causal_graph'] = SubGraph.from_dict(data['initial_causal_graph'])
+                if 'causal_graph' in data:
+                    data['causal_graph'] = SubGraph.from_dict(data['causal_graph'])
+                if 'knowledge_graph' in data:
+                    data['knowledge_graph'] = SubGraph.from_dict(data['knowledge_graph'])
+
+                return cls(**data)
+            except Exception as e:
+                logging.error(f"Error loading cache: {str(e)}")
+                return None
+        return None
 
     def to_cache(self) -> None:
         """将问题数据缓存到本地"""
@@ -147,23 +212,6 @@ class MedicalQuestion:
         # 保存为JSON
         with cache_path.open('w', encoding='utf-8') as f:
             json.dump(self.to_dict(), f, ensure_ascii=False, indent=2)
-
-    @classmethod
-    def from_cache(cls, cachepath, question_text: str) -> Optional['MedicalQuestion']:
-        """从缓存加载问题数据"""
-        # 生成缓存ID
-        cache_id = hashlib.md5(question_text.encode()).hexdigest()
-        cache_path = cachepath / f"{cache_id}.json"
-
-        if cache_path.exists():
-            try:
-                with cache_path.open('r', encoding='utf-8') as f:
-                    data = json.load(f)
-                return cls(**data)
-            except Exception as e:
-                logging.error(f"Error loading cache: {str(e)}")
-                return None
-        return None
 
     def set_cache_paths(self, path) -> None:
         self.cache_dir = path

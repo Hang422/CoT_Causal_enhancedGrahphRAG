@@ -338,12 +338,12 @@ class QueryProcessor:
 
                 # 分别获取每个选项的CUIs
                 options_cuis = set()
+                for key, option_text in question.options.items():  # 直接遍历选项字典
+                    processed_cuis = self.entity_processor.process_text(option_text)
+                    options_cuis.update(set(processed_cuis))  # 使用 update 更新集合
 
-                for key in keys:
-                    # 假设 `keys` 是一个字典或列表，`key` 用来获取文本
-                    text = keys[key] if isinstance(keys, dict) else key
-                    processed_cuis = self.entity_processor.process_text(text)  # 处理文本提取 CUIs
-                    options_cuis = options_cuis.union(set(processed_cuis))  # 将结果合并到 `options_cuis` 中
+                # 用于去重的集合
+                seen_paths = set()
 
                 # 用于去重的集合
                 seen_paths = set()
@@ -418,8 +418,8 @@ def main():
         "start": ["Endothelial cells", "Endothelial cells", "Weibel-Palade bodies"],
         "end": ["Weibel-Palade bodies", "Blood vessel", "vWF"]}
     processor.entity_processor.threshold = 0.25
-    processor.process_all_entity_pairs_enhance(question)
-    print(question.causal_graph.paths)
+    processor.generate_initial_causal_graph(question)
+    print(question.initial_causal_graph.paths)
     print(question.knowledge_graph.paths)
     var = ['(Nitrates)-INHIBITS->(ethanol)-STIMULATES->(Coronary vasodilator (product))',
            '(Nitrates)-INHIBITS->(nitric oxide)-STIMULATES->(Coronary vasodilator (product))',

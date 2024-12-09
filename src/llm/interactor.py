@@ -139,7 +139,7 @@ Question: {question.question}
         else:
             prompt = f"""You are a medical expert."""
 
-        prompt += f"""Your task is to analyze and answer this {'' if not question.is_multi_choice else 'multiple choice'} question using only the causal graph information provided.
+        prompt += f"""Your task is to analyze and answer this {'' if not question.is_multi_choice else 'multiple choice'} question with the help of the causal graph information provided.
 
     ### Question
     {question.question}
@@ -202,17 +202,19 @@ Question: {question.question}
         Your task involves two main objectives:
 
         1. **Generate Causal Chains (Causal Analysis)**: 
-           - Identify direct relationships between **medical entities** relevant to answering the question.
-           - If the provided causal relationships are irrelevant, incorrect, or conflict with well-established medical knowledge, ignore them.
-           - Base your reasoning primarily on standard medical knowledge. The provided causal paths are only secondary references.
+           - Identify direct relationships between **medical entities** that are specifically relevant to answering the question.
+           - Prioritize standard medical knowledge and clinical consensus. The provided causal paths are only a secondary reference.
+           - If initial causal graph relationships do not help in distinguishing between the given options or conflict with well-established medical facts, ignore them.
 
         2. **Infer Additional Entity Pairs**: 
-           - Identify additional entity relationships that need verification to confirm or exclude options.
-           - These pairs should help enhance answer certainty or assist in eliminating incorrect options.
+           - Identify additional entity pairs that, if verified, would help confirm the correct option or exclude incorrect options.
+           - These entity pairs must have direct clinical relevance to the question, taking into account the patient's characteristics (e.g., symptoms, risk factors, demographics) and the conditions described by the options.
+           - Only include pairs that are known from standard medical knowledge to be involved in differentiating between the conditions presented in the options.
 
         ### Important Note on Provided Causal Relationships
         - The causal relationships in `question.casual_paths` are rough and may be misleading.
-        - Always prioritize standard medical knowledge and clinical consensus. If the provided paths do not align with well-known facts, disregard them.
+        - Always rely on standard medical knowledge as the primary source of truth.
+        - If the provided paths are not directly useful for making a differential diagnosis among the given options, do not use them.
 
         ### Question
         {question.question}
@@ -234,13 +236,14 @@ Question: {question.question}
         ### Task
         Your task is to:
         1. **Causal Analysis**:
-           - Use standard medical knowledge first. If initial causal graph conflicts with known medical facts, ignore it.
-           - Generate `start` and `end` medical entities that form direct, relevant relationships to answer the question.
+           - Start from the patient's presentation and the conditions listed in the options.
+           - Identify `start` and `end` entities that form medically relevant relationships. For example, consider key symptoms, risk factors, and pathophysiological links that help differentiate one option from another.
            - Use **precise medical nouns** only (no modifiers, abbreviations, vague terms).
+           - Ignore any provided causal info that does not align with standard medical knowledge or does not help in differentiating the options.
 
         2. **Additional Entity Pairs**:
-           - Identify additional entity pairs that, if verified, would help confirm the correct answer or exclude the wrong ones.
-           - Also prioritize standard medical knowledge here. Only include pairs that make clinical sense.
+           - Include only those entity pairs that, if retrieved or verified, would provide further clarity in confirming the correct choice or excluding incorrect ones.
+           - These pairs must be directly related to known differentiating factors among the conditions listed in the options.
 
         ### Output Format
         The output should be in the following JSON format:
@@ -257,17 +260,13 @@ Question: {question.question}
 
         ### Key Guidelines
         1. Ensure one-to-one alignment in both `causal_analysis` and `additional_entity_pairs`.
-        2. All entities must be precise medical nouns without adjectives or vague descriptions.
-        3. The `causal_analysis` must reflect correct and standard medical reasoning.
-        4. The `additional_entity_pairs` must be relevant to confirming/excluding options.
-        5. Do not provide explanations, only the JSON structure.
-        6. If initial causal info is misleading, disregard it and rely on standard medical facts.
+        2. All entities must be precise medical nouns, suitable for queries in medical knowledge bases (e.g., UMLS).
+        3. The `causal_analysis` must reflect standard medical reasoning that is relevant and can help distinguish between the given options.
+        4. The `additional_entity_pairs` must be clinically relevant and aimed at confirming or excluding specific options.
+        5. Do not provide explanations or justifications, only the JSON structure.
+        6. If initial causal info is misleading or not helpful, disregard it.
 
-        ### Example
-        (Example remains the same as before, ensuring model understands the format)"""
-
-        self.logger.debug(f"Prompt sent to LLM:\n{prompt}")
-
+        """
         # 调用 LLM 获取结果的代码保持不变
 
         try:
@@ -315,7 +314,7 @@ Question: {question.question}
         else:
             prompt = f"You are a medical expert."
 
-        prompt += f"""Your role is to refine and enhance the provided information, focusing solely on relevant Causal Graph (CG) and Knowledge Graph (KG) paths. Your goal is to eliminate irrelevant or misleading data and produce a coherent summary that aligns with established medical knowledge.
+        prompt += f"""Your task is to analyze and enhance medical information with extreme precision and attention to detail. You must ensure that the enhanced information maintains complete medical accuracy while supporting the reasoning process.
 
         ### Question
         {question.question}
@@ -325,83 +324,84 @@ Question: {question.question}
         for key, text in question.options.items():
             prompt += f"{key}. {text}\n"
 
+        # 添加路径信息
         if question.initial_causal_graph.paths != "There is no obvious causal relationship.":
-            prompt += "\n### Initial Causal Graph Paths (Potentially redundant or irrelevant)\n"
+            prompt += "\n### Initial Causal Graph Paths\n"
             for path in question.initial_causal_graph.paths:
                 prompt += f"- {path}\n"
-        else:
-            prompt += "\nNo initial causal graph paths provided."
 
         if question.causal_graph.paths != "There is no obvious causal relationship.":
-            prompt += "\n### Additional Causal Graph Paths:\n"
+            prompt += "\n### Additional Causal Graph Paths\n"
             for path in question.causal_graph.paths:
                 prompt += f"- {path}\n"
-        else:
-            prompt += "\nNo initial causal graph paths provided."
 
         if question.knowledge_graph.paths:
-            prompt += "\n### Additional knowledge graph:\n"
+            prompt += "\n### Knowledge Graph Paths\n"
             for path in question.knowledge_graph.paths:
                 prompt += f"- {path}\n"
-        else:
-            prompt += "\nNo initial causal graph paths provided."
-
-
 
         prompt += """
-        ### Task
-        1. **Filter Out Irrelevant/Misleading Info**:
-           - Review the CG and KG paths.
-           - Remove any paths that do not align with standard medical knowledge or have no direct relevance to the question.
-           - If any provided path contradicts well-known medical facts, exclude it.
+        ### Critical Requirements
+        1. **Maintain Complete Medical Accuracy**:
+           - Every statement must be verifiable against standard medical knowledge
+           - Do not oversimplify complex medical relationships
+           - Preserve all critical diagnostic criteria and pathognomonic features
+           - Never make assumptions or generalizations that could lead to diagnostic errors
 
-        2. **Synthesize Enhanced Information**:
-           - Combine only the retained, relevant paths into a coherent, factually consistent summary.
-           - The summary should support reasoning about the question without revealing the final answer.
-           - The enhanced information should serve as a helpful context based on correct medical logic.
+        2. **Comprehensive Information Integration**:
+           - Include ALL relevant pathophysiological mechanisms
+           - Preserve specific distinguishing features from provided paths
+           - Maintain the full context of medical relationships
+           - Never exclude crucial diagnostic or clinical details
+
+        3. **Explicit Relationship Validation**:
+           - Verify each causal relationship against core medical principles
+           - Ensure all stated mechanisms are scientifically accurate
+           - Preserve the complexity of multi-factor relationships
+           - Flag and exclude any contradictory or inconsistent relationships
+
+        4. **Clinical Context Preservation**:
+           - Maintain all clinically relevant temporal relationships
+           - Preserve diagnostic hierarchy and differential considerations
+           - Keep all pertinent negative findings
+           - Include relevant conditioning factors and exceptions
+
+        ### Quality Control Checklist
+        Before finalizing your response, verify that the enhanced information:
+        1. [ ] Contains no oversimplified medical concepts
+        2. [ ] Preserves all critical diagnostic criteria
+        3. [ ] Maintains accurate physiological mechanisms
+        4. [ ] Includes all relevant differential considerations
+        5. [ ] Preserves complex medical relationships
+        6. [ ] Avoids inappropriate generalizations
+        7. [ ] Maintains clinical context
+        8. [ ] Includes all necessary qualifying conditions
 
         ### Output Format
         {
-          "enhanced_information": "A synthesized summary of relevant CG and KG paths, strictly aligned with medical facts."
+            "enhanced_information": "Your comprehensive medical synthesis supporting accurate clinical reasoning"
         }
+
+        ### Important Notes:
+        - If you're unsure about any relationship or mechanism, preserve the original complexity rather than simplifying
+        - Never sacrifice medical accuracy for clarity
+        - Maintain all clinically relevant caveats and exceptions
+        - Do not exclude information just because it seems complex
         """
 
         try:
             messages = [
                 {"role": "system",
-                 "content": "You are a medical expert assisting in preparing information for answering medical questions."},
+                 "content": "You are a medical expert making decisions based on enhanced information."},
                 {"role": "user", "content": prompt}
             ]
             response = self._get_completion(messages)
-            self.logger.debug(f"Raw LLM response: {response}")
-
-            # 解析大模型的回复，确保是有效的JSON格式
-            response = response.strip()
-            if response.startswith('```json'):
-                response = response[7:]
-            if response.endswith('```'):
-                response = response[:-3]
-
-            start_idx = response.find('{')
-            end_idx = response.rfind('}') + 1
-            if start_idx != -1 and end_idx != -1:
-                response = response[start_idx:end_idx]
-
+            response = _clean_json_response(response)
             result = json.loads(response)
-
-            if "enhanced_information" not in result:
-                raise ValueError("Missing 'enhanced_information' in response")
-
-            # 更新问题对象
-            question.enhanced_information = result["enhanced_information"]
-
-        except json.JSONDecodeError as e:
-            self.logger.error(f"JSON parsing error: {str(e)}\nResponse: {response}")
-            question.enhanced_information = "Error processing enhanced information"
+            question.enhanced_information = result.get("enhanced_information", "")
 
         except Exception as e:
-            self.logger.error(f"Error in enhancing information: {str(e)}, Response: {response}")
-            question.enhanced_information = "Error processing enhanced information"
+            self.logger.error(f"Error in enhancement generation: {str(e)}")
 
     def answer_with_enhanced_information(self, question: MedicalQuestion) -> None:
         """使用增强后的信息生成最终答案"""

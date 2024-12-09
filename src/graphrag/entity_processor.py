@@ -217,7 +217,4 @@ if __name__ == '__main__':
     processor = EntityProcessor()
     text = "Small Round Cell Tumor"
     text1 = 'Neuroblastoma'
-    # print(processor.batch_get_names(processor.process_text(text),False))
-    print(processor.get_name_cui(text))
-    print(processor.get_name_cui(text1))
-    # print(processor.get_cui_name('C0011854'))
+    print(processor.batch_get_names(processor.process_text(text), False))
