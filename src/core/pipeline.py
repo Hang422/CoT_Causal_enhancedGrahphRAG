@@ -1,18 +1,15 @@
 import json
-
 import pandas as pd
 from pathlib import Path
 from typing import List, Optional
 import logging
-
-import src.modules.CrossAnalysis
 from src.modules.MedicalQuestion import MedicalQuestion, SubGraph
 from src.llm.interactor import LLMProcessor
 from src.graphrag.entity_processor import EntityProcessor
 from src.graphrag.query_processor import QueryProcessor
 from config import config
 from src.modules.AccuracyAnalysis import CrossPathAnalyzer
-from src.modules.CrossAnalysis import analyse
+from src.graphrag.graph_enhancer import GraphEnhancer
 
 
 class QuestionProcessor:
@@ -33,21 +30,149 @@ class QuestionProcessor:
             'original': self.cache_root / self.cache_path / 'original',
             'derelict': self.cache_root / self.cache_path / 'derelict',
             'enhanced': self.cache_root / self.cache_path / 'enhanced',
-            'knowledge_graph': self.cache_root / self.cache_path / 'knowledge_graph',
-            'causal_graph': self.cache_root / self.cache_path / 'causal_graph',
-            'graph_enhanced': self.cache_root / self.cache_path / 'graph_enhanced',
-            'llm_enhanced': self.cache_root / self.cache_path / 'llm_enhanced',
-            'reasoning': self.cache_root / self.cache_path / 'reasoning',
-            'without_enhancement': self.cache_root / self.cache_path / 'without_enhancement',
+            #'knowledge_graph': self.cache_root / self.cache_path / 'knowledge_graph',
+            #'causal_graph': self.cache_root / self.cache_path / 'causal_graph',
+            #'graph_enhanced': self.cache_root / self.cache_path / 'graph_enhanced',
+            #'llm_enhanced': self.cache_root / self.cache_path / 'llm_enhanced'
         }
 
         self.processor = QueryProcessor()
+        self.enhancer = GraphEnhancer()
 
         # 创建缓存子目录
         for path in self.cache_paths.values():
             path.mkdir(parents=True, exist_ok=True)
 
         self.logger.info(f"Initialized cache directories under {self.cache_root}")
+
+    def complete_process_question(self, question: MedicalQuestion):
+        # self.processor.generate_initial_causal_graph(question)
+        self.llm.generate_reasoning_chain(question)  # 初步检索-实体对指导检索和裁剪
+        self.processor.process_chain_of_thoughts(question, 'both', True)
+        self.enhancer.clear_paths(question)
+        self.llm.enhance_information(question)  # 增强
+        self.llm.answer_with_enhanced_information(question)
+        question.set_cache_paths(self.cache_paths['enhanced'])
+        question.to_cache()
+
+    def ablation_using_causal_only(self, question: MedicalQuestion):
+        # self.processor.generate_initial_causal_graph(question)
+        self.llm.generate_reasoning_chain(question)  # 初步检索-实体对指导检索和裁剪
+        self.processor.process_chain_of_thoughts(question, 'causal', True)
+        self.enhancer.clear_paths(question)
+        self.llm.enhance_information(question)  # 增强
+        self.llm.answer_with_enhanced_information(question)
+        question.set_cache_paths(self.cache_paths['causal_graph'])
+        question.to_cache()
+
+    def ablation_using_knowledge_only(self, question: MedicalQuestion):
+        question.initial_causal_graph.paths = []
+        self.llm.generate_reasoning_chain(question)  # 初步检索-实体对指导检索和裁剪
+        self.processor.process_chain_of_thoughts(question, 'knowledge', False)
+        self.enhancer.clear_paths(question)
+        self.llm.enhance_information(question)  # 增强
+        self.llm.answer_with_enhanced_information(question)
+        question.set_cache_paths(self.cache_paths['knowledge_graoph'])
+        question.to_cache()
+
+    def ablation_not_using_causal_enhancement(self, question: MedicalQuestion):
+        # self.processor.generate_initial_causal_graph(question)
+        self.llm.generate_reasoning_chain(question)  # 初步检索-实体对指导检索和裁剪
+        self.processor.process_chain_of_thoughts(question, 'causal', False)
+        self.llm.enhance_information(question)  # 增强
+        self.llm.answer_with_enhanced_information(question)
+        question.set_cache_paths(self.cache_paths['graph_enhanced'])
+        question.to_cache()
+
+    def ablation_not_using_llm_enhancement(self, question: MedicalQuestion):
+        # self.processor.generate_initial_causal_graph(question)
+        self.llm.generate_reasoning_chain(question)  # 初步检索-实体对指导检索和裁剪
+        self.processor.process_chain_of_thoughts(question, 'causal', True)
+        self.enhancer.clear_paths(question)
+        self.llm.answer_with_cot(question)
+        question.set_cache_paths(self.cache_paths['llm_enhanced'])
+        question.to_cache()
+
+    def process_questions(self, questions: List[MedicalQuestion]) -> None:
+        """处理问题列表"""
+        for i, question in enumerate(questions):
+            self.logger.info(f"Processing question {i + 1}/{len(questions)}")
+            try:
+                cached_question = MedicalQuestion.from_cache(
+                    self.cache_paths['original'],
+                    question.question
+                )
+                if not cached_question:
+                    question.set_cache_paths(self.cache_paths['original'])
+                    question.to_cache()
+                else:
+                    question = cached_question
+
+                self.llm.direct_answer(question)
+                question.set_cache_paths(self.cache_paths['derelict'])
+                question.to_cache()
+                self.complete_process_question(question)
+                #self.ablation_using_causal_only(question)
+                #self.ablation_not_using_causal_enhancement(question)
+                #self.ablation_not_using_llm_enhancement(question)
+                #self.ablation_using_knowledge_only(question)
+
+            except Exception as e:
+                self.logger.error(f"Error processing question {i + 1}: {str(e)}")
+                continue
+
+    def process_from_cache(self, path: str) -> None:
+        """从original缓存目录读取并处理问题"""
+        original_path = self.cache_root / path / 'original'
+
+        if not original_path.exists():
+            self.logger.error(f"Original cache directory not found: {original_path}")
+            return
+
+        questions = []
+        loaded_count = 0
+        error_count = 0
+
+        for file in original_path.glob('*.json'):
+            try:
+                with open(file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+
+                    # 处理 SubGraph 结构
+                    initial_causal_graph = SubGraph.from_dict(data.get('initial_causal_graph', {}))
+
+                    # 创建 MedicalQuestion 实例，包含所有字段
+                    question = MedicalQuestion(
+                        question=data['question'],
+                        is_multi_choice=data['is_multi_choice'],
+                        correct_answer=data['correct_answer'],
+                        options=data['options'],
+                        topic_name=data['topic_name'],
+                        initial_causal_graph=initial_causal_graph
+                    )
+
+                    questions.append(question)
+                    loaded_count += 1
+
+            except Exception as e:
+                self.logger.error(f"Error loading question from {file}: {str(e)}")
+                error_count += 1
+                continue
+
+        self.logger.info(f"Successfully loaded {loaded_count} questions")
+        if error_count > 0:
+            self.logger.warning(f"Encountered {error_count} errors while loading questions")
+
+        if questions:
+            self.process_questions(questions)
+
+    def batch_process_file(self, file_path: str, sample_size: Optional[int] = None) -> None:
+        try:
+            questions = self.load_questions_from_parquet(file_path, sample_size)
+            self.logger.info(f"Loaded {len(questions)} questions from huggingface parquet file")
+            self.process_questions(questions)
+        except Exception as e:
+            self.logger.error(f"Error processing file {file_path}: {str(e)}")
 
     @staticmethod
     def load_questions_from_parquet(file_path: str, sample_size: Optional[int] = None) -> List[MedicalQuestion]:
@@ -165,165 +290,18 @@ class QuestionProcessor:
 
         return questions
 
-    def process_questions(self, questions: List[MedicalQuestion]) -> None:
-        """处理问题列表"""
-        for i, question in enumerate(questions):
-            self.logger.info(f"Processing question {i + 1}/{len(questions)}")
-            try:
-
-                cached_question = MedicalQuestion.from_cache(
-                    self.cache_paths['original'],
-                    question.question
-                )
-
-                if not cached_question:
-                    question.set_cache_paths(self.cache_paths['original'])
-                    question.to_cache()
-                else:
-                    question = cached_question
-
-                cached_question_derelict = MedicalQuestion.from_cache(
-                    self.cache_paths['derelict'],
-                    question.question
-                )
-
-                if not cached_question_derelict:
-                    self.llm.direct_answer(question)
-                    question.set_cache_paths(self.cache_paths['derelict'])
-                    question.to_cache()
-                    question.set_cache_paths(self.cache_paths['knowledge_graph'])
-                    question.to_cache()
-                    question.set_cache_paths(self.cache_paths['graph_enhanced'])
-                    question.to_cache()
-                    question.set_cache_paths(self.cache_paths['llm_enhanced'])
-                    question.to_cache()
-                else:
-                    question = cached_question
-
-                cached_question = MedicalQuestion.from_cache(
-                    self.cache_paths['causal_graph'],
-                    question.question
-                )
-
-                if not cached_question:
-                    # self.processor.generate_initial_causal_graph(question)  # 初步检索
-                    self.llm.causal_only_answer(question)
-                    question.set_cache_paths(self.cache_paths['causal_graph'])
-                    question.to_cache()
-                else:
-                    question = cached_question
-
-                # 3. 生成推理链和实体对并缓存
-                cached_question = MedicalQuestion.from_cache(
-                    self.cache_paths['reasoning'],
-                    question.question
-                )
-
-                if not cached_question:
-                    self.llm.generate_reasoning_chain(question)  # 初步检索-实体对指导检索和裁剪
-                    self.processor.process_all_entity_pairs_enhance(question)  # 基于因果裁剪的检索。
-                    question.set_cache_paths(self.cache_paths['reasoning'])
-                    question.to_cache()
-                else:
-                    question = cached_question
-
-                # 4. 最终答案并缓存
-                cached_question = MedicalQuestion.from_cache(
-                    self.cache_paths['without_enhancement'],
-                    question.question
-                )
-
-                if not cached_question:
-                    # self.llm.final_answer_with_all_paths(question)
-                    question.set_cache_paths(self.cache_paths['without_enhancement'])
-                    question.to_cache()
-                else:
-                    question = cached_question
-
-                cached_question = MedicalQuestion.from_cache(
-                    self.cache_paths['enhanced'],
-                    question.question
-                )
-
-                if not cached_question:
-                    self.llm.enhance_information(question)  # 增强
-                    self.llm.answer_with_enhanced_information(question)
-                    question.set_cache_paths(self.cache_paths['enhanced'])
-                    question.to_cache()
-                else:
-                    question = cached_question
-
-            except Exception as e:
-                self.logger.error(f"Error processing question {i + 1}: {str(e)}")
-                continue
-
-    def process_from_cache(self, path: str) -> None:
-        """从original缓存目录读取并处理问题"""
-        original_path = self.cache_root / path / 'original'
-
-        if not original_path.exists():
-            self.logger.error(f"Original cache directory not found: {original_path}")
-            return
-
-        questions = []
-        loaded_count = 0
-        error_count = 0
-
-        for file in original_path.glob('*.json'):
-            try:
-                with open(file, 'r', encoding='utf-8') as f:
-                    data = json.load(f)
-
-                    # 处理 SubGraph 结构
-                    initial_causal_graph = SubGraph.from_dict(data.get('initial_causal_graph', {}))
-
-                    # 创建 MedicalQuestion 实例，包含所有字段
-                    question = MedicalQuestion(
-                        question=data['question'],
-                        is_multi_choice=data['is_multi_choice'],
-                        correct_answer=data['correct_answer'],
-                        options=data['options'],
-                        topic_name=data['topic_name'],
-                        initial_causal_graph=initial_causal_graph
-                    )
-
-                    questions.append(question)
-                    loaded_count += 1
-
-                    if loaded_count % 100 == 0:
-                        self.logger.info(f"Processed {loaded_count} questions...")
-
-            except Exception as e:
-                self.logger.error(f"Error loading question from {file}: {str(e)}")
-                error_count += 1
-                continue
-
-        self.logger.info(f"Successfully loaded {loaded_count} questions")
-        if error_count > 0:
-            self.logger.warning(f"Encountered {error_count} errors while loading questions")
-
-        if questions:
-            self.process_questions(questions)
-
-    def batch_process_file(self, file_path: str, sample_size: Optional[int] = None) -> None:
-        try:
-            questions = self.load_questions_from_parquet(file_path, sample_size)
-            self.logger.info(f"Loaded {len(questions)} questions from huggingface parquet file")
-            self.process_questions(questions)
-        except Exception as e:
-            self.logger.error(f"Error processing file {file_path}: {str(e)}")
-
 
 def main():
     """主函数示例"""
     final1 = 'final_test1_set_3.5'
     final2 = 'final_test1_set_4'
-    test = 'test'
+    test = 'test1-4o-mini'
+    correct = 'correct'
     cache_to_path = 'origin-test2'
     process_path = test
     processor = QuestionProcessor(process_path)
 
-    # processor.batch_process_file('test2', 1)
+    #processor.batch_process_file('test2', 1)
     processor.process_from_cache(process_path)
 
     analyzer = CrossPathAnalyzer(process_path)

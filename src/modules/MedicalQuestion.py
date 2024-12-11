@@ -91,7 +91,7 @@ class MedicalQuestion:
     is_multi_choice: bool
     correct_answer: str  # 0-3 对应 A-D, or yes and no
 
-    options: Optional[Dict[str, str]] = None # 使用 'opa', 'opb', 'opc', 'opd' 作为键
+    options: Optional[Dict[str, str]] = None  # 使用 'opa', 'opb', 'opc', 'opd' 作为键
     topic_name: Optional[str] = None
     context: Optional[str] = None
 
@@ -99,8 +99,9 @@ class MedicalQuestion:
     initial_causal_graph: SubGraph = None
     causal_graph: SubGraph = None
     knowledge_graph: SubGraph = None
+    enhanced_graph: SubGraph = None
 
-    reasoning_chain: Optional[str] = None
+    reasoning_chain: Optional[List[str]] = None
     enhanced_information: Optional[str] = None  # 改为使用 Optional[str]
 
     # Reasoning and answer
@@ -122,27 +123,26 @@ class MedicalQuestion:
             self.knowledge_graph = SubGraph()
         if self.initial_causal_graph is None:
             self.initial_causal_graph = SubGraph()
-
+        if self.enhanced_graph is None:
+            self.enhanced_graph = SubGraph()
 
         # 通用属性初始化
         if self.enhanced_information is None:
             self.enhanced_information = ""
         if self.reasoning_chain is None:
-            self.reasoning_chain = ""
+            self.reasoning_chain = []
 
     def generate_paths(self) -> None:
         """生成人类可读的路径表示"""
         # 为每个选项生成因果路径
-
+        self.initial_causal_graph.paths = []
+        self.causal_graph.paths = []
+        self.knowledge_graph.paths = []
+        self.enhanced_graph.paths = []
         self.initial_causal_graph.generate_paths()
         self.causal_graph.generate_paths()
         self.knowledge_graph.generate_paths()
-
-        if len(self.initial_causal_graph.paths) == 0:
-            self.initial_causal_graph.paths = "There is no obvious causal relationship."
-
-        if len(self.causal_graph.paths) == 0:
-            self.causal_graph.paths = "There is no obvious causal relationship."
+        self.enhanced_graph.generate_paths()
 
     @property
     def is_correct(self) -> bool:
@@ -150,13 +150,6 @@ class MedicalQuestion:
         if not self.answer:
             return False
         return self.answer.lower() == self.correct_answer.lower()
-
-    def get_all_paths(self) -> Dict[str, List[str]]:
-        """获取所有路径的字符串表示"""
-        return {
-            'causal_paths': self.causal_graph.paths,
-            'KG_paths': self.knowledge_graph.paths
-        }
 
     def to_dict(self) -> Dict:
         """转换为字典格式"""
@@ -170,6 +163,7 @@ class MedicalQuestion:
             'initial_causal_graph': self.initial_causal_graph.to_dict() if self.initial_causal_graph else None,
             'causal_graph': self.causal_graph.to_dict() if self.causal_graph else None,
             'knowledge_graph': self.knowledge_graph.to_dict() if self.knowledge_graph else None,
+            'enhanced_graph': self.enhanced_graph.to_dict() if self.enhanced_graph else None,
             'reasoning_chain': self.reasoning_chain,
             'enhanced_information': self.enhanced_information,
             'analysis': self.analysis,
@@ -196,7 +190,13 @@ class MedicalQuestion:
                     data['causal_graph'] = SubGraph.from_dict(data['causal_graph'])
                 if 'knowledge_graph' in data:
                     data['knowledge_graph'] = SubGraph.from_dict(data['knowledge_graph'])
-
+                if 'enhanced_graph' in data:
+                    data['enhanced_graph'] = SubGraph.from_dict(data['enhanced_graph'])
+                if 'reasoning_chain' in data:
+                    if isinstance(data['reasoning_chain'], list):
+                        data['reasoning_chain'] = data['reasoning_chain']
+                    else:
+                        data['reasoning_chain'] = list(data['reasoning_chain'])
                 return cls(**data)
             except Exception as e:
                 logging.error(f"Error loading cache: {str(e)}")
