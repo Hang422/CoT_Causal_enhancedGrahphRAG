@@ -9,6 +9,7 @@ import hashlib
 from dataclasses import dataclass, asdict
 from src.modules.MedicalQuestion import MedicalQuestion
 from config import config
+import re  # 需要先导入 re 模块
 
 
 @dataclass
@@ -142,17 +143,32 @@ class LLMLogger:
 
 
 def clean_json_response(response: str) -> Dict:
-    """Clean and parse JSON response from LLM"""
+    """Clean and parse JSON response from LLM
+
+    Args:
+        response: Raw response string from LLM
+
+    Returns:
+        Parsed JSON dictionary
+
+    Raises:
+        ValueError: If response is empty/invalid or can't be parsed as JSON
+    """
+    # Validate input
     if not response or not isinstance(response, str):
         raise ValueError("Input must be a non-empty string")
 
+    # Remove code block markers if present
     cleaned = response.strip()
     if cleaned.startswith('```json'):
         cleaned = cleaned[7:]
+    if cleaned.startswith('```'):
+        cleaned = cleaned[3:]
     if cleaned.endswith('```'):
         cleaned = cleaned[:-3]
     cleaned = cleaned.strip()
 
+    # Extract JSON object
     start_idx = cleaned.find('{')
     end_idx = cleaned.rfind('}') + 1
     if start_idx == -1 or end_idx <= start_idx:
@@ -161,14 +177,57 @@ def clean_json_response(response: str) -> Dict:
     json_str = cleaned[start_idx:end_idx]
 
     try:
-        return json.loads(json_str)
-    except json.JSONDecodeError:
+        # Basic cleanup: standardize whitespace
         json_str = ' '.join(json_str.replace('\n', ' ').replace('\r', ' ').split())
-        try:
-            return json.loads(json_str)
-        except json.JSONDecodeError as e:
-            raise ValueError(f"Invalid JSON after cleaning: {str(e)}")
 
+        # Remove escaped quotes that shouldn't be escaped
+        json_str = json_str.replace('\\"', '"')
+
+        # Handle quotes within text content
+        def fix_internal_quotes(match):
+            # Replace quotes inside the text with temporary markers
+            content = match.group(1)
+            content = content.replace('"', '|QUOTE|')
+            return f'"{content}"'
+
+        # Fix quotes within text content
+        json_str = re.sub(r'"([^"]*)"', fix_internal_quotes, json_str)
+
+        # Fix unquoted keys
+        json_str = re.sub(r'{\s*(\w+):', r'{ "\1":', json_str)  # Fix opening key
+        json_str = re.sub(r',\s*(\w+):', r', "\1":', json_str)  # Fix middle keys
+
+        # Standardize to double quotes
+        json_str = json_str.replace("'", '"')
+
+        # Fix trailing commas
+        json_str = re.sub(r',\s*([}\]])', r'\1', json_str)
+
+        try:
+            # Parse JSON
+            data = json.loads(json_str)
+
+            # Restore quotes in text content
+            def restore_quotes(obj):
+                if isinstance(obj, str):
+                    return obj.replace('|QUOTE|', '"')
+                elif isinstance(obj, dict):
+                    return {k: restore_quotes(v) for k, v in obj.items()}
+                elif isinstance(obj, list):
+                    return [restore_quotes(item) for item in obj]
+                return obj
+
+            return restore_quotes(data)
+
+        except json.JSONDecodeError as e:
+            # Provide detailed error information for debugging
+            logging.error(f"Failed to parse JSON: {json_str}")
+            logging.error(f"Error at position {e.pos}: {e.msg}")
+            logging.error(f"Problem portion: {json_str[max(0, e.pos - 20):min(len(json_str), e.pos + 20)]}")
+            raise
+
+    except Exception as e:
+        raise ValueError(f"Invalid JSON after cleaning: {str(e)}")
 
 def _update_question_with_error(question: MedicalQuestion) -> None:
     """Update question with error state"""
@@ -259,7 +318,7 @@ Question: {question.question}
 
         prompt += """
         ### Output Format
-        Provide your response in valid JSON format:
+        IMPORTANT: Your response MUST be in strict, valid JSON format like this:
         {   
             "final_analysis": "Your concise analysis following the above structure",
             "answer": "Option key from the available options (only key,like opa)",
@@ -282,55 +341,67 @@ Question: {question.question}
 
     def generate_reasoning_chain(self, question: MedicalQuestion) -> None:
         """Generate reasoning chains for medical diagnosis"""
-        prompt = f"""As an expert reasoner, analyze this question by generating multiple reasoning chains. Each chain must follow strict structural rules to ensure clarity and verifiability.
+        prompt = f"""As a medical expert, analyze this question by generating multiple reasoning chains. Each chain consists of steps connected by reasoning arrows, where each step can show the result of previous reasoning but cannot contain complete entity-to-entity reasoning within itself.
 
-    ### Question
-    {question.question}
+        ### Question
+        {question.question}
 
-    ### Options
-    """
+        ### Options
+        """
         for key, text in question.options.items():
             prompt += f"{key}. {text}\n"
 
         prompt += """
-    ### Key Requirements for Reasoning Chains:
+        ### Key Requirements for Reasoning Chains:
 
-    1. **Node Structure**:
-       - Each node must be a single fact, entity, or state.
-       - No reasoning or relationships should exist within nodes.
-       - Example of Incorrect Node: "Insulin lowers blood glucose."
-       - Example of Correct Chain: "Insulin" -> "Blood glucose decreases."
+        1. **Step Content Rules**:
+           - A step can contain reasoning results from previous step
+           - A step must not contain a complete entity-to-entity reasoning within itself
+           - Example correct: "Insulin" -> "decreased blood glucose"
+           - Example correct: "decreased blood glucose" -> "improved metabolic state"
+           - Example incorrect: "Insulin decreases blood glucose" (complete reasoning in one step)
+           - Example incorrect: "decreased blood glucose which then improves metabolism" (contains next reasoning step)
 
-    2. **Chain Structure**:
-       - Connect nodes with "->" to show logical progression.
-       - Each arrow represents a causal or logical relationship.
-       - Include intermediary steps to show complete logical paths.
-       - Example: "Drug A" -> "Receptor binding" -> "Signal cascade activation" -> "Clinical effect."
+        2. **Chain Structure**:
+           - Arrows (->) represent the reasoning process between steps
+           - Each new step builds on previous reasoning result
+           - Example chain: 
+             "Insulin" -> "decreased blood glucose" -> "stable metabolic state" -> 90%
+           - Complex example:
+             "ACE inhibitors" -> "reduced Angiotensin II" -> "lowered blood pressure" -> 85%
 
-    3. **Uncertainty Handling**:
-       - Explicitly indicate when verification or additional evidence is required.
-       - If a connection is uncertain, add "Requires verification" or specify missing evidence.
-       - Example: "Compound X" -> "Potential receptor binding" -> "Requires verification -> Conclusion unclear."
+        3. **Uncertainty and Confidence**:
+           - Mark uncertain reasonings explicitly
+           - Example with uncertainty:
+             "Drug X" -> "possible receptor blockade" -> "target response unclear" -> 40%
+           - End each chain with overall confidence (0-100%)
+           - Lower confidence for chains with uncertain steps
 
-    4. **Output Format**:
-    Provide reasoning chains in the following JSON format:
-    {
-        "reasoning_chains": [
-            "Entity A -> Intermediate step -> Missing evidence for [specific aspect] -> Conclusion for option X",
-            "Different entity -> Different pathway -> Requires verification -> Conclusion for option Y"
-        ]
-    }
+        4. Output Format:
+        IMPORTANT: Your response MUST be in strict, valid JSON format like this:
+        {
+            "reasoning_chains": [
+                "Entity1 -> ReasoningResult1 -> FurtherResult -> 90%",
+                "EntityA -> UncertainResult -> PossibleOutcome -> 60%"
+            ]
+        }
 
-    ### Guidelines:
-    - Generate **multiple independent reasoning chains**.
-    - Each chain should focus on one specific aspect or pathway.
-    - Include both supporting and opposing chains for all options.
-    - Clearly identify uncertainties without making unjustified assumptions.
-    - Avoid redundancy by keeping nodes factual and distinct.
-    - Let the connections (arrows) explain the reasoning, not the nodes themselves.
+        ### Key Guidelines:
+        - Steps can show results of previous reasoning
+        - No complete entity-to-entity reasoning within a single step
+        - The arrow (->) shows how we reason from one step to the next
+        - Keep each step focused on one result or state
+        - Include uncertainty where it exists
+        - End chains with confidence percentage
 
-    Remember: The reasoning is represented in the arrows (->) between nodes. Nodes themselves are facts, not explanations.
-    """
+        Remember:
+        - A step can contain the result of reasoning (e.g., "decreased blood glucose")
+        - But it cannot contain a complete reasoning process (e.g., "insulin reduces blood glucose")
+        - Example: "Insulin" -> "decreased blood glucose" -> "metabolic improvement" -> 90%
+          * First arrow represents how Insulin affects blood glucose
+          * Second arrow represents how the decreased blood glucose leads to metabolic improvement
+          * Each step shows the result of previous reasoning without including the next reasoning step
+        """
 
         try:
             messages = [
@@ -347,59 +418,90 @@ Question: {question.question}
 
     def enhance_information(self, question: MedicalQuestion) -> None:
         """Enhancement with standardized processing"""
+        if len(question.enhanced_graph.paths) == 0:
+            return
         if question.topic_name is not None:
             prompt = f"You are a medical expert specializing in the field of {question.topic_name}."
         else:
             prompt = f"You are a medical expert."
 
         prompt += f"""
-        Your task: Integrate, refine, and validate the provided information (reasoning chains, causal graphs, and knowledge graphs) into a clinically accurate and directly relevant enhanced summary. Critically evaluate the reasoning chains for correctness and identify any areas needing further validation. Ensure the final output is concise, medically accurate, and supports reasoning towards the question without providing the final answer.
+        Your task: Analyze and integrate multiple sources of evidence: reasoning chains, retrieved path evidence, and standard medical knowledge. The retrieved paths are accurate but may be incomplete - absence of evidence is not evidence of absence. Evaluate each reasoning step comprehensively, even when direct path evidence is missing.
 
-        ### Inputs
-        **Question**: {question.question}
+        ### Question
+        {question.question}
 
-        **Options**:
+        ### Options
         """
         for key, text in question.options.items():
             prompt += f"{key}. {text}\n"
 
         if question.reasoning_chain:
-            prompt += "\n### Reasoning Chains (Model-Generated)\n"
+            prompt += "\n### Reasoning Chains to Evaluate:\n"
             for chain in question.reasoning_chain:
                 prompt += f"- {chain}\n"
 
-        if len(question.enhanced_graph.paths) > 0:
-            prompt += "\n### Auxiliary Information (Retrieved Graph Data):\n"
+        if question.enhanced_graph and len(question.enhanced_graph.paths) > 0:
+            prompt += "\n### Available Supporting Evidence (Retrieved Paths):\n"
             for path in question.enhanced_graph.paths:
                 prompt += f"- {path}\n"
 
         prompt += """
+        ### Important Evidence Principles:
+        1. Retrieved paths are accurate but may be incomplete
+        2. Absence of path evidence does not invalidate a reasoning step
+        3. Medical knowledge should be used to evaluate ALL reasoning steps:
+           - Steps with supporting paths
+           - Steps without supporting paths
+           - Steps that seem to contradict available paths
+
         ### Task Requirements
 
-        1. **Evaluate Reasoning Chains**:
-           - Identify and mark chains as correct, partially correct, or incorrect based on standard medical knowledge.
-           - Provide a concise explanation for why a chain is correct or incorrect, or what further validation is needed.
+        1. **Evidence Integration**:
+           - When path evidence exists:
+             * Use it to validate reasoning steps
+             * Consider if it fully or partially supports the step
+             * Watch for potential misleading associations
+           - When path evidence is missing:
+             * Evaluate step based on medical knowledge
+             * Consider if absence of evidence is meaningful
+             * Look for indirect support from other paths
 
-        2. **Filter and Curate Information**:
-           - Remove irrelevant, overly generic, or misleading relationships from the graph data.
-           - Retain only information that is:
-             - Medically accurate (aligned with standard clinical knowledge).
-             - Directly relevant to differentiating the options or clarifying the question.
-             - Useful in improving reasoning without solving the question outright.
+        2. **Reasoning Evaluation**:
+           - Assess each reasoning chain comprehensively:
+             * Steps with direct path support
+             * Steps without path support
+             * Steps that seem to contradict paths
+           - Consider clinical patterns and typical presentations
+           - Use medical knowledge to fill evidence gaps
 
-        3. **Fuse and Enhance Information**:
-           - Combine relevant reasoning chains and graph data into a cohesive, concise summary.
-           - Ensure the summary is directly applicable to supporting reasoning for the question.
+        3. **Avoiding Evidence Bias**:
+           - Don't overweight available paths just because they exist
+           - Don't underweight valid reasoning just because paths are missing
+           - Be alert for misleading associations in paths
+           - Consider clinical context and typical disease patterns
 
-        4. **Quality Control**:
-           - Verify that all retained information is accurate, relevant, and contributes to clinical understanding.
-           - Avoid providing or hinting at the final answer.
+        4. **Decision Process**:
+           - Start with path-supported reasoning
+           - Integrate unsupported but medically valid reasoning
+           - Consider typical clinical patterns
+           - Watch for misleading path associations
+           - Base final decision on full evidence synthesis
 
-        ### Output Format
-        Provide your response in the following JSON format:
-        {
-          "enhanced_information": "Your carefully curated and clinically relevant summary here"
-        }
+            ### Output Format
+            IMPORTANT: Your response MUST be in strict, valid JSON format like this:
+            {
+                "enhanced_information": "Your carefully curated, decision-critical information that synthesizes path evidence, medical knowledge, and reasoning validation. Include only information that directly helps differentiate between options and reach a conclusion."
+            }
+            
+            Remember: Enhanced information should:
+            - Focus only on decision-critical findings and relationships
+            - Highlight strong path evidence when relevant
+            - Note significant missing evidence that affects decision-making
+            - Include critical medical knowledge even when path evidence is missing
+            - Point out potentially misleading associations
+            - Be concise but complete for decision-making
+
         """
 
         try:
@@ -481,10 +583,10 @@ Question: {question.question}
                - Lower confidence indicates partial reliance on enhanced information or remaining ambiguities.
     
             ### Output Format
-            Provide your response in valid JSON format:
+            IMPORTANT: Your response MUST be in strict, valid JSON format like this:
             {
                 "final_analysis": "Your clear and concise analysis, step-by-step reasoning based on standard medical knowledge and enhanced information.",
-                "answer": "Option key from the available options (e.g., opa, opb, etc.)",
+                "answer": "Option key from the available options (e.g., opa, opb, etc. only one and must one)",
                 "confidence": A score between 0-100 indicating the strength of your answer
             }
     
@@ -515,66 +617,106 @@ Question: {question.question}
         else:
             prompt = f"You are a medical expert."
 
-        prompt += f"""
-        Your task: Analyze and answer the question using chain-of-thought reasoning based on the provided reasoning chains and graph paths. Do not use any enhanced information.
+        if len(question.enhanced_graph.paths) > 0:
+            prompt += f"""Please help answer this {'' if not question.is_multi_choice else 'multiple choice'} question:
 
-        ### Question
-        {question.question}
+            Question: {question.question}
+            """
+            if question.is_multi_choice:
+                prompt += "\nOptions:\n"
+                for key, text in question.options.items():
+                    prompt += f"{key}. {text}\n"
 
-        ### Options
-        """
-        for key, text in question.options.items():
-            prompt += f"{key}. {text}\n"
+            prompt += """
+                    ### Output Format
+                    Provide your response in valid JSON format:
+                    {   
+                        "final_analysis": "Your concise analysis following the above structure",
+                        "answer": "Option key from the available options (only key,like opa)",
+                        "confidence": Score between 0-100 based on alignment with established medical facts
+                    }
+                    """
+        else:
+            prompt += f"""
+            Your task: Analyze how retrieved graph paths validate each step in the reasoning chains and use this validation to determine the most reliable answer. Since these paths were specifically retrieved based on the reasoning chains, each path potentially validates a specific reasoning step.
+    
+            ### Question
+            {question.question}
+    
+            ### Options
+            """
+            for key, text in question.options.items():
+                prompt += f"{key}. {text}\n"
 
-        if question.reasoning_chain:
-            prompt += "\n### Reasoning Chains:\n"
-            for chain in question.reasoning_chain:
-                prompt += f"- {chain}\n"
+            if question.reasoning_chain:
+                prompt += "\n### Reasoning Chains for Validation:\n"
+                for chain in question.reasoning_chain:
+                    prompt += f"- {chain}\n"
 
-        if question.enhanced_graph and question.enhanced_graph.paths:
-            prompt += "\n### Graph Paths:\n"
-            for path in question.enhanced_graph.paths:
-                prompt += f"- {path}\n"
+            if question.enhanced_graph and question.enhanced_graph.paths:
+                prompt += "\n### Retrieved Validation Paths:\n"
+                for path in question.enhanced_graph.paths:
+                    prompt += f"- {path}\n"
 
-        prompt += """
-        ### Task Requirements
-
-        1. **Chain-of-Thought Analysis**:
-           - Analyze the reasoning chains and graph paths systematically.
-           - Identify which chains and paths are most relevant to answering the question.
-           - Explain how different pieces of evidence connect and support each other.
-           - Note any contradictions or gaps in the reasoning.
-
-        2. **Evidence Integration**:
-           - Combine evidence from reasoning chains and graph paths.
-           - Explain how different pieces of evidence support or contradict each other.
-           - Identify the strongest line of reasoning that leads to your answer.
-
-        3. **Medical Knowledge Application**:
-           - Use standard medical knowledge to validate the reasoning chains and paths.
-           - Explain how the evidence aligns with established medical principles.
-           - Note when the evidence contradicts known medical facts.
-
-        4. **Decision Making**:
-           - Explain your step-by-step thought process.
-           - Show how you weigh different pieces of evidence.
-           - Justify your final choice based on the strongest evidence.
-
-        ### Output Format
-        Provide your response in valid JSON format:
-        {
-            "chain_of_thought": "Your detailed step-by-step reasoning process, showing how you integrated the reasoning chains and graph paths",
-            "final_analysis": "Your concise conclusion based on the chain of thought",
-            "answer": "Option key (e.g., opa)",
-            "confidence": Score between 0-100 based on the strength of the reasoning chain and supporting evidence
-        }
-
-        ### Key Guidelines
-        - **Be Systematic**: Show clear progression in your reasoning.
-        - **Be Explicit**: Explain how each piece of evidence contributes to your conclusion.
-        - **Be Critical**: Acknowledge limitations and uncertainties in the reasoning.
-        """
-
+            prompt += """
+            ### Task Requirements
+    
+            1. **Step-by-Step Validation**:
+               - For each reasoning step (transition between states), find supporting paths
+               - Example Analysis:
+                 * Reasoning step: "Insulin" -> "decreased blood glucose"
+                 * Supporting path: "(Insulin)-DECREASES->(Blood glucose)"
+               - Identify which specific parts of paths validate which specific reasoning steps
+               - Note when a path provides strong, partial, or no support for a step
+    
+            2. **Chain Strength Assessment**:
+               - Evaluate reasoning chains based on path support at each step
+               - Consider a chain stronger when:
+                 * More steps are supported by paths
+                 * Supporting paths are direct and clear
+                 * Multiple paths support the same step
+               - Identify which chains have the most comprehensive path support
+    
+            3. **Medical Knowledge Role**:
+               - Use medical knowledge to interpret path support
+               - When paths support a step, use medical knowledge to confirm the logic
+               - When paths partially support a step, use medical knowledge to assess plausibility
+               - Medical knowledge should complement, not override, path evidence
+    
+            4. **Decision Making**:
+               - Base decision primarily on chains with strong path validation
+               - Higher confidence when:
+                 * Multiple paths support critical steps
+                 * Path support aligns with medical knowledge
+                 * Supported steps form a complete logical chain
+               - Lower confidence when:
+                 * Key steps lack path support
+                 * Paths provide only partial validation
+                 * Medical knowledge suggests alternative interpretations
+    
+            ### Output Format
+            IMPORTANT: Your response MUST be in strict, valid JSON format like this:
+            {
+    
+                "chain_analysis": "Assessment of which chains have strongest path support",
+                "final_analysis": "How path validation leads to the answer",
+                "answer": "Option key (e.g., opa, opb, etc. only one and must one)",
+                "confidence": Score between 0-100 based on path support strength
+            }
+    
+            ### Key Guidelines
+            - Focus on matching paths to specific reasoning steps
+            - Evaluate support for each transition in the chains
+            - Consider path support as primary evidence
+            - Use medical knowledge to interpret, not override, path support
+            - Confidence should reflect how well paths validate the crucial steps
+    
+            Remember:
+            - Each path was retrieved to validate specific reasoning steps
+            - Strong validation requires clear path-to-step correspondence
+            - Multiple paths supporting a step increases confidence
+            - Gaps in path support should lower confidence
+            """
         try:
             messages = [
                 {"role": "system", "content": "You are a medical expert using chain-of-thought reasoning."},

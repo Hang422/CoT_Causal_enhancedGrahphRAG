@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from config import config
 from src.modules.MedicalQuestion import MedicalQuestion
 from src.graphrag.entity_processor import EntityProcessor
+from src.graphrag.graph_enhancer import GraphEnhancer
 
 class QueryProcessor:
     """Neo4j query processor for medical question path finding"""
@@ -33,7 +34,7 @@ class QueryProcessor:
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.close()
 
-    def process_causal_graph_paths_normal(self,start_cui:str, end_cui:str) -> List[Dict]:
+    def process_causal_graph_paths_normal(self, start_cui: str, end_cui: str) -> List[Dict]:
         pass
 
     def process_causal_graph_paths_enhanced(self, start_cui: str, end_cui: str) -> List[Dict]:
@@ -173,7 +174,7 @@ class QueryProcessor:
 
         question.generate_paths()  # Update path strings
 
-    def process_chain_of_thoughts(self, question: MedicalQuestion, graph:str, enhancement:bool) -> None:
+    def process_chain_of_thoughts(self, question: MedicalQuestion, graph: str, enhancement: bool) -> None:
         """处理思维链的路径检索"""
 
         for chain in question.reasoning_chain:
@@ -186,6 +187,8 @@ class QueryProcessor:
                 # 通过entity processor获取CUI
                 start_cuis = self.entity_processor.process_text(start)
                 end_cuis = self.entity_processor.process_text(end)
+                if len(start_cuis) == 0 or len(end_cuis) == 0:
+                    continue
                 for start_cui, end_cui in zip(start_cuis, end_cuis):
                     if start_cui == end_cui:
                         continue
@@ -268,13 +271,21 @@ def main():
 
 if __name__ == '__main__':
     processor = QueryProcessor()
-    path = config.paths["cache"] / 'test1' / 'original'
+    'Bacteria, Anaerobic'
+
+    path = config.paths["cache"] / 'test1-4o' / 'original'
     question = MedicalQuestion.from_cache(path, "DOC for bacterial vaginosis in pregnancy")
     question.reasoning_chain = [
-        'Vaginal discharge + "fishy" odor -> suggests Bacterial Vaginosis -> Treatment with Metronidazole',
-        'Vaginal pH >4.5 + clue cells on microscopy -> suggests Bacterial Vaginosis -> Treatment with Clindamycin',
-        'Pregnant patient with vaginal itching + thin, grayish-white discharge -> suggests Bacterial Vaginosis -> Treatment with Rovamycin']
-    processor.process_chain_of_thoughts(question)
-    print(question.initial_causal_graph.paths)
-    print(question.causal_graph.paths)
-    print(question.knowledge_graph.paths)
+        "Bacterial vaginosis -> Common treatment -> Metronidazole",
+        "Metronidazole -> Antibacterial activity -> Effective against anaerobic bacteria -> Commonly used in pregnancy",
+        "Clindamycin -> Antibacterial activity -> Effective against anaerobic bacteria -> Alternative treatment for bacterial vaginosis",
+        "Erythromycin -> Antibacterial activity -> Limited effectiveness against anaerobes -> Less commonly used for bacterial vaginosis",
+        "Rovamycin -> Antibacterial activity -> Requires verification for effectiveness against bacterial vaginosis -> Conclusion unclear",
+        "Pregnancy -> Safety considerations -> Metronidazole safety profile -> Commonly prescribed",
+        "Pregnancy -> Safety considerations -> Clindamycin safety profile -> Alternative option",
+        "Pregnancy -> Safety considerations -> Erythromycin safety profile -> Requires verification for effectiveness in bacterial vaginosis",
+        "Pregnancy -> Safety considerations -> Rovamycin safety profile -> Requires verification -> Conclusion unclear"]
+    processor.process_chain_of_thoughts(question, 'both', True)
+    enhancer = GraphEnhancer()
+    enhancer.clear_paths(question)
+    print(question.enhanced_graph.paths)

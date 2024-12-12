@@ -195,7 +195,7 @@ def fiter_causal():
 
 def filter_correct():
     # 示例路径
-    path = 'test1'
+    path = 'test1-4'
     extract_correct_questions(path)
 
 

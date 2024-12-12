@@ -123,12 +123,6 @@ class GraphEnhancer:
         if len(question.initial_causal_graph.nodes) > 0:
             nodes_list.append(question.initial_causal_graph.nodes)
             relationships_list.append(question.initial_causal_graph.relationships)
-        if len(question.causal_graph.nodes) > 0:
-            nodes_list.append(question.causal_graph.nodes)
-            relationships_list.append(question.causal_graph.relationships)
-        if len(question.knowledge_graph.nodes) > 0:
-            nodes_list.append(question.knowledge_graph.nodes)
-            relationships_list.append(question.knowledge_graph.relationships)
 
         valid_paths = []
         valid_nodes = []
@@ -191,6 +185,7 @@ class GraphEnhancer:
 
         # 重排所有列表
         # 重排所有列表
+
         valid_paths = [valid_paths[i] for i in indices]
         valid_nodes = [valid_nodes[i] for i in indices]
         valid_relationships = [valid_relationships[i] for i in indices]
@@ -200,15 +195,12 @@ class GraphEnhancer:
         question.enhanced_graph.relationships = valid_relationships
         question.enhanced_graph.generate_paths()  # 自动生成paths
 
-        question.generate_paths()
+        question.enhanced_graph.paths.extend(question.causal_graph.paths)
+        question.enhanced_graph.paths.extend(question.knowledge_graph.paths)
+
         question.enhanced_graph.paths = self.merge_paths(question.enhanced_graph.paths)
 
         return valid_paths
-
-
-def merge_all_paths(paths: List[str]) -> List[str]:
-    merger = GraphEnhancer()
-    return merger.merge_paths(paths)
 
 
 # 测试

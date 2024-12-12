@@ -32,7 +32,7 @@ class QuestionProcessor:
             'enhanced': self.cache_root / self.cache_path / 'enhanced',
             #'knowledge_graph': self.cache_root / self.cache_path / 'knowledge_graph',
             #'causal_graph': self.cache_root / self.cache_path / 'causal_graph',
-            #'graph_enhanced': self.cache_root / self.cache_path / 'graph_enhanced',
+            'graph_enhanced': self.cache_root / self.cache_path / 'graph_enhanced',
             #'llm_enhanced': self.cache_root / self.cache_path / 'llm_enhanced'
         }
 
@@ -47,7 +47,6 @@ class QuestionProcessor:
 
     def complete_process_question(self, question: MedicalQuestion):
         # self.processor.generate_initial_causal_graph(question)
-        self.llm.generate_reasoning_chain(question)  # 初步检索-实体对指导检索和裁剪
         self.processor.process_chain_of_thoughts(question, 'both', True)
         self.enhancer.clear_paths(question)
         self.llm.enhance_information(question)  # 增强
@@ -57,7 +56,6 @@ class QuestionProcessor:
 
     def ablation_using_causal_only(self, question: MedicalQuestion):
         # self.processor.generate_initial_causal_graph(question)
-        self.llm.generate_reasoning_chain(question)  # 初步检索-实体对指导检索和裁剪
         self.processor.process_chain_of_thoughts(question, 'causal', True)
         self.enhancer.clear_paths(question)
         self.llm.enhance_information(question)  # 增强
@@ -67,7 +65,6 @@ class QuestionProcessor:
 
     def ablation_using_knowledge_only(self, question: MedicalQuestion):
         question.initial_causal_graph.paths = []
-        self.llm.generate_reasoning_chain(question)  # 初步检索-实体对指导检索和裁剪
         self.processor.process_chain_of_thoughts(question, 'knowledge', False)
         self.enhancer.clear_paths(question)
         self.llm.enhance_information(question)  # 增强
@@ -77,20 +74,18 @@ class QuestionProcessor:
 
     def ablation_not_using_causal_enhancement(self, question: MedicalQuestion):
         # self.processor.generate_initial_causal_graph(question)
-        self.llm.generate_reasoning_chain(question)  # 初步检索-实体对指导检索和裁剪
-        self.processor.process_chain_of_thoughts(question, 'causal', False)
+        self.processor.process_chain_of_thoughts(question, 'both', False)
         self.llm.enhance_information(question)  # 增强
         self.llm.answer_with_enhanced_information(question)
-        question.set_cache_paths(self.cache_paths['graph_enhanced'])
+        question.set_cache_paths(self.cache_paths['llm_enhanced'])
         question.to_cache()
 
     def ablation_not_using_llm_enhancement(self, question: MedicalQuestion):
         # self.processor.generate_initial_causal_graph(question)
-        self.llm.generate_reasoning_chain(question)  # 初步检索-实体对指导检索和裁剪
-        self.processor.process_chain_of_thoughts(question, 'causal', True)
+        self.processor.process_chain_of_thoughts(question, 'both', True)
         self.enhancer.clear_paths(question)
         self.llm.answer_with_cot(question)
-        question.set_cache_paths(self.cache_paths['llm_enhanced'])
+        question.set_cache_paths(self.cache_paths['graph_enhanced'])
         question.to_cache()
 
     def process_questions(self, questions: List[MedicalQuestion]) -> None:
@@ -111,10 +106,11 @@ class QuestionProcessor:
                 self.llm.direct_answer(question)
                 question.set_cache_paths(self.cache_paths['derelict'])
                 question.to_cache()
+                self.llm.generate_reasoning_chain(question)
                 self.complete_process_question(question)
                 #self.ablation_using_causal_only(question)
                 #self.ablation_not_using_causal_enhancement(question)
-                #self.ablation_not_using_llm_enhancement(question)
+                self.ablation_not_using_llm_enhancement(question)
                 #self.ablation_using_knowledge_only(question)
 
             except Exception as e:
@@ -295,7 +291,7 @@ def main():
     """主函数示例"""
     final1 = 'final_test1_set_3.5'
     final2 = 'final_test1_set_4'
-    test = 'test1-4o-mini'
+    test = 'test1-4-latest'
     correct = 'correct'
     cache_to_path = 'origin-test2'
     process_path = test
