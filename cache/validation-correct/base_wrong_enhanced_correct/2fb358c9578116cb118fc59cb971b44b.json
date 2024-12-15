@@ -1,0 +1,257 @@
+{
+  "question": "True statement regarding Pulmonary ventilation is",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "PaO2 is maximum at the apex.",
+    "opb": "V/Q is maximum at the base.",
+    "opc": "Ventilation per unit lung volume is maximum at the apex",
+    "opd": "Blood circulation is minimum at the base"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Pulmonary Ventilation",
+        "Cross Infection",
+        "Disease",
+        "Blood Circulation"
+      ],
+      [
+        "Pulmonary Ventilation",
+        "Dependence",
+        "Disease",
+        "Blood Circulation"
+      ],
+      [
+        "Pulmonary Ventilation",
+        "Cross Infection",
+        "Infection",
+        "Blood Circulation"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREDISPOSES",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Pulmonary Ventilation)-PREDISPOSES->(Cross Infection)-CAUSES->(Disease)-MANIFESTATION_OF->(Blood Circulation)",
+      "(Pulmonary Ventilation)-PREDISPOSES->(Dependence)-CAUSES->(Disease)-MANIFESTATION_OF->(Blood Circulation)",
+      "(Pulmonary Ventilation)-PREDISPOSES->(Cross Infection)-CAUSES->(Infection)-MANIFESTATION_OF->(Blood Circulation)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Perfusion (procedure)",
+        "Edema",
+        "Respiration"
+      ],
+      [
+        "Perfusion (procedure)",
+        "Cerebrovascular accident",
+        "Respiration"
+      ],
+      [
+        "Perfusion (procedure)",
+        "Obesity",
+        "Respiration"
+      ],
+      [
+        "Perfusion (procedure)",
+        "Necrosis",
+        "Blood Circulation"
+      ],
+      [
+        "Perfusion (procedure)",
+        "Peripheral Neuropathy",
+        "Blood Circulation"
+      ],
+      [
+        "Perfusion (procedure)",
+        "Complication",
+        "Blood Circulation"
+      ],
+      [
+        "Perfusion (procedure)",
+        "Necrosis",
+        "Blood Circulation"
+      ],
+      [
+        "Perfusion (procedure)",
+        "Peripheral Neuropathy",
+        "Blood Circulation"
+      ],
+      [
+        "Perfusion (procedure)",
+        "Complication",
+        "Blood Circulation"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Perfusion (procedure))-CAUSES->(Edema)-MANIFESTATION_OF->(Respiration)",
+      "(Perfusion (procedure))-CAUSES->(Cerebrovascular accident)-MANIFESTATION_OF->(Respiration)",
+      "(Perfusion (procedure))-TREATS->(Obesity)-MANIFESTATION_OF->(Respiration)",
+      "(Perfusion (procedure))-PREDISPOSES->(Necrosis)-MANIFESTATION_OF->(Blood Circulation)",
+      "(Perfusion (procedure))-TREATS->(Peripheral Neuropathy)-MANIFESTATION_OF->(Blood Circulation)",
+      "(Perfusion (procedure))-TREATS->(Complication)-MANIFESTATION_OF->(Blood Circulation)",
+      "(Perfusion (procedure))-PREDISPOSES->(Necrosis)-MANIFESTATION_OF->(Blood Circulation)",
+      "(Perfusion (procedure))-TREATS->(Peripheral Neuropathy)-MANIFESTATION_OF->(Blood Circulation)",
+      "(Perfusion (procedure))-TREATS->(Complication)-MANIFESTATION_OF->(Blood Circulation)"
+    ]
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Lung",
+        "Symptoms",
+        "Respiration"
+      ],
+      [
+        "Lung",
+        "Pharmaceutical Preparations",
+        "Respiration"
+      ],
+      [
+        "Lung",
+        "Disease",
+        "Respiration"
+      ],
+      [
+        "Blood Circulation",
+        "Gingiva",
+        "Perfusion (procedure)"
+      ]
+    ],
+    "relationships": [
+      [
+        "LOCATION_OF",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "CAUSES"
+      ],
+      [
+        "LOCATION_OF",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "PROCESS_OF",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Lung)-LOCATION_OF->(Symptoms)-MANIFESTATION_OF->(Respiration)",
+      "(Lung)-LOCATION_OF->(Pharmaceutical Preparations)-CAUSES->(Respiration)",
+      "(Lung)-LOCATION_OF->(Disease)-MANIFESTATION_OF->(Respiration)",
+      "(Blood Circulation)-PROCESS_OF->(Gingiva)-LOCATION_OF->(Perfusion (procedure))"
+    ]
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Perfusion (procedure))-CAUSES->(Cerebrovascular accident and Edema)-MANIFESTATION_OF->(Respiration)",
+      "(Perfusion (procedure))-TREATS->(Obesity)-MANIFESTATION_OF->(Respiration)",
+      "(Perfusion (procedure))-PREDISPOSES->(Necrosis)-MANIFESTATION_OF->(Blood Circulation)",
+      "(Perfusion (procedure))-TREATS->(Complication and Peripheral Neuropathy)-MANIFESTATION_OF->(Blood Circulation)",
+      "(Lung)-LOCATION_OF->(Disease and Symptoms)-MANIFESTATION_OF->(Respiration)",
+      "(Lung)-LOCATION_OF->(Pharmaceutical Preparations)-CAUSES->(Respiration)",
+      "(Blood Circulation)-PROCESS_OF->(Gingiva)-LOCATION_OF->(Perfusion (procedure))"
+    ]
+  },
+  "reasoning_chain": [
+    "\"PaO2 is highest at the apex\" -> \"Apex has lower ventilation\" -> \"V/Q ratio is higher at the apex\" -> \"V/Q is lower at the base\" -> 80%",
+    "\"V/Q ratio is highest at the apex\" -> \"Base has higher perfusion\" -> \"V/Q is lower at the base\" -> \"V/Q is maximum at the apex\" -> 85%",
+    "\"Ventilation per unit lung volume is highest at the apex\" -> \"Apex has lower perfusion\" -> \"Higher V/Q ratio at the apex\" -> \"Ventilation per unit lung volume is not maximum at the base\" -> 75%",
+    "\"Blood circulation is highest at the base\" -> \"Base has higher perfusion\" -> \"Blood circulation is minimum at the apex\" -> \"Unclear if blood circulation is minimum at the base\" -> 60%"
+  ],
+  "enhanced_information": "In the context of pulmonary ventilation, the true statement is that 'PaO2 is maximum at the apex.' This is consistent with standard medical knowledge, which indicates that the apex of the lungs has a higher V/Q ratio due to lower perfusion compared to the base. Consequently, while ventilation is not maximized at the apex, the V/Q ratio is indeed higher there, leading to higher oxygen partial pressure (PaO2). Conversely, the base of the lungs has higher perfusion and lower V/Q ratios, which contradicts the claim that V/Q is maximum at the base. Therefore, the most accurate conclusion is that PaO2 is highest at the apex, aligning with established physiological principles.",
+  "analysis": "In the lungs, ventilation and perfusion are not uniform. The apex of the lungs has a higher ventilation-perfusion (V/Q) ratio due to lower blood flow (perfusion) compared to the base. This results in a higher partial pressure of oxygen (PaO2) at the apex. Therefore, the statement 'PaO2 is maximum at the apex' is true. Conversely, the base of the lungs has higher perfusion and lower V/Q ratios, which means that the statement 'V/Q is maximum at the base' is false. Additionally, while ventilation per unit lung volume is not maximum at the apex, it is actually lower due to the greater volume of lung tissue at the base being better ventilated. Lastly, blood circulation is not minimum at the base; it is actually greater there due to higher perfusion. Thus, the only true statement is that 'PaO2 is maximum at the apex.'",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      0,
+      2
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      0.0,
+      100.0
+    ],
+    "total_successes": 2
+  }
+}

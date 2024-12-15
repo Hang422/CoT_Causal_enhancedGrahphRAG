@@ -1,0 +1,293 @@
+{
+  "question": "A 52 year–old postmenopausal patient has evidence of low bone mineral density. She and her physician are considering therapy with raloxifene or a combination of conjugated estrogens and medroxyprogesterone acetate. Which of the following patient characteristics is MOST likely to lead them to select raloxifene?",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Previous hysterectomy",
+    "opb": "Recurrent vaginitis",
+    "opc": "Strong family history of breast cancer",
+    "opd": "Troublesome hot flushes"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Estrogens",
+        "Infection",
+        "recurrent vaginitis"
+      ],
+      [
+        "Estrogens",
+        "Hot flushes"
+      ],
+      [
+        "Medroxyprogesterone 17-Acetate",
+        "Infection",
+        "recurrent vaginitis"
+      ],
+      [
+        "Medroxyprogesterone 17-Acetate",
+        "Hot flushes"
+      ],
+      [
+        "Raloxifene",
+        "Disease",
+        "Infection",
+        "recurrent vaginitis"
+      ],
+      [
+        "Raloxifene",
+        "Disease",
+        "Immediate hypersensitivity",
+        "recurrent vaginitis"
+      ],
+      [
+        "Raloxifene",
+        "Obesity",
+        "Infection",
+        "recurrent vaginitis"
+      ],
+      [
+        "Raloxifene",
+        "Hot flushes"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Estrogens)-CAUSES->(Infection)-CAUSES->(recurrent vaginitis)",
+      "(Estrogens)-CAUSES->(Hot flushes)",
+      "(Medroxyprogesterone 17-Acetate)-PREDISPOSES->(Infection)-CAUSES->(recurrent vaginitis)",
+      "(Medroxyprogesterone 17-Acetate)-TREATS->(Hot flushes)",
+      "(Raloxifene)-TREATS->(Disease)-CAUSES->(Infection)-CAUSES->(recurrent vaginitis)",
+      "(Raloxifene)-TREATS->(Disease)-CAUSES->(Immediate hypersensitivity)-CAUSES->(recurrent vaginitis)",
+      "(Raloxifene)-TREATS->(Obesity)-CAUSES->(Infection)-CAUSES->(recurrent vaginitis)",
+      "(Raloxifene)-TREATS->(Hot flushes)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Hysterectomy",
+        "Hypoxia",
+        "Genes",
+        "Human tissue",
+        "Progestogen hormone therapy"
+      ],
+      [
+        "Hysterectomy",
+        "Thromboembolism",
+        "Genes",
+        "Human tissue",
+        "Progestogen hormone therapy"
+      ],
+      [
+        "Hysterectomy",
+        "Atherosclerosis",
+        "Genes",
+        "Human tissue",
+        "Progestogen hormone therapy"
+      ],
+      [
+        "Oestrogen therapy",
+        "Disease",
+        "Virus",
+        "Pharmaceutical Preparations",
+        "Raloxifene"
+      ],
+      [
+        "Oestrogen therapy",
+        "Disease",
+        "Virus",
+        "Pharmaceutical Preparations",
+        "Raloxifene"
+      ],
+      [
+        "Oestrogen therapy",
+        "Disease",
+        "Virus",
+        "Pharmaceutical Preparations",
+        "Raloxifene"
+      ],
+      [
+        "Oestrogen therapy",
+        "Disease",
+        "Virus",
+        "Pharmaceutical Preparations",
+        "Raloxifene"
+      ],
+      [
+        "Oestrogen therapy",
+        "Disease",
+        "Virus",
+        "Pharmaceutical Preparations",
+        "Raloxifene"
+      ],
+      [
+        "Oestrogen therapy",
+        "Disease",
+        "Virus",
+        "Pharmaceutical Preparations",
+        "Raloxifene"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "PREVENTS",
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "TREATS",
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREVENTS",
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "CAUSES",
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREVENTS",
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "CAUSES",
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Hysterectomy)-CAUSES->(Hypoxia)-ASSOCIATED_WITH->(Genes)-PART_OF->(Human tissue)-LOCATION_OF->(Progestogen hormone therapy)",
+      "(Hysterectomy)-PREVENTS->(Thromboembolism)-ASSOCIATED_WITH->(Genes)-PART_OF->(Human tissue)-LOCATION_OF->(Progestogen hormone therapy)",
+      "(Hysterectomy)-PREDISPOSES->(Atherosclerosis)-ASSOCIATED_WITH->(Genes)-PART_OF->(Human tissue)-LOCATION_OF->(Progestogen hormone therapy)",
+      "(Oestrogen therapy)-TREATS->(Disease)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Pharmaceutical Preparations)-INTERACTS_WITH->(Raloxifene)",
+      "(Oestrogen therapy)-PREVENTS->(Disease)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Pharmaceutical Preparations)-INTERACTS_WITH->(Raloxifene)",
+      "(Oestrogen therapy)-CAUSES->(Disease)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Pharmaceutical Preparations)-INTERACTS_WITH->(Raloxifene)",
+      "(Oestrogen therapy)-TREATS->(Disease)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Pharmaceutical Preparations)-INTERACTS_WITH->(Raloxifene)",
+      "(Oestrogen therapy)-PREVENTS->(Disease)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Pharmaceutical Preparations)-INTERACTS_WITH->(Raloxifene)",
+      "(Oestrogen therapy)-CAUSES->(Disease)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Pharmaceutical Preparations)-INTERACTS_WITH->(Raloxifene)"
+    ]
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Hysterectomy)-CAUSES->(Hypoxia)-ASSOCIATED_WITH->(Genes)-PART_OF->(Human tissue)-LOCATION_OF->(Progestogen hormone therapy)",
+      "(Hysterectomy)-PREVENTS->(Thromboembolism)-ASSOCIATED_WITH->(Genes)-PART_OF->(Human tissue)-LOCATION_OF->(Progestogen hormone therapy)",
+      "(Hysterectomy)-PREDISPOSES->(Atherosclerosis)-ASSOCIATED_WITH->(Genes)-PART_OF->(Human tissue)-LOCATION_OF->(Progestogen hormone therapy)",
+      "(Oestrogen therapy)-TREATS->(Disease)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Pharmaceutical Preparations)-INTERACTS_WITH->(Raloxifene)",
+      "(Oestrogen therapy)-PREVENTS->(Disease)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Pharmaceutical Preparations)-INTERACTS_WITH->(Raloxifene)",
+      "(Oestrogen therapy)-CAUSES->(Disease)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Pharmaceutical Preparations)-INTERACTS_WITH->(Raloxifene)"
+    ]
+  },
+  "reasoning_chain": [
+    "Previous hysterectomy -> no need for progestin therapy -> increased suitability for raloxifene -> 85%",
+    "Recurrent vaginitis -> potential contraindication for estrogen therapy -> increased consideration for raloxifene -> 70%",
+    "Strong family history of breast cancer -> increased risk of breast cancer with estrogen therapy -> preference for raloxifene due to lower breast cancer risk -> 90%",
+    "Troublesome hot flushes -> indication for estrogen therapy -> decreased likelihood of selecting raloxifene -> 60%"
+  ],
+  "enhanced_information": "The most likely patient characteristic leading to the selection of raloxifene over a combination of conjugated estrogens and medroxyprogesterone acetate is a strong family history of breast cancer (option c). This is supported by the reasoning chain indicating that a family history of breast cancer increases the risk associated with estrogen therapy, making raloxifene, which has a lower risk of breast cancer, a more favorable option. The reasoning chain for this characteristic is rated high due to its strong alignment with medical knowledge regarding the safety profile of raloxifene in patients with a history of breast cancer. Other options, such as previous hysterectomy, while relevant, do not provide as compelling a reason for choosing raloxifene as they primarily address the need for progestin therapy rather than the cancer risk. Recurrent vaginitis and troublesome hot flushes also suggest considerations for therapy choice but are less decisive compared to the significant implications of a family history of breast cancer.",
+  "analysis": "The core medical issue is the selection of osteoporosis therapy for a postmenopausal patient with low bone mineral density. Raloxifene is a selective estrogen receptor modulator (SERM) that is often preferred in patients with a history of breast cancer due to its lower risk of breast cancer compared to estrogen therapy. A strong family history of breast cancer (option c) significantly increases the risk associated with estrogen therapy, making raloxifene a safer choice. Other options, such as previous hysterectomy (option a), recurrent vaginitis (option b), and troublesome hot flushes (option d), do not present as compelling reasons for choosing raloxifene over estrogen therapy, as they do not directly address the cancer risk. Therefore, the most likely patient characteristic leading to the selection of raloxifene is a strong family history of breast cancer.",
+  "answer": "opc",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      1,
+      1,
+      0
+    ],
+    "coverage_rates": [
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      0.0
+    ],
+    "total_successes": 3
+  }
+}

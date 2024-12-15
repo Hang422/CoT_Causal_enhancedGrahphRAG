@@ -1,0 +1,142 @@
+{
+  "question": "A 52 year–old postmenopausal patient has evidence of low bone mineral density. She and her physician are considering therapy with raloxifene or a combination of conjugated estrogens and medroxyprogesterone acetate. Which of the following patient characteristics is MOST likely to lead them to select raloxifene?",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Previous hysterectomy",
+    "opb": "Recurrent vaginitis",
+    "opc": "Strong family history of breast cancer",
+    "opd": "Troublesome hot flushes"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Estrogens",
+        "Infection",
+        "recurrent vaginitis"
+      ],
+      [
+        "Estrogens",
+        "Hot flushes"
+      ],
+      [
+        "Medroxyprogesterone 17-Acetate",
+        "Infection",
+        "recurrent vaginitis"
+      ],
+      [
+        "Medroxyprogesterone 17-Acetate",
+        "Hot flushes"
+      ],
+      [
+        "Raloxifene",
+        "Disease",
+        "Infection",
+        "recurrent vaginitis"
+      ],
+      [
+        "Raloxifene",
+        "Disease",
+        "Immediate hypersensitivity",
+        "recurrent vaginitis"
+      ],
+      [
+        "Raloxifene",
+        "Obesity",
+        "Infection",
+        "recurrent vaginitis"
+      ],
+      [
+        "Raloxifene",
+        "Hot flushes"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Estrogens)-CAUSES->(Infection)-CAUSES->(recurrent vaginitis)",
+      "(Estrogens)-CAUSES->(Hot flushes)",
+      "(Medroxyprogesterone 17-Acetate)-PREDISPOSES->(Infection)-CAUSES->(recurrent vaginitis)",
+      "(Medroxyprogesterone 17-Acetate)-TREATS->(Hot flushes)",
+      "(Raloxifene)-TREATS->(Disease)-CAUSES->(Infection)-CAUSES->(recurrent vaginitis)",
+      "(Raloxifene)-TREATS->(Disease)-CAUSES->(Immediate hypersensitivity)-CAUSES->(recurrent vaginitis)",
+      "(Raloxifene)-TREATS->(Obesity)-CAUSES->(Infection)-CAUSES->(recurrent vaginitis)",
+      "(Raloxifene)-TREATS->(Hot flushes)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "reasoning_chain": [],
+  "enhanced_information": "",
+  "analysis": null,
+  "answer": null,
+  "confidence": null,
+  "chain_coverage": {
+    "success_counts": [],
+    "coverage_rates": [],
+    "total_successes": 0
+  }
+}

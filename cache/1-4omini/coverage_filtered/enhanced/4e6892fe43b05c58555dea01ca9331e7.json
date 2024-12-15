@@ -1,0 +1,291 @@
+{
+  "question": "Which of the following antiepileptic does not cause OCP failure",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Phenytoin",
+    "opb": "Valproate",
+    "opc": "Carbamazepine",
+    "opd": "Phenobarbitone"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Carbamazepine",
+        "Symptoms",
+        "Ocular cicatricial pemphigoid"
+      ],
+      [
+        "Carbamazepine",
+        "Stevens-Johnson Syndrome",
+        "Ocular cicatricial pemphigoid"
+      ],
+      [
+        "Valproate",
+        "Symptoms",
+        "Ocular cicatricial pemphigoid"
+      ],
+      [
+        "Valproate",
+        "Stevens-Johnson Syndrome",
+        "Ocular cicatricial pemphigoid"
+      ],
+      [
+        "Phenobarbital",
+        "Symptoms",
+        "Ocular cicatricial pemphigoid"
+      ],
+      [
+        "Phenytoin",
+        "Symptoms",
+        "Ocular cicatricial pemphigoid"
+      ],
+      [
+        "Phenytoin",
+        "Stevens-Johnson Syndrome",
+        "Ocular cicatricial pemphigoid"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Carbamazepine)-CAUSES->(Symptoms)-CAUSES->(Ocular cicatricial pemphigoid)",
+      "(Carbamazepine)-CAUSES->(Stevens-Johnson Syndrome)-CAUSES->(Ocular cicatricial pemphigoid)",
+      "(Valproate)-CAUSES->(Symptoms)-CAUSES->(Ocular cicatricial pemphigoid)",
+      "(Valproate)-CAUSES->(Stevens-Johnson Syndrome)-CAUSES->(Ocular cicatricial pemphigoid)",
+      "(Phenobarbital)-CAUSES->(Symptoms)-CAUSES->(Ocular cicatricial pemphigoid)",
+      "(Phenytoin)-CAUSES->(Symptoms)-CAUSES->(Ocular cicatricial pemphigoid)",
+      "(Phenytoin)-TREATS->(Stevens-Johnson Syndrome)-CAUSES->(Ocular cicatricial pemphigoid)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Phenytoin",
+        "Disease",
+        "Hypertension, Portal",
+        "Measurement of liver enzyme"
+      ],
+      [
+        "Phenytoin",
+        "Obesity",
+        "Hypertension, Portal",
+        "Measurement of liver enzyme"
+      ],
+      [
+        "Phenytoin",
+        "Hypertensive disease",
+        "Hypertension, Portal",
+        "Measurement of liver enzyme"
+      ],
+      [
+        "Valproate",
+        "Disease",
+        "Hypertension, Portal",
+        "Measurement of liver enzyme"
+      ],
+      [
+        "Valproate",
+        "Obesity",
+        "Hypertension, Portal",
+        "Measurement of liver enzyme"
+      ],
+      [
+        "Carbamazepine",
+        "Disease",
+        "Hypertension, Portal",
+        "Measurement of liver enzyme"
+      ],
+      [
+        "Carbamazepine",
+        "Adverse effects",
+        "Hypertension, Portal",
+        "Measurement of liver enzyme"
+      ],
+      [
+        "Carbamazepine",
+        "Obesity",
+        "Hypertension, Portal",
+        "Measurement of liver enzyme"
+      ],
+      [
+        "Phenobarbital",
+        "Disease",
+        "Hypertension, Portal",
+        "Measurement of liver enzyme"
+      ],
+      [
+        "Phenobarbital",
+        "Obesity",
+        "Hypertension, Portal",
+        "Measurement of liver enzyme"
+      ],
+      [
+        "Phenobarbital",
+        "Infection",
+        "Hypertension, Portal",
+        "Measurement of liver enzyme"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "COMPLICATES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Phenytoin)-CAUSES->(Disease)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)",
+      "(Phenytoin)-TREATS->(Obesity)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)",
+      "(Phenytoin)-TREATS->(Hypertensive disease)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)",
+      "(Valproate)-CAUSES->(Disease)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)",
+      "(Valproate)-CAUSES->(Obesity)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)",
+      "(Carbamazepine)-CAUSES->(Disease)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)",
+      "(Carbamazepine)-CAUSES->(Adverse effects)-COMPLICATES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)",
+      "(Carbamazepine)-TREATS->(Obesity)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)",
+      "(Phenobarbital)-CAUSES->(Disease)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)",
+      "(Phenobarbital)-TREATS->(Obesity)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)",
+      "(Phenobarbital)-TREATS->(Infection)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)"
+    ]
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Phenytoin)-CAUSES->(Disease)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)",
+      "(Phenytoin)-TREATS->(Hypertensive disease and Obesity)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)",
+      "(Valproate)-CAUSES->(Disease and Obesity)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)",
+      "(Carbamazepine)-CAUSES->(Disease)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)",
+      "(Carbamazepine)-CAUSES->(Adverse effects)-COMPLICATES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)",
+      "(Carbamazepine)-TREATS->(Obesity)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)",
+      "(Phenobarbital)-CAUSES->(Disease)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)",
+      "(Phenobarbital)-TREATS->(Infection and Obesity)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)"
+    ]
+  },
+  "reasoning_chain": [
+    "Phenytoin -> induces hepatic enzymes -> increased metabolism of contraceptives -> 70%",
+    "Valproate -> does not induce hepatic enzymes -> stable contraceptive levels -> 85%",
+    "Carbamazepine -> induces hepatic enzymes -> increased metabolism of contraceptives -> 70%",
+    "Phenobarbitone -> induces hepatic enzymes -> increased metabolism of contraceptives -> 70%"
+  ],
+  "enhanced_information": "Among the antiepileptic drugs listed, Valproate is the only one that does not cause oral contraceptive pill (OCP) failure. The reasoning chains indicate that Phenytoin, Carbamazepine, and Phenobarbital all induce hepatic enzymes, leading to increased metabolism of contraceptives, which can result in OCP failure (approximately 70% risk). In contrast, Valproate does not induce hepatic enzymes, maintaining stable contraceptive levels and thus presenting a lower risk of OCP failure (approximately 85% effectiveness). This conclusion is supported by both pharmacological principles and the absence of evidence suggesting Valproate affects contraceptive efficacy. Therefore, Valproate is the safest choice regarding OCP effectiveness among the options provided.",
+  "analysis": "The core medical issue is the interaction between antiepileptic drugs and oral contraceptive pills (OCPs). Phenytoin, Carbamazepine, and Phenobarbital are known enzyme inducers, which can increase the metabolism of OCPs, leading to a higher risk of contraceptive failure. In contrast, Valproate does not induce hepatic enzymes and therefore does not significantly affect the efficacy of OCPs. This is supported by pharmacological principles indicating that enzyme inducers can lower the effectiveness of hormonal contraceptives. Thus, Valproate is the only antiepileptic drug listed that does not cause OCP failure.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      25.0,
+      25.0,
+      25.0,
+      25.0
+    ],
+    "total_successes": 4
+  }
+}

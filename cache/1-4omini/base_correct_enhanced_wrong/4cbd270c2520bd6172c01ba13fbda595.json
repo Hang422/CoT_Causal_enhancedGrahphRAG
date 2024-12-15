@@ -1,0 +1,239 @@
+{
+  "question": "Drug not useful in hypertensive emergency is:",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "IV hydralazine",
+    "opb": "Indapamide",
+    "opc": "Sublingual nifedipine",
+    "opd": "Sodium nitroprusside"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Hydralazine",
+        "Hypertensive emergency"
+      ],
+      [
+        "Sodium Nitroprusside",
+        "Hypertensive emergency"
+      ],
+      [
+        "Indapamide",
+        "Hypertensive disease",
+        "Hypertensive emergency"
+      ],
+      [
+        "Indapamide",
+        "Hypercalcemia",
+        "Hypertensive emergency"
+      ],
+      [
+        "Indapamide",
+        "Essential Hypertension",
+        "Hypertensive emergency"
+      ],
+      [
+        "Nifedipine",
+        "Hypertensive emergency"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "COMPLICATES"
+      ],
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Hydralazine)-TREATS->(Hypertensive emergency)",
+      "(Sodium Nitroprusside)-TREATS->(Hypertensive emergency)",
+      "(Indapamide)-TREATS->(Hypertensive disease)-CAUSES->(Hypertensive emergency)",
+      "(Indapamide)-TREATS->(Hypercalcemia)-CAUSES->(Hypertensive emergency)",
+      "(Indapamide)-TREATS->(Essential Hypertension)-COMPLICATES->(Hypertensive emergency)",
+      "(Nifedipine)-TREATS->(Hypertensive emergency)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Hydralazine",
+        "Adverse effects",
+        "Vasodilation"
+      ],
+      [
+        "Hydralazine",
+        "Hypertensive disease",
+        "Vasodilation"
+      ],
+      [
+        "Hydralazine",
+        "Vascular Diseases",
+        "Vasodilation"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Hydralazine)-CAUSES->(Adverse effects)-MANIFESTATION_OF->(Vasodilation)",
+      "(Hydralazine)-TREATS->(Hypertensive disease)-MANIFESTATION_OF->(Vasodilation)",
+      "(Hydralazine)-TREATS->(Vascular Diseases)-MANIFESTATION_OF->(Vasodilation)"
+    ]
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Indapamide",
+        "Pharmaceutical Preparations",
+        "Diuretics",
+        "Thiazides"
+      ],
+      [
+        "Indapamide",
+        "Excretory function",
+        "Thiazide Diuretics",
+        "Thiazides"
+      ],
+      [
+        "Indapamide",
+        "Pharmaceutical Preparations",
+        "Thiazide Diuretics",
+        "Thiazides"
+      ],
+      [
+        "Sodium Nitroprusside",
+        "Vasodilator Agents"
+      ]
+    ],
+    "relationships": [
+      [
+        "ISA",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA"
+      ]
+    ],
+    "paths": [
+      "(Indapamide)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Diuretics)-INTERACTS_WITH->(Thiazides)",
+      "(Indapamide)-CAUSES->(Excretory function)-ASSOCIATED_WITH->(Thiazide Diuretics)-INTERACTS_WITH->(Thiazides)",
+      "(Indapamide)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Thiazide Diuretics)-INTERACTS_WITH->(Thiazides)",
+      "(Sodium Nitroprusside)-ISA->(Vasodilator Agents)"
+    ]
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Nifedipine",
+        "Hypertensive emergency"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Nifedipine)-TREATS->(Hypertensive emergency)",
+      "(Hydralazine)-CAUSES->(Adverse effects)-MANIFESTATION_OF->(Vasodilation)",
+      "(Hydralazine)-TREATS->(Hypertensive disease and Vascular Diseases)-MANIFESTATION_OF->(Vasodilation)",
+      "(Indapamide)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Diuretics and Thiazide Diuretics)-INTERACTS_WITH->(Thiazides)",
+      "(Indapamide)-CAUSES->(Excretory function)-ASSOCIATED_WITH->(Thiazide Diuretics)-INTERACTS_WITH->(Thiazides)",
+      "(Sodium Nitroprusside)-ISA->(Vasodilator Agents)"
+    ]
+  },
+  "reasoning_chain": [
+    "IV hydralazine -> causes vasodilation -> potential for rapid blood pressure drop -> 80%",
+    "Indapamide -> thiazide diuretic effect -> reduces blood volume -> 70%",
+    "Sublingual nifedipine -> rapid absorption -> quick reduction in blood pressure -> 85%",
+    "Sodium nitroprusside -> potent vasodilator -> immediate blood pressure control -> 90%",
+    "Indapamide -> uncertain efficacy in acute hypertensive crisis -> not typically used in emergencies -> 60%",
+    "Sublingual nifedipine -> risk of reflex tachycardia -> may worsen hypertensive emergency -> 70%",
+    "IV hydralazine -> effective in hypertensive emergencies -> commonly used in practice -> 80%",
+    "Sodium nitroprusside -> requires careful monitoring -> potential for cyanide toxicity -> 75%"
+  ],
+  "enhanced_information": "In evaluating the options for drugs not useful in hypertensive emergencies, sublingual nifedipine emerges as the least appropriate choice. While it can cause rapid blood pressure reduction, it carries a significant risk of reflex tachycardia, which may exacerbate the hypertensive crisis. This is supported by reasoning chains indicating a 70% risk of worsening the condition. In contrast, IV hydralazine and sodium nitroprusside are effective in managing hypertensive emergencies, with strong evidence supporting their use (80% and 90% effectiveness, respectively). Indapamide, while a thiazide diuretic, is not typically used in acute settings due to its uncertain efficacy in emergencies (60% effectiveness). Therefore, the most critical insight is that sublingual nifedipine is not recommended due to its potential to worsen the situation, making it the drug least useful in hypertensive emergencies.",
+  "analysis": "In evaluating the options for drugs not useful in hypertensive emergencies, we consider the pharmacological profiles and clinical guidelines for each drug. IV hydralazine and sodium nitroprusside are both effective agents for managing hypertensive emergencies, as they provide rapid and controlled blood pressure reduction. Indapamide, a thiazide diuretic, is not typically used in acute settings due to its slower onset of action and uncertain efficacy in emergencies. However, sublingual nifedipine is particularly problematic; while it can lower blood pressure quickly, it is associated with a high risk of reflex tachycardia, which can worsen the hypertensive crisis. This aligns with the enhanced information indicating a significant risk of exacerbating the condition. Therefore, sublingual nifedipine is the least appropriate choice for managing hypertensive emergencies.",
+  "answer": "opc",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      33.33333333333333,
+      33.33333333333333,
+      0.0,
+      33.33333333333333,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 3
+  }
+}

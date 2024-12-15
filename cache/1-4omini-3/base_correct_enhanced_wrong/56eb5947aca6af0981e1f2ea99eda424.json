@@ -1,0 +1,170 @@
+{
+  "question": "A 2-year-old intellectutually disabled child is having blue eyes, blonde hair and fair skin. He also have a peculiar body odour. What is the diagnosis?",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "MSUD",
+    "opb": "Isovaleric aciduria",
+    "opc": "Phenyl ketonuria",
+    "opd": "Canavan's disease"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Diagnosis",
+        "Disease",
+        "Degenerative abnormality",
+        "Canavan Disease"
+      ],
+      [
+        "Diagnosis",
+        "Disease",
+        "Functional disorder",
+        "Canavan Disease"
+      ],
+      [
+        "Diagnosis",
+        "Obesity",
+        "Degenerative abnormality",
+        "Canavan Disease"
+      ],
+      [
+        "Diagnosis",
+        "Disease",
+        "Maple Syrup Urine Disease"
+      ],
+      [
+        "Diagnosis",
+        "Virus Diseases",
+        "Maple Syrup Urine Disease"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Diagnosis)-CAUSES->(Disease)-CAUSES->(Degenerative abnormality)-CAUSES->(Canavan Disease)",
+      "(Diagnosis)-CAUSES->(Disease)-CAUSES->(Functional disorder)-CAUSES->(Canavan Disease)",
+      "(Diagnosis)-CAUSES->(Obesity)-CAUSES->(Degenerative abnormality)-CAUSES->(Canavan Disease)",
+      "(Diagnosis)-CAUSES->(Disease)-CAUSES->(Maple Syrup Urine Disease)",
+      "(Diagnosis)-CAUSES->(Virus Diseases)-CAUSES->(Maple Syrup Urine Disease)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Canavan Disease",
+        "Disease",
+        "Neurologic Symptoms"
+      ],
+      [
+        "Canavan Disease",
+        "Leucodystrophy NOS",
+        "Neurologic Symptoms"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Canavan Disease)-CAUSES->(Disease)-CAUSES->(Neurologic Symptoms)",
+      "(Canavan Disease)-CAUSES->(Leucodystrophy NOS)-CAUSES->(Neurologic Symptoms)"
+    ]
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Canavan Disease)-CAUSES->(Disease and Leucodystrophy NOS)-CAUSES->(Neurologic Symptoms)"
+    ]
+  },
+  "reasoning_chain": [
+    "Intellectually disabled child -> Possible metabolic disorder -> Consideration of specific conditions -> 80%",
+    "Blue eyes, blonde hair, fair skin -> Possible genetic syndrome -> Evaluation of associated symptoms -> 70%",
+    "Peculiar body odour -> Suggestive of specific metabolic conditions -> Narrowing down to known disorders -> 75%",
+    "MSUD -> Characteristic symptoms include neurological issues -> Uncertain correlation with body odour -> 60%",
+    "Isovaleric aciduria -> Known for body odour of sweaty feet -> Matches with peculiar body odour -> 85%",
+    "Phenyl ketonuria -> Associated with intellectual disability -> Uncertain if body odour is a primary symptom -> 65%",
+    "Canavan's disease -> Primarily neurological symptoms -> Uncertain correlation with body odour and physical traits -> 50%",
+    "Isovaleric aciduria is most consistent with symptoms -> Diagnosis likely -> 90%"
+  ],
+  "enhanced_information": "The clinical presentation of a 2-year-old intellectually disabled child with blue eyes, blonde hair, fair skin, and a peculiar body odour strongly suggests Isovaleric aciduria. This condition is characterized by a distinctive body odour reminiscent of sweaty feet, which aligns with the child's symptoms. While Phenylketonuria (PKU) is associated with intellectual disability, it does not typically present with a specific body odour, making it less likely. Maple Syrup Urine Disease (MSUD) and Canavan's disease also do not correlate well with the peculiar body odour or the physical traits described. Therefore, Isovaleric aciduria is the most consistent diagnosis based on the strongest reasoning chain and supporting evidence, with a confidence level of 90%.",
+  "analysis": "The clinical presentation of a 2-year-old child with intellectual disability, blue eyes, blonde hair, fair skin, and a peculiar body odour suggests a metabolic disorder. Isovaleric aciduria is characterized by a distinctive body odour that resembles sweaty feet, which aligns with the child's symptoms. While Phenylketonuria (PKU) can lead to intellectual disability, it does not typically present with a specific body odour. Maple Syrup Urine Disease (MSUD) and Canavan's disease do not correlate with the described physical traits or the peculiar body odour. Therefore, based on the combination of the child's symptoms and the characteristic body odour, Isovaleric aciduria is the most likely diagnosis.",
+  "answer": "opb",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      100.0,
+      0.0
+    ],
+    "total_successes": 1
+  }
+}

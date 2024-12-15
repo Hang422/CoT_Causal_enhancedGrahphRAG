@@ -1,0 +1,199 @@
+{
+  "question": "Which of the following drugs is associated with untoward side effect of renal tubular damage",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Cisplatin",
+    "opb": "Streptozocin",
+    "opc": "Methysergide",
+    "opd": "Cycloohosphamide"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Cisplatin",
+        "Adverse effects"
+      ],
+      [
+        "Methysergide",
+        "Syndrome",
+        "Adverse effects"
+      ],
+      [
+        "Methysergide",
+        "Myocardial Infarction",
+        "Adverse effects"
+      ],
+      [
+        "Methysergide",
+        "Anorexia",
+        "Adverse effects"
+      ],
+      [
+        "Streptozocin",
+        "Diabetes",
+        "Adverse effects"
+      ],
+      [
+        "Streptozocin",
+        "Hyperglycemia",
+        "Adverse effects"
+      ],
+      [
+        "Streptozocin",
+        "Insulin Resistance",
+        "Adverse effects"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Cisplatin)-CAUSES->(Adverse effects)",
+      "(Methysergide)-CAUSES->(Syndrome)-CAUSES->(Adverse effects)",
+      "(Methysergide)-TREATS->(Myocardial Infarction)-CAUSES->(Adverse effects)",
+      "(Methysergide)-PREVENTS->(Anorexia)-CAUSES->(Adverse effects)",
+      "(Streptozocin)-CAUSES->(Diabetes)-CAUSES->(Adverse effects)",
+      "(Streptozocin)-CAUSES->(Hyperglycemia)-CAUSES->(Adverse effects)",
+      "(Streptozocin)-CAUSES->(Insulin Resistance)-MANIFESTATION_OF->(Adverse effects)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Methysergide",
+        "Migraine Disorders"
+      ],
+      [
+        "Migraine Disorders",
+        "Disease",
+        "Toxic nephropathy"
+      ],
+      [
+        "Migraine Disorders",
+        "Renal impairment",
+        "Toxic nephropathy"
+      ],
+      [
+        "Migraine Disorders",
+        "Functional disorder",
+        "Toxic nephropathy"
+      ],
+      [
+        "Cyclophosphamide",
+        "Hemorrhagic cystitis"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "PREDISPOSES"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Methysergide)-TREATS->(Migraine Disorders)",
+      "(Migraine Disorders)-CAUSES->(Disease)-CAUSES->(Toxic nephropathy)",
+      "(Migraine Disorders)-CAUSES->(Renal impairment)-CAUSES->(Toxic nephropathy)",
+      "(Migraine Disorders)-CAUSES->(Functional disorder)-PREDISPOSES->(Toxic nephropathy)",
+      "(Cyclophosphamide)-CAUSES->(Hemorrhagic cystitis)"
+    ]
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Methysergide)-TREATS->(Migraine Disorders)",
+      "(Migraine Disorders)-CAUSES->(Disease and Renal impairment)-CAUSES->(Toxic nephropathy)",
+      "(Migraine Disorders)-CAUSES->(Functional disorder)-PREDISPOSES->(Toxic nephropathy)",
+      "(Cyclophosphamide)-CAUSES->(Hemorrhagic cystitis)"
+    ]
+  },
+  "reasoning_chain": [
+    "Cisplatin -> \"known nephrotoxic agent\" -> \"causes renal tubular damage\" -> 85%",
+    "Streptozocin -> \"associated with pancreatic toxicity\" -> \"less commonly linked to renal damage\" -> 70%",
+    "Methysergide -> \"used for migraine treatment\" -> \"not typically associated with renal toxicity\" -> 60%",
+    "Cyclophosphamide -> \"can cause hemorrhagic cystitis\" -> \"renal tubular damage not a primary concern\" -> 65%"
+  ],
+  "enhanced_information": "Cisplatin is the drug most strongly associated with renal tubular damage, supported by its classification as a known nephrotoxic agent, which directly leads to renal tubular injury (85% confidence). Streptozocin, while primarily linked to pancreatic toxicity, has a lower association with renal damage (70% confidence), indicating it is less likely to be the primary concern. Methysergide is primarily used for migraine treatment and lacks significant evidence of renal toxicity (60% confidence), while Cyclophosphamide is more associated with hemorrhagic cystitis rather than renal tubular damage (65% confidence). Therefore, the strongest evidence points to Cisplatin as the drug of concern for renal tubular damage, with other options being less relevant based on the available evidence.",
+  "analysis": "Cisplatin is a well-known chemotherapeutic agent that is associated with nephrotoxicity, particularly renal tubular damage. This is supported by extensive clinical evidence indicating that Cisplatin can cause acute kidney injury through direct damage to renal tubular cells. The enhanced information corroborates this, stating that Cisplatin is classified as a nephrotoxic agent with a high confidence level of 85%. In contrast, Streptozocin is primarily linked to pancreatic toxicity, and while it may have some renal effects, it is not primarily associated with renal tubular damage. Methysergide is used for migraine treatment and lacks significant renal toxicity evidence. Cyclophosphamide is more commonly associated with hemorrhagic cystitis rather than direct renal tubular damage. Therefore, the strongest evidence points to Cisplatin as the drug most associated with renal tubular damage, making it the correct answer.",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      2,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      66.66666666666666,
+      33.33333333333333
+    ],
+    "total_successes": 3
+  }
+}

@@ -1,0 +1,237 @@
+{
+  "question": "Nonoxynol 9 ?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Is a chemical detergent",
+    "opb": "Is a barrier contraceptive",
+    "opc": "Can be used repeatedly in a day",
+    "opd": "Can be used to prevent STIs"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Nonoxynol-9",
+        "Disease",
+        "Sexually Transmitted Diseases"
+      ],
+      [
+        "Nonoxynol-9",
+        "Infection",
+        "Sexually Transmitted Diseases"
+      ],
+      [
+        "Nonoxynol-9",
+        "Herpesvirus 2, Human",
+        "Sexually Transmitted Diseases"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Nonoxynol-9)-TREATS->(Disease)-CAUSES->(Sexually Transmitted Diseases)",
+      "(Nonoxynol-9)-TREATS->(Infection)-CAUSES->(Sexually Transmitted Diseases)",
+      "(Nonoxynol-9)-PREVENTS->(Herpesvirus 2, Human)-CAUSES->(Sexually Transmitted Diseases)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "BARRIER",
+        "Sexually Transmitted Diseases"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(BARRIER)-CAUSES->(Sexually Transmitted Diseases)"
+    ]
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Nonoxynol-9",
+        "Virus",
+        "Lipopolysaccharides",
+        "Spermatocidal Agents"
+      ],
+      [
+        "Nonoxynol-9",
+        "Virus",
+        "Liposomes",
+        "Spermatocidal Agents"
+      ],
+      [
+        "Nonoxynol-9",
+        "HIV",
+        "Lipopolysaccharides",
+        "Spermatocidal Agents"
+      ],
+      [
+        "Nonoxynol-9",
+        "Virus",
+        "Steroid hormone",
+        "Mammalian Oviducts",
+        "BARRIER"
+      ],
+      [
+        "Nonoxynol-9",
+        "Virus",
+        "Steroid hormone",
+        "Hypothalamic structure",
+        "BARRIER"
+      ],
+      [
+        "Nonoxynol-9",
+        "Virus",
+        "Pharmaceutical Preparations",
+        "Neostriatum",
+        "BARRIER"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREVENTS",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREVENTS",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREVENTS",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREVENTS",
+        "LOCATION_OF",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "PREVENTS",
+        "LOCATION_OF",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "PREVENTS",
+        "LOCATION_OF",
+        "PART_OF",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Nonoxynol-9)-PREVENTS->(Virus)-LOCATION_OF->(Lipopolysaccharides)-INTERACTS_WITH->(Spermatocidal Agents)",
+      "(Nonoxynol-9)-PREVENTS->(Virus)-LOCATION_OF->(Liposomes)-INTERACTS_WITH->(Spermatocidal Agents)",
+      "(Nonoxynol-9)-PREVENTS->(HIV)-LOCATION_OF->(Lipopolysaccharides)-INTERACTS_WITH->(Spermatocidal Agents)",
+      "(Nonoxynol-9)-PREVENTS->(Virus)-LOCATION_OF->(Steroid hormone)-PART_OF->(Mammalian Oviducts)-LOCATION_OF->(BARRIER)",
+      "(Nonoxynol-9)-PREVENTS->(Virus)-LOCATION_OF->(Steroid hormone)-PART_OF->(Hypothalamic structure)-LOCATION_OF->(BARRIER)",
+      "(Nonoxynol-9)-PREVENTS->(Virus)-LOCATION_OF->(Pharmaceutical Preparations)-PART_OF->(Neostriatum)-LOCATION_OF->(BARRIER)"
+    ]
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Nonoxynol-9",
+        "Disease",
+        "Sexually Transmitted Diseases"
+      ],
+      [
+        "Nonoxynol-9",
+        "Infection",
+        "Sexually Transmitted Diseases"
+      ],
+      [
+        "Nonoxynol-9",
+        "Herpesvirus 2, Human",
+        "Sexually Transmitted Diseases"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Nonoxynol-9)-TREATS->(Disease and Infection)-CAUSES->(Sexually Transmitted Diseases)",
+      "(Nonoxynol-9)-PREVENTS->(Herpesvirus 2, Human)-CAUSES->(Sexually Transmitted Diseases)",
+      "(BARRIER)-CAUSES->(Sexually Transmitted Diseases)",
+      "(Nonoxynol-9)-PREVENTS->(HIV and Virus)-LOCATION_OF->(Lipopolysaccharides and Liposomes)-INTERACTS_WITH->(Spermatocidal Agents)",
+      "(Nonoxynol-9)-PREVENTS->(Virus)-LOCATION_OF->(Pharmaceutical Preparations and Steroid hormone)-PART_OF->(Hypothalamic structure and Mammalian Oviducts and Neostriatum)-LOCATION_OF->(BARRIER)"
+    ]
+  },
+  "reasoning_chain": [
+    "Nonoxynol 9 -> \"is a spermicide\" -> \"used in barrier contraceptives\" -> 85%",
+    "Nonoxynol 9 -> \"is a chemical agent\" -> \"may cause irritation\" -> 70%",
+    "Nonoxynol 9 -> \"is used in contraceptive products\" -> \"can be applied multiple times\" -> 80%",
+    "Nonoxynol 9 -> \"is designed to prevent pregnancy\" -> \"effectiveness against STIs is uncertain\" -> 60%",
+    "Nonoxynol 9 -> \"is a barrier contraceptive\" -> \"may reduce risk of STIs\" -> 65%"
+  ],
+  "enhanced_information": "Nonoxynol 9 is primarily recognized as a spermicide used in various contraceptive products, which aligns with the reasoning chain indicating its role in barrier contraceptives (85% confidence). It is a chemical agent that can cause irritation, which is a significant consideration for its repeated use (70% confidence). While it is designed to prevent pregnancy, its effectiveness in preventing sexually transmitted infections (STIs) is uncertain, with evidence suggesting it may not provide reliable protection against STIs like HIV (60% confidence). Therefore, while Nonoxynol 9 can be used repeatedly in a day, its use as a barrier contraceptive does not guarantee STI prevention, highlighting a critical gap in its protective efficacy. Overall, the strongest conclusion is that Nonoxynol 9 is a spermicide used in barrier contraceptives, but caution is warranted regarding its use for STI prevention.",
+  "analysis": "Nonoxynol 9 is primarily recognized as a spermicide, which is a chemical agent used to kill sperm and is commonly found in various contraceptive products. This aligns with the option indicating it is a barrier contraceptive (opb). While it can be used repeatedly in a day (opc), this is not its primary classification. Importantly, while Nonoxynol 9 was thought to provide some protection against STIs, evidence suggests it does not reliably prevent STIs, including HIV (opd). Therefore, the most accurate classification of Nonoxynol 9 is as a barrier contraceptive, as it is designed to prevent pregnancy rather than STIs. The reasoning is based on established medical knowledge regarding its use and function as a spermicide, supported by enhanced information regarding its limitations in STI prevention.",
+  "answer": "opb",
+  "confidence": 85.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      0,
+      0,
+      0,
+      2
+    ],
+    "coverage_rates": [
+      33.33333333333333,
+      0.0,
+      0.0,
+      0.0,
+      66.66666666666666
+    ],
+    "total_successes": 3
+  }
+}

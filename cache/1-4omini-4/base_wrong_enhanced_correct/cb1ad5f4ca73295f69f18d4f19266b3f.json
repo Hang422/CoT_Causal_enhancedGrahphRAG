@@ -1,0 +1,179 @@
+{
+  "question": "True about zafirlukast is :",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "It inhibit lipooxygenase pathway",
+    "opb": "It blocks LT receptor",
+    "opc": "It can be administered orally",
+    "opd": "All of these"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "zafirlukast",
+        "Obstruction"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(zafirlukast)-TREATS->(Obstruction)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "zafirlukast",
+        "Symptoms",
+        "Inflammation",
+        "Leukotriene Receptor"
+      ],
+      [
+        "zafirlukast",
+        "Pneumonia caused by SARS-CoV-2",
+        "Inflammation",
+        "Leukotriene Receptor"
+      ],
+      [
+        "zafirlukast",
+        "Symptoms",
+        "Inflammation",
+        "Leukotriene Receptor"
+      ],
+      [
+        "Leukotriene Receptor",
+        "Cells",
+        "Virus",
+        "Inflammation"
+      ],
+      [
+        "Leukotriene Receptor",
+        "Fibroblasts",
+        "Virus",
+        "Inflammation"
+      ],
+      [
+        "Leukotriene Receptor",
+        "Cells",
+        "Virus",
+        "Inflammation"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREVENTS",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "CAUSES"
+      ],
+      [
+        "INTERACTS_WITH",
+        "PART_OF",
+        "CAUSES"
+      ],
+      [
+        "INTERACTS_WITH",
+        "PART_OF",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(zafirlukast)-PREVENTS->(Symptoms)-MANIFESTATION_OF->(Inflammation)-ASSOCIATED_WITH->(Leukotriene Receptor)",
+      "(zafirlukast)-TREATS->(Pneumonia caused by SARS-CoV-2)-CAUSES->(Inflammation)-ASSOCIATED_WITH->(Leukotriene Receptor)",
+      "(zafirlukast)-TREATS->(Symptoms)-MANIFESTATION_OF->(Inflammation)-ASSOCIATED_WITH->(Leukotriene Receptor)",
+      "(Leukotriene Receptor)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Virus)-CAUSES->(Inflammation)",
+      "(Leukotriene Receptor)-INTERACTS_WITH->(Fibroblasts)-PART_OF->(Virus)-CAUSES->(Inflammation)",
+      "(Leukotriene Receptor)-INTERACTS_WITH->(Cells)-PART_OF->(Virus)-CAUSES->(Inflammation)"
+    ]
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "zafirlukast",
+        "Obstruction"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(zafirlukast)-TREATS->(Obstruction)",
+      "(zafirlukast)-PREVENTS->(Symptoms)-MANIFESTATION_OF->(Inflammation)-ASSOCIATED_WITH->(Leukotriene Receptor)",
+      "(zafirlukast)-TREATS->(Pneumonia caused by SARS-CoV-2)-CAUSES->(Inflammation)-ASSOCIATED_WITH->(Leukotriene Receptor)",
+      "(zafirlukast)-TREATS->(Symptoms)-MANIFESTATION_OF->(Inflammation)-ASSOCIATED_WITH->(Leukotriene Receptor)",
+      "(Leukotriene Receptor)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Virus)-CAUSES->(Inflammation)",
+      "(Leukotriene Receptor)-INTERACTS_WITH->(Cells and Fibroblasts)-PART_OF->(Virus)-CAUSES->(Inflammation)"
+    ]
+  },
+  "reasoning_chain": [
+    "Zafirlukast -> \"blocks leukotriene receptors\" -> \"reduces inflammation\" -> 85%",
+    "Zafirlukast -> \"can be taken orally\" -> \"convenient administration\" -> 90%",
+    "Zafirlukast -> \"inhibits lipooxygenase pathway\" -> \"affects leukotriene synthesis\" -> 70%",
+    "\"blocks leukotriene receptors\" + \"can be taken orally\" + \"inhibits lipooxygenase pathway\" -> \"all statements true\" -> 80%",
+    "\"all statements true\" -> \"correct option is 'All of these'\" -> 75%"
+  ],
+  "enhanced_information": "Zafirlukast is a leukotriene receptor antagonist that primarily blocks leukotriene receptors, thereby reducing inflammation associated with conditions like asthma. It is administered orally, making it convenient for patients. While there is some evidence suggesting it may inhibit the lipoxygenase pathway, this is not its primary mechanism of action. The strongest reasoning chains confirm that zafirlukast blocks leukotriene receptors and can be taken orally, both of which are well-supported by clinical evidence. Therefore, the correct answer is 'All of these' as all statements about zafirlukast are true.",
+  "analysis": "Zafirlukast is primarily known as a leukotriene receptor antagonist, which means its main action is to block leukotriene receptors (option opb). This mechanism helps reduce inflammation in conditions like asthma. Additionally, zafirlukast is administered orally (option opc), making it convenient for patients. While there is some mention of it potentially inhibiting the lipoxygenase pathway (option opa), this is not its primary mechanism of action and is less emphasized in clinical practice. However, since options opb and opc are both true, and the enhanced information suggests that all statements are true, the most comprehensive answer is 'All of these' (option opd). Therefore, the correct answer is option opd, as all statements about zafirlukast are accurate in the context provided.",
+  "answer": "opd",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      0,
+      0,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      100.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 2
+  }
+}

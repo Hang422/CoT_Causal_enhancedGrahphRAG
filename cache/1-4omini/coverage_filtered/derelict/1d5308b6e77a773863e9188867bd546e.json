@@ -1,0 +1,160 @@
+{
+  "question": "A hypertensive patient was started on antihypertensive drug. He develops dry cough during the course of the treatment. Which of the following drug is responsible for the following?",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Beta blockers",
+    "opb": "ACE inhibitors",
+    "opc": "Alpha blockers",
+    "opd": "Diuretics"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Diuretics",
+        "Disease",
+        "Non-productive cough"
+      ],
+      [
+        "Diuretics",
+        "Syncope",
+        "Non-productive cough"
+      ],
+      [
+        "Diuretics",
+        "COVID-19",
+        "Non-productive cough"
+      ],
+      [
+        "Angiotensin-Converting Enzyme Inhibitors",
+        "Non-productive cough"
+      ],
+      [
+        "Adrenergic beta-Antagonists",
+        "Disease",
+        "Non-productive cough"
+      ],
+      [
+        "Adrenergic beta-Antagonists",
+        "Symptoms",
+        "Non-productive cough"
+      ],
+      [
+        "Adrenergic beta-Antagonists",
+        "Syncope",
+        "Non-productive cough"
+      ],
+      [
+        "Adrenergic alpha-Antagonists",
+        "Disease",
+        "Non-productive cough"
+      ],
+      [
+        "Adrenergic alpha-Antagonists",
+        "Syncope",
+        "Non-productive cough"
+      ],
+      [
+        "Adrenergic alpha-Antagonists",
+        "Symptoms",
+        "Non-productive cough"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Diuretics)-CAUSES->(Disease)-CAUSES->(Non-productive cough)",
+      "(Diuretics)-PREDISPOSES->(Syncope)-CAUSES->(Non-productive cough)",
+      "(Diuretics)-PREDISPOSES->(COVID-19)-CAUSES->(Non-productive cough)",
+      "(Angiotensin-Converting Enzyme Inhibitors)-CAUSES->(Non-productive cough)",
+      "(Adrenergic beta-Antagonists)-CAUSES->(Disease)-CAUSES->(Non-productive cough)",
+      "(Adrenergic beta-Antagonists)-CAUSES->(Symptoms)-CAUSES->(Non-productive cough)",
+      "(Adrenergic beta-Antagonists)-CAUSES->(Syncope)-CAUSES->(Non-productive cough)",
+      "(Adrenergic alpha-Antagonists)-CAUSES->(Disease)-CAUSES->(Non-productive cough)",
+      "(Adrenergic alpha-Antagonists)-CAUSES->(Syncope)-CAUSES->(Non-productive cough)",
+      "(Adrenergic alpha-Antagonists)-PREVENTS->(Symptoms)-CAUSES->(Non-productive cough)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "reasoning_chain": [],
+  "enhanced_information": "",
+  "analysis": "Dry cough is a well-known side effect associated with ACE inhibitors due to the accumulation of bradykinin. Other antihypertensive classes like beta blockers, alpha blockers, and diuretics do not typically cause this side effect.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [],
+    "coverage_rates": [],
+    "total_successes": 0
+  }
+}

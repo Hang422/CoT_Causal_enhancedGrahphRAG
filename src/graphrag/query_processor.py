@@ -175,24 +175,36 @@ class QueryProcessor:
         question.generate_paths()  # Update path strings
 
     def process_chain_of_thoughts(self, question: MedicalQuestion, graph: str, enhancement: bool) -> None:
-        """处理思维链的路径检索"""
+        """处理思维链的路径检索，并计算相对覆盖率"""
+        chain_success_counts = []  # 存储每条链的查询成功次数
 
         for chain in question.reasoning_chain:
+            success_count = 0  # 每条链的查询成功次数
+
             # 分割思维链的步骤
             steps = chain.split('->')
             # 遍历相邻步骤对
             for i in range(len(steps) - 1):
                 start = steps[i].strip()
                 end = steps[i + 1].strip()
+
+                # 去掉置信度部分（如果存在）
+                if '%' in end:
+                    end = end.split('%')[0].strip()
+
                 # 通过entity processor获取CUI
                 start_cuis = self.entity_processor.process_text(start)
                 end_cuis = self.entity_processor.process_text(end)
+
                 if len(start_cuis) == 0 or len(end_cuis) == 0:
                     continue
+
                 for start_cui, end_cui in zip(start_cuis, end_cuis):
                     if start_cui == end_cui:
                         continue
+
                     if start_cui and end_cui:
+                        paths = []
                         # 查找最短路径
                         if graph == 'both':
                             if enhancement:
@@ -200,30 +212,54 @@ class QueryProcessor:
                             else:
                                 paths = self.process_causal_graph_paths_normal(start_cui, end_cui)
                             if len(paths) > 0:
+                                success_count += 1
                                 for path in paths:
                                     question.causal_graph.nodes.append(path['node_names'])
                                     question.causal_graph.relationships.append(path['relationships'])
                             else:
                                 paths = self.process_knowledge_graph_paths(start_cui, end_cui)
                                 if len(paths) > 0:
+                                    success_count += 1
                                     for path in paths:
                                         question.knowledge_graph.nodes.append(path['node_names'])
                                         question.knowledge_graph.relationships.append(path['relationships'])
-                        if graph == 'knowledge':
+
+                        elif graph == 'knowledge':
                             paths = self.process_knowledge_graph_paths(start_cui, end_cui)
                             if len(paths) > 0:
+                                success_count += 1
                                 for path in paths:
                                     question.knowledge_graph.nodes.append(path['node_names'])
                                     question.knowledge_graph.relationships.append(path['relationships'])
-                        if graph == 'causal':
+
+                        elif graph == 'causal':
                             if enhancement:
                                 paths = self.process_causal_graph_paths_enhanced(start_cui, end_cui)
                             else:
                                 paths = self.process_causal_graph_paths_normal(start_cui, end_cui)
                             if len(paths) > 0:
+                                success_count += 1
                                 for path in paths:
                                     question.causal_graph.nodes.append(path['node_names'])
                                     question.causal_graph.relationships.append(path['relationships'])
+
+            chain_success_counts.append(success_count)
+
+        # 计算总查询成功次数
+        total_successes = sum(chain_success_counts)
+
+        # 计算每条链的相对覆盖率
+        if total_successes > 0:
+            chain_coverage_rates = [(count / total_successes) * 100 for count in chain_success_counts]
+        else:
+            chain_coverage_rates = [0.0] * len(chain_success_counts)
+
+        # 存储覆盖率信息
+        question.chain_coverage = {
+            'success_counts': chain_success_counts,
+            'coverage_rates': chain_coverage_rates,
+            'total_successes': total_successes
+        }
 
         question.generate_paths()
 

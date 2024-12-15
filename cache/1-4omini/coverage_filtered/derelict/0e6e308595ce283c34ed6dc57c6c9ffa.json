@@ -1,0 +1,96 @@
+{
+  "question": "Sandhoff's disease is d/t absence of which enzyme?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Beta-hexosaminidase",
+    "opb": "Beta-glucuronibase",
+    "opc": "Aryl sulphatase",
+    "opd": "Alpha galactosidase"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "BETA-N-ACETYLHEXOSAMINIDASE",
+        "Atherosclerosis",
+        "Disease",
+        "Sandhoff Disease"
+      ],
+      [
+        "BETA-N-ACETYLHEXOSAMINIDASE",
+        "Atherosclerosis",
+        "Inflammation",
+        "Sandhoff Disease"
+      ],
+      [
+        "Alpha-galactosidase",
+        "Disease",
+        "Sandhoff Disease"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREDISPOSES",
+        "CAUSES",
+        "PREDISPOSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES",
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES"
+      ]
+    ],
+    "paths": [
+      "(BETA-N-ACETYLHEXOSAMINIDASE)-PREDISPOSES->(Atherosclerosis)-CAUSES->(Disease)-PREDISPOSES->(Sandhoff Disease)",
+      "(BETA-N-ACETYLHEXOSAMINIDASE)-PREDISPOSES->(Atherosclerosis)-CAUSES->(Inflammation)-PREDISPOSES->(Sandhoff Disease)",
+      "(Alpha-galactosidase)-TREATS->(Disease)-PREDISPOSES->(Sandhoff Disease)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "reasoning_chain": [],
+  "enhanced_information": "",
+  "analysis": "Sandhoff's disease is a type of GM2 gangliosidosis caused by a deficiency in the enzyme beta-hexosaminidase. This leads to the accumulation of GM2 gangliosides in the body, resulting in neurological symptoms.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [],
+    "coverage_rates": [],
+    "total_successes": 0
+  }
+}

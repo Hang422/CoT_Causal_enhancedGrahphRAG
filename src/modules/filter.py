@@ -1,203 +1,188 @@
-from pathlib import Path
 import json
-import logging
-from typing import Set
-from src.modules.MedicalQuestion import MedicalQuestion
-from src.graphrag.query_processor import QueryProcessor
-from config import config
 import shutil
+from pathlib import Path
+from collections import defaultdict
+from typing import Optional
+from src.modules.MedicalQuestion import MedicalQuestion
+from config import config
 
 
-def filter_questions_by_paths(input_path: str, output_path: str) -> None:
+def load_question_from_json(file_path: Path) -> Optional[MedicalQuestion]:
+    """从JSON文件加载Question对象"""
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        question = MedicalQuestion(
+            question=data.get('question'),
+            is_multi_choice=data.get('is_multi_choice', True),
+            options=data.get('options', {}),
+            correct_answer=data.get('correct_answer', 'opa'),
+            topic_name=data.get('topic_name'),
+            answer=data.get('answer'),
+            reasoning_chain=data.get('reasoning_chain'),
+            enhanced_information=data.get('enhanced_information'),
+            initial_causal_graph=data.get('initial_causal_graph'),
+            causal_graph=data.get('causal_graph'),
+            knowledge_graph=data.get('knowledge_graph'),
+            enhanced_graph=data.get('enhanced_graph'),
+            chain_coverage=data.get('chain_coverage')
+        )
+        return question
+    except Exception as e:
+        logger = config.get_logger("load_question")
+        logger.error(f"Error loading {file_path}: {e}")
+        return None
+
+
+def compare_enhanced_with_baseline(dir_path: str) -> None:
     """
-    Filter questions based on existence of paths between question and options in the graph.
+    对比增强(enhanced)与基线(derelict)的回答正确性，并在dir_path下输出四个子目录：
+    1. base_correct_enhanced_wrong：基线对但增强错的问题
+    2. base_wrong_enhanced_correct：基线错但增强对的问题
+    注：这两个目录中保存的是original下对应的原始文件副本，方便后续分析
 
     Args:
-        input_path: Path to directory containing original questions
-        output_path: Path to save filtered questions
+        dir_path: 包含 original、derelict、enhanced 三个子目录的路径
     """
-    # Initialize logger
-    logger = config.get_logger("question_processor")
+    logger = config.get_logger("compare_enhanced_with_baseline")
+    base_path = Path(config.paths["cache"]) / dir_path / 'data'
 
-    # Initialize query processor
-    query_processor = QueryProcessor()
-
-    # Create output directory
-    output_dir = Path(output_path)
-    output_dir.mkdir(parents=True, exist_ok=True)
-
-    processed_count = 0
-    saved_count = 0
-
-    try:
-        for file_path in Path(input_path).glob("*.json"):
-            try:
-                # Load question
-                with open(file_path, 'r', encoding='utf-8') as f:
-                    data = json.load(f)
-
-                    # 确保有必要的字段
-                    if 'question' not in data or 'options' not in data:
-                        continue
-
-                    # 根据新格式创建问题对象
-                    question = MedicalQuestion(
-                        question=data['question'],
-                        is_multi_choice=True,  # 多选题
-                        options=data['options'],
-                        correct_answer=data.get('correct_answer', 'opa'),  # 默认值
-                        topic_name=data.get('topic_name')
-                    )
-
-                processed_count += 1
-
-                # Generate initial causal graph
-                query_processor.generate_initial_causal_graph(question)
-
-                # Check if question has valid paths in the graph
-                if (hasattr(question.initial_causal_graph, 'paths') and
-                        question.initial_causal_graph.paths != "There is no obvious causal relationship."):
-                    # Save to output directory
-                    output_file = output_dir / file_path.name
-                    with open(output_file, 'w', encoding='utf-8') as f:
-                        json.dump(question.to_dict(), f, indent=2, ensure_ascii=False)
-                    saved_count += 1
-
-            except Exception as e:
-                logger.error(f"Error processing {file_path}: {str(e)}")
-                continue
-
-    finally:
-        query_processor.close()
-
-    logger.info(f"Processed {processed_count} questions")
-    logger.info(f"Saved {saved_count} questions with valid paths in graph")
-    logger.info(f"Filtered out {processed_count - saved_count} questions")
-
-
-def extract_correct_questions(path: str) -> None:
-    """找出直接回答正确但enhancement回答错误的问题，并保存原始问题"""
-    logger = config.get_logger("correct_extractor")
-    cache_root = config.paths["cache"] / path
-
-    # 设置路径
-    derelict_path = cache_root / 'derelict'
-    enhanced_path = cache_root / 'enhanced'
-    original_path = cache_root / 'original'
-
-    # 创建新的目标目录
-    target_root = config.paths["cache"] / 'correct' / 'original'
-    target_root.mkdir(parents=True, exist_ok=True)
+    derelict_path = base_path / 'derelict'
+    enhanced_path = base_path / 'enhanced'
+    original_path = base_path / 'original'
 
     if not all(p.exists() for p in [derelict_path, enhanced_path, original_path]):
+        logger.error("Required directories (derelict, enhanced, original) not found under given dir_path.")
+        return
+
+    # 创建输出目录
+    base_correct_enhanced_wrong_dir = Path(config.paths["cache"]) / dir_path / 'base_correct_enhanced_wrong'
+    base_wrong_enhanced_correct_dir = Path(config.paths["cache"]) / dir_path / 'base_wrong_enhanced_correct'
+
+    base_correct_enhanced_wrong_dir.mkdir(parents=True, exist_ok=True)
+    base_wrong_enhanced_correct_dir.mkdir(parents=True, exist_ok=True)
+
+    # 读取基线答案情况
+    base_correctness = {}
+    for file in derelict_path.glob("*.json"):
+        q = load_question_from_json(file)
+        if q and q.question:
+            base_correctness[q.question] = q.is_correct
+
+    # 对比enhanced与baseline
+    base_correct_enhanced_wrong_count = 0
+    base_wrong_enhanced_correct_count = 0
+
+    for file in enhanced_path.glob("*.json"):
+        q = load_question_from_json(file)
+        if q.chain_coverage.get('total_successes') == 0:
+            continue
+        if not q or not q.question:
+            continue
+        base_correct = base_correctness.get(q.question, False)
+        enhanced_correct = q.is_correct
+
+        # 基线对增强错
+        if base_correct and not enhanced_correct:
+            # 找到original文件并复制
+            orig_file = enhanced_path / file.name
+            if orig_file.exists():
+                shutil.copy2(orig_file, base_correct_enhanced_wrong_dir / file.name)
+                base_correct_enhanced_wrong_count += 1
+
+        # 基线错增强对
+        if (not base_correct) and enhanced_correct:
+            orig_file = enhanced_path / file.name
+            if orig_file.exists():
+                shutil.copy2(orig_file, base_wrong_enhanced_correct_dir / file.name)
+                base_wrong_enhanced_correct_count += 1
+
+    logger.info(f"基线对增强错数量: {base_correct_enhanced_wrong_count}")
+    logger.info(f"基线错增强对数量: {base_wrong_enhanced_correct_count}")
+
+    print("Done comparing enhanced with baseline.")
+
+
+def filter_by_coverage(dir_path: str, threshold: float = 0.5) -> None:
+    """
+    根据 coverage_threshold 对问题进行过滤。
+    只保留那些 enhanced 下 chain_coverage 中 success_counts 非零比例高于 threshold 的问题，
+    并将对应的 enhanced、derelict、original 文件复制到新的子目录 coverage_filtered 下。
+
+    Args:
+        dir_path: 包含 original、derelict、enhanced 三个子目录的路径
+        threshold: 成功步骤非零比例的阈值 (0.5表示至少一半的success_counts>0)
+    """
+    logger = config.get_logger("coverage_filter")
+    base_path = Path(config.paths["cache"]) / dir_path / 'data'
+
+    enhanced_path = base_path / 'enhanced'
+    derelict_path = base_path / 'derelict'
+    original_path = base_path / 'original'
+
+    if not all(p.exists() for p in [enhanced_path, derelict_path, original_path]):
         logger.error("Required directories not found")
         return
 
-    # 读取所有问题
-    questions_info = {}
-    interesting_questions = []
-    enhanced_informations = []
+    target_root = Path(config.paths["cache"]) / dir_path / 'coverage_filtered' / 'data'
+    target_enhanced = target_root / 'enhanced'
+    target_derelict = target_root / 'derelict'
+    target_original = target_root / 'original'
 
-    # 首先读取所有derelict的问题
-    logger.info("Loading derelict questions...")
-    for file in derelict_path.glob("*.json"):
-        try:
-            with open(file, 'r', encoding='utf-8') as f:
-                data = json.load(f)
+    for d in [target_enhanced, target_derelict, target_original]:
+        d.mkdir(parents=True, exist_ok=True)
 
-                # 使用新格式创建问题对象
-                question = MedicalQuestion(
-                    question=data['question'],
-                    is_multi_choice=True,
-                    options=data['options'],
-                    correct_answer=data.get('correct_answer', 'opa'),
-                    topic_name=data.get('topic_name'),
-                    answer=data.get('answer')
-                )
-                if question.is_correct:  # 只关注回答正确的问题
-                    questions_info[question.question] = question.question
-        except Exception as e:
-            logger.error(f"Error loading derelict file {file}: {str(e)}")
-            continue
+    processed_count = 0
+    retained_count = 0
 
-    # 然后检查enhancement中这些问题的回答情况
-    logger.info("Checking enhancement questions...")
+    logger.info("Filtering by coverage...")
+
     for file in enhanced_path.glob("*.json"):
         try:
             with open(file, 'r', encoding='utf-8') as f:
                 data = json.load(f)
 
-                # 使用新格式创建问题对象
-                question = MedicalQuestion(
-                    question=data['question'],
-                    is_multi_choice=True,
-                    options=data['options'],
-                    correct_answer=data.get('correct_answer', 'opa'),
-                    topic_name=data.get('topic_name'),
-                    answer=data.get('answer'),
-                    enhanced_information=data.get('enhanced_information')
-                )
+            chain_coverage = data.get('chain_coverage', {})
+            success_counts = chain_coverage.get('success_counts', [])
 
-                # 如果这个问题在derelict中是正确的，但在enhancement中是错误的
-                if question.question in questions_info and not question.is_correct:
-                    interesting_questions.append(question.question)
-                    enhanced_informations.append(question.enhanced_information)
+            if success_counts:
+                non_zero_count = sum(1 for c in success_counts if c > 0)
+                coverage_ratio = non_zero_count / len(success_counts)
+            else:
+                coverage_ratio = 0
+
+            processed_count += 1
+
+            if coverage_ratio >= threshold:
+                # 复制enhanced文件
+                shutil.copy2(file, target_enhanced / file.name)
+
+                # derelict文件
+                der_file = derelict_path / file.name
+                if der_file.exists():
+                    shutil.copy2(der_file, target_derelict / file.name)
+
+                # original文件
+                orig_file = original_path / file.name
+                if orig_file.exists():
+                    shutil.copy2(orig_file, target_original / file.name)
+
+                retained_count += 1
+
         except Exception as e:
-            logger.error(f"Error loading enhancement file {file}: {str(e)}")
+            logger.error(f"Error processing file {file}: {e}")
             continue
 
-    # 复制原始问题到新目录
-    logger.info("Copying original questions...")
-    copied_count = 0
-    for file in enhanced_path.glob("*.json"):
-        try:
-            with open(file, 'r', encoding='utf-8') as f:
-                data = json.load(f)
+    logger.info(f"Processed: {processed_count}")
+    logger.info(f"Retained: {retained_count} (coverage >= {threshold})")
+    logger.info(f"Result saved to {target_root}")
 
-                # 使用新格式创建问题对象
-                question = MedicalQuestion(
-                    question=data['question'],
-                    is_multi_choice=True,
-                    options=data['options'],
-                    correct_answer=data.get('correct_answer'),
-                    topic_name=data.get('topic_name'),
-                    enhanced_information=data.get('enhanced_information'),
-                    reasoning_chain=data.get('reasoning_chain')
-                )
-
-                if question.question in interesting_questions:
-                    # 复制文件到新目录
-                    shutil.copy2(file, target_root / file.name)
-                    copied_count += 1
-        except Exception as e:
-            logger.error(f"Error processing original file {file}: {str(e)}")
-            continue
-
-    logger.info(f"Found {len(interesting_questions)} questions where derelict was correct but enhancement was wrong")
-    logger.info(f"Copied {copied_count} original questions to {target_root}")
-
-    # 打印问题内容供参考
-    print(f"\nFound {len(interesting_questions)} questions where direct answer was correct but enhancement was wrong:")
-    for idx, question in enumerate(interesting_questions, 1):
-        print(f"\n{idx}. {question}")
-        print(f"\n{idx}. Enhanced Information:{enhanced_informations[idx - 1]}")
-
-
-def fiter_causal():
-    cache_root = config.paths["cache"]
-
-    # Setup paths
-    input_path = cache_root / 'origin-test2' / 'original'
-    output_path = cache_root / 'origin-test2-processed' / 'original'
-
-    filter_questions_by_paths(input_path, output_path)
-
-
-def filter_correct():
-    # 示例路径
-    path = 'test1-4'
-    extract_correct_questions(path)
+    print("Done filtering by coverage.")
 
 
 if __name__ == "__main__":
-    filter_correct()
+    # 示例调用
+    compare_enhanced_with_baseline('1-4omini-4')  # 对比增强与基线
+    path = Path('1-4omini-4') / 'coverage_filtered'
+    compare_enhanced_with_baseline(path)
+    filter_by_coverage(path, threshold=0.5)  # 覆盖率过滤

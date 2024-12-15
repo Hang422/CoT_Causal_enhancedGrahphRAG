@@ -1,0 +1,291 @@
+{
+  "question": "True regarding opioid induced seizures -",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "They occur at therapeutic doses",
+    "opb": "Children are more susceptible",
+    "opc": "Seizures occur only with g-opioid agonists",
+    "opd": "Diazepam is the drug of choice"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Diazepam",
+        "Seizures"
+      ],
+      [
+        "Pharmaceutical Preparations",
+        "Seizures"
+      ],
+      [
+        "Opioids",
+        "Seizures"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "PREVENTS"
+      ]
+    ],
+    "paths": [
+      "(Diazepam)-CAUSES->(Seizures)",
+      "(Pharmaceutical Preparations)-CAUSES->(Seizures)",
+      "(Opioids)-PREVENTS->(Seizures)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Analgesics, Opioid",
+        "Adverse effects",
+        "Seizures"
+      ],
+      [
+        "Analgesics, Opioid",
+        "Obesity",
+        "Seizures"
+      ],
+      [
+        "Analgesics, Opioid",
+        "Renal Insufficiency",
+        "Seizures"
+      ],
+      [
+        "agonists",
+        "Seizures"
+      ],
+      [
+        "Diazepam",
+        "Seizures"
+      ],
+      [
+        "agonists",
+        "Seizures"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Analgesics, Opioid)-CAUSES->(Adverse effects)-PREDISPOSES->(Seizures)",
+      "(Analgesics, Opioid)-TREATS->(Obesity)-CAUSES->(Seizures)",
+      "(Analgesics, Opioid)-TREATS->(Renal Insufficiency)-CAUSES->(Seizures)",
+      "(agonists)-CAUSES->(Seizures)",
+      "(Diazepam)-CAUSES->(Seizures)",
+      "(agonists)-CAUSES->(Seizures)"
+    ]
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Seizures",
+        "uptake",
+        "agonists"
+      ],
+      [
+        "Seizures",
+        "Pseudomonas aeruginosa",
+        "Pharmaceutical Preparations"
+      ],
+      [
+        "Seizures",
+        "Streptococcus pneumoniae",
+        "Pharmaceutical Preparations"
+      ],
+      [
+        "Seizures",
+        "biological adaptation to stress",
+        "Pharmaceutical Preparations"
+      ],
+      [
+        "Seizures",
+        "uptake",
+        "agonists"
+      ],
+      [
+        "Seizures",
+        "Pseudomonas aeruginosa",
+        "Pharmaceutical Preparations"
+      ],
+      [
+        "Seizures",
+        "Streptococcus pneumoniae",
+        "Pharmaceutical Preparations"
+      ],
+      [
+        "Seizures",
+        "biological adaptation to stress",
+        "Pharmaceutical Preparations"
+      ],
+      [
+        "Pharmaceutical Preparations",
+        "Genes",
+        "Therapeutic procedure"
+      ],
+      [
+        "Pharmaceutical Preparations",
+        "INHA gene|INHA",
+        "Therapeutic procedure"
+      ],
+      [
+        "Pharmaceutical Preparations",
+        "E2F1 gene|E2F1|UBE2L3",
+        "Therapeutic procedure"
+      ]
+    ],
+    "relationships": [
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "PROCESS_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "PROCESS_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "ISA"
+      ],
+      [
+        "INTERACTS_WITH",
+        "ISA"
+      ],
+      [
+        "INTERACTS_WITH",
+        "ISA"
+      ]
+    ],
+    "paths": [
+      "(Seizures)-MANIFESTATION_OF->(uptake)-ASSOCIATED_WITH->(agonists)",
+      "(Seizures)-ASSOCIATED_WITH->(Pseudomonas aeruginosa)-LOCATION_OF->(Pharmaceutical Preparations)",
+      "(Seizures)-PROCESS_OF->(Streptococcus pneumoniae)-LOCATION_OF->(Pharmaceutical Preparations)",
+      "(Seizures)-MANIFESTATION_OF->(biological adaptation to stress)-ASSOCIATED_WITH->(Pharmaceutical Preparations)",
+      "(Seizures)-MANIFESTATION_OF->(uptake)-ASSOCIATED_WITH->(agonists)",
+      "(Seizures)-ASSOCIATED_WITH->(Pseudomonas aeruginosa)-LOCATION_OF->(Pharmaceutical Preparations)",
+      "(Seizures)-PROCESS_OF->(Streptococcus pneumoniae)-LOCATION_OF->(Pharmaceutical Preparations)",
+      "(Seizures)-MANIFESTATION_OF->(biological adaptation to stress)-ASSOCIATED_WITH->(Pharmaceutical Preparations)",
+      "(Pharmaceutical Preparations)-INTERACTS_WITH->(Genes)-ISA->(Therapeutic procedure)",
+      "(Pharmaceutical Preparations)-INTERACTS_WITH->(INHA gene|INHA)-ISA->(Therapeutic procedure)",
+      "(Pharmaceutical Preparations)-INTERACTS_WITH->(E2F1 gene|E2F1|UBE2L3)-ISA->(Therapeutic procedure)"
+    ]
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Opioids",
+        "Seizures"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREVENTS"
+      ]
+    ],
+    "paths": [
+      "(Opioids)-PREVENTS->(Seizures)",
+      "(Analgesics, Opioid)-CAUSES->(Adverse effects)-PREDISPOSES->(Seizures)",
+      "(Analgesics, Opioid)-TREATS->(Obesity and Renal Insufficiency)-CAUSES->(Seizures)",
+      "(agonists)-CAUSES->(Seizures)",
+      "(Diazepam)-CAUSES->(Seizures)",
+      "(Seizures)-MANIFESTATION_OF->(uptake)-ASSOCIATED_WITH->(agonists)",
+      "(Seizures)-ASSOCIATED_WITH->(Pseudomonas aeruginosa)-LOCATION_OF->(Pharmaceutical Preparations)",
+      "(Seizures)-PROCESS_OF->(Streptococcus pneumoniae)-LOCATION_OF->(Pharmaceutical Preparations)",
+      "(Seizures)-MANIFESTATION_OF->(biological adaptation to stress)-ASSOCIATED_WITH->(Pharmaceutical Preparations)",
+      "(Pharmaceutical Preparations)-INTERACTS_WITH->(E2F1 gene|E2F1|UBE2L3 and Genes and INHA gene|INHA)-ISA->(Therapeutic procedure)"
+    ]
+  },
+  "reasoning_chain": [
+    "\"Opioids can lower seizure threshold\" -> \"Seizures may occur at therapeutic doses\" -> \"Therapeutic doses can lead to seizures\" -> 80%",
+    "\"Children have different pharmacokinetics\" -> \"Children may be more susceptible to side effects\" -> \"Children may be more susceptible to opioid-induced seizures\" -> 75%",
+    "\"Seizures can occur with various opioids\" -> \"Not limited to g-opioid agonists\" -> \"Seizures can occur with other opioid types\" -> 85%",
+    "\"Diazepam is used for seizure management\" -> \"Not specifically the drug of choice for opioid-induced seizures\" -> \"Other treatments may be preferred\" -> 70%"
+  ],
+  "enhanced_information": "Opioid-induced seizures can occur at therapeutic doses, particularly due to the potential of opioids to lower the seizure threshold. Children may be more susceptible to these effects due to differences in pharmacokinetics. However, seizures are not limited to g-opioid agonists; they can occur with various types of opioids. Diazepam is not specifically the drug of choice for managing opioid-induced seizures, as other treatments may be preferred. Therefore, the most accurate statements are that seizures can occur at therapeutic doses and that children may be more susceptible.",
+  "analysis": "Opioid-induced seizures can indeed occur at therapeutic doses, particularly in individuals who may have a lower seizure threshold. This aligns with the understanding that opioids can affect the central nervous system and potentially lead to seizures. Regarding children, they may be more susceptible to the effects of opioids, including the risk of seizures, due to their developing nervous systems and differences in drug metabolism. However, it is important to note that seizures are not exclusive to g-opioid agonists; they can occur with various opioids, including those that are not classified as g-opioid agonists. Lastly, while diazepam can be used to manage seizures, it is not universally considered the drug of choice for opioid-induced seizures, as other agents may be more effective or appropriate depending on the clinical scenario. Therefore, the most accurate statements are that seizures can occur at therapeutic doses and that children may be more susceptible. Thus, the correct answer is that they occur at therapeutic doses (option a) and children are more susceptible (option b). However, since the question asks for a single true statement, option a is the most straightforward and widely accepted fact.",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      2,
+      2
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      50.0,
+      50.0
+    ],
+    "total_successes": 4
+  }
+}

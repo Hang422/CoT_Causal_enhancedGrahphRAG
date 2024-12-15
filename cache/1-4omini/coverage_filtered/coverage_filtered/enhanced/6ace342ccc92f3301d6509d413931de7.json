@@ -1,0 +1,200 @@
+{
+  "question": "Which of the following drugs is recommended for the treatment of Heparin Induced thrombocytopenia?",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Abciximab",
+    "opb": "Lepirudin",
+    "opc": "Warfarin",
+    "opd": "Alteplase"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "lepirudin",
+        "Thrombocytopenia"
+      ],
+      [
+        "abciximab",
+        "Thrombocytopenia"
+      ],
+      [
+        "Warfarin",
+        "Thrombocytopenia"
+      ],
+      [
+        "Alteplase",
+        "Thrombocytopenia"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(lepirudin)-TREATS->(Thrombocytopenia)",
+      "(abciximab)-TREATS->(Thrombocytopenia)",
+      "(Warfarin)-TREATS->(Thrombocytopenia)",
+      "(Alteplase)-TREATS->(Thrombocytopenia)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Alteplase",
+        "Fibrinolysis"
+      ],
+      [
+        "Fibrinolysis",
+        "Impacted molars",
+        "Edema",
+        "Rare Diseases",
+        "Blood Clot"
+      ],
+      [
+        "Fibrinolysis",
+        "Impacted molars",
+        "Edema",
+        "Cerebrovascular accident",
+        "Blood Clot"
+      ],
+      [
+        "Fibrinolysis",
+        "Impacted molars",
+        "Edema",
+        "Cytokine storm",
+        "Blood Clot"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "PROCESS_OF",
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PROCESS_OF",
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PROCESS_OF",
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Alteplase)-CAUSES->(Fibrinolysis)",
+      "(Fibrinolysis)-PROCESS_OF->(Impacted molars)-CAUSES->(Edema)-CAUSES->(Rare Diseases)-CAUSES->(Blood Clot)",
+      "(Fibrinolysis)-PROCESS_OF->(Impacted molars)-CAUSES->(Edema)-CAUSES->(Cerebrovascular accident)-CAUSES->(Blood Clot)",
+      "(Fibrinolysis)-PROCESS_OF->(Impacted molars)-CAUSES->(Edema)-CAUSES->(Cytokine storm)-CAUSES->(Blood Clot)"
+    ]
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Warfarin",
+        "Pharmaceutical Preparations",
+        "Vitamin K"
+      ],
+      [
+        "Warfarin",
+        "Pharmaceutical Preparations",
+        "Vitamin K"
+      ],
+      [
+        "Warfarin",
+        "Anticoagulants",
+        "Vitamin K"
+      ]
+    ],
+    "relationships": [
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Warfarin)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Vitamin K)",
+      "(Warfarin)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Vitamin K)",
+      "(Warfarin)-INTERACTS_WITH->(Anticoagulants)-INTERACTS_WITH->(Vitamin K)"
+    ]
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Alteplase)-CAUSES->(Fibrinolysis)",
+      "(Fibrinolysis)-PROCESS_OF->(Impacted molars)-CAUSES->(Edema)-CAUSES->(Cerebrovascular accident and Cytokine storm and Rare Diseases)-CAUSES->(Blood Clot)",
+      "(Warfarin)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Vitamin K)",
+      "(Warfarin)-INTERACTS_WITH->(Anticoagulants and Pharmaceutical Preparations)-INTERACTS_WITH->(Vitamin K)"
+    ]
+  },
+  "reasoning_chain": [
+    "Lepirudin -> direct thrombin inhibition -> reduced thrombin activity -> 85%",
+    "Abciximab -> platelet glycoprotein IIb/IIIa blockade -> decreased platelet aggregation -> 70%",
+    "Warfarin -> vitamin K antagonism -> reduced clotting factor synthesis -> 60%",
+    "Alteplase -> fibrinolysis promotion -> breakdown of existing clots -> 50%"
+  ],
+  "enhanced_information": "Lepirudin is the most appropriate drug for the treatment of Heparin Induced Thrombocytopenia (HIT). The reasoning chain for Lepirudin demonstrates direct thrombin inhibition, which effectively reduces thrombin activity, making it a suitable choice for managing HIT, where platelet activation and thrombosis occur despite low platelet counts. The evidence supporting Lepirudin's efficacy is strong, as it directly addresses the underlying mechanism of HIT. In contrast, Abciximab, while it decreases platelet aggregation, is not specifically indicated for HIT and has a lower efficacy in this context. Warfarin, a vitamin K antagonist, is contraindicated in acute HIT due to the risk of thrombosis during the initiation phase. Alteplase, which promotes fibrinolysis, is not indicated for HIT management as it does not address the underlying thrombotic process. Therefore, Lepirudin stands out as the most clinically relevant option for treating HIT.",
+  "analysis": "Heparin Induced Thrombocytopenia (HIT) is a serious condition characterized by a decrease in platelet count and an increased risk of thrombosis following heparin therapy. The management of HIT requires the use of alternative anticoagulants that do not activate platelets. Lepirudin is a direct thrombin inhibitor that effectively reduces thrombin activity, making it suitable for treating HIT. The enhanced information confirms that Lepirudin directly addresses the underlying mechanism of HIT, which is crucial for effective management. In contrast, Abciximab is not indicated for HIT, Warfarin is contraindicated during acute HIT due to the risk of thrombosis, and Alteplase does not address the thrombotic process. Therefore, Lepirudin is the most appropriate choice for treating HIT.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      1,
+      2
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      33.33333333333333,
+      66.66666666666666
+    ],
+    "total_successes": 3
+  }
+}

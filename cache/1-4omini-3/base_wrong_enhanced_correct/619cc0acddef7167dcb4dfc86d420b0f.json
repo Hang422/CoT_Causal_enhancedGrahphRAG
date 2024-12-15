@@ -1,0 +1,172 @@
+{
+  "question": "Metoclopramide has the following actions EXCEPT:",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Increase lower esophageal sphincter tone",
+    "opb": "Prokinetic action is blocked by atropine",
+    "opc": "Increase gastric peristalsis",
+    "opd": "Increase large intestinal peristalsis"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Metoclopramide",
+        "Disease",
+        "Obstruction"
+      ],
+      [
+        "Metoclopramide",
+        "Obesity",
+        "Obstruction"
+      ],
+      [
+        "Metoclopramide",
+        "Epilepsy",
+        "Obstruction"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Metoclopramide)-TREATS->(Disease)-CAUSES->(Obstruction)",
+      "(Metoclopramide)-TREATS->(Obesity)-CAUSES->(Obstruction)",
+      "(Metoclopramide)-TREATS->(Epilepsy)-CAUSES->(Obstruction)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Metoclopramide",
+        "Disease",
+        "Physiologic Function",
+        "Inferior esophageal sphincter structure"
+      ],
+      [
+        "Metoclopramide",
+        "Obesity",
+        "physiological aspects",
+        "Inferior esophageal sphincter structure"
+      ],
+      [
+        "Metoclopramide",
+        "Obesity",
+        "Muscle Contraction",
+        "Inferior esophageal sphincter structure"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Metoclopramide)-TREATS->(Disease)-MANIFESTATION_OF->(Physiologic Function)-PROCESS_OF->(Inferior esophageal sphincter structure)",
+      "(Metoclopramide)-TREATS->(Obesity)-MANIFESTATION_OF->(physiological aspects)-PROCESS_OF->(Inferior esophageal sphincter structure)",
+      "(Metoclopramide)-TREATS->(Obesity)-MANIFESTATION_OF->(Muscle Contraction)-PROCESS_OF->(Inferior esophageal sphincter structure)"
+    ]
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Inferior esophageal sphincter structure",
+        "Gastroesophageal reflux disease"
+      ]
+    ],
+    "relationships": [
+      [
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Inferior esophageal sphincter structure)-LOCATION_OF->(Gastroesophageal reflux disease)"
+    ]
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Metoclopramide)-TREATS->(Disease and Obesity)-MANIFESTATION_OF->(Muscle Contraction and Physiologic Function and physiological aspects)-PROCESS_OF->(Inferior esophageal sphincter structure)",
+      "(Inferior esophageal sphincter structure)-LOCATION_OF->(Gastroesophageal reflux disease)"
+    ]
+  },
+  "reasoning_chain": [
+    "Metoclopramide -> \"increased lower esophageal sphincter tone\" -> \"reduced gastroesophageal reflux\" -> 85%",
+    "Metoclopramide -> \"prokinetic action\" -> \"enhanced gastric emptying\" -> 80%",
+    "Atropine -> \"anticholinergic effects\" -> \"inhibition of gastric motility\" -> 75%",
+    "\"inhibition of gastric motility\" -> \"possible reduction in prokinetic action\" -> 70%",
+    "Metoclopramide -> \"increased gastric peristalsis\" -> \"improved digestion\" -> 90%",
+    "Metoclopramide -> \"increased large intestinal peristalsis\" -> \"enhanced bowel movement\" -> 80%",
+    "\"increased large intestinal peristalsis\" -> \"not a primary action of Metoclopramide\" -> 65%",
+    "\"not a primary action of Metoclopramide\" -> \"indicates a possible exception\" -> 70%"
+  ],
+  "enhanced_information": "Metoclopramide is known to increase lower esophageal sphincter tone, enhance gastric peristalsis, and improve gastric emptying, making it effective in treating conditions like gastroesophageal reflux disease (GERD). The reasoning chain indicating that its prokinetic action is blocked by atropine is supported by the anticholinergic effects of atropine, which inhibit gastric motility. However, while metoclopramide does enhance gastric peristalsis, its effect on large intestinal peristalsis is not a primary action, suggesting that option 'd' (Increase large intestinal peristalsis) is the correct answer as it is not a significant action of metoclopramide. This conclusion is supported by the reasoning chain indicating that increased large intestinal peristalsis is not a primary action of metoclopramide, which aligns with standard pharmacological knowledge.",
+  "analysis": "Metoclopramide is a medication primarily known for its prokinetic effects, which include increasing lower esophageal sphincter tone (option 'a') and enhancing gastric peristalsis (option 'c'). It is also important to note that its prokinetic action can be inhibited by anticholinergic agents like atropine (option 'b'). However, metoclopramide does not significantly increase large intestinal peristalsis (option 'd'), as its primary actions are focused on the upper gastrointestinal tract. Therefore, the correct answer is that metoclopramide does not increase large intestinal peristalsis, making option 'd' the exception among the listed actions.",
+  "answer": "opd",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      100.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 2
+  }
+}

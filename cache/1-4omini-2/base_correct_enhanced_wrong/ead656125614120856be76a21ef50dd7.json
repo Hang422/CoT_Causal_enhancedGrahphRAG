@@ -1,0 +1,504 @@
+{
+  "question": "A 30 year old female, married since one year, presents to the psychiatry clinic with hyperactivity since 2 weeks. A diagnosis of mania is made. She had 3 prior episodes of mania in last 5 years and every time after taking medication she goes to premorbid state. Her urine pregnancy test is positive. Which is the preferred drug for management of this patient?",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Promethazine",
+    "opb": "Haloperidol",
+    "opc": "Clonazepam",
+    "opd": "Lithium"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Promethazine",
+        "Disease",
+        "Hyperactive behavior"
+      ],
+      [
+        "Promethazine",
+        "COVID-19",
+        "Hyperactive behavior"
+      ],
+      [
+        "Promethazine",
+        "Disease",
+        "Manic"
+      ],
+      [
+        "Promethazine",
+        "Symptoms",
+        "Manic"
+      ],
+      [
+        "Promethazine",
+        "COVID-19",
+        "Manic"
+      ],
+      [
+        "Haloperidol",
+        "Disease",
+        "Hyperactive behavior"
+      ],
+      [
+        "Haloperidol",
+        "COVID-19",
+        "Hyperactive behavior"
+      ],
+      [
+        "Haloperidol",
+        "Epilepsy",
+        "Hyperactive behavior"
+      ],
+      [
+        "Haloperidol",
+        "Manic"
+      ],
+      [
+        "Clonazepam",
+        "Disease",
+        "Hyperactive behavior"
+      ],
+      [
+        "Clonazepam",
+        "Pain",
+        "Hyperactive behavior"
+      ],
+      [
+        "Clonazepam",
+        "Diabetes",
+        "Hyperactive behavior"
+      ],
+      [
+        "Clonazepam",
+        "Manic"
+      ],
+      [
+        "Lithium",
+        "Hyperactive behavior"
+      ],
+      [
+        "Lithium",
+        "Manic"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES"
+      ],
+      [
+        "PREVENTS",
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES"
+      ],
+      [
+        "PREVENTS",
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Promethazine)-TREATS->(Disease)-PREDISPOSES->(Hyperactive behavior)",
+      "(Promethazine)-TREATS->(COVID-19)-PREDISPOSES->(Hyperactive behavior)",
+      "(Promethazine)-TREATS->(Disease)-PREDISPOSES->(Manic)",
+      "(Promethazine)-PREVENTS->(Symptoms)-PREDISPOSES->(Manic)",
+      "(Promethazine)-TREATS->(COVID-19)-PREDISPOSES->(Manic)",
+      "(Haloperidol)-TREATS->(Disease)-PREDISPOSES->(Hyperactive behavior)",
+      "(Haloperidol)-TREATS->(COVID-19)-PREDISPOSES->(Hyperactive behavior)",
+      "(Haloperidol)-TREATS->(Epilepsy)-PREDISPOSES->(Hyperactive behavior)",
+      "(Haloperidol)-TREATS->(Manic)",
+      "(Clonazepam)-TREATS->(Disease)-PREDISPOSES->(Hyperactive behavior)",
+      "(Clonazepam)-PREVENTS->(Pain)-PREDISPOSES->(Hyperactive behavior)",
+      "(Clonazepam)-TREATS->(Diabetes)-PREDISPOSES->(Hyperactive behavior)",
+      "(Clonazepam)-TREATS->(Manic)",
+      "(Lithium)-TREATS->(Hyperactive behavior)",
+      "(Lithium)-CAUSES->(Manic)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Lithium",
+        "Manic"
+      ],
+      [
+        "Manic",
+        "Disease",
+        "Teratogenesis"
+      ],
+      [
+        "Manic",
+        "Syndrome",
+        "Teratogenesis"
+      ],
+      [
+        "Manic",
+        "Epilepsy",
+        "Teratogenesis"
+      ],
+      [
+        "Haloperidol",
+        "Mania acute"
+      ],
+      [
+        "Histamine Antagonists",
+        "Manic"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Lithium)-CAUSES->(Manic)",
+      "(Manic)-CAUSES->(Disease)-CAUSES->(Teratogenesis)",
+      "(Manic)-CAUSES->(Syndrome)-CAUSES->(Teratogenesis)",
+      "(Manic)-CAUSES->(Epilepsy)-CAUSES->(Teratogenesis)",
+      "(Haloperidol)-TREATS->(Mania acute)",
+      "(Histamine Antagonists)-CAUSES->(Manic)"
+    ]
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Manic",
+        "Disease",
+        "Virus",
+        "Pharmaceutical Preparations",
+        "Mood Stabilizer"
+      ],
+      [
+        "Manic",
+        "Disease",
+        "Virus",
+        "Pharmaceutical Preparations",
+        "Mood Stabilizer"
+      ],
+      [
+        "Manic",
+        "Disease",
+        "Virus",
+        "Pharmaceutical Preparations",
+        "Mood Stabilizer"
+      ],
+      [
+        "Clonazepam",
+        "Pharmaceutical Preparations",
+        "HCRTR2 gene|HCRTR2",
+        "Anti-Anxiety Effect"
+      ],
+      [
+        "Clonazepam",
+        "Pharmaceutical Preparations",
+        "agonists",
+        "Anti-Anxiety Effect"
+      ],
+      [
+        "Clonazepam",
+        "Pharmaceutical Preparations",
+        "HCRTR2 gene|HCRTR2",
+        "Anti-Anxiety Effect"
+      ],
+      [
+        "Anti-Anxiety Effect",
+        "Pharmaceutical Preparations",
+        "Manic"
+      ],
+      [
+        "Anti-Anxiety Effect",
+        "Pharmaceutical Preparations",
+        "Manic"
+      ],
+      [
+        "Anti-Anxiety Effect",
+        "Pharmaceutical Preparations",
+        "Manic"
+      ],
+      [
+        "Promethazine",
+        "KCNA2 gene|KCNA2",
+        "Cells",
+        "ADRBK1 gene|GRK2",
+        "Histamine Antagonists"
+      ],
+      [
+        "Promethazine",
+        "KCNA2 gene|KCNA2",
+        "Cells",
+        "Entire hippocampus",
+        "Histamine Antagonists"
+      ],
+      [
+        "Promethazine",
+        "KCNA2 gene|KCNA2",
+        "Cells",
+        "ADRBK1 gene|GRK2",
+        "Histamine Antagonists"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "CAUSES"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH",
+        "CAUSES"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH",
+        "CAUSES"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "PREVENTS"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "PREDISPOSES"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "CAUSES"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Manic)-CAUSES->(Disease)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Pharmaceutical Preparations)-INTERACTS_WITH->(Mood Stabilizer)",
+      "(Manic)-MANIFESTATION_OF->(Disease)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Pharmaceutical Preparations)-INTERACTS_WITH->(Mood Stabilizer)",
+      "(Manic)-ISA->(Disease)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Pharmaceutical Preparations)-INTERACTS_WITH->(Mood Stabilizer)",
+      "(Clonazepam)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(HCRTR2 gene|HCRTR2)-CAUSES->(Anti-Anxiety Effect)",
+      "(Clonazepam)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(agonists)-CAUSES->(Anti-Anxiety Effect)",
+      "(Clonazepam)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(HCRTR2 gene|HCRTR2)-CAUSES->(Anti-Anxiety Effect)",
+      "(Anti-Anxiety Effect)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-PREVENTS->(Manic)",
+      "(Anti-Anxiety Effect)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-PREDISPOSES->(Manic)",
+      "(Anti-Anxiety Effect)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-CAUSES->(Manic)",
+      "(Promethazine)-INTERACTS_WITH->(KCNA2 gene|KCNA2)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(ADRBK1 gene|GRK2)-INTERACTS_WITH->(Histamine Antagonists)",
+      "(Promethazine)-INTERACTS_WITH->(KCNA2 gene|KCNA2)-INTERACTS_WITH->(Cells)-PART_OF->(Entire hippocampus)-LOCATION_OF->(Histamine Antagonists)",
+      "(Promethazine)-INTERACTS_WITH->(KCNA2 gene|KCNA2)-INTERACTS_WITH->(Cells)-LOCATION_OF->(ADRBK1 gene|GRK2)-INTERACTS_WITH->(Histamine Antagonists)"
+    ]
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Lithium",
+        "Manic"
+      ],
+      [
+        "Clonazepam",
+        "Manic"
+      ],
+      [
+        "Promethazine",
+        "Disease",
+        "Manic"
+      ],
+      [
+        "Promethazine",
+        "Symptoms",
+        "Manic"
+      ],
+      [
+        "Promethazine",
+        "COVID-19",
+        "Manic"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES"
+      ],
+      [
+        "PREVENTS",
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES"
+      ]
+    ],
+    "paths": [
+      "(Lithium)-CAUSES->(Manic)",
+      "(Clonazepam)-TREATS->(Manic)",
+      "(Promethazine)-TREATS->(Disease)-PREDISPOSES->(Manic)",
+      "(Promethazine)-PREVENTS->(Symptoms)-PREDISPOSES->(Manic)",
+      "(Promethazine)-TREATS->(COVID-19)-PREDISPOSES->(Manic)",
+      "(Manic)-CAUSES->(Disease and Epilepsy and Syndrome)-CAUSES->(Teratogenesis)",
+      "(Haloperidol)-TREATS->(Mania acute)",
+      "(Histamine Antagonists)-CAUSES->(Manic)",
+      "(Manic)-CAUSES->(Disease)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Pharmaceutical Preparations)-INTERACTS_WITH->(Mood Stabilizer)",
+      "(Manic)-MANIFESTATION_OF->(Disease)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Pharmaceutical Preparations)-INTERACTS_WITH->(Mood Stabilizer)",
+      "(Manic)-ISA->(Disease)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Pharmaceutical Preparations)-INTERACTS_WITH->(Mood Stabilizer)",
+      "(Clonazepam)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(HCRTR2 gene|HCRTR2)-CAUSES->(Anti-Anxiety Effect)",
+      "(Clonazepam)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(HCRTR2 gene|HCRTR2 and agonists)-CAUSES->(Anti",
+      "(Anti-Anxiety Effect)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-PREVENTS->(Manic)",
+      "(Anti-Anxiety Effect)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-PREDISPOSES->(Manic)",
+      "(Anti-Anxiety Effect)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-CAUSES->(Manic)",
+      "(Promethazine)-INTERACTS_WITH->(KCNA2 gene|KCNA2)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(ADRBK1 gene|GRK2)-INTERACTS_WITH->(Histamine Antagonists)",
+      "(Promethazine)-INTERACTS_WITH->(KCNA2 gene|KCNA2)-INTERACTS_WITH->(Cells)-PART_OF->(Entire hippocampus)-LOCATION_OF->(Histamine Antagonists)",
+      "(Promethazine)-INTERACTS_WITH->(KCNA2 gene|KCNA2)-INTERACTS_WITH->(Cells)-LOCATION_OF->(ADRBK1 gene|GRK2)-INTERACTS_WITH->(Histamine Antagonists)"
+    ]
+  },
+  "reasoning_chain": [
+    "\"Mania diagnosis\" -> \"need for mood stabilizer\" -> \"consideration of treatment options\" -> 90%",
+    "\"Positive pregnancy test\" -> \"concern for teratogenic effects\" -> \"caution in medication selection\" -> 85%",
+    "\"Lithium\" -> \"effective for mania\" -> \"risk of teratogenicity in pregnancy\" -> 70%",
+    "\"Haloperidol\" -> \"antipsychotic for acute mania\" -> \"not first-line in pregnancy\" -> 75%",
+    "\"Clonazepam\" -> \"anxiolytic effect\" -> \"not a primary treatment for mania\" -> 80%",
+    "\"Promethazine\" -> \"antihistamine with sedative properties\" -> \"not indicated for mania\" -> 60%",
+    "\"Preferred drug for management\" -> \"considering safety and efficacy\" -> \"likely to avoid lithium and haloperidol\" -> 80%",
+    "\"Final decision\" -> \"use of atypical antipsychotic or alternative\" -> \"consideration of patient safety\" -> 75%"
+  ],
+  "enhanced_information": "The patient is diagnosed with mania and has a positive pregnancy test, which necessitates careful consideration of medication safety. Lithium is effective for treating mania but poses significant teratogenic risks during pregnancy, making it a less favorable option. Haloperidol, while an antipsychotic used for acute mania, is also not recommended in pregnancy due to potential adverse effects on the fetus. Clonazepam, although it has anxiolytic properties, is not a primary treatment for mania and carries risks in pregnancy as well. Promethazine is not indicated for mania treatment. Given these considerations, the preferred management option would be to use an atypical antipsychotic that is safer in pregnancy, such as quetiapine or olanzapine, which are not listed in the options provided. Therefore, the best choice among the given options is to deprioritize lithium and haloperidol due to their risks, and while clonazepam is not ideal, it may be considered for short-term management of agitation. However, the ideal approach would be to consult with a psychiatrist for a tailored treatment plan that prioritizes both maternal and fetal safety.",
+  "analysis": "The patient is diagnosed with mania and is pregnant, which significantly influences the choice of medication. Lithium is effective for mania but is known to have teratogenic effects, particularly in the first trimester, making it a less favorable option for a pregnant patient. Haloperidol, while an antipsychotic that can be used for acute mania, also carries risks during pregnancy, including potential adverse effects on the fetus. Clonazepam is not a primary treatment for mania and poses risks in pregnancy as well. Promethazine is not indicated for the treatment of mania. Given these considerations, the safest approach among the provided options is to avoid lithium and haloperidol due to their risks in pregnancy. While clonazepam is not ideal, it may be considered for short-term management of agitation. Therefore, the best choice among the given options is to select clonazepam (opc) for its potential to manage symptoms while being less harmful than the other options in the context of pregnancy.",
+  "answer": "opc",
+  "confidence": 75.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      0,
+      2,
+      1,
+      2,
+      2,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      12.5,
+      0.0,
+      25.0,
+      12.5,
+      25.0,
+      25.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 8
+  }
+}

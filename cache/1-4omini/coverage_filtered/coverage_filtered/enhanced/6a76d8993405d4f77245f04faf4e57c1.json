@@ -1,0 +1,440 @@
+{
+  "question": "Beta-blockers are used in all of the following except: March 2005",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Essential tremors",
+    "opb": "AV block",
+    "opc": "Angina pectoris",
+    "opd": "Migraine prophylaxis"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Adrenergic beta-Antagonists",
+        "Angina Pectoris"
+      ],
+      [
+        "Adrenergic beta-Antagonists",
+        "Atrioventricular Block"
+      ],
+      [
+        "Adrenergic beta-Antagonists",
+        "Essential Tremor"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Adrenergic beta-Antagonists)-CAUSES->(Angina Pectoris)",
+      "(Adrenergic beta-Antagonists)-CAUSES->(Atrioventricular Block)",
+      "(Adrenergic beta-Antagonists)-TREATS->(Essential Tremor)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Adrenergic beta-Antagonists",
+        "Atrioventricular Block"
+      ],
+      [
+        "Adrenergic beta-Antagonists",
+        "Essential Tremor"
+      ],
+      [
+        "Essential Tremor",
+        "Tremor"
+      ],
+      [
+        "Migraine Disorders",
+        "Obesity",
+        "Transformed migraine"
+      ],
+      [
+        "Migraine Disorders",
+        "Symptoms",
+        "Transformed migraine"
+      ],
+      [
+        "Migraine Disorders",
+        "Analgesic Overuse Headache",
+        "Transformed migraine"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "PREDISPOSES"
+      ],
+      [
+        "CAUSES",
+        "PREDISPOSES"
+      ],
+      [
+        "PREDISPOSES",
+        "COMPLICATES"
+      ]
+    ],
+    "paths": [
+      "(Adrenergic beta-Antagonists)-CAUSES->(Atrioventricular Block)",
+      "(Adrenergic beta-Antagonists)-TREATS->(Essential Tremor)",
+      "(Essential Tremor)-CAUSES->(Tremor)",
+      "(Migraine Disorders)-CAUSES->(Obesity)-PREDISPOSES->(Transformed migraine)",
+      "(Migraine Disorders)-CAUSES->(Symptoms)-PREDISPOSES->(Transformed migraine)",
+      "(Migraine Disorders)-PREDISPOSES->(Analgesic Overuse Headache)-COMPLICATES->(Transformed migraine)"
+    ]
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Cardiovascular system",
+        "Electroacupuncture",
+        "Angina Pectoris"
+      ],
+      [
+        "Cardiovascular system",
+        "early identification",
+        "Angina Pectoris"
+      ],
+      [
+        "Cardiovascular system",
+        "Pharmacological Treatment",
+        "Angina Pectoris"
+      ],
+      [
+        "Atrioventricular Block",
+        "Pathogenesis",
+        "Genes",
+        "Entire diaphragm",
+        "Artificial cardiac pacemaker"
+      ],
+      [
+        "Atrioventricular Block",
+        "Hypertrophy",
+        "Genes",
+        "Entire diaphragm",
+        "Artificial cardiac pacemaker"
+      ],
+      [
+        "Atrioventricular Block",
+        "Tachycardia, Ventricular",
+        "Genes",
+        "Entire diaphragm",
+        "Artificial cardiac pacemaker"
+      ],
+      [
+        "Artificial cardiac pacemaker",
+        "Ventricular arrhythmia",
+        "KCNQ1",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Artificial cardiac pacemaker",
+        "Atrial Fibrillation",
+        "KCNQ1",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Artificial cardiac pacemaker",
+        "Implants",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Essential Tremor",
+        "Disease",
+        "Antiinflammatory Effect",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Essential Tremor",
+        "Disease",
+        "Antiinflammatory Effect",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Essential Tremor",
+        "Degenerative abnormality",
+        "KCNQ1",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Migraine prophylaxis",
+        "Complication",
+        "Angiotensin-Converting Enzyme Inhibitors",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Migraine prophylaxis",
+        "Inflammation",
+        "Hydrocortisone",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Migraine prophylaxis",
+        "Adverse effects",
+        "CYP2D6 gene|CYP2D6",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Angina Pectoris",
+        "Disease",
+        "arterial stiffness",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Angina Pectoris",
+        "Disease",
+        "arterial stiffness",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Angina Pectoris",
+        "Disease",
+        "arterial stiffness",
+        "Adrenergic beta-Antagonists"
+      ]
+    ],
+    "relationships": [
+      [
+        "LOCATION_OF",
+        "TREATS"
+      ],
+      [
+        "LOCATION_OF",
+        "TREATS"
+      ],
+      [
+        "LOCATION_OF",
+        "TREATS"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREVENTS",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "ISA",
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Cardiovascular system)-LOCATION_OF->(Electroacupuncture)-TREATS->(Angina Pectoris)",
+      "(Cardiovascular system)-LOCATION_OF->(early identification)-TREATS->(Angina Pectoris)",
+      "(Cardiovascular system)-LOCATION_OF->(Pharmacological Treatment)-TREATS->(Angina Pectoris)",
+      "(Atrioventricular Block)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Genes)-PART_OF->(Entire diaphragm)-LOCATION_OF->(Artificial cardiac pacemaker)",
+      "(Atrioventricular Block)-CAUSES->(Hypertrophy)-ASSOCIATED_WITH->(Genes)-PART_OF->(Entire diaphragm)-LOCATION_OF->(Artificial cardiac pacemaker)",
+      "(Atrioventricular Block)-CAUSES->(Tachycardia, Ventricular)-ASSOCIATED_WITH->(Genes)-PART_OF->(Entire diaphragm)-LOCATION_OF->(Artificial cardiac pacemaker)",
+      "(Artificial cardiac pacemaker)-CAUSES->(Ventricular arrhythmia)-ASSOCIATED_WITH->(KCNQ1)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Artificial cardiac pacemaker)-TREATS->(Atrial Fibrillation)-ASSOCIATED_WITH->(KCNQ1)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Artificial cardiac pacemaker)-ISA->(Implants)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Essential Tremor)-ISA->(Disease)-MANIFESTATION_OF->(Antiinflammatory Effect)-ASSOCIATED_WITH->(Adrenergic beta-Antagonists)",
+      "(Essential Tremor)-CAUSES->(Disease)-MANIFESTATION_OF->(Antiinflammatory Effect)-ASSOCIATED_WITH->(Adrenergic beta-Antagonists)",
+      "(Essential Tremor)-CAUSES->(Degenerative abnormality)-ASSOCIATED_WITH->(KCNQ1)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Migraine prophylaxis)-CAUSES->(Complication)-ASSOCIATED_WITH->(Angiotensin-Converting Enzyme Inhibitors)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Migraine prophylaxis)-PREVENTS->(Inflammation)-ASSOCIATED_WITH->(Hydrocortisone)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Migraine prophylaxis)-CAUSES->(Adverse effects)-ASSOCIATED_WITH->(CYP2D6 gene|CYP2D6)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Angina Pectoris)-PREDISPOSES->(Disease)-CAUSES->(arterial stiffness)-ASSOCIATED_WITH->(Adrenergic beta-Antagonists)",
+      "(Angina Pectoris)-MANIFESTATION_OF->(Disease)-CAUSES->(arterial stiffness)-ASSOCIATED_WITH->(Adrenergic beta-Antagonists)",
+      "(Angina Pectoris)-ISA->(Disease)-CAUSES->(arterial stiffness)-ASSOCIATED_WITH->(Adrenergic beta-Antagonists)"
+    ]
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Adrenergic beta-Antagonists",
+        "Angina Pectoris"
+      ],
+      [
+        "Adrenergic beta-Antagonists",
+        "Atrioventricular Block"
+      ],
+      [
+        "Adrenergic beta-Antagonists",
+        "Essential Tremor"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Adrenergic beta-Antagonists)-CAUSES->(Angina Pectoris)",
+      "(Adrenergic beta-Antagonists)-CAUSES->(Atrioventricular Block)",
+      "(Adrenergic beta-Antagonists)-TREATS->(Essential Tremor)",
+      "(Essential Tremor)-CAUSES->(Tremor)",
+      "(Migraine Disorders)-CAUSES->(Obesity and Symptoms)-PREDISPOSES->(Transformed migraine)",
+      "(Migraine Disorders)-PREDISPOSES->(Analgesic Overuse Headache)-COMPLICATES->(Transformed migraine)",
+      "(Cardiovascular system)-LOCATION_OF->(Electroacupuncture and Pharmacological Treatment and early identification)-TREATS->(Angina Pectoris)",
+      "(Atrioventricular Block)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Genes)-PART_OF->(Entire diaphragm)-LOCATION_OF->(Artificial cardiac pacemaker)",
+      "(Atrioventricular Block)-CAUSES->(Hypertrophy and Tachycardia, Ventricular)-ASSOCIATED_WITH->(Genes)-PART_OF->(Entire diaphragm)-LOCATION_OF->(Artificial cardiac pacemaker)",
+      "(Artificial cardiac pacemaker)-CAUSES->(Ventricular arrhythmia)-ASSOCIATED_WITH->(KCNQ1)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Artificial cardiac pacemaker)-TREATS->(Atrial Fibrillation)-ASSOCIATED_WITH->(KCNQ1)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Artificial cardiac pacemaker)-ISA->(Implants)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Essential Tremor)-ISA->(Disease)-MANIFESTATION_OF->(Antiinflammatory Effect)-ASSOCIATED_WITH->(Adrenergic beta-Antagonists)",
+      "(Essential Tremor)-CAUSES->(Disease)-MANIFESTATION_OF->(Antiinflammatory Effect)-ASSOCIATED_WITH->(Adrenergic beta-Antagonists)",
+      "(Essential Tremor)-CAUSES->(Degenerative abnormality)-ASSOCIATED_WITH->(KCNQ1)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Migraine prophylaxis)-CAUSES->(Complication)-ASSOCIATED_WITH->(Angiotensin-Converting Enzyme Inhibitors)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Migraine prophylaxis)-PREVENTS->(Inflammation)-ASSOCIATED_WITH->(Hydrocortisone)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Migraine prophylaxis)-CAUSES->(Adverse effects)-ASSOCIATED_WITH->(CYP2D6 gene|CYP2D6)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Angina Pectoris)-PREDISPOSES->(Disease)-CAUSES->(arterial stiffness)-ASSOCIATED_WITH->(Adrenergic beta-Antagonists)",
+      "(Angina Pectoris)-MANIFESTATION_OF->(Disease)-CAUSES->(arterial stiffness)-ASSOCIATED_WITH->(Adrenergic beta-Antagonists)",
+      "(Angina Pectoris)-ISA->(Disease)-CAUSES->(arterial stiffness)-ASSOCIATED_WITH->(Adrenergic beta-Antagonists)"
+    ]
+  },
+  "reasoning_chain": [
+    "Beta-blockers -> \"used for various cardiovascular conditions\" -> \"indicated for angina pectoris\" -> 90%",
+    "Beta-blockers -> \"reduce heart rate and myocardial oxygen demand\" -> \"beneficial in angina pectoris\" -> 90%",
+    "Beta-blockers -> \"can be used for migraine prophylaxis\" -> \"help reduce frequency of migraines\" -> 85%",
+    "Beta-blockers -> \"not typically indicated for AV block\" -> \"may worsen heart block\" -> 80%",
+    "Beta-blockers -> \"used for essential tremors\" -> \"can help reduce tremor severity\" -> 75%",
+    "AV block -> \"may require pacemaker\" -> \"beta-blockers could be contraindicated\" -> 80%",
+    "Essential tremors -> \"beta-blockers can be effective\" -> \"indicated for treatment\" -> 75%",
+    "Migraine prophylaxis -> \"beta-blockers can prevent migraines\" -> \"indicated for chronic migraine management\" -> 85%",
+    "Angina pectoris -> \"beta-blockers are a first-line treatment\" -> \"indicated for symptom relief\" -> 90%",
+    "Conclusion -> \"Beta-blockers are not indicated for AV block\" -> \"most appropriate answer\" -> 95%"
+  ],
+  "enhanced_information": "Beta-blockers are indicated for angina pectoris, migraine prophylaxis, and essential tremors, as they effectively reduce heart rate and myocardial oxygen demand, help prevent migraines, and alleviate tremors. However, they are not typically indicated for AV block, as they can worsen heart block and may necessitate alternative treatments such as a pacemaker. The strongest reasoning chain supports the conclusion that beta-blockers are contraindicated in AV block, making it the correct answer.",
+  "analysis": "Beta-blockers are commonly used for various conditions, including essential tremors, angina pectoris, and migraine prophylaxis. They work by blocking beta-adrenergic receptors, which helps reduce heart rate and myocardial oxygen demand, making them effective in angina and also beneficial in preventing migraines and alleviating essential tremors. However, in the case of AV block, beta-blockers can exacerbate the condition by further slowing conduction through the AV node, which can lead to more severe heart block. Therefore, they are contraindicated in patients with AV block. This reasoning aligns with standard medical knowledge and is supported by the enhanced information provided, which clearly states that beta-blockers are not indicated for AV block. Thus, the correct answer is that beta-blockers are used in all of the following except AV block.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      0,
+      0,
+      1,
+      2,
+      2,
+      1,
+      2,
+      1,
+      0
+    ],
+    "coverage_rates": [
+      10.0,
+      0.0,
+      0.0,
+      10.0,
+      20.0,
+      20.0,
+      10.0,
+      20.0,
+      10.0,
+      0.0
+    ],
+    "total_successes": 10
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "question": "True regarding acetazolamide is ?",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Irreversible inhibitor of carbonic anhydrase",
+    "opb": "Structural resemblance to sulfonamides",
+    "opc": "It decreases Na, K, Glucose excretion",
+    "opd": "It causes metabolic alkalosis"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Acetazolamide",
+        "Metabolic alkalosis"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Acetazolamide)-TREATS->(Metabolic alkalosis)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Acetazolamide",
+        "Metabolic alkalosis"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Acetazolamide)-TREATS->(Metabolic alkalosis)"
+    ]
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Acetazolamide",
+        "Metabolic acidosis",
+        "CARBONATE DEHYDRATASE"
+      ],
+      [
+        "Acetazolamide",
+        "Vascular calcification",
+        "CARBONATE DEHYDRATASE"
+      ],
+      [
+        "Acetazolamide",
+        "Epithelial Cells",
+        "Cell Line",
+        "Sulfonamides"
+      ],
+      [
+        "Acetazolamide",
+        "Epithelial Cells",
+        "Blood",
+        "Sulfonamides"
+      ],
+      [
+        "Acetazolamide",
+        "Pharmaceutical Preparations",
+        "alginic acid compound",
+        "Sulfonamides"
+      ],
+      [
+        "Acetazolamide",
+        "Excretory function",
+        "Electrolytes"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Acetazolamide)-TREATS->(Metabolic acidosis)-ASSOCIATED_WITH->(CARBONATE DEHYDRATASE)",
+      "(Acetazolamide)-TREATS->(Vascular calcification)-ASSOCIATED_WITH->(CARBONATE DEHYDRATASE)",
+      "(Acetazolamide)-INTERACTS_WITH->(Epithelial Cells)-INTERACTS_WITH->(Cell Line)-LOCATION_OF->(Sulfonamides)",
+      "(Acetazolamide)-INTERACTS_WITH->(Epithelial Cells)-PART_OF->(Blood)-LOCATION_OF->(Sulfonamides)",
+      "(Acetazolamide)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(alginic acid compound)-INTERACTS_WITH->(Sulfonamides)",
+      "(Acetazolamide)-CAUSES->(Excretory function)-ASSOCIATED_WITH->(Electrolytes)"
+    ]
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Acetazolamide",
+        "Metabolic alkalosis"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Acetazolamide)-TREATS->(Metabolic alkalosis)",
+      "(Acetazolamide)-TREATS->(Metabolic acidosis and Vascular calcification)-ASSOCIATED_WITH->(CARBONATE DEHYDRATASE)",
+      "(Acetazolamide)-INTERACTS_WITH->(Epithelial Cells)-INTERACTS_WITH->(Cell Line)-LOCATION_OF->(Sulfonamides)",
+      "(Acetazolamide)-INTERACTS_WITH->(Epithelial Cells)-PART_OF->(Blood)-LOCATION_OF->(Sulfonamides)",
+      "(Acetazolamide)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(alginic acid compound)-INTERACTS_WITH->(Sulfonamides)",
+      "(Acetazolamide)-CAUSES->(Excretory function)-ASSOCIATED_WITH->(Electrolytes)"
+    ]
+  },
+  "reasoning_chain": [
+    "Acetazolamide -> carbonic anhydrase inhibition -> decreased bicarbonate reabsorption -> 85%",
+    "Acetazolamide -> structural similarity to sulfonamides -> potential cross-reactivity in allergic patients -> 70%",
+    "Acetazolamide -> increased bicarbonate excretion -> possible metabolic acidosis -> 80%",
+    "Acetazolamide -> altered renal handling of electrolytes -> increased Na and K excretion -> 75%",
+    "Acetazolamide -> decreased glucose reabsorption -> increased glucose excretion -> 70%",
+    "Acetazolamide -> potential for metabolic alkalosis -> uncertain clinical significance -> 60%"
+  ],
+  "enhanced_information": "Acetazolamide is a reversible inhibitor of carbonic anhydrase, which leads to increased bicarbonate excretion and can result in metabolic acidosis rather than alkalosis. It has structural similarities to sulfonamides, which may pose a risk of cross-reactivity in allergic patients. The reasoning chain indicating that acetazolamide decreases Na, K, and glucose excretion is incorrect; it actually increases the excretion of these electrolytes. Therefore, the most accurate statement regarding acetazolamide is that it has a structural resemblance to sulfonamides (option opb). The other options are either incorrect or misleading based on the pharmacological profile of acetazolamide.",
+  "analysis": "Acetazolamide is known to be a reversible inhibitor of carbonic anhydrase, which leads to increased bicarbonate excretion and can result in metabolic acidosis rather than alkalosis. This aligns with standard medical knowledge. Additionally, acetazolamide has structural similarities to sulfonamides, which is a well-documented fact and can lead to cross-reactivity in allergic patients. The claim that it decreases Na, K, and glucose excretion is incorrect; acetazolamide actually increases the excretion of these electrolytes. Therefore, the most accurate statement regarding acetazolamide is that it has a structural resemblance to sulfonamides (option opb). The other options are either incorrect or misleading based on the pharmacological profile of acetazolamide.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      1,
+      0,
+      1,
+      0,
+      1
+    ],
+    "coverage_rates": [
+      25.0,
+      25.0,
+      0.0,
+      25.0,
+      0.0,
+      25.0
+    ],
+    "total_successes": 4
+  }
+}

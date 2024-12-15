@@ -1,0 +1,257 @@
+{
+  "question": "True regarding the use of bromocriptine for suppression of lactation include:",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "It can cause deep vein thrombosis",
+    "opb": "It can cause hypotension",
+    "opc": "Metoclopramide potentiates the action of Bromocriptine",
+    "opd": "It is given for 1 week only"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Bromocriptine",
+        "Disease",
+        "Exotropia",
+        "Visual Suppression"
+      ],
+      [
+        "Bromocriptine",
+        "Multiple Sclerosis",
+        "Exotropia",
+        "Visual Suppression"
+      ],
+      [
+        "Bromocriptine",
+        "Hydrocephalus",
+        "Exotropia",
+        "Visual Suppression"
+      ],
+      [
+        "Metoclopramide",
+        "Disease",
+        "Exotropia",
+        "Visual Suppression"
+      ],
+      [
+        "Deep Vein Thrombosis",
+        "Disease",
+        "Exotropia",
+        "Visual Suppression"
+      ],
+      [
+        "Deep Vein Thrombosis",
+        "Obstruction",
+        "Exotropia",
+        "Visual Suppression"
+      ],
+      [
+        "Deep Vein Thrombosis",
+        "Pathogenesis",
+        "Exotropia",
+        "Visual Suppression"
+      ],
+      [
+        "Visual Suppression",
+        "Nystagmus",
+        "Disease",
+        "Deep Vein Thrombosis"
+      ],
+      [
+        "Visual Suppression",
+        "Diplopia",
+        "Disease",
+        "Deep Vein Thrombosis"
+      ],
+      [
+        "Bromocriptine",
+        "Disease",
+        "Deep Vein Thrombosis"
+      ],
+      [
+        "Bromocriptine",
+        "Obesity",
+        "Deep Vein Thrombosis"
+      ],
+      [
+        "Bromocriptine",
+        "Diabetes Mellitus, Insulin-Dependent",
+        "Deep Vein Thrombosis"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES",
+        "COMPLICATES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Bromocriptine)-TREATS->(Disease)-CAUSES->(Exotropia)-MANIFESTATION_OF->(Visual Suppression)",
+      "(Bromocriptine)-TREATS->(Multiple Sclerosis)-CAUSES->(Exotropia)-MANIFESTATION_OF->(Visual Suppression)",
+      "(Bromocriptine)-TREATS->(Hydrocephalus)-CAUSES->(Exotropia)-MANIFESTATION_OF->(Visual Suppression)",
+      "(Metoclopramide)-TREATS->(Disease)-CAUSES->(Exotropia)-MANIFESTATION_OF->(Visual Suppression)",
+      "(Deep Vein Thrombosis)-CAUSES->(Disease)-CAUSES->(Exotropia)-MANIFESTATION_OF->(Visual Suppression)",
+      "(Deep Vein Thrombosis)-CAUSES->(Obstruction)-CAUSES->(Exotropia)-MANIFESTATION_OF->(Visual Suppression)",
+      "(Deep Vein Thrombosis)-MANIFESTATION_OF->(Pathogenesis)-CAUSES->(Exotropia)-MANIFESTATION_OF->(Visual Suppression)",
+      "(Visual Suppression)-CAUSES->(Nystagmus)-CAUSES->(Disease)-CAUSES->(Deep Vein Thrombosis)",
+      "(Visual Suppression)-PREDISPOSES->(Diplopia)-CAUSES->(Disease)-COMPLICATES->(Deep Vein Thrombosis)",
+      "(Bromocriptine)-TREATS->(Disease)-CAUSES->(Deep Vein Thrombosis)",
+      "(Bromocriptine)-TREATS->(Obesity)-CAUSES->(Deep Vein Thrombosis)",
+      "(Bromocriptine)-TREATS->(Diabetes Mellitus, Insulin-Dependent)-CAUSES->(Deep Vein Thrombosis)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Dopamine Receptor",
+        "physiological aspects",
+        "myometrium",
+        "Metoclopramide"
+      ],
+      [
+        "Dopamine Receptor",
+        "Human Cell Line",
+        "myometrium",
+        "Metoclopramide"
+      ],
+      [
+        "Dopamine Receptor",
+        "Cells",
+        "myometrium",
+        "Metoclopramide"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "PROCESS_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Dopamine Receptor)-CAUSES->(physiological aspects)-PROCESS_OF->(myometrium)-LOCATION_OF->(Metoclopramide)",
+      "(Dopamine Receptor)-INTERACTS_WITH->(Human Cell Line)-PART_OF->(myometrium)-LOCATION_OF->(Metoclopramide)",
+      "(Dopamine Receptor)-INTERACTS_WITH->(Cells)-PART_OF->(myometrium)-LOCATION_OF->(Metoclopramide)"
+    ]
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Dopamine Receptor)-CAUSES->(physiological aspects)-PROCESS_OF->(myometrium)-LOCATION_OF->(Metoclopramide)",
+      "(Dopamine Receptor)-INTERACTS_WITH->(Cells and Human Cell Line)-PART_OF->(myometrium)-LOCATION_OF->(Metoclopramide)"
+    ]
+  },
+  "reasoning_chain": [
+    "Bromocriptine use -> potential side effects -> possible deep vein thrombosis -> 70%",
+    "Bromocriptine use -> potential side effects -> possible hypotension -> 60%",
+    "Bromocriptine action -> dopamine receptor agonism -> possible interaction with metoclopramide -> uncertain outcome -> 50%",
+    "Bromocriptine administration -> recommended duration for lactation suppression -> typically 1 week -> 80%"
+  ],
+  "enhanced_information": "Bromocriptine is used for lactation suppression and has several important considerations. The reasoning chain regarding its potential to cause deep vein thrombosis (DVT) is supported by clinical observations, although the exact incidence is not well-defined, making this a medium-confidence concern. Hypotension is a recognized side effect of bromocriptine, with a reasonable incidence rate, thus this reasoning chain is also medium-confidence. The interaction with metoclopramide is less clear; while both drugs act on dopamine receptors, the evidence for metoclopramide potentiating bromocriptine's action is weak and lacks strong clinical support, placing this in the low-confidence category. The recommended duration for bromocriptine administration for lactation suppression is typically one week, which is a high-confidence statement supported by clinical guidelines. Therefore, the most reliable insights are that bromocriptine can cause hypotension and is typically administered for one week, while the risks of DVT and interactions with metoclopramide require further investigation.",
+  "analysis": "Bromocriptine is a dopamine agonist commonly used for the suppression of lactation. The standard medical knowledge indicates that it is typically administered for a duration of one week, which aligns with clinical guidelines. Regarding the side effects, hypotension is a recognized adverse effect of bromocriptine, making option opb true. The concern about deep vein thrombosis (DVT) is noted in clinical observations but lacks strong evidence to be definitively stated as a common side effect, thus making option opa less reliable. The interaction with metoclopramide is not well-supported in clinical literature, placing option opc in a low-confidence category. Therefore, the most clinically valid statements are that bromocriptine can cause hypotension and is given for one week only, leading to the conclusion that option opd is also true. However, since the question asks for a true statement regarding the use of bromocriptine for suppression of lactation, the most definitive answer is option opd, as it is a well-established guideline. The reasoning chain confirms that the duration of treatment is a high-confidence statement supported by clinical practice.",
+  "answer": "opd",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      1,
+      0
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      100.0,
+      0.0
+    ],
+    "total_successes": 1
+  }
+}

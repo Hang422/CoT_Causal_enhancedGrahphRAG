@@ -104,6 +104,7 @@ class MedicalQuestion:
     reasoning_chain: Optional[List[str]] = None
     enhanced_information: Optional[str] = None  # 改为使用 Optional[str]
 
+    chain_coverage : Optional[Dict] = None
     # Reasoning and answer
     analysis: Optional[str] = None
     answer: Optional[str] = None  # 0-3 对应 A-D or yes and no
@@ -131,6 +132,12 @@ class MedicalQuestion:
             self.enhanced_information = ""
         if self.reasoning_chain is None:
             self.reasoning_chain = []
+        if self.chain_coverage is None:
+            self.chain_coverage = {
+                'success_counts': [],
+                'coverage_rates': [],
+                'total_successes': 0
+            }
 
     def generate_paths(self) -> None:
         """生成人类可读的路径表示"""
@@ -168,7 +175,8 @@ class MedicalQuestion:
             'enhanced_information': self.enhanced_information,
             'analysis': self.analysis,
             'answer': self.answer,
-            'confidence': self.confidence
+            'confidence': self.confidence,
+            'chain_coverage': self.chain_coverage
         }
         return data
 
@@ -197,6 +205,15 @@ class MedicalQuestion:
                         data['reasoning_chain'] = data['reasoning_chain']
                     else:
                         data['reasoning_chain'] = list(data['reasoning_chain'])
+
+                # 处理 chain_coverage，如果缓存中没有这个字段，设置默认值
+                if 'chain_coverage' not in data:
+                    data['chain_coverage'] = {
+                        'success_counts': [],
+                        'coverage_rates': [],
+                        'total_successes': 0
+                    }
+
                 return cls(**data)
             except Exception as e:
                 logging.error(f"Error loading cache: {str(e)}")

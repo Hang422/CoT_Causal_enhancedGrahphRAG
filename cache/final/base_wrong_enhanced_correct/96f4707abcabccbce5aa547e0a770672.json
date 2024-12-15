@@ -1,0 +1,148 @@
+{
+  "question": "Use of tamoxifen for breast cancer can cause all ofthe following adverse effects, exceptaEUR'",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": ">Thromboembolism",
+    "opb": "Endometrial carcinoma",
+    "opc": ">Carcinoma in contralateral breast",
+    "opd": ">Cataract"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Tamoxifen",
+        "Cataract"
+      ],
+      [
+        "Tamoxifen",
+        "Thromboembolism"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "PREDISPOSES"
+      ]
+    ],
+    "paths": [
+      "(Tamoxifen)-TREATS->(Cataract)",
+      "(Tamoxifen)-PREDISPOSES->(Thromboembolism)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Tamoxifen",
+        "Thromboembolism"
+      ],
+      [
+        "Tamoxifen",
+        "Cataract"
+      ],
+      [
+        "development aspects",
+        "Lens, Crystalline"
+      ],
+      [
+        "Tamoxifen",
+        "Cataract"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Tamoxifen)-PREDISPOSES->(Thromboembolism)",
+      "(Tamoxifen)-TREATS->(Cataract)",
+      "(development aspects)-PROCESS_OF->(Lens, Crystalline)",
+      "(Tamoxifen)-TREATS->(Cataract)"
+    ]
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Tamoxifen",
+        "Thromboembolism"
+      ],
+      [
+        "Tamoxifen",
+        "Cataract"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Tamoxifen)-PREDISPOSES->(Thromboembolism)",
+      "(Tamoxifen)-TREATS->(Cataract)",
+      "(development aspects)-PROCESS_OF->(Lens, Crystalline)"
+    ]
+  },
+  "reasoning_chain": [
+    "\"Tamoxifen\" -> \"increased risk of thromboembolism\" -> \"potential for venous complications\" -> 85%",
+    "\"Tamoxifen\" -> \"increased risk of endometrial carcinoma\" -> \"hormonal influence on endometrial tissue\" -> 90%",
+    "\"Tamoxifen\" -> \"reduced risk of carcinoma in contralateral breast\" -> \"preventive effect on breast cancer recurrence\" -> 80%",
+    "\"Tamoxifen\" -> \"possible development of cataracts\" -> \"long-term exposure effects on lens\" -> 70%"
+  ],
+  "enhanced_information": "Tamoxifen is associated with several adverse effects, including thromboembolism, endometrial carcinoma, and cataracts. The reasoning chains indicate a strong association between tamoxifen and thromboembolism (85% confidence) due to its hormonal effects, as well as a significant risk of endometrial carcinoma (90% confidence) due to its estrogenic activity on the endometrium. The potential for cataracts (70% confidence) is supported by long-term exposure effects on the lens. However, tamoxifen is known to reduce the risk of carcinoma in the contralateral breast (80% confidence), indicating a preventive effect rather than an adverse one. Therefore, the correct answer is that tamoxifen does not cause carcinoma in the contralateral breast, making it the exception among the listed adverse effects.",
+  "analysis": "Tamoxifen is a selective estrogen receptor modulator (SERM) commonly used in the treatment and prevention of breast cancer. It is associated with several adverse effects. The options provided include thromboembolism, endometrial carcinoma, carcinoma in the contralateral breast, and cataract. Standard medical knowledge indicates that tamoxifen can increase the risk of thromboembolism due to its estrogenic effects, and it is also associated with an increased risk of endometrial carcinoma due to its estrogenic activity on the endometrium. Cataracts have been reported as a potential adverse effect of long-term tamoxifen use. However, tamoxifen is known to reduce the risk of developing carcinoma in the contralateral breast, which is a preventive effect rather than an adverse effect. Therefore, the correct answer is that tamoxifen does not cause carcinoma in the contralateral breast, making it the exception among the listed adverse effects.",
+  "answer": "opc",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      0.0,
+      100.0
+    ],
+    "total_successes": 1
+  }
+}

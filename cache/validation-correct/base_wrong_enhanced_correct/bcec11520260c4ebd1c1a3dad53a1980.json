@@ -1,0 +1,164 @@
+{
+  "question": "Which among the following is the function of cholesterol in the Plasmalemma:",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Increase fluidity of the lipid bilayer.",
+    "opb": "Decrease fluidity of the lipid bilayer",
+    "opc": "Facilitate the diffusion of ions through the lipid bilayer",
+    "opd": "Assist in the transpo of hormones across the lipid bilayer"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Hormones",
+        "Disease",
+        "physiological aspects"
+      ],
+      [
+        "Hormones",
+        "Obesity",
+        "physiological aspects"
+      ],
+      [
+        "Hormones",
+        "Pathogenesis",
+        "physiological aspects"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Hormones)-CAUSES->(Disease)-MANIFESTATION_OF->(physiological aspects)",
+      "(Hormones)-CAUSES->(Obesity)-MANIFESTATION_OF->(physiological aspects)",
+      "(Hormones)-CAUSES->(Pathogenesis)-MANIFESTATION_OF->(physiological aspects)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Tissue membrane",
+        "1,2-dipalmitoylphosphatidylglycerol",
+        "Lipid Bilayers"
+      ],
+      [
+        "Tissue membrane",
+        "Lysophosphatidylcholines",
+        "Lipid Bilayers"
+      ],
+      [
+        "Tissue membrane",
+        "Lipopolysaccharides",
+        "Lipid Bilayers"
+      ],
+      [
+        "Tissue membrane",
+        "Proteins"
+      ],
+      [
+        "Membrane",
+        "Lipid Bilayers"
+      ]
+    ],
+    "relationships": [
+      [
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF"
+      ]
+    ],
+    "paths": [
+      "(Tissue membrane)-LOCATION_OF->(1,2-dipalmitoylphosphatidylglycerol)-PART_OF->(Lipid Bilayers)",
+      "(Tissue membrane)-LOCATION_OF->(Lysophosphatidylcholines)-PART_OF->(Lipid Bilayers)",
+      "(Tissue membrane)-LOCATION_OF->(Lipopolysaccharides)-PART_OF->(Lipid Bilayers)",
+      "(Tissue membrane)-LOCATION_OF->(Proteins)",
+      "(Membrane)-PART_OF->(Lipid Bilayers)"
+    ]
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Tissue membrane)-LOCATION_OF->(1,2-dipalmitoylphosphatidylglycerol)-PART_OF->(Lipid Bilayers)",
+      "(Tissue membrane)-LOCATION_OF->(Lipopolysaccharides and Lysophosphatidylcholines)-PART_OF->(Lipid Bilayers)",
+      "(Tissue membrane)-LOCATION_OF->(Proteins)",
+      "(Membrane)-PART_OF->(Lipid Bilayers)"
+    ]
+  },
+  "reasoning_chain": [
+    "\"Cholesterol\" -> \"stabilizes membrane structure\" -> \"decreases fluidity of the lipid bilayer\" -> 90%",
+    "\"Cholesterol\" -> \"increases membrane rigidity\" -> \"decreases fluidity of the lipid bilayer\" -> 85%",
+    "\"Cholesterol\" -> \"interacts with phospholipids\" -> \"modulates membrane fluidity\" -> \"unclear effect on fluidity\" -> 70%",
+    "\"Cholesterol\" -> \"influences membrane permeability\" -> \"facilitates selective transport\" -> \"possible role in hormone transport\" -> 75%",
+    "\"Cholesterol\" -> \"contributes to membrane integrity\" -> \"unclear effect on ion diffusion\" -> 60%"
+  ],
+  "enhanced_information": "Cholesterol plays a crucial role in the structure and function of the plasmalemma (cell membrane). It primarily decreases the fluidity of the lipid bilayer by stabilizing the membrane and increasing its rigidity. While cholesterol can modulate membrane fluidity to some extent, its overall effect is to reduce fluidity, which is essential for maintaining membrane integrity and functionality. Therefore, the most accurate conclusion is that cholesterol decreases fluidity of the lipid bilayer.",
+  "analysis": "Cholesterol is an essential component of the plasmalemma (cell membrane) and plays a significant role in modulating its properties. It is known to insert itself between phospholipids in the lipid bilayer, which can lead to a decrease in the overall fluidity of the membrane. This stabilization is crucial for maintaining the integrity of the cell membrane, especially at varying temperatures. While cholesterol can also have some effects on fluidity by preventing the fatty acid chains of phospholipids from packing too closely together, its primary function is to decrease fluidity and increase membrane rigidity. Therefore, the correct answer is that cholesterol decreases fluidity of the lipid bilayer.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      100.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 1
+  }
+}

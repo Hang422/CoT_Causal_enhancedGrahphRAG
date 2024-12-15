@@ -1,0 +1,257 @@
+{
+  "question": "Proton pump inhibits are used in management of -",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Insulinoma",
+    "opb": "GERD",
+    "opc": "Stress ulcer & gastritis",
+    "opd": "All of the above"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Proton Pump",
+        "Photosynthesis",
+        "Endomycorrhizae",
+        "Disease",
+        "Gastroesophageal reflux disease"
+      ],
+      [
+        "Proton Pump",
+        "uptake",
+        "Endomycorrhizae",
+        "Disease",
+        "Gastroesophageal reflux disease"
+      ],
+      [
+        "Proton Pump",
+        "Photosynthesis",
+        "Endomycorrhizae",
+        "Disease",
+        "Stress ulcer of stomach"
+      ],
+      [
+        "Proton Pump",
+        "uptake",
+        "Endomycorrhizae",
+        "Disease",
+        "Stress ulcer of stomach"
+      ],
+      [
+        "Proton Pump",
+        "Photosynthesis",
+        "Endomycorrhizae",
+        "Disease",
+        "Gastritis"
+      ],
+      [
+        "Proton Pump",
+        "uptake",
+        "Endomycorrhizae",
+        "Disease",
+        "Gastritis"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "PROCESS_OF",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF",
+        "CAUSES",
+        "COMPLICATES"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF",
+        "CAUSES",
+        "COMPLICATES"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF",
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Proton Pump)-CAUSES->(Photosynthesis)-PROCESS_OF->(Endomycorrhizae)-CAUSES->(Disease)-CAUSES->(Gastroesophageal reflux disease)",
+      "(Proton Pump)-CAUSES->(uptake)-PROCESS_OF->(Endomycorrhizae)-CAUSES->(Disease)-CAUSES->(Gastroesophageal reflux disease)",
+      "(Proton Pump)-CAUSES->(Photosynthesis)-PROCESS_OF->(Endomycorrhizae)-CAUSES->(Disease)-COMPLICATES->(Stress ulcer of stomach)",
+      "(Proton Pump)-CAUSES->(uptake)-PROCESS_OF->(Endomycorrhizae)-CAUSES->(Disease)-COMPLICATES->(Stress ulcer of stomach)",
+      "(Proton Pump)-CAUSES->(Photosynthesis)-PROCESS_OF->(Endomycorrhizae)-CAUSES->(Disease)-CAUSES->(Gastritis)",
+      "(Proton Pump)-CAUSES->(uptake)-PROCESS_OF->(Endomycorrhizae)-CAUSES->(Disease)-CAUSES->(Gastritis)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Proton Pump Inhibitors",
+        "Gastroesophageal reflux disease"
+      ],
+      [
+        "Gastroesophageal reflux disease",
+        "Ischemia",
+        "Stress ulcer of stomach"
+      ],
+      [
+        "Gastroesophageal reflux disease",
+        "Bile Reflux",
+        "Stress ulcer of stomach"
+      ],
+      [
+        "Gastroesophageal reflux disease",
+        "Disease",
+        "Stress ulcer of stomach"
+      ],
+      [
+        "Proton Pump Inhibitors",
+        "Heartburn"
+      ],
+      [
+        "Heartburn",
+        "Gastroesophageal reflux disease"
+      ],
+      [
+        "Gastroesophageal reflux disease",
+        "Ischemia",
+        "Stress ulcer of stomach"
+      ],
+      [
+        "Gastroesophageal reflux disease",
+        "Bile Reflux",
+        "Stress ulcer of stomach"
+      ],
+      [
+        "Gastroesophageal reflux disease",
+        "Disease",
+        "Stress ulcer of stomach"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "COMPLICATES"
+      ],
+      [
+        "PREVENTS"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "COMPLICATES"
+      ]
+    ],
+    "paths": [
+      "(Proton Pump Inhibitors)-CAUSES->(Gastroesophageal reflux disease)",
+      "(Gastroesophageal reflux disease)-CAUSES->(Ischemia)-CAUSES->(Stress ulcer of stomach)",
+      "(Gastroesophageal reflux disease)-CAUSES->(Bile Reflux)-CAUSES->(Stress ulcer of stomach)",
+      "(Gastroesophageal reflux disease)-CAUSES->(Disease)-COMPLICATES->(Stress ulcer of stomach)",
+      "(Proton Pump Inhibitors)-PREVENTS->(Heartburn)",
+      "(Heartburn)-CAUSES->(Gastroesophageal reflux disease)",
+      "(Gastroesophageal reflux disease)-CAUSES->(Ischemia)-CAUSES->(Stress ulcer of stomach)",
+      "(Gastroesophageal reflux disease)-CAUSES->(Bile Reflux)-CAUSES->(Stress ulcer of stomach)",
+      "(Gastroesophageal reflux disease)-CAUSES->(Disease)-COMPLICATES->(Stress ulcer of stomach)"
+    ]
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Proton Pump Inhibitors)-CAUSES->(Gastroesophageal reflux disease)",
+      "(Gastroesophageal reflux disease)-CAUSES->(Bile Reflux and Ischemia)-CAUSES->(Stress ulcer of stomach)",
+      "(Gastroesophageal reflux disease)-CAUSES->(Disease)-COMPLICATES->(Stress ulcer of stomach)",
+      "(Proton Pump Inhibitors)-PREVENTS->(Heartburn)",
+      "(Heartburn)-CAUSES->(Gastroesophageal reflux disease)"
+    ]
+  },
+  "reasoning_chain": [
+    "\"Proton pump inhibitors\" -> \"reduce gastric acid secretion\" -> \"used in GERD management\" -> \"effective for stress ulcers\" -> \"not indicated for insulinoma\" -> 80%",
+    "\"Proton pump inhibitors\" -> \"decrease stomach acid\" -> \"treat GERD\" -> \"prevent stress ulcers\" -> \"not used for insulinoma\" -> 75%",
+    "\"Proton pump inhibitors\" -> \"inhibit gastric acid production\" -> \"indicated for GERD\" -> \"beneficial in stress gastritis\" -> \"not applicable for insulinoma\" -> 70%",
+    "\"Proton pump inhibitors\" -> \"reduce acidity in stomach\" -> \"help manage GERD\" -> \"used for stress ulcers\" -> \"unclear role in insulinoma\" -> 65%",
+    "\"Proton pump inhibitors\" -> \"lower gastric acid levels\" -> \"effective in GERD treatment\" -> \"used for stress ulcers\" -> \"not relevant for insulinoma\" -> 85%"
+  ],
+  "enhanced_information": "Proton pump inhibitors (PPIs) are primarily used in the management of gastroesophageal reflux disease (GERD) and are effective in preventing and treating stress ulcers and gastritis due to their ability to reduce gastric acid secretion. However, they are not indicated for the treatment of insulinoma, as this condition is related to insulin secretion rather than gastric acid production. Therefore, the correct answer is that PPIs are used in the management of GERD and stress ulcers, but not insulinoma.",
+  "analysis": "Proton pump inhibitors (PPIs) are primarily used to reduce gastric acid secretion. They are well-established in the management of gastroesophageal reflux disease (GERD), where they help alleviate symptoms and heal esophageal mucosa. Additionally, PPIs are effective in the prevention and treatment of stress ulcers and gastritis, as they protect the gastric lining by reducing acid production. However, PPIs are not indicated for insulinoma, which is a pancreatic tumor that secretes insulin and is unrelated to gastric acid secretion. Therefore, the correct answer is that PPIs are used in the management of GERD and stress ulcers, but not insulinoma. Since the option 'All of the above' includes insulinoma, it cannot be correct. Thus, the best answer is that PPIs are used in the management of GERD and stress ulcers, but not insulinoma.",
+  "answer": "opc",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      0,
+      3,
+      0
+    ],
+    "coverage_rates": [
+      0.0,
+      25.0,
+      0.0,
+      75.0,
+      0.0
+    ],
+    "total_successes": 4
+  }
+}

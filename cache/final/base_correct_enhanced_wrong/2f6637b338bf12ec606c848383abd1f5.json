@@ -1,0 +1,419 @@
+{
+  "question": "Which of the follow ing drugs is contraindicated in liver dysfunction?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Pefloxacin",
+    "opb": "Vancomycin",
+    "opc": "Amikacin",
+    "opd": "Hydralazine"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Pefloxacin",
+        "Infection",
+        "Liver Dysfunction"
+      ],
+      [
+        "Pefloxacin",
+        "Kidney Diseases",
+        "Liver Dysfunction"
+      ],
+      [
+        "Pefloxacin",
+        "Septicemia",
+        "Liver Dysfunction"
+      ],
+      [
+        "Hydralazine",
+        "Lupus Erythematosus, Systemic",
+        "Liver Dysfunction"
+      ],
+      [
+        "Hydralazine",
+        "Disease",
+        "Liver Dysfunction"
+      ],
+      [
+        "Hydralazine",
+        "Obesity",
+        "Liver Dysfunction"
+      ],
+      [
+        "Vancomycin",
+        "Symptoms",
+        "Disease",
+        "Liver Dysfunction"
+      ],
+      [
+        "Vancomycin",
+        "Flare",
+        "Disease",
+        "Liver Dysfunction"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Pefloxacin)-TREATS->(Infection)-CAUSES->(Liver Dysfunction)",
+      "(Pefloxacin)-TREATS->(Kidney Diseases)-CAUSES->(Liver Dysfunction)",
+      "(Pefloxacin)-TREATS->(Septicemia)-CAUSES->(Liver Dysfunction)",
+      "(Hydralazine)-CAUSES->(Lupus Erythematosus, Systemic)-CAUSES->(Liver Dysfunction)",
+      "(Hydralazine)-TREATS->(Disease)-CAUSES->(Liver Dysfunction)",
+      "(Hydralazine)-TREATS->(Obesity)-CAUSES->(Liver Dysfunction)",
+      "(Vancomycin)-CAUSES->(Symptoms)-CAUSES->(Disease)-CAUSES->(Liver Dysfunction)",
+      "(Vancomycin)-CAUSES->(Flare)-CAUSES->(Disease)-CAUSES->(Liver Dysfunction)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Vancomycin",
+        "drug accumulation",
+        "Kidney"
+      ],
+      [
+        "Vancomycin",
+        "Excretory function",
+        "Kidney"
+      ],
+      [
+        "Vancomycin",
+        "biological adaptation to stress",
+        "Kidney"
+      ],
+      [
+        "Vancomycin",
+        "drug accumulation",
+        "Kidney"
+      ],
+      [
+        "Vancomycin",
+        "Excretory function",
+        "Kidney"
+      ],
+      [
+        "Vancomycin",
+        "biological adaptation to stress",
+        "Kidney"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Vancomycin)-CAUSES->(drug accumulation)-PROCESS_OF->(Kidney)",
+      "(Vancomycin)-CAUSES->(Excretory function)-PROCESS_OF->(Kidney)",
+      "(Vancomycin)-CAUSES->(biological adaptation to stress)-PROCESS_OF->(Kidney)",
+      "(Vancomycin)-CAUSES->(drug accumulation)-PROCESS_OF->(Kidney)",
+      "(Vancomycin)-CAUSES->(Excretory function)-PROCESS_OF->(Kidney)",
+      "(Vancomycin)-CAUSES->(biological adaptation to stress)-PROCESS_OF->(Kidney)"
+    ]
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Kidney",
+        "Liver Dysfunction"
+      ],
+      [
+        "Amikacin",
+        "Pharmaceutical Preparations",
+        "Genes",
+        "Kidney"
+      ],
+      [
+        "Amikacin",
+        "Bacterial resistance",
+        "Genes",
+        "Kidney"
+      ],
+      [
+        "Amikacin",
+        "Pharmaceutical Preparations",
+        "Cells",
+        "Kidney"
+      ],
+      [
+        "Kidney",
+        "Liver Dysfunction"
+      ],
+      [
+        "Kidney",
+        "Liver Dysfunction"
+      ],
+      [
+        "Amikacin",
+        "Pharmaceutical Preparations",
+        "Genes",
+        "Kidney"
+      ],
+      [
+        "Amikacin",
+        "Bacterial resistance",
+        "Genes",
+        "Kidney"
+      ],
+      [
+        "Amikacin",
+        "Pharmaceutical Preparations",
+        "Cells",
+        "Kidney"
+      ],
+      [
+        "Kidney",
+        "Liver Dysfunction"
+      ]
+    ],
+    "relationships": [
+      [
+        "LOCATION_OF"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH",
+        "PART_OF"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "ASSOCIATED_WITH",
+        "PART_OF"
+      ],
+      [
+        "ISA",
+        "PART_OF",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF"
+      ],
+      [
+        "LOCATION_OF"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH",
+        "PART_OF"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "ASSOCIATED_WITH",
+        "PART_OF"
+      ],
+      [
+        "ISA",
+        "PART_OF",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Kidney)-LOCATION_OF->(Liver Dysfunction)",
+      "(Amikacin)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Genes)-PART_OF->(Kidney)",
+      "(Amikacin)-ASSOCIATED_WITH->(Bacterial resistance)-ASSOCIATED_WITH->(Genes)-PART_OF->(Kidney)",
+      "(Amikacin)-ISA->(Pharmaceutical Preparations)-PART_OF->(Cells)-PART_OF->(Kidney)",
+      "(Kidney)-LOCATION_OF->(Liver Dysfunction)",
+      "(Kidney)-LOCATION_OF->(Liver Dysfunction)",
+      "(Amikacin)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Genes)-PART_OF->(Kidney)",
+      "(Amikacin)-ASSOCIATED_WITH->(Bacterial resistance)-ASSOCIATED_WITH->(Genes)-PART_OF->(Kidney)",
+      "(Amikacin)-ISA->(Pharmaceutical Preparations)-PART_OF->(Cells)-PART_OF->(Kidney)",
+      "(Kidney)-LOCATION_OF->(Liver Dysfunction)"
+    ]
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Pefloxacin",
+        "Infection",
+        "Liver Dysfunction"
+      ],
+      [
+        "Pefloxacin",
+        "Kidney Diseases",
+        "Liver Dysfunction"
+      ],
+      [
+        "Pefloxacin",
+        "Septicemia",
+        "Liver Dysfunction"
+      ],
+      [
+        "Vancomycin",
+        "Symptoms",
+        "Disease",
+        "Liver Dysfunction"
+      ],
+      [
+        "Vancomycin",
+        "Flare",
+        "Disease",
+        "Liver Dysfunction"
+      ],
+      [
+        "Hydralazine",
+        "Lupus Erythematosus, Systemic",
+        "Liver Dysfunction"
+      ],
+      [
+        "Hydralazine",
+        "Disease",
+        "Liver Dysfunction"
+      ],
+      [
+        "Hydralazine",
+        "Obesity",
+        "Liver Dysfunction"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Pefloxacin)-TREATS->(Infection and Kidney Diseases and Septicemia)-CAUSES->(Liver Dysfunction)",
+      "(Vancomycin)-CAUSES->(Flare and Symptoms)-CAUSES->(Disease)-CAUSES->(Liver Dysfunction)",
+      "(Hydralazine)-CAUSES->(Lupus Erythematosus, Systemic)-CAUSES->(Liver Dysfunction)",
+      "(Hydralazine)-TREATS->(Disease and Obesity)-CAUSES->(Liver Dysfunction)",
+      "(Vancomycin)-CAUSES->(Excretory function and biological adaptation to stress and drug accumulation)-PROCESS_OF->(Kidney)",
+      "(Kidney)-LOCATION_OF->(Liver Dysfunction)",
+      "(Amikacin)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Genes)-PART_OF->(Kidney)",
+      "(Amikacin)-ASSOCIATED_WITH->(Bacterial resistance)-ASSOCIATED_WITH->(Genes)-PART_OF->(Kidney)",
+      "(Amikacin)-ISA->(Pharmaceutical Preparations)-PART_OF->(Cells)-PART_OF->(Kidney)"
+    ]
+  },
+  "reasoning_chain": [
+    "Pefloxacin -> potential hepatotoxicity -> contraindicated in liver dysfunction -> 70%",
+    "Vancomycin -> primarily renal excretion -> less concern in liver dysfunction -> 80%",
+    "Amikacin -> primarily renal excretion -> less concern in liver dysfunction -> 80%",
+    "Hydralazine -> possible liver metabolism -> contraindicated in severe liver dysfunction -> 75%"
+  ],
+  "enhanced_information": "Among the drugs listed, Hydralazine is the most contraindicated in liver dysfunction. The reasoning chain indicates that Hydralazine is metabolized by the liver, and severe liver dysfunction can impair its clearance, leading to potential toxicity (75% confidence). Pefloxacin also shows potential hepatotoxicity, but the evidence is less direct (70% confidence). Vancomycin and Amikacin are primarily excreted by the kidneys, making them less concerning in the context of liver dysfunction (80% confidence each). Therefore, while Pefloxacin and Hydralazine both present risks, Hydralazine's direct contraindication in severe liver dysfunction is the most clinically significant finding, supported by its metabolic pathway and potential for adverse effects in compromised liver function.",
+  "analysis": "The question asks which drug is contraindicated in liver dysfunction. Hydralazine is primarily metabolized by the liver, and in cases of severe liver dysfunction, its clearance can be significantly impaired, leading to potential toxicity. This aligns with standard medical knowledge regarding the metabolism of drugs and the implications of liver impairment. Pefloxacin also has potential hepatotoxicity, but the evidence is less direct compared to Hydralazine. Vancomycin and Amikacin are primarily excreted by the kidneys, making them less concerning in the context of liver dysfunction. Therefore, the most clinically significant contraindication in liver dysfunction is Hydralazine, supported by its metabolic pathway and the risk of adverse effects in compromised liver function.",
+  "answer": "opd",
+  "confidence": 85.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      2,
+      2,
+      0
+    ],
+    "coverage_rates": [
+      0.0,
+      50.0,
+      50.0,
+      0.0
+    ],
+    "total_successes": 4
+  }
+}

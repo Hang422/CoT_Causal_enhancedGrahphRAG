@@ -1,0 +1,345 @@
+{
+  "question": "Anaesthesia contraindicated in volvulus of gut is :",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Halothane",
+    "opb": "Nitrous oxide",
+    "opc": "Ketamine",
+    "opd": "Pancuronium"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Pancuronium",
+        "Obstruction",
+        "Pneumatosis intestinalis",
+        "Intestinal Volvulus"
+      ],
+      [
+        "Pancuronium",
+        "Obstruction",
+        "Gangrene",
+        "Intestinal Volvulus"
+      ],
+      [
+        "Pancuronium",
+        "Asphyxia",
+        "Gangrene",
+        "Intestinal Volvulus"
+      ],
+      [
+        "Halothane",
+        "Lack of sensation",
+        "Gangrene",
+        "Intestinal Volvulus"
+      ],
+      [
+        "Halothane",
+        "Pain",
+        "Gangrene",
+        "Intestinal Volvulus"
+      ],
+      [
+        "Halothane",
+        "Ischemia",
+        "Pneumatosis intestinalis",
+        "Intestinal Volvulus"
+      ],
+      [
+        "Ketamine",
+        "Disease",
+        "Gangrene",
+        "Intestinal Volvulus"
+      ],
+      [
+        "Ketamine",
+        "Infection",
+        "Gangrene",
+        "Intestinal Volvulus"
+      ],
+      [
+        "Ketamine",
+        "Hypertensive disease",
+        "Gangrene",
+        "Intestinal Volvulus"
+      ],
+      [
+        "Nitrous Oxide",
+        "Adverse effects",
+        "Gangrene",
+        "Intestinal Volvulus"
+      ],
+      [
+        "Nitrous Oxide",
+        "Vomiting",
+        "Gangrene",
+        "Intestinal Volvulus"
+      ],
+      [
+        "Nitrous Oxide",
+        "Extravasation",
+        "Gangrene",
+        "Intestinal Volvulus"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS",
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Pancuronium)-CAUSES->(Obstruction)-CAUSES->(Pneumatosis intestinalis)-CAUSES->(Intestinal Volvulus)",
+      "(Pancuronium)-CAUSES->(Obstruction)-CAUSES->(Gangrene)-CAUSES->(Intestinal Volvulus)",
+      "(Pancuronium)-CAUSES->(Asphyxia)-CAUSES->(Gangrene)-CAUSES->(Intestinal Volvulus)",
+      "(Halothane)-CAUSES->(Lack of sensation)-CAUSES->(Gangrene)-CAUSES->(Intestinal Volvulus)",
+      "(Halothane)-PREVENTS->(Pain)-CAUSES->(Gangrene)-CAUSES->(Intestinal Volvulus)",
+      "(Halothane)-TREATS->(Ischemia)-CAUSES->(Pneumatosis intestinalis)-CAUSES->(Intestinal Volvulus)",
+      "(Ketamine)-TREATS->(Disease)-CAUSES->(Gangrene)-CAUSES->(Intestinal Volvulus)",
+      "(Ketamine)-TREATS->(Infection)-CAUSES->(Gangrene)-CAUSES->(Intestinal Volvulus)",
+      "(Ketamine)-TREATS->(Hypertensive disease)-CAUSES->(Gangrene)-CAUSES->(Intestinal Volvulus)",
+      "(Nitrous Oxide)-CAUSES->(Adverse effects)-CAUSES->(Gangrene)-CAUSES->(Intestinal Volvulus)",
+      "(Nitrous Oxide)-PREVENTS->(Vomiting)-CAUSES->(Gangrene)-CAUSES->(Intestinal Volvulus)",
+      "(Nitrous Oxide)-PREVENTS->(Extravasation)-CAUSES->(Gangrene)-CAUSES->(Intestinal Volvulus)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Pancuronium",
+        "Muscle hypotonia"
+      ],
+      [
+        "Muscle hypotonia",
+        "Vomiting",
+        "Small bowel obstruction NOS",
+        "Abdominal distress"
+      ],
+      [
+        "Muscle hypotonia",
+        "Disease",
+        "Small bowel obstruction NOS",
+        "Abdominal distress"
+      ],
+      [
+        "Muscle hypotonia",
+        "Disease",
+        "Concretion of intestine",
+        "Abdominal distress"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Pancuronium)-CAUSES->(Muscle hypotonia)",
+      "(Muscle hypotonia)-CAUSES->(Vomiting)-CAUSES->(Small bowel obstruction NOS)-CAUSES->(Abdominal distress)",
+      "(Muscle hypotonia)-PREDISPOSES->(Disease)-CAUSES->(Small bowel obstruction NOS)-CAUSES->(Abdominal distress)",
+      "(Muscle hypotonia)-PREDISPOSES->(Disease)-CAUSES->(Concretion of intestine)-CAUSES->(Abdominal distress)"
+    ]
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Halothane",
+        "Lack of sensation",
+        "Gangrene",
+        "Intestinal Volvulus"
+      ],
+      [
+        "Halothane",
+        "Pain",
+        "Gangrene",
+        "Intestinal Volvulus"
+      ],
+      [
+        "Halothane",
+        "Ischemia",
+        "Pneumatosis intestinalis",
+        "Intestinal Volvulus"
+      ],
+      [
+        "Nitrous Oxide",
+        "Adverse effects",
+        "Gangrene",
+        "Intestinal Volvulus"
+      ],
+      [
+        "Nitrous Oxide",
+        "Vomiting",
+        "Gangrene",
+        "Intestinal Volvulus"
+      ],
+      [
+        "Nitrous Oxide",
+        "Extravasation",
+        "Gangrene",
+        "Intestinal Volvulus"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS",
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Halothane)-CAUSES->(Lack of sensation)-CAUSES->(Gangrene)-CAUSES->(Intestinal Volvulus)",
+      "(Halothane)-PREVENTS->(Pain)-CAUSES->(Gangrene)-CAUSES->(Intestinal Volvulus)",
+      "(Halothane)-TREATS->(Ischemia)-CAUSES->(Pneumatosis intestinalis)-CAUSES->(Intestinal Volvulus)",
+      "(Nitrous Oxide)-CAUSES->(Adverse effects)-CAUSES->(Gangrene)-CAUSES->(Intestinal Volvulus)",
+      "(Nitrous Oxide)-PREVENTS->(Extravasation and Vomiting)-CAUSES->(Gangrene)-CAUSES->(Intestinal Volvulus)",
+      "(Pancuronium)-CAUSES->(Muscle hypotonia)",
+      "(Muscle hypotonia)-CAUSES->(Vomiting)-CAUSES->(Small bowel obstruction NOS)-CAUSES->(Abdominal distress)",
+      "(Muscle hypotonia)-PREDISPOSES->(Disease)-CAUSES->(Concretion of intestine and Small bowel obstruction NOS)-CAUSES->(Abdominal distress)"
+    ]
+  },
+  "reasoning_chain": [
+    "Halothane -> potential for cardiovascular depression -> increased risk in volvulus -> 80%",
+    "Nitrous oxide -> possible bowel distension -> may exacerbate volvulus condition -> 70%",
+    "Ketamine -> maintains hemodynamic stability -> less risk in acute abdomen -> 85%",
+    "Pancuronium -> muscle relaxation -> may mask signs of abdominal distress -> 75%"
+  ],
+  "enhanced_information": "In the context of gut volvulus, the evaluation of anesthetic agents reveals critical insights. Halothane is associated with cardiovascular depression, which poses a significant risk in patients with volvulus, as evidenced by its potential to exacerbate ischemia and lead to gangrene (80% confidence). Nitrous oxide can cause bowel distension, potentially worsening the volvulus condition (70% confidence). Ketamine, however, is favorable due to its ability to maintain hemodynamic stability and lower risk in acute abdominal situations (85% confidence). Pancuronium, while providing muscle relaxation, may mask signs of abdominal distress, which is concerning in this context (75% confidence). Therefore, the most contraindicated anesthetic in gut volvulus is Halothane due to its high risk of cardiovascular complications and exacerbation of the condition.",
+  "analysis": "In the context of gut volvulus, the primary concern is the risk of ischemia and potential cardiovascular complications. Halothane is known to cause cardiovascular depression, which can exacerbate ischemia and lead to complications such as gangrene in patients with volvulus. Nitrous oxide can cause bowel distension, which may worsen the condition, but it does not have the same level of cardiovascular risk as Halothane. Ketamine is advantageous in this scenario as it maintains hemodynamic stability, making it a safer choice. Pancuronium, while it provides muscle relaxation, may mask signs of abdominal distress, which is a concern in this acute setting. Therefore, Halothane is the most contraindicated anesthetic in gut volvulus due to its high risk of cardiovascular complications and exacerbation of the condition.",
+  "answer": "opa",
+  "confidence": 85.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      0,
+      2
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      0.0,
+      100.0
+    ],
+    "total_successes": 2
+  }
+}

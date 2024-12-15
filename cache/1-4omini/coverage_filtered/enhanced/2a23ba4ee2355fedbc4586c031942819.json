@@ -1,0 +1,384 @@
+{
+  "question": "Minimal reabsorption in kidney occurs for",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Urea",
+    "opb": "Glucose",
+    "opc": "Na",
+    "opd": "HCO3"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Glucose",
+        "Intestinal Metabolism",
+        "Kidney"
+      ],
+      [
+        "Glucose",
+        "paracrine",
+        "Kidney"
+      ],
+      [
+        "Glucose",
+        "Respiration",
+        "Kidney"
+      ],
+      [
+        "Urea",
+        "Disease",
+        "Physiological stress",
+        "Kidney"
+      ],
+      [
+        "Urea",
+        "Disease",
+        "paracrine",
+        "Kidney"
+      ],
+      [
+        "Urea",
+        "Disease",
+        "metabolic effects",
+        "Kidney"
+      ],
+      [
+        "Bicarbonates",
+        "Disease",
+        "paracrine",
+        "Kidney"
+      ],
+      [
+        "Bicarbonates",
+        "Symptoms",
+        "paracrine",
+        "Kidney"
+      ],
+      [
+        "Bicarbonates",
+        "Kidney Calculi",
+        "paracrine",
+        "Kidney"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "PREVENTS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Glucose)-CAUSES->(Intestinal Metabolism)-PROCESS_OF->(Kidney)",
+      "(Glucose)-CAUSES->(paracrine)-PROCESS_OF->(Kidney)",
+      "(Glucose)-CAUSES->(Respiration)-PROCESS_OF->(Kidney)",
+      "(Urea)-CAUSES->(Disease)-CAUSES->(Physiological stress)-PROCESS_OF->(Kidney)",
+      "(Urea)-CAUSES->(Disease)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Kidney)",
+      "(Urea)-CAUSES->(Disease)-MANIFESTATION_OF->(metabolic effects)-PROCESS_OF->(Kidney)",
+      "(Bicarbonates)-TREATS->(Disease)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Kidney)",
+      "(Bicarbonates)-TREATS->(Symptoms)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Kidney)",
+      "(Bicarbonates)-PREVENTS->(Kidney Calculi)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Kidney)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Urea",
+        "Disease",
+        "Physiological stress",
+        "Kidney"
+      ],
+      [
+        "Urea",
+        "Disease",
+        "paracrine",
+        "Kidney"
+      ],
+      [
+        "Urea",
+        "Disease",
+        "metabolic effects",
+        "Kidney"
+      ],
+      [
+        "Bicarbonates",
+        "Disease",
+        "paracrine",
+        "Kidney"
+      ],
+      [
+        "Bicarbonates",
+        "Symptoms",
+        "paracrine",
+        "Kidney"
+      ],
+      [
+        "Bicarbonates",
+        "Kidney Calculi",
+        "paracrine",
+        "Kidney"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "PREVENTS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Urea)-CAUSES->(Disease)-CAUSES->(Physiological stress)-PROCESS_OF->(Kidney)",
+      "(Urea)-CAUSES->(Disease)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Kidney)",
+      "(Urea)-CAUSES->(Disease)-MANIFESTATION_OF->(metabolic effects)-PROCESS_OF->(Kidney)",
+      "(Bicarbonates)-TREATS->(Disease)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Kidney)",
+      "(Bicarbonates)-TREATS->(Symptoms)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Kidney)",
+      "(Bicarbonates)-PREVENTS->(Kidney Calculi)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Kidney)"
+    ]
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Kidney",
+        "Saccharomyces cerevisiae",
+        "Proton-Translocating ATPases",
+        "Acid-Base Equilibrium"
+      ],
+      [
+        "Kidney",
+        "Acidosis",
+        "Proton-Translocating ATPases",
+        "Acid-Base Equilibrium"
+      ]
+    ],
+    "relationships": [
+      [
+        "LOCATION_OF",
+        "LOCATION_OF",
+        "CAUSES"
+      ],
+      [
+        "LOCATION_OF",
+        "ASSOCIATED_WITH",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Kidney)-LOCATION_OF->(Saccharomyces cerevisiae)-LOCATION_OF->(Proton-Translocating ATPases)-CAUSES->(Acid-Base Equilibrium)",
+      "(Kidney)-LOCATION_OF->(Acidosis)-ASSOCIATED_WITH->(Proton-Translocating ATPases)-CAUSES->(Acid-Base Equilibrium)"
+    ]
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Urea",
+        "Disease",
+        "Physiological stress",
+        "Kidney"
+      ],
+      [
+        "Urea",
+        "Disease",
+        "paracrine",
+        "Kidney"
+      ],
+      [
+        "Urea",
+        "Disease",
+        "metabolic effects",
+        "Kidney"
+      ],
+      [
+        "Glucose",
+        "Intestinal Metabolism",
+        "Kidney"
+      ],
+      [
+        "Glucose",
+        "paracrine",
+        "Kidney"
+      ],
+      [
+        "Glucose",
+        "Respiration",
+        "Kidney"
+      ],
+      [
+        "Bicarbonates",
+        "Disease",
+        "paracrine",
+        "Kidney"
+      ],
+      [
+        "Bicarbonates",
+        "Symptoms",
+        "paracrine",
+        "Kidney"
+      ],
+      [
+        "Bicarbonates",
+        "Kidney Calculi",
+        "paracrine",
+        "Kidney"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "PREVENTS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Urea)-CAUSES->(Disease)-CAUSES->(Physiological stress)-PROCESS_OF->(Kidney)",
+      "(Urea)-CAUSES->(Disease)-MANIFESTATION_OF->(metabolic effects and paracrine)-PROCESS_OF->(Kidney)",
+      "(Glucose)-CAUSES->(Intestinal Metabolism and Respiration and paracrine)-PROCESS_OF->(Kidney)",
+      "(Bicarbonates)-TREATS->(Disease and Symptoms)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Kidney)",
+      "(Bicarbonates)-PREVENTS->(Kidney Calculi)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Kidney)",
+      "(Kidney)-LOCATION_OF->(Saccharomyces cerevisiae)-LOCATION_OF->(Proton-Translocating ATPases)-CAUSES->(Acid-Base Equilibrium)",
+      "(Kidney)-LOCATION_OF->(Acidosis)-ASSOCIATED_WITH->(Proton-Translocating ATPases)-CAUSES->(Acid-Base Equilibrium)"
+    ]
+  },
+  "reasoning_chain": [
+    "Urea -> minimal reabsorption in kidney -> high concentration in urine -> 85%",
+    "Glucose -> significant reabsorption in kidney -> low concentration in urine -> 90%",
+    "Na -> substantial reabsorption in kidney -> regulated blood volume and pressure -> 80%",
+    "HCO3 -> considerable reabsorption in kidney -> acid-base balance maintenance -> 75%"
+  ],
+  "enhanced_information": "The minimal reabsorption in the kidney occurs for urea. Evidence indicates that urea has a high concentration in urine, with approximately 85% being excreted, which aligns with the reasoning chain that highlights its minimal reabsorption. In contrast, glucose, sodium (Na), and bicarbonate (HCO3) all undergo significant reabsorption processes, with glucose being nearly completely reabsorbed (90%), Na around 80%, and HCO3 about 75%. The supporting evidence for urea's minimal reabsorption is strong, as it is consistently associated with high urinary concentration and minimal renal handling. Other options, such as glucose and Na, are critical for metabolic processes and are reabsorbed extensively, while HCO3 plays a vital role in acid-base balance, further confirming that urea is the correct answer due to its minimal reabsorption in the kidney.",
+  "analysis": "The question asks about the substance that undergoes minimal reabsorption in the kidney. Standard medical knowledge indicates that urea is primarily excreted in urine, with approximately 85% of it being eliminated, which confirms its minimal reabsorption. In contrast, glucose is nearly completely reabsorbed (around 90%), sodium (Na) is reabsorbed significantly (about 80%), and bicarbonate (HCO3) is also reabsorbed to a large extent (approximately 75%). The enhanced information corroborates this understanding by emphasizing urea's high urinary concentration and minimal renal handling. Therefore, the reasoning leads to the conclusion that urea is the correct answer due to its minimal reabsorption in the kidney.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      0,
+      0,
+      2
+    ],
+    "coverage_rates": [
+      33.33333333333333,
+      0.0,
+      0.0,
+      66.66666666666666
+    ],
+    "total_successes": 3
+  }
+}

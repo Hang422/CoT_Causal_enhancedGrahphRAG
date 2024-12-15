@@ -1,0 +1,132 @@
+{
+  "question": "Which of the following antiepileptic does not cause OCP failure",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Phenytoin",
+    "opb": "Valproate",
+    "opc": "Carbamazepine",
+    "opd": "Phenobarbitone"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Carbamazepine",
+        "Symptoms",
+        "Ocular cicatricial pemphigoid"
+      ],
+      [
+        "Carbamazepine",
+        "Stevens-Johnson Syndrome",
+        "Ocular cicatricial pemphigoid"
+      ],
+      [
+        "Valproate",
+        "Symptoms",
+        "Ocular cicatricial pemphigoid"
+      ],
+      [
+        "Valproate",
+        "Stevens-Johnson Syndrome",
+        "Ocular cicatricial pemphigoid"
+      ],
+      [
+        "Phenobarbital",
+        "Symptoms",
+        "Ocular cicatricial pemphigoid"
+      ],
+      [
+        "Phenytoin",
+        "Symptoms",
+        "Ocular cicatricial pemphigoid"
+      ],
+      [
+        "Phenytoin",
+        "Stevens-Johnson Syndrome",
+        "Ocular cicatricial pemphigoid"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Carbamazepine)-CAUSES->(Symptoms)-CAUSES->(Ocular cicatricial pemphigoid)",
+      "(Carbamazepine)-CAUSES->(Stevens-Johnson Syndrome)-CAUSES->(Ocular cicatricial pemphigoid)",
+      "(Valproate)-CAUSES->(Symptoms)-CAUSES->(Ocular cicatricial pemphigoid)",
+      "(Valproate)-CAUSES->(Stevens-Johnson Syndrome)-CAUSES->(Ocular cicatricial pemphigoid)",
+      "(Phenobarbital)-CAUSES->(Symptoms)-CAUSES->(Ocular cicatricial pemphigoid)",
+      "(Phenytoin)-CAUSES->(Symptoms)-CAUSES->(Ocular cicatricial pemphigoid)",
+      "(Phenytoin)-TREATS->(Stevens-Johnson Syndrome)-CAUSES->(Ocular cicatricial pemphigoid)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "reasoning_chain": [],
+  "enhanced_information": "",
+  "analysis": "Among the listed antiepileptic drugs, Valproate is known not to induce hepatic enzymes significantly and therefore does not typically cause failure of oral contraceptive pills (OCP). In contrast, Phenytoin, Carbamazepine, and Phenobarbitone are enzyme inducers and can reduce the effectiveness of OCPs.",
+  "answer": "opb",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [],
+    "coverage_rates": [],
+    "total_successes": 0
+  }
+}

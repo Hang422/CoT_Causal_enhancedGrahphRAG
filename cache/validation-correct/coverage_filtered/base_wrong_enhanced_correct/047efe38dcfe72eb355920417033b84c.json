@@ -1,0 +1,368 @@
+{
+  "question": "Which of the following drug leads to above side effect",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Busulfan",
+    "opb": "Bleomycin",
+    "opc": "Doxorubicin",
+    "opd": "Actinomycin"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Busulfan",
+        "Disease",
+        "Adverse effects"
+      ],
+      [
+        "Busulfan",
+        "Chronic liver disease NOS",
+        "Adverse effects"
+      ],
+      [
+        "Busulfan",
+        "anemia; profound",
+        "Adverse effects"
+      ],
+      [
+        "Bleomycin",
+        "Exanthema",
+        "Adverse effects"
+      ],
+      [
+        "Bleomycin",
+        "Degenerative polyarthritis",
+        "Adverse effects"
+      ],
+      [
+        "Bleomycin",
+        "Pulmonary Fibrosis",
+        "Adverse effects"
+      ],
+      [
+        "Actinomycin",
+        "Vomiting",
+        "Disease",
+        "Adverse effects"
+      ],
+      [
+        "Actinomycin",
+        "Vomiting",
+        "Diabetes Mellitus, Insulin-Dependent",
+        "Adverse effects"
+      ],
+      [
+        "Actinomycin",
+        "Vomiting",
+        "Myocardial Infarction",
+        "Adverse effects"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "PREDISPOSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Busulfan)-TREATS->(Disease)-CAUSES->(Adverse effects)",
+      "(Busulfan)-TREATS->(Chronic liver disease NOS)-CAUSES->(Adverse effects)",
+      "(Busulfan)-TREATS->(anemia; profound)-CAUSES->(Adverse effects)",
+      "(Bleomycin)-CAUSES->(Exanthema)-CAUSES->(Adverse effects)",
+      "(Bleomycin)-CAUSES->(Degenerative polyarthritis)-CAUSES->(Adverse effects)",
+      "(Bleomycin)-CAUSES->(Pulmonary Fibrosis)-CAUSES->(Adverse effects)",
+      "(Actinomycin)-CAUSES->(Vomiting)-CAUSES->(Disease)-CAUSES->(Adverse effects)",
+      "(Actinomycin)-CAUSES->(Vomiting)-CAUSES->(Diabetes Mellitus, Insulin-Dependent)-CAUSES->(Adverse effects)",
+      "(Actinomycin)-CAUSES->(Vomiting)-PREDISPOSES->(Myocardial Infarction)-CAUSES->(Adverse effects)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Alkylating Agents",
+        "Disease",
+        "Bone Marrow Suppression"
+      ],
+      [
+        "Alkylating Agents",
+        "Anemia",
+        "Bone Marrow Suppression"
+      ],
+      [
+        "Bleomycin",
+        "Neutrophil Infiltration",
+        "Lung"
+      ],
+      [
+        "Bleomycin",
+        "Transformation, function",
+        "Lung"
+      ],
+      [
+        "Bleomycin",
+        "Leukotriene Production",
+        "Lung"
+      ],
+      [
+        "Alkylating Agents",
+        "Disease",
+        "Bone Marrow Suppression"
+      ],
+      [
+        "Alkylating Agents",
+        "Anemia",
+        "Bone Marrow Suppression"
+      ],
+      [
+        "Antineoplastic Agents",
+        "Disease",
+        "Bone Marrow Suppression"
+      ],
+      [
+        "Antineoplastic Agents",
+        "Syndrome",
+        "Bone Marrow Suppression"
+      ],
+      [
+        "Antineoplastic Agents",
+        "Pathogenesis",
+        "Bone Marrow Suppression"
+      ],
+      [
+        "Bone Marrow Suppression",
+        "Hypertensive disease",
+        "Disease",
+        "Mucositis"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "PREDISPOSES"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "PREDISPOSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "COMPLICATES",
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Alkylating Agents)-TREATS->(Disease)-CAUSES->(Bone Marrow Suppression)",
+      "(Alkylating Agents)-PREDISPOSES->(Anemia)-PREDISPOSES->(Bone Marrow Suppression)",
+      "(Bleomycin)-CAUSES->(Neutrophil Infiltration)-PROCESS_OF->(Lung)",
+      "(Bleomycin)-CAUSES->(Transformation, function)-PROCESS_OF->(Lung)",
+      "(Bleomycin)-CAUSES->(Leukotriene Production)-PROCESS_OF->(Lung)",
+      "(Alkylating Agents)-TREATS->(Disease)-CAUSES->(Bone Marrow Suppression)",
+      "(Alkylating Agents)-PREDISPOSES->(Anemia)-PREDISPOSES->(Bone Marrow Suppression)",
+      "(Antineoplastic Agents)-CAUSES->(Disease)-CAUSES->(Bone Marrow Suppression)",
+      "(Antineoplastic Agents)-CAUSES->(Syndrome)-CAUSES->(Bone Marrow Suppression)",
+      "(Antineoplastic Agents)-TREATS->(Pathogenesis)-CAUSES->(Bone Marrow Suppression)",
+      "(Bone Marrow Suppression)-COMPLICATES->(Hypertensive disease)-CAUSES->(Disease)-CAUSES->(Mucositis)"
+    ]
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Busulfan",
+        "Graft acceptance",
+        "Melphalan",
+        "Alkylating Agents"
+      ],
+      [
+        "Busulfan",
+        "Functional disorder",
+        "Melphalan",
+        "Alkylating Agents"
+      ],
+      [
+        "Lung",
+        "Pneumonitis"
+      ],
+      [
+        "Busulfan",
+        "Graft acceptance",
+        "Melphalan",
+        "Alkylating Agents"
+      ],
+      [
+        "Busulfan",
+        "Functional disorder",
+        "Melphalan",
+        "Alkylating Agents"
+      ],
+      [
+        "Actinomycin",
+        "Cells",
+        "Antineoplastic Agents"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "LOCATION_OF"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Busulfan)-CAUSES->(Graft acceptance)-ASSOCIATED_WITH->(Melphalan)-INTERACTS_WITH->(Alkylating Agents)",
+      "(Busulfan)-TREATS->(Functional disorder)-ASSOCIATED_WITH->(Melphalan)-INTERACTS_WITH->(Alkylating Agents)",
+      "(Lung)-LOCATION_OF->(Pneumonitis)",
+      "(Busulfan)-CAUSES->(Graft acceptance)-ASSOCIATED_WITH->(Melphalan)-INTERACTS_WITH->(Alkylating Agents)",
+      "(Busulfan)-TREATS->(Functional disorder)-ASSOCIATED_WITH->(Melphalan)-INTERACTS_WITH->(Alkylating Agents)",
+      "(Actinomycin)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Antineoplastic Agents)"
+    ]
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Alkylating Agents)-TREATS->(Disease)-CAUSES->(Bone Marrow Suppression)",
+      "(Alkylating Agents)-PREDISPOSES->(Anemia)-PREDISPOSES->(Bone Marrow Suppression)",
+      "(Bleomycin)-CAUSES->(Leukotriene Production and Neutrophil Infiltration and Transformation, function)-PROCESS_OF->(Lung)",
+      "(Antineoplastic Agents)-CAUSES->(Disease and Syndrome)-CAUSES->(Bone Marrow Suppression)",
+      "(Antineoplastic Agents)-TREATS->(Pathogenesis)-CAUSES->(Bone Marrow Suppression)",
+      "(Bone Marrow Suppression)-COMPLICATES->(Hypertensive disease)-CAUSES->(Disease)-CAUSES->(Mucositis)",
+      "(Busulfan)-CAUSES->(Graft acceptance)-ASSOCIATED_WITH->(Melphalan)-INTERACTS_WITH->(Alkylating Agents)",
+      "(Busulfan)-TREATS->(Functional disorder)-ASSOCIATED_WITH->(Melphalan)-INTERACTS_WITH->(Alkylating Agents)",
+      "(Lung)-LOCATION_OF->(Pneumonitis)",
+      "(Actinomycin)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Antineoplastic Agents)"
+    ]
+  },
+  "reasoning_chain": [
+    "\"Busulfan\" -> \"alkylating agent\" -> \"causes myelosuppression\" -> \"possible pulmonary toxicity\" -> 75%",
+    "\"Bleomycin\" -> \"antitumor antibiotic\" -> \"causes pulmonary fibrosis\" -> \"increased risk of lung damage\" -> 90%",
+    "\"Doxorubicin\" -> \"anthracycline\" -> \"causes cardiotoxicity\" -> \"possible heart failure\" -> 85%",
+    "\"Actinomycin\" -> \"antineoplastic agent\" -> \"causes myelosuppression\" -> \"possible mucositis\" -> 70%"
+  ],
+  "enhanced_information": "Among the listed drugs, Bleomycin is most notably associated with pulmonary toxicity, specifically pulmonary fibrosis, which occurs in approximately 90% of cases. While Busulfan can cause myelosuppression and has a risk of pulmonary toxicity, it is not as strongly linked to lung damage as Bleomycin. Doxorubicin is primarily known for its cardiotoxicity, and Actinomycin is associated with myelosuppression and mucositis. Therefore, the drug that leads to the above-mentioned side effect of pulmonary toxicity is Bleomycin.",
+  "analysis": "Bleomycin is well-documented in medical literature as a chemotherapeutic agent that can cause pulmonary toxicity, particularly pulmonary fibrosis. This side effect is significant and occurs in a notable percentage of patients treated with Bleomycin. While Busulfan can also lead to pulmonary toxicity, it is not as commonly associated with this side effect as Bleomycin. Doxorubicin is primarily known for its cardiotoxic effects, and Actinomycin is associated with myelosuppression and mucositis. Therefore, based on established medical knowledge, the drug that leads to the side effect of pulmonary toxicity is Bleomycin.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      0,
+      0,
+      3
+    ],
+    "coverage_rates": [
+      40.0,
+      0.0,
+      0.0,
+      60.0
+    ],
+    "total_successes": 5
+  }
+}

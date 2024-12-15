@@ -1,0 +1,273 @@
+{
+  "question": "Sustained neutropenia is seen with ?",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Vinblastin",
+    "opb": "Cisplatin",
+    "opc": "Carmustine",
+    "opd": "None of the above"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Vinblastine",
+        "Leukopenia"
+      ],
+      [
+        "Cisplatin",
+        "Leukopenia"
+      ],
+      [
+        "Carmustine",
+        "Pulmonary toxicity",
+        "Leukopenia"
+      ],
+      [
+        "Carmustine",
+        "Disease",
+        "Leukopenia"
+      ],
+      [
+        "Carmustine",
+        "Adverse effects",
+        "Leukopenia"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Vinblastine)-TREATS->(Leukopenia)",
+      "(Cisplatin)-CAUSES->(Leukopenia)",
+      "(Carmustine)-CAUSES->(Pulmonary toxicity)-CAUSES->(Leukopenia)",
+      "(Carmustine)-TREATS->(Disease)-CAUSES->(Leukopenia)",
+      "(Carmustine)-TREATS->(Adverse effects)-CAUSES->(Leukopenia)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Vinblastine",
+        "Disease",
+        "Respiration",
+        "Bone Marrow"
+      ],
+      [
+        "Vinblastine",
+        "Disease",
+        "Physiologic Function",
+        "Bone Marrow"
+      ],
+      [
+        "Vinblastine",
+        "Disease",
+        "Excretory function",
+        "Bone Marrow"
+      ],
+      [
+        "Visual Suppression",
+        "Nystagmus",
+        "Disease",
+        "Leukopenia"
+      ],
+      [
+        "Visual Suppression",
+        "Diplopia",
+        "Disease",
+        "Leukopenia"
+      ],
+      [
+        "Visual Suppression",
+        "Diplopia",
+        "Infection",
+        "Leukopenia"
+      ],
+      [
+        "Bone Marrow Suppression",
+        "Leukopenia"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES",
+        "COMPLICATES"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Vinblastine)-TREATS->(Disease)-MANIFESTATION_OF->(Respiration)-PROCESS_OF->(Bone Marrow)",
+      "(Vinblastine)-TREATS->(Disease)-MANIFESTATION_OF->(Physiologic Function)-PROCESS_OF->(Bone Marrow)",
+      "(Vinblastine)-TREATS->(Disease)-MANIFESTATION_OF->(Excretory function)-PROCESS_OF->(Bone Marrow)",
+      "(Visual Suppression)-CAUSES->(Nystagmus)-CAUSES->(Disease)-CAUSES->(Leukopenia)",
+      "(Visual Suppression)-PREDISPOSES->(Diplopia)-CAUSES->(Disease)-CAUSES->(Leukopenia)",
+      "(Visual Suppression)-PREDISPOSES->(Diplopia)-CAUSES->(Infection)-COMPLICATES->(Leukopenia)",
+      "(Bone Marrow Suppression)-CAUSES->(Leukopenia)"
+    ]
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Carmustine",
+        "Cells",
+        "Alkylating Agents"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Carmustine)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Alkylating Agents)"
+    ]
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Vinblastine",
+        "Leukopenia"
+      ],
+      [
+        "Cisplatin",
+        "Leukopenia"
+      ],
+      [
+        "Carmustine",
+        "Pulmonary toxicity",
+        "Leukopenia"
+      ],
+      [
+        "Carmustine",
+        "Disease",
+        "Leukopenia"
+      ],
+      [
+        "Carmustine",
+        "Adverse effects",
+        "Leukopenia"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Vinblastine)-TREATS->(Leukopenia)",
+      "(Cisplatin)-CAUSES->(Leukopenia)",
+      "(Carmustine)-CAUSES->(Pulmonary toxicity)-CAUSES->(Leukopenia)",
+      "(Carmustine)-TREATS->(Adverse effects and Disease)-CAUSES->(Leukopenia)",
+      "(Vinblastine)-TREATS->(Disease)-MANIFESTATION_OF->(Excretory function and Physiologic Function and Respiration)-PROCESS_OF->(Bone Marrow)",
+      "(Visual Suppression)-CAUSES->(Nystagmus)-CAUSES->(Disease)-CAUSES->(Leukopenia)",
+      "(Visual Suppression)-PREDISPOSES->(Diplopia)-CAUSES->(Disease)-CAUSES->(Leukopenia)",
+      "(Visual Suppression)-PREDISPOSES->(Diplopia)-CAUSES->(Infection)-COMPLICATES->(Leukopenia)",
+      "(Bone Marrow Suppression)-CAUSES->(Leukopenia)",
+      "(Carmustine)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Alkylating Agents)"
+    ]
+  },
+  "reasoning_chain": [
+    "Vinblastine -> \"causes bone marrow suppression\" -> \"potential for neutropenia\" -> 80%",
+    "Cisplatin -> \"affects rapidly dividing cells\" -> \"can lead to myelosuppression\" -> \"possible neutropenia\" -> 75%",
+    "Carmustine -> \"alkylating agent\" -> \"damages DNA in bone marrow\" -> \"risk of neutropenia\" -> 70%",
+    "None of the above -> \"no association with sustained neutropenia\" -> \"not applicable\" -> 50%"
+  ],
+  "enhanced_information": "Sustained neutropenia is commonly associated with chemotherapeutic agents that cause bone marrow suppression. Among the options provided, Vinblastine, Cisplatin, and Carmustine all have documented effects leading to neutropenia. Vinblastine is known to cause bone marrow suppression, which directly correlates with the risk of neutropenia (80% confidence). Cisplatin affects rapidly dividing cells and can lead to myelosuppression, resulting in possible neutropenia (75% confidence). Carmustine, as an alkylating agent, damages DNA in bone marrow, increasing the risk of neutropenia (70% confidence). Therefore, the most likely answer is that sustained neutropenia is seen with Vinblastine, Cisplatin, and Carmustine, making 'None of the above' an incorrect choice. The evidence strongly supports the association of these agents with sustained neutropenia, with Vinblastine having the highest confidence level.",
+  "analysis": "Sustained neutropenia is a condition characterized by a prolonged decrease in neutrophil count, often resulting from bone marrow suppression due to various factors, including chemotherapy. Among the options provided, Vinblastine, Cisplatin, and Carmustine are all known to cause myelosuppression, which can lead to neutropenia. Standard medical knowledge confirms that Vinblastine is particularly associated with significant bone marrow suppression, leading to neutropenia in a high percentage of patients. Cisplatin also affects rapidly dividing cells, including those in the bone marrow, contributing to the risk of neutropenia. Carmustine, as an alkylating agent, damages DNA in bone marrow cells, further increasing the likelihood of neutropenia. Therefore, sustained neutropenia can be seen with all three agents listed. The option 'None of the above' is incorrect as it implies that none of the listed drugs are associated with sustained neutropenia, which contradicts established medical knowledge. Thus, the correct conclusion is that sustained neutropenia is indeed seen with Vinblastine, Cisplatin, and Carmustine.",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      1,
+      1,
+      0
+    ],
+    "coverage_rates": [
+      50.0,
+      25.0,
+      25.0,
+      0.0
+    ],
+    "total_successes": 4
+  }
+}

@@ -8,9 +8,9 @@ from src.llm.interactor import LLMProcessor
 from src.graphrag.entity_processor import EntityProcessor
 from src.graphrag.query_processor import QueryProcessor
 from config import config
-from src.modules.AccuracyAnalysis import CrossPathAnalyzer
 from src.graphrag.graph_enhancer import GraphEnhancer
-
+from src.modules.AccuracyAnalysis import calculate_accuracies
+from src.modules.filter import compare_enhanced_with_baseline, filter_by_coverage
 
 class QuestionProcessor:
     """处理医学问题的流水线处理器"""
@@ -27,13 +27,15 @@ class QuestionProcessor:
 
         # 设置不同类型缓存的子目录
         self.cache_paths = {
-            'original': self.cache_root / self.cache_path / 'original',
-            'derelict': self.cache_root / self.cache_path / 'derelict',
-            'enhanced': self.cache_root / self.cache_path / 'enhanced',
-            #'knowledge_graph': self.cache_root / self.cache_path / 'knowledge_graph',
-            #'causal_graph': self.cache_root / self.cache_path / 'causal_graph',
-            'graph_enhanced': self.cache_root / self.cache_path / 'graph_enhanced',
-            #'llm_enhanced': self.cache_root / self.cache_path / 'llm_enhanced'
+            'original': self.cache_root / self.cache_path / 'data' / 'original',
+            'derelict': self.cache_root / self.cache_path / 'data' / 'derelict',
+            'enhanced': self.cache_root / self.cache_path / 'data' / 'enhanced',
+            'reasoning': self.cache_root / self.cache_path / 'data' / 'reasoning',
+            # 'knowledge_graph': self.cache_root / self.cache_path / 'data' / 'knowledge_graph',
+            # 'causal_graph': self.cache_root / self.cache_path / 'data' / 'causal_graph',
+            # 'graph_enhanced': self.cache_root / self.cache_path / 'data' / 'graph_enhanced',
+            # 'llm_enhanced': self.cache_root / self.cache_path / 'data' / 'llm_enhanced'
+
         }
 
         self.processor = QueryProcessor()
@@ -52,6 +54,19 @@ class QuestionProcessor:
         self.llm.enhance_information(question)  # 增强
         self.llm.answer_with_enhanced_information(question)
         question.set_cache_paths(self.cache_paths['enhanced'])
+        question.to_cache()
+
+    def complete_process_question_without_initial(self, question: MedicalQuestion):
+        # self.processor.generate_initial_causal_graph(question)
+        self.processor.process_chain_of_thoughts(question, 'both', True)
+        paths = []
+        paths.extend(question.causal_graph.paths)
+        paths.extend(question.knowledge_graph.paths)
+        question.enhanced_graph.paths = self.enhancer.merge_paths(paths)
+        # self.enhancer.clear_paths(question)
+        self.llm.enhance_information(question)  # 增强
+        self.llm.answer_with_enhanced_information(question)
+        question.set_cache_paths(self.cache_paths['knowledge_graph'])
         question.to_cache()
 
     def ablation_using_causal_only(self, question: MedicalQuestion):
@@ -106,12 +121,21 @@ class QuestionProcessor:
                 self.llm.direct_answer(question)
                 question.set_cache_paths(self.cache_paths['derelict'])
                 question.to_cache()
-                self.llm.generate_reasoning_chain(question)
+                cached_question = MedicalQuestion.from_cache(
+                    self.cache_paths['reasoning'],
+                    question.question
+                )
+                if not cached_question:
+                    self.llm.generate_reasoning_chain(question)
+                    question.set_cache_paths(self.cache_paths['reasoning'])
+                    question.to_cache()
+                else:
+                    question = cached_question
                 self.complete_process_question(question)
-                #self.ablation_using_causal_only(question)
-                #self.ablation_not_using_causal_enhancement(question)
-                self.ablation_not_using_llm_enhancement(question)
-                #self.ablation_using_knowledge_only(question)
+                # self.ablation_using_causal_only(question)
+                # self.ablation_not_using_causal_enhancement(question)
+                # self.ablation_not_using_llm_enhancement(question)
+                # self.ablation_using_knowledge_only(question)
 
             except Exception as e:
                 self.logger.error(f"Error processing question {i + 1}: {str(e)}")
@@ -119,7 +143,7 @@ class QuestionProcessor:
 
     def process_from_cache(self, path: str) -> None:
         """从original缓存目录读取并处理问题"""
-        original_path = self.cache_root / path / 'original'
+        original_path = self.cache_root / path / 'data' / 'original'
 
         if not original_path.exists():
             self.logger.error(f"Original cache directory not found: {original_path}")
@@ -172,7 +196,7 @@ class QuestionProcessor:
 
     @staticmethod
     def load_questions_from_parquet(file_path: str, sample_size: Optional[int] = None) -> List[MedicalQuestion]:
-        """从 Parquet 文件加载问题，支持随机抽样。
+        """从 Parquet 文件加载问题，仅选择生理学、生物化学和药理学领域的题目。
 
         参数：
             file_path (str): 数据集标识符（'medinstruct' 或 'medmcqa'）或 Parquet 文件路径
@@ -183,6 +207,10 @@ class QuestionProcessor:
         """
         logger = config.get_logger("questions_loader")
         questions = []
+
+        # 定义目标学科
+        target_subjects = {'Physiology', 'Biochemistry', 'Pharmacology'}
+
         try:
             if file_path == "test2":
                 # 加载 medinstruct 数据集
@@ -190,6 +218,7 @@ class QuestionProcessor:
                 dataset = load_dataset("cxllin/medinstruct")
                 df = pd.DataFrame(dataset['train'])
 
+                # Note: medinstruct dataset doesn't have subject categorization
                 if sample_size is not None and sample_size < len(df):
                     df = df.head(sample_size).reset_index(drop=True)
 
@@ -246,11 +275,14 @@ class QuestionProcessor:
                         continue
 
             else:
-                # medmcqa 部分保持不变
+                # medmcqa 部分
                 splits = {'train': 'data/train-00000-of-00001.parquet',
                           'validation': 'data/validation-00000-of-00001.parquet'}
 
-                df = pd.read_parquet("hf://datasets/openlifescienceai/medmcqa/" + splits["validation"])
+                df = pd.read_parquet("hf://datasets/openlifescienceai/medmcqa/" + splits["train"])
+
+                # 只保留目标学科的问题
+                df = df[df['subject_name'].isin(target_subjects)].reset_index(drop=True)
 
                 if sample_size is not None and sample_size < len(df):
                     df = df.sample(n=sample_size, random_state=42).reset_index(drop=True)
@@ -276,33 +308,35 @@ class QuestionProcessor:
                     )
                     questions.append(question)
 
+            if not questions:
+                logger.info("Warning: No questions were loaded successfully")
+            else:
+                logger.info(f"Successfully loaded {len(questions)} questions from {', '.join(target_subjects)}")
+
         except Exception as e:
             logger.error(f"Questions Initialization Error: {str(e)}")
-
-        if not questions:
-            logger.info("Warning: No questions were loaded successfully")
-        else:
-            logger.info(f"Successfully loaded {len(questions)} questions")
 
         return questions
 
 
-def main():
+def main(process_path):
     """主函数示例"""
-    final1 = 'final_test1_set_3.5'
-    final2 = 'final_test1_set_4'
-    test = 'test1-4-latest'
-    correct = 'correct'
-    cache_to_path = 'origin-test2'
-    process_path = test
     processor = QuestionProcessor(process_path)
-
-    #processor.batch_process_file('test2', 1)
     processor.process_from_cache(process_path)
 
-    analyzer = CrossPathAnalyzer(process_path)
-    analyzer.analyze_all_stages()
+    STAGES = ['derelict', 'enhanced']
+    base_dir = process_path
+    df_report = calculate_accuracies(base_dir, STAGES)
+    print(df_report)
+    output_path = config.paths["cache"] / base_dir / 'model_accuracy_report.xlsx'
+    df_report.to_excel(output_path, index=False)
+
+    compare_enhanced_with_baseline(process_path)  # 对比增强与基线
+    path = Path(process_path) / 'coverage_filtered'
+    filter_by_coverage(process_path, threshold=0.5)  # 覆盖率过滤
+    compare_enhanced_with_baseline(path)
 
 
 if __name__ == "__main__":
-    main()
+    # main('validation-incorrect')
+    main('validation-correct')

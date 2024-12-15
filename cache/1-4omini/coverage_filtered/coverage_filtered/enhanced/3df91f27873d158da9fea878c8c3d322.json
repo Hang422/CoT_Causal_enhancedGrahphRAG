@@ -1,0 +1,308 @@
+{
+  "question": "Maximum risk of pancreatitis is present with :",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Didanosine",
+    "opb": "Lamivudine",
+    "opc": "Zidovudine",
+    "opd": "Abacavir"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "abacavir",
+        "Myocardial Infarction",
+        "Pancreatitis"
+      ],
+      [
+        "abacavir",
+        "Hypertensive disease",
+        "Pancreatitis"
+      ],
+      [
+        "abacavir",
+        "Pathogenesis",
+        "Pancreatitis"
+      ],
+      [
+        "Lamivudine",
+        "Virus",
+        "Pancreatitis"
+      ],
+      [
+        "Lamivudine",
+        "Disease",
+        "Pancreatitis"
+      ],
+      [
+        "Lamivudine",
+        "Obesity",
+        "Pancreatitis"
+      ],
+      [
+        "Didanosine",
+        "Pancreatitis"
+      ],
+      [
+        "Zidovudine",
+        "Pancreatitis"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREDISPOSES",
+        "COMPLICATES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(abacavir)-PREDISPOSES->(Myocardial Infarction)-COMPLICATES->(Pancreatitis)",
+      "(abacavir)-TREATS->(Hypertensive disease)-CAUSES->(Pancreatitis)",
+      "(abacavir)-TREATS->(Pathogenesis)-CAUSES->(Pancreatitis)",
+      "(Lamivudine)-TREATS->(Virus)-CAUSES->(Pancreatitis)",
+      "(Lamivudine)-TREATS->(Disease)-CAUSES->(Pancreatitis)",
+      "(Lamivudine)-TREATS->(Obesity)-CAUSES->(Pancreatitis)",
+      "(Didanosine)-CAUSES->(Pancreatitis)",
+      "(Zidovudine)-CAUSES->(Pancreatitis)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Didanosine",
+        "Pancreatitis"
+      ],
+      [
+        "Lamivudine",
+        "Virus",
+        "Pancreatitis"
+      ],
+      [
+        "Lamivudine",
+        "Disease",
+        "Pancreatitis"
+      ],
+      [
+        "Lamivudine",
+        "Obesity",
+        "Pancreatitis"
+      ],
+      [
+        "Zidovudine",
+        "Pancreatitis"
+      ],
+      [
+        "abacavir",
+        "Myocardial Infarction",
+        "Pancreatitis"
+      ],
+      [
+        "abacavir",
+        "Hypertensive disease",
+        "Pancreatitis"
+      ],
+      [
+        "abacavir",
+        "Pathogenesis",
+        "Pancreatitis"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "COMPLICATES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Didanosine)-CAUSES->(Pancreatitis)",
+      "(Lamivudine)-TREATS->(Virus)-CAUSES->(Pancreatitis)",
+      "(Lamivudine)-TREATS->(Disease)-CAUSES->(Pancreatitis)",
+      "(Lamivudine)-TREATS->(Obesity)-CAUSES->(Pancreatitis)",
+      "(Zidovudine)-CAUSES->(Pancreatitis)",
+      "(abacavir)-PREDISPOSES->(Myocardial Infarction)-COMPLICATES->(Pancreatitis)",
+      "(abacavir)-TREATS->(Hypertensive disease)-CAUSES->(Pancreatitis)",
+      "(abacavir)-TREATS->(Pathogenesis)-CAUSES->(Pancreatitis)"
+    ]
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Didanosine",
+        "Pancreatitis"
+      ],
+      [
+        "Lamivudine",
+        "Virus",
+        "Pancreatitis"
+      ],
+      [
+        "Lamivudine",
+        "Disease",
+        "Pancreatitis"
+      ],
+      [
+        "Lamivudine",
+        "Obesity",
+        "Pancreatitis"
+      ],
+      [
+        "Zidovudine",
+        "Pancreatitis"
+      ],
+      [
+        "abacavir",
+        "Myocardial Infarction",
+        "Pancreatitis"
+      ],
+      [
+        "abacavir",
+        "Hypertensive disease",
+        "Pancreatitis"
+      ],
+      [
+        "abacavir",
+        "Pathogenesis",
+        "Pancreatitis"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "COMPLICATES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Didanosine)-CAUSES->(Pancreatitis)",
+      "(Lamivudine)-TREATS->(Disease and Obesity and Virus)-CAUSES->(Pancreatitis)",
+      "(Zidovudine)-CAUSES->(Pancreatitis)",
+      "(abacavir)-PREDISPOSES->(Myocardial Infarction)-COMPLICATES->(Pancreatitis)",
+      "(abacavir)-TREATS->(Hypertensive disease and Pathogenesis)-CAUSES->(Pancreatitis)"
+    ]
+  },
+  "reasoning_chain": [
+    "Didanosine -> associated with pancreatitis -> increased risk of pancreatitis -> 85%",
+    "Lamivudine -> less commonly associated with pancreatitis -> lower risk of pancreatitis -> 70%",
+    "Zidovudine -> minimal association with pancreatitis -> low risk of pancreatitis -> 75%",
+    "Abacavir -> uncertain association with pancreatitis -> potential risk of pancreatitis unclear -> 60%"
+  ],
+  "enhanced_information": "Didanosine is associated with the highest risk of pancreatitis among the options provided, with evidence indicating a significant correlation (85% risk). This is supported by the path evidence that directly links Didanosine to pancreatitis. Lamivudine, while less commonly associated with pancreatitis, still presents a notable risk (70%), but it is lower than that of Didanosine. Zidovudine has a minimal association with pancreatitis (75%), and Abacavir's risk is uncertain, with estimates around 60% and potential complicating factors. Overall, the strongest reasoning chain is for Didanosine, making it the most likely candidate for maximum risk of pancreatitis, while Lamivudine and Zidovudine present lower risks, and Abacavir's association remains unclear.",
+  "analysis": "The core medical issue is the association of specific antiretroviral medications with the risk of pancreatitis. Didanosine (ddI) is well-documented in medical literature as having a significant association with pancreatitis, with studies indicating a high risk. Enhanced information corroborates this, stating an 85% risk of pancreatitis with Didanosine, which aligns with established medical consensus. Lamivudine (3TC) has a lower risk (70%), while Zidovudine (AZT) has a minimal association (75%). Abacavir (ABC) presents an uncertain risk, estimated around 60%. Given this analysis, Didanosine is clearly the medication with the maximum risk of pancreatitis among the options provided.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      25.0,
+      25.0,
+      25.0,
+      25.0
+    ],
+    "total_successes": 4
+  }
+}

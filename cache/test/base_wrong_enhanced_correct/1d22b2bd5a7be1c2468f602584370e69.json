@@ -1,0 +1,213 @@
+{
+  "question": "Stimulation of proximal cut end of vagus causes",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Apnea",
+    "opb": "| HR",
+    "opc": "|BP",
+    "opd": "#NAME?"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Apnea",
+        "Disease",
+        "Respiration",
+        "Vagus nerve structure"
+      ],
+      [
+        "Apnea",
+        "Disease",
+        "uptake",
+        "Vagus nerve structure"
+      ],
+      [
+        "Apnea",
+        "Infection",
+        "uptake",
+        "Vagus nerve structure"
+      ],
+      [
+        "Stimulation procedure",
+        "Disease",
+        "Apnea"
+      ],
+      [
+        "Stimulation procedure",
+        "Obesity",
+        "Apnea"
+      ],
+      [
+        "Stimulation procedure",
+        "Symptoms",
+        "Apnea"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Apnea)-CAUSES->(Disease)-MANIFESTATION_OF->(Respiration)-PROCESS_OF->(Vagus nerve structure)",
+      "(Apnea)-CAUSES->(Disease)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Vagus nerve structure)",
+      "(Apnea)-CAUSES->(Infection)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Vagus nerve structure)",
+      "(Stimulation procedure)-CAUSES->(Disease)-CAUSES->(Apnea)",
+      "(Stimulation procedure)-TREATS->(Obesity)-CAUSES->(Apnea)",
+      "(Stimulation procedure)-TREATS->(Symptoms)-CAUSES->(Apnea)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Vagus nerve structure",
+        "Trachea",
+        "Apnea"
+      ],
+      [
+        "Vagus nerve structure",
+        "Brain",
+        "Apnea"
+      ],
+      [
+        "Vagus nerve structure",
+        "Symptoms",
+        "Apnea"
+      ]
+    ],
+    "relationships": [
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Vagus nerve structure)-PART_OF->(Trachea)-LOCATION_OF->(Apnea)",
+      "(Vagus nerve structure)-PART_OF->(Brain)-LOCATION_OF->(Apnea)",
+      "(Vagus nerve structure)-LOCATION_OF->(Symptoms)-CAUSES->(Apnea)"
+    ]
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Stimulation procedure",
+        "Disease",
+        "Apnea"
+      ],
+      [
+        "Stimulation procedure",
+        "Obesity",
+        "Apnea"
+      ],
+      [
+        "Stimulation procedure",
+        "Symptoms",
+        "Apnea"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Stimulation procedure)-CAUSES->(Disease)-CAUSES->(Apnea)",
+      "(Stimulation procedure)-TREATS->(Obesity and Symptoms)-CAUSES->(Apnea)",
+      "(Vagus nerve structure)-PART_OF->(Brain and Trachea)-LOCATION_OF->(Apnea)",
+      "(Vagus nerve structure)-LOCATION_OF->(Symptoms)-CAUSES->(Apnea)"
+    ]
+  },
+  "reasoning_chain": [
+    "Stimulation of proximal cut end of vagus -> activation of vagus nerve -> potential decrease in heart rate -> 80%",
+    "Stimulation of proximal cut end of vagus -> activation of vagus nerve -> possible increase in parasympathetic tone -> 75%",
+    "Stimulation of proximal cut end of vagus -> activation of vagus nerve -> potential respiratory changes -> 70%",
+    "Stimulation of proximal cut end of vagus -> uncertain effects on blood pressure -> unclear outcome -> 50%",
+    "Stimulation of proximal cut end of vagus -> potential for apnea -> respiratory inhibition -> 65%"
+  ],
+  "enhanced_information": "Stimulation of the proximal cut end of the vagus nerve primarily leads to increased parasympathetic tone, which is associated with a decrease in heart rate (bradycardia) and potential respiratory changes, including apnea. The strongest reasoning chain indicates that vagal stimulation activates the vagus nerve, leading to a decrease in heart rate (80% confidence) and possible respiratory inhibition (65% confidence). While there is some uncertainty regarding its effects on blood pressure, the evidence suggests that apnea is a likely outcome due to the vagus nerve's role in respiratory control. Therefore, the most clinically relevant finding is that stimulation of the proximal cut end of the vagus nerve can cause apnea, supported by both reasoning chains and path evidence linking vagal stimulation to respiratory inhibition.",
+  "analysis": "The vagus nerve is a key component of the parasympathetic nervous system, and its stimulation typically results in increased parasympathetic tone. This leads to bradycardia (decreased heart rate) and can also affect respiratory patterns. The enhanced information indicates that stimulation of the proximal cut end of the vagus nerve can cause apnea, which aligns with the known physiological effects of vagal stimulation on respiratory control. While bradycardia is a direct effect, the question specifically asks about the stimulation of the proximal cut end of the vagus, which is more likely to lead to apnea due to its role in inhibiting respiratory drive. Therefore, the most clinically relevant outcome of this stimulation is apnea, supported by both standard medical knowledge and enhanced information.",
+  "answer": "opa",
+  "confidence": 85.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      100.0
+    ],
+    "total_successes": 1
+  }
+}

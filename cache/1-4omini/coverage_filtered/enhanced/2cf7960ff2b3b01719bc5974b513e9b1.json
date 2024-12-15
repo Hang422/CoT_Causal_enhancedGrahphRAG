@@ -1,0 +1,233 @@
+{
+  "question": "The following statements regarding Vitamin D3 are true except:",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Chronic injection of large doses can result in hypervitaminosis.",
+    "opb": "It is useful in postmenopausal osteoporosis.",
+    "opc": "Its active metabolite is calcitriol.",
+    "opd": "It is ineffective in the treatment of vitamin D resistant rickets."
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Cholecalciferol",
+        "Rickets"
+      ],
+      [
+        "Cholecalciferol",
+        "Osteoporosis, Postmenopausal"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREVENTS"
+      ],
+      [
+        "PREVENTS"
+      ]
+    ],
+    "paths": [
+      "(Cholecalciferol)-PREVENTS->(Rickets)",
+      "(Cholecalciferol)-PREVENTS->(Osteoporosis, Postmenopausal)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Cholecalciferol",
+        "Osteoporosis, Postmenopausal"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREVENTS"
+      ]
+    ],
+    "paths": [
+      "(Cholecalciferol)-PREVENTS->(Osteoporosis, Postmenopausal)"
+    ]
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Cholecalciferol",
+        "Therapeutic procedure",
+        "Hypervitaminosis"
+      ],
+      [
+        "Cholecalciferol",
+        "Vitamin E",
+        "Hypervitaminosis"
+      ],
+      [
+        "Cholecalciferol",
+        "Testosterone",
+        "Hypervitaminosis"
+      ],
+      [
+        "Cholecalciferol",
+        "Calcitriol"
+      ],
+      [
+        "Calcitriol",
+        "Vitamin D",
+        "Vitamin D2"
+      ],
+      [
+        "Calcitriol",
+        "Kidney",
+        "Vitamin D2"
+      ],
+      [
+        "Calcitriol",
+        "Vitamin D",
+        "Vitamin D2"
+      ],
+      [
+        "Cholecalciferol",
+        "Vitamin D2"
+      ],
+      [
+        "Vitamin D2",
+        "T-Lymphocyte",
+        "Extracellular Matrix",
+        "Treatment Protocols"
+      ],
+      [
+        "Vitamin D2",
+        "T-Lymphocyte",
+        "Tissue specimen",
+        "Treatment Protocols"
+      ],
+      [
+        "Vitamin D2",
+        "T-Lymphocyte",
+        "Cartilage",
+        "Treatment Protocols"
+      ]
+    ],
+    "relationships": [
+      [
+        "ISA",
+        "CAUSES"
+      ],
+      [
+        "INTERACTS_WITH",
+        "CAUSES"
+      ],
+      [
+        "INTERACTS_WITH",
+        "TREATS"
+      ],
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Cholecalciferol)-ISA->(Therapeutic procedure)-CAUSES->(Hypervitaminosis)",
+      "(Cholecalciferol)-INTERACTS_WITH->(Vitamin E)-CAUSES->(Hypervitaminosis)",
+      "(Cholecalciferol)-INTERACTS_WITH->(Testosterone)-TREATS->(Hypervitaminosis)",
+      "(Cholecalciferol)-INTERACTS_WITH->(Calcitriol)",
+      "(Calcitriol)-INTERACTS_WITH->(Vitamin D)-INTERACTS_WITH->(Vitamin D2)",
+      "(Calcitriol)-PART_OF->(Kidney)-LOCATION_OF->(Vitamin D2)",
+      "(Calcitriol)-ISA->(Vitamin D)-INTERACTS_WITH->(Vitamin D2)",
+      "(Cholecalciferol)-INTERACTS_WITH->(Vitamin D2)",
+      "(Vitamin D2)-INTERACTS_WITH->(T-Lymphocyte)-PART_OF->(Extracellular Matrix)-LOCATION_OF->(Treatment Protocols)",
+      "(Vitamin D2)-INTERACTS_WITH->(T-Lymphocyte)-PART_OF->(Tissue specimen)-LOCATION_OF->(Treatment Protocols)",
+      "(Vitamin D2)-INTERACTS_WITH->(T-Lymphocyte)-PART_OF->(Cartilage)-LOCATION_OF->(Treatment Protocols)"
+    ]
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Cholecalciferol)-PREVENTS->(Osteoporosis, Postmenopausal)",
+      "(Cholecalciferol)-ISA->(Therapeutic procedure)-CAUSES->(Hypervitaminosis)",
+      "(Cholecalciferol)-INTERACTS_WITH->(Vitamin E)-CAUSES->(Hypervitaminosis)",
+      "(Cholecalciferol)-INTERACTS_WITH->(Testosterone)-TREATS->(Hypervitaminosis)",
+      "(Cholecalciferol)-INTERACTS_WITH->(Calcitriol)",
+      "(Calcitriol)-INTERACTS_WITH->(Vitamin D)-INTERACTS_WITH->(Vitamin D2)",
+      "(Calcitriol)-PART_OF->(Kidney)-LOCATION_OF->(Vitamin D2)",
+      "(Calcitriol)-ISA->(Vitamin D)-INTERACTS_WITH->(Vitamin D2)",
+      "(Cholecalciferol)-INTERACTS_WITH->(Vitamin D2)",
+      "(Vitamin D2)-INTERACTS_WITH->(T)-Lymphocyte)->(Cartilage and Extracellular Matrix and Tissue specimen)-LOCATION_OF->(Treatment Protocols)"
+    ]
+  },
+  "reasoning_chain": [
+    "Vitamin D3 -> \"can lead to hypervitaminosis with chronic high doses\" -> \"increased calcium levels\" -> 90%",
+    "Vitamin D3 -> \"beneficial in postmenopausal osteoporosis\" -> \"improved bone density\" -> 85%",
+    "Vitamin D3 -> \"converted to calcitriol in the body\" -> \"active form of Vitamin D\" -> 95%",
+    "Vitamin D3 -> \"ineffective in vitamin D resistant rickets\" -> \"persistent rickets symptoms\" -> 80%",
+    "\"Vitamin D3 is ineffective in vitamin D resistant rickets\" -> \"contradicts established treatment protocols\" -> \"likely incorrect statement\" -> 75%"
+  ],
+  "enhanced_information": "The statement that Vitamin D3 is ineffective in the treatment of vitamin D resistant rickets is likely incorrect. Evidence indicates that while vitamin D3 (cholecalciferol) is beneficial for general rickets, vitamin D resistant rickets often requires specific treatment approaches, such as calcitriol, due to the underlying resistance mechanisms. The reasoning chain regarding its ineffectiveness is supported by the contradiction to established treatment protocols, which typically include active forms of vitamin D for resistant cases. Other statements regarding hypervitaminosis, its role in postmenopausal osteoporosis, and its conversion to calcitriol are well-supported by both reasoning chains and path evidence, indicating high confidence in their accuracy.",
+  "analysis": "To determine which statement regarding Vitamin D3 is false, we analyze each option based on established medical knowledge. Option 'opa' states that chronic injection of large doses can result in hypervitaminosis, which is true as excessive Vitamin D can lead to toxicity. Option 'opb' claims that Vitamin D3 is useful in postmenopausal osteoporosis, which is also true as it helps in calcium absorption and bone health. Option 'opc' mentions that its active metabolite is calcitriol, which is correct since Vitamin D3 is converted to calcitriol in the body. Finally, option 'opd' states that Vitamin D3 is ineffective in the treatment of vitamin D resistant rickets. This statement is misleading; while Vitamin D resistant rickets often requires calcitriol for effective treatment, Vitamin D3 is not entirely ineffective as it can still play a role in overall management. Therefore, the statement that Vitamin D3 is ineffective in treating vitamin D resistant rickets is the false one. This conclusion is supported by the enhanced information indicating that specific treatment approaches are necessary for resistant cases, but it does not negate the utility of Vitamin D3 altogether. Thus, the correct answer is 'opd'.",
+  "answer": "opd",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      1,
+      2,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      16.666666666666664,
+      16.666666666666664,
+      33.33333333333333,
+      16.666666666666664,
+      16.666666666666664
+    ],
+    "total_successes": 6
+  }
+}

@@ -1,0 +1,254 @@
+{
+  "question": "Pulmonary fibrosis is a complication of: March 2011, March 2012, September 2012, March 2013",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Methotrexate",
+    "opb": "Doxorubicin",
+    "opc": "Cisplatin",
+    "opd": "Busulfan"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Methotrexate",
+        "Complication"
+      ],
+      [
+        "Methotrexate",
+        "Pulmonary Fibrosis"
+      ],
+      [
+        "Cisplatin",
+        "Complication"
+      ],
+      [
+        "Cisplatin",
+        "Disease",
+        "Pulmonary Fibrosis"
+      ],
+      [
+        "Busulfan",
+        "Disease",
+        "Complication"
+      ],
+      [
+        "Busulfan",
+        "anemia; profound",
+        "Complication"
+      ],
+      [
+        "Busulfan",
+        "Primary immune deficiency disorder",
+        "Complication"
+      ],
+      [
+        "Busulfan",
+        "Disease",
+        "Pulmonary Fibrosis"
+      ],
+      [
+        "Busulfan",
+        "Chronic liver disease NOS",
+        "Pulmonary Fibrosis"
+      ],
+      [
+        "Busulfan",
+        "Functional disorder",
+        "Pulmonary Fibrosis"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "COMPLICATES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Methotrexate)-TREATS->(Complication)",
+      "(Methotrexate)-TREATS->(Pulmonary Fibrosis)",
+      "(Cisplatin)-COMPLICATES->(Complication)",
+      "(Cisplatin)-CAUSES->(Disease)-CAUSES->(Pulmonary Fibrosis)",
+      "(Busulfan)-TREATS->(Disease)-CAUSES->(Complication)",
+      "(Busulfan)-TREATS->(anemia; profound)-CAUSES->(Complication)",
+      "(Busulfan)-TREATS->(Primary immune deficiency disorder)-CAUSES->(Complication)",
+      "(Busulfan)-TREATS->(Disease)-CAUSES->(Pulmonary Fibrosis)",
+      "(Busulfan)-TREATS->(Chronic liver disease NOS)-CAUSES->(Pulmonary Fibrosis)",
+      "(Busulfan)-TREATS->(Functional disorder)-CAUSES->(Pulmonary Fibrosis)"
+    ]
+  },
+  "causal_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Busulfan",
+        "Disease",
+        "pulmonary complications"
+      ],
+      [
+        "Busulfan",
+        "Chronic liver disease NOS",
+        "pulmonary complications"
+      ],
+      [
+        "Busulfan",
+        "Sickle Cell Anemia",
+        "pulmonary complications"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Busulfan)-TREATS->(Disease)-CAUSES->(pulmonary complications)",
+      "(Busulfan)-TREATS->(Chronic liver disease NOS)-CAUSES->(pulmonary complications)",
+      "(Busulfan)-TREATS->(Sickle Cell Anemia)-CAUSES->(pulmonary complications)"
+    ]
+  },
+  "knowledge_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "entities_pairs": {
+      "start": [],
+      "end": []
+    },
+    "nodes": [
+      [
+        "Methotrexate",
+        "Pulmonary Fibrosis"
+      ],
+      [
+        "Cisplatin",
+        "Disease",
+        "Pulmonary Fibrosis"
+      ],
+      [
+        "Busulfan",
+        "Disease",
+        "Pulmonary Fibrosis"
+      ],
+      [
+        "Busulfan",
+        "Chronic liver disease NOS",
+        "Pulmonary Fibrosis"
+      ],
+      [
+        "Busulfan",
+        "Functional disorder",
+        "Pulmonary Fibrosis"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Methotrexate)-TREATS->(Pulmonary Fibrosis)",
+      "(Cisplatin)-CAUSES->(Disease)-CAUSES->(Pulmonary Fibrosis)",
+      "(Busulfan)-TREATS->(Chronic liver disease NOS and Disease and Functional disorder)-CAUSES->(Pulmonary Fibrosis)",
+      "(Busulfan)-TREATS->(Chronic liver disease NOS and Disease and Sickle Cell Anemia)-CAUSES->(pulmonary complications)"
+    ]
+  },
+  "reasoning_chain": [
+    "Methotrexate -> potential lung toxicity -> risk of pulmonary fibrosis -> 80%",
+    "Doxorubicin -> possible pulmonary side effects -> association with pulmonary fibrosis -> 70%",
+    "Cisplatin -> known for causing lung damage -> potential for pulmonary fibrosis -> 75%",
+    "Busulfan -> recognized for pulmonary complications -> risk of developing pulmonary fibrosis -> 85%"
+  ],
+  "enhanced_information": "Pulmonary fibrosis is a recognized complication of several chemotherapeutic agents. Among the options evaluated, Busulfan shows the strongest evidence for causing pulmonary fibrosis, with an 85% association supported by path evidence indicating its role in treating chronic liver disease and its known pulmonary complications. Methotrexate and Doxorubicin also present risks, with associations of 80% and 70% respectively, but lack direct path evidence linking them to pulmonary fibrosis. Cisplatin, while known for lung damage, has a 75% association but is less supported than Busulfan. Therefore, Busulfan is the most likely cause of pulmonary fibrosis among the options, with the strongest combined support from reasoning chains and path evidence.",
+  "analysis": "Pulmonary fibrosis is a known complication of certain chemotherapeutic agents. Among the options provided, Busulfan is well-documented to cause pulmonary fibrosis, with a strong association supported by pathophysiological evidence. Methotrexate and Doxorubicin also have associations with pulmonary toxicity, but they are less directly linked to pulmonary fibrosis compared to Busulfan. Cisplatin is known for causing lung damage but is not as strongly associated with pulmonary fibrosis as Busulfan. Therefore, based on both standard medical knowledge and enhanced information, Busulfan is the most likely cause of pulmonary fibrosis among the options listed.",
+  "answer": "opd",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      0.0,
+      100.0
+    ],
+    "total_successes": 1
+  }
+}

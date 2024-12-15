@@ -1,269 +1,154 @@
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List
 import json
 import pandas as pd
-from src.modules.MedicalQuestion import MedicalQuestion
-from config import config
 import logging
+from config import config
 
+logger = config.get_logger("accuracy_calculator")
 
-def _is_correct(question: Dict) -> bool:
+def is_correct(q_data: Dict) -> bool:
     """Check if the answer matches correct_answer"""
-    return question.get('answer') == question.get('correct_answer')
+    return q_data.get('answer', '').lower() == q_data.get('correct_answer', '').lower()
 
+def has_enhanced_or_chain_success(q_data: Dict) -> bool:
+    """
+    Check if question should be included in analysis based on enhanced data:
+    Condition: len(enhanced_graph.paths) > 0 or chain_coverage.total_successes > 0
+    """
+    enhanced_graph = q_data.get('enhanced_graph', {})
+    paths = enhanced_graph.get('paths', [])
+    chain_cov = q_data.get('chain_coverage', {})
+    total_successes = chain_cov.get('total_successes', 0)
 
-class CrossPathAnalyzer:
-    def __init__(self, path):
-        self.logger = config.get_logger("cross_path_analyzer")
-        self.cache_root = config.paths["cache"] / path
-        self.stages = ['derelict', 'enhanced', 'knowledge_graph',
-                       'causal_graph', 'graph_enhanced', 'llm_enhanced']
+    return (isinstance(paths, list) and len(paths) > 0) or (total_successes > 0)
 
-    def _load_questions(self, stage: str) -> List[Dict]:
-        """Load questions from JSON files"""
-        questions = []
-        stage_path = self.cache_root / stage
-        if not stage_path.exists():
-            self.logger.warning(f"Stage directory not found: {stage_path}")
-            return questions
-
-        for cache_file in stage_path.glob("*.json"):
-            try:
-                with cache_file.open('r', encoding='utf-8') as f:
-                    question = json.load(f)
-                    questions.append(question)
-            except Exception as e:
-                self.logger.error(f"Error loading {cache_file}: {str(e)}")
+def load_questions_from_dir(dir_path: Path) -> Dict[str, Dict]:
+    questions = {}
+    if not dir_path.exists():
+        logger.warning(f"Directory not found: {dir_path}")
         return questions
 
-    def analyze(self, stage: str) -> Dict:
-        """Analyze path presence and accuracies comparing baseline and stage results"""
-        baseline_questions = {q['question']: q for q in self._load_questions('derelict')}
-        stage_questions = {q['question']: q for q in self._load_questions(stage)}
+    for f in dir_path.glob("*.json"):
+        try:
+            with open(f, 'r', encoding='utf-8') as fh:
+                q_data = json.load(fh)
+            if 'question' in q_data and q_data['question']:
+                questions[q_data['question']] = q_data
+        except Exception as e:
+            logger.error(f"Error loading {f}: {e}")
+    return questions
 
-        results = {
-            "baseline_correct": {
-                "with_enhanced": 0,
-                "with_cg": 0,
-                "with_kg": 0,
-                "with_both": 0,
-                "without_paths": 0,
-                "total": 0
-            },
-            "baseline_incorrect": {
-                "with_enhanced": 0,
-                "with_cg": 0,
-                "with_kg": 0,
-                "with_both": 0,
-                "without_paths": 0,
-                "total": 0
-            },
-            "path_accuracies": {
-                "with_enhanced": {"correct": 0, "total": 0},
-                "with_cg": {"correct": 0, "total": 0},
-                "with_kg": {"correct": 0, "total": 0},
-                "with_both": {"correct": 0, "total": 0},
-                "without_paths": {"correct": 0, "total": 0}
-            }
-        }
+def calculate_accuracies(base_dir: str, stages: List[str]) -> pd.DataFrame:
+    """
+    按照要求：
+    1. 使用enhanced筛选：从enhanced中找到有enhanced_graph或chain成功的题目集合(E_set)。
+    2. 基线仍为derelict，从derelict中找出与E_set重合的题目集(F_set)。
+    3. 在F_set上，以derelict的回答为准，确定baseline_correct_set与baseline_wrong_set。
+    4. 对各模型在F_set上的正确率及相对提升率进行统计。
 
-        baseline_correct_count = 0
-        baseline_incorrect_count = 0
+    输出字段：
+    - Model
+    - Total_Questions: 模型在F_set中的题目数
+    - Overall_Accuracy(%): 模型在F_set上的正确率
+    - Baseline_Correct_Count, Baseline_Correct_Accuracy(%): 模型在derelict答对子集上的正确率
+    - Baseline_Wrong_Count, Baseline_Wrong_Accuracy(%): 模型在derelict答错子集上的正确率
+    - Improvement_over_Baseline(%): 相对于derelict整体正确率的提升
+    """
 
-        for question in set(baseline_questions.keys()) & set(stage_questions.keys()):
-            baseline_q = baseline_questions[question]
-            stage_q = stage_questions[question]
+    base_path = config.paths["cache"] / base_dir / 'data'
+    baseline_stage = "derelict"
+    enhanced_stage = "enhanced"
 
-            # Check baseline correctness
-            baseline_correct = _is_correct(baseline_q)
-            stage_correct = _is_correct(stage_q)
+    # 加载所有stage问题
+    stage_questions = {}
+    for stage in stages:
+        stage_dir = base_path / stage
+        stage_questions[stage] = load_questions_from_dir(stage_dir)
 
-            # Determine path presence
-            has_enhanced = bool(len(stage_q['causal_graph']['paths']) > 0)
-            has_causal = bool(stage_q['causal_graph']['paths'] and
-                              len(stage_q['causal_graph']['paths']) > 0 and
-                              stage_q['causal_graph']['paths'] != "There is no obvious causal relationship.")
-            has_knowledge = bool(stage_q['knowledge_graph']['paths'] and
-                                 len(stage_q['knowledge_graph']['paths']) > 0)
+    # 获取baseline和enhanced数据
+    baseline_qs = stage_questions.get(baseline_stage, {})
+    enhanced_qs = stage_questions.get(enhanced_stage, {})
 
-            # Determine path category
-            if has_enhanced:
-                path_category = "with_enhanced"
-            elif has_causal and has_knowledge:
-                path_category = "with_both"
-            elif has_causal:
-                path_category = "with_cg"
-            elif has_knowledge:
-                path_category = "with_kg"
-            else:
-                path_category = "without_paths"
+    # 首先使用enhanced来筛选
+    enhanced_filtered = {q: d for q, d in enhanced_qs.items() if has_enhanced_or_chain_success(d)}
 
-            # Update path accuracies
-            results["path_accuracies"][path_category]["total"] += 1
-            if stage_correct:
-                results["path_accuracies"][path_category]["correct"] += 1
+    # 在baseline中存在的最终过滤集合
+    filtered_questions = {q: baseline_qs[q] for q in enhanced_filtered if q in baseline_qs}
 
-            # Update baseline categories
-            if baseline_correct:
-                baseline_correct_count += 1
-                if stage_correct:
-                    results["baseline_correct"][path_category] += 1
-                    results["baseline_correct"]["total"] += 1
-            else:
-                baseline_incorrect_count += 1
-                if stage_correct:
-                    results["baseline_incorrect"][path_category] += 1
-                    results["baseline_incorrect"]["total"] += 1
+    if not filtered_questions:
+        logger.warning("No questions found after filtering based on enhanced and intersecting with baseline.")
+        return pd.DataFrame()
 
-        # Calculate path accuracies
-        for path_type in ["with_enhanced", "with_cg", "with_kg", "with_both", "without_paths"]:
-            total = results["path_accuracies"][path_type]["total"]
-            if total > 0:
-                correct = results["path_accuracies"][path_type]["correct"]
-                results["path_accuracies"][path_type] = {"accuracy": (correct / total * 100), "total": total}
+    # 基于derelict（baseline）确定correct/wrong集合
+    baseline_total = len(filtered_questions)
+    baseline_correct_set = {q for q, d in filtered_questions.items() if is_correct(d)}
+    baseline_wrong_set = set(filtered_questions.keys()) - baseline_correct_set
 
-        # Calculate overall accuracy
-        all_questions = self._load_questions(stage)
-        correct_count = sum(1 for q in all_questions if _is_correct(q))
-        results["overall_accuracy"] = (correct_count / len(all_questions) * 100) if all_questions else 0
+    baseline_correct_num = len(baseline_correct_set)
+    baseline_acc = (baseline_correct_num / baseline_total * 100) if baseline_total > 0 else 0.0
 
-        return results
+    results = []
+    for stage in stages:
+        q_map = stage_questions.get(stage, {})
+        # 只考虑出现在filtered集合中的题目
+        considered = {q: q_map[q] for q in filtered_questions.keys() if q in q_map}
 
-    def print_analysis(self) -> None:
-        """打印分析结果"""
-        results = self.analyze_all_stages()
+        total_count = len(considered)
+        if total_count == 0:
+            # 此模型在filtered中无数据
+            results.append({
+                'Model': stage,
+                'Total_Questions': 0,
+                'Overall_Accuracy(%)': 0.0,
+                'Baseline_Correct_Count': len(baseline_correct_set),
+                'Baseline_Correct_Accuracy(%)': 0.0,
+                'Baseline_Wrong_Count': len(baseline_wrong_set),
+                'Baseline_Wrong_Accuracy(%)': 0.0,
+                'Improvement_over_Baseline(%)': 0.0
+            })
+            continue
 
-        for stage, analysis in results.items():
-            print(f"\n=== {stage} Analysis ===")
-            print(f"Overall Accuracy: {analysis['overall_accuracy']:.2f}%")
+        # 计算overall accuracy
+        total_correct = sum(is_correct(d) for d in considered.values())
+        overall_acc = (total_correct / total_count * 100)
 
-            print("\nPath Type Overall Accuracies:")
-            for path_type, accuracy in analysis['path_overall_accuracies'].items():
-                print(f"  {path_type}: {accuracy:.2f}%")
+        # 在baseline_correct_set子集上的正确率
+        bc_questions = {q: considered[q] for q in baseline_correct_set if q in considered}
+        bc_count = len(bc_questions)
+        bc_correct = sum(is_correct(d) for d in bc_questions.values())
+        bc_acc = (bc_correct / bc_count * 100) if bc_count > 0 else 0.0
 
-            print("\nBaseline Correct Questions:")
-            for key in ["with_cg", "with_kg", "with_both", "without_paths"]:
-                print(f"  {key}: {analysis['baseline_correct'][key]:.2f}%")
-            print(f"  Total count: {analysis['baseline_correct']['total']}")
+        # 在baseline_wrong_set子集上的正确率
+        bw_questions = {q: considered[q] for q in baseline_wrong_set if q in considered}
+        bw_count = len(bw_questions)
+        bw_correct = sum(is_correct(d) for d in bw_questions.values())
+        bw_acc = (bw_correct / bw_count * 100) if bw_count > 0 else 0.0
 
-            print("\nBaseline Incorrect Questions:")
-            for key in ["with_cg", "with_kg", "with_both", "without_paths"]:
-                print(f"  {key}: {analysis['baseline_incorrect'][key]:.2f}%")
-            print(f"  Total count: {analysis['baseline_incorrect']['total']}")
+        # 相对baseline的提升率
+        improvement = overall_acc - baseline_acc
 
+        results.append({
+            'Model': stage,
+            'Total_Questions': total_count,
+            'Overall_Accuracy(%)': overall_acc,
+            'Baseline_Correct_Count': bc_count,
+            'Baseline_Correct_Accuracy(%)': bc_acc,
+            'Baseline_Wrong_Count': bw_count,
+            'Baseline_Wrong_Accuracy(%)': bw_acc,
+            'Improvement_over_Baseline(%)': improvement
+        })
 
-    def analyze_enhanced_paths(self, stage: str) -> Dict:
-        """Analyze accuracy for questions with enhanced paths and their baseline performance.
+    df = pd.DataFrame(results)
+    return df
 
-        Args:
-            stage (str): The stage to analyze ('enhanced', 'knowledge_graph', etc.)
+if __name__ == "__main__":
+    STAGES = ['derelict', 'enhanced', 'knowledge_graph', 'causal_graph', 'graph_enhanced', 'llm_enhanced']
+    base_dir = '1-4omini-4'
 
-        Returns:
-            Dict containing enhanced path analysis metrics
-        """
-        baseline_questions = {q['question']: q for q in self._load_questions('derelict')}
-        stage_questions = {q['question']: q for q in self._load_questions(stage)}
+    df_report = calculate_accuracies(base_dir, STAGES)
+    print(df_report)
 
-        results = {
-            "enhanced_paths": {
-                "total_questions": 0,
-                "correct_count": 0,
-                "accuracy": 0.0,
-                "baseline_correct_count": 0,
-                "baseline_accuracy": 0.0,
-                "improvement": 0.0
-            },
-            "non_enhanced_paths": {
-                "total_questions": 0,
-                "correct_count": 0,
-                "accuracy": 0.0,
-                "baseline_correct_count": 0,
-                "baseline_accuracy": 0.0,
-                "improvement": 0.0
-            }
-        }
-
-        for question in set(baseline_questions.keys()) & set(stage_questions.keys()):
-            baseline_q = baseline_questions[question]
-            stage_q = stage_questions[question]
-
-            # Check if question has enhanced paths
-            has_enhanced = bool(len(stage_q['causal_graph']['paths']) > 0)
-
-            # Get correctness for both baseline and stage
-            baseline_correct = _is_correct(baseline_q)
-            stage_correct = _is_correct(stage_q)
-
-            # Update appropriate category
-            category = "enhanced_paths" if has_enhanced else "non_enhanced_paths"
-
-            results[category]["total_questions"] += 1
-            if stage_correct:
-                results[category]["correct_count"] += 1
-            if baseline_correct:
-                results[category]["baseline_correct_count"] += 1
-
-        # Calculate metrics for enhanced paths
-        for category in ["enhanced_paths", "non_enhanced_paths"]:
-            total = results[category]["total_questions"]
-            if total > 0:
-                # Calculate accuracies
-                results[category]["accuracy"] = (results[category]["correct_count"] / total) * 100
-                results[category]["baseline_accuracy"] = (results[category]["baseline_correct_count"] / total) * 100
-                # Calculate improvement
-                results[category]["improvement"] = results[category]["accuracy"] - results[category][
-                    "baseline_accuracy"]
-
-        return results
-
-    def analyze_all_stages(self) -> Dict:
-        """分析所有阶段，增加enhanced paths分析"""
-        analyses = {stage: {} for stage in self.stages}
-
-        for stage in self.stages:
-            # Original analysis
-            regular_analysis = self.analyze(stage)
-            enhanced_analysis = self.analyze_enhanced_paths(stage)
-
-            # Combine analyses
-            analyses[stage] = {
-                **regular_analysis,
-                "enhanced_paths_analysis": enhanced_analysis
-            }
-
-        # Save to output directory
-        output_dir = self.cache_root / str(config.openai.get("model"))
-        output_dir.mkdir(parents=True, exist_ok=True)
-
-        # Save JSON analysis results
-        with open(output_dir / 'analysis.json', 'w', encoding='utf-8') as f:
-            json.dump(analyses, f, ensure_ascii=False, indent=2)
-
-        # Create Excel report with enhanced paths analysis
-        df_data = []
-        for stage, analysis in analyses.items():
-            enhanced_metrics = analysis['enhanced_paths_analysis']['enhanced_paths']
-            row = {
-                'Stage': stage,
-                'Overall Accuracy': f"{analysis['overall_accuracy']:.2f}%",
-                'Enhanced Paths Count': enhanced_metrics['total_questions'],
-                'Enhanced Paths Accuracy': f"{enhanced_metrics['accuracy']:.2f}%",
-                'Enhanced Paths Baseline': f"{enhanced_metrics['baseline_accuracy']:.2f}%",
-                'Enhanced Paths Improvement': f"{enhanced_metrics['improvement']:.2f}%",
-                'Baseline Correct - with CG': f"{analysis['baseline_correct']['with_cg']:.2f}%",
-                'Baseline Correct - with KG': f"{analysis['baseline_correct']['with_kg']:.2f}%",
-                'Baseline Correct - with Both': f"{analysis['baseline_correct']['with_both']:.2f}%",
-                'Baseline Correct - without Paths': f"{analysis['baseline_correct']['without_paths']:.2f}%",
-                'Baseline Correct Total': analysis['baseline_correct']['total'],
-                'Baseline Incorrect - with CG': f"{analysis['baseline_incorrect']['with_cg']:.2f}%",
-                'Baseline Incorrect - with KG': f"{analysis['baseline_incorrect']['with_kg']:.2f}%",
-                'Baseline Incorrect - with Both': f"{analysis['baseline_incorrect']['with_both']:.2f}%",
-                'Baseline Incorrect - without Paths': f"{analysis['baseline_incorrect']['without_paths']:.2f}%",
-                'Baseline Incorrect Total': analysis['baseline_incorrect']['total']
-            }
-            df_data.append(row)
-
-        df = pd.DataFrame(df_data)
-        df.to_excel(output_dir / 'report.xlsx', index=False)
-
-        return analyses
+    output_path = config.paths["cache"] / base_dir / 'model_accuracy_report.xlsx'
+    df_report.to_excel(output_path, index=False)
+    print(f"Report saved to {output_path}")
