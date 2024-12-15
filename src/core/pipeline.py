@@ -338,5 +338,5 @@ def main(process_path):
 
 
 if __name__ == "__main__":
-    # main('validation-incorrect')
-    main('validation-correct')
+    main('validation-incorrect1')
+    main('validation-correct1')

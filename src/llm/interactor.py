@@ -280,14 +280,7 @@ Question: {question.question}
 
     def generate_reasoning_chain(self, question: MedicalQuestion) -> None:
         """Generate reasoning chains for medical diagnosis with enhanced response parsing"""
-        prompt = f"""You are a medical expert. Please generate multiple reasoning chains for the following question. Each chain:
-        - Uses '->' to connect steps.
-        - Each step is just a state or result, not a full cause-and-effect sentence.
-          For example:
-            Correct: "Insulin" -> "decreased blood glucose"
-            Incorrect: "Insulin decreases blood glucose" (this is a full statement in one step)
-        - If a step contradicts widely accepted medical knowledge, you may mark it as uncertain (e.g. "possible" or "unclear") and reduce confidence.
-        - End each chain with a confidence percentage (0-100%).
+        prompt = f"""As a medical expert, analyze this question by generating multiple reasoning chains. Each chain consists of steps connected by reasoning arrows, where each step can show the result of previous reasoning but cannot contain complete entity-to-entity reasoning within itself.
 
         ### Question
         {question.question}
@@ -298,16 +291,53 @@ Question: {question.question}
             prompt += f"{key}. {text}\n"
 
         prompt += """
-        ### Instructions:
-        - Keep each step simple: state or short phrase only.
-        - Use "->" between steps.
-        - End with confidence, e.g. "... -> 85%".
+        ### Key Requirements for Reasoning Chains:
 
-        ### Output:
-        Start each chain on a new line with "CHAIN:".
+        1. **Step Content Rules**:
+           - A step can contain reasoning results from previous step
+           - A step must not contain a complete entity-to-entity reasoning within itself
+           - Example correct: "Insulin" -> "decreased blood glucose"
+           - Example correct: "decreased blood glucose" -> "improved metabolic state"
+           - Example incorrect: "Insulin decreases blood glucose" (complete reasoning in one step)
+           - Example incorrect: "decreased blood glucose which then improves metabolism" (contains next reasoning step)
 
-        Example:
-        CHAIN: "Insulin" -> "decreased blood glucose" -> "improved metabolic function" -> 90%
+        2. **Chain Structure**:
+           - Arrows (->) represent the reasoning process between steps
+           - Each new step builds on previous reasoning result
+           - Example chain: 
+             "Insulin" -> "decreased blood glucose" -> "stable metabolic state" -> 90%
+           - Complex example:
+             "ACE inhibitors" -> "reduced Angiotensin II" -> "lowered blood pressure" -> 85%
+
+        3. **Uncertainty and Confidence**:
+           - Mark uncertain reasonings explicitly
+           - Example with uncertainty:
+             "Drug X" -> "possible receptor blockade" -> "target response unclear" -> 40%
+           - End each chain with overall confidence (0-100%)
+           - Lower confidence for chains with uncertain steps
+
+        ### Output Format
+        Please provide each reasoning chain on a new line starting with CHAIN:
+
+        Example format:
+        CHAIN: Entity1 -> ReasoningResult1 -> FurtherResult -> 90%
+        CHAIN: EntityA -> UncertainResult -> PossibleOutcome -> 60%
+
+        ### Key Guidelines:
+        - Steps can show results of previous reasoning
+        - No complete entity-to-entity reasoning within a single step
+        - The arrow (->) shows how we reason from one step to the next
+        - Keep each step focused on one result or state
+        - Include uncertainty where it exists
+        - End chains with confidence percentage
+
+        Remember:
+        - A step can contain the result of reasoning (e.g., "decreased blood glucose")
+        - But it cannot contain a complete reasoning process (e.g., "insulin reduces blood glucose")
+        - Example: "Insulin" -> "decreased blood glucose" -> "metabolic improvement" -> 90%
+          * First arrow represents how Insulin affects blood glucose
+          * Second arrow represents how the decreased blood glucose leads to metabolic improvement
+          * Each step shows the result of previous reasoning without including the next reasoning step
         """
 
         try:
@@ -364,18 +394,15 @@ Question: {question.question}
 
     def enhance_information(self, question: MedicalQuestion) -> None:
         """Enhancement with standardized processing"""
-        if question.topic_name:
-            prompt = f"You are a medical expert specializing in {question.topic_name}."
+        if len(question.enhanced_graph.paths) == 0:
+            return
+        if question.topic_name is not None:
+            prompt = f"You are a medical expert specializing in the field of {question.topic_name}."
         else:
-            prompt = "You are a medical expert."
+            prompt = f"You are a medical expert."
 
         prompt += f"""
-        Your task: Integrate reasoning chains, retrieved evidence paths, and standard medical knowledge into a concise summary.
-
-        ### Key Directives:
-        - Standard medical knowledge overrides any contradictory reasoning or path evidence.
-        - If reasoning chains or paths conflict with known facts, highlight the contradiction and rely on consensus.
-        - Produce a clinically sound summary focusing on the most likely correct conclusion.
+        Your task: Provide a concise and clinically relevant summary that integrates multiple sources of evidence: reasoning chains, retrieved path evidence, and standard medical knowledge. Focus on decision-critical findings, prioritize the strongest reasoning chains, and address contradictions or gaps in evidence.
 
         ### Question
         {question.question}
@@ -386,26 +413,63 @@ Question: {question.question}
             prompt += f"{key}. {text}\n"
 
         if question.reasoning_chain:
-            prompt += "\n### Reasoning Chains:\n"
+            prompt += "\n### Reasoning Chains to Evaluate:\n"
             for chain in question.reasoning_chain:
                 prompt += f"- {chain}\n"
 
         if question.enhanced_graph and len(question.enhanced_graph.paths) > 0:
-            prompt += "\n### Retrieved Paths (Evidence):\n"
+            prompt += "\n### Supporting Evidence (Retrieved Paths):\n"
             for path in question.enhanced_graph.paths:
                 prompt += f"- {path}\n"
 
         prompt += """
-        ### Instructions:
-        1. Evaluate chains and paths against standard medical knowledge.
-        2. Discard or downplay contradictory reasoning.
-        3. Highlight the best-supported conclusion.
-        4. Be concise and clinically relevant.
+        ### Key Principles for Evaluation:
+        1. Use retrieved paths and reasoning chains to validate or refute possible diagnoses.
+        2. Absence of path evidence does not invalidate a reasoning step, but it may reduce confidence.
+        3. Use medical knowledge to:
+           - Strengthen reasoning chains supported by evidence.
+           - Evaluate reasoning steps without direct evidence.
+           - Highlight contradictions or weak points in reasoning.
+        4. Prioritize diagnoses with the strongest combined support from reasoning chains, paths, and medical knowledge.
+
+        ### Task Requirements:
+        1. **Evidence Synthesis**:
+           - **When path evidence exists**:
+             * Clearly explain how it supports or refutes reasoning steps.
+             * Highlight strong path-to-reasoning alignments.
+           - **When path evidence is missing**:
+             * Use medical knowledge to assess plausibility.
+             * Note critical gaps or indirect support from other evidence.
+           - Identify any misleading or irrelevant paths and discard them.
+
+        2. **Reasoning Chain Evaluation**:
+           - Rank reasoning chains based on their evidence strength:
+             * High: Strong alignment with paths and medical knowledge.
+             * Medium: Plausible but lacking direct path evidence.
+             * Low: Weak support or contradicting evidence.
+           - Clearly prioritize high-confidence chains in the final analysis.
+
+        3. **Focus on Decision-Critical Insights**:
+           - Highlight the most likely diagnosis based on combined evidence.
+           - Provide concise reasons for deprioritizing less likely diagnoses.
+           - Avoid overemphasizing diagnoses with weak or irrelevant support.
+
+        4. **Address Uncertainty**:
+           - Explicitly mention uncertainties in evidence or reasoning.
+           - Adjust confidence levels accordingly.
 
         ### Output Format:
+        Provide your response in the following JSON format:
         {
-          "enhanced_information": "Concise, evidence-based summary aligned with standard medical knowledge."
+          "enhanced_information": "Your concise, evidence-based summary of the most likely diagnosis and key supporting insights."
         }
+
+        ### Key Guidelines:
+        - Focus on clinically significant findings and relationships.
+        - Prioritize strong path evidence but do not ignore gaps.
+        - Use medical knowledge to bridge evidence gaps.
+        - Be concise but complete, ensuring the summary aids decision-making.
+        - Avoid overcomplicating the explanation or including irrelevant details.
         """
 
 
@@ -425,59 +489,81 @@ Question: {question.question}
 
     def answer_with_enhanced_information(self, question: MedicalQuestion) -> None:
         """Final answer with standardized processing"""
-        if question.topic_name:
-            prompt = f"You are a medical expert specializing in {question.topic_name}."
+        if question.topic_name is not None:
+            prompt = f"You are a medical expert specializing in the field of {question.topic_name}."
         else:
-            prompt = "You are a medical expert."
+            prompt = f"You are a medical expert."
 
         if len(question.enhanced_graph.paths) == 0:
-            prompt += f"""
-        Please help answer this {'' if not question.is_multi_choice else 'multiple choice'} question:
+            prompt += f"""Please help answer this {'' if not question.is_multi_choice else 'multiple choice'} question:
 
-        Question: {question.question}
-        """
+                    Question: {question.question}
+                    """
             if question.is_multi_choice:
                 prompt += "\nOptions:\n"
                 for key, text in question.options.items():
                     prompt += f"{key}. {text}\n"
 
             prompt += """
-        ### Output Format
-        {
-          "final_analysis": "Concise, fact-based analysis",
-          "answer": "Option key (e.g. opa)",
-          "confidence": 0-100
-        }
-        """
+                            ### Output Format
+                            Provide your response in valid JSON format:
+                            {   
+                                "final_analysis": "Your concise analysis following the above structure",
+                                "answer": "Option key from the available options (only key,like opa)",
+                                "confidence": Score between 0-100 based on alignment with established medical facts
+                            }
+                            """
         else:
             prompt += f"""
-        Your task: Determine the correct answer using standard medical knowledge first. Enhanced info is secondary and must align with consensus.
+                    Your task: Accurately answer the question based on a combination of standard medical knowledge (primary source) and enhanced information (secondary source). Ensure the final answer is clinically valid, logically derived, and explicitly justified.
 
-        ### Question
-        {question.question}
+                    ### Question
+                    {question.question}
 
-        ### Options
-        """
+                    ### Options
+                    """
             for key, text in question.options.items():
                 prompt += f"{key}. {text}\n"
 
             if question.enhanced_information:
-                prompt += f"\n### Enhanced Information:\n{question.enhanced_information}\n"
+                prompt += f"\n### Enhanced Information (For Contextual Support):\n{question.enhanced_information}\n"
 
             prompt += """
-        ### Instructions:
-        1. Identify the correct answer based on standard medical facts.
-        2. If enhanced info conflicts with known facts, ignore the conflicting part.
-        3. Provide step-by-step reasoning, aligned with medical consensus.
-        4. Confidence reflects how well the answer aligns with established facts.
+                    ### Task Requirements
 
-        ### Output Format:
-        {
-          "final_analysis": "Step-by-step reasoning prioritizing medical consensus.",
-          "answer": "Option key",
-          "confidence": "0-100"
-        }
-        """
+                    1. **Analysis Framework**:
+                       - Identify the core medical issue or concept within the question.
+                       - Use standard medical knowledge to verify the most likely answer based on established facts.
+                       - Incorporate relevant enhanced information only if it aligns with medical consensus.
+                       - If the enhanced information contains contradictions or irrelevant details, prioritize standard medical facts and ignore the conflicting parts.
+
+                    2. **Decision Framework**:
+                       - Always provide a definitive answer (there is one correct answer).
+                       - Base the answer on the simplest and most direct medical reasoning.
+                       - Use enhanced information to strengthen confidence in the answer, but not as the sole determinant.
+
+                    3. **Reasoning Expectations**:
+                       - Explain the reasoning for the chosen answer step by step.
+                       - Highlight the key medical facts or enhanced information that led to your conclusion.
+                       - Discard irrelevant or misleading details from the enhanced information.
+
+                    4. **Output Format and Confidence**:
+                       - Confidence should reflect how strongly the chosen answer aligns with standard medical knowledge and how well it is supported by the enhanced information.
+                       - Lower confidence indicates partial reliance on enhanced information or remaining ambiguities.
+
+                    ### Output Format
+                    Provide your response in valid JSON format:
+                    {
+                        "final_analysis": "Your clear and concise analysis, step-by-step reasoning based on standard medical knowledge and enhanced information.",
+                        "answer": "Option key from the available options (e.g., opa, opb, etc.)",
+                        "confidence": A score between 0-100 indicating the strength of your answer
+                    }
+
+                    ### Key Guidelines
+                    - **Be Clinically Accurate**: Align your answer with what a practicing clinician would consider correct.
+                    - **Focus on Relevance**: Use enhanced information only when it supports or clarifies the medical consensus.
+                    - **Avoid Overcomplication**: Present clear, step-by-step reasoning without unnecessary complexity.
+                    """
 
         try:
             messages = [
