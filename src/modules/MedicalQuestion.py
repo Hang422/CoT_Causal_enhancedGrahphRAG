@@ -19,6 +19,11 @@ class SubGraph:
     relationships: List[List[str]] = None  # [[cause,cause], [affect,affect], [affect,affect]]
     paths: List[str] = None  # ["A-cause->B-affect->C"]
 
+    def clear(self):
+        self.nodes.clear()
+        self.relationships.clear()
+        self.paths.clear()
+
     def to_dict(self) -> Dict:
         """转换为可序列化的字典"""
         return {
@@ -110,6 +115,9 @@ class MedicalQuestion:
     answer: Optional[str] = None  # 0-3 对应 A-D or yes and no
     confidence: Optional[float] = None
 
+    # Search result of normal graphRAG
+    normal_results: Optional[List[str]] = None
+
     cache_dir = None
 
     def __post_init__(self):
@@ -138,14 +146,16 @@ class MedicalQuestion:
                 'coverage_rates': [],
                 'total_successes': 0
             }
+        if self.normal_results is None:
+            self.normal_results = []
 
     def generate_paths(self) -> None:
         """生成人类可读的路径表示"""
         # 为每个选项生成因果路径
-        self.initial_causal_graph.paths = []
-        self.causal_graph.paths = []
-        self.knowledge_graph.paths = []
-        self.enhanced_graph.paths = []
+        self.initial_causal_graph.paths.clear()
+        self.causal_graph.paths.clear()
+        self.knowledge_graph.paths.clear()
+        self.enhanced_graph.paths.clear()
         self.initial_causal_graph.generate_paths()
         self.causal_graph.generate_paths()
         self.knowledge_graph.generate_paths()
@@ -176,7 +186,8 @@ class MedicalQuestion:
             'analysis': self.analysis,
             'answer': self.answer,
             'confidence': self.confidence,
-            'chain_coverage': self.chain_coverage
+            'chain_coverage': self.chain_coverage,
+            'normal_results': self.normal_results
         }
         return data
 

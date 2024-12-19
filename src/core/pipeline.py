@@ -11,13 +11,19 @@ from config import config
 from src.graphrag.graph_enhancer import GraphEnhancer
 from src.modules.AccuracyAnalysis import calculate_accuracies
 from src.modules.filter import compare_enhanced_with_baseline, filter_by_coverage
+import gc
+from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
+import time
+import requests.exceptions
+import openai
+
 
 class QuestionProcessor:
     """处理医学问题的流水线处理器"""
 
     def __init__(self, path):
         """初始化处理器"""
-        self.llm = LLMProcessor()
+        self.llm = LLMProcessor(path)
         self.logger = config.get_logger("question_processor")
 
         # 使用config中定义的缓存根目录
@@ -31,11 +37,11 @@ class QuestionProcessor:
             'derelict': self.cache_root / self.cache_path / 'data' / 'derelict',
             'enhanced': self.cache_root / self.cache_path / 'data' / 'enhanced',
             'reasoning': self.cache_root / self.cache_path / 'data' / 'reasoning',
-            # 'knowledge_graph': self.cache_root / self.cache_path / 'data' / 'knowledge_graph',
-            # 'causal_graph': self.cache_root / self.cache_path / 'data' / 'causal_graph',
-            # 'graph_enhanced': self.cache_root / self.cache_path / 'data' / 'graph_enhanced',
-            # 'llm_enhanced': self.cache_root / self.cache_path / 'data' / 'llm_enhanced'
-
+            'knowledge_graph': self.cache_root / self.cache_path / 'data' / 'knowledge_graph',
+            'both': self.cache_root / self.cache_path / 'data' / 'both',
+            'remove_llm_enhanced': self.cache_root / self.cache_path / 'data' / 'remove_llm_enhanced',
+            'both_without_initial': self.cache_root / self.cache_path / 'data' / 'both_without_initial',
+            'normal_rag': self.cache_root / self.cache_path / 'data' / 'normal_rag'
         }
 
         self.processor = QueryProcessor()
@@ -47,61 +53,98 @@ class QuestionProcessor:
 
         self.logger.info(f"Initialized cache directories under {self.cache_root}")
 
-    def complete_process_question(self, question: MedicalQuestion):
+    def complete_process_question(self, question: MedicalQuestion, initial: bool):
         # self.processor.generate_initial_causal_graph(question)
-        self.processor.process_chain_of_thoughts(question, 'both', True)
-        self.enhancer.clear_paths(question)
-        self.llm.enhance_information(question)  # 增强
-        self.llm.answer_with_enhanced_information(question)
-        question.set_cache_paths(self.cache_paths['enhanced'])
-        question.to_cache()
-
-    def complete_process_question_without_initial(self, question: MedicalQuestion):
-        # self.processor.generate_initial_causal_graph(question)
-        self.processor.process_chain_of_thoughts(question, 'both', True)
-        paths = []
-        paths.extend(question.causal_graph.paths)
-        paths.extend(question.knowledge_graph.paths)
-        question.enhanced_graph.paths = self.enhancer.merge_paths(paths)
-        # self.enhancer.clear_paths(question)
-        self.llm.enhance_information(question)  # 增强
-        self.llm.answer_with_enhanced_information(question)
-        question.set_cache_paths(self.cache_paths['knowledge_graph'])
-        question.to_cache()
+        cached_question = MedicalQuestion.from_cache(
+            self.cache_paths['both'],
+            question.question
+        )
+        if not cached_question:
+            self.processor.process_chain_of_thoughts(question, 'both', True)
+            if question.chain_coverage.get('total_successes') == 0:
+                return
+            if initial:
+                self.enhancer.clear_paths(question)
+                self.llm.enhance_information(question)  # 增强
+                self.llm.answer_with_enhanced_information(question)
+                question.set_cache_paths(self.cache_paths['both_without_initial'])
+                question.to_cache()
+            else:
+                paths = []
+                paths.extend(question.causal_graph.paths)
+                paths.extend(question.knowledge_graph.paths)
+                question.enhanced_graph.paths = self.enhancer.merge_paths(paths)
+                self.llm.enhance_information(question)  # 增强
+                self.llm.answer_with_enhanced_information(question)
+                question.set_cache_paths(self.cache_paths['both'])
+                question.to_cache()
 
     def ablation_using_causal_only(self, question: MedicalQuestion):
         # self.processor.generate_initial_causal_graph(question)
-        self.processor.process_chain_of_thoughts(question, 'causal', True)
-        self.enhancer.clear_paths(question)
-        self.llm.enhance_information(question)  # 增强
-        self.llm.answer_with_enhanced_information(question)
-        question.set_cache_paths(self.cache_paths['causal_graph'])
-        question.to_cache()
+        cached_question = MedicalQuestion.from_cache(
+            self.cache_paths['enhanced'],
+            question.question
+        )
+        if not cached_question:
+            self.processor.process_chain_of_thoughts(question, 'causal', True)
+            if question.chain_coverage.get('total_successes') == 0:
+                return
+            self.enhancer.clear_paths(question)
+            self.llm.enhance_information(question)  # 增强
+            self.llm.answer_with_enhanced_information(question)
+            question.set_cache_paths(self.cache_paths['enhanced'])
+            question.to_cache()
 
     def ablation_using_knowledge_only(self, question: MedicalQuestion):
-        question.initial_causal_graph.paths = []
-        self.processor.process_chain_of_thoughts(question, 'knowledge', False)
-        self.enhancer.clear_paths(question)
-        self.llm.enhance_information(question)  # 增强
-        self.llm.answer_with_enhanced_information(question)
-        question.set_cache_paths(self.cache_paths['knowledge_graoph'])
-        question.to_cache()
+        cached_question = MedicalQuestion.from_cache(
+            self.cache_paths['knowledge_graph'],
+            question.question
+        )
+        if not cached_question:
+            question.initial_causal_graph.paths = []
+            self.processor.process_chain_of_thoughts(question, 'knowledge', False)
+            self.enhancer.clear_paths(question)
+            self.llm.enhance_information(question)  # 增强
+            self.llm.answer_with_enhanced_information(question)
+            question.set_cache_paths(self.cache_paths['knowledge_graph'])
+            question.to_cache()
 
-    def ablation_not_using_causal_enhancement(self, question: MedicalQuestion):
+    def ablation_graph_enhanced(self, question: MedicalQuestion):
         # self.processor.generate_initial_causal_graph(question)
-        self.processor.process_chain_of_thoughts(question, 'both', False)
-        self.llm.enhance_information(question)  # 增强
-        self.llm.answer_with_enhanced_information(question)
-        question.set_cache_paths(self.cache_paths['llm_enhanced'])
-        question.to_cache()
+        cached_question = MedicalQuestion.from_cache(
+            self.cache_paths['remove_graph_enhanced'],
+            question.question
+        )
+        if not cached_question:
+            self.processor.process_chain_of_thoughts(question, 'both', False)
+            self.llm.enhance_information(question)  # 增强
+            self.llm.answer_with_enhanced_information(question)
+            question.set_cache_paths(self.cache_paths['remove_graph_enhanced'])
+            question.to_cache()
 
-    def ablation_not_using_llm_enhancement(self, question: MedicalQuestion):
+    def ablation_llm_enhanced(self, question: MedicalQuestion):
         # self.processor.generate_initial_causal_graph(question)
-        self.processor.process_chain_of_thoughts(question, 'both', True)
-        self.enhancer.clear_paths(question)
-        self.llm.answer_with_cot(question)
-        question.set_cache_paths(self.cache_paths['graph_enhanced'])
-        question.to_cache()
+        cached_question = MedicalQuestion.from_cache(
+            self.cache_paths['remove_llm_enhanced'],
+            question.question
+        )
+        if not cached_question:
+            self.processor.process_chain_of_thoughts(question, 'both', True)
+            self.enhancer.clear_paths(question)
+            self.llm.answer_with_cot(question)
+            question.set_cache_paths(self.cache_paths['remove_llm_enhanced'])
+            question.to_cache()
+
+    def normal_rag(self, question: MedicalQuestion):
+        cached_question = MedicalQuestion.from_cache(
+            self.cache_paths['normal_rag'],
+            question.question
+        )
+        if not cached_question:
+            self.processor.process_vector_search(question)
+            self.llm.answer_normal_rag(question)
+            question.set_cache_paths(self.cache_paths['normal_rag'])
+            question.to_cache()
 
     def process_questions(self, questions: List[MedicalQuestion]) -> None:
         """处理问题列表"""
@@ -118,9 +161,6 @@ class QuestionProcessor:
                 else:
                     question = cached_question
 
-                self.llm.direct_answer(question)
-                question.set_cache_paths(self.cache_paths['derelict'])
-                question.to_cache()
                 cached_question = MedicalQuestion.from_cache(
                     self.cache_paths['reasoning'],
                     question.question
@@ -131,11 +171,24 @@ class QuestionProcessor:
                     question.to_cache()
                 else:
                     question = cached_question
-                self.complete_process_question(question)
-                # self.ablation_using_causal_only(question)
-                # self.ablation_not_using_causal_enhancement(question)
-                # self.ablation_not_using_llm_enhancement(question)
-                # self.ablation_using_knowledge_only(question)
+
+                cached_question = MedicalQuestion.from_cache(
+                    self.cache_paths['derelict'],
+                    question.question
+                )
+                if not cached_question:
+                    self.llm.direct_answer(question)
+                    question.set_cache_paths(self.cache_paths['derelict'])
+                    question.to_cache()
+                else:
+                    question = cached_question
+
+                self.complete_process_question(question, False)
+                self.complete_process_question(question, True)
+                self.ablation_using_causal_only(question)
+                self.ablation_llm_enhanced(question)
+                self.ablation_using_knowledge_only(question)
+                self.normal_rag(question)
 
             except Exception as e:
                 self.logger.error(f"Error processing question {i + 1}: {str(e)}")
@@ -220,7 +273,7 @@ class QuestionProcessor:
 
                 # Note: medinstruct dataset doesn't have subject categorization
                 if sample_size is not None and sample_size < len(df):
-                    df = df.head(sample_size).reset_index(drop=True)
+                    df = df.head(sample_size).reset_index(drop=True)  # 使用 head 从开头选择
 
                 for idx, row in df.iterrows():
                     try:
@@ -285,7 +338,7 @@ class QuestionProcessor:
                 df = df[df['subject_name'].isin(target_subjects)].reset_index(drop=True)
 
                 if sample_size is not None and sample_size < len(df):
-                    df = df.sample(n=sample_size, random_state=42).reset_index(drop=True)
+                    df = df.head(sample_size).reset_index(drop=True)  # 将 sample 改为 head
 
                 for _, row in df.iterrows():
                     question = MedicalQuestion(
@@ -319,24 +372,43 @@ class QuestionProcessor:
         return questions
 
 
-def main(process_path):
+def compare_models(process_path):
     """主函数示例"""
-    processor = QuestionProcessor(process_path)
-    processor.process_from_cache(process_path)
+    try:
+        processor = QuestionProcessor(process_path)
+        processor.process_from_cache(process_path)
 
-    STAGES = ['derelict', 'enhanced']
-    base_dir = process_path
-    df_report = calculate_accuracies(base_dir, STAGES)
-    print(df_report)
-    output_path = config.paths["cache"] / base_dir / 'model_accuracy_report.xlsx'
-    df_report.to_excel(output_path, index=False)
+        STAGES = ['derelict', 'enhanced', 'both_without_initial',
+                  'both', 'knowledge_graph', 'remove_llm_enhanced', 'normal_rag']
+        base_dir = process_path
+        df_report = calculate_accuracies(base_dir, STAGES)
+        print(df_report)
 
-    compare_enhanced_with_baseline(process_path)  # 对比增强与基线
-    path = Path(process_path) / 'coverage_filtered'
-    filter_by_coverage(process_path, threshold=0.5)  # 覆盖率过滤
-    compare_enhanced_with_baseline(path)
+        output_path = config.paths["cache"] / base_dir / 'model_accuracy_report.xlsx'
+        df_report.to_excel(output_path, index=False)
+
+        compare_enhanced_with_baseline(process_path)  # 对比增强与基线
+        path = Path(process_path) / 'coverage_filtered'
+        filter_by_coverage(process_path, threshold=0.5)  # 覆盖率过滤
+        compare_enhanced_with_baseline(path)
+
+    finally:
+        # 手动清理内存
+        print("开始清理内存...")
+        # del processor, df_report, path  # 删除变量引用
+        gc.collect()  # 执行垃圾回收
+        print("内存清理完成！")
 
 
 if __name__ == "__main__":
-    main('validation-incorrect1')
-    main('validation-correct1')
+    # config.openai['model'] = 'gpt-3.5-turbo'
+    # compare_models('1-final-3.5')
+    # config.openai['model'] = 'gpt-4o-mini'
+    # path = Path('mixed') / '1-1'
+    # compare_models(path)
+    # main('1-40mini-3')
+    # test1 = 'origin-1'
+    # processor = QuestionProcessor('total')
+    # processor.batch_process_file('test1', 1000)
+    compare_models('test')
+    # compare_models(test1)

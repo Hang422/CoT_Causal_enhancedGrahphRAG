@@ -7,6 +7,11 @@ from src.modules.MedicalQuestion import MedicalQuestion
 from src.graphrag.entity_processor import EntityProcessor
 from src.graphrag.graph_enhancer import GraphEnhancer
 
+from neo4j import GraphDatabase
+from neo4j_graphrag.embeddings import CohereEmbeddings
+from neo4j_graphrag.retrievers import VectorRetriever
+
+
 class QueryProcessor:
     """Neo4j query processor for medical question path finding"""
 
@@ -22,6 +27,19 @@ class QueryProcessor:
             max_connection_pool_size=db_config["max_connections"],
         )
         self.entity_processor = EntityProcessor()  # Still needed for name-to-CUI conversion
+
+        self.embedder = CohereEmbeddings(
+            model=config.cohere["model"],
+            api_key=config.cohere["api_key"]
+        )
+        self.vector_retriever = VectorRetriever(
+            driver=self.driver,
+            index_name="medical_vector_index",
+            embedder=self.embedder,
+            neo4j_database='neo4j'
+        )
+
+        self.hyper_parameter = 3
 
     def close(self):
         """Close database connection"""
@@ -85,7 +103,7 @@ class QueryProcessor:
             # 返回处理后的路径
             sorted_paths = sorted(unique_paths.values(), key=lambda x: x['score'], reverse=True)
 
-            return sorted_paths[:3]
+            return sorted_paths[:self.hyper_parameter]
 
     def process_knowledge_graph_paths(self, start_cui: str, end_cui: str) -> List[Dict]:
         """Query and process paths in the knowledge graph."""
@@ -176,6 +194,8 @@ class QueryProcessor:
 
     def process_chain_of_thoughts(self, question: MedicalQuestion, graph: str, enhancement: bool) -> None:
         """处理思维链的路径检索，并计算相对覆盖率"""
+        question.causal_graph.clear()
+        question.knowledge_graph.clear()
         chain_success_counts = []  # 存储每条链的查询成功次数
 
         for chain in question.reasoning_chain:
@@ -263,18 +283,38 @@ class QueryProcessor:
 
         question.generate_paths()
 
+    def process_vector_search(self, question: MedicalQuestion) -> None:
+        """
+        对问题和选项进行向量检索，返回最相关的结果
+
+        Args:
+            question: MedicalQuestion对象，包含问题和选项信息
+        """
+        try:
+            # 存储所有检索结果
+            all_results = set()
+
+            # 为每个选项构建查询文本并执行检索
+            for option_key, option_text in question.options.items():
+                query_text = f"{question.question} {option_text}"
+                results = self.vector_retriever.search(query_text=query_text, top_k=3)
+
+                # 将结果添加到集合中（去重）
+                for result in results.items:
+                    result_dict = eval(result.content)
+                    text = result_dict.get('text', '')
+                    if text:
+                        all_results.add(text)
+
+            # 存储结果到问题对象中
+            question.normal_results = list(all_results)
+
+        except Exception as e:
+            self.logger.error(f"Error in vector search: {str(e)}")
+            question.normal_results = []
+
 
 def main():
-    var = {
-        "causal_analysis": {
-            "start": ["vWF", "vWF", "Endothelial cells"],
-            "end": ["Blood coagulation", "Platelet adhesion", "vWF"]
-        },
-        "additional_entity_pairs": {
-            "start": ["Endothelial cells", "Endothelial cells", "Weibel-Palade bodies"],
-            "end": ["Weibel-Palade bodies", "Blood vessel", "vWF"]
-        }
-    }
     question = MedicalQuestion(
         question="Sugar restricted to diet was beneficial in presence of unfavorable hygiene was from which study?",
         options={
@@ -283,45 +323,10 @@ def main():
             "opc": "Chymase",
             "opd": "Carboxypeptidase"}, topic_name='null', is_multi_choice=True, correct_answer='opa')
     processor = QueryProcessor()
-    question.causal_graph.entities_pairs = {
-        "start": ["vWF", "vWF", "Endothelial cells"],
-        "end": ["Blood coagulation", "Platelet adhesion", "vWF"]}
-    question.knowledge_graph.entities_pairs = {
-        "start": ["Endothelial cells", "Endothelial cells", "Weibel-Palade bodies"],
-        "end": ["Weibel-Palade bodies", "Blood vessel", "vWF"]}
-    processor.entity_processor.threshold = 0.25
-    processor.generate_initial_causal_graph(question)
-    print(question.initial_causal_graph.paths)
-    print(question.knowledge_graph.paths)
-    var = ['(Nitrates)-INHIBITS->(ethanol)-STIMULATES->(Coronary vasodilator (product))',
-           '(Nitrates)-INHIBITS->(nitric oxide)-STIMULATES->(Coronary vasodilator (product))',
-           '(Nitrates)-STIMULATES->(nitric oxide)-STIMULATES->(Coronary vasodilator (product))',
-           '(Nitrates)-CAUSES->(Oxidative Stress)-AFFECTS->(Exocytosis)-AFFECTS->(Reduced)',
-           '(Nitrates)-AFFECTS->(Cell Communication)-CAUSES->(Exocytosis)-AFFECTS->(Reduced)',
-           '(Nitrates)-STIMULATES->(calcium)-CAUSES->(Exocytosis)-AFFECTS->(Reduced)']
-    var = ['(Nitrates)-INTERACTS_WITH->(Coronary vasodilator (product))',
-           '(Nitrates)-STIMULATES->(iron)-CAUSES->(Exocytosis)-AFFECTS->(Reduced)',
-           '(Nitrates)-INHIBITS->(ascorbic acid)-CAUSES->(Exocytosis)-AFFECTS->(Reduced)',
-           '(Nitrates)-STIMULATES->(ascorbic acid)-CAUSES->(Exocytosis)-AFFECTS->(Reduced)']
+    processor.process_vector_search(question)
+    print(question.normal_results)
 
 
-if __name__ == '__main__':
-    processor = QueryProcessor()
-    'Bacteria, Anaerobic'
-
-    path = config.paths["cache"] / 'test1-4o' / 'original'
-    question = MedicalQuestion.from_cache(path, "DOC for bacterial vaginosis in pregnancy")
-    question.reasoning_chain = [
-        "Bacterial vaginosis -> Common treatment -> Metronidazole",
-        "Metronidazole -> Antibacterial activity -> Effective against anaerobic bacteria -> Commonly used in pregnancy",
-        "Clindamycin -> Antibacterial activity -> Effective against anaerobic bacteria -> Alternative treatment for bacterial vaginosis",
-        "Erythromycin -> Antibacterial activity -> Limited effectiveness against anaerobes -> Less commonly used for bacterial vaginosis",
-        "Rovamycin -> Antibacterial activity -> Requires verification for effectiveness against bacterial vaginosis -> Conclusion unclear",
-        "Pregnancy -> Safety considerations -> Metronidazole safety profile -> Commonly prescribed",
-        "Pregnancy -> Safety considerations -> Clindamycin safety profile -> Alternative option",
-        "Pregnancy -> Safety considerations -> Erythromycin safety profile -> Requires verification for effectiveness in bacterial vaginosis",
-        "Pregnancy -> Safety considerations -> Rovamycin safety profile -> Requires verification -> Conclusion unclear"]
-    processor.process_chain_of_thoughts(question, 'both', True)
-    enhancer = GraphEnhancer()
-    enhancer.clear_paths(question)
-    print(question.enhanced_graph.paths)
+if __name__ == "__main__":
+    t =     "CHAIN: Cholesterol -> decreases fluidity of the lipid bilayer -> enhances membrane stability -> 80% 2. Cholesterol -> assists in the transport of hormones across the lipid bilayer -> regulates cellular processes -> 75% 3. Cholesterol -> modulates membrane permeability -> influences cell signaling -> 70% 4. Cholesterol -> interacts with phospholipids -> forms lipid rafts -> 80%"
+    print(t.split('->'))

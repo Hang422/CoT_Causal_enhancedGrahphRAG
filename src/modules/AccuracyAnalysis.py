@@ -7,21 +7,11 @@ from config import config
 
 logger = config.get_logger("accuracy_calculator")
 
+
 def is_correct(q_data: Dict) -> bool:
     """Check if the answer matches correct_answer"""
     return q_data.get('answer', '').lower() == q_data.get('correct_answer', '').lower()
 
-def has_enhanced_or_chain_success(q_data: Dict) -> bool:
-    """
-    Check if question should be included in analysis based on enhanced data:
-    Condition: len(enhanced_graph.paths) > 0 or chain_coverage.total_successes > 0
-    """
-    enhanced_graph = q_data.get('enhanced_graph', {})
-    paths = enhanced_graph.get('paths', [])
-    chain_cov = q_data.get('chain_coverage', {})
-    total_successes = chain_cov.get('total_successes', 0)
-
-    return (isinstance(paths, list) and len(paths) > 0) or (total_successes > 0)
 
 def load_questions_from_dir(dir_path: Path) -> Dict[str, Dict]:
     questions = {}
@@ -38,6 +28,7 @@ def load_questions_from_dir(dir_path: Path) -> Dict[str, Dict]:
         except Exception as e:
             logger.error(f"Error loading {f}: {e}")
     return questions
+
 
 def calculate_accuracies(base_dir: str, stages: List[str]) -> pd.DataFrame:
     """
@@ -56,7 +47,7 @@ def calculate_accuracies(base_dir: str, stages: List[str]) -> pd.DataFrame:
     - Improvement_over_Baseline(%): 相对于derelict整体正确率的提升
     """
 
-    base_path = config.paths["cache"] / base_dir / 'data'
+    base_path = config.paths["cache"] /base_dir / 'data'
     baseline_stage = "derelict"
     enhanced_stage = "enhanced"
 
@@ -70,8 +61,9 @@ def calculate_accuracies(base_dir: str, stages: List[str]) -> pd.DataFrame:
     baseline_qs = stage_questions.get(baseline_stage, {})
     enhanced_qs = stage_questions.get(enhanced_stage, {})
 
-    # 首先使用enhanced来筛选
-    enhanced_filtered = {q: d for q, d in enhanced_qs.items() if has_enhanced_or_chain_success(d)}
+    # 首先使用enhanced来筛选, more strict
+    enhanced_filtered = {q: d for q, d in enhanced_qs.items() if d.get('chain_coverage', {}).get('total_successes', 0)>0}
+    # enhanced_filtered = {q: d for q, d in enhanced_qs.items() if d.get('enhanced_graph', {}).get('paths', []) and len(d.get('enhanced_graph', {}).get('paths', [])) > 0}
 
     # 在baseline中存在的最终过滤集合
     filtered_questions = {q: baseline_qs[q] for q in enhanced_filtered if q in baseline_qs}
@@ -141,6 +133,7 @@ def calculate_accuracies(base_dir: str, stages: List[str]) -> pd.DataFrame:
 
     df = pd.DataFrame(results)
     return df
+
 
 if __name__ == "__main__":
     STAGES = ['derelict', 'enhanced', 'knowledge_graph', 'causal_graph', 'graph_enhanced', 'llm_enhanced']

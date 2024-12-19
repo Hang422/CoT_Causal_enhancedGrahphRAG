@@ -5,8 +5,8 @@ from collections import defaultdict
 from typing import Optional
 from src.modules.MedicalQuestion import MedicalQuestion
 from config import config
-
-
+from src.graphrag.query_processor import QueryProcessor
+from src.graphrag.graph_enhancer import GraphEnhancer
 def load_question_from_json(file_path: Path) -> Optional[MedicalQuestion]:
     """从JSON文件加载Question对象"""
     try:
@@ -180,9 +180,179 @@ def filter_by_coverage(dir_path: str, threshold: float = 0.5) -> None:
     print("Done filtering by coverage.")
 
 
+def extract_wrong_questions(dir_path: str, t_path: str) -> None:
+    """
+    从指定目录下提取答错的题目文件（is_correct == False），
+    并复制到同级目录中名为 <dir_path>_wrong 的新目录下。
+
+    参数:
+        dir_path: 存放题目JSON文件的目录名（在 config.paths["cache"]/<dir_path>/data/ 下）
+                  如 "derelict"
+    """
+    logger = config.get_logger("extract_wrong_questions")
+    base_path = Path(config.paths["cache"]) / dir_path / 'data' / t_path
+    source_dir = base_path  # 假设你的数据文件存在于 data/derelict 下
+
+    if not source_dir.exists():
+        logger.error(f"Directory {source_dir} does not exist.")
+        return
+
+    target_dir = base_path / f"{dir_path}_wrong"
+    target_dir.mkdir(parents=True, exist_ok=True)
+
+    processed_count = 0
+    extracted_count = 0
+
+    for file in source_dir.glob("*.json"):
+        q = load_question_from_json(file)
+        processed_count += 1
+        if q and q.is_correct is False:
+            # 答错的题目复制到 target_dir
+            shutil.copy2(file, target_dir / file.name)
+            extracted_count += 1
+
+    logger.info(f"Processed: {processed_count}")
+    logger.info(f"Extracted wrong: {extracted_count}")
+    logger.info(f"Extracted files saved to {target_dir}")
+
+
+def filter_by_enhanced_paths(source_dir: str, target_dir: str) -> None:
+    """
+    Filter questions that have enhanced graph paths and save their original versions.
+
+    Args:
+        source_dir: Source directory path containing the data (e.g., 'test1')
+        target_dir: Target directory path to save filtered questions (e.g., 'test1_filtered')
+    """
+    logger = config.get_logger("path_filter")
+
+    # Set up source paths
+    base_source_path = Path(config.paths["cache"]) / source_dir / 'data'
+    enhanced_path = base_source_path / 'enhanced'
+    original_path = base_source_path / 'original'
+
+    # Set up target path
+    target_path = Path(config.paths["cache"]) / target_dir / 'data' / 'original'
+    target_path.mkdir(parents=True, exist_ok=True)
+
+    if not all(p.exists() for p in [enhanced_path, original_path]):
+        logger.error("Required source directories (enhanced, original) not found")
+        return
+
+    processed_count = 0
+    retained_count = 0
+
+    logger.info("Filtering questions with enhanced graph paths...")
+
+    for file in enhanced_path.glob("*.json"):
+        try:
+            with open(file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+
+            # Check if enhanced_graph has paths
+            enhanced_graph = data.get('enhanced_graph', {})
+            paths = enhanced_graph.get('paths', [])
+
+            processed_count += 1
+
+            if paths:  # If there are paths in enhanced_graph
+                # Find and copy the corresponding original file
+                orig_file = original_path / file.name
+                if orig_file.exists():
+                    shutil.copy2(orig_file, target_path / file.name)
+                    retained_count += 1
+
+        except Exception as e:
+            logger.error(f"Error processing file {file}: {e}")
+            continue
+
+    logger.info(f"Total processed: {processed_count}")
+    logger.info(f"Questions with enhanced paths: {retained_count}")
+    logger.info(f"Filtered questions saved to {target_path}")
+
+    print("Done filtering by enhanced paths.")
+
+
+def filter_questions_by_paths(input_path: str, output_path: str) -> None:
+    """
+    Filter questions based on existence of paths between question and options in the graph.
+
+    Args:
+        input_path: Path to directory containing original questions
+        output_path: Path to save filtered questions
+    """
+    # Initialize logger
+    logger = config.get_logger("question_processor")
+
+    # Initialize query processor
+    query_processor = QueryProcessor()
+    enhancer = GraphEnhancer()
+
+    # Create output directory
+    output_dir = Path(output_path)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    processed_count = 0
+    saved_count = 0
+
+    try:
+        for file_path in Path(input_path).glob("*.json"):
+            try:
+                # Load question
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+
+                    # 确保有必要的字段
+                    if 'question' not in data or 'options' not in data:
+                        continue
+
+                    # 根据新格式创建问题对象
+                    question = MedicalQuestion(
+                        question=data['question'],
+                        is_multi_choice=True,  # 多选题
+                        options=data['options'],
+                        correct_answer=data.get('correct_answer', 'opa'),  # 默认值
+                        topic_name=data.get('topic_name')
+                    )
+
+                processed_count += 1
+
+                # Generate initial causal graph
+                query_processor.generate_initial_causal_graph(question)
+                question.initial_causal_graph.paths = enhancer.merge_paths(question.initial_causal_graph.paths)
+
+                # Check if question has valid paths in the graph
+                if (hasattr(question.initial_causal_graph, 'paths') and
+                        len(question.initial_causal_graph.paths)>0):
+                    # Save to output directory
+                    output_file = output_dir / file_path.name
+                    with open(output_file, 'w', encoding='utf-8') as f:
+                        json.dump(question.to_dict(), f, indent=2, ensure_ascii=False)
+                    saved_count += 1
+
+            except Exception as e:
+                logger.error(f"Error processing {file_path}: {str(e)}")
+                continue
+
+    finally:
+        query_processor.close()
+
+    logger.info(f"Processed {processed_count} questions")
+    logger.info(f"Saved {saved_count} questions with valid paths in graph")
+    logger.info(f"Filtered out {processed_count - saved_count} questions")
+
+
+# Example usage:
+
 if __name__ == "__main__":
     # 示例调用
-    compare_enhanced_with_baseline('1-4omini-4')  # 对比增强与基线
-    path = Path('1-4omini-4') / 'coverage_filtered'
-    compare_enhanced_with_baseline(path)
-    filter_by_coverage(path, threshold=0.5)  # 覆盖率过滤
+    # compare_enhanced_with_baseline('1-final-4o-mini')  # 对比增强与基线
+    # path = Path('1-final-4o-mini') / 'coverage_filtered'
+    # # compare_enhanced_with_baseline(path)
+    # filter_by_coverage('1-final-4o-mini', threshold=0.5)  # 覆盖率过滤
+    # compare_enhanced_with_baseline(path)
+    # # extract_wrong_questions('2-final','derelict')
+    # filter_by_enhanced_paths('1-4omini-4', '1-4')
+    path = Path(config.paths["cache"], 'total', 'data','original')
+    output = Path(config.paths["cache"], 'total_filtered', 'data' ,'original')
+    filter_questions_by_paths(path, output)

@@ -15,15 +15,15 @@ class DatabaseConfig:
         self.password = os.getenv("NEO4J_PASSWORD", "")
 
         self.environments = {
-            "casual": {
-                "name": os.getenv("NEO4J_DATABASE_CASUAL", "casual"),
+            "causal": {
+                "name": os.getenv("NEO4J_DATABASE_causal", "causal"),
                 "description": "Main causal relationship database",
-                "max_connections": int(os.getenv("NEO4J_MAX_CONNECTIONS_CASUAL", "50"))
+                "max_connections": int(os.getenv("NEO4J_MAX_CONNECTIONS_causal", "50"))
             },
-            "casual-1": {
-                "name": os.getenv("NEO4J_DATABASE_CASUAL_1", "casual-1"),
-                "description": "Development/testing causal database",
-                "max_connections": int(os.getenv("NEO4J_MAX_CONNECTIONS_CASUAL_1", "20"))
+            "neo4j": {
+                "name": os.getenv("NEO4J_DATABASE_NEO4J", "neo4j"),
+                "description": "Default knowledge graph for vector search",
+                "max_connections": int(os.getenv("NEO4J_MAX_CONNECTIONS_causal_1", "20"))
             },
             "knowledge": {
                 "name": os.getenv("NEO4J_DATABASE_KNOWLEDGE", "knowledge"),
@@ -32,7 +32,7 @@ class DatabaseConfig:
             }
         }
 
-        self.current_database = os.getenv("NEO4J_CURRENT_DATABASE", "casual")
+        self.current_database = os.getenv("NEO4J_CURRENT_DATABASE", "causal")
 
     def get_config(self, database: Optional[str] = None) -> Dict:
         db_name = database or self.current_database
@@ -74,7 +74,7 @@ class Config:
 
         # Initialize components
         self.paths = self._setup_paths()
-        self.logger = self._setup_logger("casual_graphrag")
+        self.logger = self._setup_logger("causal_graphrag")
         self._load_config()
 
         # Log initialization
@@ -122,7 +122,7 @@ class Config:
             # Create handlers
             console_handler = logging.StreamHandler()
             file_handler = RotatingFileHandler(
-                self.paths["logs"] / "casual_graphrag.log",
+                self.paths["logs"] / "causal_graphrag.log",
                 maxBytes=1024 * 1024,  # 1MB
                 backupCount=5
             )
@@ -152,6 +152,11 @@ class Config:
             "temperature": float(os.getenv("OPENAI_TEMPERATURE", "0")),
         }
 
+        self.cohere = {
+            "api_key": os.getenv("COHERE_API_KEY", ""),
+            "model": "embed-english-v3.0",  # 默认模型
+        }
+
     def get_db_config(self, database: Optional[str] = None) -> Dict:
         return self.db.get_config(database)
 
@@ -162,7 +167,7 @@ class Config:
     def get_logger(self, name: str) -> logging.Logger:
         """Get a logger instance for the given name"""
         if name not in self.logger_instances:
-            logger_name = f"casual_graphrag.{name}"
+            logger_name = f"causal_graphrag.{name}"
             self.logger_instances[name] = self._setup_logger(logger_name)
         return self.logger_instances[name]
 
