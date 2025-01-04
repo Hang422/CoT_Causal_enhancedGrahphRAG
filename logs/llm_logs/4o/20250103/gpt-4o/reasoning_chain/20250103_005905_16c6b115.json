@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_005905",
+  "model": "gpt-4o",
+  "interaction_type": "reasoning_chain",
+  "question_id": "16c6b115",
+  "question_text": "Tocilizumab used against Rheumatoid arthritis is a monoclonal antibody against :",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            Tocilizumab used against Rheumatoid arthritis is a monoclonal antibody against :\n\n            ### Options\n    opa. Interleukin-6\nopb. Interleukin-6 receptor\nopc. Interleukin-5\nopd. Interleukin-5 receptor\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"Tocilizumab\" -> \"targets interleukin-6 receptor\" -> \"blocks interleukin-6 signaling\" -> \"reduces inflammation in rheumatoid arthritis\" -> 95%\n\nCHAIN: \"Tocilizumab\" -> \"monoclonal antibody\" -> \"binds to interleukin-6 receptor\" -> \"prevents interleukin-6 from binding\" -> \"decreases inflammatory response\" -> 90%\n\nCHAIN: \"Tocilizumab\" -> \"inhibits interleukin-6 receptor\" -> \"modulates immune response\" -> \"alleviates symptoms of rheumatoid arthritis\" -> 92%\n\nCHAIN: \"Tocilizumab\" -> \"does not target interleukin-5\" -> \"does not target interleukin-5 receptor\" -> \"specific for interleukin-6 receptor\" -> 85%",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o",
+    "temperature": 0.0
+  }
+}

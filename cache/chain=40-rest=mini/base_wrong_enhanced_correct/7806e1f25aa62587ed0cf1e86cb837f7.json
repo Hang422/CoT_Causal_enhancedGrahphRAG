@@ -1,0 +1,121 @@
+{
+  "question": "Progesterone production in the ovary is primarily by:",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Stroma",
+    "opb": "Corpora albicans",
+    "opc": "Corpora lutea",
+    "opd": "Mature follicles"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Structure of corpus luteum of ovary",
+        "Progesterone"
+      ],
+      [
+        "Structure of corpus luteum of ovary",
+        "Progesterone"
+      ],
+      [
+        "Structure of corpus luteum of ovary",
+        "Lipids",
+        "Luteal Cells"
+      ],
+      [
+        "Structure of corpus luteum of ovary",
+        "Oxytocin",
+        "Luteal Cells"
+      ],
+      [
+        "Luteal Cells",
+        "Progesterone"
+      ],
+      [
+        "Hormones",
+        "Progesterone"
+      ]
+    ],
+    "relationships": [
+      [
+        "LOCATION_OF"
+      ],
+      [
+        "LOCATION_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Structure of corpus luteum of ovary)-LOCATION_OF->(Progesterone)",
+      "(Structure of corpus luteum of ovary)-LOCATION_OF->(Progesterone)",
+      "(Structure of corpus luteum of ovary)-LOCATION_OF->(Lipids)-PART_OF->(Luteal Cells)",
+      "(Structure of corpus luteum of ovary)-LOCATION_OF->(Oxytocin)-INTERACTS_WITH->(Luteal Cells)",
+      "(Luteal Cells)-LOCATION_OF->(Progesterone)",
+      "(Hormones)-INTERACTS_WITH->(Progesterone)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Structure of corpus luteum of ovary)-LOCATION_OF->(Progesterone)",
+      "(Structure of corpus luteum of ovary)-LOCATION_OF->(Oxytocin)-INTERACTS_WITH->(Luteal Cells)",
+      "(Luteal Cells)-LOCATION_OF->(Progesterone)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Ovary\" -> \"Ovulation\" -> \"Formation of corpus luteum\" -> \"Progesterone production\" -> 95%",
+    "CHAIN: \"Mature follicles\" -> \"Ovulation\" -> \"Transformation into corpus luteum\" -> \"Progesterone production\" -> 90%",
+    "CHAIN: \"Corpora lutea\" -> \"Luteal cells\" -> \"Progesterone synthesis\" -> 95%",
+    "CHAIN: \"Stroma\" -> \"Supportive tissue\" -> \"Possible involvement in hormone regulation\" -> \"Unlikely primary source of progesterone\" -> 30%",
+    "CHAIN: \"Corpora albicans\" -> \"Degenerated corpus luteum\" -> \"Minimal hormone production\" -> \"Unlikely primary source of progesterone\" -> 20%"
+  ],
+  "enhanced_information": "Progesterone production in the ovary is primarily by the corpus luteum, which is formed after ovulation from the mature follicle. The luteal cells within the corpus luteum are responsible for synthesizing progesterone, making this the primary source of the hormone during the luteal phase of the menstrual cycle. The stroma and corpora albicans do not significantly contribute to progesterone production; the stroma serves a supportive role, and the corpora albicans is a degenerated form of the corpus luteum with minimal hormone production. Evidence supports that the structure of the corpus luteum is directly associated with progesterone synthesis, confirming its role as the main site of progesterone production in the ovary.",
+  "analysis": "Progesterone production in the ovary is primarily associated with the corpus luteum, which forms after ovulation from the mature follicle. The luteal cells within the corpus luteum are specifically responsible for synthesizing progesterone, making it the main source of this hormone during the luteal phase of the menstrual cycle. The stroma serves a supportive role and does not produce significant amounts of progesterone, while the corpora albicans is a degenerated form of the corpus luteum that has minimal hormone production. Therefore, the consensus in the medical community strongly supports that the corpus luteum is the primary site of progesterone production in the ovary.",
+  "answer": "opc",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      1,
+      2,
+      0,
+      1
+    ],
+    "coverage_rates": [
+      20.0,
+      20.0,
+      40.0,
+      0.0,
+      20.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

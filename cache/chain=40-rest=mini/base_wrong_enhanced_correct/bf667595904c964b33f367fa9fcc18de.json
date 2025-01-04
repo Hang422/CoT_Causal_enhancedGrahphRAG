@@ -1,0 +1,176 @@
+{
+  "question": "Drug of choice for neurogenic diabetes insipidus",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Vasopressin",
+    "opb": "Terlipressin",
+    "opc": "Desmopressin",
+    "opd": "Pralipressin"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Central Diabetes Insipidus",
+        "Polydipsia"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Central Diabetes Insipidus)-CAUSES->(Polydipsia)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Vasopressin Analog",
+        "Central Diabetes Insipidus",
+        "Complication",
+        "Deamino Arginine Vasopressin"
+      ],
+      [
+        "Vasopressin Analog",
+        "Hepatorenal Syndrome",
+        "Complication",
+        "Deamino Arginine Vasopressin"
+      ],
+      [
+        "Central Diabetes Insipidus",
+        "Disease",
+        "Inflammatory Response",
+        "human AVP protein"
+      ],
+      [
+        "Central Diabetes Insipidus",
+        "Disease",
+        "Inflammatory Response",
+        "human AVP protein"
+      ],
+      [
+        "human AVP protein",
+        "Neurons",
+        "Cells",
+        "Deamino Arginine Vasopressin"
+      ],
+      [
+        "human AVP protein",
+        "Neurons",
+        "Endothelial Cells",
+        "Deamino Arginine Vasopressin"
+      ],
+      [
+        "Vasopressin Analog",
+        "Central Diabetes Insipidus",
+        "Complication",
+        "Deamino Arginine Vasopressin"
+      ],
+      [
+        "Vasopressin Analog",
+        "Hepatorenal Syndrome",
+        "Complication",
+        "Deamino Arginine Vasopressin"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "PREDISPOSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "COMPLICATES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "COMPLICATES",
+        "COMPLICATES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Vasopressin Analog)-TREATS->(Central Diabetes Insipidus)-PREDISPOSES->(Complication)-ASSOCIATED_WITH->(Deamino Arginine Vasopressin)",
+      "(Vasopressin Analog)-TREATS->(Hepatorenal Syndrome)-CAUSES->(Complication)-ASSOCIATED_WITH->(Deamino Arginine Vasopressin)",
+      "(Central Diabetes Insipidus)-CAUSES->(Disease)-COMPLICATES->(Inflammatory Response)-ASSOCIATED_WITH->(human AVP protein)",
+      "(Central Diabetes Insipidus)-COMPLICATES->(Disease)-COMPLICATES->(Inflammatory Response)-ASSOCIATED_WITH->(human AVP protein)",
+      "(human AVP protein)-INTERACTS_WITH->(Neurons)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Deamino Arginine Vasopressin)",
+      "(human AVP protein)-INTERACTS_WITH->(Neurons)-INTERACTS_WITH->(Endothelial Cells)-INTERACTS_WITH->(Deamino Arginine Vasopressin)",
+      "(Vasopressin Analog)-TREATS->(Central Diabetes Insipidus)-PREDISPOSES->(Complication)-ASSOCIATED_WITH->(Deamino Arginine Vasopressin)",
+      "(Vasopressin Analog)-TREATS->(Hepatorenal Syndrome)-CAUSES->(Complication)-ASSOCIATED_WITH->(Deamino Arginine Vasopressin)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Vasopressin Analog)-TREATS->(Hepatorenal Syndrome)-CAUSES->(Complication)-ASSOCIATED_WITH->(Deamino Arginine Vasopressin)",
+      "(Vasopressin Analog)-TREATS->(Central Diabetes Insipidus)-PREDISPOSES->(Complication)-ASSOCIATED_WITH->(Deamino Arginine Vasopressin)",
+      "(Central Diabetes Insipidus)-CAUSES/COMPLICATES->(Disease)-COMPLICATES->(Inflammatory Response)-ASSOCIATED_WITH->(human AVP protein)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Neurogenic diabetes insipidus\" -> \"deficiency of vasopressin\" -> \"need for vasopressin replacement\" -> \"Desmopressin\" -> 95%",
+    "CHAIN: \"Neurogenic diabetes insipidus\" -> \"central cause\" -> \"synthetic vasopressin analog needed\" -> \"Desmopressin\" -> 90%",
+    "CHAIN: \"Neurogenic diabetes insipidus\" -> \"polyuria and polydipsia\" -> \"vasopressin analog to reduce symptoms\" -> \"Desmopressin\" -> 92%",
+    "CHAIN: \"Neurogenic diabetes insipidus\" -> \"lack of antidiuretic hormone\" -> \"Desmopressin as synthetic replacement\" -> 93%",
+    "CHAIN: \"Neurogenic diabetes insipidus\" -> \"treatment with vasopressin analog\" -> \"Desmopressin preferred\" -> 90%"
+  ],
+  "enhanced_information": "Neurogenic diabetes insipidus is characterized by a deficiency of vasopressin (antidiuretic hormone) due to a central cause, leading to symptoms such as polyuria and polydipsia. The treatment of choice is Desmopressin, a synthetic analog of vasopressin, which effectively reduces these symptoms by mimicking the action of vasopressin. Other options like Vasopressin, Terlipressin, and Pralipressin are not preferred for this specific condition. Evidence supports that Desmopressin is the preferred vasopressin analog for managing central diabetes insipidus, confirming its role in treating the deficiency of antidiuretic hormone.",
+  "analysis": "Neurogenic diabetes insipidus is caused by a deficiency of vasopressin (antidiuretic hormone) due to a central nervous system issue. The primary treatment for this condition is Desmopressin, which is a synthetic analog of vasopressin. It effectively mimics the action of vasopressin, leading to reduced urine output and alleviation of symptoms such as polyuria and polydipsia. While Vasopressin itself can be used, Desmopressin is preferred due to its longer duration of action and fewer side effects. Terlipressin and Pralipressin are not typically used for neurogenic diabetes insipidus. Therefore, the best-supported option based on current medical consensus is Desmopressin.",
+  "answer": "opc",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      2,
+      2,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      40.0,
+      40.0,
+      20.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

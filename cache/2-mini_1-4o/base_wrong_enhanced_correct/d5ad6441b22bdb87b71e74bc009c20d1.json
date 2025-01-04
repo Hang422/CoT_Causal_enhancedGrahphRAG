@@ -1,0 +1,395 @@
+{
+  "question": "Drug of choice for attention deficit hyperactivity disorder is:-",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Haloperidol",
+    "opb": "Imipramine",
+    "opc": "Alprazolam",
+    "opd": "Methylphenidate"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Methylphenidate",
+        "Disease",
+        "Hyperactive behavior"
+      ],
+      [
+        "Methylphenidate",
+        "Pain",
+        "Hyperactive behavior"
+      ],
+      [
+        "Methylphenidate",
+        "Diabetes",
+        "Hyperactive behavior"
+      ],
+      [
+        "Haloperidol",
+        "Disease",
+        "Attention deficit hyperactivity disorder"
+      ],
+      [
+        "Haloperidol",
+        "Symptoms",
+        "Attention deficit hyperactivity disorder"
+      ],
+      [
+        "Haloperidol",
+        "Sleep disturbances",
+        "Attention deficit hyperactivity disorder"
+      ],
+      [
+        "Antipsychotic Agents",
+        "Attention deficit hyperactivity disorder"
+      ],
+      [
+        "Imipramine",
+        "Attention deficit hyperactivity disorder"
+      ],
+      [
+        "Antidepressive Agents, Tricyclic",
+        "Attention deficit hyperactivity disorder"
+      ],
+      [
+        "Benzodiazepines",
+        "Attention deficit hyperactivity disorder"
+      ],
+      [
+        "Alprazolam",
+        "Seizures",
+        "Attention deficit hyperactivity disorder"
+      ],
+      [
+        "Alprazolam",
+        "Disease",
+        "Attention deficit hyperactivity disorder"
+      ],
+      [
+        "Alprazolam",
+        "Obesity",
+        "Attention deficit hyperactivity disorder"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS",
+        "COMPLICATES"
+      ],
+      [
+        "PREVENTS",
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "COMPLICATES"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES"
+      ]
+    ],
+    "paths": [
+      "(Methylphenidate)-TREATS->(Disease)-PREDISPOSES->(Hyperactive behavior)",
+      "(Methylphenidate)-TREATS->(Pain)-PREDISPOSES->(Hyperactive behavior)",
+      "(Methylphenidate)-TREATS->(Diabetes)-PREDISPOSES->(Hyperactive behavior)",
+      "(Haloperidol)-TREATS->(Disease)-COMPLICATES->(Attention deficit hyperactivity disorder)",
+      "(Haloperidol)-PREVENTS->(Symptoms)-PREDISPOSES->(Attention deficit hyperactivity disorder)",
+      "(Haloperidol)-TREATS->(Sleep disturbances)-PREDISPOSES->(Attention deficit hyperactivity disorder)",
+      "(Antipsychotic Agents)-CAUSES->(Attention deficit hyperactivity disorder)",
+      "(Imipramine)-TREATS->(Attention deficit hyperactivity disorder)",
+      "(Antidepressive Agents, Tricyclic)-TREATS->(Attention deficit hyperactivity disorder)",
+      "(Benzodiazepines)-PREDISPOSES->(Attention deficit hyperactivity disorder)",
+      "(Alprazolam)-TREATS->(Seizures)-CAUSES->(Attention deficit hyperactivity disorder)",
+      "(Alprazolam)-TREATS->(Disease)-COMPLICATES->(Attention deficit hyperactivity disorder)",
+      "(Alprazolam)-TREATS->(Obesity)-PREDISPOSES->(Attention deficit hyperactivity disorder)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Attention deficit hyperactivity disorder",
+        "physiological aspects",
+        "Bone Marrow",
+        "First line treatment"
+      ],
+      [
+        "Attention deficit hyperactivity disorder",
+        "physiological aspects",
+        "Skeletal muscle structure",
+        "First line treatment"
+      ],
+      [
+        "Treatment Guidelines",
+        "Hypoplasia",
+        "Genes",
+        "Bone Marrow",
+        "First line treatment"
+      ],
+      [
+        "Treatment Guidelines",
+        "Immune Tolerance",
+        "Genes",
+        "Bone Marrow",
+        "First line treatment"
+      ],
+      [
+        "First line treatment",
+        "Virus",
+        "Pharmaceutical Preparations",
+        "Methylphenidate"
+      ],
+      [
+        "First line treatment",
+        "Adverse event",
+        "Pharmaceutical Preparations",
+        "Methylphenidate"
+      ],
+      [
+        "Stimulant",
+        "Pharmaceutical Preparations",
+        "Methylphenidate"
+      ],
+      [
+        "Stimulant",
+        "Pharmaceutical Preparations",
+        "Methylphenidate"
+      ],
+      [
+        "Attention deficit hyperactivity disorder",
+        "Brain activity",
+        "Pharmaceutical Preparations",
+        "Methylphenidate"
+      ],
+      [
+        "Attention deficit hyperactivity disorder",
+        "physiological aspects",
+        "Pharmaceutical Preparations",
+        "Methylphenidate"
+      ],
+      [
+        "Attention deficit hyperactivity disorder",
+        "Brain activity",
+        "Cerebral cortex",
+        "Imipramine"
+      ],
+      [
+        "Attention deficit hyperactivity disorder",
+        "Brain activity",
+        "Brain",
+        "Imipramine"
+      ],
+      [
+        "Attention deficit hyperactivity disorder",
+        "Pathogenesis",
+        "Enzymes",
+        "Benzodiazepines"
+      ],
+      [
+        "Attention deficit hyperactivity disorder",
+        "Brain activity",
+        "Pharmaceutical Preparations",
+        "Benzodiazepines"
+      ],
+      [
+        "Attention deficit hyperactivity disorder",
+        "Brain activity",
+        "Pharmaceutical Preparations",
+        "Methylphenidate"
+      ],
+      [
+        "Attention deficit hyperactivity disorder",
+        "physiological aspects",
+        "Pharmaceutical Preparations",
+        "Methylphenidate"
+      ]
+    ],
+    "relationships": [
+      [
+        "MANIFESTATION_OF",
+        "PROCESS_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "PROCESS_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "TREATS",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "PROCESS_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "PROCESS_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Attention deficit hyperactivity disorder)-MANIFESTATION_OF->(physiological aspects)-PROCESS_OF->(Bone Marrow)-LOCATION_OF->(First line treatment)",
+      "(Attention deficit hyperactivity disorder)-MANIFESTATION_OF->(physiological aspects)-PROCESS_OF->(Skeletal muscle structure)-LOCATION_OF->(First line treatment)",
+      "(Treatment Guidelines)-TREATS->(Hypoplasia)-ASSOCIATED_WITH->(Genes)-PART_OF->(Bone Marrow)-LOCATION_OF->(First line treatment)",
+      "(Treatment Guidelines)-CAUSES->(Immune Tolerance)-ASSOCIATED_WITH->(Genes)-PART_OF->(Bone Marrow)-LOCATION_OF->(First line treatment)",
+      "(First line treatment)-TREATS->(Virus)-LOCATION_OF->(Pharmaceutical Preparations)-INTERACTS_WITH->(Methylphenidate)",
+      "(First line treatment)-CAUSES->(Adverse event)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Methylphenidate)",
+      "(Stimulant)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Methylphenidate)",
+      "(Stimulant)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Methylphenidate)",
+      "(Attention deficit hyperactivity disorder)-MANIFESTATION_OF->(Brain activity)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Methylphenidate)",
+      "(Attention deficit hyperactivity disorder)-MANIFESTATION_OF->(physiological aspects)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Methylphenidate)",
+      "(Attention deficit hyperactivity disorder)-MANIFESTATION_OF->(Brain activity)-PROCESS_OF->(Cerebral cortex)-LOCATION_OF->(Imipramine)",
+      "(Attention deficit hyperactivity disorder)-MANIFESTATION_OF->(Brain activity)-PROCESS_OF->(Brain)-LOCATION_OF->(Imipramine)",
+      "(Attention deficit hyperactivity disorder)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Enzymes)-INTERACTS_WITH->(Benzodiazepines)",
+      "(Attention deficit hyperactivity disorder)-MANIFESTATION_OF->(Brain activity)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Benzodiazepines)",
+      "(Attention deficit hyperactivity disorder)-MANIFESTATION_OF->(Brain activity)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Methylphenidate)",
+      "(Attention deficit hyperactivity disorder)-MANIFESTATION_OF->(physiological aspects)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Methylphenidate)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Attention deficit hyperactivity disorder)-MANIFESTATION_OF->(Brain activity)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Methylphenidate)",
+      "(Attention deficit hyperactivity disorder)-MANIFESTATION_OF->(physiological aspects)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Methylphenidate)",
+      "(Imipramine)-TREATS->(Attention deficit hyperactivity disorder)",
+      "(Haloperidol)-TREATS->(Disease)-COMPLICATES->(Attention deficit hyperactivity disorder)",
+      "(Haloperidol)-PREVENTS->(Symptoms)-PREDISPOSES->(Attention deficit hyperactivity disorder)",
+      "(Haloperidol)-TREATS->(Sleep disturbances)-PREDISPOSES->(Attention deficit hyperactivity disorder)",
+      "(Alprazolam)-TREATS->(Seizures)-CAUSES->(Attention deficit hyperactivity disorder)",
+      "(Alprazolam)-TREATS->(Disease)-COMPLICATES->(Attention deficit hyperactivity disorder)",
+      "(Alprazolam)-TREATS->(Obesity)-PREDISPOSES->(Attention deficit hyperactivity disorder)",
+      "(Attention deficit hyperactivity disorder)-MANIFESTATION_OF->(Brain activity)-PROCESS_OF->(Cerebral cortex)-LOCATION_OF->(Imipramine)",
+      "(Attention deficit hyperactivity disorder)-MANIFESTATION_OF->(Brain activity)-PROCESS_OF->(Brain)-LOCATION_OF->(Imipramine)",
+      "(Attention deficit hyperactivity disorder)-MANIFESTATION_OF->(Brain activity)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Benzodiazepines)",
+      "(Benzodiazepines)-PREDISPOSES->(Attention deficit hyperactivity disorder)",
+      "(Methylphenidate)-TREATS->(Disease)-PREDISPOSES->(Hyperactive behavior)",
+      "(Methylphenidate)-TREATS->(Pain)-PREDISPOSES->(Hyperactive behavior)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Attention deficit hyperactivity disorder (ADHD) treatment guidelines\" -> \"Stimulant medications are first-line treatments\" -> \"Methylphenidate is a commonly used stimulant\" -> \"Methylphenidate improves attention and reduces hyperactivity\" -> 95%",
+    "CHAIN: \"Attention deficit hyperactivity disorder (ADHD) symptoms\" -> \"Need for effective management options\" -> \"Methylphenidate is FDA-approved for ADHD\" -> \"Methylphenidate is widely prescribed\" -> 90%",
+    "CHAIN: \"Haloperidol is an antipsychotic\" -> \"Not typically used for ADHD\" -> \"Imipramine is a tricyclic antidepressant\" -> \"Not first-line for ADHD\" -> \"Alprazolam is a benzodiazepine\" -> \"Not indicated for ADHD\" -> \"Methylphenidate is the preferred choice\" -> 85%",
+    "CHAIN: \"Methylphenidate is a central nervous system stimulant\" -> \"Effective in increasing attention span\" -> \"Reduces impulsivity in ADHD patients\" -> \"Recommended by clinical guidelines\" -> 92%"
+  ],
+  "enhanced_information": "Methylphenidate is the first-line treatment for attention deficit hyperactivity disorder (ADHD), as supported by clinical guidelines. It is a central nervous system stimulant that effectively increases attention span and reduces impulsivity in patients with ADHD. Other options, such as Haloperidol (an antipsychotic), Imipramine (a tricyclic antidepressant), and Alprazolam (a benzodiazepine), are not indicated for the treatment of ADHD and are not considered first-line therapies. Methylphenidate is FDA-approved for ADHD and is widely prescribed, confirming its status as the drug of choice.",
+  "analysis": "Attention Deficit Hyperactivity Disorder (ADHD) is commonly treated with central nervous system stimulants, which are known to be effective in increasing attention span and reducing impulsivity. Methylphenidate is a well-established first-line treatment for ADHD, supported by clinical guidelines and FDA approval. The other options listed, such as Haloperidol, Imipramine, and Alprazolam, are not indicated for ADHD treatment. Haloperidol is an antipsychotic, Imipramine is a tricyclic antidepressant, and Alprazolam is a benzodiazepine, none of which are appropriate for managing ADHD. Therefore, based on standard medical knowledge and consensus, Methylphenidate is the drug of choice for ADHD.",
+  "answer": "opd",
+  "confidence": 100.0,
+  "chain_coverage": {
+    "success_counts": [
+      5,
+      1,
+      9,
+      0
+    ],
+    "coverage_rates": [
+      33.33333333333333,
+      6.666666666666667,
+      60.0,
+      0.0
+    ],
+    "total_successes": 15
+  },
+  "normal_results": []
+}

@@ -1,0 +1,162 @@
+{
+  "question": "The only Sugar normaly absorbed in the intestine against a concentration gradient is :",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Xylose",
+    "opb": "Mannose",
+    "opc": "Glucose",
+    "opd": "Ribose"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Glucose",
+        "Intestinal Metabolism",
+        "Intestines"
+      ],
+      [
+        "Glucose",
+        "paracrine",
+        "Intestines"
+      ],
+      [
+        "Glucose",
+        "Respiration",
+        "Intestines"
+      ],
+      [
+        "Ribose",
+        "Staphylococcus epidermidis",
+        "Disease",
+        "Biological feedback",
+        "Intestines"
+      ],
+      [
+        "Ribose",
+        "Staphylococcus epidermidis",
+        "Disease",
+        "metabolic effects",
+        "Intestines"
+      ],
+      [
+        "Ribose",
+        "Staphylococcus epidermidis",
+        "Disease",
+        "Neutrophil Infiltration",
+        "Intestines"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Glucose)-CAUSES->(Intestinal Metabolism)-PROCESS_OF->(Intestines)",
+      "(Glucose)-CAUSES->(paracrine)-PROCESS_OF->(Intestines)",
+      "(Glucose)-CAUSES->(Respiration)-PROCESS_OF->(Intestines)",
+      "(Ribose)-TREATS->(Staphylococcus epidermidis)-CAUSES->(Disease)-MANIFESTATION_OF->(Biological feedback)-PROCESS_OF->(Intestines)",
+      "(Ribose)-TREATS->(Staphylococcus epidermidis)-CAUSES->(Disease)-MANIFESTATION_OF->(metabolic effects)-PROCESS_OF->(Intestines)",
+      "(Ribose)-TREATS->(Staphylococcus epidermidis)-CAUSES->(Disease)-MANIFESTATION_OF->(Neutrophil Infiltration)-PROCESS_OF->(Intestines)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Mannose",
+        "Fibrosis",
+        "Membrane Transport Proteins"
+      ],
+      [
+        "Mannose",
+        "Renal Cell",
+        "Membrane Transport Proteins"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PART_OF",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Mannose)-TREATS->(Fibrosis)-ASSOCIATED_WITH->(Membrane Transport Proteins)",
+      "(Mannose)-PART_OF->(Renal Cell)-INTERACTS_WITH->(Membrane Transport Proteins)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Glucose)-CAUSES->(Intestinal Metabolism)-PROCESS_OF->(Intestines)",
+      "(Glucose)-CAUSES->(paracrine)-PROCESS_OF->(Intestines)",
+      "(Glucose)-CAUSES->(Respiration)-PROCESS_OF->(Intestines)",
+      "(Mannose)-TREATS->(Fibrosis)-ASSOCIATED_WITH->(Membrane Transport Proteins)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Glucose\" -> \"actively transported in the intestine\" -> \"against concentration gradient\" -> \"most common sugar absorbed\" -> 95%",
+    "CHAIN: \"Xylose\" -> \"absorbed passively\" -> \"not against concentration gradient\" -> \"less common in diet\" -> 80%",
+    "CHAIN: \"Mannose\" -> \"absorbed via specific transporters\" -> \"not primarily against concentration gradient\" -> \"less significant in human metabolism\" -> 75%",
+    "CHAIN: \"Ribose\" -> \"not primarily absorbed in the intestine\" -> \"limited dietary sources\" -> \"not a major sugar\" -> 70%"
+  ],
+  "enhanced_information": "Among the options provided, glucose is the only sugar that is actively transported in the intestine against a concentration gradient. This process is facilitated by sodium-glucose transporters (SGLTs), which allow glucose to be absorbed even when its concentration is lower in the intestinal lumen compared to the inside of the intestinal cells. Xylose and mannose are primarily absorbed passively and do not typically involve active transport against a gradient. Ribose is not significantly absorbed in the intestine and has limited dietary sources. Therefore, the correct answer is glucose, as it is the most common sugar absorbed actively in the intestine.",
+  "analysis": "The absorption of sugars in the intestine can occur through passive or active mechanisms. Glucose is unique among the common dietary sugars in that it is absorbed actively against a concentration gradient. This process is mediated by sodium-glucose transporters (SGLTs), which use the sodium gradient established by the Na+/K+ ATPase pump to facilitate glucose uptake into intestinal cells even when its concentration is lower in the lumen. Other sugars like xylose and mannose are absorbed primarily through passive diffusion and do not typically involve active transport. Ribose is not a major dietary sugar and is not significantly absorbed in the intestine. Therefore, based on standard physiological knowledge, glucose is the only sugar among the options provided that is absorbed against a concentration gradient.",
+  "answer": "opc",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      0,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      33.33333333333333,
+      0.0,
+      33.33333333333333,
+      33.33333333333333
+    ],
+    "total_successes": 3
+  },
+  "normal_results": []
+}

@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_002659",
+  "model": "gpt-4o",
+  "interaction_type": "direct_answer",
+  "question_id": "862a4287",
+  "question_text": "Schizophrenia is treated by:",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on medical knowledge."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.Please help answer this multiple choice question:\n\nQuestion: Schizophrenia is treated by:\n\nOptions:\nopa. Anti depressants\nopb. Anti psychotics\nopc. Anti epileptics\nopd. Mood stabilizers\n\n        ### Output Format\n        Provide your response in valid JSON format:\n        {   \n            \"final_analysis\": \"Your concise analysis following the above structure\",\n            \"answer\": \"Option key from the available options (only key,like opa)\",\n            \"confidence\": Score between 0-100 based on alignment with established medical facts\n        }\n        "
+    }
+  ],
+  "response": "```json\n{\n    \"final_analysis\": \"Schizophrenia is primarily treated with antipsychotic medications. These drugs help manage symptoms such as delusions, hallucinations, and disorganized thinking, which are characteristic of schizophrenia. While other classes of medications like antidepressants, antiepileptics, and mood stabilizers may be used adjunctively to address specific symptoms or comorbid conditions, antipsychotics are the mainstay of treatment for schizophrenia.\",\n    \"answer\": \"opb\",\n    \"confidence\": 95\n}\n```",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o",
+    "temperature": 0.0
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_141704",
+  "model": "gpt-4-turbo",
+  "interaction_type": "reasoning_chain",
+  "question_id": "09ea77a6",
+  "question_text": "All are TRUE about protease activated receptors, EXCEPT:",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            All are TRUE about protease activated receptors, EXCEPT:\n\n            ### Options\n    opa. Family of three seven transmembrane protein\nopb. Activated by thrombin\nopc. Releases PGE2\nopd. Protects epithelial cells\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"Protease activated receptors\" -> \"family of four seven transmembrane proteins\" -> \"opa is incorrect\" -> 95%\n\nCHAIN: \"Protease activated receptors\" -> \"activated by thrombin\" -> \"opb is correct\" -> 99%\n\nCHAIN: \"Protease activated receptors\" -> \"can release PGE2\" -> \"opc is correct\" -> 90%\n\nCHAIN: \"Protease activated receptors\" -> \"involved in inflammation and immune responses\" -> \"can protect epithelial cells\" -> \"opd is correct\" -> 85%",
+  "metadata": {
+    "topic": "Physiology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

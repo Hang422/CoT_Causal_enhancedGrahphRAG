@@ -1,0 +1,290 @@
+{
+  "question": "A 9-year-old boy diagnosed as uncomplicated pulmonary tuberculosis. He is put on isoniazid, rifampin, and ethambutol at home after initial treatment given at hospital. Which is accurate statement for this scenario?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "His 3-year-old sibling should receive INH prophylaxis",
+    "opb": "A baseline test of auditory function test is essential before drug treatment is initiated",
+    "opc": "Polyahralgia is a potential adverse effect of the drugs the boy is taking",
+    "opd": "His mother, who takes care of him, does not need INH prophylaxis"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "isoniazid",
+        "Tuberculosis"
+      ],
+      [
+        "Ethambutol",
+        "Optic Neuritis"
+      ],
+      [
+        "Ethambutol",
+        "Disease",
+        "Hearing"
+      ],
+      [
+        "Ethambutol",
+        "Meningitis",
+        "Hearing"
+      ],
+      [
+        "Optic Neuritis",
+        "Disease",
+        "Hearing"
+      ],
+      [
+        "Optic Neuritis",
+        "Functional disorder",
+        "Hearing"
+      ],
+      [
+        "Pharmaceutical Preparations",
+        "Adverse reactions"
+      ],
+      [
+        "Polyarthralgia",
+        "Infection",
+        "Disease",
+        "Adverse reactions"
+      ],
+      [
+        "Polyarthralgia",
+        "Lupus Erythematosus, Systemic",
+        "Disease",
+        "Adverse reactions"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(isoniazid)-CAUSES->(Tuberculosis)",
+      "(Ethambutol)-TREATS->(Optic Neuritis)",
+      "(Ethambutol)-TREATS->(Disease)-MANIFESTATION_OF->(Hearing)",
+      "(Ethambutol)-TREATS->(Meningitis)-MANIFESTATION_OF->(Hearing)",
+      "(Optic Neuritis)-CAUSES->(Disease)-MANIFESTATION_OF->(Hearing)",
+      "(Optic Neuritis)-CAUSES->(Functional disorder)-MANIFESTATION_OF->(Hearing)",
+      "(Pharmaceutical Preparations)-CAUSES->(Adverse reactions)",
+      "(Polyarthralgia)-MANIFESTATION_OF->(Infection)-CAUSES->(Disease)-CAUSES->(Adverse reactions)",
+      "(Polyarthralgia)-CAUSES->(Lupus Erythematosus, Systemic)-MANIFESTATION_OF->(Disease)-CAUSES->(Adverse reactions)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Tuberculosis, Pulmonary",
+        "Pathogenesis",
+        "MT1JP|NCAPG2",
+        "isoniazid"
+      ],
+      [
+        "Tuberculosis, Pulmonary",
+        "Pathogenesis",
+        "MT1JP|NCAPG2",
+        "isoniazid"
+      ],
+      [
+        "Ethambutol",
+        "Disease",
+        "Pathogenesis",
+        "MT1JP|NCAPG2",
+        "isoniazid"
+      ],
+      [
+        "Ethambutol",
+        "Disease",
+        "Pathogenesis",
+        "MT1JP|NCAPG2",
+        "isoniazid"
+      ],
+      [
+        "Hearing",
+        "Entire nerve",
+        "Auditory function test"
+      ],
+      [
+        "Pharmaceutical Preparations",
+        "Lipopolysaccharides",
+        "Entire nerve",
+        "Auditory function test"
+      ],
+      [
+        "Pharmaceutical Preparations",
+        "PC12 Cells",
+        "Entire nerve",
+        "Auditory function test"
+      ],
+      [
+        "isoniazid",
+        "Melatonin",
+        "Pharmaceutical Preparations"
+      ],
+      [
+        "isoniazid",
+        "Melatonin",
+        "Pharmaceutical Preparations"
+      ],
+      [
+        "Adverse reactions",
+        "CYP2D6 gene|CYP2D6",
+        "Pharmaceutical Preparations"
+      ],
+      [
+        "Adverse reactions",
+        "bevacizumab",
+        "Pharmaceutical Preparations"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PROCESS_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "ISA"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Tuberculosis, Pulmonary)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(MT1JP|NCAPG2)-INTERACTS_WITH->(isoniazid)",
+      "(Tuberculosis, Pulmonary)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(MT1JP|NCAPG2)-INTERACTS_WITH->(isoniazid)",
+      "(Ethambutol)-TREATS->(Disease)-CAUSES->(Pathogenesis)-ASSOCIATED_WITH->(MT1JP|NCAPG2)-INTERACTS_WITH->(isoniazid)",
+      "(Ethambutol)-TREATS->(Disease)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(MT1JP|NCAPG2)-INTERACTS_WITH->(isoniazid)",
+      "(Hearing)-PROCESS_OF->(Entire nerve)-LOCATION_OF->(Auditory function test)",
+      "(Pharmaceutical Preparations)-INTERACTS_WITH->(Lipopolysaccharides)-PART_OF->(Entire nerve)-LOCATION_OF->(Auditory function test)",
+      "(Pharmaceutical Preparations)-PART_OF->(PC12 Cells)-PART_OF->(Entire nerve)-LOCATION_OF->(Auditory function test)",
+      "(isoniazid)-INTERACTS_WITH->(Melatonin)-ISA->(Pharmaceutical Preparations)",
+      "(isoniazid)-INTERACTS_WITH->(Melatonin)-INTERACTS_WITH->(Pharmaceutical Preparations)",
+      "(Adverse reactions)-ASSOCIATED_WITH->(CYP2D6 gene|CYP2D6)-INTERACTS_WITH->(Pharmaceutical Preparations)",
+      "(Adverse reactions)-ASSOCIATED_WITH->(bevacizumab)-INTERACTS_WITH->(Pharmaceutical Preparations)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(isoniazid)-CAUSES->(Tuberculosis)",
+      "(Ethambutol)-TREATS->(Optic Neuritis)",
+      "(Pharmaceutical Preparations)-CAUSES->(Adverse reactions)",
+      "(Ethambutol)-TREATS->(Disease)-CAUSES/PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(MT1JP|NCAPG2)-INTERACTS_WITH->(isoniazid)",
+      "(Tuberculosis, Pulmonary)-MANIFESTATION_OF/PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(MT1JP|NCAPG2)-INTERACTS_WITH->(isoniazid)",
+      "(Pharmaceutical Preparations)-INTERACTS_WITH->(Lipopolysaccharides)-PART_OF->(Entire nerve)-LOCATION_OF->(Auditory function test)",
+      "(Ethambutol)-TREATS->(Disease)-MANIFESTATION_OF->(Hearing)",
+      "(Ethambutol)-TREATS->(Meningitis)-MANIFESTATION_OF->(Hearing)",
+      "(isoniazid)-INTERACTS_WITH->(Melatonin)-INTERACTS_WITH/ISA->(Pharmaceutical Preparations)",
+      "(Adverse reactions)-ASSOCIATED_WITH->(CYP2D6 gene|CYP2D6)-INTERACTS_WITH->(Pharmaceutical Preparations)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"The boy has uncomplicated pulmonary tuberculosis\" -> \"He is on isoniazid, rifampin, and ethambutol\" -> \"Isoniazid can cause tuberculosis transmission risk\" -> \"His 3-year-old sibling is at risk\" -> \"His 3-year-old sibling should receive INH prophylaxis\" -> 95%",
+    "CHAIN: \"The boy is on ethambutol\" -> \"Ethambutol can cause optic neuritis\" -> \"Auditory function is not primarily affected by these drugs\" -> \"A baseline auditory function test is not essential\" -> 85%",
+    "CHAIN: \"The boy is on isoniazid and rifampin\" -> \"These drugs can cause side effects\" -> \"Polyarthralgia is a known potential adverse effect\" -> \"Polyarthralgia is a potential adverse effect of the drugs the boy is taking\" -> 90%",
+    "CHAIN: \"The mother is not infected with tuberculosis\" -> \"She is not at risk of developing tuberculosis\" -> \"She does not need INH prophylaxis\" -> \"His mother, who takes care of him, does not need INH prophylaxis\" -> 90%"
+  ],
+  "enhanced_information": "In the case of a 9-year-old boy with uncomplicated pulmonary tuberculosis on isoniazid, rifampin, and ethambutol, the following points are relevant: 1) His 3-year-old sibling should receive INH prophylaxis as they are at risk of tuberculosis transmission from the boy. 2) A baseline auditory function test is not essential before initiating treatment with these drugs, as ethambutol primarily affects vision (optic neuritis) rather than hearing. 3) Polyarthralgia is not a commonly recognized adverse effect of isoniazid or rifampin; while some patients may experience joint pain, it is not a standard concern associated with these medications. 4) The mother does not need INH prophylaxis if she is not infected with tuberculosis, as prophylaxis is indicated only for those at risk of developing the disease. Therefore, the most accurate statement is that the sibling should receive INH prophylaxis.",
+  "analysis": "In the context of a 9-year-old boy with uncomplicated pulmonary tuberculosis on isoniazid, rifampin, and ethambutol, the primary concern is preventing the spread of tuberculosis to close contacts. Isoniazid (INH) prophylaxis is recommended for young children who are close contacts of someone with active tuberculosis, as they are at higher risk of developing the disease. Therefore, his 3-year-old sibling should receive INH prophylaxis to prevent potential infection. A baseline auditory function test is not necessary because ethambutol is more associated with optic neuritis rather than auditory issues. Polyarthralgia is not a common adverse effect of the medications the boy is taking. The mother does not need INH prophylaxis unless she is at risk of developing tuberculosis, which would typically be determined by a positive tuberculin skin test or other risk factors. Based on these considerations, the most accurate statement is that the sibling should receive INH prophylaxis.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      3,
+      5,
+      4,
+      0
+    ],
+    "coverage_rates": [
+      25.0,
+      41.66666666666667,
+      33.33333333333333,
+      0.0
+    ],
+    "total_successes": 12
+  },
+  "normal_results": []
+}

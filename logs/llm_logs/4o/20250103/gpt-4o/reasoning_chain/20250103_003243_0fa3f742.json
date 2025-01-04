@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_003243",
+  "model": "gpt-4o",
+  "interaction_type": "reasoning_chain",
+  "question_id": "0fa3f742",
+  "question_text": "INH induced neuropathy is treated with",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            INH induced neuropathy is treated with\n\n            ### Options\n    opa. Thiamine\nopb. Pyridoxine\nopc. Niacin\nopd. Riboflavin\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"INH\" -> \"interferes with pyridoxine metabolism\" -> \"pyridoxine deficiency\" -> \"neuropathy\" -> \"pyridoxine supplementation\" -> 95%\n\nCHAIN: \"INH\" -> \"pyridoxine deficiency\" -> \"peripheral neuropathy\" -> \"pyridoxine corrects deficiency\" -> \"symptom improvement\" -> 90%\n\nCHAIN: \"INH\" -> \"decreased pyridoxine levels\" -> \"nerve damage\" -> \"pyridoxine administration\" -> \"nerve function restoration\" -> 92%\n\nCHAIN: \"INH\" -> \"pyridoxine depletion\" -> \"neuropathy symptoms\" -> \"pyridoxine replenishment\" -> \"symptom resolution\" -> 93%",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o",
+    "temperature": 0.0
+  }
+}

@@ -1,0 +1,268 @@
+{
+  "question": "In a CA lung patient is suffering from dyspnoea, the palliation of dyspnoea is achieved by",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Morphine patch",
+    "opb": "Diazepam",
+    "opc": "Clobazam",
+    "opd": "Haloperidol"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Opioid Receptor",
+        "Pain",
+        "Dyspnea"
+      ],
+      [
+        "Anxiety",
+        "Disease",
+        "Dyspnea"
+      ],
+      [
+        "Anxiety",
+        "Obesity",
+        "Dyspnea"
+      ],
+      [
+        "Anxiety",
+        "Hypertensive disease",
+        "Dyspnea"
+      ],
+      [
+        "Anxiety",
+        "Disease",
+        "Dyspnea"
+      ],
+      [
+        "Anxiety",
+        "Obesity",
+        "Dyspnea"
+      ],
+      [
+        "Anxiety",
+        "Hypertensive disease",
+        "Dyspnea"
+      ],
+      [
+        "Anxiety",
+        "Disease",
+        "Dyspnea"
+      ],
+      [
+        "Anxiety",
+        "Obesity",
+        "Dyspnea"
+      ],
+      [
+        "Anxiety",
+        "Hypertensive disease",
+        "Dyspnea"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Opioid Receptor)-CAUSES->(Pain)-CAUSES->(Dyspnea)",
+      "(Anxiety)-CAUSES->(Disease)-CAUSES->(Dyspnea)",
+      "(Anxiety)-CAUSES->(Obesity)-CAUSES->(Dyspnea)",
+      "(Anxiety)-CAUSES->(Hypertensive disease)-CAUSES->(Dyspnea)",
+      "(Anxiety)-CAUSES->(Disease)-CAUSES->(Dyspnea)",
+      "(Anxiety)-CAUSES->(Obesity)-CAUSES->(Dyspnea)",
+      "(Anxiety)-CAUSES->(Hypertensive disease)-CAUSES->(Dyspnea)",
+      "(Anxiety)-CAUSES->(Disease)-CAUSES->(Dyspnea)",
+      "(Anxiety)-CAUSES->(Obesity)-CAUSES->(Dyspnea)",
+      "(Anxiety)-CAUSES->(Hypertensive disease)-CAUSES->(Dyspnea)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Morphine",
+        "Obstruction",
+        "Opioid Receptor"
+      ],
+      [
+        "Morphine",
+        "Hypersensitivity",
+        "Opioid Receptor"
+      ],
+      [
+        "Diazepam",
+        "Pharmaceutical Preparations",
+        "Sedative Effect"
+      ],
+      [
+        "Diazepam",
+        "Pharmaceutical Preparations",
+        "Sedative Effect"
+      ],
+      [
+        "Sedative Effect",
+        "Pharmaceutical Preparations",
+        "Anxiety"
+      ],
+      [
+        "Sedative Effect",
+        "Pharmaceutical Preparations",
+        "Anxiety"
+      ],
+      [
+        "clobazam",
+        "Adverse effects",
+        "Enzymes",
+        "Benzodiazepines"
+      ],
+      [
+        "Haloperidol",
+        "Pathogenesis",
+        "Receptors, Purinergic P1",
+        "Antipsychotic Effect"
+      ],
+      [
+        "Haloperidol",
+        "Inflammation",
+        "Receptors, Purinergic P1",
+        "Antipsychotic Effect"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "ISA",
+        "CAUSES"
+      ],
+      [
+        "INTERACTS_WITH",
+        "CAUSES"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "CAUSES"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "TREATS"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "ASSOCIATED_WITH",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Morphine)-TREATS->(Obstruction)-ASSOCIATED_WITH->(Opioid Receptor)",
+      "(Morphine)-TREATS->(Hypersensitivity)-ASSOCIATED_WITH->(Opioid Receptor)",
+      "(Diazepam)-ISA->(Pharmaceutical Preparations)-CAUSES->(Sedative Effect)",
+      "(Diazepam)-INTERACTS_WITH->(Pharmaceutical Preparations)-CAUSES->(Sedative Effect)",
+      "(Sedative Effect)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-CAUSES->(Anxiety)",
+      "(Sedative Effect)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-TREATS->(Anxiety)",
+      "(clobazam)-TREATS->(Adverse effects)-ASSOCIATED_WITH->(Enzymes)-INTERACTS_WITH->(Benzodiazepines)",
+      "(Haloperidol)-ASSOCIATED_WITH->(Pathogenesis)-ASSOCIATED_WITH->(Receptors, Purinergic P1)-CAUSES->(Antipsychotic Effect)",
+      "(Haloperidol)-TREATS->(Inflammation)-ASSOCIATED_WITH->(Receptors, Purinergic P1)-CAUSES->(Antipsychotic Effect)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Morphine)-TREATS->(Obstruction)-ASSOCIATED_WITH->(Opioid Receptor)",
+      "(Anxiety)-CAUSES->(Disease)-CAUSES->(Dyspnea)",
+      "(Anxiety)-CAUSES->(Obesity)-CAUSES->(Dyspnea)",
+      "(Anxiety)-CAUSES->(Hypertensive disease)-CAUSES->(Dyspnea)",
+      "(Morphine)-TREATS->(Hypersensitivity)-ASSOCIATED_WITH->(Opioid Receptor)",
+      "(Diazepam)-INTERACTS_WITH/ISA->(Pharmaceutical Preparations)-CAUSES->(Sedative Effect)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Morphine patch\" -> \"binds to opioid receptors\" -> \"reduces perception of breathlessness\" -> \"palliation of dyspnoea\" -> 95%",
+    "CHAIN: \"Diazepam\" -> \"sedative effect\" -> \"reduced anxiety\" -> \"possible reduction in dyspnoea perception\" -> 60%",
+    "CHAIN: \"Clobazam\" -> \"benzodiazepine effect\" -> \"sedation\" -> \"possible reduction in anxiety\" -> \"possible reduction in dyspnoea perception\" -> 55%",
+    "CHAIN: \"Haloperidol\" -> \"antipsychotic effect\" -> \"sedation\" -> \"possible reduction in anxiety\" -> \"possible reduction in dyspnoea perception\" -> 50%"
+  ],
+  "enhanced_information": "In the palliation of dyspnoea in cancer lung patients, the use of a morphine patch is supported by consensus as it binds to opioid receptors, effectively reducing the perception of breathlessness and providing significant relief (95% confidence). Diazepam and clobazam, while having sedative effects that may reduce anxiety and potentially improve dyspnoea perception, are less effective and not primarily indicated for dyspnoea management (60% and 55% confidence, respectively). Haloperidol, an antipsychotic, may also provide sedation and reduce anxiety, but its role in dyspnoea palliation is limited and less effective (50% confidence). Therefore, the morphine patch is the most appropriate option for managing dyspnoea in this context.",
+  "analysis": "In the context of palliation for dyspnoea in lung cancer patients, the primary goal is to alleviate the sensation of breathlessness effectively. Morphine, an opioid, is well-documented in medical literature for its ability to reduce the perception of dyspnoea by acting on opioid receptors in the central nervous system. This mechanism provides significant relief for patients suffering from severe dyspnoea associated with cancer. While diazepam and clobazam may offer some sedative effects that could indirectly help with anxiety-related dyspnoea, they are not first-line treatments for this specific symptom. Haloperidol, although it can provide sedation, is not primarily indicated for dyspnoea management either. Therefore, the morphine patch stands out as the most appropriate and effective option for managing dyspnoea in this patient population, aligning with the consensus in palliative care guidelines.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      3,
+      2,
+      2
+    ],
+    "coverage_rates": [
+      22.22222222222222,
+      33.33333333333333,
+      22.22222222222222,
+      22.22222222222222
+    ],
+    "total_successes": 9
+  },
+  "normal_results": []
+}

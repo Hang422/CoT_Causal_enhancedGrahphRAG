@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_144416",
+  "model": "gpt-4-turbo",
+  "interaction_type": "reasoning_chain",
+  "question_id": "85e1145e",
+  "question_text": "CAMP acts through:",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            CAMP acts through:\n\n            ### Options\n    opa. Activation of protein kinase\nopb. Activation of adenylate cyclase\nopc. Ca2+ release.\nopd. All\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"CAMP\" -> \"activation of protein kinase A (PKA)\" -> \"phosphorylation of target proteins\" -> 95%\n\nCHAIN: \"CAMP\" -> \"binds to regulatory subunits of PKA\" -> \"catalytic subunits released\" -> \"activation of protein kinase\" -> 95%\n\nCHAIN: \"CAMP\" -> \"activation of adenylate cyclase\" -> \"increased production of CAMP\" -> \"positive feedback loop\" -> \"unclear if direct activation by existing CAMP\" -> 50%\n\nCHAIN: \"CAMP\" -> \"possible indirect effects on Ca2+ channels\" -> \"possible Ca2+ release\" -> \"unclear direct causation\" -> 40%\n\nCHAIN: \"CAMP\" -> \"activation of protein kinase\" -> \"activation of adenylate cyclase indirectly\" -> \"possible Ca2+ release through complex signaling pathways\" -> \"All\" -> 60%",
+  "metadata": {
+    "topic": "Physiology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

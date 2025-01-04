@@ -1,0 +1,277 @@
+{
+  "question": "In a CA lung patient is suffering from dyspnoea, the palliation of dyspnoea is achieved by",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Morphine patch",
+    "opb": "Diazepam",
+    "opc": "Clobazam",
+    "opd": "Haloperidol"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Morphine",
+        "Dyspnea"
+      ],
+      [
+        "Anxiety",
+        "Disease",
+        "Dyspnea"
+      ],
+      [
+        "Anxiety",
+        "Obesity",
+        "Dyspnea"
+      ],
+      [
+        "Anxiety",
+        "Hypertensive disease",
+        "Dyspnea"
+      ],
+      [
+        "Anxiety",
+        "Disease",
+        "Dyspnea"
+      ],
+      [
+        "Anxiety",
+        "Obesity",
+        "Dyspnea"
+      ],
+      [
+        "Anxiety",
+        "Hypertensive disease",
+        "Dyspnea"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREVENTS"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Morphine)-PREVENTS->(Dyspnea)",
+      "(Anxiety)-CAUSES->(Disease)-CAUSES->(Dyspnea)",
+      "(Anxiety)-CAUSES->(Obesity)-CAUSES->(Dyspnea)",
+      "(Anxiety)-CAUSES->(Hypertensive disease)-CAUSES->(Dyspnea)",
+      "(Anxiety)-CAUSES->(Disease)-CAUSES->(Dyspnea)",
+      "(Anxiety)-CAUSES->(Obesity)-CAUSES->(Dyspnea)",
+      "(Anxiety)-CAUSES->(Hypertensive disease)-CAUSES->(Dyspnea)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Diazepam",
+        "Pharmaceutical Preparations",
+        "HCRTR2 gene|HCRTR2",
+        "Anti-Anxiety Effect"
+      ],
+      [
+        "Diazepam",
+        "Pharmaceutical Preparations",
+        "agonists",
+        "Anti-Anxiety Effect"
+      ],
+      [
+        "Anti-Anxiety Effect",
+        "Pharmaceutical Preparations",
+        "Anxiety"
+      ],
+      [
+        "Anti-Anxiety Effect",
+        "Pharmaceutical Preparations",
+        "Anxiety"
+      ],
+      [
+        "clobazam",
+        "Adverse effects",
+        "pregabalin",
+        "Anti-Anxiety Effect"
+      ],
+      [
+        "clobazam",
+        "Adverse effects",
+        "Oxytocin",
+        "Anti-Anxiety Effect"
+      ],
+      [
+        "Anti-Anxiety Effect",
+        "Pharmaceutical Preparations",
+        "Anxiety"
+      ],
+      [
+        "Anti-Anxiety Effect",
+        "Pharmaceutical Preparations",
+        "Anxiety"
+      ],
+      [
+        "Haloperidol",
+        "Pathogenesis",
+        "Receptors, Purinergic P1",
+        "Antipsychotic Effect"
+      ],
+      [
+        "Haloperidol",
+        "Inflammation",
+        "Receptors, Purinergic P1",
+        "Antipsychotic Effect"
+      ],
+      [
+        "Antipsychotic Effect",
+        "Breast",
+        "Disease",
+        "Anxiety"
+      ],
+      [
+        "Antipsychotic Effect",
+        "Muscarinic Agonists",
+        "Disease",
+        "Anxiety"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "CAUSES"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH",
+        "CAUSES"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "TREATS"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "PREVENTS"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "CAUSES"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "TREATS"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "PREVENTS"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "ASSOCIATED_WITH",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "CAUSES"
+      ],
+      [
+        "PROCESS_OF",
+        "LOCATION_OF",
+        "PREDISPOSES"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "TREATS",
+        "PREDISPOSES"
+      ]
+    ],
+    "paths": [
+      "(Diazepam)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(HCRTR2 gene|HCRTR2)-CAUSES->(Anti-Anxiety Effect)",
+      "(Diazepam)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(agonists)-CAUSES->(Anti-Anxiety Effect)",
+      "(Anti-Anxiety Effect)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-TREATS->(Anxiety)",
+      "(Anti-Anxiety Effect)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-PREVENTS->(Anxiety)",
+      "(clobazam)-TREATS->(Adverse effects)-ASSOCIATED_WITH->(pregabalin)-CAUSES->(Anti-Anxiety Effect)",
+      "(clobazam)-TREATS->(Adverse effects)-ASSOCIATED_WITH->(Oxytocin)-CAUSES->(Anti-Anxiety Effect)",
+      "(Anti-Anxiety Effect)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-TREATS->(Anxiety)",
+      "(Anti-Anxiety Effect)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-PREVENTS->(Anxiety)",
+      "(Haloperidol)-ASSOCIATED_WITH->(Pathogenesis)-ASSOCIATED_WITH->(Receptors, Purinergic P1)-CAUSES->(Antipsychotic Effect)",
+      "(Haloperidol)-TREATS->(Inflammation)-ASSOCIATED_WITH->(Receptors, Purinergic P1)-CAUSES->(Antipsychotic Effect)",
+      "(Antipsychotic Effect)-PROCESS_OF->(Breast)-LOCATION_OF->(Disease)-PREDISPOSES->(Anxiety)",
+      "(Antipsychotic Effect)-ASSOCIATED_WITH->(Muscarinic Agonists)-TREATS->(Disease)-PREDISPOSES->(Anxiety)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Morphine)-PREVENTS->(Dyspnea)",
+      "(Anxiety)-CAUSES->(Disease)-CAUSES->(Dyspnea)",
+      "(Anxiety)-CAUSES->(Obesity)-CAUSES->(Dyspnea)",
+      "(Anxiety)-CAUSES->(Hypertensive disease)-CAUSES->(Dyspnea)",
+      "(Diazepam)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(HCRTR2 gene|HCRTR2)-CAUSES->(Anti-Anxiety Effect)",
+      "(Diazepam)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(agonists)-CAUSES->(Anti-Anxiety Effect)",
+      "(clobazam)-TREATS->(Adverse effects)-ASSOCIATED_WITH->(pregabalin)-CAUSES->(Anti-Anxiety Effect)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Morphine patch\" -> \"decreased perception of breathlessness\" -> \"reduced dyspnoea\" -> 85%",
+    "CHAIN: \"Diazepam\" -> \"anxiolytic effect\" -> \"reduced anxiety related to dyspnoea\" -> \"possible improvement in comfort\" -> 70%",
+    "CHAIN: \"Clobazam\" -> \"anxiolytic effect\" -> \"reduced anxiety\" -> \"possible improvement in dyspnoea\" -> 65%",
+    "CHAIN: \"Haloperidol\" -> \"antipsychotic effect\" -> \"possible reduction in anxiety\" -> \"unclear impact on dyspnoea\" -> 60%"
+  ],
+  "enhanced_information": "In palliative care for lung cancer patients experiencing dyspnoea, the use of a morphine patch is well-supported by consensus as it effectively decreases the perception of breathlessness, leading to reduced dyspnoea. This aligns with evidence indicating that morphine can prevent dyspnoea. Diazepam and clobazam may provide some relief through their anxiolytic effects, potentially improving comfort related to anxiety, but their direct impact on dyspnoea is less established, with diazepam showing a possible improvement in comfort but not specifically targeting dyspnoea. Haloperidol, while it may reduce anxiety, has an unclear impact on dyspnoea and is not typically used for this purpose. Therefore, the most effective option for palliation of dyspnoea in this context is the morphine patch.",
+  "analysis": "In the management of dyspnoea in lung cancer patients, the primary goal is to alleviate the sensation of breathlessness. Morphine, an opioid, is well-documented in palliative care for its ability to reduce the perception of dyspnoea by acting on the central nervous system to decrease the sensation of breathlessness. This is supported by a strong consensus in medical literature. While diazepam and clobazam can help with anxiety, which may indirectly improve comfort, they do not directly address the physiological sensation of dyspnoea. Haloperidol is primarily used for agitation and delirium, with no established role in the direct management of dyspnoea. Therefore, the morphine patch is the most effective and well-supported option for palliation of dyspnoea in this context.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      2,
+      3,
+      3
+    ],
+    "coverage_rates": [
+      11.11111111111111,
+      22.22222222222222,
+      33.33333333333333,
+      33.33333333333333
+    ],
+    "total_successes": 9
+  },
+  "normal_results": []
+}

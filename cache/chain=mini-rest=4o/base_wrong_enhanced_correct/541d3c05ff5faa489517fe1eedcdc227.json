@@ -1,0 +1,148 @@
+{
+  "question": "The drug which does not cause myopathy is :",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Chloroquine",
+    "opb": "Betamethasone",
+    "opc": "Chloramphenicol",
+    "opd": "Zidovudine"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Chloroquine",
+        "Malaria"
+      ],
+      [
+        "Malaria",
+        "Disease",
+        "Myopathy"
+      ],
+      [
+        "Adrenal Cortex Hormones",
+        "Paresis"
+      ],
+      [
+        "Paresis",
+        "Disease",
+        "Myopathy"
+      ],
+      [
+        "Bacterial Infections",
+        "Disease",
+        "Myopathy"
+      ],
+      [
+        "Zidovudine",
+        "HIV"
+      ],
+      [
+        "HIV",
+        "Myopathy"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Chloroquine)-TREATS->(Malaria)",
+      "(Malaria)-CAUSES->(Disease)-CAUSES->(Myopathy)",
+      "(Adrenal Cortex Hormones)-CAUSES->(Paresis)",
+      "(Paresis)-CAUSES->(Disease)-CAUSES->(Myopathy)",
+      "(Bacterial Infections)-CAUSES->(Disease)-CAUSES->(Myopathy)",
+      "(Zidovudine)-PREVENTS->(HIV)",
+      "(HIV)-CAUSES->(Myopathy)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Betamethasone",
+        "Adrenal Cortex Hormones"
+      ],
+      [
+        "Betamethasone",
+        "Adrenal Cortex Hormones"
+      ]
+    ],
+    "relationships": [
+      [
+        "ISA"
+      ],
+      [
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Betamethasone)-ISA->(Adrenal Cortex Hormones)",
+      "(Betamethasone)-INTERACTS_WITH->(Adrenal Cortex Hormones)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Chloroquine)-TREATS->(Malaria)",
+      "(Betamethasone)-INTERACTS_WITH/ISA->(Adrenal Cortex Hormones)",
+      "(Zidovudine)-PREVENTS->(HIV)",
+      "(Adrenal Cortex Hormones)-CAUSES->(Paresis)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Chloroquine\" -> \"used for malaria treatment\" -> \"not commonly associated with myopathy\" -> 85%",
+    "CHAIN: \"Betamethasone\" -> \"a corticosteroid\" -> \"can cause muscle weakness\" -> \"associated with myopathy\" -> 70%",
+    "CHAIN: \"Chloramphenicol\" -> \"antibiotic used for bacterial infections\" -> \"rarely associated with myopathy\" -> \"possible but not common\" -> 60%",
+    "CHAIN: \"Zidovudine\" -> \"used for HIV treatment\" -> \"known to cause myopathy\" -> \"high association with muscle damage\" -> 90%"
+  ],
+  "enhanced_information": "Chloroquine is primarily used for malaria treatment and is not commonly associated with myopathy, aligning with standard medical consensus. Betamethasone, a corticosteroid, can cause muscle weakness and is associated with myopathy, supported by its interaction with adrenal cortex hormones. Chloramphenicol, an antibiotic, is rarely associated with myopathy, making it a less likely cause compared to others. Zidovudine, used for HIV treatment, is well-known to cause myopathy and muscle damage. Therefore, among the options, Chloroquine is the drug least associated with causing myopathy.",
+  "analysis": "To determine which drug does not cause myopathy, we need to consider the known side effects of each option. Chloroquine is primarily used for malaria and is not commonly associated with myopathy, although it can cause other muscle-related issues like neuromyopathy in rare cases. Betamethasone, a corticosteroid, is known to cause muscle weakness and myopathy due to its catabolic effects on muscle tissue. Chloramphenicol, an antibiotic, is rarely associated with myopathy, making it a less likely cause compared to others. Zidovudine, an antiretroviral drug used for HIV treatment, is well-documented to cause myopathy and muscle damage. Based on this information, Chloramphenicol is the drug least associated with causing myopathy, as it is rarely linked to this condition compared to the others.",
+  "answer": "opc",
+  "confidence": 85.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      3,
+      1,
+      2
+    ],
+    "coverage_rates": [
+      25.0,
+      37.5,
+      12.5,
+      25.0
+    ],
+    "total_successes": 8
+  },
+  "normal_results": []
+}

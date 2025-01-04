@@ -3,558 +3,676 @@ import logging
 import json
 from openai import OpenAI
 from tenacity import retry, stop_after_attempt, wait_exponential
-from src.modules.MedicalQuestion import MedicalQuestion
-from config import config
 from datetime import datetime
 from pathlib import Path
 import hashlib
-from src.graphrag.query_processor import QueryProcessor
+from dataclasses import dataclass, asdict
+from src.modules.MedicalQuestion import MedicalQuestion
+from config import config
+import re
 
-class GPTLogger:
-    def __init__(self, output_dir: Path):
-        self.output_dir = output_dir / "gpt_logs"
-        self.output_dir.mkdir(parents=True, exist_ok=True)
+def format_reasoning_chains(raw_text: str) -> List[str]:
+    """
+    将非标准格式的思维链转换为标准格式
 
-    def log_interaction(self, messages: list, response: str, interaction_type: str) -> None:
-        """Log a single GPT interaction"""
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        # Create a unique identifier for this interaction
-        interaction_id = hashlib.md5(
-            f"{timestamp}_{interaction_type}".encode()
-        ).hexdigest()[:8]
+    Args:
+        raw_text: 原始响应文本
 
-        # Create the log entry
-        log_entry = {
-            "timestamp": timestamp,
-            "interaction_type": interaction_type,
-            "messages": messages,
-            "response": response
+    Returns:
+        List[str]: 标准格式的思维链列表
+    """
+
+    def clean_step(step: str) -> str:
+        """清理单个步骤"""
+        # 移除数字编号
+        step = re.sub(r'^\d+\.\s*', '', step)
+        # 移除多余空格
+        step = ' '.join(step.split())
+        # 移除"above side effect"等重复短语
+        step = re.sub(r'\s*->\s*(?:above\s+)?side\s+effect(?:\s*$)?', '', step)
+        return step.strip()
+
+    def extract_confidence(text: str) -> Optional[str]:
+        """提取置信度"""
+        confidence_patterns = [
+            r'(?:Confidence:?\s*)?(\d+)%',
+            r'confidence\s*(?:is|:)\s*(\d+)',
+            r'->?\s*(\d+)%'
+        ]
+
+        for pattern in confidence_patterns:
+            match = re.search(pattern, text, re.IGNORECASE)
+            if match:
+                return f"{match.group(1)}%"
+        return None
+
+    def process_single_chain(chain_text: str) -> Optional[str]:
+        """处理单个思维链"""
+        # 移除常见的标题/前缀
+        chain_text = re.sub(r'^.*(?:Reasoning Chain|Chain)\s*\d*:?\s*', '', chain_text, flags=re.IGNORECASE)
+
+        # 提取置信度
+        confidence = extract_confidence(chain_text)
+        if not confidence:
+            return None
+
+        # 移除置信度部分以处理步骤
+        chain_text = re.sub(r'(?:Confidence:?\s*)?(?:\d+%|confidence\s*(?:is|:)\s*\d+).*$', '', chain_text,
+                            flags=re.IGNORECASE)
+
+        # 分割步骤
+        if '->' in chain_text:
+            steps = [clean_step(step) for step in chain_text.split('->')]
+        else:
+            steps = [clean_step(step) for step in chain_text.split('\n') if step.strip()]
+
+        # 过滤空步骤并组合
+        steps = [step for step in steps if step]
+        if not steps:
+            return None
+
+        # 构建标准格式
+        return f"CHAIN: {' -> '.join(steps)} -> {confidence}"
+
+    # 主处理逻辑
+    chains = []
+
+    # 1. 尝试按编号或分隔符分割多个链
+    chain_separators = [
+        r'(?:###?\s*)?(?:Reasoning\s+)?Chain\s*\d+:',
+        r'^\d+\.\s',
+        r'\n\s*\n'
+    ]
+
+    text_chunks = []
+    for separator in chain_separators:
+        if re.search(separator, raw_text, re.MULTILINE | re.IGNORECASE):
+            text_chunks = [chunk.strip() for chunk in re.split(separator, raw_text) if chunk.strip()]
+            break
+
+    if not text_chunks:
+        text_chunks = [raw_text]
+
+    # 2. 处理每个潜在的链
+    for chunk in text_chunks:
+        formatted_chain = process_single_chain(chunk)
+        if formatted_chain:
+            chains.append(formatted_chain)
+
+    return chains
+
+
+def fix_reasoning_chains(response_text: str) -> List[str]:
+    """
+    修复并标准化推理链格式
+
+    Args:
+        response_text: GPT的原始响应文本
+
+    Returns:
+        List[str]: 修复后的标准格式推理链列表
+    """
+    try:
+        return format_reasoning_chains(response_text)
+    except Exception as e:
+        logging.error(f"Error formatting reasoning chains: {str(e)}")
+        return []
+
+
+# 在LLMProcessor中使用
+
+@dataclass
+class LLMInteraction:
+    """Data class to store LLM interaction details"""
+    timestamp: str
+    model: str
+    interaction_type: str
+    question_id: str
+    question_text: str
+    messages: List[Dict]
+    response: str
+    metadata: Dict
+
+    def to_dict(self) -> Dict:
+        """Convert interaction to dictionary format"""
+        return asdict(self)
+
+
+def _generate_question_identifier(question: str) -> str:
+    """Generate a unique identifier for the question"""
+    return hashlib.md5(question.encode()).hexdigest()[:8]
+
+
+class LLMLogger:
+    """Enhanced logging system for LLM interactions"""
+
+    def __init__(self, log_path:str):
+        """Initialize logger with configured paths and interaction types"""
+        self.base_log_dir = config.paths["logs"] / "llm_logs" / log_path
+        self.base_log_dir.mkdir(parents=True, exist_ok=True)
+        self.error_dir = self.base_log_dir / "errors"
+        self.error_dir.mkdir(parents=True, exist_ok=True)
+
+        # Model-specific logging directories
+        self.models = {
+            'gpt-3.5-turbo': 'gpt-3.5-turbo',
+            'gpt-4-turbo': 'gpt-4-turbo',
+            'gpt-4o': 'gpt-4o',
+            'gpt-4o-mini': 'gpt-4o-mini'
         }
 
-        # Save to file
-        log_file = self.output_dir / f"{timestamp}_{interaction_id}_{interaction_type}.json"
-        with open(log_file, "w", encoding="utf-8") as f:
-            json.dump(log_entry, f, ensure_ascii=False, indent=2)
+        # Interaction types
+        # Add this to the interaction_types dictionary in LLMLogger.__init__
+        self.interaction_types = {
+            'direct_answer': 'direct_answer',
+            'reasoning_chain': 'reasoning_chain',
+            'enhancement_with_chain_complete_with_chain': 'enhancement_with_chain_complete_with_chain',
+            'enhancement_with_chain_kg_only': 'enhancement_with_chain_kg_only',
+            'enhancement_with_chain_without_enhancer': 'enhancement_with_chain_without_enhancer',
+            'answer_with_enhancement_causal_only': 'answer_with_enhancement_causal_only',
+            'answer_with_enhancement_kg_only': 'answer_with_enhancement_kg_only',
+            'answer_with_enhancement_without_enhancer': 'answer_with_enhancement_without_enhancer',  # Add this line
+            'answer_with_enhancement_complete_with_chain': 'answer_with_enhancement_complete_with_chain',
+            'answer_with_CoT': 'answer_with_CoT',
+            'answer_normal_rag': 'answer_normal_rag'
+        }
+
+        self._create_log_directories()
+        self.interaction_counts = {itype: 0 for itype in self.interaction_types}
+
+    def _create_log_directories(self) -> None:
+        """Create hierarchical directory structure for logs"""
+        self.log_dirs = {}
+        timestamp = datetime.now().strftime("%Y%m%d")
+
+        # Explicit list of model types
+        model_types = {'gpt-3.5-turbo', 'gpt-4-turbo', 'gpt-4o', 'gpt-4o-mini'}
+
+        for model in model_types:
+            model_dir = self.base_log_dir / timestamp / model
+            for interaction in self.interaction_types:
+                dir_path = model_dir / interaction
+                dir_path.mkdir(parents=True, exist_ok=True)
+                self.log_dirs[(model, interaction)] = dir_path
+
+    def _get_model_name(self, model: str) -> str:
+        """Get standardized model name for logging"""
+        return self.models.get(model, 'gpt-3.5-turbo')  # Default to gpt-3.5-turbo if unknown model
+
+    def log_interaction(self, model: str, interaction_type: str,
+                       question: MedicalQuestion, messages: List[Dict],
+                       response: str, metadata: Optional[Dict] = None) -> None:
+        """Log an LLM interaction with enhanced metadata"""
+        try:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            model_name = self._get_model_name(model)
+            question_id = _generate_question_identifier(question.question)
+
+            interaction = LLMInteraction(
+                timestamp=timestamp,
+                model=model_name,
+                interaction_type=interaction_type,
+                question_id=question_id,
+                question_text=question.question,
+                messages=messages,
+                response=response,
+                metadata={
+                    'topic': question.topic_name,
+                    'is_multi_choice': question.is_multi_choice,
+                    'has_reasoning_chain': bool(question.reasoning_chain),
+                    'has_enhanced_info': bool(question.enhanced_information),
+                    'model_config': config.openai.get("model"),
+                    'temperature': config.openai.get("temperature"),
+                    **(metadata or {})
+                }
+            )
+
+            log_dir = self.log_dirs.get((model_name, interaction_type))
+            if not log_dir:
+                raise ValueError(f"Invalid model ({model}) or interaction type ({interaction_type})")
+
+            log_file = log_dir / f"{timestamp}_{question_id}.json"
+
+            with open(log_file, 'w', encoding='utf-8') as f:
+                json.dump(interaction.to_dict(), f, ensure_ascii=False, indent=2)
+
+            self.interaction_counts[interaction_type] += 1
+
+        except Exception as e:
+            logger = config.get_logger("llm_logger")
+            logger.error(f"Error logging interaction: {str(e)}", exc_info=True)
+
+            error_dir = self.base_log_dir / "errors"
+            error_dir.mkdir(exist_ok=True)
+
+            error_file = error_dir / f"error_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+            try:
+                with open(error_file, 'w', encoding='utf-8') as f:
+                    json.dump({
+                        'timestamp': datetime.now().strftime("%Y%m%d_%H%M%S"),
+                        'error': str(e),
+                        'model': model,
+                        'interaction_type': interaction_type,
+                        'question_id': question_id if 'question_id' in locals() else None
+                    }, f, ensure_ascii=False, indent=2)
+            except Exception:
+                pass
+
+
+def _get_model_name(model: str) -> str:
+    """Return the standardized model name."""
+    model_mapping = {
+        'gpt-3.5-turbo': 'gpt-3.5-turbo',
+        'gpt-4-turbo': 'gpt-4-turbo',
+        'gpt-4o': 'gpt-4o',
+        'gpt-4o-mini': 'gpt-4o-mini'
+    }
+    return model_mapping.get(model, 'gpt-3.5-turbo')  # Default to gpt-3.5-turbo if unknown model
+
+
+def clean_json_response(response: str) -> Dict:
+    """Clean and parse JSON response from LLM"""
+    if not response or not isinstance(response, str):
+        raise ValueError("Input must be a non-empty string")
+
+    cleaned = response.strip()
+    if cleaned.startswith('```json'):
+        cleaned = cleaned[7:]
+    if cleaned.endswith('```'):
+        cleaned = cleaned[:-3]
+    cleaned = cleaned.strip()
+
+    start_idx = cleaned.find('{')
+    end_idx = cleaned.rfind('}') + 1
+    if start_idx == -1 or end_idx <= start_idx:
+        raise ValueError("No valid JSON object found")
+
+    json_str = cleaned[start_idx:end_idx]
+
+    try:
+        return json.loads(json_str)
+    except json.JSONDecodeError:
+        json_str = ' '.join(json_str.replace('\n', ' ').replace('\r', ' ').split())
+        try:
+            return json.loads(json_str)
+        except json.JSONDecodeError as e:
+            raise ValueError(f"Invalid JSON after cleaning: {str(e)}")
+
+
+def _update_question_with_error(question: MedicalQuestion) -> None:
+    """Update question with error state"""
+    question.analysis = "Error processing answer"
+    question.answer = ""
+    question.confidence = 0.0
+
+
+def _update_question_from_result(question: MedicalQuestion, result: Dict) -> None:
+    """Update question with standardized result processing"""
+    question.analysis = result.get("final_analysis", "")
+    question.answer = result.get("answer", "").lower()
+    try:
+        question.confidence = float(result.get("confidence", 0.0))
+    except (TypeError, ValueError):
+        question.confidence = 0.0
+
 
 class LLMProcessor:
-    """处理与LLM的所有交互"""
+    """Handles all LLM interactions with standardized processing"""
 
-    def __init__(self):
-        """使用全局配置初始化处理器"""
+    def __init__(self, log_path: str):
         self.client = OpenAI(api_key=config.openai["api_key"])
         self.model = config.openai.get("model")
-        self.temperature = config.openai.get("temperature", 0.3)
-        self.logger = config.get_logger("llm_interaction")
-        self.logger.info(f"Initialized LLM interaction with model: {self.model}")
-        # 初始化 GPT 日志记录器
-        self.gpt_logger = GPTLogger(config.paths["output"])
+        self.model_name = config.openai.get("model")
+        self.temperature = config.openai.get("temperature")
+        self.logger = LLMLogger(log_path)
+        config.get_logger("question_processor").info(f"Initialized model {self.model}")
 
     @retry(
         stop=stop_after_attempt(3),
-        wait=wait_exponential(multiplier=1, min=4, max=10),
-        after=lambda f: logging.getLogger("casual_graphrag.llm_interaction").warning(
-            f"Retrying API call after failure: {f.exception()}")
+        wait=wait_exponential(multiplier=1, min=4, max=10)
     )
-    def _get_completion(self, messages: List[Dict], temperature: Optional[float] = None) -> str:
-        """获取LLM回复"""
+    def _get_completion(self, messages: List[Dict], interaction_type: str,
+                        question: MedicalQuestion) -> Dict:
+        """Get standardized completion from LLM"""
         try:
             response = self.client.chat.completions.create(
                 model=self.model,
                 messages=messages,
-                temperature=temperature or self.temperature
+                temperature=self.temperature
             )
             response_text = response.choices[0].message.content
 
-            # 记录交互
-            self.gpt_logger.log_interaction(
+            # Log the interaction
+            self.logger.log_interaction(
+                model=self.model_name,
+                interaction_type=interaction_type,
+                question=question,
                 messages=messages,
-                response=response_text,
-                interaction_type="completion"
+                response=response_text
             )
 
-            return response_text
+            # Clean and validate response
+            return clean_json_response(response_text)
+
         except Exception as e:
-            self.logger.error(f"Error calling OpenAI API: {str(e)}", exc_info=True)
+            logging.error(f"Error in LLM call: {str(e)}")
             raise
 
     def direct_answer(self, question: MedicalQuestion) -> None:
-        """直接回答问题，不使用任何额外知识"""
-        prompt = f"""As a medical expert in the filed of {question.topic_name}, please help answer this multiple choice question:
-
-Question: {question.question}
-
-Options:
-"""
-        for key, text in question.options.items():
-            prompt += f"{key}. {text}\n"
-
-        prompt += """
-Please analyze and select the most appropriate answer. Respond in the following format:
-
-Answer: (Option letter,only opa,opb,opc or opd, no addtional information)
-Confidence: (A number from 0-100 indicating your confidence)
-"""
-
-        try:
-            messages = [
-                {"role": "system", "content": "You are a medical expert helping to answer multiple choice questions."},
-                {"role": "user", "content": prompt}
-            ]
-
-            response = self._get_completion(messages)
-
-            # Parse response and update question object
-            for line in response.split('\n'):
-                if line.startswith('Analysis:'):
-                    question.reasoning = line.replace('Analysis:', '').strip()
-                elif line.startswith('Answer:'):
-                    question.answer = line.replace('Answer:', '').strip().lower()
-                elif line.startswith('Confidence:'):
-                    try:
-                        question.confidence = float(line.replace('Confidence:', '').strip().rstrip('%'))
-                    except ValueError:
-                        self.logger.warning("Failed to parse confidence value")
-                        question.confidence = 0
-
-        except Exception as e:
-            self.logger.error(f"Error in direct answer: {str(e)}", exc_info=True)
-
-    def causal_enhanced_answer(self, question: MedicalQuestion) -> None:
-        """利用因果路径增强的回答"""
-        prompt = f"""As a medical expert in the filed of {question.topic_name}, please help answer this multiple choice question using the provided causal relationships:
-
-Question: {question.question}
-
-Options:
-"""
-        for key, text in question.options.items():
-            prompt += f"{key}. {text}\n"
-
-        if question.casual_paths:
-            prompt += "\nCausal relationships for each option:\n"
-            for option in ['opa', 'opb', 'opc', 'opd']:
-                if question.casual_paths.get(option):
-                    prompt += f"\nOption {option} related causal paths:\n"
-                    for path in question.casual_paths[option]:
-                        prompt += f"- {path}\n"
-
-        prompt += """
-Based on the question, options, and causal relationships, please provide:
-
-Analysis: (Explain your reasoning using the causal relationships)
-Answer: (Option letter,only opa,opb,opc or opd, no addtional information)
-Confidence: (A number from 0-100)
-"""
-
-        try:
-            messages = [
-                {"role": "system",
-                 "content": "You are a medical expert analyzing questions using causal relationships."},
-                {"role": "user", "content": prompt}
-            ]
-
-            response = self._get_completion(messages)
-
-            for line in response.split('\n'):
-                if line.startswith('Analysis:'):
-                    question.reasoning = line.replace('Analysis:', '').strip()
-                elif line.startswith('Answer:'):
-                    question.answer = line.replace('Answer:', '').strip().lower()
-                elif line.startswith('Confidence:'):
-                    try:
-                        question.confidence = float(line.replace('Confidence:', '').strip().rstrip('%'))
-                    except ValueError:
-                        question.confidence = 0
-
-        except Exception as e:
-            self.logger.error(f"Error in causal enhanced answer: {str(e)}", exc_info=True)
-
-    def generate_reasoning_chain(self, question: MedicalQuestion) -> None:
-        """基于因果路径生成推理链和需要验证的实体对"""
-        self.logger.debug(f"Starting reasoning chain analysis")
-
-        # 构建初始 Prompt
-        prompt = f"""You are a medical expert specializing in the field of {question.topic_name}. Your task involves two main objectives:
-
-        1. **Generate Causal Chains (Causal Analysis)**: Analyze the provided causal relationships (if any) or infer them directly from the question and options. The goal is to identify direct relationships between entities (e.g., symptoms, organisms, anatomical structures, pathways) relevant to answering the question.
-
-        2. **Infer Additional Entity Pairs**: Extend the reasoning chain by identifying additional causal entity pairs (start and end) that are required to form a complete reasoning chain but are not explicitly covered in the original pathways.
-
-        ### Important Note on Provided Causal Relationships
-        - The causal relationships provided in `question.casual_paths` are **preliminary and rough**. They may include irrelevant or incorrect information and are only intended as an initial reference.
-        - If no causal relationships are provided or if they are unhelpful, infer causal entities directly from the question and options based on your domain knowledge and expertise.
-
-        ### Question
-        {question.question}
-
-        ### Options
-        """
-        for key, text in question.options.items():
-            prompt += f"{key}. {text}\n"
-
-        # Add causal paths if provided
-        if question.casual_paths:
-            prompt += "\n### Provided Causal Relationships for Each Option\n"
-            for option in ['opa', 'opb', 'opc', 'opd']:
-                if question.casual_paths.get(option):
-                    prompt += f"\nOption {option} causal paths:\n"
-                    for path in question.casual_paths[option]:
-                        prompt += f"- {path}\n"
+        """Direct answer implementation with standardized processing"""
+        if question.topic_name is not None:
+            prompt = f"""You are a medical expert specializing in the field of {question.topic_name}."""
         else:
-            prompt += "\nNo causal relationships are provided for this question."
+            prompt = """You are a medical expert."""
 
-        # Specify task and output format
-        prompt += f"""
-
-        ### Task
-        Your task is to:
-        1. **Causal Analysis**:
-           - Extract and refine the causal relationships provided in the question (if any) by identifying `start` and `end` entities for each causal pathway. Ensure all entities align with UMLS standards and avoid vague modifiers like "Decreased" or "Inhibition."
-           - If no causal pathways are provided, infer the most relevant causal entities based on the question and options.
-
-        2. **Reasoning Chain and Additional Entity Pairs**:
-           - Generate a clear and logical reasoning chain for answering the question. 
-           - Convert the reasoning chain into structured causal relationships expressed as `start` and `end` pairs.
-           - Identify additional causal entity pairs (start and end) that are necessary to complete the reasoning chain but are not part of the initial causal pathways.
-
-        ### Output Format
-        The output should be in the following JSON format:
-
-        {{
-            "causal_analysis": {{
-                "start": ["Entity1", "Entity2", "Entity3"],
-                "end": ["Entity4", "Entity5", "Entity6"]
-            }},
-            "additional_entity_pairs": {{
-                "start": ["EntityA", "EntityB"],
-                "end": ["EntityC", "EntityD"]
-            }}
-        }}
-
-        ### Key Guidelines
-        1. Ensure that the `start` and `end` arrays are **one-to-one aligned** and represent meaningful causal relationships.
-        2. Use **precise UMLS-standardized terms** for all entities, avoiding abbreviations or vague modifiers.
-        3. If no causal relationships are provided or useful, infer the causal entities based on medical knowledge and question context.
-        4. The `causal_analysis` should focus on key causal chains relevant to answering the question, while `additional_entity_pairs` should extend the reasoning process.
-        5. Avoid explanations or justifications in the output; stick to structured `start` and `end` pairs.
-        6. Ensure terms can be directly queried in UMLS or similar medical knowledge graphs.
-        """
-
-        self.logger.debug(f"Prompt sent to LLM:\n{prompt}")
-
-        # 调用 LLM 获取结果的代码保持不变
-
-        try:
-            # 调用 LLM 获取结果
-            messages = [
-                {"role": "system",
-                 "content": "You are a medical expert analyzing questions. Always respond with valid JSON."},
-                {"role": "user", "content": prompt}
-            ]
-            response = self._get_completion(messages)
-            self.logger.debug(f"Raw LLM response: {response}")
-
-            # 清理响应确保有效 JSON
-            response = response.strip()
-            if response.startswith('```json'):
-                response = response[7:]
-            if response.endswith('```'):
-                response = response[:-3]
-
-            start_idx = response.find('{')
-            end_idx = response.rfind('}') + 1
-            if start_idx != -1 and end_idx != -1:
-                response = response[start_idx:end_idx]
-
-            result = json.loads(response)
-
-            # 验证响应结构
-            if "additional_entity_pairs" not in result or "causal_analysis" not in result:
-                raise ValueError("Missing required fields in response")
-
-            # 提取因果分析结果
-            if result.get("causal_analysis"):
-                question.casual_paths_nodes_refine = {
-                    'start': result["causal_analysis"].get("start", []),
-                    'end': result["causal_analysis"].get("end", [])
-                }
-                self.logger.debug(f"Extracted causal analysis: {question.casual_paths_nodes_refine}")
-
-            # 提取额外实体对
-            if result.get("additional_entity_pairs"):
-                question.entities_original_pairs = {
-                    'start': result["additional_entity_pairs"].get("start", []),
-                    'end': result["additional_entity_pairs"].get("end", [])
-                }
-                self.logger.debug(f"Extracted additional entity pairs: {question.entities_original_pairs}")
-
-        except json.JSONDecodeError as e:
-            self.logger.error(f"JSON parsing error: {str(e)}\nResponse: {response}")
-            question.casual_paths_nodes_refine = {'start': [], 'end': []}
-            question.entities_original_pairs = {'start': [], 'end': []}
-            question.reasoning = "Error processing reasoning chain"
-
-        except Exception as e:
-            self.logger.error(f"Error processing reasoning chain: {str(e)}, Response: {response}")
-            question.casual_paths_nodes_refine = {'start': [], 'end': []}
-            question.entities_original_pairs = {'start': [], 'end': []}
-            question.reasoning = "Error processing reasoning chain"
-
-    def final_answer_with_all_paths(self, question: MedicalQuestion) -> None:
-        """基于所有信息（因果路径、思维链、KG路径）生成最终答案"""
-        prompt = f"""As a medical expert in the field of {question.topic_name}, please analyze this question using all available information:
+        prompt += f"""Please help answer this {'' if not question.is_multi_choice else 'multiple choice'} question:
 
 Question: {question.question}
-
-Options:
 """
-        for key, text in question.options.items():
-            prompt += f"{key}. {text}\n"
-
-        # Add causal paths
-
-        if question.CG_paths:
-            prompt += "\nVerified casual graph relationships:\n"
-            for path in question.CG_paths:
-                prompt += f"- {path}\n"
-
-        # Add reasoning chain
-        if question.reasoning_chain:
-            prompt += f"\nReasoning process:\n{question.reasoning}\n"
-
-        # Add KG paths
-        if question.KG_paths:
-            prompt += "\nVerified knowledge graph relationships:\n"
-            for path in question.KG_paths:
-                prompt += f"- {path}\n"
+        if question.is_multi_choice:
+            prompt += "\nOptions:\n"
+            for key, text in question.options.items():
+                prompt += f"{key}. {text}\n"
 
         prompt += """
-Based on all the above information, please provide:
-
-Final Analysis: (Synthesize all available information)
-Answer: (Option letter,only opa,opb,opc or opd, no addtional information)
-Confidence: (A number from 0-100)
-"""
-
-        try:
-            messages = [
-                {"role": "system",
-                 "content": "You are a medical expert making decisions based on comprehensive evidence."},
-                {"role": "user", "content": prompt}
-            ]
-
-            response = self._get_completion(messages)
-
-            for line in response.split('\n'):
-                if line.startswith('Final Analysis:'):
-                    question.reasoning = line.replace('Final Analysis:', '').strip()
-                elif line.startswith('Answer:'):
-                    question.answer = line.replace('Answer:', '').strip().lower()
-                elif line.startswith('Confidence:'):
-                    try:
-                        question.confidence = float(line.replace('Confidence:', '').strip().rstrip('%'))
-                    except ValueError:
-                        question.confidence = 0
-
-        except Exception as e:
-            self.logger.error(f"Error in final answer generation: {str(e)}", exc_info=True)
-
-    def answer_with_reasoning(self, question: MedicalQuestion) -> None:
-        prompt = f"""As a medical expert, please analyze this question using all available information:
-
-        Question: {question.question}
-
-        Options:
-        """
-        for key, text in question.options.items():
-            prompt += f"{key}. {text}\n"
-
-        # Add reasoning chain
-        if question.reasoning:
-            prompt += f"\nReasoning process:\n{question.reasoning}\n"
-
-        prompt += """
-        Based on all the above information, please provide:
-
-        Final Analysis: (Synthesize all available information)
-        Answer: (Option letter,only opa,opb,opc or opd, no addtional information)
-        Confidence: (A number from 0-100)
-        """
-
-        try:
-            messages = [
-                {"role": "system",
-                 "content": "You are a medical expert making decisions based on comprehensive evidence."},
-                {"role": "user", "content": prompt}
-            ]
-
-            response = self._get_completion(messages)
-
-            for line in response.split('\n'):
-                if line.startswith('Final Analysis:'):
-                    question.reasoning = line.replace('Final Analysis:', '').strip()
-                elif line.startswith('Answer:'):
-                    question.answer = line.replace('Answer:', '').strip().lower()
-                elif line.startswith('Confidence:'):
-                    try:
-                        question.confidence = float(line.replace('Confidence:', '').strip().rstrip('%'))
-                    except ValueError:
-                        question.confidence = 0
-
-        except Exception as e:
-            self.logger.error(f"Error in final answer generation: {str(e)}", exc_info=True)
-
-    def enhance_information(self, question: MedicalQuestion) -> None:
-        """融合所有信息，生成增强后的信息"""
-        self.logger.debug(f"Starting information enhancement")
-
-        prompt = f"""You are a medical expert specializing in the field of {question.topic_name}. Your task is to integrate all the provided information, ensuring its truthfulness and relevance, enhance it by trimming irrelevant or misleading parts, and prepare it for answering the question.
-
-        ### Question
-        {question.question}
-
-        ### Options
-        """
-        for key, text in question.options.items():
-            prompt += f"{key}. {text}\n"
-
-        # 添加KG_paths（如果有）
-        if question.KG_paths:
-            prompt += "\n### Knowledge Graph Paths\n"
-            for path in question.KG_paths:
-                prompt += f"- {path}\n"
-
-        # 添加CG_paths（如果有）
-        if hasattr(question, 'CG_paths') and question.CG_paths:
-            prompt += "\n### Causal Graph Paths\n"
-            for path in question.CG_paths:
-                prompt += f"- {path}\n"
-
-        # 指定任务与输出格式
-        prompt += """
-        ### Task
-        - Analyze and synthesize all the above information.
-        - Verify the truthfulness and accuracy of the information.
-        - **Trim irrelevant, redundant, or misleading parts.**
-        - Merge and integrate relevant data from different sources coherently.
-        - Ensure that the enhanced information is accurate, relevant, and logically supports the correct answer.
-        - Prepare a concise and coherent summary that can be used to directly answer the question.
-        - Do NOT provide the final answer to the question at this stage, nor should you make it obvious which option is correct.
-        - **Ensure all information is accurate and based on established medical knowledge.**
-        - **Avoid including any misleading or incorrect information.**
-        - Do not provide the final answer.
-
-        ### Output Format
-        Provide your enhanced information in valid JSON format:
-        {"enhanced_information": "Your synthesized and enhanced information"}
-
-        """
-
-        try:
-            messages = [
-                {"role": "system",
-                 "content": "You are a medical expert assisting in preparing information for answering medical questions."},
-                {"role": "user", "content": prompt}
-            ]
-            response = self._get_completion(messages)
-            self.logger.debug(f"Raw LLM response: {response}")
-
-            # 解析大模型的回复，确保是有效的JSON格式
-            response = response.strip()
-            if response.startswith('```json'):
-                response = response[7:]
-            if response.endswith('```'):
-                response = response[:-3]
-
-            start_idx = response.find('{')
-            end_idx = response.rfind('}') + 1
-            if start_idx != -1 and end_idx != -1:
-                response = response[start_idx:end_idx]
-
-            result = json.loads(response)
-
-            if "enhanced_information" not in result:
-                raise ValueError("Missing 'enhanced_information' in response")
-
-            # 更新问题对象
-            question.enhanced_information = result["enhanced_information"]
-
-        except json.JSONDecodeError as e:
-            self.logger.error(f"JSON parsing error: {str(e)}\nResponse: {response}")
-            question.enhanced_information = "Error processing enhanced information"
-
-        except Exception as e:
-            self.logger.error(f"Error in enhancing information: {str(e)}, Response: {response}")
-            question.enhanced_information = "Error processing enhanced information"
-
-    def answer_with_enhanced_information(self, question: MedicalQuestion) -> None:
-        """使用增强后的信息生成最终答案"""
-        prompt = f"""As a medical expert in the field of {question.topic_name}, please answer the following question using a structured approach.
-
-        ### Question
-        {question.question}
-
-        ### Options
-        """
-        for key, text in question.options.items():
-            prompt += f"{key}. {text}\n"
-
-        if question.enhanced_information:
-            prompt += f"\n### Enhanced Information\n{question.enhanced_information}\n"
-
-        prompt += """
-        ### Information Priority (from highest to lowest)
-        1. Basic medical facts and clinical definitions
-        2. Statistical evidence (e.g., prevalence, frequency)
-        3. Standard clinical protocols and guidelines
-        4. Pathophysiological mechanisms
-        5. Supporting relationships and pathways
-
-        ### Required Analysis Structure
-        1. Core Question Identification
-           - What is the fundamental question being asked?
-           - What type of information is needed to answer it?
-           - Are there any key terms or concepts that need definition?
-
-        2. Basic Fact Verification
-           - What is the essential medical fact/definition needed?
-           - Is this fact well-established in medical practice?
-           - Does this align with current clinical standards?
-
-        3. Information Assessment
-           - How does the enhanced information relate to the core fact?
-           - Which parts are essential vs supplementary?
-           - Are there any contradictions with basic medical knowledge?
-
-        ### Decision Framework
-        1. Start with the most basic, established medical fact that answers the question
-        2. Only include additional information if it DIRECTLY supports or challenges this fact
-        3. Ignore complex relationships unless they fundamentally change the basic answer
-        4. When in doubt, prioritize:
-           - Clinical standards over theoretical mechanisms
-           - Common medical practice over rare exceptions
-           - Direct relationships over indirect ones
-
-        ### Critical Guidelines
-        - Focus on answering the specific question asked
-        - Avoid being distracted by interesting but nonessential information
-        - Remember that complex pathways do not override basic medical facts
-        - Consider practical clinical significance over theoretical relationships
-
         ### Output Format
         Provide your response in valid JSON format:
-        {
+        {   
             "final_analysis": "Your concise analysis following the above structure",
-            "answer": "Option letter (opa, opb, opc, or opd only)",
+            "answer": "Option key from the available options (only key,like opa)",
             "confidence": Score between 0-100 based on alignment with established medical facts
         }
-
-        ### Key Requirements
-        - Keep analysis focused and relevant
-        - Base conclusions primarily on established medical knowledge
-        - Use enhanced information as support, not primary evidence
-        - Avoid speculation or overcomplication
         """
+
+        try:
+            messages = [
+                {"role": "system", "content": "You are a medical expert making decisions based on medical knowledge."},
+                {"role": "user", "content": prompt}
+            ]
+
+            result = self._get_completion(messages, "direct_answer", question)
+            _update_question_from_result(question, result)
+
+        except Exception as e:
+            logging.error(f"Error in direct answer: {str(e)}")
+            _update_question_with_error(question)
+
+    def generate_reasoning_chain(self, question: MedicalQuestion) -> None:
+        """Generate reasoning chains for medical diagnosis with enhanced response parsing"""
+        prompt = f"""
+        You are a medical expert. Generate multiple reasoning chains for the following question.
+
+            Each chain:
+            - Uses '->' to connect sequential reasoning states.
+            - Each step is a single state or result, not a complete causal sentence in one step.
+              Example:
+                Correct: "Insulin" -> "decreased blood glucose" -> "improved metabolism" -> 90%
+                Incorrect: "Insulin decreases blood glucose" in one step.
+            - End with a confidence percentage (0-100%).
+
+            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., 
+            "possible", "unclear") and slightly lower confidence. However, do this only if necessary. If unsure, 
+            it is acceptable to show a plausible chain with moderate confidence.
+
+            ### Question
+            {question.question}
+
+            ### Options
+    """
+        for key, text in question.options.items():
+            prompt += f"{key}. {text}\n"
+        prompt += """
+            ### Instructions:
+            - Keep steps simple, each step just one state or outcome.
+            - '->' separates each step.
+            
+            ### Output Format:
+            Start each chain with "CHAIN:" on a new line.
+            Example:
+            CHAIN: "Insulin" -> "decreased blood glucose" -> "improved metabolic state" -> 90%"""
+
+        try:
+            messages = [
+                {"role": "system", "content": "You are a medical expert generating diagnostic reasoning chains."},
+                {"role": "user", "content": prompt}
+            ]
+
+            # Get the raw completion
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=messages,
+                temperature=self.temperature
+            )
+            response_text = response.choices[0].message.content
+
+            # Log the interaction before parsing
+            self.logger.log_interaction(
+                model=self.model_name,
+                interaction_type="reasoning_chain",
+                question=question,
+                messages=messages,
+                response=response_text
+            )
+
+            chains = fix_reasoning_chains(response_text)
+
+            # 更新问题的推理链
+            question.reasoning_chain = chains if chains else []
+
+            if not chains:
+                logging.warning(f"No valid reasoning chains found for question: {question.question}")
+                logging.warning(f"Raw response: {response_text}")
+
+        except Exception as e:
+            logging.error(f"Error in reasoning chain generation: {str(e)}", exc_info=True)
+            question.reasoning_chain = []
+
+    def enhance_information(self, question: MedicalQuestion, flag:str) -> None:
+        """
+        Enhancement with standardized processing:
+        1. We have an 'enhanced_graph' containing multiple evidence paths (strings).
+        2. We want to prune/merge these paths so that only the medically relevant and
+           question-focused info is retained.
+        3. Then produce a concise "enhanced_information" summary that aligns with standard medical knowledge
+           and truly helps in answering the question.
+
+        If no paths are available, skip.
+        """
+
+        if not question.enhanced_graph.paths:
+            return
+
+        # 构建角色设定
+        if question.topic_name:
+            system_prompt = f"You are a medical expert specializing in {question.topic_name}."
+        else:
+            system_prompt = "You are a medical expert."
+
+        # 构建用户提示
+        user_prompt = f"""
+    You have retrieved multiple evidence paths (see below) from a knowledge graph search. 
+    They may be correct in their own right but can be broad or tangential to the question. 
+    Your goal is to integrate the relevant portions with standard medical knowledge, 
+    and produce a short summary ('enhanced_information') that helps answer the question accurately.
+
+    ## Question
+    {question.question}
+
+    ## Options
+    """
+        # 列出选项
+        for key, text in question.options.items():
+            user_prompt += f"{key}. {text}\n"
+
+        # 列出增强图路径
+        user_prompt += "\n## Retrieved Evidence Paths\n"
+        for path_str in question.enhanced_graph.paths:
+            user_prompt += f"{path_str}\n"
+
+        # 具体指令
+        user_prompt += """
+    ## Instructions
+    1. Review each evidence path: If it contradicts well-established medical facts, ignore/flag it.
+    2. If certain paths are irrelevant to the question, ignore them.
+    3. Summarize only the key, correct, and question-relevant pieces of info.
+    4. If some aspects are uncertain, note them briefly, but still focus on a consensus-based conclusion.
+    5. Output the final result as valid JSON:
+    {
+      "enhanced_information": "Your short, clinically relevant summary that uses the most pertinent evidence and standard knowledge."
+    }
+    """
+
+        # 组装
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt}
+        ]
+
+        try:
+            result = self._get_completion(messages, "enhancement" + flag, question)
+            question.enhanced_information = result.get("enhanced_information", "")
+        except Exception as e:
+            logging.error(f"Error in enhancement: {str(e)}")
+            question.enhanced_information = ""
+
+    def enhance_information_with_chain(self, question: MedicalQuestion, flag:str) -> None:
+        """Enhancement with standardized processing:
+           Use standard medical knowledge and retrieved evidence paths to prune and verify the reasoning chains.
+           The retrieved paths might be broad but are correct; do not be misled by irrelevant details.
+           After verification, produce a concise, consensus-aligned enhanced_information."""
+
+        # 如果没有增强图路径，无需处理
+        if len(question.enhanced_graph.paths) == 0:
+            return
+
+        if question.topic_name is not None:
+            prompt = f"You are a medical expert specializing in {question.topic_name}."
+        else:
+            prompt = "You are a medical expert."
+
+        prompt += f"""
+        Your task:
+        - You have per-option reasoning chains (from previous step).
+        - You have retrieved evidence paths (enhanced graph info) that are correct but may be broad and not directly addressing the key point.
+        - Use standard medical/biochemical consensus to evaluate each chain.
+        - If a chain step contradicts consensus, correct or remove it.
+        - Check evidence paths: if they provide relevant support or clarify consensus, incorporate them.
+        - If paths are too broad or not relevant, do not let them mislead you.
+        - Aim to produce a final "enhanced_information" that:
+          1. Reflects corrected, consensus-aligned reasoning for each option,
+          2. Integrates helpful evidence from paths,
+          3. Excludes misleading or irrelevant info,
+          4. Focuses on what best helps answer the question correctly.
+
+        ### Question
+        {question.question}
+
+        ### Options
+        """
+        for key, text in question.options.items():
+            prompt += f"{key}. {text}\n"
+
+        if question.reasoning_chain:
+            prompt += "\n### Reasoning Chains per Option:\n"
+            for chain in question.reasoning_chain:
+                prompt += f"{chain}\n"
+
+        if question.enhanced_graph and len(question.enhanced_graph.paths) > 0:
+            prompt += "\n### Retrieved Evidence Paths (broad but correct):\n"
+            for path in question.enhanced_graph.paths:
+                prompt += f"{path}\n"
+
+        prompt += """
+        ### Instructions:
+        1. Recall standard consensus facts relevant to the question.
+        2. For each option's chain, compare steps to consensus and paths:
+           - Remove/adjust steps contradicting known facts.
+           - If paths confirm or clarify a point aligned with consensus, use them.
+           - Ignore irrelevant or overly broad paths that don't help.
+        3. If uncertain, note uncertainty but choose the best consensus-supported interpretation.
+        4. Output a short "enhanced_information" summarizing the corrected reasoning and relevant evidence that truly aids in final answer determination.
+
+        ### Output Format:
+        {
+          "enhanced_information": "A concise, consensus-aligned summary integrating corrected reasoning and relevant evidence."
+        }
+        """
+
+        try:
+            messages = [
+                {"role": "system",
+                 "content": "You are a medical expert making decisions based on enhanced information and careful verification."},
+                {"role": "user", "content": prompt}
+            ]
+
+            result = self._get_completion(messages, "enhancement_with_chain" + flag, question)
+            question.enhanced_information = result.get("enhanced_information", "")
+
+        except Exception as e:
+            logging.error(f"Error in enhancement: {str(e)}")
+            question.enhanced_information = ""
+
+    def answer_with_enhanced_information(self, question: MedicalQuestion, flag: str) -> None:
+        """Final answer with standardized processing"""
+        if question.topic_name is not None:
+            prompt = f"You are a medical expert specializing in the field of {question.topic_name}."
+        else:
+            prompt = f"You are a medical expert."
+
+        if len(question.enhanced_graph.paths) == 0:
+            prompt += f"""Please help answer this {'' if not question.is_multi_choice else 'multiple choice'} question:
+
+                    Question: {question.question}
+                    """
+            if question.is_multi_choice:
+                prompt += "\nOptions:\n"
+                for key, text in question.options.items():
+                    prompt += f"{key}. {text}\n"
+
+            prompt += """
+                            ### Output Format
+                            Provide your response in valid JSON format:
+                            {   
+                                "final_analysis": "Your concise analysis following the above structure",
+                                "answer": "Option key from the available options (only key,like opa)",
+                                "confidence": Score between 0-100 based on alignment with established medical facts
+                            }
+                            """
+        else:
+            prompt += f"""
+                    You are a medical expert determining the final answer.
+
+            ### Instructions:
+            - Use standard medical knowledge as the primary guide.
+            - Consider enhanced information only if it aligns with consensus.
+            - If conflicting or unclear, present the most likely correct answer based on known facts.
+            - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.
+
+
+                    ### Question
+                    {question.question}
+
+                    ### Options
+                    """
+            for key, text in question.options.items():
+                prompt += f"{key}. {text}\n"
+
+            if question.enhanced_information:
+                prompt += f"\n### Enhanced Information (For Contextual Support):\n{question.enhanced_information}\n"
+
+            prompt += """
+                    ### Task:
+                1. Identify the core medical principle and the most likely correct option based on consensus.
+                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.
+                3. Provide a final analysis and a confidence score (0-100%).
+
+                ### Output Format:
+                {
+                  "final_analysis": "Step-by-step reasoning, prioritizing medical consensus and acknowledging complexity if present.",
+                  "answer": "Option key (e.g. opa, opb, ...)",
+                  "confidence": A number between 0-100
+                }
+                    """
 
         try:
             messages = [
@@ -562,82 +680,150 @@ Confidence: (A number from 0-100)
                  "content": "You are a medical expert making decisions based on enhanced information."},
                 {"role": "user", "content": prompt}
             ]
-            response = self._get_completion(messages)
-            self.logger.debug(f"Raw LLM response: {response}")
 
-            # 确保响应是有效的 JSON
-            response = response.strip()
-            if response.startswith('```json'):
-                response = response[7:]
-            if response.endswith('```'):
-                response = response[:-3]
-
-            # 提取 JSON 部分
-            start_idx = response.find('{')
-            end_idx = response.rfind('}') + 1
-            if start_idx != -1 and end_idx != -1:
-                response = response[start_idx:end_idx]
-            else:
-                raise ValueError("No JSON object found in the response.")
-
-            # 解析 JSON
-            result = json.loads(response)
-
-            # 提取结果
-            question.reasoning = result.get("final_analysis", "")
-            question.answer = result.get("answer", "").lower()
-            question.confidence = float(result.get("confidence", 0.0))
+            result = self._get_completion(messages, "answer_with_enhancement" + flag, question)
+            _update_question_from_result(question, result)
 
         except Exception as e:
-            self.logger.error(f"Error in final answer generation: {str(e)}", exc_info=True)
-            question.reasoning = "Error processing final answer"
-            question.answer = ""
-            question.confidence = 0.0
+            logging.error(f"Error in final answer: {str(e)}")
+            _update_question_with_error(question)
 
-if __name__ == '__main__':
-    var = {
-        "question": "Which of the following hormone is/are under inhibitory of hypothalamus?",
-        "topic_name": "Pharmacology",
-        "options": {
-            "opa": "Prolactin",
-            "opb": "Only prolactin",
-            "opc": "Only growth hormone",
-            "opd": "Both prolactin and growth hormone"
-        },
-        "correct_answer": "opd"
+    def answer_with_cot(self, question: MedicalQuestion) -> None:
+        """Answer using chain-of-thought reasoning with graph paths and reasoning chains"""
+        if question.topic_name is not None:
+            prompt = f"You are a medical expert specializing in the field of {question.topic_name}."
+        else:
+            prompt = f"You are a medical expert."
+
+        if len(question.enhanced_graph.paths) == 0:
+            prompt += f"""Please help answer this {'' if not question.is_multi_choice else 'multiple choice'} question:
+
+            Question: {question.question}
+            """
+            if question.is_multi_choice:
+                prompt += "\nOptions:\n"
+                for key, text in question.options.items():
+                    prompt += f"{key}. {text}\n"
+
+            prompt += """
+                    ### Output Format
+                    Provide your response in valid JSON format:
+                    {   
+                        "final_analysis": "Your concise analysis following the above structure",
+                        "answer": "Option key from the available options (only key,like opa)",
+                        "confidence": Score between 0-100 based on alignment with established medical facts
+                    }
+                    """
+        else:
+            prompt += f"""
+            You are a medical expert determining the final answer.
+
+                ### Instructions:
+                - Use standard medical knowledge as the primary guide.
+                - Consider enhanced information only if it aligns with consensus.
+                - If conflicting or unclear, present the most likely correct answer based on known facts.
+                - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.
+            ### Question    
+            {question.question}
+
+            ### Options
+            """
+            for key, text in question.options.items():
+                prompt += f"{key}. {text}\n"
+
+            if question.reasoning_chain:
+                prompt += "\n### Reasoning Chains for Validation:\n"
+                for chain in question.reasoning_chain:
+                    prompt += f"- {chain}\n"
+
+            if question.enhanced_graph and len(question.enhanced_graph.paths) > 0:
+                prompt += "\n### Retrieved Validation Paths:\n"
+                for path in question.enhanced_graph.paths:
+                    prompt += f"- {path}\n"
+
+            prompt += """
+            ### Task:
+                1. Identify the core medical principle and the most likely correct option based on consensus.
+                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.
+                3. Provide a final analysis and a confidence score (0-100%).
+                
+                ### Output Format:
+                {
+                  "final_analysis": "Step-by-step reasoning, prioritizing medical consensus and acknowledging complexity if present.",
+                  "answer": "Option key (e.g. opa, opb, ...)",
+                  "confidence": A number between 0-100
+                }
+            """
+        try:
+            messages = [
+                {"role": "system", "content": "You are a medical expert using chain-of-thought reasoning."},
+                {"role": "user", "content": prompt}
+            ]
+
+            result = self._get_completion(messages, "answer_with_CoT", question)
+            try:
+                question.confidence = float(result.get("confidence", 0.0))
+            except (TypeError, ValueError):
+                question.confidence = 0.0
+
+        except Exception as e:
+            logging.error(f"Error in chain-of-thought answer: {str(e)}")
+            question.chain_of_thought = ""
+            _update_question_with_error(question)
+
+    def answer_normal_rag(self, question: MedicalQuestion) -> None:
+        """Answer question using vector search results"""
+        if question.topic_name is not None:
+            prompt = f"You are a medical expert specializing in the field of {question.topic_name}."
+        else:
+            prompt = "You are a medical expert."
+
+        prompt += f"""Please help answer this {'multiple choice ' if question.is_multi_choice else ''}question:
+
+    Question: {question.question}
+
+    Options:
+    """
+        for key, text in question.options.items():
+            prompt += f"{key}. {text}\n"
+
+        if question.normal_results:
+            prompt += "\n### Retrieved Similar Medical Knowledge:\n"
+            for result in question.normal_results:
+                prompt += f"- {result}\n"
+
+        prompt += """
+    ### Instructions:
+            - Use standard medical knowledge as the primary guide.
+            - Consider enhanced information only if it aligns with consensus.
+            - If conflicting or unclear, present the most likely correct answer based on known facts.
+            - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.
+    ### Task:
+                1. Identify the core medical principle and the most likely correct option based on consensus.
+                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.
+                3. Provide a final analysis and a confidence score (0-100%).
+                
+    ### Output Format
+    Provide your response in valid JSON format:
+    {   
+        "final_analysis": "Your analysis of how the retrieved relationships support the answer",
+        "answer": "Option key from the available options (only key, like opa)",
+        "confidence": Score between 0-100 based on evidence strength and relevance
     }
+    """
 
-    question = MedicalQuestion(
-        question=var.get('question'),
-        options=var.get('options'),
-        correct_answer=var.get('correct_answer'),
-        topic_name=var.get('topic_name')
-    )
+        try:
+            messages = [
+                {"role": "system",
+                 "content": "You are a medical expert making decisions based on retrieved medical knowledge."},
+                {"role": "user", "content": prompt}
+            ]
 
-    llm = LLMProcessor()
-    llm.generate_reasoning_chain(question)
-    print(f"casual_nodes_refine:{question.casual_paths_nodes_refine}")
-    print(f"question.entities_original_pairs:{question.entities_original_pairs}")
+            result = self._get_completion(messages, "answer_normal_rag", question)
+            _update_question_from_result(question, result)
 
-    processor = QueryProcessor()
-    processor.process_entity_pairs_enhance(question)
-    print(f"question.CG_paths:{question.CG_paths}")
-    print(f"question.KG_paths:{question.KG_paths}")
+        except Exception as e:
+            logging.error(f"Error in normal answer: {str(e)}")
+            _update_question_with_error(question)
 
 
-    """question.casual_paths = var.get('casual_paths')
-    question.KG_paths = var.get('KG_paths')
-    question.CG_paths = var.get('CG_paths')
-    question.reasoning = var.get('reasoning')
-
-    print(question.enhanced_information)
-    llm.enhance_information(question)
-    print("Enhanced Information:")
-    print(question.enhanced_information)
-    llm.answer_with_enhanced_information(question)
-    print("Final Analysis:")
-    print(question.reasoning)
-    print("Answer:", question.answer)
-    print("Confidence:", question.confidence)
-    # 在单独的步骤中，使用增强后的信息来回答问题
-    # 您可以添加一个新的方法，或者使用现有的方法"""

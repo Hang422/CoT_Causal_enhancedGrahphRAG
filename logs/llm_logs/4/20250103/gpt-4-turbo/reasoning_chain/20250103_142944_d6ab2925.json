@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_142944",
+  "model": "gpt-4-turbo",
+  "interaction_type": "reasoning_chain",
+  "question_id": "d6ab2925",
+  "question_text": "Drug the choice for hyperthyroidism in first trimester of pregnancy is",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            Drug the choice for hyperthyroidism in first trimester of pregnancy is\n\n            ### Options\n    opa. Methimazole\nopb. Propylthiouraril\nopc. Carbimazole\nopd. Perchlorate\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"Propylthiouracil\" -> \"preferred for hyperthyroidism treatment in first trimester\" -> \"lower risk of teratogenic effects compared to Methimazole\" -> \"safe for developing fetus\" -> 95%\n\nCHAIN: \"Methimazole\" -> \"used for hyperthyroidism\" -> \"higher teratogenic risks in first trimester compared to Propylthiouracil\" -> \"not recommended in first trimester\" -> 90%\n\nCHAIN: \"Carbimazole\" -> \"metabolized to Methimazole\" -> \"similar teratogenic risks as Methimazole\" -> \"not preferred in first trimester\" -> 85%\n\nCHAIN: \"Perchlorate\" -> \"used to block iodine uptake\" -> \"less effective and less studied for managing hyperthyroidism in pregnancy\" -> \"not a first-line treatment\" -> 80%",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

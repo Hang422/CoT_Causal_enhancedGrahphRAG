@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_150022",
+  "model": "gpt-4-turbo",
+  "interaction_type": "reasoning_chain",
+  "question_id": "ee07912c",
+  "question_text": "Quinine given to a patient of falciparum malaria caused sweating and palpitation, the likely cause is?",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            Quinine given to a patient of falciparum malaria caused sweating and palpitation, the likely cause is?\n\n            ### Options\n    opa. Cinchonism\nopb. Hyperglycemia\nopc. Hypoglycemia\nopd. Hypokalemia\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"Quinine administration\" -> \"stimulation of insulin release\" -> \"increased insulin levels\" -> \"reduced blood glucose\" -> \"hypoglycemia\" -> \"sweating and palpitation\" -> 85%\n\nCHAIN: \"Quinine administration\" -> \"toxic effect on the body\" -> \"cinchonism\" -> \"symptoms include sweating and palpitation\" -> 70%\n\nCHAIN: \"Quinine administration\" -> \"alteration in electrolyte balance\" -> \"decreased potassium levels\" -> \"hypokalemia\" -> \"sweating and palpitation\" -> 60%\n\nCHAIN: \"Quinine administration\" -> \"possible secondary effects on metabolism\" -> \"increased blood glucose\" -> \"hyperglycemia\" -> \"sweating and palpitation\" -> 50%",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

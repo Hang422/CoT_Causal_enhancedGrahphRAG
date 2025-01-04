@@ -1,0 +1,85 @@
+{
+  "question": "Drug of choice for gonococcal as well as non gonococcal urethritis is",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Clindamycin",
+    "opb": "Cefepime",
+    "opc": "Metronidazole",
+    "opd": "Azithromycin"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Gonorrhea",
+        "Gonococcal urethritis"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Gonorrhea)-CAUSES->(Gonococcal urethritis)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Chlamydia",
+        "Bacteria",
+        "Pharmaceutical Preparations"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Chlamydia)-INTERACTS_WITH->(Bacteria)-LOCATION_OF->(Pharmaceutical Preparations)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Gonorrhea)-CAUSES->(Gonococcal urethritis)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Gonococcal urethritis treatment guidelines\" -> \"Recommended treatment includes ceftriaxone\" -> \"Ceftriaxone is a cephalosporin antibiotic\" -> \"Cefepime is also a cephalosporin\" -> \"Cefepime is not first-line for urethritis\" -> \"Azithromycin is recommended for non-gonococcal urethritis\" -> \"Azithromycin is effective against Chlamydia\" -> \"Azithromycin is the drug of choice for both types\" -> 85%",
+    "CHAIN: \"Gonococcal urethritis\" -> \"Commonly treated with antibiotics\" -> \"Ceftriaxone is first-line therapy\" -> \"Azithromycin is also effective\" -> \"Non-gonococcal urethritis often treated with azithromycin\" -> \"Azithromycin is the preferred choice\" -> 90%",
+    "CHAIN: \"Urethritis types\" -> \"Gonococcal and non-gonococcal\" -> \"Gonococcal urethritis typically treated with ceftriaxone\" -> \"Non-gonococcal urethritis often treated with azithromycin\" -> \"Azithromycin is effective for both\" -> \"Azithromycin is the drug of choice\" -> 80%",
+    "CHAIN: \"Gonococcal urethritis\" -> \"Treatment involves antibiotics\" -> \"Ceftriaxone is standard treatment\" -> \"Azithromycin is also used\" -> \"Azithromycin is effective for non-gonococcal urethritis\" -> \"Azithromycin is commonly recommended\" -> 75%"
+  ],
+  "enhanced_information": "The drug of choice for gonococcal urethritis is ceftriaxone, which is a first-line cephalosporin antibiotic. For non-gonococcal urethritis, azithromycin is commonly recommended due to its effectiveness against Chlamydia. While cefepime is also a cephalosporin, it is not first-line for urethritis. Therefore, azithromycin is the preferred choice for non-gonococcal urethritis, but it is not the drug of choice for gonococcal urethritis. The consensus indicates that ceftriaxone is the standard treatment for gonococcal urethritis, while azithromycin is effective for non-gonococcal cases.",
+  "analysis": "The treatment of urethritis depends on whether it is gonococcal or non-gonococcal. For gonococcal urethritis, the standard treatment is ceftriaxone, a cephalosporin antibiotic. For non-gonococcal urethritis, which is often caused by Chlamydia trachomatis, azithromycin is commonly used due to its effectiveness. While the enhanced information correctly identifies ceftriaxone as the drug of choice for gonococcal urethritis, it is not listed among the options. Azithromycin, however, is effective for non-gonococcal urethritis and is also used in combination with ceftriaxone for gonococcal infections to cover potential co-infection with Chlamydia. Therefore, azithromycin is the best choice among the given options for treating both gonococcal and non-gonococcal urethritis.",
+  "answer": "opd",
+  "confidence": 85.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      0,
+      1,
+      0
+    ],
+    "coverage_rates": [
+      50.0,
+      0.0,
+      50.0,
+      0.0
+    ],
+    "total_successes": 2
+  },
+  "normal_results": []
+}

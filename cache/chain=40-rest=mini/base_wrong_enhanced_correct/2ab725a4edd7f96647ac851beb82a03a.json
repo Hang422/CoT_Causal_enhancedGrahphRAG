@@ -1,0 +1,158 @@
+{
+  "question": "Drug used in cancer chemotherapy induced vomiting is?",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Aprepitant",
+    "opb": "Dexamethasone",
+    "opc": "Ondansetrin",
+    "opd": "All of the above"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "5-HT>3< receptor antagonist",
+        "Disease",
+        "Obstruction"
+      ],
+      [
+        "5-HT>3< receptor antagonist",
+        "Syndrome",
+        "Obstruction"
+      ],
+      [
+        "5-HT>3< receptor antagonist",
+        "Symptoms",
+        "Obstruction"
+      ],
+      [
+        "Obstruction",
+        "Disease",
+        "Vomiting"
+      ],
+      [
+        "Obstruction",
+        "Infection",
+        "Vomiting"
+      ],
+      [
+        "Obstruction",
+        "Hypertensive disease",
+        "Vomiting"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(5-HT>3< receptor antagonist)-TREATS->(Disease)-CAUSES->(Obstruction)",
+      "(5-HT>3< receptor antagonist)-TREATS->(Syndrome)-CAUSES->(Obstruction)",
+      "(5-HT>3< receptor antagonist)-PREVENTS->(Symptoms)-MANIFESTATION_OF->(Obstruction)",
+      "(Obstruction)-CAUSES->(Disease)-CAUSES->(Vomiting)",
+      "(Obstruction)-CAUSES->(Infection)-CAUSES->(Vomiting)",
+      "(Obstruction)-CAUSES->(Hypertensive disease)-CAUSES->(Vomiting)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Dexamethasone",
+        "Adrenal Cortex Hormones"
+      ],
+      [
+        "Dexamethasone",
+        "Adrenal Cortex Hormones"
+      ],
+      [
+        "Ondansetron",
+        "Pharmaceutical Preparations",
+        "Anti-Anxiety Agents",
+        "5-HT>3< receptor antagonist"
+      ]
+    ],
+    "relationships": [
+      [
+        "ISA"
+      ],
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Dexamethasone)-ISA->(Adrenal Cortex Hormones)",
+      "(Dexamethasone)-INTERACTS_WITH->(Adrenal Cortex Hormones)",
+      "(Ondansetron)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Anti-Anxiety Agents)-INTERACTS_WITH->(5-HT>3< receptor antagonist)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Dexamethasone)-INTERACTS_WITH/ISA->(Adrenal Cortex Hormones)",
+      "(Ondansetron)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Anti-Anxiety Agents)-INTERACTS_WITH->(5-HT>3< receptor antagonist)",
+      "(Obstruction)-CAUSES->(Disease)-CAUSES->(Vomiting)",
+      "(Obstruction)-CAUSES->(Infection)-CAUSES->(Vomiting)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Aprepitant\" -> \"NK1 receptor antagonist\" -> \"blocks substance P\" -> \"prevents vomiting\" -> 90%",
+    "CHAIN: \"Dexamethasone\" -> \"corticosteroid\" -> \"anti-inflammatory effect\" -> \"reduces nausea\" -> 80%",
+    "CHAIN: \"Ondansetron\" -> \"5-HT3 receptor antagonist\" -> \"blocks serotonin\" -> \"prevents vomiting\" -> 90%",
+    "CHAIN: \"All of the above\" -> \"Aprepitant, Dexamethasone, Ondansetron\" -> \"different mechanisms\" -> \"complementary antiemetic effects\" -> 95%"
+  ],
+  "enhanced_information": "Aprepitant is an NK1 receptor antagonist that effectively blocks substance P, preventing chemotherapy-induced vomiting, with a high efficacy rate of around 90%. Dexamethasone, a corticosteroid, has anti-inflammatory properties that can help reduce nausea, although its primary role is not as a direct antiemetic, with an efficacy of about 80%. Ondansetron is a 5-HT3 receptor antagonist that blocks serotonin, which is a key mediator in the vomiting reflex, also achieving around 90% efficacy. The option 'All of the above' is correct as these drugs work through different mechanisms and can be used in combination for complementary antiemetic effects, making it the best choice for managing chemotherapy-induced vomiting.",
+  "analysis": "In the context of chemotherapy-induced vomiting, it is well-established that multiple classes of antiemetic drugs can be utilized to enhance efficacy. Aprepitant (an NK1 receptor antagonist), dexamethasone (a corticosteroid), and ondansetron (a 5-HT3 receptor antagonist) all play significant roles in managing nausea and vomiting associated with chemotherapy. Aprepitant and ondansetron are particularly effective, with high efficacy rates, while dexamethasone is often used in combination with these agents to improve overall antiemetic control. Given that these drugs can be used together for a synergistic effect, the option 'All of the above' is the most comprehensive and accurate choice for addressing chemotherapy-induced vomiting. Therefore, the best-supported option is 'All of the above'.",
+  "answer": "opd",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      3,
+      0
+    ],
+    "coverage_rates": [
+      0.0,
+      25.0,
+      75.0,
+      0.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

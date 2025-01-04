@@ -1,0 +1,121 @@
+{
+  "question": "Shock causes:",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Stagnant hypoxia",
+    "opb": "Anemic hypoxia",
+    "opc": "Hypoxic hypoxia",
+    "opd": "Histotoxic hypoxia"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Oxygen",
+        "Hypoxia"
+      ]
+    ],
+    "relationships": [
+      [
+        "COMPLICATES"
+      ]
+    ],
+    "paths": [
+      "(Oxygen)-COMPLICATES->(Hypoxia)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Shock",
+        "Genes",
+        "Adrenal Cortex Hormones",
+        "Perfusion (procedure)"
+      ],
+      [
+        "Shock",
+        "Genes",
+        "Ouabain",
+        "Perfusion (procedure)"
+      ],
+      [
+        "Shock",
+        "Corticotropin|POMC",
+        "Blood"
+      ],
+      [
+        "Shock",
+        "ARSE",
+        "Blood"
+      ]
+    ],
+    "relationships": [
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH",
+        "ISA"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH",
+        "ISA"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "PART_OF"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "PART_OF"
+      ]
+    ],
+    "paths": [
+      "(Shock)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Adrenal Cortex Hormones)-ISA->(Perfusion (procedure))",
+      "(Shock)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Ouabain)-ISA->(Perfusion (procedure))",
+      "(Shock)-ASSOCIATED_WITH->(Corticotropin|POMC)-PART_OF->(Blood)",
+      "(Shock)-ASSOCIATED_WITH->(ARSE)-PART_OF->(Blood)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Oxygen)-COMPLICATES->(Hypoxia)",
+      "(Shock)-ASSOCIATED_WITH->(Corticotropin|POMC)-PART_OF->(Blood)",
+      "(Shock)-ASSOCIATED_WITH->(ARSE)-PART_OF->(Blood)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Shock\" -> \"decreased perfusion to tissues\" -> \"reduced oxygen delivery\" -> \"stagnant hypoxia\" -> 85%",
+    "CHAIN: \"Shock\" -> \"decreased blood volume\" -> \"reduced oxygen-carrying capacity\" -> \"anemic hypoxia\" -> 70%",
+    "CHAIN: \"Shock\" -> \"impaired oxygen utilization\" -> \"inadequate oxygen at cellular level\" -> \"hypoxic hypoxia\" -> 75%",
+    "CHAIN: \"Shock\" -> \"toxic substances in the blood\" -> \"impaired cellular respiration\" -> \"histotoxic hypoxia\" -> 80%"
+  ],
+  "enhanced_information": "Shock can lead to various types of hypoxia due to decreased perfusion and oxygen delivery to tissues. 1. Stagnant hypoxia occurs when blood flow is reduced, leading to inadequate oxygen supply despite normal oxygen content in the blood. 2. Anemic hypoxia results from a decrease in the oxygen-carrying capacity of the blood, often due to low hemoglobin levels, which can occur in shock due to blood loss. 3. Hypoxic hypoxia is characterized by insufficient oxygen available for cellular metabolism, which can occur in shock due to impaired oxygen delivery. 4. Histotoxic hypoxia arises when cells cannot utilize oxygen effectively, often due to toxins, which can also be a consequence of shock. Each type of hypoxia can be associated with shock, but the most direct effects are seen in stagnant and hypoxic hypoxia due to decreased perfusion and oxygen delivery. The evidence paths confirm the relationship between shock and its impact on blood and oxygen dynamics.",
+  "analysis": "Shock is a condition characterized by inadequate tissue perfusion and oxygen delivery, leading to cellular and organ dysfunction. The primary type of hypoxia associated with shock is stagnant hypoxia, which occurs due to reduced blood flow and perfusion, resulting in insufficient oxygen delivery to tissues despite normal oxygen content in the blood. This aligns with the core medical principle that shock primarily affects blood flow and perfusion. While anemic hypoxia can occur in cases of hemorrhagic shock due to blood loss, and hypoxic hypoxia can be a result of impaired oxygen delivery, stagnant hypoxia is the most direct and common consequence of shock. Histotoxic hypoxia is less directly related to the typical pathophysiology of shock, as it involves the inability of cells to utilize oxygen, often due to toxins, rather than perfusion issues. Therefore, the most likely correct answer, based on standard medical knowledge and consensus, is stagnant hypoxia.",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      0,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      33.33333333333333,
+      0.0,
+      33.33333333333333,
+      33.33333333333333
+    ],
+    "total_successes": 3
+  },
+  "normal_results": []
+}

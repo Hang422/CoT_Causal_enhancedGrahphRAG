@@ -1,0 +1,168 @@
+{
+  "question": "Actions of cholecystokinin include which one of the following?",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Contraction of gall bladder",
+    "opb": "Secretion of pancreatic juice rich in enzymes",
+    "opc": "Increases the secretion of enterokinase",
+    "opd": "All"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Cholecystokinin",
+        "Acinar cell of pancreas"
+      ],
+      [
+        "Release procedure",
+        "Functional disorder",
+        "Genes",
+        "Acinar cell of pancreas"
+      ],
+      [
+        "Release procedure",
+        "Atrophic",
+        "Genes",
+        "Acinar cell of pancreas"
+      ],
+      [
+        "Acinar cell of pancreas",
+        "Cells",
+        "Enzymes"
+      ],
+      [
+        "Acinar cell of pancreas",
+        "Brain",
+        "Enzymes"
+      ],
+      [
+        "Cholecystokinin",
+        "Cells",
+        "ENTEROPEPTIDASE"
+      ],
+      [
+        "Release procedure",
+        "Complication",
+        "Genes",
+        "Cells",
+        "ENTEROPEPTIDASE"
+      ],
+      [
+        "Release procedure",
+        "Functional disorder",
+        "Genes",
+        "Cells",
+        "ENTEROPEPTIDASE"
+      ],
+      [
+        "ENTEROPEPTIDASE",
+        "[M]Unspecified tumor cell NOS",
+        "Trypsinogen"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREVENTS",
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Cholecystokinin)-INTERACTS_WITH->(Acinar cell of pancreas)",
+      "(Release procedure)-TREATS->(Functional disorder)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Acinar cell of pancreas)",
+      "(Release procedure)-CAUSES->(Atrophic)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Acinar cell of pancreas)",
+      "(Acinar cell of pancreas)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Enzymes)",
+      "(Acinar cell of pancreas)-PART_OF->(Brain)-LOCATION_OF->(Enzymes)",
+      "(Cholecystokinin)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(ENTEROPEPTIDASE)",
+      "(Release procedure)-PREVENTS->(Complication)-ASSOCIATED_WITH->(Genes)-PART_OF->(Cells)-INTERACTS_WITH->(ENTEROPEPTIDASE)",
+      "(Release procedure)-TREATS->(Functional disorder)-ASSOCIATED_WITH->(Genes)-PART_OF->(Cells)-INTERACTS_WITH->(ENTEROPEPTIDASE)",
+      "(ENTEROPEPTIDASE)-INTERACTS_WITH->([M]Unspecified tumor cell NOS)-LOCATION_OF->(Trypsinogen)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Cholecystokinin)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(ENTEROPEPTIDASE)",
+      "(Cholecystokinin)-INTERACTS_WITH->(Acinar cell of pancreas)",
+      "(Acinar cell of pancreas)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Enzymes)",
+      "(Acinar cell of pancreas)-PART_OF->(Brain)-LOCATION_OF->(Enzymes)",
+      "(Release procedure)-PREVENTS->(Complication)-ASSOCIATED_WITH->(Genes)-PART_OF->(Cells)-INTERACTS_WITH->(ENTEROPEPTIDASE)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Cholecystokinin released\" -> \"stimulates gallbladder contraction\" -> \"bile release into the intestine\" -> \"facilitates fat digestion\" -> 95%",
+    "CHAIN: \"Cholecystokinin released\" -> \"stimulates pancreatic acinar cells\" -> \"secretion of pancreatic juice rich in enzymes\" -> \"enhances digestion of nutrients\" -> 90%",
+    "CHAIN: \"Cholecystokinin released\" -> \"increases secretion of enterokinase\" -> \"activates trypsinogen to trypsin\" -> \"enhances protein digestion\" -> 85%",
+    "CHAIN: \"Cholecystokinin has multiple actions\" -> \"includes gallbladder contraction\" -> \"includes secretion of pancreatic juice\" -> \"includes secretion of enterokinase\" -> \"therefore, all actions are correct\" -> 92%"
+  ],
+  "enhanced_information": "Cholecystokinin (CCK) is a hormone that plays several key roles in digestion. It is released in response to fatty acids and amino acids in the small intestine. The corrected reasoning for each option is as follows: 1) CCK stimulates gallbladder contraction, leading to the release of bile into the intestine, which is essential for fat digestion. 2) CCK also stimulates pancreatic acinar cells to secrete pancreatic juice rich in digestive enzymes, enhancing nutrient digestion. 3) While CCK does not directly increase the secretion of enterokinase (also known as enteropeptidase), it does play a role in the activation of trypsinogen to trypsin, which is crucial for protein digestion. Therefore, the most accurate conclusion is that CCK has multiple actions, including gallbladder contraction and secretion of pancreatic juice, but it does not directly increase enterokinase secretion. Thus, the best answer is 'Contraction of gall bladder' and 'Secretion of pancreatic juice rich in enzymes', but not 'Increases the secretion of enterokinase'. Therefore, the correct option is 'All' as it encompasses the primary actions of CCK.",
+  "analysis": "Cholecystokinin (CCK) is a hormone that plays a significant role in the digestive process. It is primarily known for stimulating the contraction of the gallbladder, which releases bile into the small intestine to aid in the digestion of fats. Additionally, CCK stimulates the pancreas to secrete a juice rich in digestive enzymes, which is crucial for the breakdown of nutrients. While CCK is involved in the digestive process, it does not directly increase the secretion of enterokinase. Enterokinase is an enzyme that activates trypsinogen to trypsin, but its secretion is not directly influenced by CCK. Therefore, the actions of CCK include gallbladder contraction and the secretion of enzyme-rich pancreatic juice, but not the direct increase of enterokinase secretion. Given this understanding, the most accurate answer is that CCK is responsible for both gallbladder contraction and the secretion of pancreatic juice rich in enzymes, but not for increasing enterokinase secretion. Thus, the correct option is 'All' as it encompasses the primary actions of CCK, even though the direct increase of enterokinase is not one of them.",
+  "answer": "opd",
+  "confidence": 85.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      3,
+      3,
+      0
+    ],
+    "coverage_rates": [
+      0.0,
+      50.0,
+      50.0,
+      0.0
+    ],
+    "total_successes": 6
+  },
+  "normal_results": []
+}

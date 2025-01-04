@@ -1,0 +1,117 @@
+{
+  "question": "Levamisole is used as all except -",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Single dose in ascariasis",
+    "opb": "Immunostimulant",
+    "opc": "Paralysis of worms by depolarisation",
+    "opd": "Immunodepressant in high doses"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Levamisole",
+        "Ascariasis"
+      ],
+      [
+        "Immunologic Adjuvants",
+        "Immunity"
+      ],
+      [
+        "Levamisole",
+        "Helminthiasis"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Levamisole)-TREATS->(Ascariasis)",
+      "(Immunologic Adjuvants)-CAUSES->(Immunity)",
+      "(Levamisole)-TREATS->(Helminthiasis)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Levamisole",
+        "Disease",
+        "Immunity",
+        "Immunologic Adjuvants"
+      ],
+      [
+        "Levamisole",
+        "Disease",
+        "Antiinflammatory Effect",
+        "Immunologic Adjuvants"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Levamisole)-TREATS->(Disease)-MANIFESTATION_OF->(Immunity)-ASSOCIATED_WITH->(Immunologic Adjuvants)",
+      "(Levamisole)-TREATS->(Disease)-MANIFESTATION_OF->(Antiinflammatory Effect)-ASSOCIATED_WITH->(Immunologic Adjuvants)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Levamisole)-TREATS->(Disease)-MANIFESTATION_OF->(Immunity)-ASSOCIATED_WITH->(Immunologic Adjuvants)",
+      "(Levamisole)-TREATS->(Disease)-MANIFESTATION_OF->(Antiinflammatory Effect)-ASSOCIATED_WITH->(Immunologic Adjuvants)",
+      "(Levamisole)-TREATS->(Ascariasis)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Levamisole\" -> \"used as single dose in ascariasis\" -> \"effective treatment\" -> 90%",
+    "CHAIN: \"Levamisole\" -> \"acts as immunostimulant\" -> \"enhances immune response\" -> 90%",
+    "CHAIN: \"Levamisole\" -> \"causes paralysis of worms\" -> \"depolarisation of worm muscles\" -> 90%",
+    "CHAIN: \"Levamisole\" -> \"immunodepressant in high doses\" -> \"possible but not widely accepted\" -> 60%"
+  ],
+  "enhanced_information": "Levamisole is primarily used as an anthelmintic agent for treating ascariasis, typically administered in a single dose, which aligns with the consensus that it is effective for this purpose. It also acts as an immunostimulant, enhancing the immune response, which is well-supported in the literature. Levamisole causes paralysis of worms through depolarization of their muscle cells, confirming its mechanism of action. However, the claim that it acts as an immunodepressant in high doses is not widely accepted; while there may be some immunosuppressive effects at high doses, this is not its primary or intended use. Therefore, the correct answer to the question is that Levamisole is not used as an immunodepressant in high doses.",
+  "analysis": "Levamisole is primarily recognized as an anthelmintic agent, particularly effective against ascariasis, and is typically administered in a single dose (option opa). It also functions as an immunostimulant (option opb), enhancing the immune response, which is well-documented. The mechanism of action involves causing paralysis of worms through depolarization (option opc), which is consistent with its pharmacological profile. However, the assertion that it acts as an immunodepressant in high doses (option opd) is not widely supported in the literature; while there may be some immunosuppressive effects at high doses, this is not its primary use or indication. Therefore, the most accurate answer to the question is that Levamisole is not used as an immunodepressant in high doses.",
+  "answer": "opd",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      2,
+      1,
+      0
+    ],
+    "coverage_rates": [
+      25.0,
+      50.0,
+      25.0,
+      0.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

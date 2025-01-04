@@ -1,0 +1,230 @@
+{
+  "question": "Which of the following peptides are not produced by the renal system?",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Renin",
+    "opb": "Angiotensin I",
+    "opc": "Erythropoietin",
+    "opd": "1,25DHCC"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Renin",
+        "Excretory function",
+        "Kidney"
+      ],
+      [
+        "Renin",
+        "Thirst",
+        "Kidney"
+      ],
+      [
+        "Renin",
+        "Hypertensive disease",
+        "Disease",
+        "Blood Circulation"
+      ],
+      [
+        "Renin",
+        "Hypertensive disease",
+        "Cardiovascular Diseases",
+        "Blood Circulation"
+      ],
+      [
+        "Renin",
+        "Cachexia",
+        "Disease",
+        "Blood Circulation"
+      ],
+      [
+        "Angiotensinogen",
+        "Cardiovascular Diseases",
+        "Blood Circulation"
+      ],
+      [
+        "Erythropoietin",
+        "Cytoprotection",
+        "Kidney"
+      ],
+      [
+        "Erythropoietin",
+        "Immunity",
+        "Kidney"
+      ],
+      [
+        "Erythropoietin",
+        "biological adaptation to stress",
+        "Kidney"
+      ],
+      [
+        "Vitamin D2",
+        "Disease",
+        "Physiological stress",
+        "Kidney"
+      ],
+      [
+        "Vitamin D2",
+        "Disease",
+        "paracrine",
+        "Kidney"
+      ],
+      [
+        "Vitamin D2",
+        "Disease",
+        "metabolic effects",
+        "Kidney"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Renin)-CAUSES->(Excretory function)-PROCESS_OF->(Kidney)",
+      "(Renin)-CAUSES->(Thirst)-PROCESS_OF->(Kidney)",
+      "(Renin)-CAUSES->(Hypertensive disease)-CAUSES->(Disease)-MANIFESTATION_OF->(Blood Circulation)",
+      "(Renin)-CAUSES->(Hypertensive disease)-CAUSES->(Cardiovascular Diseases)-MANIFESTATION_OF->(Blood Circulation)",
+      "(Renin)-PREDISPOSES->(Cachexia)-CAUSES->(Disease)-MANIFESTATION_OF->(Blood Circulation)",
+      "(Angiotensinogen)-CAUSES->(Cardiovascular Diseases)-MANIFESTATION_OF->(Blood Circulation)",
+      "(Erythropoietin)-CAUSES->(Cytoprotection)-PROCESS_OF->(Kidney)",
+      "(Erythropoietin)-CAUSES->(Immunity)-PROCESS_OF->(Kidney)",
+      "(Erythropoietin)-CAUSES->(biological adaptation to stress)-PROCESS_OF->(Kidney)",
+      "(Vitamin D2)-PREDISPOSES->(Disease)-CAUSES->(Physiological stress)-PROCESS_OF->(Kidney)",
+      "(Vitamin D2)-PREDISPOSES->(Disease)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Kidney)",
+      "(Vitamin D2)-PREDISPOSES->(Disease)-MANIFESTATION_OF->(metabolic effects)-PROCESS_OF->(Kidney)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Angiotensin I",
+        "Endothelial Cells",
+        "Cells",
+        "Renin"
+      ],
+      [
+        "Angiotensin I",
+        "Myocytes, Smooth Muscle",
+        "Hematopoietic stem cells",
+        "Renin"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Angiotensin I)-INTERACTS_WITH->(Endothelial Cells)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Renin)",
+      "(Angiotensin I)-INTERACTS_WITH->(Myocytes, Smooth Muscle)-INTERACTS_WITH->(Hematopoietic stem cells)-INTERACTS_WITH->(Renin)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Angiotensin I)-INTERACTS_WITH->(Endothelial Cells)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Renin)",
+      "(Angiotensin I)-INTERACTS_WITH->(Myocytes, Smooth Muscle)-INTERACTS_WITH->(Hematopoietic stem cells)-INTERACTS_WITH->(Renin)",
+      "(Renin)-CAUSES->(Excretory function)-PROCESS_OF->(Kidney)",
+      "(Renin)-CAUSES->(Thirst)-PROCESS_OF->(Kidney)",
+      "(Erythropoietin)-CAUSES->(Cytoprotection)-PROCESS_OF->(Kidney)",
+      "(Erythropoietin)-CAUSES->(Immunity)-PROCESS_OF->(Kidney)",
+      "(Erythropoietin)-CAUSES->(biological adaptation to stress)-PROCESS_OF->(Kidney)",
+      "(Renin)-CAUSES->(Hypertensive disease)-CAUSES->(Disease)-MANIFESTATION_OF->(Blood Circulation)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Renin\" -> \"produced by juxtaglomerular cells in kidneys\" -> \"part of renal system\" -> 90%",
+    "CHAIN: \"Angiotensin I\" -> \"produced by conversion of angiotensinogen by renin\" -> \"occurs in bloodstream\" -> \"not directly produced by renal system\" -> 85%",
+    "CHAIN: \"Erythropoietin\" -> \"produced by interstitial fibroblasts in kidneys\" -> \"part of renal system\" -> 90%",
+    "CHAIN: \"1,25DHCC\" -> \"active form of vitamin D\" -> \"converted in kidneys\" -> \"produced by renal system\" -> 90%"
+  ],
+  "enhanced_information": "Renin is produced by juxtaglomerular cells in the kidneys, confirming it is part of the renal system. Angiotensin I is not produced directly by the renal system; it is formed in the bloodstream from angiotensinogen by the action of renin, which is produced in the kidneys. Erythropoietin is produced by interstitial fibroblasts in the kidneys, making it part of the renal system. 1,25-Dihydroxyvitamin D (1,25DHCC) is the active form of vitamin D, which is converted in the kidneys, thus it is also produced by the renal system. Therefore, the only peptide not produced by the renal system is Angiotensin I.",
+  "analysis": "To determine which peptide is not produced by the renal system, we analyze each option: Renin is produced by juxtaglomerular cells in the kidneys, confirming it is part of the renal system. Angiotensin I is formed in the bloodstream from angiotensinogen by the action of renin, which is produced in the kidneys, but Angiotensin I itself is not produced by the kidneys. Erythropoietin is produced by interstitial fibroblasts in the kidneys, making it part of the renal system. 1,25-Dihydroxyvitamin D (1,25DHCC) is the active form of vitamin D, which is converted in the kidneys, thus it is also produced by the renal system. Therefore, the only peptide not produced by the renal system is Angiotensin I, as it is a product of a reaction involving renin but not directly produced by the kidneys themselves.",
+  "answer": "opb",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      3,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      16.666666666666664,
+      50.0,
+      16.666666666666664,
+      16.666666666666664
+    ],
+    "total_successes": 6
+  },
+  "normal_results": []
+}

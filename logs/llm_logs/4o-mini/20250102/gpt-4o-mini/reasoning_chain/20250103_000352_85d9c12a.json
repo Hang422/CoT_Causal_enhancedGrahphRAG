@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_000352",
+  "model": "gpt-4o-mini",
+  "interaction_type": "reasoning_chain",
+  "question_id": "85d9c12a",
+  "question_text": "Which of the following is not an action of epinephrine when administered intravenously in a high dose?",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            Which of the following is not an action of epinephrine when administered intravenously in a high dose?\n\n            ### Options\n    opa. Increases liver glycogenolysis\nopb. Causes broachiolar constriction\nopc. Evokes extrasystoles in the heart\nopd. Produces restlessness and anxiety\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"Epinephrine administered intravenously\" -> \"stimulates beta-adrenergic receptors\" -> \"increases heart rate and contractility\" -> \"evokes extrasystoles in the heart\" -> 90%\n\nCHAIN: \"Epinephrine administered intravenously\" -> \"stimulates alpha-adrenergic receptors\" -> \"increases liver glycogenolysis\" -> 90%\n\nCHAIN: \"Epinephrine administered intravenously\" -> \"stimulates beta-2 adrenergic receptors\" -> \"causes bronchodilation\" -> \"possible confusion with bronchiolar constriction\" -> 70%\n\nCHAIN: \"Epinephrine administered intravenously\" -> \"activates the central nervous system\" -> \"produces restlessness and anxiety\" -> 90%\n\nCHAIN: \"Epinephrine administered intravenously\" -> \"causes vasoconstriction\" -> \"increases blood pressure\" -> \"not related to bronchiolar constriction\" -> 85%",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

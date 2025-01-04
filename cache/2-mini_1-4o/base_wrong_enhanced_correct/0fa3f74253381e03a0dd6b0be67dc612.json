@@ -1,0 +1,254 @@
+{
+  "question": "INH induced neuropathy is treated with",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Thiamine",
+    "opb": "Pyridoxine",
+    "opc": "Niacin",
+    "opd": "Riboflavin"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "isoniazid",
+        "Vitamin B 6 Deficiency"
+      ],
+      [
+        "Neuropathy",
+        "Inflammation",
+        "Vitamin B 6 Deficiency"
+      ],
+      [
+        "isoniazid",
+        "Neuropathy"
+      ],
+      [
+        "isoniazid",
+        "Peripheral Neuropathy"
+      ],
+      [
+        "pyridoxine",
+        "Neuropathy"
+      ],
+      [
+        "pyridoxine",
+        "Neuropathy"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(isoniazid)-TREATS->(Vitamin B 6 Deficiency)",
+      "(Neuropathy)-CAUSES->(Inflammation)-CAUSES->(Vitamin B 6 Deficiency)",
+      "(isoniazid)-TREATS->(Neuropathy)",
+      "(isoniazid)-TREATS->(Peripheral Neuropathy)",
+      "(pyridoxine)-TREATS->(Neuropathy)",
+      "(pyridoxine)-TREATS->(Neuropathy)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Neuropathy",
+        "Virus",
+        "Ascorbic Acid",
+        "Vitamin supplementation"
+      ],
+      [
+        "Neuropathy",
+        "Disease",
+        "uptake",
+        "Vitamin supplementation"
+      ],
+      [
+        "Vitamin supplementation",
+        "Genes",
+        "pyridoxine"
+      ],
+      [
+        "Peripheral Neuropathy",
+        "Disease",
+        "Saccharomyces cerevisiae",
+        "pyridoxine"
+      ],
+      [
+        "Peripheral Neuropathy",
+        "Disease",
+        "Saccharomyces cerevisiae",
+        "pyridoxine"
+      ],
+      [
+        "isoniazid",
+        "Complication",
+        "SRY",
+        "Superior segmental bronchus"
+      ],
+      [
+        "isoniazid",
+        "Complication",
+        "SRY",
+        "Superior segmental bronchus"
+      ],
+      [
+        "pyridoxine",
+        "Pathogenesis",
+        "SRY",
+        "Superior segmental bronchus"
+      ],
+      [
+        "pyridoxine",
+        "macrophage",
+        "Cells",
+        "Superior segmental bronchus"
+      ],
+      [
+        "Superior segmental bronchus",
+        "Right lung",
+        "Liver",
+        "pyridoxine"
+      ],
+      [
+        "Superior segmental bronchus",
+        "Obstruction",
+        "Genes",
+        "pyridoxine"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "ISA",
+        "ASSOCIATED_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "PART_OF"
+      ],
+      [
+        "PREVENTS",
+        "ASSOCIATED_WITH",
+        "PART_OF"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "ASSOCIATED_WITH",
+        "PART_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "PART_OF"
+      ],
+      [
+        "PART_OF",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Neuropathy)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Ascorbic Acid)-INTERACTS_WITH->(Vitamin supplementation)",
+      "(Neuropathy)-MANIFESTATION_OF->(Disease)-MANIFESTATION_OF->(uptake)-ASSOCIATED_WITH->(Vitamin supplementation)",
+      "(Vitamin supplementation)-INTERACTS_WITH->(Genes)-INTERACTS_WITH->(pyridoxine)",
+      "(Peripheral Neuropathy)-MANIFESTATION_OF->(Disease)-ASSOCIATED_WITH->(Saccharomyces cerevisiae)-LOCATION_OF->(pyridoxine)",
+      "(Peripheral Neuropathy)-ISA->(Disease)-ASSOCIATED_WITH->(Saccharomyces cerevisiae)-LOCATION_OF->(pyridoxine)",
+      "(isoniazid)-TREATS->(Complication)-ASSOCIATED_WITH->(SRY)-PART_OF->(Superior segmental bronchus)",
+      "(isoniazid)-PREVENTS->(Complication)-ASSOCIATED_WITH->(SRY)-PART_OF->(Superior segmental bronchus)",
+      "(pyridoxine)-ASSOCIATED_WITH->(Pathogenesis)-ASSOCIATED_WITH->(SRY)-PART_OF->(Superior segmental bronchus)",
+      "(pyridoxine)-INTERACTS_WITH->(macrophage)-INTERACTS_WITH->(Cells)-PART_OF->(Superior segmental bronchus)",
+      "(Superior segmental bronchus)-PART_OF->(Right lung)-PART_OF->(Liver)-LOCATION_OF->(pyridoxine)",
+      "(Superior segmental bronchus)-LOCATION_OF->(Obstruction)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(pyridoxine)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(pyridoxine)-TREATS->(Neuropathy)",
+      "(isoniazid)-TREATS->(Neuropathy)",
+      "(Neuropathy)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Ascorbic Acid)-INTERACTS_WITH->(Vitamin supplementation)",
+      "(Peripheral Neuropathy)-ISA/MANIFESTATION_OF->(Disease)-ASSOCIATED_WITH->(Saccharomyces cerevisiae)-LOCATION_OF->(pyridoxine)",
+      "(isoniazid)-TREATS->(Vitamin B 6 Deficiency)",
+      "(isoniazid)-TREATS->(Peripheral Neuropathy)",
+      "(Vitamin supplementation)-INTERACTS_WITH->(Genes)-INTERACTS_WITH->(pyridoxine)",
+      "(pyridoxine)-ASSOCIATED_WITH->(Pathogenesis)-ASSOCIATED_WITH->(SRY)-PART_OF->(Superior segmental bronchus)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"INH induced neuropathy\" -> \"associated with vitamin B6 deficiency\" -> \"Pyridoxine supplementation recommended\" -> 95%",
+    "CHAIN: \"INH induced neuropathy\" -> \"neuropathy symptoms present\" -> \"consider vitamin supplementation\" -> \"Pyridoxine is effective\" -> 90%",
+    "CHAIN: \"INH treatment\" -> \"can lead to peripheral neuropathy\" -> \"Pyridoxine is a known treatment\" -> \"reduces neuropathy symptoms\" -> 85%",
+    "CHAIN: \"INH causes vitamin B6 depletion\" -> \"B6 is crucial for nerve function\" -> \"Pyridoxine corrects deficiency\" -> \"improves neuropathy\" -> 90%"
+  ],
+  "enhanced_information": "Isoniazid (INH) can induce peripheral neuropathy primarily due to its interference with vitamin B6 (pyridoxine) metabolism, leading to a deficiency. Pyridoxine is crucial for nerve function, and its supplementation is recommended to prevent and treat INH-induced neuropathy. The reasoning chains consistently support that pyridoxine supplementation is effective in alleviating neuropathy symptoms associated with INH treatment. Evidence paths confirm that pyridoxine treats neuropathy and is associated with correcting vitamin B6 deficiency caused by isoniazid. Therefore, the best treatment for INH-induced neuropathy is pyridoxine.",
+  "analysis": "Isoniazid (INH) is known to cause peripheral neuropathy due to its interference with vitamin B6 (pyridoxine) metabolism, leading to a deficiency. Pyridoxine is essential for nerve function, and its supplementation is recommended to prevent and treat INH-induced neuropathy. The enhanced information aligns with standard medical knowledge, confirming that pyridoxine supplementation is effective in alleviating neuropathy symptoms associated with INH treatment. Therefore, the most likely correct option for treating INH-induced neuropathy is pyridoxine.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      3,
+      3,
+      4
+    ],
+    "coverage_rates": [
+      16.666666666666664,
+      25.0,
+      25.0,
+      33.33333333333333
+    ],
+    "total_successes": 12
+  },
+  "normal_results": []
+}

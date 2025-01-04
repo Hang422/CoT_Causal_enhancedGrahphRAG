@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_003124",
+  "model": "gpt-4o",
+  "interaction_type": "reasoning_chain",
+  "question_id": "68df05ac",
+  "question_text": "Aminoglycoside affects ?",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            Aminoglycoside affects ?\n\n            ### Options\n    opa. Outer hair cells in basal area\nopb. Inner hair cells in basal area\nopc. Outer hair cells in apical area\nopd. Inner hair cells in apical area\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"Aminoglycoside\" -> \"ototoxicity\" -> \"damage to cochlear hair cells\" -> \"outer hair cells\" -> \"basal area\" -> 85%\n\nCHAIN: \"Aminoglycoside\" -> \"ototoxicity\" -> \"damage to cochlear hair cells\" -> \"inner hair cells\" -> \"basal area\" -> 60%\n\nCHAIN: \"Aminoglycoside\" -> \"ototoxicity\" -> \"damage to cochlear hair cells\" -> \"outer hair cells\" -> \"apical area\" -> 50%\n\nCHAIN: \"Aminoglycoside\" -> \"ototoxicity\" -> \"damage to cochlear hair cells\" -> \"inner hair cells\" -> \"apical area\" -> 40%",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o",
+    "temperature": 0.0
+  }
+}

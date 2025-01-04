@@ -1,0 +1,105 @@
+{
+  "question": "The fluidity of the plasma membrane is increased by",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Arachidonic acid",
+    "opb": "Cholesterol",
+    "opc": "Palmitic acid",
+    "opd": "Stearic acid"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Palmitic Acid",
+        "Cells",
+        "saturated fat"
+      ],
+      [
+        "Palmitic Acid",
+        "Liver",
+        "saturated fat"
+      ],
+      [
+        "stearic acid",
+        "Cells",
+        "saturated fat"
+      ],
+      [
+        "stearic acid",
+        "Subcutaneous Fat",
+        "saturated fat"
+      ]
+    ],
+    "relationships": [
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Palmitic Acid)-PART_OF->(Cells)-LOCATION_OF->(saturated fat)",
+      "(Palmitic Acid)-PART_OF->(Liver)-LOCATION_OF->(saturated fat)",
+      "(stearic acid)-PART_OF->(Cells)-LOCATION_OF->(saturated fat)",
+      "(stearic acid)-PART_OF->(Subcutaneous Fat)-LOCATION_OF->(saturated fat)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Palmitic Acid)-PART_OF->(Cells)-LOCATION_OF->(saturated fat)",
+      "(Palmitic Acid)-PART_OF->(Liver)-LOCATION_OF->(saturated fat)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Arachidonic acid\" -> \"increased membrane fluidity\" -> \"enhanced cell signaling\" -> 85%",
+    "CHAIN: \"Cholesterol\" -> \"maintains membrane integrity\" -> \"prevents excessive fluidity\" -> \"decreased fluidity\" -> 70%",
+    "CHAIN: \"Palmitic acid\" -> \"saturated fatty acid\" -> \"decreased membrane fluidity\" -> \"increased rigidity\" -> 75%",
+    "CHAIN: \"Stearic acid\" -> \"saturated fatty acid\" -> \"decreased membrane fluidity\" -> \"increased rigidity\" -> 75%"
+  ],
+  "enhanced_information": "The fluidity of the plasma membrane is influenced by the types of fatty acids present. Arachidonic acid, a polyunsaturated fatty acid, increases membrane fluidity due to its multiple double bonds, which introduce kinks in the fatty acid chains, preventing tight packing. This aligns with the consensus that unsaturated fatty acids enhance membrane fluidity. Cholesterol, while maintaining membrane integrity, can both increase and decrease fluidity depending on temperature and concentration, but generally acts to stabilize the membrane, preventing excessive fluidity. Palmitic acid and stearic acid are saturated fatty acids, which decrease membrane fluidity by allowing tighter packing of the lipid bilayer. The retrieved evidence paths confirm the presence of palmitic acid as a saturated fat, supporting its role in decreasing fluidity. Therefore, arachidonic acid is the most likely to increase membrane fluidity.",
+  "analysis": "The fluidity of the plasma membrane is primarily influenced by the types of fatty acids present. Unsaturated fatty acids, such as arachidonic acid, increase membrane fluidity due to their multiple double bonds, which introduce kinks in the fatty acid chains and prevent tight packing. This is a well-established principle in physiology. Cholesterol can modulate membrane fluidity, but its effect is more complex and context-dependent, often acting to stabilize the membrane. Saturated fatty acids like palmitic acid and stearic acid decrease fluidity by allowing tighter packing of the lipid bilayer. Given this understanding, arachidonic acid is the most likely to increase membrane fluidity.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      50.0,
+      50.0
+    ],
+    "total_successes": 2
+  },
+  "normal_results": []
+}

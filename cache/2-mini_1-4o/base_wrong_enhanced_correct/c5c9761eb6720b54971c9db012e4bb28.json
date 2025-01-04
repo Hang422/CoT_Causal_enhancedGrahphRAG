@@ -1,0 +1,217 @@
+{
+  "question": "Which of the following beta adrenergic agonist is used as an aerosol for treatment of bronchial asthma?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Salbutamol",
+    "opb": "Ketotifen",
+    "opc": "Fluticasone",
+    "opd": "Monteleukast"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Adrenergic beta-Agonists",
+        "Asthma"
+      ],
+      [
+        "Adrenergic beta-Agonists",
+        "Asthma"
+      ],
+      [
+        "Adrenergic beta-Agonists",
+        "Asthma"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Adrenergic beta-Agonists)-TREATS->(Asthma)",
+      "(Adrenergic beta-Agonists)-TREATS->(Asthma)",
+      "(Adrenergic beta-Agonists)-TREATS->(Asthma)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Albuterol",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Agonists"
+      ],
+      [
+        "Albuterol",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Agonists"
+      ],
+      [
+        "Ketotifen",
+        "Pharmaceutical Preparations",
+        "Preservative free ingredient",
+        "Histamine Antagonists"
+      ],
+      [
+        "Ketotifen",
+        "Pharmaceutical Preparations",
+        "Sedatives",
+        "Histamine Antagonists"
+      ],
+      [
+        "Histamine Antagonists",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Agonists"
+      ],
+      [
+        "Histamine Antagonists",
+        "Stimulant",
+        "Adrenergic beta-Agonists"
+      ],
+      [
+        "fluticasone",
+        "Adrenal Cortex Hormones"
+      ],
+      [
+        "Adrenal Cortex Hormones",
+        "Anti-Inflammatory Agents"
+      ],
+      [
+        "Anti-Inflammatory Agents",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Agonists"
+      ],
+      [
+        "Anti-Inflammatory Agents",
+        "agonists",
+        "Adrenergic beta-Agonists"
+      ],
+      [
+        "Leukotriene Antagonists",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Agonists"
+      ],
+      [
+        "Leukotriene Antagonists",
+        "Anti-Asthmatic Agents",
+        "Adrenergic beta-Agonists"
+      ]
+    ],
+    "relationships": [
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA"
+      ],
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Albuterol)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Agonists)",
+      "(Albuterol)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Agonists)",
+      "(Ketotifen)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Preservative free ingredient)-INTERACTS_WITH->(Histamine Antagonists)",
+      "(Ketotifen)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Sedatives)-INTERACTS_WITH->(Histamine Antagonists)",
+      "(Histamine Antagonists)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Agonists)",
+      "(Histamine Antagonists)-INTERACTS_WITH->(Stimulant)-INTERACTS_WITH->(Adrenergic beta-Agonists)",
+      "(fluticasone)-ISA->(Adrenal Cortex Hormones)",
+      "(Adrenal Cortex Hormones)-INTERACTS_WITH->(Anti-Inflammatory Agents)",
+      "(Anti-Inflammatory Agents)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Agonists)",
+      "(Anti-Inflammatory Agents)-INTERACTS_WITH->(agonists)-INTERACTS_WITH->(Adrenergic beta-Agonists)",
+      "(Leukotriene Antagonists)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Agonists)",
+      "(Leukotriene Antagonists)-INTERACTS_WITH->(Anti-Asthmatic Agents)-INTERACTS_WITH->(Adrenergic beta-Agonists)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Adrenergic beta-Agonists)-Agonists)->(Asthma)",
+      "(Albuterol)-INTERACTS_WITH/ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Agonists)-Agonists)",
+      "(fluticasone)-ISA->(Adrenal Cortex Hormones)",
+      "(Histamine Antagonists)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Agonists)",
+      "(Histamine Antagonists)-INTERACTS_WITH->(Stimulant)-INTERACTS_WITH->(Adrenergic beta-Agonists)",
+      "(Leukotriene Antagonists)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Agonists)",
+      "(Leukotriene Antagonists)-INTERACTS_WITH->(Anti-Asthmatic Agents)-INTERACTS_WITH->(Adrenergic beta-Agonists)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Salbutamol\" -> \"beta adrenergic agonist\" -> \"bronchodilation\" -> \"used in aerosol form\" -> \"effective for bronchial asthma\" -> 95%",
+    "CHAIN: \"Ketotifen\" -> \"antihistamine\" -> \"not a beta adrenergic agonist\" -> \"not used for bronchial asthma\" -> 10%",
+    "CHAIN: \"Fluticasone\" -> \"corticosteroid\" -> \"anti-inflammatory\" -> \"not a beta adrenergic agonist\" -> \"not used as aerosol for bronchial asthma\" -> 15%",
+    "CHAIN: \"Montelukast\" -> \"leukotriene receptor antagonist\" -> \"not a beta adrenergic agonist\" -> \"not used as aerosol for bronchial asthma\" -> 10%"
+  ],
+  "enhanced_information": "Salbutamol is a beta adrenergic agonist that is commonly used as an aerosol for the treatment of bronchial asthma due to its bronchodilatory effects. Ketotifen is an antihistamine and not a beta adrenergic agonist, thus it is not used for bronchial asthma. Fluticasone is a corticosteroid with anti-inflammatory properties but is not a beta adrenergic agonist and is not used as an aerosol for bronchial asthma. Montelukast is a leukotriene receptor antagonist and also not a beta adrenergic agonist, hence it is not used as an aerosol for bronchial asthma. Therefore, the correct answer is Salbutamol.",
+  "analysis": "The question asks for a beta adrenergic agonist used as an aerosol for the treatment of bronchial asthma. Salbutamol is a well-known beta-2 adrenergic agonist that is commonly administered via inhalation (aerosol) to provide quick relief from bronchospasm in asthma patients. Ketotifen is an antihistamine, Fluticasone is a corticosteroid, and Montelukast is a leukotriene receptor antagonist; none of these are beta adrenergic agonists or used as aerosols for immediate bronchodilation in asthma. Therefore, based on standard medical knowledge and consensus, Salbutamol is the correct answer.",
+  "answer": "opa",
+  "confidence": 100.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      3,
+      4,
+      2
+    ],
+    "coverage_rates": [
+      10.0,
+      30.0,
+      40.0,
+      20.0
+    ],
+    "total_successes": 10
+  },
+  "normal_results": []
+}

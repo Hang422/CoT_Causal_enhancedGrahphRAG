@@ -1,0 +1,146 @@
+{
+  "question": "Essential amino acids are all except:",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Leucine",
+    "opb": "Lysine",
+    "opc": "Methionine",
+    "opd": "Proline"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Leucine",
+        "T-Lymphocyte",
+        "Amino Acids"
+      ],
+      [
+        "Leucine",
+        "Cells",
+        "Amino Acids"
+      ],
+      [
+        "Lysine",
+        "Cells",
+        "Amino Acids"
+      ],
+      [
+        "Lysine",
+        "Cells",
+        "Amino Acids"
+      ],
+      [
+        "Methionine",
+        "Cells",
+        "Amino Acids"
+      ],
+      [
+        "Methionine",
+        "Cells",
+        "Amino Acids"
+      ],
+      [
+        "Proline",
+        "Cells",
+        "Amino Acids"
+      ],
+      [
+        "Proline",
+        "Cells",
+        "Amino Acids"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Leucine)-INTERACTS_WITH->(T-Lymphocyte)-INTERACTS_WITH->(Amino Acids)",
+      "(Leucine)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Amino Acids)",
+      "(Lysine)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Amino Acids)",
+      "(Lysine)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Amino Acids)",
+      "(Methionine)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Amino Acids)",
+      "(Methionine)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Amino Acids)",
+      "(Proline)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Amino Acids)",
+      "(Proline)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Amino Acids)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Leucine)-INTERACTS_WITH->(T-Lymphocyte)-INTERACTS_WITH->(Amino Acids)",
+      "(Leucine)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Amino Acids)",
+      "(Lysine)-INTERACTS_WITH->(Cells)-INTERACTS_WITH/LOCATION_OF->(Amino Acids)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Leucine\" -> \"essential amino acid\" -> \"required for protein synthesis\" -> 90%",
+    "CHAIN: \"Lysine\" -> \"essential amino acid\" -> \"important for growth and tissue repair\" -> 90%",
+    "CHAIN: \"Methionine\" -> \"essential amino acid\" -> \"involved in methylation processes\" -> 90%",
+    "CHAIN: \"Proline\" -> \"non-essential amino acid\" -> \"synthesized by the body\" -> 95%"
+  ],
+  "enhanced_information": "Among the options provided, Leucine, Lysine, and Methionine are all classified as essential amino acids, meaning they cannot be synthesized by the body and must be obtained through diet. Proline, however, is considered a non-essential amino acid because the body can synthesize it from other compounds. Therefore, the correct answer to the question is Proline, as it is not an essential amino acid. The reasoning aligns with the consensus in biochemistry regarding amino acid classification.",
+  "analysis": "Essential amino acids are those that cannot be synthesized by the body and must be obtained through the diet. Among the options provided, Leucine, Lysine, and Methionine are all classified as essential amino acids. Proline, on the other hand, is classified as a non-essential amino acid because the body can synthesize it from other compounds. This classification is well-established in biochemistry. Therefore, the correct answer to the question is Proline, as it is not an essential amino acid.",
+  "answer": "opd",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      25.0,
+      25.0,
+      25.0,
+      25.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

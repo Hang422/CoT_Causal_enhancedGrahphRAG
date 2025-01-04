@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_000713",
+  "model": "gpt-4o-mini",
+  "interaction_type": "reasoning_chain",
+  "question_id": "312e954e",
+  "question_text": "Drug of choice in pneumonia caused by P. carinii is :",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            Drug of choice in pneumonia caused by P. carinii is :\n\n            ### Options\n    opa. Penicillin\nopb. Cotrimoxazole\nopc. Kanamycin\nopd. Levofloxacin\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"Pneumonia caused by P. carinii\" -> \"commonly associated with immunocompromised patients\" -> \"treatment typically involves specific antibiotics\" -> \"Cotrimoxazole is effective against P. carinii\" -> 95%\n\nCHAIN: \"Pneumonia caused by P. carinii\" -> \"often seen in patients with HIV/AIDS\" -> \"standard treatment guidelines recommend Cotrimoxazole\" -> \"other options are less effective\" -> 90%\n\nCHAIN: \"Pneumonia caused by P. carinii\" -> \"requires targeted antibiotic therapy\" -> \"Cotrimoxazole is the first-line treatment\" -> \"other antibiotics like Penicillin are not effective\" -> 85%\n\nCHAIN: \"Pneumonia caused by P. carinii\" -> \"not typically treated with Levofloxacin\" -> \"Cotrimoxazole is the preferred choice\" -> \"Kanamycin is not indicated\" -> 80%",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

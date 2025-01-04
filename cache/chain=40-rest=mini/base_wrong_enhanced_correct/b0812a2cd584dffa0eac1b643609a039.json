@@ -1,0 +1,207 @@
+{
+  "question": "Which of the following diuretics is contraindicated in the presence of cardiac failure?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Mannitol",
+    "opb": "Spironolactone",
+    "opc": "Furosemide",
+    "opd": "Hydrochlorothiazide"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Potassium Sparing Diuretics",
+        "Hyponatremia",
+        "Hypernatremia"
+      ],
+      [
+        "Potassium Sparing Diuretics",
+        "Disease",
+        "Hypernatremia"
+      ],
+      [
+        "Potassium Sparing Diuretics",
+        "Hypertensive disease",
+        "Hypernatremia"
+      ],
+      [
+        "Hypernatremia",
+        "Heart failure"
+      ],
+      [
+        "Loop Diuretics",
+        "Hypernatremia"
+      ],
+      [
+        "Hypernatremia",
+        "Heart failure"
+      ],
+      [
+        "Thiazide Diuretics",
+        "Hypernatremia"
+      ],
+      [
+        "Hypernatremia",
+        "Heart failure"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Potassium Sparing Diuretics)-CAUSES->(Hyponatremia)-CAUSES->(Hypernatremia)",
+      "(Potassium Sparing Diuretics)-TREATS->(Disease)-CAUSES->(Hypernatremia)",
+      "(Potassium Sparing Diuretics)-TREATS->(Hypertensive disease)-CAUSES->(Hypernatremia)",
+      "(Hypernatremia)-CAUSES->(Heart failure)",
+      "(Loop Diuretics)-PREDISPOSES->(Hypernatremia)",
+      "(Hypernatremia)-CAUSES->(Heart failure)",
+      "(Thiazide Diuretics)-TREATS->(Hypernatremia)",
+      "(Hypernatremia)-CAUSES->(Heart failure)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Mannitol",
+        "Diuretics, Osmotic"
+      ],
+      [
+        "Mannitol",
+        "Diuretics, Osmotic"
+      ],
+      [
+        "Spironolactone",
+        "Potassium Sparing Diuretics"
+      ],
+      [
+        "Furosemide",
+        "Pharmaceutical Preparations",
+        "Loop Diuretics"
+      ],
+      [
+        "Furosemide",
+        "Cells",
+        "Loop Diuretics"
+      ],
+      [
+        "Hydrochlorothiazide",
+        "Pharmaceutical Preparations",
+        "Thiazide Diuretics"
+      ],
+      [
+        "Hydrochlorothiazide",
+        "Excretory function",
+        "Thiazide Diuretics"
+      ]
+    ],
+    "relationships": [
+      [
+        "ISA"
+      ],
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Mannitol)-ISA->(Diuretics, Osmotic)",
+      "(Mannitol)-INTERACTS_WITH->(Diuretics, Osmotic)",
+      "(Spironolactone)-ISA->(Potassium Sparing Diuretics)",
+      "(Furosemide)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Loop Diuretics)",
+      "(Furosemide)-PART_OF->(Cells)-LOCATION_OF->(Loop Diuretics)",
+      "(Hydrochlorothiazide)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Thiazide Diuretics)",
+      "(Hydrochlorothiazide)-CAUSES->(Excretory function)-ASSOCIATED_WITH->(Thiazide Diuretics)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Thiazide Diuretics)-TREATS->(Hypernatremia)",
+      "(Mannitol)-INTERACTS_WITH/ISA->(Diuretics, Osmotic)",
+      "(Spironolactone)-ISA->(Potassium Sparing Diuretics)",
+      "(Hydrochlorothiazide)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Thiazide Diuretics)",
+      "(Hydrochlorothiazide)-CAUSES->(Excretory function)-ASSOCIATED_WITH->(Thiazide Diuretics)",
+      "(Potassium Sparing Diuretics)-CAUSES->(Hyponatremia)-CAUSES->(Hypernatremia)",
+      "(Potassium Sparing Diuretics)-TREATS->(Disease)-CAUSES->(Hypernatremia)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Mannitol\" -> \"osmotic diuretic\" -> \"increases plasma volume\" -> \"worsens cardiac failure\" -> 95%",
+    "CHAIN: \"Spironolactone\" -> \"potassium-sparing diuretic\" -> \"reduces fluid overload\" -> \"beneficial in cardiac failure\" -> 85%",
+    "CHAIN: \"Furosemide\" -> \"loop diuretic\" -> \"reduces fluid overload\" -> \"beneficial in cardiac failure\" -> 90%",
+    "CHAIN: \"Hydrochlorothiazide\" -> \"thiazide diuretic\" -> \"reduces fluid overload\" -> \"beneficial in mild cardiac failure\" -> 80%"
+  ],
+  "enhanced_information": "Mannitol is an osmotic diuretic that increases plasma volume, which can worsen cardiac failure, making it contraindicated in this condition. Spironolactone is a potassium-sparing diuretic that reduces fluid overload and is beneficial in cardiac failure. Furosemide, a loop diuretic, also reduces fluid overload and is beneficial in managing cardiac failure. Hydrochlorothiazide, while generally beneficial in mild cardiac failure, is less effective in severe cases. Therefore, the diuretic contraindicated in the presence of cardiac failure is Mannitol.",
+  "analysis": "In the context of cardiac failure, the choice of diuretics is critical. Mannitol, an osmotic diuretic, increases plasma volume and can exacerbate fluid overload, making it contraindicated in patients with cardiac failure. On the other hand, spironolactone and furosemide are beneficial in managing fluid overload associated with cardiac failure. Hydrochlorothiazide can be used in mild cases but is less effective in severe heart failure. Therefore, the consensus clearly indicates that Mannitol is the diuretic that should not be used in the presence of cardiac failure due to its potential to worsen the condition.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      3,
+      3,
+      3
+    ],
+    "coverage_rates": [
+      10.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "total_successes": 10
+  },
+  "normal_results": []
+}

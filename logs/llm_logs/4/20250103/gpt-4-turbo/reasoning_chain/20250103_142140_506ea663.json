@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_142140",
+  "model": "gpt-4-turbo",
+  "interaction_type": "reasoning_chain",
+  "question_id": "506ea663",
+  "question_text": "A 9-year-old boy diagnosed as uncomplicated pulmonary tuberculosis. He is put on isoniazid, rifampin, and ethambutol at home after initial treatment given at hospital. Which is accurate statement for this scenario?",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            A 9-year-old boy diagnosed as uncomplicated pulmonary tuberculosis. He is put on isoniazid, rifampin, and ethambutol at home after initial treatment given at hospital. Which is accurate statement for this scenario?\n\n            ### Options\n    opa. His 3-year-old sibling should receive INH prophylaxis\nopb. A baseline test of auditory function test is essential before drug treatment is initiated\nopc. Polyahralgia is a potential adverse effect of the drugs the boy is taking\nopd. His mother, who takes care of him, does not need INH prophylaxis\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"Isoniazid, rifampin, and ethambutol prescribed\" -> \"Close contacts at risk of infection\" -> \"3-year-old sibling is a close contact\" -> \"INH prophylaxis recommended for close contacts without active TB\" -> \"His 3-year-old sibling should receive INH prophylaxis\" -> 95%\n\nCHAIN: \"Isoniazid, rifampin, and ethambutol prescribed\" -> \"Ethambutol can cause optic neuritis\" -> \"Optic neuritis affects vision\" -> \"Baseline test of visual function is essential\" -> \"A baseline test of auditory function test is not directly relevant\" -> 80%\n\nCHAIN: \"Isoniazid, rifampin, and ethambutol prescribed\" -> \"Rifampin can cause flu-like symptoms\" -> \"Polyarthralgia is joint pain\" -> \"Joint pain is not a typical side effect of these drugs\" -> \"Polyarthralgia is a potential adverse effect of the drugs the boy is taking\" -> 60%\n\nCHAIN: \"Isoniazid, rifampin, and ethambutol prescribed\" -> \"Mother is a close contact\" -> \"Close contacts at risk of latent TB infection\" -> \"INH prophylaxis recommended for close contacts without active TB\" -> \"His mother, who takes care of him, does not need INH prophylaxis\" -> 50%",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

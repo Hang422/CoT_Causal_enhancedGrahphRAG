@@ -1,0 +1,103 @@
+{
+  "question": "HMP shunt occurs in all organs except ?",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Liver",
+    "opb": "Adipose tissue",
+    "opc": "RBC",
+    "opd": "Brain"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Erythrocytes",
+        "Glutathione"
+      ],
+      [
+        "Erythrocytes",
+        "ATP8A2 gene|ATP8A2",
+        "Mitochondria"
+      ],
+      [
+        "Erythrocytes",
+        "ATP8A2 gene|ATP8A2",
+        "Mitochondria"
+      ],
+      [
+        "Mitochondria",
+        "Erythrocytes"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "PART_OF"
+      ]
+    ],
+    "paths": [
+      "(Erythrocytes)-INTERACTS_WITH->(Glutathione)",
+      "(Erythrocytes)-INTERACTS_WITH->(ATP8A2 gene|ATP8A2)-PART_OF->(Mitochondria)",
+      "(Erythrocytes)-LOCATION_OF->(ATP8A2 gene|ATP8A2)-PART_OF->(Mitochondria)",
+      "(Mitochondria)-PART_OF->(Erythrocytes)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Erythrocytes)-INTERACTS_WITH/LOCATION_OF->(ATP8A2 gene|ATP8A2)-PART_OF->(Mitochondria)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"HMP shunt\" -> \"occurs in liver\" -> \"liver has high metabolic activity\" -> 90%",
+    "CHAIN: \"HMP shunt\" -> \"occurs in adipose tissue\" -> \"adipose tissue requires NADPH for fatty acid synthesis\" -> 90%",
+    "CHAIN: \"HMP shunt\" -> \"occurs in RBC\" -> \"RBC requires NADPH for maintaining reduced glutathione\" -> 90%",
+    "CHAIN: \"HMP shunt\" -> \"occurs in brain\" -> \"brain requires NADPH for biosynthetic reactions\" -> 90%",
+    "CHAIN: \"HMP shunt\" -> \"does not occur in RBC\" -> \"RBC lacks mitochondria\" -> \"RBC relies on glycolysis\" -> 95%"
+  ],
+  "enhanced_information": "The Hexose Monophosphate (HMP) shunt, also known as the pentose phosphate pathway, is present in most cells as it provides NADPH for reductive biosynthesis and ribose-5-phosphate for nucleotide synthesis. In the liver, adipose tissue, and brain, the HMP shunt is active due to their need for NADPH in fatty acid synthesis and other biosynthetic processes. In red blood cells (RBCs), the HMP shunt is crucial for generating NADPH to maintain reduced glutathione, which protects against oxidative damage. The reasoning chain suggesting the HMP shunt does not occur in RBCs due to the lack of mitochondria is incorrect, as the pathway is cytosolic and does not require mitochondria. Therefore, the HMP shunt occurs in RBCs despite their lack of mitochondria. The correct answer is that the HMP shunt occurs in all the listed organs, including RBCs, and the question may be misleading as it implies an exception that does not exist based on standard biochemical consensus.",
+  "analysis": "The Hexose Monophosphate (HMP) shunt, or pentose phosphate pathway, is a cytosolic process that occurs in most cells. It is essential for producing NADPH and ribose-5-phosphate. NADPH is crucial for reductive biosynthesis and maintaining reduced glutathione, especially in red blood cells (RBCs) to protect against oxidative damage. The pathway is active in the liver, adipose tissue, and brain due to their biosynthetic needs. Although RBCs lack mitochondria, the HMP shunt is cytosolic and does not require mitochondria, thus it is active in RBCs. Therefore, the HMP shunt occurs in all the listed organs, and the question's implication of an exception is misleading. Based on standard biochemical knowledge, the HMP shunt is present in all the options provided, including RBCs.",
+  "answer": "opc",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      1,
+      0,
+      2
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      33.33333333333333,
+      0.0,
+      66.66666666666666
+    ],
+    "total_successes": 3
+  },
+  "normal_results": []
+}

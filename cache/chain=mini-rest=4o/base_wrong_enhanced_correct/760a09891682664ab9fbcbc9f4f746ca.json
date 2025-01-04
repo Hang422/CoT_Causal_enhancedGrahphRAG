@@ -1,0 +1,138 @@
+{
+  "question": "Most potent mineralocoicoid is",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Aldosterone",
+    "opb": "DOCA",
+    "opc": "Fludrocoeisone",
+    "opd": "Triamcinolone"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Mineralocorticoids",
+        "Aldosterone"
+      ],
+      [
+        "Aldosterone",
+        "Mineralocorticoids"
+      ],
+      [
+        "Aldosterone",
+        "Mineralocorticoids"
+      ],
+      [
+        "Desoxycorticosterone acetate",
+        "Mineralocorticoids"
+      ],
+      [
+        "Desoxycorticosterone acetate",
+        "Mineralocorticoids"
+      ],
+      [
+        "Mineralocorticoids",
+        "Aldosterone"
+      ],
+      [
+        "Hydrocortisone",
+        "Aldosterone"
+      ],
+      [
+        "Triamcinolone",
+        "Glucocorticoids"
+      ],
+      [
+        "Glucocorticoids",
+        "Mineralocorticoids"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA"
+      ],
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA"
+      ],
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA"
+      ],
+      [
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Mineralocorticoids)-INTERACTS_WITH->(Aldosterone)",
+      "(Aldosterone)-ISA->(Mineralocorticoids)",
+      "(Aldosterone)-INTERACTS_WITH->(Mineralocorticoids)",
+      "(Desoxycorticosterone acetate)-ISA->(Mineralocorticoids)",
+      "(Desoxycorticosterone acetate)-INTERACTS_WITH->(Mineralocorticoids)",
+      "(Mineralocorticoids)-INTERACTS_WITH->(Aldosterone)",
+      "(Hydrocortisone)-INTERACTS_WITH->(Aldosterone)",
+      "(Triamcinolone)-ISA->(Glucocorticoids)",
+      "(Glucocorticoids)-INTERACTS_WITH->(Mineralocorticoids)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Mineralocorticoids)-INTERACTS_WITH->(Aldosterone)",
+      "(Aldosterone)-INTERACTS_WITH/ISA->(Mineralocorticoids)",
+      "(Desoxycorticosterone acetate)-INTERACTS_WITH/ISA->(Mineralocorticoids)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Mineralocorticoids\" -> \"regulate sodium and potassium balance\" -> \"aldosterone is a primary mineralocorticoid\" -> \"aldosterone is the most potent mineralocorticoid\" -> 95%",
+    "CHAIN: \"DOCA (Deoxycorticosterone Acetate)\" -> \"is a mineralocorticoid\" -> \"less potent than aldosterone\" -> \"aldosterone is more commonly recognized as the most potent\" -> 85%",
+    "CHAIN: \"Fludrocortisone\" -> \"is a synthetic mineralocorticoid\" -> \"more potent than cortisol\" -> \"but not as potent as aldosterone\" -> 80%",
+    "CHAIN: \"Triamcinolone\" -> \"is a glucocorticoid\" -> \"not classified as a mineralocorticoid\" -> \"does not have mineralocorticoid potency\" -> 70%"
+  ],
+  "enhanced_information": "Aldosterone is the most potent mineralocorticoid, as it is the primary hormone responsible for regulating sodium and potassium balance in the body. This aligns with the consensus that aldosterone is the most potent among mineralocorticoids. Deoxycorticosterone acetate (DOCA) is a mineralocorticoid but is less potent than aldosterone. Fludrocortisone is a synthetic mineralocorticoid and is more potent than cortisol but not as potent as aldosterone. Triamcinolone is a glucocorticoid and does not possess mineralocorticoid potency. The evidence paths confirm that aldosterone is a key mineralocorticoid, supporting its role as the most potent in this category.",
+  "analysis": "The question asks for the most potent mineralocorticoid. Mineralocorticoids are hormones that regulate electrolyte and water balance, primarily through their action on the kidneys. Aldosterone is the primary endogenous mineralocorticoid in the human body and is known for its potent effects on sodium retention and potassium excretion. Deoxycorticosterone acetate (DOCA) is a mineralocorticoid but is less potent than aldosterone. Fludrocortisone is a synthetic mineralocorticoid with significant potency, often used in clinical settings for its mineralocorticoid effects, but it is primarily used for its glucocorticoid activity. Triamcinolone is a glucocorticoid and does not have significant mineralocorticoid activity. Based on standard medical knowledge and the enhanced information provided, aldosterone is the most potent natural mineralocorticoid. Therefore, the most likely correct answer is aldosterone.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      2,
+      1,
+      2
+    ],
+    "coverage_rates": [
+      28.57142857142857,
+      28.57142857142857,
+      14.285714285714285,
+      28.57142857142857
+    ],
+    "total_successes": 7
+  },
+  "normal_results": []
+}

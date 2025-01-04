@@ -1,0 +1,204 @@
+{
+  "question": "A person on anti-tubercular drugs complained of deafness and tinnitus in one ear. Drug implicated is?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Streptomycin",
+    "opb": "Isoniazid",
+    "opc": "Ethambutol",
+    "opd": "Rifampicin"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Ototoxicity",
+        "Tinnitus"
+      ],
+      [
+        "isoniazid",
+        "Neuropathy"
+      ],
+      [
+        "Neuropathy",
+        "Deafness"
+      ],
+      [
+        "Ethambutol",
+        "Disorder of the optic nerve",
+        "Visual alteration"
+      ],
+      [
+        "Ethambutol",
+        "Disease",
+        "Visual alteration"
+      ],
+      [
+        "Ethambutol",
+        "Infection",
+        "Visual alteration"
+      ],
+      [
+        "Visual alteration",
+        "Symptoms",
+        "Deafness"
+      ],
+      [
+        "Visual alteration",
+        "Syndrome",
+        "Deafness"
+      ],
+      [
+        "Visual alteration",
+        "Disease",
+        "Deafness"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Ototoxicity)-CAUSES->(Tinnitus)",
+      "(isoniazid)-TREATS->(Neuropathy)",
+      "(Neuropathy)-CAUSES->(Deafness)",
+      "(Ethambutol)-CAUSES->(Disorder of the optic nerve)-CAUSES->(Visual alteration)",
+      "(Ethambutol)-TREATS->(Disease)-CAUSES->(Visual alteration)",
+      "(Ethambutol)-TREATS->(Infection)-CAUSES->(Visual alteration)",
+      "(Visual alteration)-CAUSES->(Symptoms)-CAUSES->(Deafness)",
+      "(Visual alteration)-PREDISPOSES->(Syndrome)-CAUSES->(Deafness)",
+      "(Visual alteration)-MANIFESTATION_OF->(Disease)-CAUSES->(Deafness)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Tinnitus",
+        "Disease",
+        "Virus",
+        "Streptomycin"
+      ],
+      [
+        "Tinnitus",
+        "Disease",
+        "Virus",
+        "Streptomycin"
+      ],
+      [
+        "Deafness",
+        "Disease",
+        "Virus",
+        "Streptomycin"
+      ],
+      [
+        "Deafness",
+        "Disease",
+        "Virus",
+        "Streptomycin"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREDISPOSES",
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "COMPLICATES",
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Tinnitus)-PREDISPOSES->(Disease)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Streptomycin)",
+      "(Tinnitus)-MANIFESTATION_OF->(Disease)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Streptomycin)",
+      "(Deafness)-COMPLICATES->(Disease)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Streptomycin)",
+      "(Deafness)-PREDISPOSES->(Disease)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Streptomycin)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Deafness)-COMPLICATES/PREDISPOSES->(Disease)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Streptomycin)",
+      "(Ethambutol)-CAUSES->(Disorder of the optic nerve)-CAUSES->(Visual alteration)",
+      "(Tinnitus)-MANIFESTATION_OF/PREDISPOSES->(Disease)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Streptomycin)",
+      "(isoniazid)-TREATS->(Neuropathy)",
+      "(Ethambutol)-TREATS->(Disease)-CAUSES->(Visual alteration)",
+      "(Ethambutol)-TREATS->(Infection)-CAUSES->(Visual alteration)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Anti-tubercular drugs\" -> \"possible side effects\" -> \"ototoxicity\" -> \"deafness and tinnitus\" -> \"Streptomycin\" -> 85%",
+    "CHAIN: \"Anti-tubercular drugs\" -> \"Isoniazid\" -> \"neuropathy\" -> \"not typically associated with deafness\" -> \"unlikely\" -> 70%",
+    "CHAIN: \"Anti-tubercular drugs\" -> \"Ethambutol\" -> \"visual disturbances\" -> \"not associated with hearing loss\" -> \"unlikely\" -> 75%",
+    "CHAIN: \"Anti-tubercular drugs\" -> \"Rifampicin\" -> \"hepatotoxicity\" -> \"not associated with deafness\" -> \"unlikely\" -> 70%"
+  ],
+  "enhanced_information": "Streptomycin is an anti-tubercular drug known for its potential ototoxicity, which can lead to side effects such as deafness and tinnitus. The reasoning chain for Streptomycin is supported by consensus, as it is well-documented that this drug can cause these auditory complications. In contrast, Isoniazid is primarily associated with peripheral neuropathy and is not typically linked to hearing loss, making it unlikely to be the cause in this case. Ethambutol is known for causing visual disturbances rather than auditory issues, and Rifampicin is associated with hepatotoxicity but not with deafness. Therefore, the most likely drug implicated in the patient's symptoms of deafness and tinnitus is Streptomycin.",
+  "analysis": "The core medical principle here is the recognition of drug-induced ototoxicity, which is a well-documented side effect of certain medications. Among the anti-tubercular drugs listed, Streptomycin is known for its potential to cause ototoxicity, leading to symptoms such as deafness and tinnitus. This is due to its classification as an aminoglycoside antibiotic, a group known for such side effects. Isoniazid, Ethambutol, and Rifampicin do not typically cause auditory issues; Isoniazid is more associated with peripheral neuropathy, Ethambutol with visual disturbances, and Rifampicin with hepatotoxicity. Therefore, based on standard medical knowledge and consensus, Streptomycin is the most likely drug implicated in the patient's symptoms.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      3,
+      2,
+      2,
+      0
+    ],
+    "coverage_rates": [
+      42.857142857142854,
+      28.57142857142857,
+      28.57142857142857,
+      0.0
+    ],
+    "total_successes": 7
+  },
+  "normal_results": []
+}

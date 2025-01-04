@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_000029",
+  "model": "gpt-4o-mini",
+  "interaction_type": "reasoning_chain",
+  "question_id": "a64b6350",
+  "question_text": "Therapeutic blood range of theophylline in microgram per L is:",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            Therapeutic blood range of theophylline in microgram per L is:\n\n            ### Options\n    opa. 0-5\nopb. 10-May\nopc. 15-May\nopd. 20-May\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"Theophylline therapeutic range\" -> \"commonly accepted range is 10-20 micrograms per L\" -> \"option opb and opc are plausible\" -> \"opb (10-May) and opc (15-May) are within range\" -> 85%\n\nCHAIN: \"Theophylline is a bronchodilator\" -> \"therapeutic levels are important for efficacy\" -> \"therapeutic range is typically 10-20 micrograms per L\" -> \"option opd (20-May) is at the upper limit\" -> 90%\n\nCHAIN: \"Theophylline levels monitored for toxicity\" -> \"therapeutic range is crucial for safety\" -> \"standard therapeutic range is 10-20 micrograms per L\" -> \"options opb (10-May), opc (15-May), and opd (20-May) are valid\" -> 80%\n\nCHAIN: \"Therapeutic range for theophylline\" -> \"generally accepted as 10-20 micrograms per L\" -> \"option opa (0-5) is too low\" -> \"options opb, opc, and opd are acceptable\" -> 75%",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

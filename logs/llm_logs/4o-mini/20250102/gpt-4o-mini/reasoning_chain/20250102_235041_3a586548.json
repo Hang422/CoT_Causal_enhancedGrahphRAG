@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250102_235041",
+  "model": "gpt-4o-mini",
+  "interaction_type": "reasoning_chain",
+  "question_id": "3a586548",
+  "question_text": "Digestion of disaccharides occurs at ?",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            Digestion of disaccharides occurs at ?\n\n            ### Options\n    opa. Mouth\nopb. Stomach\nopc. Small intestine\nopd. Large intestine\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"Disaccharides enter the digestive system\" -> \"Salivary amylase begins to break down carbohydrates\" -> \"Disaccharides are not fully digested in the mouth\" -> \"Disaccharides reach the small intestine\" -> \"Enzymes like maltase, sucrase, and lactase act on disaccharides\" -> \"Disaccharides are broken down into monosaccharides\" -> 95%\n\nCHAIN: \"Disaccharides are consumed\" -> \"They pass through the stomach\" -> \"Stomach acid does not digest disaccharides\" -> \"Disaccharides enter the small intestine\" -> \"Pancreatic enzymes further assist in digestion\" -> \"Final digestion occurs in the small intestine\" -> 90%\n\nCHAIN: \"Disaccharides are ingested\" -> \"They travel through the esophagus\" -> \"They reach the stomach\" -> \"Stomach does not digest disaccharides\" -> \"Disaccharides move to the small intestine\" -> \"Specific enzymes in the small intestine digest disaccharides\" -> 85%\n\nCHAIN: \"Disaccharides are consumed\" -> \"They enter the digestive tract\" -> \"They reach the stomach\" -> \"No significant digestion occurs in the stomach\" -> \"Disaccharides arrive in the small intestine\" -> \"Digestion of disaccharides occurs primarily in the small intestine\" -> 90%",
+  "metadata": {
+    "topic": "Physiology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

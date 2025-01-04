@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_154247",
+  "model": "gpt-4-turbo",
+  "interaction_type": "direct_answer",
+  "question_id": "312e954e",
+  "question_text": "Drug of choice in pneumonia caused by P. carinii is :",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on medical knowledge."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.Please help answer this multiple choice question:\n\nQuestion: Drug of choice in pneumonia caused by P. carinii is :\n\nOptions:\nopa. Penicillin\nopb. Cotrimoxazole\nopc. Kanamycin\nopd. Levofloxacin\n\n        ### Output Format\n        Provide your response in valid JSON format:\n        {   \n            \"final_analysis\": \"Your concise analysis following the above structure\",\n            \"answer\": \"Option key from the available options (only key,like opa)\",\n            \"confidence\": Score between 0-100 based on alignment with established medical facts\n        }\n        "
+    }
+  ],
+  "response": "{\n    \"final_analysis\": \"Pneumocystis pneumonia (PCP), caused by the fungus Pneumocystis jirovecii (formerly known as Pneumocystis carinii), is a serious infection that often affects people with weakened immune systems, such as those with HIV/AIDS. The first-line treatment for PCP is Cotrimoxazole (trimethoprim-sulfamethoxazole), which is highly effective in both treatment and prophylaxis of this infection. Penicillin, Kanamycin, and Levofloxacin are not typically used for treating PCP.\",\n    \"answer\": \"opb\",\n    \"confidence\": 95\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

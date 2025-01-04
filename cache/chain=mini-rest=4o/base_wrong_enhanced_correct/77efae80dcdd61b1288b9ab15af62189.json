@@ -1,0 +1,188 @@
+{
+  "question": "A 10 year old child with aggressive, self mutilating behavior and poor concentration is brought with presenting complaints of joint pain and reduced urinary output. Child's presentation is most likely due to the deficiency of which enzyme?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "HGPase",
+    "opb": "Adenosine Deaminase",
+    "opc": "APase",
+    "opd": "Acid Maltase"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Aggressive behavior",
+        "Disease",
+        "Metabolic Diseases"
+      ],
+      [
+        "Aggressive behavior",
+        "Diabetes Mellitus, Insulin-Dependent",
+        "Metabolic Diseases"
+      ],
+      [
+        "Aggressive behavior",
+        "Infection",
+        "Metabolic Diseases"
+      ],
+      [
+        "Metabolic Diseases",
+        "Disease",
+        "Arthralgia"
+      ],
+      [
+        "Metabolic Diseases",
+        "Obesity",
+        "Arthralgia"
+      ],
+      [
+        "Metabolic Diseases",
+        "Infection",
+        "Arthralgia"
+      ],
+      [
+        "Arthralgia",
+        "Disease",
+        "Enzyme Deficiency"
+      ],
+      [
+        "Arthralgia",
+        "Infection",
+        "Enzyme Deficiency"
+      ],
+      [
+        "Enzyme Deficiency",
+        "Adenosine deaminase deficiency"
+      ],
+      [
+        "Hereditary Diseases",
+        "Disease",
+        "Arthralgia"
+      ],
+      [
+        "Hereditary Diseases",
+        "Obesity",
+        "Arthralgia"
+      ],
+      [
+        "Hereditary Diseases",
+        "Infection",
+        "Arthralgia"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Aggressive behavior)-CAUSES->(Disease)-CAUSES->(Metabolic Diseases)",
+      "(Aggressive behavior)-CAUSES->(Diabetes Mellitus, Insulin-Dependent)-CAUSES->(Metabolic Diseases)",
+      "(Aggressive behavior)-CAUSES->(Infection)-CAUSES->(Metabolic Diseases)",
+      "(Metabolic Diseases)-CAUSES->(Disease)-CAUSES->(Arthralgia)",
+      "(Metabolic Diseases)-CAUSES->(Obesity)-CAUSES->(Arthralgia)",
+      "(Metabolic Diseases)-CAUSES->(Infection)-CAUSES->(Arthralgia)",
+      "(Arthralgia)-CAUSES->(Disease)-CAUSES->(Enzyme Deficiency)",
+      "(Arthralgia)-CAUSES->(Infection)-CAUSES->(Enzyme Deficiency)",
+      "(Enzyme Deficiency)-CAUSES->(Adenosine deaminase deficiency)",
+      "(Hereditary Diseases)-CAUSES->(Disease)-CAUSES->(Arthralgia)",
+      "(Hereditary Diseases)-CAUSES->(Obesity)-CAUSES->(Arthralgia)",
+      "(Hereditary Diseases)-CAUSES->(Infection)-CAUSES->(Arthralgia)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Aggressive behavior)-CAUSES->(Disease)-CAUSES->(Metabolic Diseases)",
+      "(Aggressive behavior)-CAUSES->(Diabetes Mellitus, Insulin-Dependent)-CAUSES->(Metabolic Diseases)",
+      "(Aggressive behavior)-CAUSES->(Infection)-CAUSES->(Metabolic Diseases)",
+      "(Metabolic Diseases)-CAUSES->(Disease)-CAUSES->(Arthralgia)",
+      "(Metabolic Diseases)-CAUSES->(Obesity)-CAUSES->(Arthralgia)",
+      "(Metabolic Diseases)-CAUSES->(Infection)-CAUSES->(Arthralgia)",
+      "(Arthralgia)-CAUSES->(Disease)-CAUSES->(Enzyme Deficiency)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Aggressive, self-mutilating behavior\" -> \"possible metabolic disorder\" -> \"joint pain and reduced urinary output\" -> \"possible enzyme deficiency\" -> \"Adenosine Deaminase deficiency\" -> 85%",
+    "CHAIN: \"Poor concentration\" -> \"possible neurological involvement\" -> \"joint pain\" -> \"possible systemic issue\" -> \"Adenosine Deaminase deficiency\" -> 80%",
+    "CHAIN: \"Self-mutilating behavior\" -> \"possible genetic disorder\" -> \"joint pain\" -> \"reduced urinary output\" -> \"Adenosine Deaminase deficiency\" -> 75%",
+    "CHAIN: \"Joint pain and reduced urinary output\" -> \"possible accumulation of toxic metabolites\" -> \"Adenosine Deaminase deficiency\" -> \"impaired immune function\" -> 70%"
+  ],
+  "enhanced_information": "The child's symptoms, including aggressive and self-mutilating behavior, joint pain, and reduced urinary output, are indicative of Lesch-Nyhan syndrome, which is caused by a deficiency of the enzyme hypoxanthine-guanine phosphoribosyltransferase (HPRT). This condition is characterized by neurological and behavioral abnormalities, as well as uric acid overproduction leading to joint pain and potential kidney issues. The reasoning chains incorrectly linked these symptoms to adenosine deaminase deficiency, which is associated with severe combined immunodeficiency and not the described symptoms. The retrieved evidence paths broadly connect aggressive behavior and metabolic diseases but do not specifically support adenosine deaminase deficiency. Therefore, the correct enzyme deficiency related to the child's presentation is HPRT, not adenosine deaminase.",
+  "analysis": "The child's symptoms, including aggressive and self-mutilating behavior, joint pain, and reduced urinary output, are characteristic of Lesch-Nyhan syndrome. This condition is caused by a deficiency of the enzyme hypoxanthine-guanine phosphoribosyltransferase (HPRT). Lesch-Nyhan syndrome is known for its neurological and behavioral abnormalities, as well as overproduction of uric acid, which can lead to joint pain and kidney issues. The options provided do not list HPRT directly, but the closest match based on the symptoms and known medical consensus is HGPase, which is likely intended to represent hypoxanthine-guanine phosphoribosyltransferase. Other options, such as adenosine deaminase deficiency, are associated with different conditions, such as severe combined immunodeficiency, and do not match the described symptoms. Therefore, the most likely correct answer is HGPase.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      4,
+      0,
+      1,
+      0
+    ],
+    "coverage_rates": [
+      80.0,
+      0.0,
+      20.0,
+      0.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

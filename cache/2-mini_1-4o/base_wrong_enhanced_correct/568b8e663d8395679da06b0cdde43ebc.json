@@ -1,0 +1,178 @@
+{
+  "question": "Gastric irritation is least with following NSA1D: (PGI June 2008)",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Diclofenac",
+    "opb": "Acetaminophen",
+    "opc": "Ibuprofen",
+    "opd": "Naproxen"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Anti-Inflammatory Agents, Non-Steroidal",
+        "Nonulcer dyspepsia"
+      ],
+      [
+        "Diclofenac",
+        "Disease",
+        "Nonulcer dyspepsia"
+      ],
+      [
+        "Diclofenac",
+        "Symptoms",
+        "Nonulcer dyspepsia"
+      ],
+      [
+        "Diclofenac",
+        "Pain",
+        "Nonulcer dyspepsia"
+      ],
+      [
+        "Ibuprofen",
+        "Disease",
+        "Nonulcer dyspepsia"
+      ],
+      [
+        "Ibuprofen",
+        "Symptoms",
+        "Nonulcer dyspepsia"
+      ],
+      [
+        "Ibuprofen",
+        "Pain",
+        "Nonulcer dyspepsia"
+      ],
+      [
+        "Naproxen",
+        "Disease",
+        "Nonulcer dyspepsia"
+      ],
+      [
+        "Naproxen",
+        "Symptoms",
+        "Nonulcer dyspepsia"
+      ],
+      [
+        "Naproxen",
+        "Pain",
+        "Nonulcer dyspepsia"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Anti-Inflammatory Agents, Non-Steroidal)-CAUSES->(Nonulcer dyspepsia)",
+      "(Diclofenac)-TREATS->(Disease)-CAUSES->(Nonulcer dyspepsia)",
+      "(Diclofenac)-PREVENTS->(Symptoms)-CAUSES->(Nonulcer dyspepsia)",
+      "(Diclofenac)-PREVENTS->(Pain)-CAUSES->(Nonulcer dyspepsia)",
+      "(Ibuprofen)-TREATS->(Disease)-CAUSES->(Nonulcer dyspepsia)",
+      "(Ibuprofen)-PREVENTS->(Symptoms)-CAUSES->(Nonulcer dyspepsia)",
+      "(Ibuprofen)-PREVENTS->(Pain)-CAUSES->(Nonulcer dyspepsia)",
+      "(Naproxen)-TREATS->(Disease)-CAUSES->(Nonulcer dyspepsia)",
+      "(Naproxen)-TREATS->(Symptoms)-CAUSES->(Nonulcer dyspepsia)",
+      "(Naproxen)-TREATS->(Pain)-CAUSES->(Nonulcer dyspepsia)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Acetaminophen",
+        "Anti-Inflammatory Agents, Non-Steroidal"
+      ]
+    ],
+    "relationships": [
+      [
+        "ISA"
+      ]
+    ],
+    "paths": [
+      "(Acetaminophen)-ISA->(Anti-Inflammatory Agents, Non-Steroidal)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Diclofenac)-TREATS->(Disease)-CAUSES->(Nonulcer dyspepsia)",
+      "(Diclofenac)-PREVENTS->(Symptoms)-CAUSES->(Nonulcer dyspepsia)",
+      "(Diclofenac)-PREVENTS->(Pain)-CAUSES->(Nonulcer dyspepsia)",
+      "(Ibuprofen)-TREATS->(Disease)-CAUSES->(Nonulcer dyspepsia)",
+      "(Ibuprofen)-PREVENTS->(Symptoms)-CAUSES->(Nonulcer dyspepsia)",
+      "(Ibuprofen)-PREVENTS->(Pain)-CAUSES->(Nonulcer dyspepsia)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: Acetaminophen -> \"not classified as an NSAID\" -> \"less gastric irritation\" -> 85%",
+    "CHAIN: Diclofenac -> \"known to cause gastric irritation\" -> \"higher risk of gastrointestinal side effects\" -> 70%",
+    "CHAIN: Ibuprofen -> \"can cause gastric irritation\" -> \"moderate risk of gastrointestinal side effects\" -> 75%",
+    "CHAIN: Naproxen -> \"associated with gastric irritation\" -> \"higher risk of gastrointestinal side effects\" -> 70%"
+  ],
+  "enhanced_information": "Acetaminophen is not classified as an NSAID and is known to cause less gastric irritation compared to traditional NSAIDs, making it the least likely to cause gastric irritation (85% confidence). Diclofenac, ibuprofen, and naproxen are all NSAIDs associated with varying degrees of gastric irritation, with diclofenac and naproxen having a higher risk of gastrointestinal side effects (70% confidence each), while ibuprofen has a moderate risk (75% confidence). Therefore, acetaminophen is the best option for minimizing gastric irritation.",
+  "analysis": "The question asks which option causes the least gastric irritation. Acetaminophen is not an NSAID and is known for its minimal gastric irritation compared to NSAIDs, which are known to cause gastric irritation due to their mechanism of inhibiting prostaglandin synthesis. Among the options, diclofenac, ibuprofen, and naproxen are all NSAIDs, with naproxen generally having a higher risk of gastrointestinal side effects. Ibuprofen is considered to have a moderate risk, while diclofenac is also associated with gastric irritation. Given that acetaminophen is not an NSAID and is known for its lower risk of gastric irritation, it is the most likely correct answer. Therefore, based on standard medical knowledge and the enhanced information provided, acetaminophen is the best choice for minimizing gastric irritation.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      1,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      40.0,
+      20.0,
+      20.0,
+      20.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

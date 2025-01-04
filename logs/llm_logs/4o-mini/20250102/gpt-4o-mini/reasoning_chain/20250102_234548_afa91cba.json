@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250102_234548",
+  "model": "gpt-4o-mini",
+  "interaction_type": "reasoning_chain",
+  "question_id": "afa91cba",
+  "question_text": "Aldosterone acts at:",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            Aldosterone acts at:\n\n            ### Options\n    opa. Collecting duct\nopb. Glomerulus\nopc. Proximal convoluted tubule\nopd. Loop of Henle\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"Aldosterone is a hormone\" -> \"regulates sodium and potassium levels\" -> \"acts primarily on the kidneys\" -> \"specifically at the collecting duct\" -> 95%\n\nCHAIN: \"Aldosterone influences electrolyte balance\" -> \"promotes sodium reabsorption\" -> \"increases water retention\" -> \"acts at the collecting duct\" -> 90%\n\nCHAIN: \"Aldosterone is secreted by the adrenal glands\" -> \"targets renal tubules\" -> \"mainly affects the collecting duct\" -> \"increases sodium reabsorption\" -> 92%\n\nCHAIN: \"Aldosterone's primary action site is in the nephron\" -> \"it acts on specific segments\" -> \"the collecting duct is one of them\" -> \"influences fluid balance\" -> 88%",
+  "metadata": {
+    "topic": "Physiology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

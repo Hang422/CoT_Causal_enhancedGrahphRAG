@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_150324",
+  "model": "gpt-4-turbo",
+  "interaction_type": "reasoning_chain",
+  "question_id": "27e71ff1",
+  "question_text": "A 50 years old man was recently diagnosed to be having coronary artery disease. There was no added risk factors except for a LDL value of 150-165mgs/dl. The single drug most appropriate for initial therapy is",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            A 50 years old man was recently diagnosed to be having coronary artery disease. There was no added risk factors except for a LDL value of 150-165mgs/dl. The single drug most appropriate for initial therapy is\n\n            ### Options\n    opa. Gemfibrozil\nopb. Nicotinic acid\nopc. Bile acid binding resins\nopd. Statins (Any)\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"LDL value of 150-165 mg/dl\" -> \"increased risk for coronary artery disease\" -> \"need to lower LDL cholesterol\" -> \"Statins reduce LDL cholesterol effectively\" -> \"Statins improve cardiovascular outcomes in patients with coronary artery disease\" -> 95%\n\nCHAIN: \"LDL value of 150-165 mg/dl\" -> \"increased risk for coronary artery disease\" -> \"need to lower LDL cholesterol\" -> \"Gemfibrozil primarily lowers triglycerides and has less effect on LDL cholesterol\" -> \"less effective for LDL-focused treatment in coronary artery disease\" -> 70%\n\nCHAIN: \"LDL value of 150-165 mg/dl\" -> \"increased risk for coronary artery disease\" -> \"need to lower LDL cholesterol\" -> \"Nicotinic acid lowers LDL cholesterol but also targets HDL and triglycerides\" -> \"possible side effects and less direct focus on LDL compared to statins\" -> 80%\n\nCHAIN: \"LDL value of 150-165 mg/dl\" -> \"increased risk for coronary artery disease\" -> \"need to lower LDL cholesterol\" -> \"Bile acid binding resins lower LDL cholesterol\" -> \"less potent than statins and less tolerated due to gastrointestinal side effects\" -> 75%",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

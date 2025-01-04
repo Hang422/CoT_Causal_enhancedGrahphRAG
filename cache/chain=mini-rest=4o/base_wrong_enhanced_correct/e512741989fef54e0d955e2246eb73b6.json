@@ -1,0 +1,243 @@
+{
+  "question": "The patient is being administered i.v. quinine following which he developed restlessness and sweating, the most likely cause is :",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Hypoglycemia",
+    "opb": "Cinchonism",
+    "opc": "Arrhythmias",
+    "opd": "Sweating"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Stimulation procedure",
+        "Disease",
+        "Agitation"
+      ],
+      [
+        "Stimulation procedure",
+        "Inflammation",
+        "Agitation"
+      ],
+      [
+        "Stimulation procedure",
+        "Symptoms",
+        "Agitation"
+      ],
+      [
+        "Quinine",
+        "Disease",
+        "Adverse reactions"
+      ],
+      [
+        "Quinine",
+        "COVID-19",
+        "Adverse reactions"
+      ],
+      [
+        "Quinine",
+        "Syndrome",
+        "Adverse reactions"
+      ],
+      [
+        "Adverse reactions",
+        "Disease",
+        "Agitation"
+      ],
+      [
+        "Adverse reactions",
+        "Hyperinsulinism",
+        "Agitation"
+      ],
+      [
+        "Adverse reactions",
+        "Diabetes",
+        "Agitation"
+      ],
+      [
+        "Agitation",
+        "Disease",
+        "hypoglycemia"
+      ],
+      [
+        "Agitation",
+        "Symptoms",
+        "hypoglycemia"
+      ],
+      [
+        "Agitation",
+        "Myocardial Infarction",
+        "hypoglycemia"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Stimulation procedure)-CAUSES->(Disease)-CAUSES->(Agitation)",
+      "(Stimulation procedure)-CAUSES->(Inflammation)-PREDISPOSES->(Agitation)",
+      "(Stimulation procedure)-TREATS->(Symptoms)-CAUSES->(Agitation)",
+      "(Quinine)-TREATS->(Disease)-CAUSES->(Adverse reactions)",
+      "(Quinine)-TREATS->(COVID-19)-CAUSES->(Adverse reactions)",
+      "(Quinine)-TREATS->(Syndrome)-CAUSES->(Adverse reactions)",
+      "(Adverse reactions)-CAUSES->(Disease)-CAUSES->(Agitation)",
+      "(Adverse reactions)-CAUSES->(Hyperinsulinism)-CAUSES->(Agitation)",
+      "(Adverse reactions)-CAUSES->(Diabetes)-CAUSES->(Agitation)",
+      "(Agitation)-CAUSES->(Disease)-CAUSES->(hypoglycemia)",
+      "(Agitation)-CAUSES->(Symptoms)-CAUSES->(hypoglycemia)",
+      "(Agitation)-PREDISPOSES->(Myocardial Infarction)-CAUSES->(hypoglycemia)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Quinine",
+        "Pharmaceutical Preparations",
+        "Cells",
+        "Extracellular Matrix",
+        "Stimulation procedure"
+      ],
+      [
+        "Quinine",
+        "Pharmaceutical Preparations",
+        "Cells",
+        "Tissue specimen from aorta",
+        "Stimulation procedure"
+      ],
+      [
+        "Cardiovascular system",
+        "Bed rest",
+        "cardiac arrhythmia"
+      ],
+      [
+        "Cardiovascular system",
+        "Bed rest",
+        "cardiac arrhythmia"
+      ]
+    ],
+    "relationships": [
+      [
+        "ISA",
+        "PART_OF",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "ISA",
+        "PART_OF",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "PREVENTS"
+      ],
+      [
+        "LOCATION_OF",
+        "PREDISPOSES"
+      ]
+    ],
+    "paths": [
+      "(Quinine)-ISA->(Pharmaceutical Preparations)-PART_OF->(Cells)-PART_OF->(Extracellular Matrix)-LOCATION_OF->(Stimulation procedure)",
+      "(Quinine)-ISA->(Pharmaceutical Preparations)-PART_OF->(Cells)-PART_OF->(Tissue specimen from aorta)-LOCATION_OF->(Stimulation procedure)",
+      "(Cardiovascular system)-LOCATION_OF->(Bed rest)-PREVENTS->(cardiac arrhythmia)",
+      "(Cardiovascular system)-LOCATION_OF->(Bed rest)-PREDISPOSES->(cardiac arrhythmia)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Agitation)-CAUSES->(Symptoms)-CAUSES->(hypoglycemia)",
+      "(Quinine)-TREATS->(Disease)-CAUSES->(Adverse reactions)",
+      "(Quinine)-TREATS->(COVID-19)-CAUSES->(Adverse reactions)",
+      "(Quinine)-TREATS->(Syndrome)-CAUSES->(Adverse reactions)",
+      "(Agitation)-CAUSES->(Disease)-CAUSES->(hypoglycemia)",
+      "(Agitation)-PREDISPOSES->(Myocardial Infarction)-CAUSES->(hypoglycemia)",
+      "(Stimulation procedure)-CAUSES->(Disease)-CAUSES->(Agitation)",
+      "(Stimulation procedure)-TREATS->(Symptoms)-CAUSES->(Agitation)",
+      "(Adverse reactions)-CAUSES->(Disease)-CAUSES->(Agitation)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Administration of i.v. quinine\" -> \"possible side effects\" -> \"restlessness and sweating\" -> \"Cinchonism\" -> 85%",
+    "CHAIN: \"Quinine administration\" -> \"increased stimulation of the central nervous system\" -> \"restlessness\" -> \"sweating\" -> \"Cinchonism\" -> 80%",
+    "CHAIN: \"Quinine given intravenously\" -> \"adverse reactions\" -> \"restlessness and sweating\" -> \"possible hypoglycemia\" -> \"unclear\" -> 60%",
+    "CHAIN: \"Quinine infusion\" -> \"cardiovascular effects\" -> \"arrhythmias\" -> \"possible sweating\" -> \"unclear\" -> 55%"
+  ],
+  "enhanced_information": "Intravenous administration of quinine is known to cause hypoglycemia, which can lead to symptoms such as restlessness and sweating. This aligns with the standard medical consensus that hypoglycemia is a common side effect of quinine, especially when administered intravenously. The retrieved evidence paths support the link between agitation (restlessness) and hypoglycemia, reinforcing this interpretation. While cinchonism is a known side effect of quinine, it typically presents with symptoms like tinnitus, headache, and dizziness, rather than restlessness and sweating. Arrhythmias are a possible but less common side effect of quinine and are not directly linked to the symptoms described. Therefore, the most likely cause of the patient's symptoms is hypoglycemia.",
+  "analysis": "Quinine, when administered intravenously, is known to cause hypoglycemia as a common side effect. Hypoglycemia can manifest with symptoms such as restlessness and sweating, which aligns with the patient's presentation. While cinchonism is another side effect of quinine, it typically involves symptoms like tinnitus, headache, and dizziness, which do not match the patient's symptoms. Arrhythmias, although a possible side effect, are less common and not directly associated with restlessness and sweating. Therefore, based on standard medical knowledge and the enhanced information provided, hypoglycemia is the most likely cause of the patient's symptoms.",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      2,
+      3,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      33.33333333333333,
+      50.0,
+      16.666666666666664
+    ],
+    "total_successes": 6
+  },
+  "normal_results": []
+}

@@ -1,0 +1,131 @@
+{
+  "question": "All of the following side effects are produced by Cisplatin except",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Ototoxicity",
+    "opb": "Nephrotoxicity",
+    "opc": "Coasting effect",
+    "opd": "Pulmonary fibrosis"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Cisplatin",
+        "Ototoxicity"
+      ],
+      [
+        "Ototoxicity",
+        "Deafness"
+      ],
+      [
+        "Cisplatin",
+        "Toxic nephropathy"
+      ],
+      [
+        "Toxic nephropathy",
+        "Diabetes Mellitus, Insulin-Dependent",
+        "Renal Insufficiency"
+      ],
+      [
+        "Toxic nephropathy",
+        "Kidney Diseases",
+        "Renal Insufficiency"
+      ],
+      [
+        "Toxic nephropathy",
+        "Complication",
+        "Renal Insufficiency"
+      ],
+      [
+        "Cisplatin",
+        "Disease",
+        "Pulmonary Fibrosis"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Cisplatin)-CAUSES->(Ototoxicity)",
+      "(Ototoxicity)-CAUSES->(Deafness)",
+      "(Cisplatin)-CAUSES->(Toxic nephropathy)",
+      "(Toxic nephropathy)-CAUSES->(Diabetes Mellitus, Insulin-Dependent)-CAUSES->(Renal Insufficiency)",
+      "(Toxic nephropathy)-CAUSES->(Kidney Diseases)-CAUSES->(Renal Insufficiency)",
+      "(Toxic nephropathy)-CAUSES->(Complication)-CAUSES->(Renal Insufficiency)",
+      "(Cisplatin)-CAUSES->(Disease)-CAUSES->(Pulmonary Fibrosis)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Cisplatin)-CAUSES->(Ototoxicity)",
+      "(Cisplatin)-CAUSES->(Toxic nephropathy)",
+      "(Cisplatin)-CAUSES->(Disease)-CAUSES->(Pulmonary Fibrosis)",
+      "(Toxic nephropathy)-CAUSES->(Complication)-CAUSES->(Renal Insufficiency)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Cisplatin\" -> \"known to cause ototoxicity\" -> \"associated with hearing loss\" -> 90%",
+    "CHAIN: \"Cisplatin\" -> \"known to cause nephrotoxicity\" -> \"can lead to renal impairment\" -> 90%",
+    "CHAIN: \"Cisplatin\" -> \"not associated with coasting effect\" -> \"coasting effect is related to other drugs\" -> 85%",
+    "CHAIN: \"Cisplatin\" -> \"not typically linked to pulmonary fibrosis\" -> \"pulmonary fibrosis is more common with other agents\" -> 80%"
+  ],
+  "enhanced_information": "Cisplatin is well-documented to cause ototoxicity, leading to hearing loss, and nephrotoxicity, which can result in renal impairment. The coasting effect, characterized by a delayed onset of toxicity after drug cessation, is not associated with Cisplatin but rather with other chemotherapeutic agents. Additionally, while pulmonary fibrosis is not typically linked to Cisplatin, it is more commonly associated with drugs like bleomycin. Therefore, the correct answer is that Cisplatin does not produce the coasting effect.",
+  "analysis": "Cisplatin is a chemotherapeutic agent known for its side effects, including ototoxicity and nephrotoxicity. Ototoxicity can lead to hearing loss, while nephrotoxicity affects kidney function. The 'coasting effect' is not a recognized side effect of Cisplatin; it is more commonly associated with other chemotherapy drugs, such as taxanes. Pulmonary fibrosis is also not typically associated with Cisplatin; it is more commonly linked to drugs like bleomycin. Therefore, the side effect not produced by Cisplatin is the coasting effect.",
+  "answer": "opc",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      2,
+      0,
+      1
+    ],
+    "coverage_rates": [
+      40.0,
+      40.0,
+      0.0,
+      20.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

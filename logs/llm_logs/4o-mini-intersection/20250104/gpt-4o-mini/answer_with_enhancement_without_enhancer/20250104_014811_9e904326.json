@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250104_014811",
+  "model": "gpt-4o-mini",
+  "interaction_type": "answer_with_enhancement_without_enhancer",
+  "question_id": "9e904326",
+  "question_text": "Drug of choice for pregnant female suspected of having a baby with congenital adrenal hyperplasia",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on enhanced information."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.\n                    You are a medical expert determining the final answer.\n\n            ### Instructions:\n            - Use standard medical knowledge as the primary guide.\n            - Consider enhanced information only if it aligns with consensus.\n            - If conflicting or unclear, present the most likely correct answer based on known facts.\n            - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.\n\n\n                    ### Question\n                    Drug of choice for pregnant female suspected of having a baby with congenital adrenal hyperplasia\n\n                    ### Options\n                    opa. Dexamethasone\nopb. Betamethasone\nopc. Hydrocoisone\nopd. Prednisolone\n\n### Enhanced Information (For Contextual Support):\nIn cases of suspected congenital adrenal hyperplasia (CAH) in a pregnant female, the primary goal is to prevent fetal virilization. Dexamethasone is the drug of choice as it effectively reduces androgen production and fetal exposure to androgens, thereby preventing virilization in female fetuses. While hydrocortisone is used for adrenal insufficiency, it is not the first-line treatment for preventing virilization in this context. Betamethasone is primarily indicated for promoting fetal lung maturity and is not appropriate for CAH management. Prednisolone is less effective than dexamethasone for this condition. Therefore, the consensus supports the use of dexamethasone as the preferred treatment for pregnant females suspected of having a baby with congenital adrenal hyperplasia.\n\n                    ### Task:\n                1. Identify the core medical principle and the most likely correct option based on consensus.\n                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.\n                3. Provide a final analysis and a confidence score (0-100%).\n\n                ### Output Format:\n                {\n                  \"final_analysis\": \"Step-by-step reasoning, prioritizing medical consensus and acknowledging complexity if present.\",\n                  \"answer\": \"Option key (e.g. opa, opb, ...)\",\n                  \"confidence\": A number between 0-100\n                }\n                    "
+    }
+  ],
+  "response": "{\n  \"final_analysis\": \"The core medical principle in managing suspected congenital adrenal hyperplasia (CAH) in a pregnant female is to prevent fetal virilization, particularly in female fetuses. Dexamethasone is the drug of choice in this scenario as it effectively suppresses adrenal androgen production, thereby minimizing the risk of virilization. While hydrocortisone is used for adrenal insufficiency, it does not serve the same purpose in this context. Betamethasone is primarily used for fetal lung maturity and is not indicated for CAH management. Prednisolone, while a corticosteroid, is less effective than dexamethasone for this specific condition. Therefore, the consensus strongly supports the use of dexamethasone as the preferred treatment. Given this information, the most appropriate choice is dexamethasone.\",\n  \"answer\": \"opa\",\n  \"confidence\": 95\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": true,
+    "has_enhanced_info": true,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

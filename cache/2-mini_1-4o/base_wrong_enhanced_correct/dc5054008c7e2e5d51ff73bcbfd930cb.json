@@ -1,0 +1,215 @@
+{
+  "question": "Antidepressant drug that can be used in nocturnal enuresis is?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Imipramine",
+    "opb": "Fluvoxamine",
+    "opc": "Phenelzine",
+    "opd": "Bupropion"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Anticholinergic Agents",
+        "Disease",
+        "paracrine",
+        "Bladder"
+      ],
+      [
+        "Anticholinergic Agents",
+        "Disease",
+        "Respiration",
+        "Bladder"
+      ],
+      [
+        "Anticholinergic Agents",
+        "Disease",
+        "Physiologic Function",
+        "Bladder"
+      ],
+      [
+        "Contraction",
+        "Bedwetting"
+      ],
+      [
+        "Antidepressive Agents",
+        "Disease",
+        "Bedwetting"
+      ],
+      [
+        "Antidepressive Agents",
+        "Incontinence",
+        "Bedwetting"
+      ],
+      [
+        "Antidepressive Agents",
+        "imbalance",
+        "Bedwetting"
+      ]
+    ],
+    "relationships": [
+      [
+        "COMPLICATES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "COMPLICATES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "COMPLICATES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "PREDISPOSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Anticholinergic Agents)-COMPLICATES->(Disease)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Bladder)",
+      "(Anticholinergic Agents)-COMPLICATES->(Disease)-MANIFESTATION_OF->(Respiration)-PROCESS_OF->(Bladder)",
+      "(Anticholinergic Agents)-COMPLICATES->(Disease)-MANIFESTATION_OF->(Physiologic Function)-PROCESS_OF->(Bladder)",
+      "(Contraction)-PREDISPOSES->(Bedwetting)",
+      "(Antidepressive Agents)-CAUSES->(Disease)-CAUSES->(Bedwetting)",
+      "(Antidepressive Agents)-CAUSES->(Incontinence)-PREDISPOSES->(Bedwetting)",
+      "(Antidepressive Agents)-TREATS->(imbalance)-CAUSES->(Bedwetting)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Imipramine",
+        "Antidepressive Agents",
+        "Antidepressive Agents, Tricyclic"
+      ],
+      [
+        "Imipramine",
+        "Antipsychotic Agents",
+        "Antidepressive Agents, Tricyclic"
+      ],
+      [
+        "Antidepressive Agents, Tricyclic",
+        "Pharmaceutical Preparations",
+        "Anticholinergic Agents"
+      ],
+      [
+        "Antidepressive Agents, Tricyclic",
+        "Pharmaceutical Preparations",
+        "Anticholinergic Agents"
+      ],
+      [
+        "Bladder",
+        "Pharmaceutical Preparations",
+        "Bedwetting"
+      ],
+      [
+        "Bladder",
+        "Pharmaceutical Preparations",
+        "Bedwetting"
+      ],
+      [
+        "Bupropion",
+        "Antidepressive Agents"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "LOCATION_OF",
+        "CAUSES"
+      ],
+      [
+        "LOCATION_OF",
+        "TREATS"
+      ],
+      [
+        "ISA"
+      ]
+    ],
+    "paths": [
+      "(Imipramine)-INTERACTS_WITH->(Antidepressive Agents)-INTERACTS_WITH->(Antidepressive Agents, Tricyclic)",
+      "(Imipramine)-INTERACTS_WITH->(Antipsychotic Agents)-INTERACTS_WITH->(Antidepressive Agents, Tricyclic)",
+      "(Antidepressive Agents, Tricyclic)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Anticholinergic Agents)",
+      "(Antidepressive Agents, Tricyclic)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Anticholinergic Agents)",
+      "(Bladder)-LOCATION_OF->(Pharmaceutical Preparations)-CAUSES->(Bedwetting)",
+      "(Bladder)-LOCATION_OF->(Pharmaceutical Preparations)-TREATS->(Bedwetting)",
+      "(Bupropion)-ISA->(Antidepressive Agents)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Bupropion)-ISA->(Antidepressive Agents)",
+      "(Antidepressive Agents)-CAUSES->(Disease)-CAUSES->(Bedwetting)",
+      "(Antidepressive Agents)-CAUSES->(Incontinence)-PREDISPOSES->(Bedwetting)",
+      "(Antidepressive Agents)-TREATS->(imbalance)-CAUSES->(Bedwetting)",
+      "(Imipramine)-INTERACTS_WITH->(Antidepressive Agents)-INTERACTS_WITH->(Antidepressive Agents, Tricyclic)",
+      "(Imipramine)-INTERACTS_WITH->(Antipsychotic Agents)-INTERACTS_WITH->(Antidepressive Agents, Tricyclic)",
+      "(Bladder)-LOCATION_OF->(Pharmaceutical Preparations)-CAUSES/TREATS->(Bedwetting)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Imipramine\" -> \"tricyclic antidepressant\" -> \"anticholinergic properties\" -> \"reduces bladder contractions\" -> \"used for nocturnal enuresis\" -> 90%",
+    "CHAIN: \"Fluvoxamine\" -> \"SSRI\" -> \"not typically used for nocturnal enuresis\" -> \"less effective for this condition\" -> 60%",
+    "CHAIN: \"Phenelzine\" -> \"MAOI\" -> \"not indicated for nocturnal enuresis\" -> \"less relevant for this condition\" -> 50%",
+    "CHAIN: \"Bupropion\" -> \"atypical antidepressant\" -> \"not indicated for nocturnal enuresis\" -> \"less effective for this condition\" -> 50%"
+  ],
+  "enhanced_information": "Imipramine is a tricyclic antidepressant known for its anticholinergic properties, which can reduce bladder contractions, making it effective for treating nocturnal enuresis. This aligns with clinical consensus that supports its use in this condition. In contrast, fluvoxamine, a selective serotonin reuptake inhibitor (SSRI), is not typically indicated for nocturnal enuresis and is considered less effective. Phenelzine, a monoamine oxidase inhibitor (MAOI), is also not indicated for this condition, and bupropion, an atypical antidepressant, lacks evidence supporting its use for nocturnal enuresis. Therefore, the best-supported option for treating nocturnal enuresis is imipramine.",
+  "analysis": "The question asks for an antidepressant that can be used in the treatment of nocturnal enuresis. Imipramine, a tricyclic antidepressant, is known for its anticholinergic properties, which help reduce bladder contractions and are effective in treating nocturnal enuresis. This aligns with the clinical consensus and standard medical knowledge. The other options, including fluvoxamine (an SSRI), phenelzine (an MAOI), and bupropion (an atypical antidepressant), are not typically used for this condition. Therefore, based on the pharmacological properties and clinical use, imipramine is the most likely correct answer.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      5,
+      0,
+      0,
+      2
+    ],
+    "coverage_rates": [
+      71.42857142857143,
+      0.0,
+      0.0,
+      28.57142857142857
+    ],
+    "total_successes": 7
+  },
+  "normal_results": []
+}

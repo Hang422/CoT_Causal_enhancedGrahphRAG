@@ -1,0 +1,182 @@
+{
+  "question": "The function of vitamin A is/are related to which of the following?",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Retinol",
+    "opb": "Retinal",
+    "opc": "Retinoic acids",
+    "opd": "All of the above"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Vitamin A",
+        "Disease",
+        "arterial stiffness",
+        "Retina"
+      ],
+      [
+        "Vitamin A",
+        "Disease",
+        "paracrine",
+        "Retina"
+      ],
+      [
+        "Vitamin A",
+        "Disease",
+        "uptake",
+        "Retina"
+      ],
+      [
+        "Vitamin A",
+        "Disease",
+        "arterial stiffness",
+        "Retina"
+      ],
+      [
+        "Vitamin A",
+        "Disease",
+        "paracrine",
+        "Retina"
+      ],
+      [
+        "Vitamin A",
+        "Disease",
+        "uptake",
+        "Retina"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Vitamin A)-CAUSES->(Disease)-CAUSES->(arterial stiffness)-PROCESS_OF->(Retina)",
+      "(Vitamin A)-CAUSES->(Disease)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Retina)",
+      "(Vitamin A)-CAUSES->(Disease)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Retina)",
+      "(Vitamin A)-CAUSES->(Disease)-CAUSES->(arterial stiffness)-PROCESS_OF->(Retina)",
+      "(Vitamin A)-CAUSES->(Disease)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Retina)",
+      "(Vitamin A)-CAUSES->(Disease)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Retina)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Vitamin A",
+        "Cells",
+        "Retinoids"
+      ],
+      [
+        "Vitamin A",
+        "Cultured Cells",
+        "Retinoids"
+      ],
+      [
+        "Retina",
+        "Liver",
+        "Retinoids"
+      ],
+      [
+        "Retina",
+        "Tract",
+        "Retinoids"
+      ]
+    ],
+    "relationships": [
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Vitamin A)-PART_OF->(Cells)-LOCATION_OF->(Retinoids)",
+      "(Vitamin A)-INTERACTS_WITH->(Cultured Cells)-LOCATION_OF->(Retinoids)",
+      "(Retina)-PART_OF->(Liver)-LOCATION_OF->(Retinoids)",
+      "(Retina)-PART_OF->(Tract)-LOCATION_OF->(Retinoids)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Vitamin A)-CAUSES->(Disease)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Retina)",
+      "(Vitamin A)-CAUSES->(Disease)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Retina)",
+      "(Vitamin A)-CAUSES->(Disease)-CAUSES->(arterial stiffness)-PROCESS_OF->(Retina)",
+      "(Vitamin A)-PART_OF->(Cells)-LOCATION_OF->(Retinoids)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Vitamin A\" -> \"converted to Retinol\" -> \"supports vision and immune function\" -> 85%",
+    "CHAIN: \"Vitamin A\" -> \"converted to Retinal\" -> \"essential for vision\" -> 85%",
+    "CHAIN: \"Vitamin A\" -> \"converted to Retinoic acids\" -> \"regulates gene expression\" -> 85%",
+    "CHAIN: \"Vitamin A\" -> \"Retinol\" -> \"Retinal\" -> \"Retinoic acids\" -> \"all related functions\" -> 95%"
+  ],
+  "enhanced_information": "Vitamin A is crucial for various biological functions, including vision, immune function, and gene regulation. It exists in several forms: Retinol, Retinal, and Retinoic acids. Retinol is the alcohol form, Retinal is the aldehyde form essential for vision, and Retinoic acids are involved in regulating gene expression. All these forms are interrelated and contribute to the overall functions of vitamin A. Therefore, the correct answer is 'All of the above' (option d), as each form plays a significant role in the physiological processes associated with vitamin A.",
+  "analysis": "Vitamin A is essential for several biological functions, including vision, immune response, and gene regulation. It exists in multiple forms: Retinol (the alcohol form), Retinal (the aldehyde form crucial for vision), and Retinoic acids (which play a role in gene expression). Each of these forms contributes to the overall physiological functions associated with vitamin A. Given that all three forms are integral to the functions of vitamin A, the most accurate answer is 'All of the above' (option d). This aligns with established medical knowledge regarding the roles of these compounds in human health.",
+  "answer": "opd",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      1,
+      2
+    ],
+    "coverage_rates": [
+      0.0,
+      25.0,
+      25.0,
+      50.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

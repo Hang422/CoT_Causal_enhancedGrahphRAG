@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250102_233511",
+  "model": "gpt-4o-mini",
+  "interaction_type": "reasoning_chain",
+  "question_id": "12c30a11",
+  "question_text": "Glycogen storage diseases include all the following except:",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            Glycogen storage diseases include all the following except:\n\n            ### Options\n    opa. Krabbe's disease\nopb. Fabry's disease\nopc. Fragile syndrome\nopd. All\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"Glycogen storage diseases\" -> \"involve abnormal glycogen metabolism\" -> \"include conditions like Pompe disease and McArdle disease\" -> \"Krabbe's disease is a lysosomal storage disorder\" -> \"not classified as a glycogen storage disease\" -> 95%\n\nCHAIN: \"Glycogen storage diseases\" -> \"are characterized by enzyme deficiencies\" -> \"Fabry's disease is a sphingolipidosis\" -> \"not related to glycogen metabolism\" -> \"therefore not a glycogen storage disease\" -> 90%\n\nCHAIN: \"Glycogen storage diseases\" -> \"are distinct from other metabolic disorders\" -> \"Fragile X syndrome is a genetic condition\" -> \"not related to glycogen storage\" -> \"thus not a glycogen storage disease\" -> 85%\n\nCHAIN: \"Glycogen storage diseases\" -> \"include various metabolic disorders\" -> \"Krabbe's disease is not one of them\" -> \"Fabry's disease is also excluded\" -> \"Fragile X syndrome is unrelated\" -> \"therefore, all options are not glycogen storage diseases\" -> 80%",
+  "metadata": {
+    "topic": "Biochemistry",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

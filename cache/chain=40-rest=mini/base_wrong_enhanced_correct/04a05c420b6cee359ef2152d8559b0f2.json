@@ -1,0 +1,119 @@
+{
+  "question": "Drug of choice for Treponema Pallidum is?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Penicillin G",
+    "opb": "Tetracycline",
+    "opc": "Azithromycin",
+    "opd": "Doxycycline"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Treponema pallidum",
+        "Syphilis"
+      ],
+      [
+        "Treponema pallidum",
+        "Syphilis"
+      ],
+      [
+        "Treponema pallidum",
+        "Syphilis"
+      ],
+      [
+        "Treponema pallidum",
+        "Syphilis"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Treponema pallidum)-CAUSES->(Syphilis)",
+      "(Treponema pallidum)-CAUSES->(Syphilis)",
+      "(Treponema pallidum)-CAUSES->(Syphilis)",
+      "(Treponema pallidum)-CAUSES->(Syphilis)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Syphilis",
+        "Bacteria",
+        "Pharmaceutical Preparations"
+      ],
+      [
+        "Syphilis",
+        "Bacteria",
+        "Pharmaceutical Preparations"
+      ]
+    ],
+    "relationships": [
+      [
+        "ASSOCIATED_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "PROCESS_OF",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Syphilis)-ASSOCIATED_WITH->(Bacteria)-LOCATION_OF->(Pharmaceutical Preparations)",
+      "(Syphilis)-PROCESS_OF->(Bacteria)-LOCATION_OF->(Pharmaceutical Preparations)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Syphilis)-ASSOCIATED_WITH/PROCESS_OF->(Bacteria)-LOCATION_OF->(Pharmaceutical Preparations)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Treponema Pallidum\" -> \"causes syphilis\" -> \"Penicillin G effective against syphilis\" -> \"Penicillin G is drug of choice\" -> 95%",
+    "CHAIN: \"Treponema Pallidum\" -> \"causes syphilis\" -> \"Tetracycline alternative treatment\" -> \"less effective than Penicillin G\" -> 70%",
+    "CHAIN: \"Treponema Pallidum\" -> \"causes syphilis\" -> \"Azithromycin sometimes used\" -> \"resistance concerns\" -> \"not first-line treatment\" -> 60%",
+    "CHAIN: \"Treponema Pallidum\" -> \"causes syphilis\" -> \"Doxycycline alternative treatment\" -> \"used in penicillin allergy\" -> \"less effective than Penicillin G\" -> 75%"
+  ],
+  "enhanced_information": "Treponema pallidum is the causative agent of syphilis. The standard consensus in medical practice is that Penicillin G is the drug of choice for treating syphilis due to its high efficacy and safety profile. Tetracycline and Doxycycline are considered alternative treatments, particularly in patients with penicillin allergies, but they are less effective than Penicillin G. Azithromycin can be used in certain cases, but concerns about resistance limit its use as a first-line treatment. Therefore, the most appropriate choice remains Penicillin G.",
+  "analysis": "Treponema pallidum is the bacterium responsible for syphilis, and the standard treatment is well-established in medical literature. Penicillin G is the first-line treatment due to its proven efficacy and safety profile. While Tetracycline and Doxycycline are alternatives for patients with penicillin allergies, they are not as effective as Penicillin G. Azithromycin has been used in some cases, but its use is limited due to concerns about antibiotic resistance. Therefore, the consensus strongly supports Penicillin G as the drug of choice for treating syphilis caused by Treponema pallidum.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      1,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      40.0,
+      20.0,
+      20.0,
+      20.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

@@ -1,0 +1,248 @@
+{
+  "question": "Pulmonary fibrosis is a complication of: March 2011, March 2012, September 2012, March 2013",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Methotrexate",
+    "opb": "Doxorubicin",
+    "opc": "Cisplatin",
+    "opd": "Busulfan"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Therapeutic immunosuppression",
+        "Disease",
+        "paracrine",
+        "Lung"
+      ],
+      [
+        "Therapeutic immunosuppression",
+        "Disease",
+        "Hearing",
+        "Lung"
+      ],
+      [
+        "Toxic nephropathy",
+        "Kidney Diseases",
+        "Ototoxicity"
+      ],
+      [
+        "Toxic nephropathy",
+        "Adverse effects",
+        "Ototoxicity"
+      ],
+      [
+        "Toxic nephropathy",
+        "Degenerative abnormality",
+        "Ototoxicity"
+      ],
+      [
+        "Ototoxicity",
+        "Hearing",
+        "Lung"
+      ],
+      [
+        "Alkylating Agents",
+        "Graft acceptance",
+        "Lung"
+      ],
+      [
+        "Alkylating Agents",
+        "uptake",
+        "Lung"
+      ],
+      [
+        "Alkylating Agents",
+        "Physiological Processes",
+        "Lung"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Therapeutic immunosuppression)-CAUSES->(Disease)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Lung)",
+      "(Therapeutic immunosuppression)-CAUSES->(Disease)-MANIFESTATION_OF->(Hearing)-PROCESS_OF->(Lung)",
+      "(Toxic nephropathy)-CAUSES->(Kidney Diseases)-CAUSES->(Ototoxicity)",
+      "(Toxic nephropathy)-CAUSES->(Adverse effects)-CAUSES->(Ototoxicity)",
+      "(Toxic nephropathy)-CAUSES->(Degenerative abnormality)-CAUSES->(Ototoxicity)",
+      "(Ototoxicity)-MANIFESTATION_OF->(Hearing)-PROCESS_OF->(Lung)",
+      "(Alkylating Agents)-CAUSES->(Graft acceptance)-PROCESS_OF->(Lung)",
+      "(Alkylating Agents)-CAUSES->(uptake)-PROCESS_OF->(Lung)",
+      "(Alkylating Agents)-CAUSES->(Physiological Processes)-PROCESS_OF->(Lung)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Methotrexate",
+        "T-Lymphocyte",
+        "Myocardium",
+        "Therapeutic immunosuppression"
+      ],
+      [
+        "Methotrexate",
+        "T-Lymphocyte",
+        "Biopsy sample",
+        "Therapeutic immunosuppression"
+      ],
+      [
+        "Lung",
+        "Pulmonary Fibrosis"
+      ],
+      [
+        "Lung",
+        "Pulmonary Fibrosis"
+      ],
+      [
+        "Lung",
+        "Pulmonary Fibrosis"
+      ],
+      [
+        "Busulfan",
+        "Graft acceptance",
+        "Melphalan",
+        "Alkylating Agents"
+      ],
+      [
+        "Busulfan",
+        "Functional disorder",
+        "Melphalan",
+        "Alkylating Agents"
+      ],
+      [
+        "Lung",
+        "Pulmonary Fibrosis"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "LOCATION_OF"
+      ],
+      [
+        "LOCATION_OF"
+      ],
+      [
+        "LOCATION_OF"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Methotrexate)-INTERACTS_WITH->(T-Lymphocyte)-PART_OF->(Myocardium)-LOCATION_OF->(Therapeutic immunosuppression)",
+      "(Methotrexate)-INTERACTS_WITH->(T-Lymphocyte)-PART_OF->(Biopsy sample)-LOCATION_OF->(Therapeutic immunosuppression)",
+      "(Lung)-LOCATION_OF->(Pulmonary Fibrosis)",
+      "(Lung)-LOCATION_OF->(Pulmonary Fibrosis)",
+      "(Lung)-LOCATION_OF->(Pulmonary Fibrosis)",
+      "(Busulfan)-CAUSES->(Graft acceptance)-ASSOCIATED_WITH->(Melphalan)-INTERACTS_WITH->(Alkylating Agents)",
+      "(Busulfan)-TREATS->(Functional disorder)-ASSOCIATED_WITH->(Melphalan)-INTERACTS_WITH->(Alkylating Agents)",
+      "(Lung)-LOCATION_OF->(Pulmonary Fibrosis)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Busulfan)-TREATS->(Functional disorder)-ASSOCIATED_WITH->(Melphalan)-INTERACTS_WITH->(Alkylating Agents)",
+      "(Busulfan)-CAUSES->(Graft acceptance)-ASSOCIATED_WITH->(Melphalan)-INTERACTS_WITH->(Alkylating Agents)",
+      "(Methotrexate)-INTERACTS_WITH->(T-Lymphocyte)-PART_OF->(Myocardium)-LOCATION_OF->(Therapeutic immunosuppression)",
+      "(Methotrexate)-INTERACTS_WITH->(T-Lymphocyte)-PART_OF->(Biopsy sample)-LOCATION_OF->(Therapeutic immunosuppression)",
+      "(Lung)-LOCATION_OF->(Pulmonary Fibrosis)",
+      "(Toxic nephropathy)-CAUSES->(Kidney Diseases)-CAUSES->(Ototoxicity)",
+      "(Alkylating Agents)-CAUSES->(Graft acceptance)-PROCESS_OF->(Lung)",
+      "(Alkylating Agents)-CAUSES->(uptake)-PROCESS_OF->(Lung)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Methotrexate\" -> \"immunosuppressive therapy\" -> \"potential lung toxicity\" -> \"pulmonary fibrosis\" -> 85%",
+    "CHAIN: \"Doxorubicin\" -> \"chemotherapy agent\" -> \"cardiotoxicity\" -> \"less common lung toxicity\" -> \"pulmonary fibrosis\" -> 60%",
+    "CHAIN: \"Cisplatin\" -> \"chemotherapy agent\" -> \"nephrotoxicity\" -> \"ototoxicity\" -> \"less common lung toxicity\" -> \"pulmonary fibrosis\" -> 55%",
+    "CHAIN: \"Busulfan\" -> \"alkylating agent\" -> \"known lung toxicity\" -> \"pulmonary fibrosis\" -> 95%"
+  ],
+  "enhanced_information": "Pulmonary fibrosis can be a complication of various medications, particularly those with known lung toxicity. Methotrexate is an immunosuppressive agent that can lead to pulmonary toxicity, including pulmonary fibrosis, though this is less common compared to other agents. Doxorubicin is primarily known for cardiotoxicity, with pulmonary fibrosis being a rare side effect. Cisplatin is associated with nephrotoxicity and ototoxicity, and while it can cause lung toxicity, it is not a common cause of pulmonary fibrosis. Busulfan, an alkylating agent, is well-documented to cause pulmonary fibrosis, making it the most likely option among those listed. Therefore, the strongest consensus aligns with Busulfan as a known cause of pulmonary fibrosis, supported by its established lung toxicity profile.",
+  "analysis": "Pulmonary fibrosis is a known complication of certain chemotherapeutic agents, particularly those that have a direct toxic effect on lung tissue. Among the options provided, Methotrexate is known to cause pulmonary toxicity, including pulmonary fibrosis, but this is less common compared to other agents. Doxorubicin is primarily associated with cardiotoxicity, and while it can have pulmonary effects, pulmonary fibrosis is rare. Cisplatin is more recognized for nephrotoxicity and ototoxicity, and while it can cause lung toxicity, it is not a common cause of pulmonary fibrosis. Busulfan, on the other hand, is well-documented in the literature as a cause of pulmonary fibrosis due to its alkylating properties and the resultant lung toxicity. Therefore, based on the consensus in medical literature regarding the agents listed, Busulfan is the most likely cause of pulmonary fibrosis. This conclusion is supported by its established profile of causing lung damage, making it the best-supported option among those listed.",
+  "answer": "opd",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      3,
+      1,
+      3,
+      3
+    ],
+    "coverage_rates": [
+      30.0,
+      10.0,
+      30.0,
+      30.0
+    ],
+    "total_successes": 10
+  },
+  "normal_results": []
+}

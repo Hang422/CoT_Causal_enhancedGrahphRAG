@@ -1,0 +1,280 @@
+{
+  "question": "Which of the following drugs is contraindicated along with spironolactone",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Chlorothiazide",
+    "opb": "Beta blockers",
+    "opc": "ACE inhibitors",
+    "opd": "Amlodipine"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Spironolactone",
+        "Potassium retention"
+      ],
+      [
+        "potassium",
+        "Hypertensive disease",
+        "hyperkalemia"
+      ],
+      [
+        "potassium",
+        "Kidney Diseases",
+        "hyperkalemia"
+      ],
+      [
+        "potassium",
+        "Diabetic Ketoacidosis",
+        "hyperkalemia"
+      ],
+      [
+        "Spironolactone",
+        "Potassium retention"
+      ],
+      [
+        "Spironolactone",
+        "Potassium retention"
+      ],
+      [
+        "Spironolactone",
+        "Potassium retention"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Spironolactone)-CAUSES->(Potassium retention)",
+      "(potassium)-CAUSES->(Hypertensive disease)-CAUSES->(hyperkalemia)",
+      "(potassium)-TREATS->(Kidney Diseases)-CAUSES->(hyperkalemia)",
+      "(potassium)-TREATS->(Diabetic Ketoacidosis)-CAUSES->(hyperkalemia)",
+      "(Spironolactone)-CAUSES->(Potassium retention)",
+      "(Spironolactone)-CAUSES->(Potassium retention)",
+      "(Spironolactone)-CAUSES->(Potassium retention)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Serum potassium assay",
+        "Disease",
+        "Complication",
+        "Angiotensin-Converting Enzyme Inhibitors"
+      ],
+      [
+        "Serum potassium assay",
+        "Disease",
+        "Complication",
+        "Angiotensin-Converting Enzyme Inhibitors"
+      ],
+      [
+        "Angiotensin-Converting Enzyme Inhibitors",
+        "Excretory function",
+        "potassium"
+      ],
+      [
+        "Serum potassium assay",
+        "Disease",
+        "Virus",
+        "Hormones",
+        "Chlorothiazide"
+      ],
+      [
+        "Serum potassium assay",
+        "Kidney Failure, Chronic",
+        "Virus",
+        "Hormones",
+        "Chlorothiazide"
+      ],
+      [
+        "Serum potassium assay",
+        "Disease",
+        "arterial stiffness",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Serum potassium assay",
+        "Disease",
+        "arterial stiffness",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Adrenergic beta-Antagonists",
+        "uptake",
+        "potassium"
+      ],
+      [
+        "Serum potassium assay",
+        "Disease",
+        "Obstetric Labor, Premature",
+        "Amlodipine"
+      ],
+      [
+        "Serum potassium assay",
+        "Asthma",
+        "Obstetric Labor, Premature",
+        "Amlodipine"
+      ],
+      [
+        "Amlodipine",
+        "Disease",
+        "Excretory function",
+        "potassium"
+      ],
+      [
+        "Amlodipine",
+        "Disease",
+        "physiological aspects",
+        "potassium"
+      ]
+    ],
+    "relationships": [
+      [
+        "DIAGNOSES",
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "DIAGNOSES",
+        "COMPLICATES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "DIAGNOSES",
+        "ASSOCIATED_WITH",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "DIAGNOSES",
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "DIAGNOSES",
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "DIAGNOSES",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "DIAGNOSES",
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "DIAGNOSES",
+        "PREDISPOSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Serum potassium assay)-DIAGNOSES->(Disease)-CAUSES->(Complication)-ASSOCIATED_WITH->(Angiotensin-Converting Enzyme Inhibitors)",
+      "(Serum potassium assay)-DIAGNOSES->(Disease)-COMPLICATES->(Complication)-ASSOCIATED_WITH->(Angiotensin-Converting Enzyme Inhibitors)",
+      "(Angiotensin-Converting Enzyme Inhibitors)-CAUSES->(Excretory function)-ASSOCIATED_WITH->(potassium)",
+      "(Serum potassium assay)-DIAGNOSES->(Disease)-ASSOCIATED_WITH->(Virus)-LOCATION_OF->(Hormones)-INTERACTS_WITH->(Chlorothiazide)",
+      "(Serum potassium assay)-DIAGNOSES->(Kidney Failure, Chronic)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Hormones)-INTERACTS_WITH->(Chlorothiazide)",
+      "(Serum potassium assay)-DIAGNOSES->(Disease)-CAUSES->(arterial stiffness)-ASSOCIATED_WITH->(Adrenergic beta-Antagonists)",
+      "(Serum potassium assay)-DIAGNOSES->(Disease)-MANIFESTATION_OF->(arterial stiffness)-ASSOCIATED_WITH->(Adrenergic beta-Antagonists)",
+      "(Adrenergic beta-Antagonists)-CAUSES->(uptake)-ASSOCIATED_WITH->(potassium)",
+      "(Serum potassium assay)-DIAGNOSES->(Disease)-CAUSES->(Obstetric Labor, Premature)-ASSOCIATED_WITH->(Amlodipine)",
+      "(Serum potassium assay)-DIAGNOSES->(Asthma)-PREDISPOSES->(Obstetric Labor, Premature)-ASSOCIATED_WITH->(Amlodipine)",
+      "(Amlodipine)-TREATS->(Disease)-MANIFESTATION_OF->(Excretory function)-ASSOCIATED_WITH->(potassium)",
+      "(Amlodipine)-TREATS->(Disease)-MANIFESTATION_OF->(physiological aspects)-ASSOCIATED_WITH->(potassium)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Spironolactone)-CAUSES->(Potassium retention)",
+      "(Serum potassium assay)-DIAGNOSES->(Disease)-CAUSES->(Obstetric Labor, Premature)-ASSOCIATED_WITH->(Amlodipine)",
+      "(Serum potassium assay)-DIAGNOSES->(Asthma)-PREDISPOSES->(Obstetric Labor, Premature)-ASSOCIATED_WITH->(Amlodipine)",
+      "(Amlodipine)-TREATS->(Disease)-MANIFESTATION_OF->(Excretory function)-ASSOCIATED_WITH->(potassium)",
+      "(Amlodipine)-TREATS->(Disease)-MANIFESTATION_OF->(physiological aspects)-ASSOCIATED_WITH->(potassium)",
+      "(Serum potassium assay)-DIAGNOSES->(Disease)-ASSOCIATED_WITH->(Virus)-LOCATION_OF->(Hormones)-INTERACTS_WITH->(Chlorothiazide)",
+      "(Serum potassium assay)-DIAGNOSES->(Kidney Failure, Chronic)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Hormones)-INTERACTS_WITH->(Chlorothiazide)",
+      "(potassium)-CAUSES->(Hypertensive disease)-CAUSES->(hyperkalemia)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Spironolactone\" -> \"potassium retention\" -> \"increased potassium levels\" -> \"ACE inhibitors\" -> \"further increase potassium\" -> \"risk of hyperkalemia\" -> 95%",
+    "CHAIN: \"Spironolactone\" -> \"potassium retention\" -> \"increased potassium levels\" -> \"Chlorothiazide\" -> \"potassium excretion\" -> \"possible balance of potassium\" -> 70%",
+    "CHAIN: \"Spironolactone\" -> \"potassium retention\" -> \"increased potassium levels\" -> \"Beta blockers\" -> \"no direct effect on potassium\" -> \"no significant interaction\" -> 80%",
+    "CHAIN: \"Spironolactone\" -> \"potassium retention\" -> \"increased potassium levels\" -> \"Amlodipine\" -> \"no direct effect on potassium\" -> \"no significant interaction\" -> 80%"
+  ],
+  "enhanced_information": "Spironolactone is a potassium-sparing diuretic that can lead to potassium retention and increased serum potassium levels, which raises the risk of hyperkalemia. ACE inhibitors, when used concurrently with spironolactone, can further increase potassium levels, making their combination contraindicated due to the heightened risk of hyperkalemia. Chlorothiazide, on the other hand, promotes potassium excretion, which may help balance potassium levels when used with spironolactone, thus not contraindicated. Beta blockers and amlodipine do not have a significant direct effect on potassium levels and are generally considered safe to use with spironolactone. Therefore, the drug that is contraindicated along with spironolactone is ACE inhibitors.",
+  "analysis": "Spironolactone is a potassium-sparing diuretic that can lead to increased serum potassium levels, raising the risk of hyperkalemia. Among the options provided, ACE inhibitors are known to also increase potassium levels when used concurrently with spironolactone, which can lead to serious complications. Therefore, the combination of spironolactone and ACE inhibitors is contraindicated due to the heightened risk of hyperkalemia. In contrast, chlorothiazide promotes potassium excretion, which can help mitigate the potassium retention caused by spironolactone, making it safe to use together. Beta blockers and amlodipine do not significantly affect potassium levels and are generally safe to use with spironolactone. Thus, the most appropriate answer is that ACE inhibitors are contraindicated with spironolactone.",
+  "answer": "opc",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      4,
+      2,
+      3,
+      3
+    ],
+    "coverage_rates": [
+      33.33333333333333,
+      16.666666666666664,
+      25.0,
+      25.0
+    ],
+    "total_successes": 12
+  },
+  "normal_results": []
+}

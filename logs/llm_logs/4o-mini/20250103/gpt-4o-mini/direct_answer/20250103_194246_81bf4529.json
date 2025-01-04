@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_194246",
+  "model": "gpt-4o-mini",
+  "interaction_type": "direct_answer",
+  "question_id": "81bf4529",
+  "question_text": "A 40 year old male patient complains of diminished vision during night and dryness of eyes. Patient gives history of recurrent bacterial infections. Ophthalmic examination reveals white triangular plaques on conjunctiva. This patient is suffering from deficiency of:",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on medical knowledge."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Biochemistry.Please help answer this multiple choice question:\n\nQuestion: A 40 year old male patient complains of diminished vision during night and dryness of eyes. Patient gives history of recurrent bacterial infections. Ophthalmic examination reveals white triangular plaques on conjunctiva. This patient is suffering from deficiency of:\n\nOptions:\nopa. Vitamin D\nopb. Vitamin B\nopc. Vitamin A\nopd. Vitamin C\n\n        ### Output Format\n        Provide your response in valid JSON format:\n        {   \n            \"final_analysis\": \"Your concise analysis following the above structure\",\n            \"answer\": \"Option key from the available options (only key,like opa)\",\n            \"confidence\": Score between 0-100 based on alignment with established medical facts\n        }\n        "
+    }
+  ],
+  "response": "{\n    \"final_analysis\": \"The symptoms described, including diminished vision at night (night blindness), dryness of eyes, and the presence of white triangular plaques on the conjunctiva (known as Bitot's spots), are indicative of Vitamin A deficiency. Vitamin A is essential for maintaining healthy vision, particularly in low-light conditions, and its deficiency can lead to xerophthalmia and increased susceptibility to infections.\",\n    \"answer\": \"opc\",\n    \"confidence\": 95\n}",
+  "metadata": {
+    "topic": "Biochemistry",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

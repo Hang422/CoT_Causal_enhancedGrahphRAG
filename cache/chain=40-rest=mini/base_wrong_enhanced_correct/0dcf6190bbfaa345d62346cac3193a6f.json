@@ -1,0 +1,83 @@
+{
+  "question": "The treatment of choice for bacterial vaginosis is :",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Clindamycin",
+    "opb": "Erythromycin",
+    "opc": "Ampicillin",
+    "opd": "Metronidazole"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Bacterial Vaginosis",
+        "Bacteria, Anaerobic"
+      ]
+    ],
+    "relationships": [
+      [
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Bacterial Vaginosis)-PROCESS_OF->(Bacteria, Anaerobic)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Bacteria, Anaerobic",
+        "Clindamycin"
+      ]
+    ],
+    "relationships": [
+      [
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Bacteria, Anaerobic)-LOCATION_OF->(Clindamycin)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Bacteria, Anaerobic)-LOCATION_OF->(Clindamycin)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Bacterial vaginosis\" -> \"anaerobic bacteria overgrowth\" -> \"Metronidazole targets anaerobes\" -> \"effective treatment\" -> 95%",
+    "CHAIN: \"Bacterial vaginosis\" -> \"anaerobic bacteria\" -> \"Clindamycin targets anaerobes\" -> \"possible treatment\" -> 70%",
+    "CHAIN: \"Bacterial vaginosis\" -> \"broad-spectrum antibiotic needed\" -> \"Erythromycin less effective for anaerobes\" -> \"less preferred\" -> 50%",
+    "CHAIN: \"Bacterial vaginosis\" -> \"broad-spectrum antibiotic needed\" -> \"Ampicillin less effective for anaerobes\" -> \"less preferred\" -> 50%"
+  ],
+  "enhanced_information": "The treatment of choice for bacterial vaginosis (BV) is Metronidazole, which effectively targets anaerobic bacteria associated with the condition. Clindamycin is also effective against anaerobes but is considered a second-line treatment. Erythromycin and Ampicillin are less effective for treating BV due to their limited action against anaerobic bacteria, making them less preferred options. The consensus supports Metronidazole as the first-line therapy, with Clindamycin as an alternative. Evidence confirms that both Metronidazole and Clindamycin target anaerobic bacteria, but Metronidazole is more widely recommended.",
+  "analysis": "Bacterial vaginosis (BV) is primarily caused by an imbalance of normal vaginal flora, particularly an overgrowth of anaerobic bacteria. The treatment of choice is Metronidazole, which is effective against these anaerobes. Clindamycin is also effective and serves as a second-line option. Erythromycin and Ampicillin are not preferred due to their limited efficacy against the anaerobic bacteria involved in BV. The consensus in medical literature strongly supports Metronidazole as the first-line treatment, making it the most appropriate choice in this scenario.",
+  "answer": "opd",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      2,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      0.0,
+      100.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 2
+  },
+  "normal_results": []
+}

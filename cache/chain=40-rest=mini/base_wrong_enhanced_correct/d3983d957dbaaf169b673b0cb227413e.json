@@ -1,0 +1,219 @@
+{
+  "question": "Lipids are transferred from intestine to liver by",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Chylomicrons",
+    "opb": "VLDL",
+    "opc": "HDL",
+    "opd": "LDL"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Dietary Fats",
+        "Symptoms",
+        "paracrine",
+        "Intestines"
+      ],
+      [
+        "Dietary Fats",
+        "Pain",
+        "paracrine",
+        "Intestines"
+      ],
+      [
+        "Dietary Fats",
+        "Obesity",
+        "paracrine",
+        "Intestines"
+      ],
+      [
+        "Blood Circulation",
+        "Liver"
+      ],
+      [
+        "Triglycerides",
+        "Cardiovascular Diseases",
+        "Blood Circulation"
+      ],
+      [
+        "Triglycerides",
+        "Disease",
+        "Blood Circulation"
+      ],
+      [
+        "Triglycerides",
+        "Osteoporosis",
+        "Blood Circulation"
+      ],
+      [
+        "Blood Circulation",
+        "Liver"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "PROCESS_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Dietary Fats)-CAUSES->(Symptoms)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Intestines)",
+      "(Dietary Fats)-CAUSES->(Pain)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Intestines)",
+      "(Dietary Fats)-PREDISPOSES->(Obesity)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Intestines)",
+      "(Blood Circulation)-PROCESS_OF->(Liver)",
+      "(Triglycerides)-PREDISPOSES->(Cardiovascular Diseases)-MANIFESTATION_OF->(Blood Circulation)",
+      "(Triglycerides)-TREATS->(Disease)-MANIFESTATION_OF->(Blood Circulation)",
+      "(Triglycerides)-TREATS->(Osteoporosis)-MANIFESTATION_OF->(Blood Circulation)",
+      "(Blood Circulation)-PROCESS_OF->(Liver)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Intestines",
+        "Diastasis",
+        "Chylomicrons"
+      ],
+      [
+        "Intestines",
+        "Functional disorder",
+        "Chylomicrons"
+      ],
+      [
+        "Lymphatic System",
+        "altretamine/cisplatin/cyclophosphamide protocol",
+        "Disease",
+        "Blood Circulation"
+      ],
+      [
+        "Lymphatic System",
+        "altretamine/cisplatin/cyclophosphamide protocol",
+        "Disease",
+        "Blood Circulation"
+      ],
+      [
+        "Chylomicrons",
+        "Cells",
+        "Triglycerides"
+      ],
+      [
+        "Chylomicrons",
+        "Cultured Cells",
+        "Triglycerides"
+      ]
+    ],
+    "relationships": [
+      [
+        "LOCATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "LOCATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "LOCATION_OF",
+        "COMPLICATES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "PREVENTS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Intestines)-LOCATION_OF->(Diastasis)-ASSOCIATED_WITH->(Chylomicrons)",
+      "(Intestines)-LOCATION_OF->(Functional disorder)-ASSOCIATED_WITH->(Chylomicrons)",
+      "(Lymphatic System)-LOCATION_OF->(altretamine/cisplatin/cyclophosphamide protocol)-COMPLICATES->(Disease)-MANIFESTATION_OF->(Blood Circulation)",
+      "(Lymphatic System)-LOCATION_OF->(altretamine/cisplatin/cyclophosphamide protocol)-PREVENTS->(Disease)-MANIFESTATION_OF->(Blood Circulation)",
+      "(Chylomicrons)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Triglycerides)",
+      "(Chylomicrons)-INTERACTS_WITH->(Cultured Cells)-LOCATION_OF->(Triglycerides)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Intestines)-LOCATION_OF->(Diastasis)-ASSOCIATED_WITH->(Chylomicrons)",
+      "(Intestines)-LOCATION_OF->(Functional disorder)-ASSOCIATED_WITH->(Chylomicrons)",
+      "(Chylomicrons)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Triglycerides)",
+      "(Chylomicrons)-INTERACTS_WITH->(Cultured Cells)-LOCATION_OF->(Triglycerides)",
+      "(Dietary Fats)-CAUSES->(Symptoms)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Intestines)",
+      "(Blood Circulation)-PROCESS_OF->(Liver)",
+      "(Triglycerides)-PREDISPOSES->(Cardiovascular Diseases)-MANIFESTATION_OF->(Blood Circulation)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Dietary fats\" -> \"absorbed in intestine\" -> \"packaged into chylomicrons\" -> \"transported via lymphatic system\" -> \"enter bloodstream\" -> \"delivered to liver\" -> 95%",
+    "CHAIN: \"Intestinal absorption\" -> \"formation of chylomicrons\" -> \"transport through lymphatics\" -> \"enter systemic circulation\" -> \"reach liver\" -> 90%",
+    "CHAIN: \"Chylomicrons\" -> \"carry triglycerides\" -> \"enter bloodstream\" -> \"deliver lipids to liver\" -> 85%",
+    "CHAIN: \"Intestinal lipids\" -> \"chylomicron formation\" -> \"lymphatic transport\" -> \"systemic circulation\" -> \"liver uptake\" -> 92%"
+  ],
+  "enhanced_information": "Lipids, specifically dietary fats, are absorbed in the intestine and packaged into chylomicrons. These chylomicrons are then transported through the lymphatic system and enter the bloodstream, ultimately delivering lipids to the liver. This process is well-supported by consensus in physiology, confirming that chylomicrons are the primary carriers of dietary lipids from the intestine to the liver. Other lipoproteins like VLDL, HDL, and LDL are involved in lipid transport but are not responsible for the initial transfer of dietary lipids from the intestine. Therefore, the correct answer is chylomicrons.",
+  "analysis": "Lipids, particularly dietary fats, are absorbed in the intestine and packaged into chylomicrons. These chylomicrons are then released into the lymphatic system and eventually enter the bloodstream, where they transport dietary lipids to various tissues, including the liver. This process is well-established in physiology, and chylomicrons are specifically recognized as the primary carriers of dietary lipids from the intestine to the liver. Other lipoproteins such as VLDL, HDL, and LDL play roles in lipid transport but are not involved in the initial transfer of dietary lipids from the intestine. Therefore, the most accurate answer based on established medical knowledge is chylomicrons.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      4,
+      0,
+      3,
+      0
+    ],
+    "coverage_rates": [
+      57.14285714285714,
+      0.0,
+      42.857142857142854,
+      0.0
+    ],
+    "total_successes": 7
+  },
+  "normal_results": []
+}

@@ -1,0 +1,188 @@
+{
+  "question": "Which of the following peptides are not produced by the renal system?",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Renin",
+    "opb": "Angiotensin I",
+    "opc": "Erythropoietin",
+    "opd": "1,25DHCC"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Erythropoietin",
+        "Cytoprotection",
+        "Kidney"
+      ],
+      [
+        "Erythropoietin",
+        "Immunity",
+        "Kidney"
+      ],
+      [
+        "Erythropoietin",
+        "biological adaptation to stress",
+        "Kidney"
+      ],
+      [
+        "Vitamin D2",
+        "Disease",
+        "Physiological stress",
+        "Kidney"
+      ],
+      [
+        "Vitamin D2",
+        "Disease",
+        "paracrine",
+        "Kidney"
+      ],
+      [
+        "Vitamin D2",
+        "Disease",
+        "metabolic effects",
+        "Kidney"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Erythropoietin)-CAUSES->(Cytoprotection)-PROCESS_OF->(Kidney)",
+      "(Erythropoietin)-CAUSES->(Immunity)-PROCESS_OF->(Kidney)",
+      "(Erythropoietin)-CAUSES->(biological adaptation to stress)-PROCESS_OF->(Kidney)",
+      "(Vitamin D2)-PREDISPOSES->(Disease)-CAUSES->(Physiological stress)-PROCESS_OF->(Kidney)",
+      "(Vitamin D2)-PREDISPOSES->(Disease)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Kidney)",
+      "(Vitamin D2)-PREDISPOSES->(Disease)-MANIFESTATION_OF->(metabolic effects)-PROCESS_OF->(Kidney)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Angiotensin I",
+        "Myocytes, Smooth Muscle",
+        "Angiotensinogen"
+      ],
+      [
+        "Angiotensinogen",
+        "Cells",
+        "Angiotensin II"
+      ],
+      [
+        "Angiotensinogen",
+        "Cell Line",
+        "Angiotensin II"
+      ],
+      [
+        "Kidney",
+        "Genes",
+        "Erythrocytes"
+      ],
+      [
+        "Kidney",
+        "Genes",
+        "Erythrocytes"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Angiotensin I)-INTERACTS_WITH->(Myocytes, Smooth Muscle)-INTERACTS_WITH->(Angiotensinogen)",
+      "(Angiotensinogen)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Angiotensin II)",
+      "(Angiotensinogen)-INTERACTS_WITH->(Cell Line)-LOCATION_OF->(Angiotensin II)",
+      "(Kidney)-LOCATION_OF->(Genes)-PART_OF->(Erythrocytes)",
+      "(Kidney)-LOCATION_OF->(Genes)-INTERACTS_WITH->(Erythrocytes)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Erythropoietin)-CAUSES->(Cytoprotection)-PROCESS_OF->(Kidney)",
+      "(Erythropoietin)-CAUSES->(Immunity)-PROCESS_OF->(Kidney)",
+      "(Erythropoietin)-CAUSES->(biological adaptation to stress)-PROCESS_OF->(Kidney)",
+      "(Angiotensin I)-INTERACTS_WITH->(Myocytes, Smooth Muscle)-INTERACTS_WITH->(Angiotensinogen)",
+      "(Angiotensinogen)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Angiotensin II)",
+      "(Angiotensinogen)-INTERACTS_WITH->(Cell Line)-LOCATION_OF->(Angiotensin II)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Renin\" -> \"produced by juxtaglomerular cells\" -> \"involved in blood pressure regulation\" -> 100%",
+    "CHAIN: \"Angiotensin I\" -> \"produced from angiotensinogen\" -> \"converted to angiotensin II primarily in the lungs\" -> \"not directly produced by the renal system\" -> 90%",
+    "CHAIN: \"Erythropoietin\" -> \"produced by interstitial fibroblasts in the kidneys\" -> \"stimulates red blood cell production\" -> 100%",
+    "CHAIN: \"1,25DHCC\" -> \"active form of vitamin D\" -> \"produced in the kidneys from calcidiol\" -> 100%"
+  ],
+  "enhanced_information": "Renin is produced by the juxtaglomerular cells in the kidneys and is involved in blood pressure regulation, confirming its renal origin. Angiotensin I is formed from angiotensinogen, which is produced by the liver, and is converted to angiotensin II primarily in the lungs, indicating it is not directly produced by the renal system. Erythropoietin is produced by interstitial fibroblasts in the kidneys and stimulates red blood cell production, confirming its renal origin. 1,25-Dihydroxycholecalciferol (1,25DHCC), the active form of vitamin D, is produced in the kidneys from calcidiol, confirming its renal origin. Therefore, Angiotensin I is the peptide not produced by the renal system.",
+  "analysis": "The question asks which peptide is not produced by the renal system. Renin is produced by the juxtaglomerular cells in the kidneys, confirming its renal origin. Erythropoietin is also produced in the kidneys by interstitial fibroblasts, confirming its renal origin. 1,25-Dihydroxycholecalciferol (1,25DHCC), the active form of vitamin D, is synthesized in the kidneys from calcidiol, confirming its renal origin. Angiotensin I, however, is formed from angiotensinogen, which is produced by the liver, and is converted to angiotensin I by renin, but this conversion does not mean it is produced by the renal system. Therefore, Angiotensin I is the peptide not directly produced by the renal system.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      2,
+      2,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      40.0,
+      40.0,
+      20.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

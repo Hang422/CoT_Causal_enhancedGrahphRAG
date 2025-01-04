@@ -1,0 +1,351 @@
+{
+  "question": "Propronolol is useful in all except -",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Atrial flutter",
+    "opb": "Parkinsonian tremor",
+    "opc": "Thyrotoxicosis",
+    "opd": "HOCM"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Propranolol",
+        "cardiac arrhythmia"
+      ],
+      [
+        "Adrenergic beta-Antagonists",
+        "cardiac arrhythmia"
+      ],
+      [
+        "cardiac arrhythmia",
+        "Atrial Flutter"
+      ],
+      [
+        "Atrial Flutter",
+        "Cerebrovascular accident",
+        "Parkinsonian tremor"
+      ],
+      [
+        "Propranolol",
+        "Thyrotoxicosis"
+      ],
+      [
+        "Symptom control",
+        "Hypertrophic Cardiomyopathy"
+      ],
+      [
+        "Tachycardia",
+        "Myocardial Infarction",
+        "Hypertrophic Cardiomyopathy"
+      ],
+      [
+        "Tachycardia",
+        "Hypertensive disease",
+        "Hypertrophic Cardiomyopathy"
+      ],
+      [
+        "Tachycardia",
+        "Symptoms",
+        "Hypertrophic Cardiomyopathy"
+      ],
+      [
+        "Propranolol",
+        "Thyrotoxicosis"
+      ],
+      [
+        "Anxiety",
+        "Disease",
+        "Thyrotoxicosis"
+      ],
+      [
+        "Anxiety",
+        "Diabetes Mellitus, Insulin-Dependent",
+        "Thyrotoxicosis"
+      ],
+      [
+        "Tremor",
+        "Disease",
+        "Thyrotoxicosis"
+      ],
+      [
+        "Tremor",
+        "Syndrome",
+        "Thyrotoxicosis"
+      ],
+      [
+        "Tremor",
+        "Infection",
+        "Thyrotoxicosis"
+      ],
+      [
+        "Thyrotoxicosis",
+        "Tremor",
+        "Parkinsonian tremor"
+      ],
+      [
+        "Thyrotoxicosis",
+        "Cerebrovascular accident",
+        "Parkinsonian tremor"
+      ],
+      [
+        "Thyrotoxicosis",
+        "Fatigue",
+        "Parkinsonian tremor"
+      ],
+      [
+        "Propranolol",
+        "Ventricular Outflow Obstruction, Left"
+      ],
+      [
+        "Hypertrophic Cardiomyopathy",
+        "Ventricular Outflow Obstruction, Left"
+      ],
+      [
+        "Ventricular Outflow Obstruction, Left",
+        "Hypertensive disease",
+        "Atrial Flutter"
+      ],
+      [
+        "Ventricular Outflow Obstruction, Left",
+        "Heart failure",
+        "Atrial Flutter"
+      ],
+      [
+        "Atrial Flutter",
+        "Cerebrovascular accident",
+        "Parkinsonian tremor"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "MANIFESTATION_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "COMPLICATES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "COMPLICATES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "COMPLICATES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Propranolol)-TREATS->(cardiac arrhythmia)",
+      "(Adrenergic beta-Antagonists)-CAUSES->(cardiac arrhythmia)",
+      "(cardiac arrhythmia)-MANIFESTATION_OF->(Atrial Flutter)",
+      "(Atrial Flutter)-CAUSES->(Cerebrovascular accident)-CAUSES->(Parkinsonian tremor)",
+      "(Propranolol)-TREATS->(Thyrotoxicosis)",
+      "(Symptom control)-TREATS->(Hypertrophic Cardiomyopathy)",
+      "(Tachycardia)-CAUSES->(Myocardial Infarction)-CAUSES->(Hypertrophic Cardiomyopathy)",
+      "(Tachycardia)-CAUSES->(Hypertensive disease)-CAUSES->(Hypertrophic Cardiomyopathy)",
+      "(Tachycardia)-PREDISPOSES->(Symptoms)-MANIFESTATION_OF->(Hypertrophic Cardiomyopathy)",
+      "(Propranolol)-TREATS->(Thyrotoxicosis)",
+      "(Anxiety)-CAUSES->(Disease)-CAUSES->(Thyrotoxicosis)",
+      "(Anxiety)-CAUSES->(Diabetes Mellitus, Insulin-Dependent)-COMPLICATES->(Thyrotoxicosis)",
+      "(Tremor)-CAUSES->(Disease)-CAUSES->(Thyrotoxicosis)",
+      "(Tremor)-CAUSES->(Syndrome)-CAUSES->(Thyrotoxicosis)",
+      "(Tremor)-CAUSES->(Infection)-COMPLICATES->(Thyrotoxicosis)",
+      "(Thyrotoxicosis)-CAUSES->(Tremor)-CAUSES->(Parkinsonian tremor)",
+      "(Thyrotoxicosis)-CAUSES->(Cerebrovascular accident)-CAUSES->(Parkinsonian tremor)",
+      "(Thyrotoxicosis)-CAUSES->(Fatigue)-CAUSES->(Parkinsonian tremor)",
+      "(Propranolol)-TREATS->(Ventricular Outflow Obstruction, Left)",
+      "(Hypertrophic Cardiomyopathy)-CAUSES->(Ventricular Outflow Obstruction, Left)",
+      "(Ventricular Outflow Obstruction, Left)-CAUSES->(Hypertensive disease)-CAUSES->(Atrial Flutter)",
+      "(Ventricular Outflow Obstruction, Left)-CAUSES->(Heart failure)-COMPLICATES->(Atrial Flutter)",
+      "(Atrial Flutter)-CAUSES->(Cerebrovascular accident)-CAUSES->(Parkinsonian tremor)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Thyrotoxicosis",
+        "Pathogenesis",
+        "Genes",
+        "Mucous Membrane",
+        "Symptom control"
+      ],
+      [
+        "Thyrotoxicosis",
+        "loss; bone",
+        "Genes",
+        "Mucous Membrane",
+        "Symptom control"
+      ],
+      [
+        "Parkinsonian tremor",
+        "Disease",
+        "physiological aspects",
+        "Bone Marrow",
+        "First line treatment"
+      ],
+      [
+        "Parkinsonian tremor",
+        "Parkinson Disease",
+        "physiological aspects",
+        "Bone Marrow",
+        "First line treatment"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "MANIFESTATION_OF",
+        "PROCESS_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "MANIFESTATION_OF",
+        "PROCESS_OF",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Thyrotoxicosis)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Genes)-PART_OF->(Mucous Membrane)-LOCATION_OF->(Symptom control)",
+      "(Thyrotoxicosis)-PREDISPOSES->(loss; bone)-ASSOCIATED_WITH->(Genes)-PART_OF->(Mucous Membrane)-LOCATION_OF->(Symptom control)",
+      "(Parkinsonian tremor)-ASSOCIATED_WITH->(Disease)-MANIFESTATION_OF->(physiological aspects)-PROCESS_OF->(Bone Marrow)-LOCATION_OF->(First line treatment)",
+      "(Parkinsonian tremor)-ASSOCIATED_WITH->(Parkinson Disease)-MANIFESTATION_OF->(physiological aspects)-PROCESS_OF->(Bone Marrow)-LOCATION_OF->(First line treatment)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Atrial Flutter)-CAUSES->(Cerebrovascular accident)-CAUSES->(Parkinsonian tremor)",
+      "(Thyrotoxicosis)-CAUSES->(Tremor)-CAUSES->(Parkinsonian tremor)",
+      "(Thyrotoxicosis)-CAUSES->(Cerebrovascular accident)-CAUSES->(Parkinsonian tremor)",
+      "(Thyrotoxicosis)-CAUSES->(Fatigue)-CAUSES->(Parkinsonian tremor)",
+      "(cardiac arrhythmia)-MANIFESTATION_OF->(Atrial Flutter)",
+      "(Tremor)-CAUSES->(Disease)-CAUSES->(Thyrotoxicosis)",
+      "(Tremor)-CAUSES->(Syndrome)-CAUSES->(Thyrotoxicosis)",
+      "(Tremor)-CAUSES->(Infection)-COMPLICATES->(Thyrotoxicosis)",
+      "(Ventricular Outflow Obstruction, Left)-CAUSES->(Hypertensive disease)-CAUSES->(Atrial Flutter)",
+      "(Ventricular Outflow Obstruction, Left)-CAUSES->(Heart failure)-COMPLICATES->(Atrial Flutter)",
+      "(Thyrotoxicosis)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Genes)-PART_OF->(Mucous Membrane)-LOCATION_OF->(Symptom control)",
+      "(Parkinsonian tremor)-ASSOCIATED_WITH->(Disease)-MANIFESTATION_OF->(physiological aspects)-PROCESS_OF->(Bone Marrow)-LOCATION_OF->(First line treatment)",
+      "(Parkinsonian tremor)-ASSOCIATED_WITH->(Parkinson Disease)-MANIFESTATION_OF->(physiological aspects)-PROCESS_OF->(Bone Marrow)-LOCATION_OF->(First line treatment)",
+      "(Propranolol)-TREATS->(Thyrotoxicosis)",
+      "(Symptom control)-TREATS->(Hypertrophic Cardiomyopathy)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Propranolol is a beta-blocker\" -> \"used to manage heart rhythm disorders\" -> \"effective in atrial flutter\" -> \"not indicated for Parkinsonian tremor\" -> 85%",
+    "CHAIN: \"Propranolol reduces sympathetic nervous system activity\" -> \"beneficial in thyrotoxicosis\" -> \"helps control symptoms like tachycardia\" -> \"not primarily used for HOCM\" -> 80%",
+    "CHAIN: \"Propranolol is effective for anxiety and tremors\" -> \"used in conditions like thyrotoxicosis\" -> \"less effective for Parkinsonian tremor\" -> \"not a first-line treatment\" -> 75%",
+    "CHAIN: \"Propranolol is indicated for HOCM\" -> \"reduces left ventricular outflow obstruction\" -> \"also used in atrial flutter\" -> \"not effective for Parkinsonian tremor\" -> 70%"
+  ],
+  "enhanced_information": "Propranolol is a non-selective beta-blocker commonly used for various conditions. It is effective in managing atrial flutter by controlling heart rate and rhythm. In the case of thyrotoxicosis, propranolol helps alleviate symptoms such as tachycardia and tremors, making it beneficial in this context. However, it is not primarily indicated for Parkinsonian tremor, as other treatments are preferred for this condition. Regarding hypertrophic obstructive cardiomyopathy (HOCM), propranolol is indeed indicated as it helps reduce left ventricular outflow obstruction. Therefore, the correct answer is that propranolol is not useful for Parkinsonian tremor.",
+  "analysis": "Propranolol is a non-selective beta-blocker that is effective in various clinical scenarios. It is commonly used to manage atrial flutter by controlling heart rate and rhythm. In thyrotoxicosis, it alleviates symptoms such as tachycardia and tremors, making it beneficial. For hypertrophic obstructive cardiomyopathy (HOCM), propranolol helps reduce left ventricular outflow obstruction, thus it is indicated. However, for Parkinsonian tremor, propranolol is not the first-line treatment; other medications such as anticholinergics or dopaminergic agents are preferred. Therefore, the option that propranolol is not useful for is Parkinsonian tremor.",
+  "answer": "opb",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      4,
+      4,
+      5,
+      4
+    ],
+    "coverage_rates": [
+      23.52941176470588,
+      23.52941176470588,
+      29.411764705882355,
+      23.52941176470588
+    ],
+    "total_successes": 17
+  },
+  "normal_results": []
+}

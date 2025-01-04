@@ -1,0 +1,155 @@
+{
+  "question": "Testosterone production is mainly contributed by",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Leydig cells",
+    "opb": "Seolie cells",
+    "opc": "Seminiferous tubules",
+    "opd": "Epididymis"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Structure of interstitial cell of Leydig",
+        "Testosterone"
+      ],
+      [
+        "Seminiferous tubule structure",
+        "Lipids",
+        "sperm cell"
+      ],
+      [
+        "Seminiferous tubule structure",
+        "Green Fluorescent Proteins",
+        "sperm cell"
+      ],
+      [
+        "sperm cell",
+        "Cells",
+        "Testosterone"
+      ],
+      [
+        "sperm cell",
+        "Column",
+        "Testosterone"
+      ],
+      [
+        "Epididymis",
+        "Genes",
+        "sperm cell"
+      ],
+      [
+        "Epididymis",
+        "Lipopolysaccharides",
+        "sperm cell"
+      ],
+      [
+        "sperm cell",
+        "Cells",
+        "Testosterone"
+      ],
+      [
+        "sperm cell",
+        "Column",
+        "Testosterone"
+      ]
+    ],
+    "relationships": [
+      [
+        "LOCATION_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Structure of interstitial cell of Leydig)-LOCATION_OF->(Testosterone)",
+      "(Seminiferous tubule structure)-LOCATION_OF->(Lipids)-PART_OF->(sperm cell)",
+      "(Seminiferous tubule structure)-LOCATION_OF->(Green Fluorescent Proteins)-INTERACTS_WITH->(sperm cell)",
+      "(sperm cell)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Testosterone)",
+      "(sperm cell)-PART_OF->(Column)-LOCATION_OF->(Testosterone)",
+      "(Epididymis)-LOCATION_OF->(Genes)-INTERACTS_WITH->(sperm cell)",
+      "(Epididymis)-LOCATION_OF->(Lipopolysaccharides)-PART_OF->(sperm cell)",
+      "(sperm cell)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Testosterone)",
+      "(sperm cell)-PART_OF->(Column)-LOCATION_OF->(Testosterone)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Structure of interstitial cell of Leydig)-LOCATION_OF->(Testosterone)",
+      "(sperm cell)-PART_OF->(Column)-LOCATION_OF->(Testosterone)",
+      "(sperm cell)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Testosterone)",
+      "(Seminiferous tubule structure)-LOCATION_OF->(Lipids)-PART_OF->(sperm cell)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Leydig cells\" -> \"testosterone production\" -> \"primary source\" -> 95%",
+    "CHAIN: \"Seolie cells\" -> \"possible misinterpretation\" -> \"not known for testosterone production\" -> 10%",
+    "CHAIN: \"Seminiferous tubules\" -> \"sperm production\" -> \"not primary testosterone source\" -> 20%",
+    "CHAIN: \"Epididymis\" -> \"sperm maturation\" -> \"not involved in testosterone production\" -> 5%"
+  ],
+  "enhanced_information": "Testosterone production is primarily contributed by Leydig cells, which are located in the interstitial tissue of the testes and are responsible for the majority of testosterone synthesis, accounting for approximately 95% of total production. Sertoli cells, while important for supporting spermatogenesis, do not produce significant amounts of testosterone (around 10%). The seminiferous tubules are primarily involved in sperm production rather than testosterone synthesis, contributing only about 20% to the overall testosterone levels. The epididymis is involved in sperm maturation and has no role in testosterone production (5%). Therefore, Leydig cells are the main source of testosterone in the male reproductive system.",
+  "analysis": "Testosterone production is primarily attributed to Leydig cells, which are located in the interstitial tissue of the testes. These cells are responsible for synthesizing approximately 95% of the body's testosterone. Sertoli cells, while crucial for supporting spermatogenesis, do not produce significant amounts of testosterone. The seminiferous tubules are mainly involved in sperm production and contribute minimally to testosterone levels. The epididymis plays no role in testosterone production. Given this information, Leydig cells are clearly the main contributors to testosterone synthesis in the male reproductive system.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      0,
+      2,
+      2
+    ],
+    "coverage_rates": [
+      20.0,
+      0.0,
+      40.0,
+      40.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

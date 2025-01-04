@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250102_235507",
+  "model": "gpt-4o-mini",
+  "interaction_type": "direct_answer",
+  "question_id": "3b4898a2",
+  "question_text": "Steroids are indicated in all of the following forms of tuberculosis except:",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on medical knowledge."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.Please help answer this multiple choice question:\n\nQuestion: Steroids are indicated in all of the following forms of tuberculosis except:\n\nOptions:\nopa. Meningitis\nopb. Pericarditis\nopc. Ileo-caecal tuberculosis\nopd. Adrenal involvement\n\n        ### Output Format\n        Provide your response in valid JSON format:\n        {   \n            \"final_analysis\": \"Your concise analysis following the above structure\",\n            \"answer\": \"Option key from the available options (only key,like opa)\",\n            \"confidence\": Score between 0-100 based on alignment with established medical facts\n        }\n        "
+    }
+  ],
+  "response": "{\n    \"final_analysis\": \"Steroids are typically indicated in cases of tuberculosis that involve significant inflammatory responses, such as meningitis and pericarditis, to reduce inflammation and prevent complications. However, in ileo-caecal tuberculosis and adrenal involvement, steroids are generally not indicated as they can suppress the immune response and worsen the infection. Therefore, the correct answer is ileo-caecal tuberculosis, where steroids are not routinely used.\",\n    \"answer\": \"opc\",\n    \"confidence\": 85\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

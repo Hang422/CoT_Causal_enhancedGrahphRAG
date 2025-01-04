@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250104_003755",
+  "model": "gpt-4o-mini",
+  "interaction_type": "answer_with_CoT",
+  "question_id": "602a9994",
+  "question_text": "Propronolol is useful in all except -",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert using chain-of-thought reasoning."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.\n            You are a medical expert determining the final answer.\n\n                ### Instructions:\n                - Use standard medical knowledge as the primary guide.\n                - Consider enhanced information only if it aligns with consensus.\n                - If conflicting or unclear, present the most likely correct answer based on known facts.\n                - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.\n            ### Question    \n            Propronolol is useful in all except -\n\n            ### Options\n            opa. Atrial flutter\nopb. Parkinsonian tremor\nopc. Thyrotoxicosis\nopd. HOCM\n\n### Reasoning Chains for Validation:\n- CHAIN: \"Propranolol is a beta-blocker\" -> \"used to manage heart rhythm disorders\" -> \"effective in atrial flutter\" -> \"not indicated for Parkinsonian tremor\" -> 85%\n- CHAIN: \"Propranolol reduces sympathetic nervous system activity\" -> \"beneficial in thyrotoxicosis\" -> \"helps control symptoms like tachycardia\" -> \"not primarily used for HOCM\" -> 80%\n- CHAIN: \"Propranolol is effective for anxiety and tremors\" -> \"used in conditions like thyrotoxicosis\" -> \"less effective for Parkinsonian tremor\" -> \"not a first-line treatment\" -> 75%\n- CHAIN: \"Propranolol is indicated for HOCM\" -> \"reduces left ventricular outflow obstruction\" -> \"also used in atrial flutter\" -> \"not effective for Parkinsonian tremor\" -> 70%\n\n### Retrieved Validation Paths:\n- (Atrial Flutter)-CAUSES->(Cerebrovascular accident)-CAUSES->(Parkinsonian tremor)\n- (Thyrotoxicosis)-CAUSES->(Tremor)-CAUSES->(Parkinsonian tremor)\n- (Thyrotoxicosis)-CAUSES->(Cerebrovascular accident)-CAUSES->(Parkinsonian tremor)\n- (Thyrotoxicosis)-CAUSES->(Fatigue)-CAUSES->(Parkinsonian tremor)\n- (cardiac arrhythmia)-MANIFESTATION_OF->(Atrial Flutter)\n- (Tremor)-CAUSES->(Disease)-CAUSES->(Thyrotoxicosis)\n- (Tremor)-CAUSES->(Syndrome)-CAUSES->(Thyrotoxicosis)\n- (Tremor)-CAUSES->(Infection)-COMPLICATES->(Thyrotoxicosis)\n- (Ventricular Outflow Obstruction, Left)-CAUSES->(Hypertensive disease)-CAUSES->(Atrial Flutter)\n- (Ventricular Outflow Obstruction, Left)-CAUSES->(Heart failure)-COMPLICATES->(Atrial Flutter)\n- (Parkinsonian tremor)-ASSOCIATED_WITH->(Disease)-MANIFESTATION_OF->(physiological aspects)-PROCESS_OF->(Bone Marrow)-LOCATION_OF->(First line treatment)\n- (Parkinsonian tremor)-ASSOCIATED_WITH->(Parkinson Disease)-MANIFESTATION_OF->(physiological aspects)-PROCESS_OF->(Bone Marrow)-LOCATION_OF->(First line treatment)\n- (Propranolol)-TREATS->(Thyrotoxicosis)\n- (Thyrotoxicosis)-CAUSES->(Tachycardia)\n\n            ### Task:\n                1. Identify the core medical principle and the most likely correct option based on consensus.\n                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.\n                3. Provide a final analysis and a confidence score (0-100%).\n                \n                ### Output Format:\n                {\n                  \"final_analysis\": \"Step-by-step reasoning, prioritizing medical consensus and acknowledging complexity if present.\",\n                  \"answer\": \"Option key (e.g. opa, opb, ...)\",\n                  \"confidence\": A number between 0-100\n                }\n            "
+    }
+  ],
+  "response": "{\n  \"final_analysis\": \"Propranolol is a non-selective beta-blocker that is commonly used for various conditions, including atrial flutter, thyrotoxicosis, and hypertrophic obstructive cardiomyopathy (HOCM). In atrial flutter, propranolol helps control heart rate and rhythm. In thyrotoxicosis, it alleviates symptoms such as tachycardia and tremors. HOCM can also benefit from propranolol as it reduces left ventricular outflow obstruction. However, while propranolol can be used for essential tremors, it is not effective for Parkinsonian tremor, which is primarily treated with dopaminergic medications. Therefore, the option that propranolol is not useful for is Parkinsonian tremor.\",\n  \"answer\": \"opb\",\n  \"confidence\": 90\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": true,
+    "has_enhanced_info": true,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

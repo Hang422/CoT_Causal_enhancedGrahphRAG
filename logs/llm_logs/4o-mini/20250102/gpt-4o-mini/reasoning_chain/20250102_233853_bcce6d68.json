@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250102_233853",
+  "model": "gpt-4o-mini",
+  "interaction_type": "reasoning_chain",
+  "question_id": "bcce6d68",
+  "question_text": "Drug indicated in case of subarachnoid hemorrhage:",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            Drug indicated in case of subarachnoid hemorrhage:\n\n            ### Options\n    opa. Nimodipine\nopb. Amlodipine\nopc. Diltiazem\nopd. Verapamil\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"Subarachnoid hemorrhage\" -> \"risk of vasospasm\" -> \"need for vasodilator therapy\" -> \"Nimodipine indicated\" -> 95%\n\nCHAIN: \"Subarachnoid hemorrhage\" -> \"increased intracranial pressure\" -> \"requirement for blood pressure management\" -> \"Nimodipine used to prevent complications\" -> 90%\n\nCHAIN: \"Subarachnoid hemorrhage\" -> \"vasospasm occurs in 30-70% of cases\" -> \"Nimodipine reduces incidence of vasospasm\" -> \"improves outcomes\" -> 85%\n\nCHAIN: \"Subarachnoid hemorrhage\" -> \"Nimodipine is a calcium channel blocker\" -> \"specifically indicated for cerebral vasospasm\" -> \"improves cerebral blood flow\" -> 90%\n\nCHAIN: \"Subarachnoid hemorrhage\" -> \"Amlodipine, Diltiazem, and Verapamil are calcium channel blockers\" -> \"not specifically indicated for vasospasm prevention\" -> \"less effective than Nimodipine\" -> 80%",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

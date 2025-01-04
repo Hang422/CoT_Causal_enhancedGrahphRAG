@@ -1,0 +1,306 @@
+{
+  "question": "HMP shunt occurs in all organs except ?",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Liver",
+    "opb": "Adipose tissue",
+    "opc": "RBC",
+    "opd": "Brain"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Cardiac shunt",
+        "Syndrome",
+        "arterial stiffness",
+        "Brain"
+      ],
+      [
+        "Cardiac shunt",
+        "Syndrome",
+        "glucose homeostasis",
+        "Brain"
+      ],
+      [
+        "Cardiac shunt",
+        "Syndrome",
+        "Musculoskeletal torsion, function",
+        "Brain"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Cardiac shunt)-CAUSES->(Syndrome)-CAUSES->(arterial stiffness)-PROCESS_OF->(Brain)",
+      "(Cardiac shunt)-CAUSES->(Syndrome)-MANIFESTATION_OF->(glucose homeostasis)-PROCESS_OF->(Brain)",
+      "(Cardiac shunt)-CAUSES->(Syndrome)-MANIFESTATION_OF->(Musculoskeletal torsion, function)-PROCESS_OF->(Brain)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Liver",
+        "Estrone",
+        "Adipose tissue"
+      ],
+      [
+        "Liver",
+        "TNF gene|TNF",
+        "Adipose tissue"
+      ],
+      [
+        "Adipose tissue",
+        "Ultrasonography",
+        "Cardiac shunt"
+      ],
+      [
+        "Adipose tissue",
+        "Brain",
+        "Cardiac shunt"
+      ],
+      [
+        "Erythrocytes",
+        "Brain"
+      ],
+      [
+        "Cardiac shunt",
+        "Syndrome",
+        "Virus",
+        "Enzymes",
+        "Adipose tissue"
+      ],
+      [
+        "Cardiac shunt",
+        "Syndrome",
+        "Virus",
+        "Homologous Gene",
+        "Adipose tissue"
+      ],
+      [
+        "Liver",
+        "Estrone",
+        "Adipose tissue"
+      ],
+      [
+        "Liver",
+        "TNF gene|TNF",
+        "Adipose tissue"
+      ],
+      [
+        "Adipose tissue",
+        "Genes",
+        "Erythrocytes"
+      ],
+      [
+        "Adipose tissue",
+        "Genes",
+        "Erythrocytes"
+      ],
+      [
+        "Erythrocytes",
+        "Brain"
+      ],
+      [
+        "Cardiac shunt",
+        "Syndrome",
+        "Virus",
+        "Enzymes",
+        "Adipose tissue"
+      ],
+      [
+        "Cardiac shunt",
+        "Syndrome",
+        "Virus",
+        "Homologous Gene",
+        "Adipose tissue"
+      ],
+      [
+        "Adipose tissue",
+        "Genes",
+        "Erythrocytes"
+      ],
+      [
+        "Adipose tissue",
+        "Genes",
+        "Erythrocytes"
+      ],
+      [
+        "Liver",
+        "Genes",
+        "Erythrocytes"
+      ],
+      [
+        "Liver",
+        "Genes",
+        "Erythrocytes"
+      ],
+      [
+        "Erythrocytes",
+        "Brain"
+      ]
+    ],
+    "relationships": [
+      [
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "DIAGNOSES"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF"
+      ],
+      [
+        "CAUSES",
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "CAUSES",
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PART_OF"
+      ],
+      [
+        "CAUSES",
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "CAUSES",
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PART_OF"
+      ]
+    ],
+    "paths": [
+      "(Liver)-LOCATION_OF->(Estrone)-PART_OF->(Adipose tissue)",
+      "(Liver)-LOCATION_OF->(TNF gene|TNF)-PART_OF->(Adipose tissue)",
+      "(Adipose tissue)-LOCATION_OF->(Ultrasonography)-DIAGNOSES->(Cardiac shunt)",
+      "(Adipose tissue)-PART_OF->(Brain)-LOCATION_OF->(Cardiac shunt)",
+      "(Erythrocytes)-PART_OF->(Brain)",
+      "(Cardiac shunt)-CAUSES->(Syndrome)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Enzymes)-PART_OF->(Adipose tissue)",
+      "(Cardiac shunt)-CAUSES->(Syndrome)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Homologous Gene)-PART_OF->(Adipose tissue)",
+      "(Liver)-LOCATION_OF->(Estrone)-PART_OF->(Adipose tissue)",
+      "(Liver)-LOCATION_OF->(TNF gene|TNF)-PART_OF->(Adipose tissue)",
+      "(Adipose tissue)-LOCATION_OF->(Genes)-PART_OF->(Erythrocytes)",
+      "(Adipose tissue)-LOCATION_OF->(Genes)-INTERACTS_WITH->(Erythrocytes)",
+      "(Erythrocytes)-PART_OF->(Brain)",
+      "(Cardiac shunt)-CAUSES->(Syndrome)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Enzymes)-PART_OF->(Adipose tissue)",
+      "(Cardiac shunt)-CAUSES->(Syndrome)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Homologous Gene)-PART_OF->(Adipose tissue)",
+      "(Adipose tissue)-LOCATION_OF->(Genes)-PART_OF->(Erythrocytes)",
+      "(Adipose tissue)-LOCATION_OF->(Genes)-INTERACTS_WITH->(Erythrocytes)",
+      "(Liver)-LOCATION_OF->(Genes)-PART_OF->(Erythrocytes)",
+      "(Liver)-LOCATION_OF->(Genes)-INTERACTS_WITH->(Erythrocytes)",
+      "(Erythrocytes)-PART_OF->(Brain)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Adipose tissue)-PART_OF->(Brain)-LOCATION_OF->(Cardiac shunt)",
+      "(Liver)-LOCATION_OF->(TNF gene|TNF)-PART_OF->(Adipose tissue)",
+      "(Adipose tissue)-LOCATION_OF->(Genes)-INTERACTS_WITH/PART_OF->(Erythrocytes)",
+      "(Liver)-LOCATION_OF->(Genes)-INTERACTS_WITH/PART_OF->(Erythrocytes)",
+      "(Cardiac shunt)-CAUSES->(Syndrome)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Homologous Gene)-PART_OF->(Adipose tissue)",
+      "(Erythrocytes)-PART_OF->(Brain)",
+      "(Liver)-LOCATION_OF->(Estrone)-PART_OF->(Adipose tissue)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"HMP shunt primarily occurs in the liver\" -> \"Liver is a key site for glucose metabolism\" -> \"Adipose tissue also utilizes HMP shunt\" -> \"RBCs rely on HMP shunt for NADPH production\" -> \"Brain does not primarily utilize HMP shunt\" -> 85%",
+    "CHAIN: \"HMP shunt is active in the liver\" -> \"Adipose tissue participates in lipid synthesis\" -> \"RBCs require NADPH from HMP shunt\" -> \"Brain primarily uses aerobic metabolism\" -> \"Brain has limited HMP shunt activity\" -> 80%",
+    "CHAIN: \"HMP shunt is crucial for anabolic processes\" -> \"Liver and adipose tissue are involved in fat metabolism\" -> \"RBCs depend on HMP shunt for maintaining redox state\" -> \"Brain has different metabolic pathways\" -> \"Brain does not rely on HMP shunt\" -> 75%"
+  ],
+  "enhanced_information": "The HMP shunt (hexose monophosphate shunt) is primarily active in the liver, adipose tissue, and red blood cells (RBCs), where it plays a crucial role in generating NADPH for anabolic processes and maintaining redox balance. While the liver is a key site for glucose metabolism and the HMP shunt is active in adipose tissue for lipid synthesis, RBCs rely heavily on this pathway for NADPH production. In contrast, the brain does not primarily utilize the HMP shunt, as it mainly relies on aerobic metabolism and has limited activity of this pathway. Therefore, the organ where the HMP shunt does not occur is the brain.",
+  "analysis": "The HMP shunt, or hexose monophosphate shunt, is a metabolic pathway that generates NADPH and ribose-5-phosphate. It is active in several tissues, including the liver, adipose tissue, and red blood cells (RBCs), where it plays a crucial role in lipid synthesis and maintaining redox balance. However, the brain primarily relies on aerobic metabolism and does not utilize the HMP shunt to the same extent as the other mentioned tissues. Therefore, the brain is the organ where the HMP shunt does not occur significantly. This conclusion aligns with established biochemical knowledge regarding the metabolic pathways utilized by different organs. Thus, the most likely correct answer is the brain.",
+  "answer": "opd",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      4,
+      4,
+      4
+    ],
+    "coverage_rates": [
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333
+    ],
+    "total_successes": 12
+  },
+  "normal_results": []
+}

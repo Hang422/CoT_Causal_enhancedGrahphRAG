@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_151637",
+  "model": "gpt-4-turbo",
+  "interaction_type": "answer_with_enhancement_complete_with_chain",
+  "question_id": "85133175",
+  "question_text": "Hyperprolactinemia is a side effect of",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on enhanced information."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.\n                    You are a medical expert determining the final answer.\n\n            ### Instructions:\n            - Use standard medical knowledge as the primary guide.\n            - Consider enhanced information only if it aligns with consensus.\n            - If conflicting or unclear, present the most likely correct answer based on known facts.\n            - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.\n\n\n                    ### Question\n                    Hyperprolactinemia is a side effect of\n\n                    ### Options\n                    opa. Bromocriptine\nopb. Levodopa\nopc. Amantadine\nopd. Metoclopramide\n\n### Enhanced Information (For Contextual Support):\nHyperprolactinemia can be induced by medications that interfere with dopamine pathways. Metoclopramide, which blocks dopamine receptors, is likely to cause hyperprolactinemia as it leads to increased prolactin release. Bromocriptine, Levodopa, and Amantadine, all of which increase dopamine activity, are unlikely to cause hyperprolactinemia. This conclusion is supported by the understanding of dopamine's role in inhibiting prolactin release and the specific actions of these medications.\n\n                    ### Task:\n                1. Identify the core medical principle and the most likely correct option based on consensus.\n                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.\n                3. Provide a final analysis and a confidence score (0-100%).\n\n                ### Output Format:\n                {\n                  \"final_analysis\": \"Step-by-step reasoning, prioritizing medical consensus and acknowledging complexity if present.\",\n                  \"answer\": \"Option key (e.g. opa, opb, ...)\",\n                  \"confidence\": A number between 0-100\n                }\n                    "
+    }
+  ],
+  "response": "{\n  \"final_analysis\": \"Hyperprolactinemia is characterized by an abnormally high level of prolactin in the blood. Prolactin secretion is primarily regulated by dopamine, which inhibits its release. Therefore, drugs that decrease dopamine activity can lead to hyperprolactinemia. Metoclopramide, a drug used primarily for its antiemetic and gastroprokinetic properties, works by blocking dopamine receptors, which can lead to an increase in prolactin levels. On the other hand, Bromocriptine, Levodopa, and Amantadine enhance dopamine activity, which would typically reduce prolactin levels, making them unlikely to cause hyperprolactinemia. Based on this understanding, Metoclopramide is the most likely to cause hyperprolactinemia among the options provided.\",\n  \"answer\": \"opd\",\n  \"confidence\": 95\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": true,
+    "has_enhanced_info": true,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

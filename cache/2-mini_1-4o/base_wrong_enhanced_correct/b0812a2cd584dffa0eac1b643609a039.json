@@ -1,0 +1,168 @@
+{
+  "question": "Which of the following diuretics is contraindicated in the presence of cardiac failure?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Mannitol",
+    "opb": "Spironolactone",
+    "opc": "Furosemide",
+    "opd": "Hydrochlorothiazide"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Potassium Sparing Diuretics",
+        "Heart failure"
+      ],
+      [
+        "Loop Diuretics",
+        "Heart failure"
+      ],
+      [
+        "Heart failure",
+        "Hypernatremia"
+      ],
+      [
+        "Thiazide Diuretics",
+        "Heart failure"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Potassium Sparing Diuretics)-TREATS->(Heart failure)",
+      "(Loop Diuretics)-CAUSES->(Heart failure)",
+      "(Heart failure)-CAUSES->(Hypernatremia)",
+      "(Thiazide Diuretics)-TREATS->(Heart failure)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Mannitol",
+        "Diuretics, Osmotic"
+      ],
+      [
+        "Mannitol",
+        "Diuretics, Osmotic"
+      ],
+      [
+        "Spironolactone",
+        "Potassium Sparing Diuretics"
+      ],
+      [
+        "Furosemide",
+        "Pharmaceutical Preparations",
+        "Loop Diuretics"
+      ],
+      [
+        "Furosemide",
+        "Cells",
+        "Loop Diuretics"
+      ],
+      [
+        "Hydrochlorothiazide",
+        "Pharmaceutical Preparations",
+        "Thiazide Diuretics"
+      ],
+      [
+        "Hydrochlorothiazide",
+        "Excretory function",
+        "Thiazide Diuretics"
+      ]
+    ],
+    "relationships": [
+      [
+        "ISA"
+      ],
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Mannitol)-ISA->(Diuretics, Osmotic)",
+      "(Mannitol)-INTERACTS_WITH->(Diuretics, Osmotic)",
+      "(Spironolactone)-ISA->(Potassium Sparing Diuretics)",
+      "(Furosemide)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Loop Diuretics)",
+      "(Furosemide)-PART_OF->(Cells)-LOCATION_OF->(Loop Diuretics)",
+      "(Hydrochlorothiazide)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Thiazide Diuretics)",
+      "(Hydrochlorothiazide)-CAUSES->(Excretory function)-ASSOCIATED_WITH->(Thiazide Diuretics)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Thiazide Diuretics)-TREATS->(Heart failure)",
+      "(Potassium Sparing Diuretics)-TREATS->(Heart failure)",
+      "(Mannitol)-INTERACTS_WITH/ISA->(Diuretics, Osmotic)",
+      "(Spironolactone)-ISA->(Potassium Sparing Diuretics)",
+      "(Hydrochlorothiazide)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Thiazide Diuretics)",
+      "(Hydrochlorothiazide)-CAUSES->(Excretory function)-ASSOCIATED_WITH->(Thiazide Diuretics)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Mannitol\" -> \"osmotic diuretic\" -> \"increases intravascular volume\" -> \"may worsen cardiac failure\" -> 85%",
+    "CHAIN: \"Spironolactone\" -> \"potassium-sparing diuretic\" -> \"used in heart failure\" -> \"reduces mortality\" -> 90%",
+    "CHAIN: \"Furosemide\" -> \"loop diuretic\" -> \"commonly used in heart failure\" -> \"reduces fluid overload\" -> 95%",
+    "CHAIN: \"Hydrochlorothiazide\" -> \"thiazide diuretic\" -> \"not first-line for heart failure\" -> \"may be used cautiously\" -> 70%"
+  ],
+  "enhanced_information": "Mannitol is an osmotic diuretic that increases intravascular volume, which can worsen cardiac failure, making it contraindicated in this condition. Spironolactone is a potassium-sparing diuretic that is beneficial in heart failure, as it reduces mortality and is commonly used. Furosemide, a loop diuretic, is also commonly used in heart failure to reduce fluid overload and is not contraindicated. Hydrochlorothiazide is a thiazide diuretic that is not first-line for heart failure and may be used cautiously, but it is not contraindicated. Therefore, the diuretic contraindicated in the presence of cardiac failure is Mannitol.",
+  "analysis": "In the context of cardiac failure, the use of diuretics is aimed at reducing fluid overload and improving symptoms. Mannitol, an osmotic diuretic, works by drawing fluid into the intravascular space, which can increase the workload on the heart and exacerbate heart failure. This makes it contraindicated in patients with cardiac failure. Spironolactone, furosemide, and hydrochlorothiazide are all used in managing heart failure, with spironolactone and furosemide being particularly beneficial. Therefore, based on standard medical knowledge and the enhanced information provided, Mannitol is the diuretic contraindicated in the presence of cardiac failure.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      2,
+      3,
+      2
+    ],
+    "coverage_rates": [
+      12.5,
+      25.0,
+      37.5,
+      25.0
+    ],
+    "total_successes": 8
+  },
+  "normal_results": []
+}

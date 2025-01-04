@@ -1,0 +1,126 @@
+{
+  "question": "Seoli cell secrets",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Androgen binding protein",
+    "opb": "Testosterone",
+    "opc": "LH",
+    "opd": "FSH"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Structure of sertoli cell",
+        "Androgen-Binding Proteins"
+      ],
+      [
+        "Androgen-Binding Proteins",
+        "Germ Cells",
+        "Testosterone"
+      ],
+      [
+        "Androgen-Binding Proteins",
+        "Germ Cells",
+        "Testosterone"
+      ],
+      [
+        "Structure of sertoli cell",
+        "Testosterone"
+      ],
+      [
+        "Structure of sertoli cell",
+        "Testosterone"
+      ],
+      [
+        "Structure of sertoli cell",
+        "Luteinizing Hormone"
+      ],
+      [
+        "Luteinizing Hormone",
+        "Testosterone"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Structure of sertoli cell)-INTERACTS_WITH->(Androgen-Binding Proteins)",
+      "(Androgen-Binding Proteins)-INTERACTS_WITH->(Germ Cells)-INTERACTS_WITH->(Testosterone)",
+      "(Androgen-Binding Proteins)-INTERACTS_WITH->(Germ Cells)-LOCATION_OF->(Testosterone)",
+      "(Structure of sertoli cell)-LOCATION_OF->(Testosterone)",
+      "(Structure of sertoli cell)-INTERACTS_WITH->(Testosterone)",
+      "(Structure of sertoli cell)-INTERACTS_WITH->(Luteinizing Hormone)",
+      "(Luteinizing Hormone)-INTERACTS_WITH->(Testosterone)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Androgen-Binding Proteins)-Binding Proteins)->(Germ Cells)-INTERACTS_WITH/LOCATION_OF->(Testosterone)",
+      "(Luteinizing Hormone)-INTERACTS_WITH->(Testosterone)",
+      "(Structure of sertoli cell)-INTERACTS_WITH/LOCATION_OF->(Testosterone)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Sertoli cells\" -> \"produce androgen binding protein\" -> \"binds testosterone\" -> \"supports spermatogenesis\" -> 95%",
+    "CHAIN: \"Sertoli cells\" -> \"stimulated by FSH\" -> \"promote spermatogenesis\" -> \"influence testosterone levels\" -> 90%",
+    "CHAIN: \"Sertoli cells\" -> \"respond to testosterone\" -> \"support spermatogenesis\" -> \"produce androgen binding protein\" -> 85%",
+    "CHAIN: \"Sertoli cells\" -> \"influence LH secretion\" -> \"affect testosterone production indirectly\" -> \"possible role in feedback loop\" -> 70%"
+  ],
+  "enhanced_information": "Sertoli cells are crucial for spermatogenesis and secrete androgen binding protein (ABP), which binds testosterone and facilitates its action on germ cells. This aligns with the consensus that Sertoli cells produce ABP to support spermatogenesis. They are stimulated by FSH, which promotes their function and indirectly influences testosterone levels. While Sertoli cells respond to testosterone, they do not secrete it; rather, they support its action. LH primarily stimulates Leydig cells to produce testosterone, not Sertoli cells directly. Therefore, the most accurate option regarding what Sertoli cells secrete is androgen binding protein.",
+  "analysis": "Sertoli cells are integral to the process of spermatogenesis and are known to secrete androgen binding protein (ABP). This protein plays a crucial role in binding testosterone, thereby facilitating its action on germ cells within the seminiferous tubules. The secretion of ABP by Sertoli cells is stimulated by follicle-stimulating hormone (FSH), which enhances their function. While testosterone is essential for spermatogenesis, it is produced by Leydig cells under the influence of luteinizing hormone (LH), not by Sertoli cells. Therefore, the most accurate answer, based on standard medical knowledge and consensus, is that Sertoli cells secrete androgen binding protein.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      0,
+      1,
+      2
+    ],
+    "coverage_rates": [
+      40.0,
+      0.0,
+      20.0,
+      40.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

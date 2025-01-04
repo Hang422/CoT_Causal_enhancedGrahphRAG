@@ -1,0 +1,262 @@
+{
+  "question": "Drug of choice for bleeding oesophageal varices is?",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Ethanolamine oleate",
+    "opb": "Octreotide",
+    "opc": "Propanolol",
+    "opd": "Phytonadione"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Bleeding esophageal varices",
+        "Hypertension, Portal"
+      ],
+      [
+        "Bleeding esophageal varices",
+        "Chronic liver disease NOS",
+        "Bleeding varices"
+      ],
+      [
+        "Bleeding esophageal varices",
+        "Hypertension, Portal",
+        "Bleeding varices"
+      ],
+      [
+        "Bleeding esophageal varices",
+        "Liver Cirrhosis",
+        "Bleeding varices"
+      ],
+      [
+        "Octreotide",
+        "Acute hemorrhage"
+      ],
+      [
+        "Sclerotherapy",
+        "Acute hemorrhage"
+      ],
+      [
+        "Vitamin K 1",
+        "Blood Coagulation Disorders"
+      ],
+      [
+        "Vitamin K",
+        "Blood Coagulation Disorders"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Bleeding esophageal varices)-CAUSES->(Hypertension, Portal)",
+      "(Bleeding esophageal varices)-CAUSES->(Chronic liver disease NOS)-CAUSES->(Bleeding varices)",
+      "(Bleeding esophageal varices)-CAUSES->(Hypertension, Portal)-CAUSES->(Bleeding varices)",
+      "(Bleeding esophageal varices)-CAUSES->(Liver Cirrhosis)-CAUSES->(Bleeding varices)",
+      "(Octreotide)-TREATS->(Acute hemorrhage)",
+      "(Sclerotherapy)-TREATS->(Acute hemorrhage)",
+      "(Vitamin K 1)-TREATS->(Blood Coagulation Disorders)",
+      "(Vitamin K)-CAUSES->(Blood Coagulation Disorders)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Hypertension, Portal",
+        "Pathogenesis",
+        "Octreotide"
+      ],
+      [
+        "Hypertension, Portal",
+        "Complication",
+        "Octreotide"
+      ],
+      [
+        "Bleeding varices",
+        "Octreotide"
+      ],
+      [
+        "Bleeding esophageal varices",
+        "Fibrosis",
+        "HCC",
+        "Vitamin K 1"
+      ],
+      [
+        "Bleeding esophageal varices",
+        "Complication",
+        "HCC",
+        "Vitamin K 1"
+      ],
+      [
+        "Bleeding esophageal varices",
+        "Complication",
+        "APP gene",
+        "Propranolol"
+      ],
+      [
+        "Bleeding esophageal varices",
+        "Complication",
+        "APP gene",
+        "Propranolol"
+      ],
+      [
+        "Propranolol",
+        "Pharmaceutical Preparations",
+        "Vitamin supplementation",
+        "Prophylactic treatment"
+      ],
+      [
+        "Propranolol",
+        "Pharmaceutical Preparations",
+        "Contraceptives, Oral",
+        "Prophylactic treatment"
+      ],
+      [
+        "Adrenergic beta-Antagonists",
+        "Contraceptives, Oral",
+        "Prophylactic treatment"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "COMPLICATES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "ISA"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH",
+        "ISA"
+      ],
+      [
+        "INTERACTS_WITH",
+        "ISA"
+      ]
+    ],
+    "paths": [
+      "(Hypertension, Portal)-CAUSES->(Pathogenesis)-ASSOCIATED_WITH->(Octreotide)",
+      "(Hypertension, Portal)-PREDISPOSES->(Complication)-ASSOCIATED_WITH->(Octreotide)",
+      "(Bleeding varices)-ASSOCIATED_WITH->(Octreotide)",
+      "(Bleeding esophageal varices)-COMPLICATES->(Fibrosis)-ASSOCIATED_WITH->(HCC)-INTERACTS_WITH->(Vitamin K 1)",
+      "(Bleeding esophageal varices)-ISA->(Complication)-ASSOCIATED_WITH->(HCC)-INTERACTS_WITH->(Vitamin K 1)",
+      "(Bleeding esophageal varices)-CAUSES->(Complication)-ASSOCIATED_WITH->(APP gene)-INTERACTS_WITH->(Propranolol)",
+      "(Bleeding esophageal varices)-PREDISPOSES->(Complication)-ASSOCIATED_WITH->(APP gene)-INTERACTS_WITH->(Propranolol)",
+      "(Propranolol)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Vitamin supplementation)-ISA->(Prophylactic treatment)",
+      "(Propranolol)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Contraceptives, Oral)-ISA->(Prophylactic treatment)",
+      "(Adrenergic beta-Antagonists)-INTERACTS_WITH->(Contraceptives, Oral)-ISA->(Prophylactic treatment)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Bleeding esophageal varices)-COMPLICATES->(Fibrosis)-ASSOCIATED_WITH->(HCC)-INTERACTS_WITH->(Vitamin K 1)",
+      "(Bleeding esophageal varices)-ISA->(Complication)-ASSOCIATED_WITH->(HCC)-INTERACTS_WITH->(Vitamin K 1)",
+      "(Bleeding esophageal varices)-CAUSES/PREDISPOSES->(Complication)-ASSOCIATED_WITH->(APP gene)-INTERACTS_WITH->(Propranolol)",
+      "(Hypertension, Portal)-CAUSES->(Pathogenesis)-ASSOCIATED_WITH->(Octreotide)",
+      "(Hypertension, Portal)-PREDISPOSES->(Complication)-ASSOCIATED_WITH->(Octreotide)",
+      "(Octreotide)-TREATS->(Acute hemorrhage)",
+      "(Vitamin K 1)-TREATS->(Blood Coagulation Disorders)",
+      "(Bleeding varices)-ASSOCIATED_WITH->(Octreotide)",
+      "(Bleeding esophageal varices)-CAUSES->(Chronic liver disease NOS)-CAUSES->(Bleeding varices)",
+      "(Bleeding esophageal varices)-CAUSES->(Hypertension, Portal)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Bleeding oesophageal varices\" -> \"requires urgent management\" -> \"octreotide is a vasoactive drug\" -> \"reduces portal pressure\" -> \"decreases bleeding risk\" -> 95%",
+    "CHAIN: \"Bleeding oesophageal varices\" -> \"common in portal hypertension\" -> \"octreotide is effective in this condition\" -> \"reduces splanchnic blood flow\" -> \"controls bleeding\" -> 90%",
+    "CHAIN: \"Bleeding oesophageal varices\" -> \"variceal hemorrhage management\" -> \"octreotide is recommended\" -> \"improves outcomes in acute bleeding\" -> 85%",
+    "CHAIN: \"Bleeding oesophageal varices\" -> \"variceal bleeding treatment options\" -> \"ethanolamine oleate is used for sclerotherapy\" -> \"not first-line for acute bleeding\" -> \"lower confidence in acute management\" -> 70%",
+    "CHAIN: \"Bleeding oesophageal varices\" -> \"phytonadione is vitamin K\" -> \"used for coagulopathy\" -> \"not specific for variceal bleeding\" -> \"lower confidence in efficacy\" -> 60%",
+    "CHAIN: \"Bleeding oesophageal varices\" -> \"propranolol is a beta-blocker\" -> \"used for prevention of variceal bleeding\" -> \"not for acute management\" -> \"lower confidence in acute setting\" -> 65%"
+  ],
+  "enhanced_information": "The drug of choice for bleeding oesophageal varices is octreotide. It is a vasoactive drug that reduces portal pressure and splanchnic blood flow, effectively controlling variceal bleeding. This aligns with the consensus that octreotide is recommended for acute management of variceal hemorrhage. Ethanolamine oleate is used for sclerotherapy but is not first-line for acute bleeding. Propranolol is a beta-blocker used for the prevention of variceal bleeding, not for acute management. Phytonadione (vitamin K) is used for coagulopathy but does not specifically address variceal bleeding. Evidence supports that octreotide treats acute hemorrhage associated with portal hypertension, confirming its role in managing bleeding oesophageal varices.",
+  "analysis": "In the management of bleeding oesophageal varices, the primary goal is to control the hemorrhage and stabilize the patient. Octreotide, a somatostatin analogue, is widely recognized as the drug of choice for acute variceal bleeding due to its ability to reduce portal pressure and splanchnic blood flow, thereby controlling the bleeding. Ethanolamine oleate is used for sclerotherapy, which is a procedure rather than a pharmacological intervention for acute bleeding. Propranolol is used for the prevention of variceal bleeding in a chronic setting, not for acute episodes. Phytonadione (vitamin K) is used to correct coagulopathy but does not directly address variceal bleeding. Therefore, based on standard medical knowledge and consensus, octreotide is the most appropriate choice for acute management of bleeding oesophageal varices.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      2,
+      3,
+      1,
+      3,
+      3
+    ],
+    "coverage_rates": [
+      0.0,
+      16.666666666666664,
+      25.0,
+      8.333333333333332,
+      25.0,
+      25.0
+    ],
+    "total_successes": 12
+  },
+  "normal_results": []
+}

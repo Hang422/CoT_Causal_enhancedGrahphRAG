@@ -1,0 +1,160 @@
+{
+  "question": "All of the following can be used to treat alcohol dependence except",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Naltrexone",
+    "opb": "Acamprosate",
+    "opc": "Flumazenil",
+    "opd": "Disulfiram"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Benzodiazepines",
+        "Alcoholic Intoxication, Chronic"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Benzodiazepines)-TREATS->(Alcoholic Intoxication, Chronic)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Naltrexone",
+        "Pharmaceutical Preparations",
+        "Narcotic Antagonists"
+      ],
+      [
+        "Flumazenil",
+        "Disease",
+        "Pathogenesis",
+        "Melatonin",
+        "Benzodiazepine antagonist"
+      ],
+      [
+        "Flumazenil",
+        "Disease",
+        "Pathogenesis",
+        "Melatonin",
+        "Benzodiazepine antagonist"
+      ],
+      [
+        "Benzodiazepine antagonist",
+        "Pharmaceutical Preparations",
+        "Benzodiazepines"
+      ],
+      [
+        "Benzodiazepine antagonist",
+        "Sedatives",
+        "Benzodiazepines"
+      ],
+      [
+        "Disulfiram",
+        "Pharmaceutical Preparations",
+        "Cells",
+        "Aldehyde dehydrogenase (NAD(P)+)"
+      ],
+      [
+        "Disulfiram",
+        "Fenclonine",
+        "Cells",
+        "Aldehyde dehydrogenase (NAD(P)+)"
+      ]
+    ],
+    "relationships": [
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Naltrexone)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Narcotic Antagonists)",
+      "(Flumazenil)-TREATS->(Disease)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Melatonin)-INTERACTS_WITH->(Benzodiazepine antagonist)",
+      "(Flumazenil)-TREATS->(Disease)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Melatonin)-INTERACTS_WITH->(Benzodiazepine antagonist)",
+      "(Benzodiazepine antagonist)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Benzodiazepines)",
+      "(Benzodiazepine antagonist)-INTERACTS_WITH->(Sedatives)-INTERACTS_WITH->(Benzodiazepines)",
+      "(Disulfiram)-INTERACTS_WITH->(Pharmaceutical Preparations)-PART_OF->(Cells)-LOCATION_OF->(Aldehyde dehydrogenase (NAD(P)+))",
+      "(Disulfiram)-INTERACTS_WITH->(Fenclonine)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Aldehyde dehydrogenase (NAD(P)+))"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Benzodiazepines)-TREATS->(Alcoholic Intoxication, Chronic)",
+      "(Naltrexone)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Narcotic Antagonists)",
+      "(Disulfiram)-INTERACTS_WITH->(Pharmaceutical Preparations)-PART_OF->(Cells)-LOCATION_OF->(Aldehyde dehydrogenase (NAD(P)+))",
+      "(Disulfiram)-INTERACTS_WITH->(Fenclonine)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Aldehyde dehydrogenase (NAD(P)+))"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Naltrexone\" -> \"opioid receptor antagonist\" -> \"reduces alcohol craving\" -> \"treats alcohol dependence\" -> 95%",
+    "CHAIN: \"Acamprosate\" -> \"modulates glutamatergic system\" -> \"reduces alcohol craving\" -> \"treats alcohol dependence\" -> 90%",
+    "CHAIN: \"Flumazenil\" -> \"benzodiazepine receptor antagonist\" -> \"reverses benzodiazepine effects\" -> \"not used for alcohol dependence\" -> 85%",
+    "CHAIN: \"Disulfiram\" -> \"inhibits acetaldehyde dehydrogenase\" -> \"causes unpleasant reaction to alcohol\" -> \"deters alcohol consumption\" -> \"treats alcohol dependence\" -> 90%"
+  ],
+  "enhanced_information": "Naltrexone is an opioid receptor antagonist that effectively reduces alcohol craving and is used to treat alcohol dependence. Acamprosate modulates the glutamatergic system, helping to reduce cravings and is also indicated for alcohol dependence. Disulfiram works by inhibiting acetaldehyde dehydrogenase, leading to unpleasant reactions when alcohol is consumed, thus deterring use and treating alcohol dependence. In contrast, Flumazenil is a benzodiazepine receptor antagonist primarily used to reverse benzodiazepine effects and is not indicated for treating alcohol dependence. Therefore, the correct answer is Flumazenil, as it does not treat alcohol dependence.",
+  "analysis": "To determine which option does not treat alcohol dependence, we analyze each medication listed. Naltrexone (opa) is an opioid receptor antagonist that reduces cravings for alcohol and is used in the treatment of alcohol dependence. Acamprosate (opb) works on the glutamatergic system to help maintain abstinence and is also indicated for alcohol dependence. Disulfiram (opd) causes adverse reactions when alcohol is consumed, thus deterring its use and is used in the treatment of alcohol dependence. In contrast, Flumazenil (opc) is a benzodiazepine receptor antagonist used primarily to reverse the effects of benzodiazepines and is not indicated for treating alcohol dependence. Therefore, Flumazenil is the only option that does not have a role in treating alcohol dependence. The reasoning aligns with established pharmacological principles and consensus in the field.",
+  "answer": "opc",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      0,
+      3,
+      1
+    ],
+    "coverage_rates": [
+      20.0,
+      0.0,
+      60.0,
+      20.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

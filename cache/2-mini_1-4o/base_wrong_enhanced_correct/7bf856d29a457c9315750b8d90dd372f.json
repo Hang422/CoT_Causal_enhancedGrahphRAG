@@ -1,0 +1,222 @@
+{
+  "question": "Choose the drug which blocks basal as well as stimulated gastric acid secretion without affecting cholinergic, histaminergic or gastrin receptors",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Loxatidine",
+    "opb": "Pirenzepine",
+    "opc": "Omeprazole",
+    "opd": "Famotidine"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Pirenzepine",
+        "Disease",
+        "Obstruction"
+      ],
+      [
+        "Pirenzepine",
+        "Chronic liver disease NOS",
+        "Obstruction"
+      ],
+      [
+        "Pirenzepine",
+        "Gastritis, Hypertrophic",
+        "Obstruction"
+      ],
+      [
+        "Proton Pump",
+        "Photosynthesis",
+        "Endomycorrhizae",
+        "Disease",
+        "Obstruction"
+      ],
+      [
+        "Proton Pump",
+        "uptake",
+        "Endomycorrhizae",
+        "Disease",
+        "Obstruction"
+      ],
+      [
+        "Proton Pump",
+        "uptake",
+        "Pancreas",
+        "Pancreatitis",
+        "Obstruction"
+      ],
+      [
+        "Famotidine",
+        "Disease",
+        "Obstruction"
+      ],
+      [
+        "Famotidine",
+        "Chronic liver disease NOS",
+        "Obstruction"
+      ],
+      [
+        "Famotidine",
+        "Acute coronary syndrome",
+        "Obstruction"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "COMPLICATES"
+      ]
+    ],
+    "paths": [
+      "(Pirenzepine)-TREATS->(Disease)-CAUSES->(Obstruction)",
+      "(Pirenzepine)-TREATS->(Chronic liver disease NOS)-CAUSES->(Obstruction)",
+      "(Pirenzepine)-TREATS->(Gastritis, Hypertrophic)-CAUSES->(Obstruction)",
+      "(Proton Pump)-CAUSES->(Photosynthesis)-PROCESS_OF->(Endomycorrhizae)-CAUSES->(Disease)-CAUSES->(Obstruction)",
+      "(Proton Pump)-CAUSES->(uptake)-PROCESS_OF->(Endomycorrhizae)-CAUSES->(Disease)-CAUSES->(Obstruction)",
+      "(Proton Pump)-CAUSES->(uptake)-PROCESS_OF->(Pancreas)-CAUSES->(Pancreatitis)-CAUSES->(Obstruction)",
+      "(Famotidine)-TREATS->(Disease)-CAUSES->(Obstruction)",
+      "(Famotidine)-TREATS->(Chronic liver disease NOS)-CAUSES->(Obstruction)",
+      "(Famotidine)-TREATS->(Acute coronary syndrome)-COMPLICATES->(Obstruction)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Omeprazole",
+        "Disease",
+        "Metabolic acidosis",
+        "Proton Pump"
+      ],
+      [
+        "Omeprazole",
+        "Disease",
+        "Metabolic acidosis",
+        "Proton Pump"
+      ],
+      [
+        "Obstruction",
+        "Disease",
+        "Insulin Resistance",
+        "Cholecystokinin B Receptor"
+      ],
+      [
+        "Obstruction",
+        "Disease",
+        "Insulin Resistance",
+        "Cholecystokinin B Receptor"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "COMPLICATES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "COMPLICATES",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Omeprazole)-TREATS->(Disease)-MANIFESTATION_OF->(Metabolic acidosis)-ASSOCIATED_WITH->(Proton Pump)",
+      "(Omeprazole)-TREATS->(Disease)-CAUSES->(Metabolic acidosis)-ASSOCIATED_WITH->(Proton Pump)",
+      "(Obstruction)-CAUSES->(Disease)-COMPLICATES->(Insulin Resistance)-ASSOCIATED_WITH->(Cholecystokinin B Receptor)",
+      "(Obstruction)-PREDISPOSES->(Disease)-COMPLICATES->(Insulin Resistance)-ASSOCIATED_WITH->(Cholecystokinin B Receptor)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Pirenzepine)-TREATS->(Chronic liver disease NOS)-CAUSES->(Obstruction)",
+      "(Famotidine)-TREATS->(Chronic liver disease NOS)-CAUSES->(Obstruction)",
+      "(Obstruction)-CAUSES/PREDISPOSES->(Disease)-COMPLICATES->(Insulin Resistance)-ASSOCIATED_WITH->(Cholecystokinin B Receptor)",
+      "(Pirenzepine)-TREATS->(Disease)-CAUSES->(Obstruction)",
+      "(Pirenzepine)-TREATS->(Gastritis, Hypertrophic)-CAUSES->(Obstruction)",
+      "(Famotidine)-TREATS->(Disease)-CAUSES->(Obstruction)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Loxatidine\" -> \"blocks H2 receptors\" -> \"reduces gastric acid secretion\" -> \"does not affect cholinergic, histaminergic, or gastrin receptors\" -> 70%",
+    "CHAIN: \"Pirenzepine\" -> \"blocks M1 muscarinic receptors\" -> \"reduces gastric acid secretion\" -> \"does not block H2 receptors\" -> \"does not meet criteria\" -> 60%",
+    "CHAIN: \"Omeprazole\" -> \"inhibits proton pump\" -> \"blocks stimulated gastric acid secretion\" -> \"does not affect cholinergic, histaminergic, or gastrin receptors\" -> 90%",
+    "CHAIN: \"Famotidine\" -> \"blocks H2 receptors\" -> \"reduces gastric acid secretion\" -> \"does not affect cholinergic, histaminergic, or gastrin receptors\" -> 80%"
+  ],
+  "enhanced_information": "Loxatidine is an H2 receptor antagonist that reduces gastric acid secretion but does not block cholinergic, histaminergic, or gastrin receptors, making it a potential candidate. However, it primarily blocks H2 receptors, which does not align with the requirement to block both basal and stimulated gastric acid secretion without affecting these receptors. Pirenzepine blocks M1 muscarinic receptors and does not meet the criteria as it does not block H2 receptors. Omeprazole inhibits the proton pump, effectively blocking stimulated gastric acid secretion, and does not affect cholinergic, histaminergic, or gastrin receptors, making it a strong candidate. Famotidine, like Loxatidine, blocks H2 receptors and reduces gastric acid secretion but does not meet the requirement of blocking both basal and stimulated secretion without affecting other receptors. Therefore, the best option is Omeprazole, as it aligns with the criteria of blocking gastric acid secretion without affecting the specified receptors.",
+  "analysis": "The question requires identifying a drug that blocks both basal and stimulated gastric acid secretion without affecting cholinergic, histaminergic, or gastrin receptors. Omeprazole is a proton pump inhibitor (PPI) that directly inhibits the H+/K+ ATPase enzyme in the gastric parietal cells, effectively blocking the final step of acid production. This mechanism allows it to reduce both basal and stimulated acid secretion without interacting with cholinergic, histaminergic, or gastrin receptors. In contrast, Loxatidine and Famotidine are H2 receptor antagonists, which primarily block histamine-induced acid secretion and do not meet the criteria. Pirenzepine affects muscarinic receptors, which is also not aligned with the requirement. Therefore, based on the mechanism of action and the criteria provided, Omeprazole is the most appropriate choice.",
+  "answer": "opc",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      3,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      20.0,
+      60.0,
+      20.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

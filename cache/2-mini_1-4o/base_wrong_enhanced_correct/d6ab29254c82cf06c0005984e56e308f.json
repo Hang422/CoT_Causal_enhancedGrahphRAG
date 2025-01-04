@@ -1,0 +1,169 @@
+{
+  "question": "Drug the choice for hyperthyroidism in first trimester of pregnancy is",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Methimazole",
+    "opb": "Propylthiouraril",
+    "opc": "Carbimazole",
+    "opd": "Perchlorate"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Fetal development of the mammalian embryo or fetus",
+        "Pharmaceutical Preparations"
+      ],
+      [
+        "Pharmaceutical Preparations",
+        "Genes",
+        "Propylthiouracil"
+      ],
+      [
+        "Pharmaceutical Preparations",
+        "Corticosterone",
+        "Propylthiouracil"
+      ],
+      [
+        "Hyperthyroidism",
+        "Pathogenesis",
+        "Enzymes",
+        "Methimazole"
+      ],
+      [
+        "Hyperthyroidism",
+        "Complication",
+        "TPO gene|TPO",
+        "Methimazole"
+      ],
+      [
+        "Teratogenesis",
+        "Genes",
+        "CYP2B6",
+        "Methimazole"
+      ],
+      [
+        "Teratogenesis",
+        "Genes",
+        "TBX1",
+        "Methimazole"
+      ],
+      [
+        "Fetal Harm",
+        "belimumab",
+        "T-Lymphocyte",
+        "Genes",
+        "Propylthiouracil"
+      ],
+      [
+        "Fetal Harm",
+        "belimumab",
+        "T-Lymphocyte",
+        "Kidney",
+        "Propylthiouracil"
+      ]
+    ],
+    "relationships": [
+      [
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Fetal development of the mammalian embryo or fetus)-ASSOCIATED_WITH->(Pharmaceutical Preparations)",
+      "(Pharmaceutical Preparations)-INTERACTS_WITH->(Genes)-INTERACTS_WITH->(Propylthiouracil)",
+      "(Pharmaceutical Preparations)-INTERACTS_WITH->(Corticosterone)-INTERACTS_WITH->(Propylthiouracil)",
+      "(Hyperthyroidism)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Enzymes)-INTERACTS_WITH->(Methimazole)",
+      "(Hyperthyroidism)-PREDISPOSES->(Complication)-ASSOCIATED_WITH->(TPO gene|TPO)-INTERACTS_WITH->(Methimazole)",
+      "(Teratogenesis)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(CYP2B6)-INTERACTS_WITH->(Methimazole)",
+      "(Teratogenesis)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(TBX1)-INTERACTS_WITH->(Methimazole)",
+      "(Fetal Harm)-ASSOCIATED_WITH->(belimumab)-INTERACTS_WITH->(T-Lymphocyte)-INTERACTS_WITH->(Genes)-INTERACTS_WITH->(Propylthiouracil)",
+      "(Fetal Harm)-ASSOCIATED_WITH->(belimumab)-INTERACTS_WITH->(T-Lymphocyte)-PART_OF->(Kidney)-LOCATION_OF->(Propylthiouracil)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Hyperthyroidism)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Enzymes)-INTERACTS_WITH->(Methimazole)",
+      "(Hyperthyroidism)-PREDISPOSES->(Complication)-ASSOCIATED_WITH->(TPO gene|TPO)-INTERACTS_WITH->(Methimazole)",
+      "(Pharmaceutical Preparations)-INTERACTS_WITH->(Corticosterone)-INTERACTS_WITH->(Propylthiouracil)",
+      "(Teratogenesis)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(CYP2B6)-INTERACTS_WITH->(Methimazole)",
+      "(Teratogenesis)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(TBX1)-INTERACTS_WITH->(Methimazole)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Hyperthyroidism treatment in pregnancy\" -> \"First trimester is critical for fetal development\" -> \"Certain drugs are safer than others\" -> \"Propylthiouracil is preferred in early pregnancy\" -> 95%",
+    "CHAIN: \"Hyperthyroidism management options\" -> \"Methimazole is associated with teratogenic effects\" -> \"Carbimazole is a pro-drug of Methimazole\" -> \"Perchlorate is not commonly used\" -> \"Propylthiouracil is the safest choice\" -> 90%",
+    "CHAIN: \"First trimester hyperthyroidism treatment\" -> \"Risk of fetal harm must be minimized\" -> \"Propylthiouracil has a better safety profile\" -> \"Other options are less favorable\" -> \"Propylthiouracil is the drug of choice\" -> 92%"
+  ],
+  "enhanced_information": "In the management of hyperthyroidism during the first trimester of pregnancy, Propylthiouracil (PTU) is the preferred choice due to its better safety profile compared to Methimazole, which is associated with teratogenic effects. Methimazole is a pro-drug of Carbimazole, and both are less favorable in early pregnancy due to potential risks to fetal development. Perchlorate is not commonly used in this context. The consensus supports the use of Propylthiouracil as the safest option for treating hyperthyroidism in pregnant patients during the first trimester.",
+  "analysis": "In the management of hyperthyroidism during the first trimester of pregnancy, the primary concern is the safety of the developing fetus. Methimazole and its pro-drug Carbimazole are associated with teratogenic effects, particularly when used in the first trimester. Propylthiouracil (PTU) is preferred during this period because it has a better safety profile and is less likely to cause birth defects. Perchlorate is not typically used for this purpose. The consensus in medical practice supports the use of PTU as the safest option for treating hyperthyroidism in pregnant patients during the first trimester.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      2,
+      1
+    ],
+    "coverage_rates": [
+      40.0,
+      40.0,
+      20.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

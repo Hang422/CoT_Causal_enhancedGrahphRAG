@@ -1,0 +1,131 @@
+{
+  "question": "Which is an uricosuric drug-",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Allopurinol",
+    "opb": "Probenecid",
+    "opc": "Indomethacin",
+    "opd": "Aspirin"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Nonsteroidal Anti-inflammatory Drug [EPC]",
+        "Hemorrhage",
+        "Disease",
+        "Inflammation"
+      ],
+      [
+        "Aspirin",
+        "Kidney Failure, Chronic",
+        "Excretory function"
+      ],
+      [
+        "Aspirin",
+        "Inflammation",
+        "Excretory function"
+      ],
+      [
+        "Aspirin",
+        "Disease",
+        "Excretory function"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREDISPOSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Nonsteroidal Anti-inflammatory Drug [EPC])-PREDISPOSES->(Hemorrhage)-CAUSES->(Disease)-CAUSES->(Inflammation)",
+      "(Aspirin)-PREDISPOSES->(Kidney Failure, Chronic)-MANIFESTATION_OF->(Excretory function)",
+      "(Aspirin)-PREDISPOSES->(Inflammation)-MANIFESTATION_OF->(Excretory function)",
+      "(Aspirin)-TREATS->(Disease)-MANIFESTATION_OF->(Excretory function)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Allopurinol",
+        "Ischemia",
+        "Xanthine Oxidase"
+      ],
+      [
+        "Allopurinol",
+        "Ischemia",
+        "Xanthine Oxidase"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREVENTS",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Allopurinol)-TREATS->(Ischemia)-ASSOCIATED_WITH->(Xanthine Oxidase)",
+      "(Allopurinol)-PREVENTS->(Ischemia)-ASSOCIATED_WITH->(Xanthine Oxidase)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Aspirin)-PREDISPOSES->(Kidney Failure, Chronic)-MANIFESTATION_OF->(Excretory function)",
+      "(Aspirin)-PREDISPOSES->(Inflammation)-MANIFESTATION_OF->(Excretory function)",
+      "(Aspirin)-TREATS->(Disease)-MANIFESTATION_OF->(Excretory function)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Probenecid\" -> \"inhibits renal tubular reabsorption of uric acid\" -> \"increased uric acid excretion\" -> \"uricosuric effect\" -> 95%",
+    "CHAIN: \"Allopurinol\" -> \"inhibits xanthine oxidase\" -> \"decreased uric acid production\" -> \"not a uricosuric drug\" -> 90%",
+    "CHAIN: \"Indomethacin\" -> \"nonsteroidal anti-inflammatory drug\" -> \"reduces inflammation\" -> \"not a uricosuric drug\" -> 85%",
+    "CHAIN: \"Aspirin\" -> \"low doses inhibit uric acid excretion\" -> \"not a uricosuric drug\" -> 80%"
+  ],
+  "enhanced_information": "Probenecid is a uricosuric drug as it inhibits renal tubular reabsorption of uric acid, leading to increased uric acid excretion. Allopurinol, on the other hand, is not a uricosuric drug; it inhibits xanthine oxidase, reducing uric acid production. Indomethacin is a nonsteroidal anti-inflammatory drug (NSAID) that does not have a uricosuric effect. Aspirin, particularly at low doses, can inhibit uric acid excretion and is not classified as a uricosuric drug. Therefore, the only uricosuric drug among the options is Probenecid.",
+  "analysis": "The question asks for the identification of a uricosuric drug among the given options. Uricosuric drugs work by increasing the excretion of uric acid in the urine, thus lowering blood uric acid levels. Probenecid is well-known for its uricosuric effect as it inhibits the reabsorption of uric acid in the renal tubules, leading to increased excretion. Allopurinol, while used in the management of gout, is not uricosuric; it reduces uric acid production by inhibiting xanthine oxidase. Indomethacin is an NSAID and does not have uricosuric properties. Aspirin, especially at low doses, can actually decrease uric acid excretion. Therefore, based on standard pharmacological knowledge, Probenecid is the only uricosuric drug among the options provided.",
+  "answer": "opb",
+  "confidence": 100.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333
+    ],
+    "total_successes": 3
+  },
+  "normal_results": []
+}

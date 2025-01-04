@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_151316",
+  "model": "gpt-4-turbo",
+  "interaction_type": "answer_with_enhancement_complete_with_chain",
+  "question_id": "3b4898a2",
+  "question_text": "Steroids are indicated in all of the following forms of tuberculosis except:",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on enhanced information."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.\n                    You are a medical expert determining the final answer.\n\n            ### Instructions:\n            - Use standard medical knowledge as the primary guide.\n            - Consider enhanced information only if it aligns with consensus.\n            - If conflicting or unclear, present the most likely correct answer based on known facts.\n            - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.\n\n\n                    ### Question\n                    Steroids are indicated in all of the following forms of tuberculosis except:\n\n                    ### Options\n                    opa. Meningitis\nopb. Pericarditis\nopc. Ileo-caecal tuberculosis\nopd. Adrenal involvement\n\n### Enhanced Information (For Contextual Support):\nSteroids are indicated for tuberculosis meningitis, pericarditis, and adrenal involvement due to their roles in reducing inflammation and replacing essential hormones. However, they are not typically required in ileo-caecal tuberculosis, where localized treatment with anti-tuberculosis medication and surgery is preferred, unless complications necessitating steroid use arise.\n\n                    ### Task:\n                1. Identify the core medical principle and the most likely correct option based on consensus.\n                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.\n                3. Provide a final analysis and a confidence score (0-100%).\n\n                ### Output Format:\n                {\n                  \"final_analysis\": \"Step-by-step reasoning, prioritizing medical consensus and acknowledging complexity if present.\",\n                  \"answer\": \"Option key (e.g. opa, opb, ...)\",\n                  \"confidence\": A number between 0-100\n                }\n                    "
+    }
+  ],
+  "response": "### Core Medical Principle:\nSteroids are used in the treatment of certain forms of tuberculosis primarily to reduce inflammation and manage complications. Their use is specific to conditions where inflammation plays a critical role in disease pathology or where hormonal replacement is necessary.\n\n### Analysis:\n- **Meningitis**: Steroids are commonly used in tuberculosis meningitis to reduce inflammation and prevent complications such as hydrocephalus and neurological damage.\n- **Pericarditis**: In tuberculous pericarditis, steroids help reduce the inflammation of the pericardium and decrease the risk of constrictive pericarditis, a serious complication.\n- **Adrenal involvement (Adrenal tuberculosis)**: Steroids are necessary in cases of adrenal insufficiency resulting from tuberculosis affecting the adrenal glands. They replace essential hormones that the damaged glands can no longer produce.\n\n- **Ileo-caecal tuberculosis**: This form of tuberculosis affects the ileocecal region of the gastrointestinal tract. The primary treatment involves anti-tuberculosis medications and potentially surgery. Steroids are not typically used unless there are specific complications like severe inflammation or obstruction that might benefit from their anti-inflammatory properties. However, this is not the standard approach and is more of an exception than a rule.\n\n### Conclusion:\nBased on the standard medical treatments for different forms of tuberculosis, steroids are not typically indicated in ileo-caecal tuberculosis unless exceptional circumstances arise. This aligns with the enhanced information provided, which supports the use of steroids in meningitis, pericarditis, and adrenal involvement due to their specific benefits in these conditions.\n\n### Final Output:\n```json\n{\n  \"final_analysis\": \"Steroids are indicated in tuberculosis meningitis, pericarditis, and adrenal involvement due to their anti-inflammatory and hormonal replacement roles. In contrast, ileo-caecal tuberculosis generally does not require steroids as part of standard treatment, making it the correct answer for the exception among the options provided.\",\n  \"answer\": \"opc\",\n  \"confidence\": 95\n}\n```",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": true,
+    "has_enhanced_info": true,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "question": "Pimozide belongs to class of:",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Thiothixanthene",
+    "opb": "Phenothiazine",
+    "opc": "Butyrophenone",
+    "opd": "Diphenyl butyl piperidine"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Pimozide",
+        "Gilles de la Tourette syndrome"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Pimozide)-TREATS->(Gilles de la Tourette syndrome)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Pimozide",
+        "Pharmaceutical Preparations",
+        "Antipsychotic Agents"
+      ],
+      [
+        "Pimozide",
+        "Psychotropic Drugs",
+        "Antipsychotic Agents"
+      ],
+      [
+        "Gilles de la Tourette syndrome",
+        "Escherichia coli",
+        "Genes",
+        "Antipsychotic Agents"
+      ],
+      [
+        "Gilles de la Tourette syndrome",
+        "Pathogenesis",
+        "Melatonin",
+        "Antipsychotic Agents"
+      ],
+      [
+        "Pimozide",
+        "Pharmaceutical Preparations",
+        "Dopamine Antagonists"
+      ],
+      [
+        "Dopamine Antagonists",
+        "Antipsychotic Agents"
+      ]
+    ],
+    "relationships": [
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PROCESS_OF",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Pimozide)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Antipsychotic Agents)",
+      "(Pimozide)-ISA->(Psychotropic Drugs)-INTERACTS_WITH->(Antipsychotic Agents)",
+      "(Gilles de la Tourette syndrome)-PROCESS_OF->(Escherichia coli)-LOCATION_OF->(Genes)-INTERACTS_WITH->(Antipsychotic Agents)",
+      "(Gilles de la Tourette syndrome)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Melatonin)-INTERACTS_WITH->(Antipsychotic Agents)",
+      "(Pimozide)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Dopamine Antagonists)",
+      "(Dopamine Antagonists)-INTERACTS_WITH->(Antipsychotic Agents)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Pimozide)-TREATS->(Gilles de la Tourette syndrome)",
+      "(Pimozide)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Antipsychotic Agents)",
+      "(Pimozide)-ISA->(Psychotropic Drugs)-INTERACTS_WITH->(Antipsychotic Agents)",
+      "(Pimozide)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Dopamine Antagonists)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Pimozide\" -> \"antipsychotic medication\" -> \"belongs to a specific drug class\" -> \"identified as a butyrophenone\" -> 95%",
+    "CHAIN: \"Pimozide\" -> \"used for Tourette syndrome\" -> \"antipsychotic properties\" -> \"classified under butyrophenones\" -> 90%",
+    "CHAIN: \"Pimozide\" -> \"dopamine receptor antagonist\" -> \"similar to other antipsychotics\" -> \"specifically a butyrophenone\" -> 92%",
+    "CHAIN: \"Pimozide\" -> \"not a phenothiazine\" -> \"not a thiothixanthene\" -> \"not a diphenyl butyl piperidine\" -> \"confirmed as a butyrophenone\" -> 93%"
+  ],
+  "enhanced_information": "Pimozide is an antipsychotic medication primarily used to treat Tourette syndrome and is classified as a butyrophenone. The reasoning chains confirm that Pimozide acts as a dopamine receptor antagonist, which is characteristic of butyrophenones, and it is not classified under phenothiazines, thiothixanthenes, or diphenyl butyl piperidines. The evidence paths support its classification as an antipsychotic and its interaction with dopamine antagonists, reinforcing its categorization as a butyrophenone.",
+  "analysis": "Pimozide is an antipsychotic medication used primarily for the treatment of Tourette syndrome. It functions as a dopamine receptor antagonist. The classification of antipsychotic drugs is based on their chemical structure and mechanism of action. Pimozide is classified as a diphenyl butyl piperidine, not a butyrophenone. This classification is distinct from other classes such as phenothiazines, thiothixanthenes, and butyrophenones. The enhanced information incorrectly categorizes pimozide as a butyrophenone, which is not supported by standard pharmacological classification. Therefore, the correct classification for pimozide is diphenyl butyl piperidine.",
+  "answer": "opd",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      2,
+      2,
+      0
+    ],
+    "coverage_rates": [
+      20.0,
+      40.0,
+      40.0,
+      0.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

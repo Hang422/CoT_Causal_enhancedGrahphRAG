@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_224151",
+  "model": "gpt-4o-mini",
+  "interaction_type": "answer_with_enhancement_complete_with_chain",
+  "question_id": "079eb595",
+  "question_text": "Which of the following anti-tubercular drug is avoided in a HIV positive patient on zidovudine, lamivudine and indinavir therapy who develops TB?",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on enhanced information."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.\n                    You are a medical expert determining the final answer.\n\n            ### Instructions:\n            - Use standard medical knowledge as the primary guide.\n            - Consider enhanced information only if it aligns with consensus.\n            - If conflicting or unclear, present the most likely correct answer based on known facts.\n            - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.\n\n\n                    ### Question\n                    Which of the following anti-tubercular drug is avoided in a HIV positive patient on zidovudine, lamivudine and indinavir therapy who develops TB?\n\n                    ### Options\n                    opa. Pyrazinamide\nopb. Isoniazid\nopc. Ethambutol\nopd. Rifampicin\n\n### Enhanced Information (For Contextual Support):\nIn HIV positive patients on zidovudine, lamivudine, and indinavir therapy who develop TB, Rifampicin is avoided due to its strong induction of cytochrome P450 enzymes, which significantly decreases the levels of indinavir and potentially zidovudine, leading to reduced efficacy of HIV therapy. In contrast, Pyrazinamide, Isoniazid, and Ethambutol do not have significant interactions with these HIV medications and are considered safe to use in this context. Therefore, the anti-tubercular drug that should be avoided is Rifampicin.\n\n                    ### Task:\n                1. Identify the core medical principle and the most likely correct option based on consensus.\n                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.\n                3. Provide a final analysis and a confidence score (0-100%).\n\n                ### Output Format:\n                {\n                  \"final_analysis\": \"Step-by-step reasoning, prioritizing medical consensus and acknowledging complexity if present.\",\n                  \"answer\": \"Option key (e.g. opa, opb, ...)\",\n                  \"confidence\": A number between 0-100\n                }\n                    "
+    }
+  ],
+  "response": "{\n  \"final_analysis\": \"In HIV positive patients receiving antiretroviral therapy, particularly those on zidovudine, lamivudine, and indinavir, the choice of anti-tubercular drugs must consider potential drug interactions. Rifampicin is known to be a potent inducer of cytochrome P450 enzymes, which can significantly lower the plasma concentrations of indinavir, leading to reduced efficacy of the HIV treatment. This interaction poses a serious risk to the patient's health. In contrast, Pyrazinamide, Isoniazid, and Ethambutol do not have significant interactions with the mentioned HIV medications and can be safely used. Therefore, the anti-tubercular drug that should be avoided in this scenario is Rifampicin.\",\n  \"answer\": \"opd\",\n  \"confidence\": 95\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": true,
+    "has_enhanced_info": true,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

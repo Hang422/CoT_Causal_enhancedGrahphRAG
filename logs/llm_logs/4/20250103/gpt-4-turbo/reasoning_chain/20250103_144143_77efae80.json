@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_144143",
+  "model": "gpt-4-turbo",
+  "interaction_type": "reasoning_chain",
+  "question_id": "77efae80",
+  "question_text": "A 10 year old child with aggressive, self mutilating behavior and poor concentration is brought with presenting complaints of joint pain and reduced urinary output. Child's presentation is most likely due to the deficiency of which enzyme?",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            A 10 year old child with aggressive, self mutilating behavior and poor concentration is brought with presenting complaints of joint pain and reduced urinary output. Child's presentation is most likely due to the deficiency of which enzyme?\n\n            ### Options\n    opa. HGPase\nopb. Adenosine Deaminase\nopc. APase\nopd. Acid Maltase\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"Adenosine Deaminase deficiency\" -> \"accumulation of deoxyadenosine\" -> \"toxicity in lymphocytes\" -> \"immune dysfunction\" -> \"autoimmune symptoms\" -> \"joint pain\" -> \"possible kidney involvement\" -> \"reduced urinary output\" -> 75%\n\nCHAIN: \"Adenosine Deaminase deficiency\" -> \"buildup of toxic metabolites\" -> \"neurological symptoms\" -> \"aggressive behavior\" -> \"self-mutilating behavior\" -> \"poor concentration\" -> 70%\n\nCHAIN: \"Acid Maltase deficiency\" -> \"glycogen accumulation in muscles\" -> \"muscle weakness\" -> \"possible joint pain due to muscle stress\" -> \"no direct link to reduced urinary output or behavioral symptoms\" -> 40%\n\nCHAIN: \"HGPase deficiency\" -> \"impaired gluconeogenesis\" -> \"hypoglycemia\" -> \"possible irritability and aggression due to low glucose\" -> \"no direct link to self-mutilation, joint pain, or reduced urinary output\" -> 30%\n\nCHAIN: \"APase deficiency\" -> \"impaired phosphate metabolism\" -> \"possible bone and joint issues\" -> \"no clear link to aggressive behavior, self-mutilation, or reduced urinary output\" -> 25%",
+  "metadata": {
+    "topic": "Biochemistry",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

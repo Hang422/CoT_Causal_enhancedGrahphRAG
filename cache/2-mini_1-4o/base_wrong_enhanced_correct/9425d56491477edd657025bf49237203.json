@@ -1,0 +1,204 @@
+{
+  "question": "Which of the following peptides are not produced by the renal system?",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Renin",
+    "opb": "Angiotensin I",
+    "opc": "Erythropoietin",
+    "opd": "1,25DHCC"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Angiotensinogen",
+        "Cardiovascular Diseases",
+        "arterial stiffness",
+        "Lung"
+      ],
+      [
+        "Angiotensinogen",
+        "Cardiovascular Diseases",
+        "paracrine",
+        "Lung"
+      ],
+      [
+        "Angiotensinogen",
+        "Symptoms",
+        "Immunologic reaction",
+        "Lung"
+      ],
+      [
+        "Erythropoietin",
+        "Cytoprotection",
+        "Kidney"
+      ],
+      [
+        "Erythropoietin",
+        "Immunity",
+        "Kidney"
+      ],
+      [
+        "Erythropoietin",
+        "biological adaptation to stress",
+        "Kidney"
+      ],
+      [
+        "Vitamin D2",
+        "Disease",
+        "Physiological stress",
+        "Kidney"
+      ],
+      [
+        "Vitamin D2",
+        "Disease",
+        "paracrine",
+        "Kidney"
+      ],
+      [
+        "Vitamin D2",
+        "Disease",
+        "metabolic effects",
+        "Kidney"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "PREDISPOSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Angiotensinogen)-CAUSES->(Cardiovascular Diseases)-PREDISPOSES->(arterial stiffness)-PROCESS_OF->(Lung)",
+      "(Angiotensinogen)-CAUSES->(Cardiovascular Diseases)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Lung)",
+      "(Angiotensinogen)-CAUSES->(Symptoms)-MANIFESTATION_OF->(Immunologic reaction)-PROCESS_OF->(Lung)",
+      "(Erythropoietin)-CAUSES->(Cytoprotection)-PROCESS_OF->(Kidney)",
+      "(Erythropoietin)-CAUSES->(Immunity)-PROCESS_OF->(Kidney)",
+      "(Erythropoietin)-CAUSES->(biological adaptation to stress)-PROCESS_OF->(Kidney)",
+      "(Vitamin D2)-PREDISPOSES->(Disease)-CAUSES->(Physiological stress)-PROCESS_OF->(Kidney)",
+      "(Vitamin D2)-PREDISPOSES->(Disease)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Kidney)",
+      "(Vitamin D2)-PREDISPOSES->(Disease)-MANIFESTATION_OF->(metabolic effects)-PROCESS_OF->(Kidney)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Angiotensin I",
+        "Myocytes, Smooth Muscle",
+        "Angiotensinogen"
+      ],
+      [
+        "Kidney",
+        "Genes",
+        "Erythrocytes"
+      ],
+      [
+        "Kidney",
+        "Genes",
+        "Erythrocytes"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Angiotensin I)-INTERACTS_WITH->(Myocytes, Smooth Muscle)-INTERACTS_WITH->(Angiotensinogen)",
+      "(Kidney)-LOCATION_OF->(Genes)-PART_OF->(Erythrocytes)",
+      "(Kidney)-LOCATION_OF->(Genes)-INTERACTS_WITH->(Erythrocytes)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Erythropoietin)-CAUSES->(Cytoprotection)-PROCESS_OF->(Kidney)",
+      "(Erythropoietin)-CAUSES->(Immunity)-PROCESS_OF->(Kidney)",
+      "(Erythropoietin)-CAUSES->(biological adaptation to stress)-PROCESS_OF->(Kidney)",
+      "(Angiotensin I)-INTERACTS_WITH->(Myocytes, Smooth Muscle)-INTERACTS_WITH->(Angiotensinogen)",
+      "(Angiotensinogen)-CAUSES->(Cardiovascular Diseases)-PREDISPOSES->(arterial stiffness)-PROCESS_OF->(Lung)",
+      "(Angiotensinogen)-CAUSES->(Cardiovascular Diseases)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Lung)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Renin\" -> \"produced by juxtaglomerular cells\" -> \"involved in blood pressure regulation\" -> 100%",
+    "CHAIN: \"Angiotensin I\" -> \"produced from angiotensinogen\" -> \"converted to angiotensin II primarily in the lungs\" -> \"not directly produced by the renal system\" -> 90%",
+    "CHAIN: \"Erythropoietin\" -> \"produced by interstitial fibroblasts in the kidneys\" -> \"stimulates red blood cell production\" -> 100%",
+    "CHAIN: \"1,25DHCC\" -> \"active form of vitamin D\" -> \"produced in the kidneys from calcidiol\" -> 100%"
+  ],
+  "enhanced_information": "Renin is produced by juxtaglomerular cells in the kidneys and is involved in blood pressure regulation, confirming its renal origin. Angiotensin I is not produced by the renal system; it is formed from angiotensinogen, which is produced in the liver, and is converted to angiotensin II primarily in the lungs. Erythropoietin is produced by interstitial fibroblasts in the kidneys and stimulates red blood cell production, confirming its renal origin. 1,25-Dihydroxyvitamin D (1,25DHCC) is the active form of vitamin D, produced in the kidneys from calcidiol. Therefore, the peptide not produced by the renal system is Angiotensin I.",
+  "analysis": "To determine which peptide is not produced by the renal system, we examine the origin of each option. Renin is produced by the juxtaglomerular cells in the kidneys, confirming its renal origin. Erythropoietin is also produced in the kidneys by interstitial fibroblasts, which supports its renal origin. 1,25-Dihydroxyvitamin D (1,25DHCC) is synthesized in the kidneys from calcidiol, indicating it is of renal origin as well. Angiotensin I, however, is formed from angiotensinogen, which is produced in the liver, and is converted to angiotensin I in the bloodstream, not directly by the kidneys. Therefore, Angiotensin I is the peptide not produced by the renal system.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      2,
+      2,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      40.0,
+      40.0,
+      20.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

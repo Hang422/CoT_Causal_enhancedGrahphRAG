@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250104_020700",
+  "model": "gpt-4o",
+  "interaction_type": "answer_normal_rag",
+  "question_id": "3214e91b",
+  "question_text": "Which of the following most often causes cholestatic jaundice:",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on retrieved medical knowledge."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.Please help answer this multiple choice question:\n\n    Question: Which of the following most often causes cholestatic jaundice:\n\n    Options:\n    opa. INH\nopb. Erythromycin estolate\nopc. Pyrazinamide\nopd. Ethionamide\n\n### Retrieved Similar Medical Knowledge:\n- Upper respiratory tract LOCATION_OF Newcastle disease virus\n- MKNK2 ASSOCIATED_WITH Non-alcoholic fatty liver\n- Ethinyl Estradiol CAUSES Cholestasis, Intrahepatic\n- Cholestasis CAUSES Jaundice, Obstructive\n- Skin layer LOCATION_OF Coagulation procedure\n- Vaccination CAUSES Severe pre-eclampsia unspecified\n- Pituitary hemorrhage CAUSES Cerebrovascular accident\n- Primary biliary cirrhosis CAUSES Cholestasis, Intrahepatic\n- Tuberculous enteritis CAUSES ABDOMEN TUBERCULOSIS\n- IGHE PART_OF Tissue specific\n- neuropeptide Y|NPY INTERACTS_WITH Myocytes, Smooth Muscle\n\n    ### Instructions:\n            - Use standard medical knowledge as the primary guide.\n            - Consider enhanced information only if it aligns with consensus.\n            - If conflicting or unclear, present the most likely correct answer based on known facts.\n            - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.\n    ### Task:\n                1. Identify the core medical principle and the most likely correct option based on consensus.\n                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.\n                3. Provide a final analysis and a confidence score (0-100%).\n                \n    ### Output Format\n    Provide your response in valid JSON format:\n    {   \n        \"final_analysis\": \"Your analysis of how the retrieved relationships support the answer\",\n        \"answer\": \"Option key from the available options (only key, like opa)\",\n        \"confidence\": Score between 0-100 based on evidence strength and relevance\n    }\n    "
+    }
+  ],
+  "response": "```json\n{\n    \"final_analysis\": \"Cholestatic jaundice is a condition where there is an obstruction in the bile flow, leading to jaundice. Among the listed options, erythromycin estolate is well-documented in medical literature as a cause of cholestatic jaundice. This is due to its potential to cause liver injury, specifically cholestatic hepatitis, which can lead to jaundice. The other options, such as INH (isoniazid), pyrazinamide, and ethionamide, are more commonly associated with hepatocellular injury rather than cholestatic jaundice.\",\n    \"answer\": \"opb\",\n    \"confidence\": 90\n}\n```",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": true,
+    "has_enhanced_info": true,
+    "model_config": "gpt-4o",
+    "temperature": 0.0
+  }
+}

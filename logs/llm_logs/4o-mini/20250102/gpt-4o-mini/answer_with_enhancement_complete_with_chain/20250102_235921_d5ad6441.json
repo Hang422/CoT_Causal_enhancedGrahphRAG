@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250102_235921",
+  "model": "gpt-4o-mini",
+  "interaction_type": "answer_with_enhancement_complete_with_chain",
+  "question_id": "d5ad6441",
+  "question_text": "Drug of choice for attention deficit hyperactivity disorder is:-",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on enhanced information."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.\n                    You are a medical expert determining the final answer.\n\n            ### Instructions:\n            - Use standard medical knowledge as the primary guide.\n            - Consider enhanced information only if it aligns with consensus.\n            - If conflicting or unclear, present the most likely correct answer based on known facts.\n            - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.\n\n\n                    ### Question\n                    Drug of choice for attention deficit hyperactivity disorder is:-\n\n                    ### Options\n                    opa. Haloperidol\nopb. Imipramine\nopc. Alprazolam\nopd. Methylphenidate\n\n### Enhanced Information (For Contextual Support):\nMethylphenidate is the first-line treatment for attention deficit hyperactivity disorder (ADHD), as supported by clinical guidelines. It is a central nervous system stimulant that effectively increases attention span and reduces impulsivity in patients with ADHD. Other options, such as Haloperidol (an antipsychotic), Imipramine (a tricyclic antidepressant), and Alprazolam (a benzodiazepine), are not indicated for the treatment of ADHD and are not considered first-line therapies. Methylphenidate is FDA-approved for ADHD and is widely prescribed, confirming its status as the drug of choice.\n\n                    ### Task:\n                1. Identify the core medical principle and the most likely correct option based on consensus.\n                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.\n                3. Provide a final analysis and a confidence score (0-100%).\n\n                ### Output Format:\n                {\n                  \"final_analysis\": \"Step-by-step reasoning, prioritizing medical consensus and acknowledging complexity if present.\",\n                  \"answer\": \"Option key (e.g. opa, opb, ...)\",\n                  \"confidence\": A number between 0-100\n                }\n                    "
+    }
+  ],
+  "response": "{\n  \"final_analysis\": \"The core medical principle for treating attention deficit hyperactivity disorder (ADHD) is the use of stimulant medications, with methylphenidate being the first-line treatment. Clinical guidelines and consensus support the use of methylphenidate due to its efficacy in increasing attention span and reducing impulsivity. The other options listed—Haloperidol, Imipramine, and Alprazolam—are not indicated for ADHD treatment and do not have the same level of evidence supporting their use in this context. Therefore, based on established medical knowledge and guidelines, methylphenidate is clearly the drug of choice for ADHD.\",\n  \"answer\": \"opd\",\n  \"confidence\": 95\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": true,
+    "has_enhanced_info": true,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

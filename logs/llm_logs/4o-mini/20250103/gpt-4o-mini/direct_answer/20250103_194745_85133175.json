@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_194745",
+  "model": "gpt-4o-mini",
+  "interaction_type": "direct_answer",
+  "question_id": "85133175",
+  "question_text": "Hyperprolactinemia is a side effect of",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on medical knowledge."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.Please help answer this multiple choice question:\n\nQuestion: Hyperprolactinemia is a side effect of\n\nOptions:\nopa. Bromocriptine\nopb. Levodopa\nopc. Amantadine\nopd. Metoclopramide\n\n        ### Output Format\n        Provide your response in valid JSON format:\n        {   \n            \"final_analysis\": \"Your concise analysis following the above structure\",\n            \"answer\": \"Option key from the available options (only key,like opa)\",\n            \"confidence\": Score between 0-100 based on alignment with established medical facts\n        }\n        "
+    }
+  ],
+  "response": "{\n    \"final_analysis\": \"Hyperprolactinemia is commonly associated with the use of certain medications that can inhibit dopamine, which normally suppresses prolactin secretion. Among the options provided, Metoclopramide is known to cause hyperprolactinemia due to its dopamine antagonist properties. Bromocriptine, on the other hand, is a dopamine agonist used to treat hyperprolactinemia. Levodopa and Amantadine are primarily used in Parkinson's disease and do not typically cause hyperprolactinemia.\",\n    \"answer\": \"opd\",\n    \"confidence\": 90\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

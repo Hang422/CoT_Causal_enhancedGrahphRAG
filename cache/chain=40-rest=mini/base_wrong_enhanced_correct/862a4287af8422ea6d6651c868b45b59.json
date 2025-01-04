@@ -1,0 +1,304 @@
+{
+  "question": "Schizophrenia is treated by:",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Anti depressants",
+    "opb": "Anti psychotics",
+    "opc": "Anti epileptics",
+    "opd": "Mood stabilizers"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Schizophrenia",
+        "Disease",
+        "Neurobehavioral Manifestations"
+      ],
+      [
+        "Schizophrenia",
+        "Symptoms",
+        "Neurobehavioral Manifestations"
+      ],
+      [
+        "Schizophrenia",
+        "Alzheimer's Disease",
+        "Neurobehavioral Manifestations"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Schizophrenia)-CAUSES->(Disease)-CAUSES->(Neurobehavioral Manifestations)",
+      "(Schizophrenia)-CAUSES->(Symptoms)-CAUSES->(Neurobehavioral Manifestations)",
+      "(Schizophrenia)-CAUSES->(Alzheimer's Disease)-CAUSES->(Neurobehavioral Manifestations)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Delusions",
+        "Functional disorder",
+        "GRM7",
+        "Antipsychotic Agents"
+      ],
+      [
+        "Delusions",
+        "Disease",
+        "physiological aspects",
+        "Antipsychotic Agents"
+      ],
+      [
+        "Hallucinations",
+        "Functional disorder",
+        "Genes",
+        "Antipsychotic Agents"
+      ],
+      [
+        "Hallucinations",
+        "Adverse effects",
+        "CYP2D6 gene|CYP2D6",
+        "Antipsychotic Agents"
+      ],
+      [
+        "Indifferent mood",
+        "Cardiovascular Diseases",
+        "Genes",
+        "Antipsychotic Agents"
+      ],
+      [
+        "Indifferent mood",
+        "Disease Progression",
+        "Genes",
+        "Antipsychotic Agents"
+      ],
+      [
+        "Schizophrenia",
+        "physiological aspects",
+        "Antipsychotic Agents"
+      ],
+      [
+        "Antipsychotic Agents",
+        "Complication",
+        "Dopamine Receptor"
+      ],
+      [
+        "Antipsychotic Agents",
+        "Complication",
+        "Dopamine Receptor"
+      ],
+      [
+        "Dopamine Receptor",
+        "T-Lymphocyte",
+        "Muscle",
+        "Symptom control"
+      ],
+      [
+        "Dopamine Receptor",
+        "Cells",
+        "Mucous Membrane",
+        "Symptom control"
+      ],
+      [
+        "Schizophrenia",
+        "Response to stimulus physiology",
+        "Pharmaceutical Preparations",
+        "Antidepressive Agents"
+      ],
+      [
+        "Schizophrenia",
+        "Pathogenesis",
+        "Genes",
+        "Antidepressive Agents"
+      ],
+      [
+        "Schizophrenia",
+        "Pathogenesis",
+        "Genes",
+        "Antiepileptic Agents"
+      ],
+      [
+        "Schizophrenia",
+        "Pathogenesis",
+        "IMPACT gene",
+        "Antiepileptic Agents"
+      ],
+      [
+        "Schizophrenia",
+        "physiological aspects",
+        "Antipsychotic Agents",
+        "Mood Stabilizers"
+      ]
+    ],
+    "relationships": [
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "COMPLICATES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREVENTS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Delusions)-MANIFESTATION_OF->(Functional disorder)-ASSOCIATED_WITH->(GRM7)-INTERACTS_WITH->(Antipsychotic Agents)",
+      "(Delusions)-ISA->(Disease)-MANIFESTATION_OF->(physiological aspects)-ASSOCIATED_WITH->(Antipsychotic Agents)",
+      "(Hallucinations)-MANIFESTATION_OF->(Functional disorder)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Antipsychotic Agents)",
+      "(Hallucinations)-MANIFESTATION_OF->(Adverse effects)-ASSOCIATED_WITH->(CYP2D6 gene|CYP2D6)-INTERACTS_WITH->(Antipsychotic Agents)",
+      "(Indifferent mood)-ASSOCIATED_WITH->(Cardiovascular Diseases)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Antipsychotic Agents)",
+      "(Indifferent mood)-COMPLICATES->(Disease Progression)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Antipsychotic Agents)",
+      "(Schizophrenia)-MANIFESTATION_OF->(physiological aspects)-ASSOCIATED_WITH->(Antipsychotic Agents)",
+      "(Antipsychotic Agents)-ASSOCIATED_WITH->(Complication)-ASSOCIATED_WITH->(Dopamine Receptor)",
+      "(Antipsychotic Agents)-PREVENTS->(Complication)-ASSOCIATED_WITH->(Dopamine Receptor)",
+      "(Dopamine Receptor)-INTERACTS_WITH->(T-Lymphocyte)-PART_OF->(Muscle)-LOCATION_OF->(Symptom control)",
+      "(Dopamine Receptor)-INTERACTS_WITH->(Cells)-PART_OF->(Mucous Membrane)-LOCATION_OF->(Symptom control)",
+      "(Schizophrenia)-MANIFESTATION_OF->(Response to stimulus physiology)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Antidepressive Agents)",
+      "(Schizophrenia)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Antidepressive Agents)",
+      "(Schizophrenia)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Antiepileptic Agents)",
+      "(Schizophrenia)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(IMPACT gene)-INTERACTS_WITH->(Antiepileptic Agents)",
+      "(Schizophrenia)-MANIFESTATION_OF->(physiological aspects)-ASSOCIATED_WITH->(Antipsychotic Agents)-INTERACTS_WITH->(Mood Stabilizers)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Schizophrenia)-MANIFESTATION_OF->(physiological aspects)-ASSOCIATED_WITH->(Antipsychotic Agents)-INTERACTS_WITH->(Mood Stabilizers)",
+      "(Schizophrenia)-CAUSES->(Symptoms)-CAUSES->(Neurobehavioral Manifestations)",
+      "(Schizophrenia)-MANIFESTATION_OF->(physiological aspects)-ASSOCIATED_WITH->(Antipsychotic Agents)",
+      "(Hallucinations)-MANIFESTATION_OF->(Adverse effects)-ASSOCIATED_WITH->(CYP2D6 gene|CYP2D6)-INTERACTS_WITH->(Antipsychotic Agents)",
+      "(Schizophrenia)-MANIFESTATION_OF->(Response to stimulus physiology)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Antidepressive Agents)",
+      "(Schizophrenia)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Antidepressive Agents)",
+      "(Schizophrenia)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Antiepileptic Agents)",
+      "(Schizophrenia)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(IMPACT gene)-INTERACTS_WITH->(Antiepileptic Agents)",
+      "(Schizophrenia)-CAUSES->(Disease)-CAUSES->(Neurobehavioral Manifestations)",
+      "(Schizophrenia)-CAUSES->(Alzheimer's Disease)-CAUSES->(Neurobehavioral Manifestations)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Schizophrenia\" -> \"dopamine dysregulation\" -> \"need to block dopamine receptors\" -> \"use of antipsychotics\" -> 95%",
+    "CHAIN: \"Schizophrenia\" -> \"positive symptoms\" -> \"hallucinations and delusions\" -> \"antipsychotics reduce symptoms\" -> 90%",
+    "CHAIN: \"Schizophrenia\" -> \"negative symptoms\" -> \"social withdrawal and apathy\" -> \"antipsychotics may help\" -> 85%",
+    "CHAIN: \"Schizophrenia\" -> \"cognitive symptoms\" -> \"impaired attention and memory\" -> \"antipsychotics may improve\" -> 80%",
+    "CHAIN: \"Schizophrenia\" -> \"antipsychotics\" -> \"dopamine receptor antagonism\" -> \"symptom control\" -> 95%",
+    "CHAIN: \"Schizophrenia\" -> \"antidepressants\" -> \"possible use for comorbid depression\" -> \"not primary treatment\" -> 60%",
+    "CHAIN: \"Schizophrenia\" -> \"antiepileptics\" -> \"not standard treatment\" -> \"possible use for mood stabilization\" -> 50%",
+    "CHAIN: \"Schizophrenia\" -> \"mood stabilizers\" -> \"not primary treatment\" -> \"possible use for mood symptoms\" -> 55%"
+  ],
+  "enhanced_information": "Schizophrenia is primarily treated with antipsychotics, which target dopamine dysregulation and are effective in reducing positive symptoms such as hallucinations and delusions. The reasoning chains confirm that antipsychotics are the mainstay of treatment, with a high consensus on their efficacy (95% for dopamine receptor antagonism and symptom control). While antidepressants may be used for comorbid depression, they are not the primary treatment for schizophrenia (60%). Antiepileptics and mood stabilizers are not standard treatments for schizophrenia, although they may have some role in managing mood symptoms or comorbid conditions (50% and 55% respectively). Evidence paths support the association of antipsychotic agents with the physiological aspects of schizophrenia, reinforcing their primary role in treatment.",
+  "analysis": "Schizophrenia is primarily treated with antipsychotic medications, which are designed to address the core symptoms of the disorder, particularly the positive symptoms such as hallucinations and delusions. The enhanced information confirms that antipsychotics are the mainstay of treatment, with a high consensus on their efficacy in managing these symptoms. While antidepressants may be used for patients with comorbid depression, they do not serve as the primary treatment for schizophrenia. Antiepileptics and mood stabilizers are not standard treatments for schizophrenia, although they may be considered in specific cases involving mood symptoms or comorbid conditions. Given this information, the best-supported option is clearly antipsychotics.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      2,
+      1,
+      1,
+      3,
+      1,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      20.0,
+      10.0,
+      10.0,
+      30.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "total_successes": 10
+  },
+  "normal_results": []
+}

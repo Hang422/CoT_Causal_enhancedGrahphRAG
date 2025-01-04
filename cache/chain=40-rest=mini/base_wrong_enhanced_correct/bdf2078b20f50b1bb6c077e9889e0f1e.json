@@ -1,0 +1,175 @@
+{
+  "question": "Warfarin induced skin necrosis is seen in ?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Protein C deficiency",
+    "opb": "Protein S deficiency",
+    "opc": "Hemophillia",
+    "opd": "Antithrombin III deficiency"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Protein C",
+        "imbalance",
+        "Thrombophilia"
+      ],
+      [
+        "Protein C",
+        "Obesity",
+        "Thrombophilia"
+      ],
+      [
+        "Protein C",
+        "Myocardial Infarction",
+        "Thrombophilia"
+      ],
+      [
+        "Thrombophilia",
+        "Skin necrosis"
+      ],
+      [
+        "Thrombophilia",
+        "Skin necrosis"
+      ],
+      [
+        "Hemophilia A",
+        "Disease",
+        "Skin necrosis"
+      ],
+      [
+        "Hemophilia A",
+        "Septicemia",
+        "Skin necrosis"
+      ],
+      [
+        "Hemophilia A",
+        "Rare Diseases",
+        "Skin necrosis"
+      ],
+      [
+        "Antithrombin III",
+        "Infection",
+        "Skin necrosis"
+      ],
+      [
+        "Antithrombin III",
+        "Thrombophlebitis",
+        "Skin necrosis"
+      ],
+      [
+        "Antithrombin III",
+        "Calciphylaxis",
+        "Skin necrosis"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Protein C)-CAUSES->(imbalance)-CAUSES->(Thrombophilia)",
+      "(Protein C)-TREATS->(Obesity)-CAUSES->(Thrombophilia)",
+      "(Protein C)-TREATS->(Myocardial Infarction)-CAUSES->(Thrombophilia)",
+      "(Thrombophilia)-CAUSES->(Skin necrosis)",
+      "(Thrombophilia)-CAUSES->(Skin necrosis)",
+      "(Hemophilia A)-CAUSES->(Disease)-CAUSES->(Skin necrosis)",
+      "(Hemophilia A)-CAUSES->(Septicemia)-CAUSES->(Skin necrosis)",
+      "(Hemophilia A)-CAUSES->(Rare Diseases)-CAUSES->(Skin necrosis)",
+      "(Antithrombin III)-TREATS->(Infection)-CAUSES->(Skin necrosis)",
+      "(Antithrombin III)-TREATS->(Thrombophlebitis)-CAUSES->(Skin necrosis)",
+      "(Antithrombin III)-TREATS->(Calciphylaxis)-CAUSES->(Skin necrosis)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Antithrombin III)-TREATS->(Infection)-CAUSES->(Skin necrosis)",
+      "(Antithrombin III)-TREATS->(Calciphylaxis)-CAUSES->(Skin necrosis)",
+      "(Thrombophilia)-CAUSES->(Skin necrosis)",
+      "(Hemophilia A)-CAUSES->(Disease)-CAUSES->(Skin necrosis)",
+      "(Hemophilia A)-CAUSES->(Septicemia)-CAUSES->(Skin necrosis)",
+      "(Hemophilia A)-CAUSES->(Rare Diseases)-CAUSES->(Skin necrosis)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Warfarin administration\" -> \"reduced Protein C activity\" -> \"hypercoagulable state\" -> \"skin necrosis\" -> 90%",
+    "CHAIN: \"Warfarin administration\" -> \"reduced Protein S activity\" -> \"possible hypercoagulable state\" -> \"possible skin necrosis\" -> 60%",
+    "CHAIN: \"Warfarin administration\" -> \"no effect on hemophilia\" -> \"no skin necrosis\" -> 10%",
+    "CHAIN: \"Warfarin administration\" -> \"no significant effect on Antithrombin III\" -> \"no skin necrosis\" -> 10%"
+  ],
+  "enhanced_information": "Warfarin-induced skin necrosis is primarily associated with deficiencies in Protein C and Protein S. Warfarin works by inhibiting vitamin K-dependent clotting factors, which leads to a rapid decrease in Protein C and S levels, resulting in a transient hypercoagulable state that can cause skin necrosis. The reasoning chain for Protein C deficiency is strong, as it directly links to the mechanism of warfarin and the resultant skin necrosis. The chain for Protein S deficiency is also valid but less definitive, as the risk is lower compared to Protein C deficiency. Hemophilia does not cause skin necrosis related to warfarin, as it does not affect the coagulation pathway targeted by warfarin. Antithrombin III deficiency is similarly not directly linked to warfarin-induced skin necrosis, as warfarin does not significantly affect antithrombin levels. Therefore, the most relevant options are Protein C and Protein S deficiencies, with Protein C deficiency being the most strongly associated with warfarin-induced skin necrosis.",
+  "analysis": "Warfarin-induced skin necrosis is primarily associated with deficiencies in Protein C and Protein S. The mechanism involves the rapid decrease in these proteins due to warfarin's action on vitamin K-dependent clotting factors, leading to a transient hypercoagulable state. Among the options provided, Protein C deficiency (opa) is the most strongly linked to this condition, as it directly results in a higher risk of skin necrosis when warfarin is initiated. Protein S deficiency (opb) is also relevant but is less commonly associated with this specific complication. Hemophilia (opc) and Antithrombin III deficiency (opd) do not have a direct connection to warfarin-induced skin necrosis. Therefore, the best-supported option is Protein C deficiency.",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      1,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      40.0,
+      20.0,
+      20.0,
+      20.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

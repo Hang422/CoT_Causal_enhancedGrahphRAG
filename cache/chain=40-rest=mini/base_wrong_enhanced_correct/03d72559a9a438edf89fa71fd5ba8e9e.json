@@ -1,0 +1,257 @@
+{
+  "question": "The following drugs have significant drug interactions with digoxin except:",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Cholestyramine",
+    "opb": "Thiazide diuretics",
+    "opc": "Quinidine",
+    "opd": "Amlodipine"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Digoxin",
+        "Disease",
+        "Kidney Diseases",
+        "Adverse drug interaction"
+      ],
+      [
+        "Digoxin",
+        "Disease",
+        "Kidney Diseases",
+        "Adverse drug interaction"
+      ],
+      [
+        "Digoxin",
+        "Disease",
+        "Kidney Diseases",
+        "Adverse drug interaction"
+      ],
+      [
+        "Digoxin",
+        "Disease",
+        "Kidney Diseases",
+        "Adverse drug interaction"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Digoxin)-CAUSES->(Disease)-CAUSES->(Kidney Diseases)-CAUSES->(Adverse drug interaction)",
+      "(Digoxin)-CAUSES->(Disease)-CAUSES->(Kidney Diseases)-CAUSES->(Adverse drug interaction)",
+      "(Digoxin)-CAUSES->(Disease)-CAUSES->(Kidney Diseases)-CAUSES->(Adverse drug interaction)",
+      "(Digoxin)-CAUSES->(Disease)-CAUSES->(Kidney Diseases)-CAUSES->(Adverse drug interaction)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Cholestyramine",
+        "Pharmaceutical Preparations",
+        "Digoxin"
+      ],
+      [
+        "Cholestyramine",
+        "Enzymes",
+        "Digoxin"
+      ],
+      [
+        "Gastrointestinal tract structure",
+        "Mechanical ventilation",
+        "Respiration",
+        "Digoxin"
+      ],
+      [
+        "Gastrointestinal tract structure",
+        "Placebos",
+        "Pharmaceutical Preparations",
+        "Digoxin"
+      ],
+      [
+        "Serum potassium assay",
+        "Disease",
+        "DNA Viruses",
+        "Digoxin"
+      ],
+      [
+        "Serum potassium assay",
+        "Disease",
+        "Excretory function",
+        "Digoxin"
+      ],
+      [
+        "Quinidine",
+        "Pharmaceutical Preparations",
+        "P-Glycoproteins"
+      ],
+      [
+        "Quinidine",
+        "Pharmaceutical Preparations",
+        "P-Glycoproteins"
+      ],
+      [
+        "P-Glycoproteins",
+        "Cells",
+        "Digoxin"
+      ],
+      [
+        "P-Glycoproteins",
+        "Breast Cancer Cell",
+        "Digoxin"
+      ],
+      [
+        "Amlodipine",
+        "Pharmaceutical Preparations",
+        "Calcium Channel Blockers"
+      ],
+      [
+        "Amlodipine",
+        "Antihypertensive Agents",
+        "Calcium Channel Blockers"
+      ],
+      [
+        "Calcium Channel Blockers",
+        "Digoxin"
+      ]
+    ],
+    "relationships": [
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "LOCATION_OF",
+        "COMPLICATES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "LOCATION_OF",
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "DIAGNOSES",
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "DIAGNOSES",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Cholestyramine)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Digoxin)",
+      "(Cholestyramine)-INTERACTS_WITH->(Enzymes)-INTERACTS_WITH->(Digoxin)",
+      "(Gastrointestinal tract structure)-LOCATION_OF->(Mechanical ventilation)-COMPLICATES->(Respiration)-ASSOCIATED_WITH->(Digoxin)",
+      "(Gastrointestinal tract structure)-LOCATION_OF->(Placebos)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Digoxin)",
+      "(Serum potassium assay)-DIAGNOSES->(Disease)-INTERACTS_WITH->(DNA Viruses)-LOCATION_OF->(Digoxin)",
+      "(Serum potassium assay)-DIAGNOSES->(Disease)-MANIFESTATION_OF->(Excretory function)-ASSOCIATED_WITH->(Digoxin)",
+      "(Quinidine)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(P-Glycoproteins)",
+      "(Quinidine)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(P-Glycoproteins)",
+      "(P-Glycoproteins)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Digoxin)",
+      "(P-Glycoproteins)-INTERACTS_WITH->(Breast Cancer Cell)-LOCATION_OF->(Digoxin)",
+      "(Amlodipine)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Calcium Channel Blockers)",
+      "(Amlodipine)-ISA->(Antihypertensive Agents)-INTERACTS_WITH->(Calcium Channel Blockers)",
+      "(Calcium Channel Blockers)-INTERACTS_WITH->(Digoxin)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Digoxin)-CAUSES->(Disease)-CAUSES->(Kidney Diseases)-CAUSES->(Adverse drug interaction)",
+      "(Cholestyramine)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Digoxin)",
+      "(Cholestyramine)-INTERACTS_WITH->(Enzymes)-INTERACTS_WITH->(Digoxin)",
+      "(Quinidine)-INTERACTS_WITH/ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(P-Glycoproteins)-Glycoproteins)",
+      "(Amlodipine)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Calcium Channel Blockers)",
+      "(Gastrointestinal tract structure)-LOCATION_OF->(Placebos)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Digoxin)",
+      "(Calcium Channel Blockers)-INTERACTS_WITH->(Digoxin)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Cholestyramine\" -> \"binds to digoxin in the gut\" -> \"decreased absorption of digoxin\" -> \"significant drug interaction\" -> 90%",
+    "CHAIN: \"Thiazide diuretics\" -> \"decreased potassium levels\" -> \"increased digoxin toxicity risk\" -> \"significant drug interaction\" -> 85%",
+    "CHAIN: \"Quinidine\" -> \"inhibits P-glycoprotein\" -> \"increased digoxin levels\" -> \"significant drug interaction\" -> 95%",
+    "CHAIN: \"Amlodipine\" -> \"calcium channel blocker\" -> \"no significant effect on digoxin levels\" -> \"no significant drug interaction\" -> 90%"
+  ],
+  "enhanced_information": "Cholestyramine binds to digoxin in the gastrointestinal tract, leading to decreased absorption and a significant drug interaction. Thiazide diuretics can cause hypokalemia, which increases the risk of digoxin toxicity, thus representing a significant interaction. Quinidine inhibits P-glycoprotein, resulting in increased digoxin levels and a significant interaction. In contrast, amlodipine, a calcium channel blocker, does not significantly affect digoxin levels or its pharmacokinetics, indicating no significant drug interaction. Therefore, the drug with no significant interaction with digoxin is amlodipine.",
+  "analysis": "Digoxin is a cardiac glycoside that has several known drug interactions. Cholestyramine binds to digoxin in the gastrointestinal tract, leading to decreased absorption, which is a significant interaction. Thiazide diuretics can cause hypokalemia, increasing the risk of digoxin toxicity, thus representing another significant interaction. Quinidine inhibits P-glycoprotein, which can lead to increased levels of digoxin, also indicating a significant interaction. In contrast, amlodipine, a calcium channel blocker, does not significantly affect the pharmacokinetics of digoxin and is not known to cause any clinically significant interactions. Therefore, the drug with no significant interaction with digoxin is amlodipine.",
+  "answer": "opd",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      3,
+      2,
+      3,
+      3
+    ],
+    "coverage_rates": [
+      27.27272727272727,
+      18.181818181818183,
+      27.27272727272727,
+      27.27272727272727
+    ],
+    "total_successes": 11
+  },
+  "normal_results": []
+}

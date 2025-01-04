@@ -1,0 +1,87 @@
+{
+  "question": "Drugs causing hypokalemia are : a) Amphotericin B b) Insulin c) Cyclosporine d) Carbenoxolone e) NSAIDs",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "ace",
+    "opb": "ac",
+    "opc": "abd",
+    "opd": "acd"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Insulin",
+        "Excretory function",
+        "potassium"
+      ],
+      [
+        "Insulin",
+        "uptake",
+        "potassium"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Insulin)-CAUSES->(Excretory function)-ASSOCIATED_WITH->(potassium)",
+      "(Insulin)-CAUSES->(uptake)-ASSOCIATED_WITH->(potassium)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Insulin)-CAUSES->(Excretory function)-ASSOCIATED_WITH->(potassium)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Amphotericin B\" -> \"renal tubular damage\" -> \"increased potassium excretion\" -> \"hypokalemia\" -> 95%",
+    "CHAIN: \"Insulin\" -> \"cellular uptake of potassium\" -> \"decreased serum potassium\" -> \"hypokalemia\" -> 95%",
+    "CHAIN: \"Cyclosporine\" -> \"possible renal effects\" -> \"unclear impact on potassium\" -> 50%",
+    "CHAIN: \"Carbenoxolone\" -> \"mineralocorticoid activity\" -> \"increased potassium excretion\" -> \"hypokalemia\" -> 90%",
+    "CHAIN: \"NSAIDs\" -> \"renal effects\" -> \"possible potassium retention\" -> \"unclear impact on hypokalemia\" -> 40%"
+  ],
+  "enhanced_information": "Amphotericin B is known to cause renal tubular damage, leading to increased potassium excretion and hypokalemia, which is well-supported by consensus (95% confidence). Insulin promotes cellular uptake of potassium, resulting in decreased serum potassium levels and hypokalemia (95% confidence). Cyclosporine has unclear effects on potassium levels, with some renal effects but no strong consensus on its role in causing hypokalemia (50% confidence). Carbenoxolone exhibits mineralocorticoid activity, which can increase potassium excretion and lead to hypokalemia (90% confidence). NSAIDs generally have renal effects that may lead to potassium retention, making their role in hypokalemia unclear (40% confidence). Therefore, the drugs causing hypokalemia are Amphotericin B, Insulin, and Carbenoxolone, aligning with options 'a' and 'c' (options 'ace' and 'ac').",
+  "analysis": "Amphotericin B is well-documented to cause hypokalemia due to renal tubular damage and increased potassium excretion. Insulin is known to promote the uptake of potassium into cells, leading to lower serum potassium levels, thus also causing hypokalemia. Carbenoxolone has mineralocorticoid-like effects, which can increase potassium excretion and contribute to hypokalemia. Cyclosporine's effects on potassium levels are less clear, with some studies suggesting it may not significantly cause hypokalemia. NSAIDs typically do not cause hypokalemia; they are more associated with potassium retention. Therefore, the drugs that are most clearly associated with hypokalemia are Amphotericin B, Insulin, and Carbenoxolone. This aligns with options 'a' and 'c', specifically option 'ac'.",
+  "answer": "opc",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      0.0,
+      100.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 1
+  },
+  "normal_results": []
+}

@@ -1,0 +1,134 @@
+{
+  "question": "Heparin is the commonly used anticoagulant in cardiac surgery. All of the following are true about heparin except-",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Weakest acid found in living things",
+    "opb": "Most commercial preparations of heparin now utilize pig intestinal slimes",
+    "opc": "Act via Antithrombin activation",
+    "opd": "Produce thrombocytopenia"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Heparin",
+        "Thrombocytopenia"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Heparin)-CAUSES->(Thrombocytopenia)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Heparin",
+        "Pharmaceutical Preparations",
+        "Thrombin"
+      ],
+      [
+        "Heparin",
+        "Cells",
+        "Thrombin"
+      ],
+      [
+        "Anticoagulants",
+        "Thrombin"
+      ],
+      [
+        "Heparin",
+        "Cells",
+        "Intestinal Mucosa"
+      ],
+      [
+        "Heparin",
+        "Fatty Acids, Nonesterified",
+        "Intestinal Mucosa"
+      ],
+      [
+        "Platelet Count measurement",
+        "Thrombocytopenia"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PART_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "PART_OF",
+        "PART_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "PART_OF"
+      ],
+      [
+        "DIAGNOSES"
+      ]
+    ],
+    "paths": [
+      "(Heparin)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Thrombin)",
+      "(Heparin)-PART_OF->(Cells)-INTERACTS_WITH->(Thrombin)",
+      "(Anticoagulants)-INTERACTS_WITH->(Thrombin)",
+      "(Heparin)-PART_OF->(Cells)-PART_OF->(Intestinal Mucosa)",
+      "(Heparin)-INTERACTS_WITH->(Fatty Acids, Nonesterified)-PART_OF->(Intestinal Mucosa)",
+      "(Platelet Count measurement)-DIAGNOSES->(Thrombocytopenia)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Heparin)-CAUSES->(Thrombocytopenia)",
+      "(Heparin)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Thrombin)",
+      "(Heparin)-PART_OF->(Cells)-INTERACTS_WITH->(Thrombin)",
+      "(Heparin)-PART_OF->(Cells)-PART_OF->(Intestinal Mucosa)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Heparin is an anticoagulant\" -> \"Inhibits thrombin and factor Xa\" -> \"Acts via Antithrombin activation\" -> \"True statement\" -> 95%",
+    "CHAIN: \"Heparin is derived from animal sources\" -> \"Most commercial preparations utilize pig intestinal mucosa\" -> \"True statement\" -> 90%",
+    "CHAIN: \"Heparin can cause a decrease in platelet count\" -> \"This condition is known as thrombocytopenia\" -> \"True statement\" -> 90%",
+    "CHAIN: \"Heparin is a polysaccharide\" -> \"It is not classified as an acid\" -> \"Weakest acid found in living things is incorrect\" -> 85%"
+  ],
+  "enhanced_information": "Heparin is a widely used anticoagulant that acts primarily by activating Antithrombin, which inhibits thrombin and factor Xa, making the statement about its mechanism of action true. Most commercial preparations of heparin are derived from pig intestinal mucosa, confirming the accuracy of that statement. Heparin can indeed cause thrombocytopenia, a decrease in platelet count, which is also a true statement. However, heparin is a polysaccharide and is not classified as an acid, thus the claim that it is the 'weakest acid found in living things' is incorrect. Therefore, the correct answer to the question is that heparin is not the weakest acid found in living things.",
+  "analysis": "Heparin is a well-known anticoagulant that functions by activating Antithrombin, which in turn inhibits thrombin and factor Xa. This mechanism of action is well-documented and widely accepted in medical literature. Most commercial heparin is derived from pig intestinal mucosa, which is a standard practice in the pharmaceutical industry. Heparin-induced thrombocytopenia (HIT) is a recognized adverse effect, characterized by a reduction in platelet count. The statement that heparin is the 'weakest acid found in living things' is incorrect because heparin is a polysaccharide, not an acid. Therefore, the statement about heparin being the weakest acid is the exception among the options provided.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      1,
+      2,
+      0
+    ],
+    "coverage_rates": [
+      40.0,
+      20.0,
+      40.0,
+      0.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

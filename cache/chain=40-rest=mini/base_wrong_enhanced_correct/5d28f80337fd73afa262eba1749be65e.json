@@ -1,0 +1,153 @@
+{
+  "question": "Which of the following drugs is used to treat both diabetes mellitus and diabetes insipidus",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Chlorpropamide",
+    "opb": "Glibenclamide",
+    "opc": "Glicazide",
+    "opd": "Glipizide"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Insulin",
+        "Diabetes Mellitus, Non-Insulin-Dependent"
+      ],
+      [
+        "Insulin",
+        "Diabetes Mellitus, Non-Insulin-Dependent"
+      ],
+      [
+        "Diabetes Mellitus, Non-Insulin-Dependent",
+        "Disease",
+        "Diabetes Insipidus"
+      ],
+      [
+        "Insulin",
+        "Diabetes Mellitus, Non-Insulin-Dependent"
+      ],
+      [
+        "Diabetes Mellitus, Non-Insulin-Dependent",
+        "Disease",
+        "Diabetes Insipidus"
+      ],
+      [
+        "Insulin",
+        "Diabetes Mellitus, Non-Insulin-Dependent"
+      ],
+      [
+        "Diabetes Mellitus, Non-Insulin-Dependent",
+        "Disease",
+        "Diabetes Insipidus"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Insulin)-CAUSES->(Diabetes Mellitus, Non-Insulin-Dependent)",
+      "(Insulin)-CAUSES->(Diabetes Mellitus, Non-Insulin-Dependent)",
+      "(Diabetes Mellitus, Non-Insulin-Dependent)-CAUSES->(Disease)-CAUSES->(Diabetes Insipidus)",
+      "(Insulin)-CAUSES->(Diabetes Mellitus, Non-Insulin-Dependent)",
+      "(Diabetes Mellitus, Non-Insulin-Dependent)-CAUSES->(Disease)-CAUSES->(Diabetes Insipidus)",
+      "(Insulin)-CAUSES->(Diabetes Mellitus, Non-Insulin-Dependent)",
+      "(Diabetes Mellitus, Non-Insulin-Dependent)-CAUSES->(Disease)-CAUSES->(Diabetes Insipidus)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Antidiuretic Effect",
+        "Kidney",
+        "Disease",
+        "Diabetes Insipidus"
+      ],
+      [
+        "Antidiuretic Effect",
+        "Kidney",
+        "Disease",
+        "Diabetes Insipidus"
+      ]
+    ],
+    "relationships": [
+      [
+        "PROCESS_OF",
+        "LOCATION_OF",
+        "COMPLICATES"
+      ],
+      [
+        "PROCESS_OF",
+        "LOCATION_OF",
+        "PREDISPOSES"
+      ]
+    ],
+    "paths": [
+      "(Antidiuretic Effect)-PROCESS_OF->(Kidney)-LOCATION_OF->(Disease)-COMPLICATES->(Diabetes Insipidus)",
+      "(Antidiuretic Effect)-PROCESS_OF->(Kidney)-LOCATION_OF->(Disease)-PREDISPOSES->(Diabetes Insipidus)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Insulin)-CAUSES->(Diabetes Mellitus, Non-Insulin-Dependent)-Insulin"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Chlorpropamide\" -> \"sulfonylurea class\" -> \"stimulates insulin release\" -> \"treats type 2 diabetes mellitus\" -> \"antidiuretic effect\" -> \"treats diabetes insipidus\" -> 85%",
+    "CHAIN: \"Glibenclamide\" -> \"sulfonylurea class\" -> \"stimulates insulin release\" -> \"treats type 2 diabetes mellitus\" -> \"no known effect on diabetes insipidus\" -> 40%",
+    "CHAIN: \"Glicazide\" -> \"sulfonylurea class\" -> \"stimulates insulin release\" -> \"treats type 2 diabetes mellitus\" -> \"no known effect on diabetes insipidus\" -> 40%",
+    "CHAIN: \"Glipizide\" -> \"sulfonylurea class\" -> \"stimulates insulin release\" -> \"treats type 2 diabetes mellitus\" -> \"no known effect on diabetes insipidus\" -> 40%"
+  ],
+  "enhanced_information": "Chlorpropamide is a sulfonylurea that stimulates insulin release and is used to treat type 2 diabetes mellitus. Importantly, it also has an antidiuretic effect, which allows it to be used in the treatment of diabetes insipidus. In contrast, Glibenclamide, Glicazide, and Glipizide are also sulfonylureas that primarily treat type 2 diabetes mellitus but do not have any known effects on diabetes insipidus. Therefore, the only drug among the options that treats both conditions is Chlorpropamide.",
+  "analysis": "Chlorpropamide is a sulfonylurea that not only stimulates insulin release to manage type 2 diabetes mellitus but also possesses an antidiuretic effect, making it effective in treating diabetes insipidus. The other options—Glibenclamide, Glicazide, and Glipizide—are also sulfonylureas but do not have the same antidiuretic properties and are primarily used for diabetes mellitus. Therefore, based on the consensus in pharmacology, Chlorpropamide is the only drug listed that treats both conditions.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      2,
+      2,
+      2
+    ],
+    "coverage_rates": [
+      25.0,
+      25.0,
+      25.0,
+      25.0
+    ],
+    "total_successes": 8
+  },
+  "normal_results": []
+}

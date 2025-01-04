@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250104_022054",
+  "model": "gpt-4o",
+  "interaction_type": "answer_with_CoT",
+  "question_id": "635cf5f3",
+  "question_text": "A person on anti-tubercular drugs complained of deafness and tinnitus in one ear. Drug implicated is?",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert using chain-of-thought reasoning."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.\n            You are a medical expert determining the final answer.\n\n                ### Instructions:\n                - Use standard medical knowledge as the primary guide.\n                - Consider enhanced information only if it aligns with consensus.\n                - If conflicting or unclear, present the most likely correct answer based on known facts.\n                - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.\n            ### Question    \n            A person on anti-tubercular drugs complained of deafness and tinnitus in one ear. Drug implicated is?\n\n            ### Options\n            opa. Streptomycin\nopb. Isoniazid\nopc. Ethambutol\nopd. Rifampicin\n\n### Reasoning Chains for Validation:\n- CHAIN: \"Streptomycin\" -> \"ototoxicity\" -> \"deafness\" -> \"tinnitus\" -> 95%\n- CHAIN: \"Isoniazid\" -> \"peripheral neuropathy\" -> \"unclear link to deafness\" -> 40%\n- CHAIN: \"Ethambutol\" -> \"optic neuritis\" -> \"visual disturbances\" -> \"no direct link to deafness\" -> 30%\n- CHAIN: \"Rifampicin\" -> \"hepatotoxicity\" -> \"no direct link to deafness\" -> 20%\n\n### Retrieved Validation Paths:\n- (isoniazid)-TREATS->(Peripheral Neuropathy)\n- (Ethambutol)-TREATS->(Optic Neuritis)\n- (Streptomycin)-TREATS->(Infection)-CAUSES->(Disease)-CAUSES->(Ototoxicity)\n- (Streptomycin)-TREATS->(Tuberculosis)-CAUSES->(Disease)-CAUSES->(Ototoxicity)\n- (Streptomycin)-TREATS->(Infection)-CAUSES->(Kidney Diseases)-CAUSES->(Ototoxicity)\n- (Deafness)-CAUSES->(Disease)-CAUSES->(Tinnitus)\n- (Deafness)-CAUSES->(Symptoms)-CAUSES->(Tinnitus)\n- (Deafness)-CAUSES->(Otosclerosis)-CAUSES->(Tinnitus)\n- (Peripheral Neuropathy)-CAUSES->(Disease)-CAUSES->(Deafness)\n\n            ### Task:\n                1. Identify the core medical principle and the most likely correct option based on consensus.\n                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.\n                3. Provide a final analysis and a confidence score (0-100%).\n                \n                ### Output Format:\n                {\n                  \"final_analysis\": \"Step-by-step reasoning, prioritizing medical consensus and acknowledging complexity if present.\",\n                  \"answer\": \"Option key (e.g. opa, opb, ...)\",\n                  \"confidence\": A number between 0-100\n                }\n            "
+    }
+  ],
+  "response": "```json\n{\n  \"final_analysis\": \"The patient is experiencing deafness and tinnitus, which are symptoms commonly associated with ototoxicity. Among the anti-tubercular drugs listed, Streptomycin is well-known for its ototoxic effects, which can lead to both hearing loss and tinnitus. Isoniazid is more commonly associated with peripheral neuropathy, Ethambutol with optic neuritis, and Rifampicin with hepatotoxicity. Therefore, based on standard medical knowledge and the symptoms presented, Streptomycin is the most likely drug to cause these auditory side effects.\",\n  \"answer\": \"opa\",\n  \"confidence\": 95\n}\n```",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": true,
+    "has_enhanced_info": true,
+    "model_config": "gpt-4o",
+    "temperature": 0.0
+  }
+}

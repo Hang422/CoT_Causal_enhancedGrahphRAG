@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_011434",
+  "model": "gpt-4-turbo",
+  "interaction_type": "direct_answer",
+  "question_id": "79dea574",
+  "question_text": "A 6-month-old male baby comes with vomiting, lethargy and severe jaundice when weaning was staed with fruit juice. Which of the following enzymes is defective?",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on medical knowledge."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Biochemistry.Please help answer this multiple choice question:\n\nQuestion: A 6-month-old male baby comes with vomiting, lethargy and severe jaundice when weaning was staed with fruit juice. Which of the following enzymes is defective?\n\nOptions:\nopa. Fructokinase\nopb. Aldolase A\nopc. Aldolase B\nopd. Sucrase\n\n        ### Output Format\n        Provide your response in valid JSON format:\n        {   \n            \"final_analysis\": \"Your concise analysis following the above structure\",\n            \"answer\": \"Option key from the available options (only key,like opa)\",\n            \"confidence\": Score between 0-100 based on alignment with established medical facts\n        }\n        "
+    }
+  ],
+  "response": "{\n    \"final_analysis\": \"The symptoms described in the question, including vomiting, lethargy, and severe jaundice upon the introduction of fruit juice, suggest a disorder involving the metabolism of fructose. Aldolase B is the enzyme responsible for breaking down fructose in the liver. A deficiency in Aldolase B leads to hereditary fructose intolerance, which can cause severe reactions to fructose ingestion, including hypoglycemia, jaundice, and liver dysfunction. The other enzymes listed do not directly relate to the symptoms described when fructose is ingested.\",\n    \"answer\": \"opc\",\n    \"confidence\": 95\n}",
+  "metadata": {
+    "topic": "Biochemistry",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

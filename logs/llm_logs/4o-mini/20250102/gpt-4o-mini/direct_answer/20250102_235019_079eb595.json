@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250102_235019",
+  "model": "gpt-4o-mini",
+  "interaction_type": "direct_answer",
+  "question_id": "079eb595",
+  "question_text": "Which of the following anti-tubercular drug is avoided in a HIV positive patient on zidovudine, lamivudine and indinavir therapy who develops TB?",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on medical knowledge."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.Please help answer this multiple choice question:\n\nQuestion: Which of the following anti-tubercular drug is avoided in a HIV positive patient on zidovudine, lamivudine and indinavir therapy who develops TB?\n\nOptions:\nopa. Pyrazinamide\nopb. Isoniazid\nopc. Ethambutol\nopd. Rifampicin\n\n        ### Output Format\n        Provide your response in valid JSON format:\n        {   \n            \"final_analysis\": \"Your concise analysis following the above structure\",\n            \"answer\": \"Option key from the available options (only key,like opa)\",\n            \"confidence\": Score between 0-100 based on alignment with established medical facts\n        }\n        "
+    }
+  ],
+  "response": "{\n    \"final_analysis\": \"Rifampicin is known to induce the metabolism of many drugs by inducing cytochrome P450 enzymes, which can significantly reduce the effectiveness of antiretroviral drugs like zidovudine and lamivudine. Therefore, it is avoided in HIV positive patients on these therapies.\",\n    \"answer\": \"opd\",\n    \"confidence\": 90\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}
