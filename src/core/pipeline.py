@@ -389,21 +389,17 @@ def compare_models(process_path):
     try:
         processor = QuestionProcessor(process_path)
         processor.process_from_cache(process_path)
-        # processor.batch_process_file('test1', 100)
 
         STAGES = ['derelict', 'enhanced', 'knowledge_graph', 'remove_llm_enhanced', 'normal_rag', 'remove_enhancer']
         base_dir = process_path
         df_report = calculate_accuracies(base_dir, STAGES)
         print(df_report)
 
-        output_path = config.paths["cache"] / base_dir / 'model_accuracy_report.xlsx'
+        output_path = config.paths["output"] / f'{process_path}.xlsx'
         df_report.to_excel(output_path, index=False)
 
         compare_enhanced_with_baseline(process_path)  # 对比增强与基线
 
-        # path = Path(process_path) / 'coverage_filtered'
-        # filter_by_coverage(process_path, threshold=0.5)  # 覆盖率过滤
-        # compare_enhanced_with_baseline(path)
 
     finally:
         # 手动清理内存
@@ -414,13 +410,14 @@ def compare_models(process_path):
 
 
 if __name__ == "__main__":
-    models = ['4', '4o', '4o-mini']
+    # models = ['4', '4o', '4o-mini']
+    # intersect(models)
     config.openai['model'] = 'gpt-4o-mini'
     compare_models('4o-mini-intersection')
-    # config.openai['model'] = 'gpt-4o'
-    # compare_models('4o-intersection')
-    # config.openai['model'] = 'gpt-4-turbo'
-    # compare_models('4-intersection')
-    # intersect(models)
-    # config.openai['model'] = 'gpt-4o-mini'
-    # compare_models('test')
+    config.openai['model'] = 'gpt-4o'
+    compare_models('4o-intersection')
+    config.openai['model'] = 'gpt-4-turbo'
+    compare_models('4-intersection')
+    compare_models('2-mini_1-4o')
+    compare_models('chain=40-rest=mini')
+    compare_models('chain=mini-rest=4o')
