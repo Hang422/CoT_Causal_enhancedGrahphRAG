@@ -1,0 +1,132 @@
+{
+  "question": "Aldosterone acts at:",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Collecting duct",
+    "opb": "Glomerulus",
+    "opc": "Proximal convoluted tubule",
+    "opd": "Loop of Henle"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Body fluid retention",
+        "Hypertensive disease",
+        "uptake",
+        "Duct (organ) structure"
+      ],
+      [
+        "Sodium Channel",
+        "physiological aspects",
+        "Breast collecting duct"
+      ],
+      [
+        "Aldosterone",
+        "Vascular resistance",
+        "Nephrons"
+      ],
+      [
+        "Aldosterone",
+        "Excretory function",
+        "Nephrons"
+      ],
+      [
+        "Aldosterone",
+        "uptake",
+        "Nephrons"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Body fluid retention)-CAUSES->(Hypertensive disease)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Duct (organ) structure)",
+      "(Sodium Channel)-CAUSES->(physiological aspects)-PROCESS_OF->(Breast collecting duct)",
+      "(Aldosterone)-CAUSES->(Vascular resistance)-PROCESS_OF->(Nephrons)",
+      "(Aldosterone)-CAUSES->(Excretory function)-PROCESS_OF->(Nephrons)",
+      "(Aldosterone)-CAUSES->(uptake)-PROCESS_OF->(Nephrons)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Aldosterone",
+        "Sodium Channel"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Aldosterone)-INTERACTS_WITH->(Sodium Channel)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Aldosterone)-CAUSES->(Vascular resistance)-PROCESS_OF->(Nephrons)",
+      "(Aldosterone)-CAUSES->(Excretory function)-PROCESS_OF->(Nephrons)",
+      "(Aldosterone)-CAUSES->(uptake)-PROCESS_OF->(Nephrons)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Aldosterone\" -> \"acts on distal nephron\" -> \"specifically collecting duct\" -> 90%",
+    "CHAIN: \"Aldosterone\" -> \"sodium reabsorption\" -> \"water retention\" -> \"collecting duct involvement\" -> 85%",
+    "CHAIN: \"Aldosterone\" -> \"increased sodium channels\" -> \"collecting duct\" -> \"enhanced sodium reabsorption\" -> 90%",
+    "CHAIN: \"Aldosterone\" -> \"potassium excretion\" -> \"collecting duct\" -> \"electrolyte balance\" -> 85%",
+    "CHAIN: \"Aldosterone\" -> \"acts on nephron\" -> \"not glomerulus\" -> \"not proximal convoluted tubule\" -> \"not loop of Henle\" -> \"collecting duct\" -> 80%"
+  ],
+  "enhanced_information": "Aldosterone primarily acts on the collecting duct of the nephron, where it promotes sodium reabsorption and potassium excretion. This action is crucial for maintaining electrolyte balance and regulating blood pressure. The reasoning chains correctly identify the collecting duct as the site of action for aldosterone, supported by its role in increasing sodium channels and enhancing sodium reabsorption. Evidence paths indicating aldosterone's influence on nephron function further reinforce this consensus. Other options, such as the glomerulus, proximal convoluted tubule, and loop of Henle, do not align with the established understanding of aldosterone's specific actions.",
+  "analysis": "Aldosterone is a steroid hormone produced by the adrenal cortex that plays a critical role in regulating sodium and potassium levels in the body. Its primary site of action is the collecting duct of the nephron, where it promotes sodium reabsorption and potassium excretion. This mechanism is essential for maintaining fluid balance and blood pressure. The other options, including the glomerulus, proximal convoluted tubule, and loop of Henle, do not represent the primary action sites for aldosterone. Therefore, based on established physiological principles and consensus in the medical community, the most accurate answer is that aldosterone acts at the collecting duct.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      2,
+      0,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      25.0,
+      50.0,
+      0.0,
+      25.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

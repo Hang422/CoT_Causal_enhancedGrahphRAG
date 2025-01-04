@@ -1,0 +1,145 @@
+{
+  "question": "Propranolol is useful in the treatment of all of the following EXCEPT:",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Angina",
+    "opb": "Partial atrioventricular block",
+    "opc": "Idiopathic hypertrophic subaortic cardiomyopathy",
+    "opd": "Familial tremor"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Propranolol",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Propranolol",
+        "Antihypertensive Agents",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Propranolol",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Propranolol",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Propranolol",
+        "Antihypertensive Agents",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Propranolol",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Propranolol",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Propranolol",
+        "Antihypertensive Agents",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Propranolol",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Antagonists"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Propranolol)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Propranolol)-INTERACTS_WITH->(Antihypertensive Agents)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Propranolol)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Propranolol)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Propranolol)-INTERACTS_WITH->(Antihypertensive Agents)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Propranolol)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Propranolol)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Propranolol)-INTERACTS_WITH->(Antihypertensive Agents)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Propranolol)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Propranolol)-INTERACTS_WITH/ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)-Antagonists)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: Propranolol -> beta-blocker -> decreases heart rate -> useful in angina -> 95% CHAIN: Propranolol -> beta-blocker -> decreases heart rate -> useful in partial atrioventricular block -> 95% CHAIN: Propranolol -> beta-blocker -> decreases heart rate -> useful in idiopathic hypertrophic subaortic cardiomyopathy -> 95% CHAIN: Propranolol -> beta-blocker -> decreases heart rate -> NOT useful in familial tremor -> 95%"
+  ],
+  "enhanced_information": "Propranolol, as a beta-blocker, is useful in the treatment of angina, partial atrioventricular block, and idiopathic hypertrophic subaortic cardiomyopathy due to its ability to decrease heart rate. However, it is NOT useful in familial tremor. Evidence supports the pharmacological interaction of Propranolol with Adrenergic beta-Antagonists, reinforcing its mechanism of action as a beta-blocker.",
+  "analysis": "Propranolol, as a beta-blocker, is effective in treating angina, partial atrioventricular block, and idiopathic hypertrophic subaortic cardiomyopathy due to its ability to decrease heart rate. However, it is not useful in familial tremor. The enhanced information confirms this by highlighting the pharmacological interaction of Propranolol with Adrenergic beta-Antagonists. Familial tremor is not a condition where beta-blockers like Propranolol are typically indicated.",
+  "answer": "opd",
+  "confidence": 100.0,
+  "chain_coverage": {
+    "success_counts": [
+      3
+    ],
+    "coverage_rates": [
+      100.0
+    ],
+    "total_successes": 3
+  },
+  "normal_results": []
+}

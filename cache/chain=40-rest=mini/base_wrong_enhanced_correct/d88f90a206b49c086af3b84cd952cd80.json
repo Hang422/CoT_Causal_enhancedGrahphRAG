@@ -1,0 +1,186 @@
+{
+  "question": "Drug of choice for relapsing remitting multiple sclerosis is:",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Alpha IEN",
+    "opb": "Beta IFN",
+    "opc": "Gamma IFN",
+    "opd": "Natalizumab"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Recombinant Interleukin-6",
+        "Hyperesthesia",
+        "Disease",
+        "Immunity"
+      ],
+      [
+        "Recombinant Interleukin-6",
+        "Liver Failure",
+        "Disease",
+        "Immunity"
+      ],
+      [
+        "Recombinant Interleukin-6",
+        "Baculovirus",
+        "Disease",
+        "Immunity"
+      ],
+      [
+        "Immunity",
+        "HIV",
+        "Inflammation"
+      ],
+      [
+        "Immunity",
+        "Candida albicans",
+        "Inflammation"
+      ],
+      [
+        "natalizumab",
+        "Disease",
+        "Obstruction"
+      ],
+      [
+        "natalizumab",
+        "Complication",
+        "Obstruction"
+      ],
+      [
+        "natalizumab",
+        "Epilepsy",
+        "Obstruction"
+      ],
+      [
+        "Obstruction",
+        "Inflammation"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "PREDISPOSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "PROCESS_OF",
+        "CAUSES"
+      ],
+      [
+        "PROCESS_OF",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "MANIFESTATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Recombinant Interleukin-6)-CAUSES->(Hyperesthesia)-PREDISPOSES->(Disease)-MANIFESTATION_OF->(Immunity)",
+      "(Recombinant Interleukin-6)-TREATS->(Liver Failure)-CAUSES->(Disease)-MANIFESTATION_OF->(Immunity)",
+      "(Recombinant Interleukin-6)-TREATS->(Baculovirus)-CAUSES->(Disease)-MANIFESTATION_OF->(Immunity)",
+      "(Immunity)-PROCESS_OF->(HIV)-CAUSES->(Inflammation)",
+      "(Immunity)-PROCESS_OF->(Candida albicans)-CAUSES->(Inflammation)",
+      "(natalizumab)-TREATS->(Disease)-CAUSES->(Obstruction)",
+      "(natalizumab)-TREATS->(Complication)-CAUSES->(Obstruction)",
+      "(natalizumab)-TREATS->(Epilepsy)-CAUSES->(Obstruction)",
+      "(Obstruction)-MANIFESTATION_OF->(Inflammation)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Immune Cell",
+        "Virus",
+        "Inflammation"
+      ],
+      [
+        "Immune Cell",
+        "Genes",
+        "Inflammation"
+      ]
+    ],
+    "relationships": [
+      [
+        "LOCATION_OF",
+        "CAUSES"
+      ],
+      [
+        "INTERACTS_WITH",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Immune Cell)-LOCATION_OF->(Virus)-CAUSES->(Inflammation)",
+      "(Immune Cell)-INTERACTS_WITH->(Genes)-CAUSES->(Inflammation)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(natalizumab)-TREATS->(Disease)-CAUSES->(Obstruction)",
+      "(natalizumab)-TREATS->(Epilepsy)-CAUSES->(Obstruction)",
+      "(Recombinant Interleukin-6)-CAUSES->(Hyperesthesia)-PREDISPOSES->(Disease)-MANIFESTATION_OF->(Immunity)",
+      "(Recombinant Interleukin-6)-TREATS->(Liver Failure)-CAUSES->(Disease)-MANIFESTATION_OF->(Immunity)",
+      "(Recombinant Interleukin-6)-TREATS->(Baculovirus)-CAUSES->(Disease)-MANIFESTATION_OF->(Immunity)",
+      "(natalizumab)-TREATS->(Complication)-CAUSES->(Obstruction)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Beta IFN\" -> \"modulates immune response\" -> \"reduces inflammation\" -> \"decreases relapse rate\" -> 95%",
+    "CHAIN: \"Natalizumab\" -> \"blocks immune cell migration\" -> \"prevents CNS inflammation\" -> \"reduces relapse frequency\" -> 85%",
+    "CHAIN: \"Gamma IFN\" -> \"possible immune modulation\" -> \"unclear effect on MS\" -> \"potential worsening of symptoms\" -> 40%",
+    "CHAIN: \"Alpha IEN\" -> \"unclear mechanism in MS\" -> \"no established benefit\" -> \"not recommended for MS\" -> 30%"
+  ],
+  "enhanced_information": "The drug of choice for relapsing-remitting multiple sclerosis (RRMS) is Beta Interferon (Beta IFN). It is well-established that Beta IFN modulates the immune response, reduces inflammation, and decreases the relapse rate in patients with RRMS, with efficacy rates around 95%. Natalizumab is also effective, blocking immune cell migration and preventing CNS inflammation, but it is typically considered for patients who have had inadequate response to first-line therapies like Beta IFN, with an efficacy rate of about 85%. Gamma IFN has unclear effects on MS and may potentially worsen symptoms, making it less favorable. Alpha IEN has no established benefit for MS and is not recommended. Therefore, Beta IFN remains the first-line treatment based on consensus guidelines.",
+  "analysis": "The core medical principle for treating relapsing-remitting multiple sclerosis (RRMS) is to utilize disease-modifying therapies that effectively reduce relapse rates and slow disease progression. Beta Interferon (Beta IFN) is widely recognized as a first-line treatment for RRMS due to its established efficacy in modulating the immune response and reducing inflammation. While Natalizumab is also effective, it is generally reserved for patients who do not respond adequately to first-line therapies like Beta IFN. Gamma IFN is not recommended due to potential adverse effects, and Alpha IEN lacks established benefits for MS. Therefore, based on the consensus in the medical community, Beta IFN is the drug of choice for RRMS.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      3,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      40.0,
+      60.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

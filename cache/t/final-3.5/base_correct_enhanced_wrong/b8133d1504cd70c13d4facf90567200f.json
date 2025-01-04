@@ -1,0 +1,67 @@
+{
+  "question": "All the following are features of Cardiac muscle Except",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Striated",
+    "opb": "Large T tubules",
+    "opc": "Troponin system present",
+    "opd": "Caldesmon is impoant regulatory protein"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Regulatory Protein",
+        "Fatigue",
+        "Energy Metabolism",
+        "Myocardium"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Regulatory Protein)-CAUSES->(Fatigue)-MANIFESTATION_OF->(Energy Metabolism)-PROCESS_OF->(Myocardium)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Regulatory Protein)-CAUSES->(Fatigue)-MANIFESTATION_OF->(Energy Metabolism)-PROCESS_OF->(Myocardium)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Striated\" -> \"Characteristic feature of cardiac muscle\" -> 95% CHAIN: \"Large T tubules\" -> \"Characteristic feature of skeletal muscle, not cardiac muscle\" -> 90% CHAIN: \"Troponin system present\" -> \"Characteristic feature of cardiac muscle\" -> 95% CHAIN: \"Caldesmon is important regulatory protein\" -> \"Unclear if this is a feature of cardiac muscle\" -> 95%"
+  ],
+  "enhanced_information": "Caldesmon is not an important regulatory protein in cardiac muscle. The presence of the troponin system is a characteristic feature of cardiac muscle. Large T tubules are a characteristic feature of skeletal muscle, not cardiac muscle. Cardiac muscle is striated.",
+  "analysis": "Cardiac muscle is a specialized type of muscle tissue found in the heart. It shares some similarities with skeletal muscle but also has distinct features. While cardiac muscle is striated like skeletal muscle, it differs in the organization of T tubules and the regulatory proteins involved. Caldesmon is not considered an important regulatory protein in cardiac muscle. The troponin system is indeed present in cardiac muscle. Large T tubules are a characteristic feature of skeletal muscle, not cardiac muscle.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1
+    ],
+    "coverage_rates": [
+      100.0
+    ],
+    "total_successes": 1
+  },
+  "normal_results": []
+}

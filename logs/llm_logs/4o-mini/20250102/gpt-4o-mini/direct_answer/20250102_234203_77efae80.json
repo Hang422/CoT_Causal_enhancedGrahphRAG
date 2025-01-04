@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250102_234203",
+  "model": "gpt-4o-mini",
+  "interaction_type": "direct_answer",
+  "question_id": "77efae80",
+  "question_text": "A 10 year old child with aggressive, self mutilating behavior and poor concentration is brought with presenting complaints of joint pain and reduced urinary output. Child's presentation is most likely due to the deficiency of which enzyme?",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on medical knowledge."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Biochemistry.Please help answer this multiple choice question:\n\nQuestion: A 10 year old child with aggressive, self mutilating behavior and poor concentration is brought with presenting complaints of joint pain and reduced urinary output. Child's presentation is most likely due to the deficiency of which enzyme?\n\nOptions:\nopa. HGPase\nopb. Adenosine Deaminase\nopc. APase\nopd. Acid Maltase\n\n        ### Output Format\n        Provide your response in valid JSON format:\n        {   \n            \"final_analysis\": \"Your concise analysis following the above structure\",\n            \"answer\": \"Option key from the available options (only key,like opa)\",\n            \"confidence\": Score between 0-100 based on alignment with established medical facts\n        }\n        "
+    }
+  ],
+  "response": "{\n    \"final_analysis\": \"The child's symptoms of aggressive behavior, self-mutilation, joint pain, and reduced urinary output suggest a metabolic disorder. The combination of neurological symptoms and joint pain is indicative of a purine metabolism disorder. Adenosine Deaminase deficiency leads to the accumulation of toxic metabolites, which can cause neurological symptoms and immune dysfunction. Therefore, the most likely enzyme deficiency in this case is Adenosine Deaminase.\",\n    \"answer\": \"opb\",\n    \"confidence\": 85\n}",
+  "metadata": {
+    "topic": "Biochemistry",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

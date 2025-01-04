@@ -1,0 +1,242 @@
+{
+  "question": "Which of the following drug is used in this test?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Tolazoline",
+    "opb": "Clonidine",
+    "opc": "Bismuth",
+    "opd": "Oxymetazoline"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Central alpha-2 Adrenergic Agonist [EPC]",
+        "Sleep disturbances",
+        "Hypertensive disease"
+      ],
+      [
+        "Central alpha-2 Adrenergic Agonist [EPC]",
+        "Inflammation",
+        "Hypertensive disease"
+      ],
+      [
+        "Hypertensive disease",
+        "Symptoms",
+        "Diagnostic tests"
+      ],
+      [
+        "Infection, H Pylori",
+        "Disease",
+        "arterial stiffness",
+        "Blood Vessels"
+      ],
+      [
+        "Infection, H Pylori",
+        "Disease",
+        "paracrine",
+        "Blood Vessels"
+      ],
+      [
+        "Infection, H Pylori",
+        "Disease",
+        "Neutrophil Infiltration",
+        "Blood Vessels"
+      ],
+      [
+        "Diagnosis",
+        "Disease",
+        "arterial stiffness",
+        "Blood Vessels"
+      ],
+      [
+        "Diagnosis",
+        "Disease",
+        "Neutrophil Infiltration",
+        "Blood Vessels"
+      ],
+      [
+        "Diagnosis",
+        "Disease",
+        "uptake",
+        "Blood Vessels"
+      ],
+      [
+        "Nasal Decongestants",
+        "Symptoms",
+        "Diagnostic tests"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Central alpha-2 Adrenergic Agonist [EPC])-TREATS->(Sleep disturbances)-CAUSES->(Hypertensive disease)",
+      "(Central alpha-2 Adrenergic Agonist [EPC])-PREVENTS->(Inflammation)-CAUSES->(Hypertensive disease)",
+      "(Hypertensive disease)-CAUSES->(Symptoms)-CAUSES->(Diagnostic tests)",
+      "(Infection, H Pylori)-CAUSES->(Disease)-CAUSES->(arterial stiffness)-PROCESS_OF->(Blood Vessels)",
+      "(Infection, H Pylori)-CAUSES->(Disease)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Blood Vessels)",
+      "(Infection, H Pylori)-CAUSES->(Disease)-MANIFESTATION_OF->(Neutrophil Infiltration)-PROCESS_OF->(Blood Vessels)",
+      "(Diagnosis)-CAUSES->(Disease)-CAUSES->(arterial stiffness)-PROCESS_OF->(Blood Vessels)",
+      "(Diagnosis)-CAUSES->(Disease)-MANIFESTATION_OF->(Neutrophil Infiltration)-PROCESS_OF->(Blood Vessels)",
+      "(Diagnosis)-CAUSES->(Disease)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Blood Vessels)",
+      "(Nasal Decongestants)-CAUSES->(Symptoms)-CAUSES->(Diagnostic tests)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Tolazoline",
+        "Hypoxia",
+        "KLK3 gene|KLK3",
+        "Adrenergic alpha-Antagonists"
+      ],
+      [
+        "Tolazoline",
+        "Pressors",
+        "Pharmaceutical Preparations",
+        "Adrenergic alpha-Antagonists"
+      ],
+      [
+        "Oxymetazoline",
+        "Hypertrophy",
+        "CA2",
+        "Adrenergic alpha-Agonists"
+      ],
+      [
+        "Adrenergic alpha-Agonists",
+        "Pharmaceutical Preparations",
+        "Nasal Decongestants"
+      ],
+      [
+        "Adrenergic alpha-Agonists",
+        "Pharmaceutical Preparations",
+        "Nasal Decongestants"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Tolazoline)-TREATS->(Hypoxia)-ASSOCIATED_WITH->(KLK3 gene|KLK3)-INTERACTS_WITH->(Adrenergic alpha-Antagonists)",
+      "(Tolazoline)-INTERACTS_WITH->(Pressors)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic alpha-Antagonists)",
+      "(Oxymetazoline)-TREATS->(Hypertrophy)-ASSOCIATED_WITH->(CA2)-INTERACTS_WITH->(Adrenergic alpha-Agonists)",
+      "(Adrenergic alpha-Agonists)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Nasal Decongestants)",
+      "(Adrenergic alpha-Agonists)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Nasal Decongestants)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Tolazoline)-INTERACTS_WITH->(Pressors)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic alpha-Antagonists)",
+      "(Tolazoline)-TREATS->(Hypoxia)-ASSOCIATED_WITH->(KLK3 gene|KLK3)-INTERACTS_WITH->(Adrenergic alpha-Antagonists)",
+      "(Oxymetazoline)-TREATS->(Hypertrophy)-ASSOCIATED_WITH->(CA2)-INTERACTS_WITH->(Adrenergic alpha-Agonists)",
+      "(Central alpha-2 Adrenergic Agonist [EPC])-TREATS->(Sleep disturbances)-CAUSES->(Hypertensive disease)",
+      "(Central alpha-2 Adrenergic Agonist [EPC])-PREVENTS->(Inflammation)-CAUSES->(Hypertensive disease)",
+      "(Adrenergic alpha-Agonists)-Agonists)->(Pharmaceutical Preparations)-INTERACTS_WITH->(Nasal Decongestants)",
+      "(Nasal Decongestants)-CAUSES->(Symptoms)-CAUSES->(Diagnostic tests)",
+      "(Hypertensive disease)-CAUSES->(Symptoms)-CAUSES->(Diagnostic tests)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Tolazoline\" -> \"alpha-adrenergic antagonist\" -> \"used in vasodilatory therapies\" -> \"possible use in diagnostic tests involving vascular responses\" -> 60%",
+    "CHAIN: \"Clonidine\" -> \"alpha-2 adrenergic agonist\" -> \"used primarily for hypertension\" -> \"unlikely used in diagnostic tests directly\" -> 20%",
+    "CHAIN: \"Bismuth\" -> \"used in gastrointestinal treatments\" -> \"commonly used for diagnosing H. pylori infections\" -> \"not typically used in vascular or hormonal diagnostic tests\" -> 10%",
+    "CHAIN: \"Oxymetazoline\" -> \"alpha-adrenergic agonist\" -> \"used as a nasal decongestant\" -> \"unlikely used in diagnostic tests unrelated to nasal congestion\" -> 15%"
+  ],
+  "enhanced_information": "Tolazoline, an alpha-adrenergic antagonist used in vasodilatory therapies, is the most plausible drug used in the test, supported by evidence paths linking it with vascular response mechanisms. Other drugs like Clonidine, Bismuth, and Oxymetazoline are less likely as their primary uses and evidence paths do not align with the requirements of the diagnostic test in question.",
+  "analysis": "Tolazoline is identified as the most suitable drug for a test involving vascular responses due to its alpha-adrenergic antagonistic properties, which are essential for inducing vasodilation. This choice is supported by both standard medical knowledge and the enhanced information provided.",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      2,
+      2,
+      3
+    ],
+    "coverage_rates": [
+      12.5,
+      25.0,
+      25.0,
+      37.5
+    ],
+    "total_successes": 8
+  },
+  "normal_results": []
+}

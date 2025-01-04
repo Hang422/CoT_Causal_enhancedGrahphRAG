@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_234237",
+  "model": "gpt-4o",
+  "interaction_type": "answer_with_enhancement_complete_with_chain",
+  "question_id": "721be412",
+  "question_text": "Which of the following drug causes Pseudotumour cerebri -",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on enhanced information."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.\n                    You are a medical expert determining the final answer.\n\n            ### Instructions:\n            - Use standard medical knowledge as the primary guide.\n            - Consider enhanced information only if it aligns with consensus.\n            - If conflicting or unclear, present the most likely correct answer based on known facts.\n            - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.\n\n\n                    ### Question\n                    Which of the following drug causes Pseudotumour cerebri -\n\n                    ### Options\n                    opa. Sparfloxacin\nopb. Tetracycline\nopc. Gentamicin\nopd. Clofazimine\n\n### Enhanced Information (For Contextual Support):\nAmong the options, Tetracycline is the only drug with a known association with increased intracranial pressure, which can lead to Pseudotumour cerebri. The reasoning chain for Tetracycline is thus supported by consensus, indicating a risk of this condition. The other options (Sparfloxacin, Gentamicin, and Clofazimine) have no established links to Pseudotumour cerebri, and their reasoning chains correctly reflect this lack of association. Therefore, Tetracycline is the drug that causes Pseudotumour cerebri.\n\n                    ### Task:\n                1. Identify the core medical principle and the most likely correct option based on consensus.\n                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.\n                3. Provide a final analysis and a confidence score (0-100%).\n\n                ### Output Format:\n                {\n                  \"final_analysis\": \"Step-by-step reasoning, prioritizing medical consensus and acknowledging complexity if present.\",\n                  \"answer\": \"Option key (e.g. opa, opb, ...)\",\n                  \"confidence\": A number between 0-100\n                }\n                    "
+    }
+  ],
+  "response": "{\n  \"final_analysis\": \"Pseudotumour cerebri, also known as idiopathic intracranial hypertension, is a condition characterized by increased intracranial pressure without an obvious cause. Certain medications are known to be associated with this condition, and Tetracycline is one of them. Tetracycline and its derivatives have been documented to cause increased intracranial pressure, leading to symptoms similar to those of a brain tumor, hence the term 'pseudotumor.' The other drugs listed—Sparfloxacin, Gentamicin, and Clofazimine—do not have a known association with Pseudotumour cerebri. Therefore, based on standard medical knowledge and consensus, Tetracycline is the most likely drug to cause Pseudotumour cerebri.\",\n  \"answer\": \"opb\",\n  \"confidence\": 95\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": true,
+    "has_enhanced_info": true,
+    "model_config": "gpt-4o",
+    "temperature": 0.0
+  }
+}

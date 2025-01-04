@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_001234",
+  "model": "gpt-4o-mini",
+  "interaction_type": "direct_answer",
+  "question_id": "fb1fc22e",
+  "question_text": "Drug of choice for peptic ulcer disease caused by chronic use of NSAIDS:",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on medical knowledge."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.Please help answer this multiple choice question:\n\nQuestion: Drug of choice for peptic ulcer disease caused by chronic use of NSAIDS:\n\nOptions:\nopa. Pirenzepine\nopb. Loratadine\nopc. Misoprostol\nopd. Esomeprazole\n\n        ### Output Format\n        Provide your response in valid JSON format:\n        {   \n            \"final_analysis\": \"Your concise analysis following the above structure\",\n            \"answer\": \"Option key from the available options (only key,like opa)\",\n            \"confidence\": Score between 0-100 based on alignment with established medical facts\n        }\n        "
+    }
+  ],
+  "response": "{\n    \"final_analysis\": \"Peptic ulcer disease caused by chronic use of NSAIDs is often treated with medications that protect the gastric mucosa and reduce acid secretion. Misoprostol is a prostaglandin analog that helps protect the stomach lining and is specifically indicated for preventing NSAID-induced ulcers. Esomeprazole, a proton pump inhibitor, is also effective in reducing gastric acid secretion but is not specifically indicated for NSAID-induced ulcers. Therefore, Misoprostol is the drug of choice in this scenario.\",\n    \"answer\": \"opc\",\n    \"confidence\": 90\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

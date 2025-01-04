@@ -1,0 +1,94 @@
+{
+  "question": "Which organs do not utilise ketone bodies?",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Skeletal muscles",
+    "opb": "Cardiac muscles",
+    "opc": "Liver",
+    "opd": "RBC"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Erythrocytes",
+        "ATP8A2 gene|ATP8A2",
+        "Mitochondria"
+      ],
+      [
+        "Erythrocytes",
+        "ATP8A2 gene|ATP8A2",
+        "Mitochondria"
+      ],
+      [
+        "Erythrocytes",
+        "Genes",
+        "Mitochondria"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "PART_OF"
+      ]
+    ],
+    "paths": [
+      "(Erythrocytes)-INTERACTS_WITH->(ATP8A2 gene|ATP8A2)-PART_OF->(Mitochondria)",
+      "(Erythrocytes)-LOCATION_OF->(ATP8A2 gene|ATP8A2)-PART_OF->(Mitochondria)",
+      "(Erythrocytes)-INTERACTS_WITH->(Genes)-PART_OF->(Mitochondria)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Erythrocytes)-INTERACTS_WITH/LOCATION_OF->(ATP8A2 gene|ATP8A2)-PART_OF->(Mitochondria)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Liver\" -> \"lacks enzyme thiolase\" -> \"cannot metabolize ketone bodies\" -> 95%",
+    "CHAIN: \"RBC\" -> \"lack mitochondria\" -> \"cannot utilize ketone bodies\" -> 95%",
+    "CHAIN: \"Skeletal muscles\" -> \"utilize ketone bodies\" -> \"energy production\" -> 90%",
+    "CHAIN: \"Cardiac muscles\" -> \"utilize ketone bodies\" -> \"energy production\" -> 90%"
+  ],
+  "enhanced_information": "The liver does not utilize ketone bodies because it lacks the enzyme thiolase necessary for their metabolism. Red blood cells (RBCs) cannot utilize ketone bodies as they lack mitochondria, which are essential for ketone body metabolism. Skeletal muscles and cardiac muscles can utilize ketone bodies for energy production. The retrieved evidence path mentioning erythrocytes and mitochondria is relevant as it supports the consensus that RBCs lack mitochondria, confirming their inability to utilize ketone bodies.",
+  "analysis": "The utilization of ketone bodies by different organs is determined by their metabolic capabilities. The liver produces ketone bodies but does not utilize them because it lacks the enzyme thiolase necessary for their metabolism. Red blood cells (RBCs) cannot utilize ketone bodies because they lack mitochondria, which are essential for the metabolism of ketone bodies. In contrast, both skeletal muscles and cardiac muscles have the necessary cellular machinery, including mitochondria, to utilize ketone bodies for energy production. Therefore, based on standard medical knowledge and the enhanced information provided, the liver and RBCs do not utilize ketone bodies.",
+  "answer": "opc, opd",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      0.0,
+      100.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 1
+  },
+  "normal_results": []
+}

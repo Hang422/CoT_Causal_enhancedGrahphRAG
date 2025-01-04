@@ -1,270 +1,360 @@
-from typing import List, Tuple, Dict
-from collections import defaultdict
-from neo4j import GraphDatabase
-from typing import List, Dict, Optional
+from typing import List, Dict, Set, Tuple
 import logging
 from dataclasses import dataclass
-from config import config
+import math
+
 from src.modules.MedicalQuestion import MedicalQuestion
 from src.graphrag.entity_processor import EntityProcessor
 
 
-class PathMerger:
-    def __init__(self):
-        self.debug = False
+@dataclass
+class PathScore:
+    """Path scoring information"""
+    path: str
+    cui_match_score: float
+    semantic_match_score: float
+    length_score: float  # Normalized path length score (shorter is better)
+    total_score: float
+    path_length: int  # Original path length for reference
+
+
+class EnhancedGraphEnhancer:
+    def __init__(self, keep_ratio: float = 0.6):
+        self.logger = logging.getLogger(__name__)
+        self.entity_processor = EntityProcessor()
+        self.keep_ratio = keep_ratio
+
+    def enhance_graphs(self, question: MedicalQuestion) -> None:
+        try:
+            # Merge paths from both graphs
+            all_paths = []
+            all_paths.extend(question.causal_graph.paths)
+            all_paths.extend(question.knowledge_graph.paths)
+
+            # Group similar paths
+            path_groups = {}
+            for path in all_paths:
+                entities, relations, intermediates = self._extract_path_elements(path)
+
+                # Create key based on structure
+                key = (
+                    entities[0],  # start entity
+                    entities[-1],  # end entity
+                    tuple(sorted(set(intermediates)))  # unique sorted intermediate nodes
+                )
+
+                if key not in path_groups:
+                    path_groups[key] = {
+                        'paths': [],
+                        'relations': [set() for _ in range(len(relations))]
+                    }
+
+                # Add path to group
+                path_groups[key]['paths'].append(path)
+
+                # Add relations at each position
+                for i, rel in enumerate(relations):
+                    path_groups[key]['relations'][i].add(rel)
+
+            # Merge paths in each group
+            merged_paths = []
+            for key, group_info in path_groups.items():
+
+                if len(group_info['paths']) > 1:
+                    # Process group with multiple paths
+                    merged = self._merge_path_group(group_info['paths'], group_info['relations'])
+                    merged_paths.append(merged)
+                else:
+                    # Keep single path as is
+                    merged_paths.append(group_info['paths'][0])
+
+
+            # Score and select paths
+            selected_paths = self._score_and_select_paths(merged_paths, question)
+            question.enhanced_graph.paths = selected_paths
+
+
+        except Exception as e:
+            self.logger.error(f"Error in graph enhancement: {str(e)}", exc_info=True)
+            question.enhanced_graph.paths = []
+
+    def _extract_path_elements(self, path: str) -> Tuple[List[str], List[str], List[str]]:
+        """Extract entities, relations, and intermediates from a path"""
+        parts = path.split('->')
+        entities = []
+        relations = []
+        intermediates = []
+
+        for i, part in enumerate(parts):
+            # Extract entity
+            if '(' in part and ')' in part:
+                entity_part = part[part.find('(') + 1:part.find(')')]
+                # Handle multiple entities
+                curr_entities = [e.strip() for e in entity_part.split(' and ')]
+                entities.extend(curr_entities)
+
+                # Add to intermediates if not start/end
+                if 0 < i < len(parts) - 1:
+                    intermediates.extend(curr_entities)
+
+            # Extract relation
+            if '-' in part:
+                relation = part.split('-')[1]
+                relations.append(relation)
+
+        return entities, relations, intermediates
+
+    def _merge_path_group(self, paths: List[str], relations_by_pos: List[Set[str]]) -> str:
+        """Merge a group of paths with similar structure"""
+        parts_by_position = []
+        example_path = paths[0]
+        path_parts = example_path.split('->')
+
+        # Initialize collection for each position
+        for _ in range(len(path_parts)):
+            parts_by_position.append({
+                'entities': set(),
+                'relations': set()
+            })
+
+        # Collect all entities and relations
+        for path in paths:
+            parts = path.split('->')
+            for i, part in enumerate(parts):
+                # Extract entities
+                if '(' in part and ')' in part:
+                    entity_part = part[part.find('(') + 1:part.find(')')]
+                    for entity in entity_part.split(' and '):
+                        parts_by_position[i]['entities'].add(entity.strip())
+
+                # Extract relations
+                if '-' in part:
+                    relation = part.split('-')[1]
+                    parts_by_position[i]['relations'].add(relation)
+
+        # Build merged path
+        merged_parts = []
+        for i, part_info in enumerate(parts_by_position):
+            if part_info['entities']:
+                entities_str = ' and '.join(sorted(part_info['entities']))
+                if part_info['relations']:
+                    relations_str = '/'.join(sorted(part_info['relations']))
+                    merged_parts.append(f"({entities_str})-{relations_str}")
+                else:
+                    merged_parts.append(f"({entities_str})")
+
+        return '->'.join(merged_parts)
+
+    def _score_and_select_paths(self, paths: List[str], question: MedicalQuestion) -> List[str]:
+        """Score paths and select top ones based on relevance"""
+        # Extract question entities
+        question_cuis = self.entity_processor.extract_cuis_from_text(question.question)
+        for option_text in question.options.values():
+            question_cuis.update(self.entity_processor.extract_cuis_from_text(option_text))
+
+        question_semantic_types = set()
+        for cui in question_cuis:
+            question_semantic_types.update(
+                self.entity_processor.get_semantic_types_for_cui(cui))
+
+        # Score paths
+        path_scores = []
+        for path in paths:
+            path_cuis, path_stypes = self._extract_path_entities(path)
+            path_length = len(path.split('->'))
+
+            # Calculate scores
+            cui_score = self._calculate_overlap_score(path_cuis, question_cuis)
+            semantic_score = self._calculate_overlap_score(path_stypes, question_semantic_types)
+            length_score = 1.0 / path_length  # Shorter paths get higher scores
+
+            total_score = (cui_score * 0.4 + semantic_score * 0.4 + length_score * 0.2)
+            path_scores.append((path, total_score))
+
+        # Sort and select top paths
+        path_scores.sort(key=lambda x: x[1], reverse=True)
+        keep_count = max(1, int(len(paths) * self.keep_ratio))
+        return [score[0] for score in path_scores[:keep_count]]
+
+    def _extract_path_entities(self, path: str) -> Tuple[Set[str], Set[str]]:
+        """Extract CUIs and semantic types from path"""
+        entities = []
+        parts = path.split('->')
+        for part in parts:
+            if '(' in part and ')' in part:
+                entity = part[part.find('(') + 1:part.find(')')].strip()
+                for sub_entity in entity.split(' and '):
+                    entities.append(sub_entity.strip())
+
+        path_cuis = set()
+        for entity in entities:
+            path_cuis.update(self.entity_processor.extract_cuis_from_text(entity))
+
+        path_stypes = set()
+        for cui in path_cuis:
+            path_stypes.update(self.entity_processor.get_semantic_types_for_cui(cui))
+
+        return path_cuis, path_stypes
+
+    def _calculate_overlap_score(self, set1: Set[str], set2: Set[str]) -> float:
+        """Calculate overlap score between two sets"""
+        if not set1 or not set2:
+            return 0.0
+        return len(set1.intersection(set2)) / len(set2)
+
+
+def extract_path_elements(path: str) -> Tuple[List[str], List[str], List[str]]:
+    """
+    Extract entities, relations, and intermediate entities from a path
+    Returns:
+        Tuple of (entities, relations, intermediate_nodes)
+    """
+    parts = path.split('->')
+    entities = []
+    relations = []
+    intermediate_nodes = []
+
+    for i, part in enumerate(parts):
+        # Extract main entity for this part
+        if '(' in part and ')' in part:
+            # Handle potential "and" separated entities
+            entity_part = part[part.find('(') + 1:part.find(')')]
+            main_entities = [e.strip() for e in entity_part.split(' and ')]
+
+            # Add all entities at this position
+            for entity in main_entities:
+                entities.append(entity)
+                if 0 < i < len(parts) - 1:  # If it's an intermediate node
+                    intermediate_nodes.append(entity)
+
+        # Extract relation if present
+        if '-' in part:
+            relation = part.split('-')[1]
+            relations.append(relation)
+
+    return entities, relations, intermediate_nodes
 
 
 def merge_group(paths: List[str]) -> str:
-    """合并一组路径"""
+    """
+    Merge a group of paths with the same structure
+    """
+    if len(paths) == 1:
+        return paths[0]
+
     parts_by_position = []
     example_path = paths[0]
     path_parts = example_path.split('->')
 
-    # 初始化每个位置的实体集合
+    # Initialize collection for each position
     for _ in range(len(path_parts)):
-        parts_by_position.append(set())
+        parts_by_position.append({
+            'entities': set(),
+            'relation': None
+        })
 
-    # 收集每个位置的所有实体
+    # Collect all entities and relations at each position
     for path in paths:
-        current_parts = path.split('->')
-        for i, part in enumerate(current_parts):
-            if i == 0:  # 起始实体
-                parts_by_position[i].add(part)
-            else:
-                # 处理中间实体
-                entity = part.split('-')[0] if '-' in part else part
-                parts_by_position[i].add(entity)
+        parts = path.split('->')
+        for i, part in enumerate(parts):
+            current = parts_by_position[i]
 
-    # 构建合并后的路径
+            # Extract entity
+            if '(' in part and ')' in part:
+                entity_part = part[part.find('(') + 1:part.find(')')]
+                # Handle multiple entities separated by 'and'
+                for entity in entity_part.split(' and '):
+                    current['entities'].add(entity.strip())
+
+            # Extract relation
+            if '-' in part:
+                relation = part.split('-')[1]
+                if current['relation'] is None:
+                    current['relation'] = relation
+                elif current['relation'] != relation:
+                    # If we find different relations, don't merge
+                    return paths[0]
+
+    # Build merged path
     merged_parts = []
-    for i, parts in enumerate(parts_by_position):
-        if i == 0:  # 起始实体
-            merged_parts.append(next(iter(parts)))
-        elif i == len(parts_by_position) - 1:  # 终止实体
-            merged_parts.append(next(iter(parts)))
-        else:
-            # 处理中间实体，合并括号内的内容
-            entities = set()
-            for part in parts:
-                entity = part.strip('()')
-                entities.add(entity)
-            relation = example_path.split('->')[i].split('-')[1]
-            merged_entity = f"({' and '.join(sorted(entities))})"
-            merged_parts.append(f"{merged_entity}-{relation}")
+    for i, part_info in enumerate(parts_by_position):
+        if part_info['entities']:
+            entities_str = ' and '.join(sorted(part_info['entities']))
+            if part_info['relation']:
+                merged_parts.append(f"({entities_str})-{part_info['relation']}")
+            else:
+                merged_parts.append(f"({entities_str})")
 
     return '->'.join(merged_parts)
 
 
-class GraphEnhancer:
-
-    def __init__(self):
-        """Initialize processor with database configuration"""
-        self.logger = logging.getLogger(__name__)
-        self.entity_processor = EntityProcessor()  # Still needed for name-to-CUI conversion
-
-    def extract_path_elements(self, path: str):
-        """提取路径的起点、终点和关系"""
-        parts = path.split('->')
-        start_entity = parts[0].strip('()')
-        end_entity = parts[-1].strip('()')
-        # 提取关系序列
-        relations = []
-        for i in range(1, len(parts)):
-            if '-' in parts[i]:
-                rel = parts[i].split('-')[1]
-                relations.append(rel)
-
-        return start_entity, end_entity, tuple(relations)
-
-    def group_mergeable_paths(self, paths: List[str]):
-        """将可合并的路径分组"""
-        groups = {}
-        for path in paths:
-            start, end, relations = self.extract_path_elements(path)
-            key = (start, end, relations)
-            if key not in groups:
-                groups[key] = []
-            groups[key].append(path)
-        return groups
-
-    def merge_paths(self, paths: List[str]) -> List[str]:
-        """合并路径"""
-        if not paths:
-            return []
-
-        # 分组可合并的路径
-        groups = self.group_mergeable_paths(paths)
-
-        # 处理每个组
-        merged_paths = []
-        for key, group_paths in groups.items():
-            if len(group_paths) > 1:
-                merged = merge_group(group_paths)
-                merged_paths.append(merged)
-            else:
-                merged_paths.extend(group_paths)
-
-        return merged_paths
-
-    def clear_paths(self, question: MedicalQuestion):
-        # 构建推理链的CUI序列
-        all_chains = []
-        for chain in question.reasoning_chain:
-            cuis_chain = []
-            steps = chain.split('->')
-            for step in steps:
-                cuis = self.entity_processor.process_text(step)
-                cuis_chain.append(cuis)
-            all_chains.append(cuis_chain)
-
-        # 收集所有路径的节点和关系
-        nodes_list = []
-        relationships_list = []
-        if len(question.initial_causal_graph.nodes) > 0:
-            nodes_list.append(question.initial_causal_graph.nodes)
-            relationships_list.append(question.initial_causal_graph.relationships)
-
-        valid_paths = []
-        valid_nodes = []
-        valid_relationships = []
-
-        # 遍历每条路径（由一组节点和关系组成）
-        for nodes_groups, relationships_groups in zip(nodes_list, relationships_list):
-
-            # 获取这条路径的起点和终点的CUI
-            for path_nodes, path_relationships in zip(nodes_groups, relationships_groups):
-
-                start_cui = self.entity_processor.get_name_cui(path_nodes[0])
-                end_cui = self.entity_processor.get_name_cui(path_nodes[-1])
-
-                # 检查每条推理链
-                for chain_idx, chain in enumerate(all_chains):
-                    start_found = False
-                    end_found = False
-                    start_pos = -1
-                    end_pos = -1
-
-                    # 在推理链中查找起点和终点
-                    flag = True
-                    for pos, step_cuis in enumerate(chain):
-                        if start_cui in step_cuis and flag:
-                            start_found = True
-                            start_pos = pos
-                            flag = False
-                        if end_cui in step_cuis:
-                            end_found = True
-                            end_pos = pos
-
-                    # 验证路径是否有效
-                    if start_found and end_found and start_pos < end_pos:
-                        # 构建路径字符串
-                        path = ""
-                        for i, node in enumerate(path_nodes):
-                            path += f"({node})"
-                            if i < len(path_relationships):
-                                path += f"-{path_relationships[i]}->"
-
-                        path_info = {
-                            'path': path,
-                            'chain_index': chain_idx,
-                            'start_position': start_pos,
-                            'end_position': end_pos,
-                            'start_cui': start_cui,
-                            'end_cui': end_cui
-                        }
-                        valid_paths.append(path_info)
-                        valid_nodes.append(path_nodes)
-                        valid_relationships.append(path_relationships)
-                        break
-
-        # 按链索引和位置排序
-        indices = list(range(len(valid_paths)))
-        indices.sort(key=lambda i: (valid_paths[i]['chain_index'],
-                                    valid_paths[i]['start_position'],
-                                    valid_paths[i]['end_position']))
-
-        # 重排所有列表
-        # 重排所有列表
-
-        valid_paths = [valid_paths[i] for i in indices]
-        valid_nodes = [valid_nodes[i] for i in indices]
-        valid_relationships = [valid_relationships[i] for i in indices]
-
-        # 更新enhanced_graph
-        question.enhanced_graph.nodes = valid_nodes
-        question.enhanced_graph.relationships = valid_relationships
-        question.enhanced_graph.generate_paths()  # 自动生成paths
-
-        question.enhanced_graph.paths.extend(question.causal_graph.paths)
-        question.enhanced_graph.paths.extend(question.knowledge_graph.paths)
-
-        question.enhanced_graph.paths = self.merge_paths(question.enhanced_graph.paths)
-
-        return valid_paths
 
 
-# 测试
+def main():
+    """测试增强器功能"""
+    # 创建测试用例
+    question = MedicalQuestion(
+        question= "All of the following are true about Sickle cell disease, Except:",
+    is_multi_choice= True,
+    correct_answer= "opc",
+    options= {
+        "opa": "Single nucleotide change results in change of Glutamine to Valine",
+        "opb": "RFLP results from a single base change",
+        "opc": "'Sticky patch' is generated as a result of replacement of a non polar residue with a polar residue",
+        "opd": "HbS confers resistance against malaria in heterozygotes"
+    }
+    )
+
+    # 添加测试路径
+    question.causal_graph.paths = [
+      "(Mandibular right second primary molar)-LOCATION_OF->(Infection)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Valine)",
+      "(Mandibular right second primary molar)-LOCATION_OF->(Infection)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Valine)",
+      "(Mandibular right second primary molar)-LOCATION_OF->(Infection)-CAUSES->(Pathogenesis)-ASSOCIATED_WITH->(Valine)",
+      "(Mandibular right second primary molar)-LOCATION_OF->(Infection)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Glutamic Acid)",
+      "(Mandibular right second primary molar)-LOCATION_OF->(Infection)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Glutamic Acid)",
+      "(Mandibular right second primary molar)-LOCATION_OF->(Infection)-CAUSES->(Pathogenesis)-ASSOCIATED_WITH->(Glutamic Acid)",
+      "(Valine)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Glutamine)",
+      "(Valine)-TREATS->(Functional disorder)-ASSOCIATED_WITH->(Glutamine)",
+      "(Valine)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Glutamine)",
+      "(Glutamic Acid)-INTERACTS_WITH->(Cells and Chinese Hamster Ovary Cell)-INTERACTS_WITH->(Valine)",
+      "(Glutamic Acid)-CAUSES->(Excretory function)-ASSOCIATED_WITH->(Valine)",
+      "(Glutamic Acid)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Glutamine)",
+      "(Glutamic Acid)-INTERACTS_WITH->(Cells and PC12 Cells)-INTERACTS_WITH->(Glutamine)",
+      "(Sickle Cell Anemia)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Valine)",
+      "(Sickle Cell Anemia)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Valine)",
+      "(Sickle Cell Anemia)-ISA->(Pathogenesis)-ASSOCIATED_WITH->(Valine)",
+      "(Sickle Cell Anemia)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Glutamic Acid)",
+      "(Sickle Cell Anemia)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Glutamic Acid)",
+      "(Sickle Cell Anemia)-ISA->(Pathogenesis)-ASSOCIATED_WITH->(Glutamic Acid)",
+      "(Sickle Hemoglobin)-INTERACTS_WITH->(Cells and Hematopoietic stem cells)-PART_OF->(Arterial Media and Fetal Tissue)-LOCATION_OF->(Surgical Replantation)",
+      "(Polymerization)-CAUSES->(Adhesions and Thrombus)-ASSOCIATED_WITH->(Genes)-PART_OF->(Cartilage and Ligaments)-LOCATION_OF->(Surgical Replantation)",
+      "(Sickle Hemoglobin)-CAUSES->(Sickle Cell Anemia)",
+      "(Sickle Cell Anemia)-CAUSES->(Hypoxia)-ASSOCIATED_WITH->(Sickle Hemoglobin)",
+      "(Sickle Cell Anemia)-ISA->(Complication)-ASSOCIATED_WITH->(Sickle Hemoglobin)",
+      "(Sickle Cell Anemia)-PREDISPOSES->(Hypoxia)-ASSOCIATED_WITH->(Sickle Hemoglobin)",
+      "(Sickle Cell Anemia)-CAUSES->(Sickle Cell Trait)",
+      "(Abnormal Hemoglobins)-INTERACTS_WITH->(Erythrocytes)-INTERACTS_WITH->(Sickle Hemoglobin)",
+      "(Abnormal Hemoglobins)-CAUSES->(Symptoms)-CAUSES->(Malaria)-CAUSES->(Sickle Cell Trait)",
+      "(Sickle Hemoglobin)-CAUSES->(Symptoms)-CAUSES->(Malaria)",
+      "(Sickle Cell Trait)-PREDISPOSES->(Malaria)",
+      "(Malaria)-CAUSES->(Complication and Hypoxia)-ASSOCIATED_WITH->(Sickle Hemoglobin)",
+      "(Malaria)-PREDISPOSES->(Complication)-ASSOCIATED_WITH->(Sickle Hemoglobin)"
+    ]
+
+    # 创建并运行增强器
+    enhancer = EnhancedGraphEnhancer(keep_ratio=0.6)
+    print("\nBefore enhancement:")
+    print(f"Number of causal graph paths: {len(question.causal_graph.paths)}")
+    print(f"Number of knowledge graph paths: {len(question.knowledge_graph.paths)}")
+
+    enhancer.enhance_graphs(question)
+
+    print("\nAfter enhancement:")
+    print(f"Number of enhanced paths: {len(question.enhanced_graph.paths)}")
+    print("\nEnhanced paths:")
+    for path in question.enhanced_graph.paths:
+        print(path)
+
+
 if __name__ == "__main__":
-    test_paths = [
-        "(Phosphorus)-TREATS->(Bacteria)-CAUSES->(Dental Plaque)",
-        "(Phosphorus)-TREATS->(Inflammation)-CAUSES->(Dental Plaque)",
-        "(Phosphorus)-TREATS->(Microbial Biofilms)-CAUSES->(Dental Plaque)",
-        "(potassium)-TREATS->(Microbial Biofilms)-CAUSES->(Dental Plaque)",
-        "(potassium)-TREATS->(Bacteria)-CAUSES->(Dental Plaque)",
-        "(potassium)-TREATS->(Inflammation)-CAUSES->(Dental Plaque)",
-        "(calcium)-CAUSES->(Inflammation)-CAUSES->(Dental Plaque)",
-        "(calcium)-TREATS->(Periodontitis)-CAUSES->(Dental Plaque)",
-        "(calcium)-TREATS->(Microbial Biofilms)-CAUSES->(Dental Plaque)"
-    ]
-
-    enhancer = GraphEnhancer()
-
-    # 检查每个实体的CUI转换
-    print("\n=== 测试CUI转换 ===")
-    test_entities = [
-        "Phosphorus", "Bacteria", "Dental Plaque",
-        "Metronidazole", "Infection", "Painful micturition",
-        "Condition"
-    ]
-
-    """print("实体到CUI的映射:")
-    for entity in test_entities:
-        cui = enhancer.entity_processor.get_name_cui(entity)
-        print(f"{entity}: {cui}")"""
-
-    # 创建测试用的MedicalQuestion对象
-    path = config.paths["cache"] / 'test1' / 'enhanced'
-    test_question = MedicalQuestion.from_cache(path,
-                                               "In heavy calculus formers, early plaque consists of Ca, PO4 and k in what proportions:")
-    test_question.reasoning_chain = ["Calcium + Inflammation -> Dental Plaque -> Calcium > phosphorous > potassium",
-    "Phosphorous + Bacteria -> Dental Plaque -> Phosphorous > calcium > potassium",
-    "Potassium + Microbial Biofilms -> Dental Plaque -> Potassium > phosphorous > calcium"]
-
-    print("\n初始路径:")
-    print("Initial Causal Graph paths:", test_question.initial_causal_graph.paths)
-    print("Causal Graph paths:", test_question.causal_graph.paths)
-
-    print("\n推理链和对应的CUIs:")
-    for i, chain in enumerate(test_question.reasoning_chain):
-        print(f"\nChain {i}: {chain}")
-        steps = chain.split(" -> ")
-        print("步骤的CUIs:")
-        for step in steps:
-            cuis = enhancer.entity_processor.process_text(step)
-            print(f"  {step}: {cuis}")
-
-    # 执行路径验证
-    valid_paths = enhancer.clear_paths(test_question)
-
-    print("\n验证后的路径:")
-    if valid_paths:
-        for path_info in valid_paths:
-            print(f"\n路径: {path_info['path']}")
-            print(f"匹配的推理链索引: {path_info['chain_index']}")
-            print(f"起始位置: {path_info['start_position']} -> {path_info['end_position']}")
-            print(f"CUIs: {path_info['start_cui']} -> {path_info['end_cui']}")
-    else:
-        print("没有找到有效的路径")
-
-    print("\n更新后的问题对象中的路径:")
-    print("Causal Graph paths:", test_question.enhanced_graph.paths)
+    main()

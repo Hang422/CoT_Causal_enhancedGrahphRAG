@@ -1,0 +1,87 @@
+{
+  "question": "Enzymatic markers of plasma membrane include all except",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "5'-nucleotidase",
+    "opb": "Adenylyl cyclase",
+    "opc": "Na+-K+-ATPase",
+    "opd": "Galactosyl transferase"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Adenylate Cyclase",
+        "CAMP",
+        "Cell membrane"
+      ],
+      [
+        "Adenylate Cyclase",
+        "Phosphatidic Acid",
+        "Cell membrane"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "PART_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "PART_OF"
+      ]
+    ],
+    "paths": [
+      "(Adenylate Cyclase)-INTERACTS_WITH->(CAMP)-PART_OF->(Cell membrane)",
+      "(Adenylate Cyclase)-INTERACTS_WITH->(Phosphatidic Acid)-PART_OF->(Cell membrane)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Adenylate Cyclase)-INTERACTS_WITH->(CAMP)-PART_OF->(Cell membrane)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"5'-nucleotidase\" -> \"known as a plasma membrane enzyme\" -> \"not an exception\" -> 90%",
+    "CHAIN: \"Adenylyl cyclase\" -> \"associated with plasma membrane\" -> \"not an exception\" -> 90%",
+    "CHAIN: \"Na+-K+-ATPase\" -> \"integral to plasma membrane function\" -> \"not an exception\" -> 90%",
+    "CHAIN: \"Galactosyl transferase\" -> \"primarily located in the Golgi apparatus\" -> \"is an exception\" -> 85%",
+    "CHAIN: \"5'-nucleotidase\" -> \"is a plasma membrane enzyme\" -> \"not an exception\" -> 90% CHAIN: \"Adenylyl cyclase\" -> \"is a membrane-bound enzyme\" -> \"not an exception\" -> 90% CHAIN: \"Na+-K+-ATPase\" -> \"is a key plasma membrane enzyme\" -> \"not an exception\" -> 90% CHAIN: \"Galactosyl transferase\" -> \"not primarily associated with plasma membrane\" -> \"is an exception\" -> 90%"
+  ],
+  "enhanced_information": "5'-nucleotidase, adenylyl cyclase, and Na+-K+-ATPase are all recognized as enzymatic markers associated with the plasma membrane, confirming they are not exceptions. 5'-nucleotidase is known to be a plasma membrane enzyme, adenylyl cyclase is a membrane-bound enzyme that interacts with cyclic AMP as part of cell signaling, and Na+-K+-ATPase is crucial for maintaining membrane potential and ion gradients. In contrast, galactosyl transferase is primarily located in the Golgi apparatus and is not associated with the plasma membrane, making it the exception. Therefore, the correct answer is galactosyl transferase.",
+  "analysis": "The question asks for enzymatic markers of the plasma membrane, and we need to identify which option does not belong to this category. 5'-nucleotidase, adenylyl cyclase, and Na+-K+-ATPase are all well-established as enzymes associated with the plasma membrane. 5'-nucleotidase is involved in nucleotide metabolism at the membrane, adenylyl cyclase is a membrane-bound enzyme that plays a role in signal transduction, and Na+-K+-ATPase is essential for maintaining the electrochemical gradient across the plasma membrane. In contrast, galactosyl transferase is primarily found in the Golgi apparatus and is involved in glycosylation processes, not directly associated with the plasma membrane. Therefore, galactosyl transferase is the exception among the options provided. This reasoning aligns with the enhanced information provided, confirming that galactosyl transferase is not an enzymatic marker of the plasma membrane.",
+  "answer": "opd",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      0.0,
+      100.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 1
+  },
+  "normal_results": []
+}

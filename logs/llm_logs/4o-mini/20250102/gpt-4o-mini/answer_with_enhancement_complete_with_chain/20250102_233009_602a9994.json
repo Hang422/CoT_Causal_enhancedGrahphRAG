@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250102_233009",
+  "model": "gpt-4o-mini",
+  "interaction_type": "answer_with_enhancement_complete_with_chain",
+  "question_id": "602a9994",
+  "question_text": "Propronolol is useful in all except -",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on enhanced information."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.\n                    You are a medical expert determining the final answer.\n\n            ### Instructions:\n            - Use standard medical knowledge as the primary guide.\n            - Consider enhanced information only if it aligns with consensus.\n            - If conflicting or unclear, present the most likely correct answer based on known facts.\n            - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.\n\n\n                    ### Question\n                    Propronolol is useful in all except -\n\n                    ### Options\n                    opa. Atrial flutter\nopb. Parkinsonian tremor\nopc. Thyrotoxicosis\nopd. HOCM\n\n### Enhanced Information (For Contextual Support):\nPropranolol is a non-selective beta-blocker commonly used for various conditions. It is effective in managing atrial flutter by controlling heart rate and rhythm. In the case of thyrotoxicosis, propranolol helps alleviate symptoms such as tachycardia and tremors, making it beneficial in this context. However, it is not primarily indicated for Parkinsonian tremor, as other treatments are preferred for this condition. Regarding hypertrophic obstructive cardiomyopathy (HOCM), propranolol is indeed indicated as it helps reduce left ventricular outflow obstruction. Therefore, the correct answer is that propranolol is not useful for Parkinsonian tremor.\n\n                    ### Task:\n                1. Identify the core medical principle and the most likely correct option based on consensus.\n                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.\n                3. Provide a final analysis and a confidence score (0-100%).\n\n                ### Output Format:\n                {\n                  \"final_analysis\": \"Step-by-step reasoning, prioritizing medical consensus and acknowledging complexity if present.\",\n                  \"answer\": \"Option key (e.g. opa, opb, ...)\",\n                  \"confidence\": A number between 0-100\n                }\n                    "
+    }
+  ],
+  "response": "{\n  \"final_analysis\": \"Propranolol is a non-selective beta-blocker that is effective in various clinical scenarios. It is commonly used to manage atrial flutter by controlling heart rate and rhythm. In thyrotoxicosis, it alleviates symptoms such as tachycardia and tremors, making it beneficial. For hypertrophic obstructive cardiomyopathy (HOCM), propranolol helps reduce left ventricular outflow obstruction, thus it is indicated. However, for Parkinsonian tremor, propranolol is not the first-line treatment; other medications such as anticholinergics or dopaminergic agents are preferred. Therefore, the option that propranolol is not useful for is Parkinsonian tremor.\",\n  \"answer\": \"opb\",\n  \"confidence\": 90\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": true,
+    "has_enhanced_info": true,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

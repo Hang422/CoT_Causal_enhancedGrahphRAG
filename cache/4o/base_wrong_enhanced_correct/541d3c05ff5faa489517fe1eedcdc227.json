@@ -1,0 +1,119 @@
+{
+  "question": "The drug which does not cause myopathy is :",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Chloroquine",
+    "opb": "Betamethasone",
+    "opc": "Chloramphenicol",
+    "opd": "Zidovudine"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Antimalarials",
+        "Myopathy"
+      ],
+      [
+        "Adrenal Cortex Hormones",
+        "Paresis"
+      ],
+      [
+        "Paresis",
+        "Disease",
+        "Myopathy"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Antimalarials)-CAUSES->(Myopathy)",
+      "(Adrenal Cortex Hormones)-CAUSES->(Paresis)",
+      "(Paresis)-CAUSES->(Disease)-CAUSES->(Myopathy)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Chloroquine",
+        "Antimalarials"
+      ],
+      [
+        "Betamethasone",
+        "Adrenal Cortex Hormones"
+      ],
+      [
+        "Betamethasone",
+        "Adrenal Cortex Hormones"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA"
+      ],
+      [
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Chloroquine)-INTERACTS_WITH->(Antimalarials)",
+      "(Betamethasone)-ISA->(Adrenal Cortex Hormones)",
+      "(Betamethasone)-INTERACTS_WITH->(Adrenal Cortex Hormones)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Betamethasone)-INTERACTS_WITH/ISA->(Adrenal Cortex Hormones)",
+      "(Antimalarials)-CAUSES->(Myopathy)",
+      "(Chloroquine)-INTERACTS_WITH->(Antimalarials)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Chloroquine\" -> \"antimalarial drug\" -> \"known to cause myopathy\" -> 70%",
+    "CHAIN: \"Betamethasone\" -> \"corticosteroid\" -> \"muscle weakness possible\" -> \"myopathy possible\" -> 60%",
+    "CHAIN: \"Chloramphenicol\" -> \"antibiotic\" -> \"no known association with myopathy\" -> 80%",
+    "CHAIN: \"Zidovudine\" -> \"antiretroviral drug\" -> \"known to cause myopathy\" -> 70%"
+  ],
+  "enhanced_information": "Chloroquine is an antimalarial drug known to cause myopathy, supported by evidence linking antimalarials to myopathy. Betamethasone, a corticosteroid, can cause muscle weakness and potentially myopathy, but this is less common and not a primary side effect. Chloramphenicol, an antibiotic, has no known association with myopathy, aligning with consensus that it does not cause this condition. Zidovudine, an antiretroviral drug, is known to cause myopathy. Therefore, Chloramphenicol is the drug that does not cause myopathy.",
+  "analysis": "To determine which drug does not cause myopathy, we need to evaluate each option based on known pharmacological effects. Chloroquine is an antimalarial drug that is well-documented to cause myopathy as a side effect. Betamethasone, a corticosteroid, can lead to muscle weakness and potentially myopathy, although this is not its primary side effect. Zidovudine, an antiretroviral drug, is also known to cause myopathy. Chloramphenicol, an antibiotic, does not have a known association with myopathy. Based on this information, Chloramphenicol is the drug that does not cause myopathy. This conclusion aligns with standard medical knowledge and consensus.",
+  "answer": "opc",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      3,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      40.0,
+      60.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

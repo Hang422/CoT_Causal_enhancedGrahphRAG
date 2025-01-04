@@ -1,0 +1,298 @@
+{
+  "question": "Which of the following drugs is useful in prophylaxis of motion sickness?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Hyoscine",
+    "opb": "Metoclopramide",
+    "opc": "Prochlorperazine",
+    "opd": "Ondansetron"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Prophylactic treatment",
+        "Adverse effects",
+        "Motion Sickness"
+      ],
+      [
+        "Prophylactic treatment",
+        "Symptoms",
+        "Motion Sickness"
+      ],
+      [
+        "Prophylactic treatment",
+        "Teratogenesis",
+        "Motion Sickness"
+      ],
+      [
+        "[D]Nausea and vomiting NOS",
+        "Gastrointestinal symptoms NOS",
+        "Motion Sickness"
+      ],
+      [
+        "[D]Nausea and vomiting NOS",
+        "Vomiting",
+        "Motion Sickness"
+      ],
+      [
+        "Prochlorperazine",
+        "Adverse effects",
+        "Malnutrition",
+        "Pica Disease",
+        "Antiemetic Effect"
+      ],
+      [
+        "Prochlorperazine",
+        "Adverse effects",
+        "Iron deficiency anemia",
+        "Pica Disease",
+        "Antiemetic Effect"
+      ],
+      [
+        "Prochlorperazine",
+        "Symptoms",
+        "Malnutrition",
+        "Pica Disease",
+        "Antiemetic Effect"
+      ],
+      [
+        "Antipsychotic Agents",
+        "[D]Nausea and vomiting NOS"
+      ],
+      [
+        "[D]Nausea and vomiting NOS",
+        "Gastrointestinal symptoms NOS",
+        "Motion Sickness"
+      ],
+      [
+        "[D]Nausea and vomiting NOS",
+        "Vomiting",
+        "Motion Sickness"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "PREDISPOSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "PREDISPOSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "PREDISPOSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "PREVENTS"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Prophylactic treatment)-CAUSES->(Adverse effects)-CAUSES->(Motion Sickness)",
+      "(Prophylactic treatment)-PREDISPOSES->(Symptoms)-CAUSES->(Motion Sickness)",
+      "(Prophylactic treatment)-PREDISPOSES->(Teratogenesis)-CAUSES->(Motion Sickness)",
+      "([D]Nausea and vomiting NOS)-CAUSES->(Gastrointestinal symptoms NOS)-CAUSES->(Motion Sickness)",
+      "([D]Nausea and vomiting NOS)-CAUSES->(Vomiting)-CAUSES->(Motion Sickness)",
+      "(Prochlorperazine)-TREATS->(Adverse effects)-CAUSES->(Malnutrition)-PREDISPOSES->(Pica Disease)-MANIFESTATION_OF->(Antiemetic Effect)",
+      "(Prochlorperazine)-TREATS->(Adverse effects)-CAUSES->(Iron deficiency anemia)-PREDISPOSES->(Pica Disease)-MANIFESTATION_OF->(Antiemetic Effect)",
+      "(Prochlorperazine)-TREATS->(Symptoms)-CAUSES->(Malnutrition)-PREDISPOSES->(Pica Disease)-MANIFESTATION_OF->(Antiemetic Effect)",
+      "(Antipsychotic Agents)-PREVENTS->([D]Nausea and vomiting NOS)",
+      "([D]Nausea and vomiting NOS)-CAUSES->(Gastrointestinal symptoms NOS)-CAUSES->(Motion Sickness)",
+      "([D]Nausea and vomiting NOS)-CAUSES->(Vomiting)-CAUSES->(Motion Sickness)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Scopolamine",
+        "Pharmaceutical Preparations",
+        "Anticholinergic Agents"
+      ],
+      [
+        "Anticholinergic Agents",
+        "Pharmaceutical Preparations",
+        "Vitamin supplementation",
+        "Prophylactic treatment"
+      ],
+      [
+        "Anticholinergic Agents",
+        "Pharmaceutical Preparations",
+        "Contraceptives, Oral",
+        "Prophylactic treatment"
+      ],
+      [
+        "Metoclopramide",
+        "Functional disorder",
+        "physiological aspects",
+        "Dopamine Antagonists"
+      ],
+      [
+        "Metoclopramide",
+        "Epilepsy",
+        "physiological aspects",
+        "Dopamine Antagonists"
+      ],
+      [
+        "Antiemetic Effect",
+        "Pharmaceutical Preparations",
+        "[D]Nausea and vomiting NOS"
+      ],
+      [
+        "Antiemetic Effect",
+        "Pharmaceutical Preparations",
+        "[D]Nausea and vomiting NOS"
+      ],
+      [
+        "Ondansetron",
+        "Disease",
+        "Sleep, Slow-Wave",
+        "Serotonin Antagonists"
+      ],
+      [
+        "Ondansetron",
+        "Pharmaceutical Preparations",
+        "Serotonin Uptake Inhibitors",
+        "Serotonin Antagonists"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "ISA"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH",
+        "ISA"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "CAUSES"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "TREATS"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH",
+        "ISA"
+      ]
+    ],
+    "paths": [
+      "(Scopolamine)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Anticholinergic Agents)",
+      "(Anticholinergic Agents)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Vitamin supplementation)-ISA->(Prophylactic treatment)",
+      "(Anticholinergic Agents)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Contraceptives, Oral)-ISA->(Prophylactic treatment)",
+      "(Metoclopramide)-TREATS->(Functional disorder)-MANIFESTATION_OF->(physiological aspects)-ASSOCIATED_WITH->(Dopamine Antagonists)",
+      "(Metoclopramide)-TREATS->(Epilepsy)-MANIFESTATION_OF->(physiological aspects)-ASSOCIATED_WITH->(Dopamine Antagonists)",
+      "(Antiemetic Effect)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-CAUSES->([D]Nausea and vomiting NOS)",
+      "(Antiemetic Effect)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-TREATS->([D]Nausea and vomiting NOS)",
+      "(Ondansetron)-TREATS->(Disease)-MANIFESTATION_OF->(Sleep, Slow-Wave)-ASSOCIATED_WITH->(Serotonin Antagonists)",
+      "(Ondansetron)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Serotonin Uptake Inhibitors)-ISA->(Serotonin Antagonists)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Prochlorperazine)-TREATS->(Adverse effects)-CAUSES->(Malnutrition)-PREDISPOSES->(Pica Disease)-MANIFESTATION_OF->(Antiemetic Effect)",
+      "(Prochlorperazine)-TREATS->(Adverse effects)-CAUSES->(Iron deficiency anemia)-PREDISPOSES->(Pica Disease)-MANIFESTATION_OF->(Antiemetic Effect)",
+      "(Prochlorperazine)-TREATS->(Symptoms)-CAUSES->(Malnutrition)-PREDISPOSES->(Pica Disease)-MANIFESTATION_OF->(Antiemetic Effect)",
+      "(Metoclopramide)-TREATS->(Epilepsy)-MANIFESTATION_OF->(physiological aspects)-ASSOCIATED_WITH->(Dopamine Antagonists)",
+      "(Ondansetron)-TREATS->(Disease)-MANIFESTATION_OF->(Sleep, Slow-Wave)-ASSOCIATED_WITH->(Serotonin Antagonists)",
+      "(Scopolamine)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Anticholinergic Agents)",
+      "(Ondansetron)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Serotonin Uptake Inhibitors)-ISA->(Serotonin Antagonists)",
+      "(Antiemetic Effect)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-CAUSES/TREATS->([D]Nausea and vomiting NOS)",
+      "(Metoclopramide)-TREATS->(Functional disorder)-MANIFESTATION_OF->(physiological aspects)-ASSOCIATED_WITH->(Dopamine Antagonists)",
+      "(Prophylactic treatment)-CAUSES->(Adverse effects)-CAUSES->(Motion Sickness)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Hyoscine\" -> \"anticholinergic properties\" -> \"prevention of nausea and vomiting\" -> \"useful in motion sickness prophylaxis\" -> 95%",
+    "CHAIN: \"Metoclopramide\" -> \"dopamine antagonist\" -> \"increases gastric motility\" -> \"not primarily used for motion sickness\" -> 70%",
+    "CHAIN: \"Prochlorperazine\" -> \"antipsychotic with antiemetic effects\" -> \"used for nausea and vomiting\" -> \"not first-line for motion sickness\" -> 75%",
+    "CHAIN: \"Ondansetron\" -> \"serotonin receptor antagonist\" -> \"effective for chemotherapy-induced nausea\" -> \"not typically used for motion sickness\" -> 65%"
+  ],
+  "enhanced_information": "Hyoscine (also known as scopolamine) is an anticholinergic agent that is well-established for the prophylaxis of motion sickness due to its ability to prevent nausea and vomiting. Metoclopramide, while a dopamine antagonist that increases gastric motility, is not primarily indicated for motion sickness and is more commonly used for gastrointestinal disorders. Prochlorperazine is an antipsychotic with antiemetic properties but is not considered a first-line treatment for motion sickness. Ondansetron, a serotonin receptor antagonist, is effective for chemotherapy-induced nausea but is not typically used for motion sickness. Therefore, the most appropriate drug for motion sickness prophylaxis is hyoscine.",
+  "analysis": "Motion sickness is primarily managed by preventing the symptoms of nausea and vomiting. Hyoscine, also known as scopolamine, is an anticholinergic agent that is well-documented for its effectiveness in the prophylaxis of motion sickness. It works by blocking the muscarinic receptors in the brain, which are involved in the vomiting reflex. The other options, such as metoclopramide, prochlorperazine, and ondansetron, are not primarily indicated for motion sickness. Metoclopramide is more suited for gastrointestinal motility disorders, prochlorperazine is used for nausea related to other causes, and ondansetron is mainly used for chemotherapy-induced nausea. Therefore, based on standard medical knowledge and consensus, hyoscine is the most appropriate choice for the prophylaxis of motion sickness.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      4,
+      1,
+      4,
+      1
+    ],
+    "coverage_rates": [
+      40.0,
+      10.0,
+      40.0,
+      10.0
+    ],
+    "total_successes": 10
+  },
+  "normal_results": []
+}

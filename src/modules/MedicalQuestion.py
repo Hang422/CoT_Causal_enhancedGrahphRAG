@@ -11,8 +11,6 @@ from typing import Dict, List
 
 @dataclass
 class SubGraph:
-    # Entity pairs for path finding
-    entities_pairs: Dict[str, List[str]] = None  # 'start'=[a,b,c] 'end'=[c,d,e]
 
     # Path components
     nodes: List[List[str]] = None  # [[a,x,c], [b,x,d], [c,x,e]]
@@ -27,7 +25,6 @@ class SubGraph:
     def to_dict(self) -> Dict:
         """转换为可序列化的字典"""
         return {
-            'entities_pairs': self.entities_pairs,
             'nodes': self.nodes,
             'relationships': self.relationships,
             'paths': self.paths if isinstance(self.paths, list) else []
@@ -39,7 +36,6 @@ class SubGraph:
         if data is None:
             return cls()
         return cls(
-            entities_pairs=data.get('entities_pairs', {'start': [], 'end': []}),
             nodes=data.get('nodes', []),
             relationships=data.get('relationships', []),
             paths=data.get('paths', [])
@@ -47,8 +43,6 @@ class SubGraph:
 
     def __post_init__(self):
         """Initialize empty collections if None"""
-        if self.entities_pairs is None:
-            self.entities_pairs = {'start': [], 'end': []}
         if self.nodes is None:
             self.nodes = []
         if self.relationships is None:
@@ -77,13 +71,6 @@ class SubGraph:
         for nodes, rels in zip(self.nodes, self.relationships):
             if len(nodes) != len(rels) + 1:
                 return False
-
-        # Check entity pairs
-        if not self.entities_pairs.get('start') or not self.entities_pairs.get('end'):
-            return False
-
-        if len(self.entities_pairs['start']) != len(self.entities_pairs['end']):
-            return False
 
         return True
 

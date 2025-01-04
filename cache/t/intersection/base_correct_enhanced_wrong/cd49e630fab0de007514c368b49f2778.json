@@ -1,0 +1,252 @@
+{
+  "question": "Calcitonin is used in all of the following conditions, EXCEPT:",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Hypervitaminosis D",
+    "opb": "Postmenopausal osteoporosis",
+    "opc": "Paget's disease",
+    "opd": "Fanconi syndrome"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "calcium",
+        "Osteitis Deformans"
+      ],
+      [
+        "Osteitis Deformans",
+        "Disease",
+        "Osteoporosis, Postmenopausal"
+      ],
+      [
+        "Osteitis Deformans",
+        "Pathogenesis",
+        "Osteoporosis, Postmenopausal"
+      ],
+      [
+        "Osteitis Deformans",
+        "Disease",
+        "Osteoporosis, Postmenopausal"
+      ],
+      [
+        "Osteitis Deformans",
+        "Pathogenesis",
+        "Osteoporosis, Postmenopausal"
+      ],
+      [
+        "Osteoporosis, Postmenopausal",
+        "Disease",
+        "Fanconi Syndrome"
+      ],
+      [
+        "Hormones",
+        "Hypercalcemia"
+      ],
+      [
+        "Hypercalcemia",
+        "Bone Diseases",
+        "Osteitis Deformans"
+      ],
+      [
+        "Hypercalcemia",
+        "Hyperparathyroidism",
+        "Osteitis Deformans"
+      ],
+      [
+        "Osteitis Deformans",
+        "Disease",
+        "Osteoporosis, Postmenopausal"
+      ],
+      [
+        "Osteitis Deformans",
+        "Pathogenesis",
+        "Osteoporosis, Postmenopausal"
+      ],
+      [
+        "Calcitonin",
+        "Osteitis Deformans"
+      ],
+      [
+        "Osteitis Deformans",
+        "Disease",
+        "Osteoporosis, Postmenopausal"
+      ],
+      [
+        "Osteitis Deformans",
+        "Pathogenesis",
+        "Osteoporosis, Postmenopausal"
+      ],
+      [
+        "Osteoporosis, Postmenopausal",
+        "Disease",
+        "Fanconi Syndrome"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(calcium)-TREATS->(Osteitis Deformans)",
+      "(Osteitis Deformans)-CAUSES->(Disease)-CAUSES->(Osteoporosis, Postmenopausal)",
+      "(Osteitis Deformans)-PREDISPOSES->(Pathogenesis)-MANIFESTATION_OF->(Osteoporosis, Postmenopausal)",
+      "(Osteitis Deformans)-CAUSES->(Disease)-CAUSES->(Osteoporosis, Postmenopausal)",
+      "(Osteitis Deformans)-PREDISPOSES->(Pathogenesis)-MANIFESTATION_OF->(Osteoporosis, Postmenopausal)",
+      "(Osteoporosis, Postmenopausal)-CAUSES->(Disease)-CAUSES->(Fanconi Syndrome)",
+      "(Hormones)-CAUSES->(Hypercalcemia)",
+      "(Hypercalcemia)-CAUSES->(Bone Diseases)-CAUSES->(Osteitis Deformans)",
+      "(Hypercalcemia)-CAUSES->(Hyperparathyroidism)-CAUSES->(Osteitis Deformans)",
+      "(Osteitis Deformans)-CAUSES->(Disease)-CAUSES->(Osteoporosis, Postmenopausal)",
+      "(Osteitis Deformans)-PREDISPOSES->(Pathogenesis)-MANIFESTATION_OF->(Osteoporosis, Postmenopausal)",
+      "(Calcitonin)-TREATS->(Osteitis Deformans)",
+      "(Osteitis Deformans)-CAUSES->(Disease)-CAUSES->(Osteoporosis, Postmenopausal)",
+      "(Osteitis Deformans)-PREDISPOSES->(Pathogenesis)-MANIFESTATION_OF->(Osteoporosis, Postmenopausal)",
+      "(Osteoporosis, Postmenopausal)-CAUSES->(Disease)-CAUSES->(Fanconi Syndrome)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Calcium measurement",
+        "Disease",
+        "Sleep, Slow-Wave",
+        "calcium"
+      ],
+      [
+        "Calcium measurement",
+        "Disease",
+        "Transformation, function",
+        "calcium"
+      ],
+      [
+        "Calcium measurement",
+        "Disease",
+        "physiological aspects",
+        "calcium"
+      ]
+    ],
+    "relationships": [
+      [
+        "DIAGNOSES",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "DIAGNOSES",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "DIAGNOSES",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Calcium measurement)-DIAGNOSES->(Disease)-MANIFESTATION_OF->(Sleep, Slow-Wave)-ASSOCIATED_WITH->(calcium)",
+      "(Calcium measurement)-DIAGNOSES->(Disease)-MANIFESTATION_OF->(Transformation, function)-ASSOCIATED_WITH->(calcium)",
+      "(Calcium measurement)-DIAGNOSES->(Disease)-MANIFESTATION_OF->(physiological aspects)-ASSOCIATED_WITH->(calcium)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Calcitonin)-TREATS->(Osteitis Deformans)",
+      "(Osteitis Deformans)-CAUSES->(Disease)-CAUSES->(Osteoporosis, Postmenopausal)",
+      "(Osteitis Deformans)-PREDISPOSES->(Pathogenesis)-MANIFESTATION_OF->(Osteoporosis, Postmenopausal)",
+      "(Osteoporosis, Postmenopausal)-CAUSES->(Disease)-CAUSES->(Fanconi Syndrome)",
+      "(calcium)-TREATS->(Osteitis Deformans)",
+      "(Hormones)-CAUSES->(Hypercalcemia)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Calcitonin is used to lower calcium levels\" -> \"Effective in conditions with high calcium\" -> \"Used in Paget's disease\" -> \"Used in postmenopausal osteoporosis\" -> \"Not typically used in hypervitaminosis D\" -> 85%",
+    "CHAIN: \"Calcitonin inhibits osteoclast activity\" -> \"Reduces bone resorption\" -> \"Beneficial in Paget's disease\" -> \"Helps in postmenopausal osteoporosis\" -> \"Not indicated for Fanconi syndrome\" -> 80%",
+    "CHAIN: \"Calcitonin is a hormone that regulates calcium\" -> \"Used in hypercalcemia conditions\" -> \"Effective in Paget's disease\" -> \"Used in postmenopausal osteoporosis\" -> \"Not effective in hypervitaminosis D\" -> 90%",
+    "CHAIN: \"Calcitonin is indicated for bone-related disorders\" -> \"Used in Paget's disease\" -> \"Used in postmenopausal osteoporosis\" -> \"Not used in Fanconi syndrome\" -> \"Unclear role in hypervitaminosis D\" -> 75%"
+  ],
+  "enhanced_information": "Calcitonin is a hormone that primarily lowers calcium levels in the blood and is effective in conditions characterized by high bone turnover. It is indicated for Paget's disease and postmenopausal osteoporosis due to its ability to inhibit osteoclast activity and reduce bone resorption. However, calcitonin is not typically used in hypervitaminosis D, as this condition is characterized by elevated calcium levels due to excessive vitamin D, and calcitonin does not address the underlying cause. Additionally, calcitonin is not indicated for Fanconi syndrome, which is a renal tubular disorder unrelated to the mechanisms of calcitonin's action. Therefore, the correct answer is hypervitaminosis D, as calcitonin is not used in this condition.",
+  "analysis": "Calcitonin is a hormone that plays a role in calcium homeostasis and is primarily used in conditions with high bone turnover, such as Paget's disease and postmenopausal osteoporosis. It works by inhibiting osteoclast activity, which reduces bone resorption and lowers serum calcium levels. In the case of hypervitaminosis D, the condition is characterized by elevated calcium levels due to excessive vitamin D intake, and calcitonin is not indicated as it does not address the underlying cause of the hypercalcemia. Furthermore, while Fanconi syndrome is a renal tubular disorder, calcitonin does not have a role in its management either. However, the most clear and direct answer to the question is that calcitonin is not used in hypervitaminosis D. Therefore, the correct answer is hypervitaminosis D, as calcitonin is not indicated for this condition.",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      3,
+      2,
+      3,
+      3
+    ],
+    "coverage_rates": [
+      27.27272727272727,
+      18.181818181818183,
+      27.27272727272727,
+      27.27272727272727
+    ],
+    "total_successes": 11
+  },
+  "normal_results": []
+}

@@ -1,0 +1,145 @@
+{
+  "question": "In which of the following patients would enalapril be the best first line agent for high blood pressure control ?",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "A 62 year old man with renal artery stenosis",
+    "opb": "A 32 year old pregnant female",
+    "opc": "A 41 year old woman with hyperkalemia",
+    "opd": "A 56 year old diabetic woman"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Enalapril",
+        "Losartan",
+        "Angiotensin-Converting Enzyme Inhibitors"
+      ],
+      [
+        "Enalapril",
+        "Complication",
+        "Angiotensin-Converting Enzyme Inhibitors"
+      ],
+      [
+        "Enalapril",
+        "Pharmaceutical Preparations",
+        "Angiotensin-Converting Enzyme Inhibitors"
+      ],
+      [
+        "Enalapril",
+        "Losartan",
+        "Angiotensin-Converting Enzyme Inhibitors"
+      ],
+      [
+        "Enalapril",
+        "Complication",
+        "Angiotensin-Converting Enzyme Inhibitors"
+      ],
+      [
+        "Enalapril",
+        "Pharmaceutical Preparations",
+        "Angiotensin-Converting Enzyme Inhibitors"
+      ],
+      [
+        "Enalapril",
+        "Losartan",
+        "Angiotensin-Converting Enzyme Inhibitors"
+      ],
+      [
+        "Enalapril",
+        "Complication",
+        "Angiotensin-Converting Enzyme Inhibitors"
+      ],
+      [
+        "Enalapril",
+        "Pharmaceutical Preparations",
+        "Angiotensin-Converting Enzyme Inhibitors"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Enalapril)-INTERACTS_WITH->(Losartan)-INTERACTS_WITH->(Angiotensin-Converting Enzyme Inhibitors)",
+      "(Enalapril)-TREATS->(Complication)-ASSOCIATED_WITH->(Angiotensin-Converting Enzyme Inhibitors)",
+      "(Enalapril)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Angiotensin-Converting Enzyme Inhibitors)",
+      "(Enalapril)-INTERACTS_WITH->(Losartan)-INTERACTS_WITH->(Angiotensin-Converting Enzyme Inhibitors)",
+      "(Enalapril)-TREATS->(Complication)-ASSOCIATED_WITH->(Angiotensin-Converting Enzyme Inhibitors)",
+      "(Enalapril)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Angiotensin-Converting Enzyme Inhibitors)",
+      "(Enalapril)-INTERACTS_WITH->(Losartan)-INTERACTS_WITH->(Angiotensin-Converting Enzyme Inhibitors)",
+      "(Enalapril)-TREATS->(Complication)-ASSOCIATED_WITH->(Angiotensin-Converting Enzyme Inhibitors)",
+      "(Enalapril)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Angiotensin-Converting Enzyme Inhibitors)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Enalapril)-INTERACTS_WITH->(Losartan)-INTERACTS_WITH->(Angiotensin-Converting Enzyme Inhibitors)-Converting Enzyme Inhibitors)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Enalapril\" -> \"ACE inhibitor\" -> \"blocks conversion of angiotensin I to angiotensin II\" -> \"vasodilation\" -> \"reduced blood pressure\" -> 90% CHAIN: \"Enalapril\" -> \"ACE inhibitor\" -> \"reduces aldosterone secretion\" -> \"decreased sodium and water retention\" -> \"lowered blood pressure\" -> 85% CHAIN: \"Enalapril\" -> \"ACE inhibitor\" -> \"renoprotective effects\" -> \"beneficial in renal artery stenosis\" -> 90%"
+  ],
+  "enhanced_information": "Enalapril, as an ACE inhibitor, is a suitable first-line agent for high blood pressure control in a 62-year-old man with renal artery stenosis due to its renoprotective effects. The interaction with Losartan and the ACE inhibitors supports its mechanism of action in blocking the conversion of angiotensin I to angiotensin II, leading to vasodilation and reduced blood pressure.",
+  "analysis": "Enalapril, as an ACE inhibitor, is particularly beneficial in patients with renal artery stenosis due to its renoprotective effects. This patient population benefits from the vasodilatory and antihypertensive effects of enalapril. While enalapril can be contraindicated in pregnancy and hyperkalemia, it is a suitable choice for a 62-year-old man with renal artery stenosis.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      3
+    ],
+    "coverage_rates": [
+      100.0
+    ],
+    "total_successes": 3
+  },
+  "normal_results": []
+}

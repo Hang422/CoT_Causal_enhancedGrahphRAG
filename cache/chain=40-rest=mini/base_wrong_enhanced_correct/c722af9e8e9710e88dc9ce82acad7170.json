@@ -1,0 +1,99 @@
+{
+  "question": "Heparin is the commonly used anticoagulant in cardiac surgery. All of the following are true about heparin except-",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Weakest acid found in living things",
+    "opb": "Most commercial preparations of heparin now utilize pig intestinal slimes",
+    "opc": "Act via Antithrombin activation",
+    "opd": "Produce thrombocytopenia"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Heparin",
+        "Adverse effects"
+      ],
+      [
+        "Adverse effects",
+        "Thrombocytopenia"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREVENTS"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Heparin)-PREVENTS->(Adverse effects)",
+      "(Adverse effects)-CAUSES->(Thrombocytopenia)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Heparin",
+        "Anticoagulants"
+      ],
+      [
+        "Heparin",
+        "Anticoagulants"
+      ]
+    ],
+    "relationships": [
+      [
+        "ISA"
+      ],
+      [
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Heparin)-ISA->(Anticoagulants)",
+      "(Heparin)-INTERACTS_WITH->(Anticoagulants)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Heparin)-INTERACTS_WITH/ISA->(Anticoagulants)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Heparin\" -> \"anticoagulant\" -> \"acts via Antithrombin activation\" -> 95%",
+    "CHAIN: \"Heparin\" -> \"commercial preparations\" -> \"utilize pig intestinal slimes\" -> 90%",
+    "CHAIN: \"Heparin\" -> \"side effect\" -> \"produce thrombocytopenia\" -> 85%",
+    "CHAIN: \"Heparin\" -> \"weakest acid\" -> \"found in living things\" -> \"possible misconception\" -> 60%"
+  ],
+  "enhanced_information": "Heparin is a widely used anticoagulant that primarily acts by activating Antithrombin, which inhibits thrombin and factor Xa, making option (opc) true. Most commercial preparations of heparin are derived from pig intestinal mucosa, confirming option (opb) as true. Heparin can cause thrombocytopenia, a decrease in platelet count, which makes option (opd) also true. However, option (opa) stating that heparin is the 'weakest acid found in living things' is misleading; heparin is a glycosaminoglycan and not classified as an acid in this context. Therefore, the correct answer to the question is option (opa), as it does not accurately represent heparin's properties.",
+  "analysis": "Heparin is a glycosaminoglycan that acts as an anticoagulant primarily by activating Antithrombin, which inhibits thrombin and factor Xa. This makes option (opc) true. Most commercial preparations of heparin are derived from pig intestinal mucosa, confirming option (opb) as true. Heparin can indeed cause thrombocytopenia, which makes option (opd) also true. However, option (opa) states that heparin is the 'weakest acid found in living things,' which is misleading. Heparin is not classified as an acid in this context and is not the weakest acid found in living organisms. Therefore, option (opa) is the only statement that is not true about heparin. Thus, the correct answer is option (opa).",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      0,
+      2,
+      0
+    ],
+    "coverage_rates": [
+      33.33333333333333,
+      0.0,
+      66.66666666666666,
+      0.0
+    ],
+    "total_successes": 3
+  },
+  "normal_results": []
+}

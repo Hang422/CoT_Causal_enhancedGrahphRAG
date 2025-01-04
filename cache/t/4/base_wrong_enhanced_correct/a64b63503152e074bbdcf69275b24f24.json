@@ -1,0 +1,100 @@
+{
+  "question": "Therapeutic blood range of theophylline in microgram per L is:",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "0-5",
+    "opb": "10-May",
+    "opc": "15-May",
+    "opd": "20-May"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Blood concentration results",
+        "Dyslipidemias",
+        "Pathogenesis",
+        "Leucine"
+      ],
+      [
+        "Blood concentration results",
+        "Dementia",
+        "Pathogenesis",
+        "Leucine"
+      ],
+      [
+        "Blood concentration results",
+        "Dyslipidemias",
+        "Pathogenesis",
+        "Leucine"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREDISPOSES",
+        "PREDISPOSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Blood concentration results)-PREDISPOSES->(Dyslipidemias)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Leucine)",
+      "(Blood concentration results)-PREDISPOSES->(Dementia)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Leucine)",
+      "(Blood concentration results)-PREDISPOSES->(Dyslipidemias)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Leucine)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Blood concentration results)-PREDISPOSES->(Dyslipidemias)-MANIFESTATION_OF/PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Leucine)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Theophylline used as bronchodilator\" -> \"Effective therapeutic range required\" -> \"10-20 micrograms per L commonly accepted\" -> 90%",
+    "CHAIN: \"Theophylline for asthma management\" -> \"Requires specific blood concentration\" -> \"0-5 micrograms per L too low to be effective\" -> \"10-20 micrograms per L supports bronchodilation\" -> 95%",
+    "CHAIN: \"Theophylline toxicity starts above 20 micrograms per L\" -> \"20-25 micrograms per L can cause side effects\" -> \"10-20 micrograms per L is safe and effective\" -> 92%",
+    "CHAIN: \"Lower than 10 micrograms per L of Theophylline\" -> \"Insufficient for therapeutic effect\" -> \"10-20 micrograms per L is optimal range\" -> 93%"
+  ],
+  "enhanced_information": "The therapeutic blood range of theophylline, used as a bronchodilator, is 10-20 micrograms per liter. This range is supported by medical consensus, ensuring efficacy in bronchodilation while minimizing toxicity risks. Evidence unrelated to theophylline's pharmacokinetics does not alter this established range.",
+  "analysis": "The therapeutic blood range of theophylline is crucial for its efficacy as a bronchodilator and for minimizing toxicity. The standard medical consensus states that the therapeutic range of theophylline is between 10-20 micrograms per liter. This range is well-established and supported by clinical evidence and pharmacological guidelines. The options provided include ranges that are either too low or partially correct. Option 'opb' (10-May) and 'opd' (20-May) both partially represent the correct range, but due to the formatting error in the options, it seems 'May' is intended to represent '20'. Therefore, the correct and full range is best represented by combining the correct parts of options 'opb' and 'opd'.",
+  "answer": "opd",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      0.0,
+      100.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 1
+  },
+  "normal_results": []
+}

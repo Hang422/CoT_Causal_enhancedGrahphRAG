@@ -1,0 +1,227 @@
+{
+  "question": "In this child Which of the following enzymes is likely to be deficient?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "HGPRTase",
+    "opb": "Adenosine deaminase",
+    "opc": "APRTase",
+    "opd": "Acid maltase"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Glycogen",
+        "Myocardial necrosis",
+        "Myocardial Infarction",
+        "Disease",
+        "Glycogen storage disease type II"
+      ],
+      [
+        "Glycogen",
+        "Myocardial necrosis",
+        "cardiac arrhythmia",
+        "Disease",
+        "Glycogen storage disease type II"
+      ],
+      [
+        "Glycogen",
+        "Myocardial necrosis",
+        "Acute coronary syndrome",
+        "Disease",
+        "Glycogen storage disease type II"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "PREDISPOSES",
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Glycogen)-CAUSES->(Myocardial necrosis)-CAUSES->(Myocardial Infarction)-CAUSES->(Disease)-CAUSES->(Glycogen storage disease type II)",
+      "(Glycogen)-CAUSES->(Myocardial necrosis)-CAUSES->(cardiac arrhythmia)-CAUSES->(Disease)-CAUSES->(Glycogen storage disease type II)",
+      "(Glycogen)-CAUSES->(Myocardial necrosis)-PREDISPOSES->(Acute coronary syndrome)-CAUSES->(Disease)-CAUSES->(Glycogen storage disease type II)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Combined immunodeficiency disease",
+        "Pathogenesis",
+        "Inflammation",
+        "ADENOSINE DEAMINASE"
+      ],
+      [
+        "Combined immunodeficiency disease",
+        "Hypersensitivity",
+        "Inflammation",
+        "ADENOSINE DEAMINASE"
+      ],
+      [
+        "Paresis",
+        "Virus",
+        "Saccharomyces cerevisiae",
+        "Glucan 1,4-alpha-Glucosidase"
+      ],
+      [
+        "Paresis",
+        "Disease",
+        "Saccharomyces cerevisiae",
+        "Glucan 1,4-alpha-Glucosidase"
+      ],
+      [
+        "Cardiomyopathies",
+        "Disease",
+        "Saccharomyces cerevisiae",
+        "Glucan 1,4-alpha-Glucosidase"
+      ],
+      [
+        "Cardiomyopathies",
+        "Disease",
+        "Saccharomyces cerevisiae",
+        "Glucan 1,4-alpha-Glucosidase"
+      ],
+      [
+        "Glucan 1,4-alpha-Glucosidase",
+        "Cells",
+        "Glycogen"
+      ],
+      [
+        "Glucan 1,4-alpha-Glucosidase",
+        "Pluripotent Stem Cells",
+        "Glycogen"
+      ],
+      [
+        "Lysosomes",
+        "Medical Imaging",
+        "Glycogen storage disease type II"
+      ],
+      [
+        "Lysosomes",
+        "Polysaccharides",
+        "Glycogen storage disease type II"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "ISA",
+        "ASSOCIATED_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "ISA",
+        "ASSOCIATED_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "DIAGNOSES"
+      ],
+      [
+        "LOCATION_OF",
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Combined immunodeficiency disease)-PREDISPOSES->(Pathogenesis)-MANIFESTATION_OF->(Inflammation)-ASSOCIATED_WITH->(ADENOSINE DEAMINASE)",
+      "(Combined immunodeficiency disease)-PREDISPOSES->(Hypersensitivity)-CAUSES->(Inflammation)-ASSOCIATED_WITH->(ADENOSINE DEAMINASE)",
+      "(Paresis)-INTERACTS_WITH->(Virus)-INTERACTS_WITH->(Saccharomyces cerevisiae)-LOCATION_OF->(Glucan 1,4-alpha-Glucosidase)",
+      "(Paresis)-ISA->(Disease)-ASSOCIATED_WITH->(Saccharomyces cerevisiae)-LOCATION_OF->(Glucan 1,4-alpha-Glucosidase)",
+      "(Cardiomyopathies)-ISA->(Disease)-ASSOCIATED_WITH->(Saccharomyces cerevisiae)-LOCATION_OF->(Glucan 1,4-alpha-Glucosidase)",
+      "(Cardiomyopathies)-MANIFESTATION_OF->(Disease)-ASSOCIATED_WITH->(Saccharomyces cerevisiae)-LOCATION_OF->(Glucan 1,4-alpha-Glucosidase)",
+      "(Glucan 1,4-alpha-Glucosidase)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Glycogen)",
+      "(Glucan 1,4-alpha-Glucosidase)-INTERACTS_WITH->(Pluripotent Stem Cells)-LOCATION_OF->(Glycogen)",
+      "(Lysosomes)-LOCATION_OF->(Medical Imaging)-DIAGNOSES->(Glycogen storage disease type II)",
+      "(Lysosomes)-LOCATION_OF->(Polysaccharides)-TREATS->(Glycogen storage disease type II)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Glucan 1,4-alpha-Glucosidase)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Glycogen)",
+      "(Glucan 1,4-alpha-Glucosidase)-INTERACTS_WITH->(Pluripotent Stem Cells)-LOCATION_OF->(Glycogen)",
+      "(Combined immunodeficiency disease)-PREDISPOSES->(Pathogenesis)-MANIFESTATION_OF->(Inflammation)-ASSOCIATED_WITH->(ADENOSINE DEAMINASE)",
+      "(Combined immunodeficiency disease)-PREDISPOSES->(Hypersensitivity)-CAUSES->(Inflammation)-ASSOCIATED_WITH->(ADENOSINE DEAMINASE)",
+      "(Paresis)-INTERACTS_WITH->(Virus)-INTERACTS_WITH->(Saccharomyces cerevisiae)-LOCATION_OF->(Glucan 1,4-alpha-Glucosidase)",
+      "(Paresis)-ISA->(Disease)-ASSOCIATED_WITH->(Saccharomyces cerevisiae)-LOCATION_OF->(Glucan 1,4-alpha-Glucosidase)",
+      "(Cardiomyopathies)-ISA/MANIFESTATION_OF->(Disease)-ASSOCIATED_WITH->(Saccharomyces cerevisiae)-LOCATION_OF->(Glucan 1,4-alpha-Glucosidase)-alpha"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Child presents with symptoms of Lesch-Nyhan syndrome\" -> \"Deficiency of HGPRTase\" -> \"Accumulation of uric acid\" -> \"Increased risk of gout and neurological symptoms\" -> 85%",
+    "CHAIN: \"Child shows signs of severe combined immunodeficiency\" -> \"Deficiency of adenosine deaminase\" -> \"Accumulation of toxic metabolites\" -> \"Impaired lymphocyte function\" -> 90%",
+    "CHAIN: \"Child exhibits symptoms of kidney stones and hyperuricemia\" -> \"Possible deficiency of APRTase\" -> \"Increased levels of uric acid\" -> \"Risk of renal complications\" -> 75%",
+    "CHAIN: \"Child has muscle weakness and cardiomyopathy\" -> \"Deficiency of acid maltase\" -> \"Accumulation of glycogen in lysosomes\" -> \"Symptoms consistent with Pompe disease\" -> 80%"
+  ],
+  "enhanced_information": "In evaluating the potential enzyme deficiency in the child, we consider the following: 1) Lesch-Nyhan syndrome is characterized by a deficiency in HGPRTase, leading to uric acid accumulation, gout, and neurological symptoms. This aligns with the consensus understanding of the condition. 2) Severe combined immunodeficiency is associated with adenosine deaminase deficiency, resulting in toxic metabolite accumulation and impaired lymphocyte function, which is well-supported by medical consensus. 3) APRTase deficiency can lead to kidney stones and hyperuricemia due to increased uric acid levels, but this is less commonly associated with the described symptoms. 4) Acid maltase deficiency, known as Pompe disease, results in glycogen accumulation in lysosomes, causing muscle weakness and cardiomyopathy. The evidence paths related to adenosine deaminase and acid maltase support these associations. Based on the symptoms described, the most likely enzyme deficiency is HGPRTase, consistent with Lesch-Nyhan syndrome.",
+  "analysis": "To determine the enzyme deficiency in the child, we need to consider the symptoms typically associated with each enzyme deficiency. Lesch-Nyhan syndrome, characterized by neurological symptoms, self-mutilation, and hyperuricemia, is caused by a deficiency in HGPRTase. Adenosine deaminase deficiency leads to severe combined immunodeficiency, which presents with recurrent infections and failure to thrive. APRTase deficiency is less commonly associated with neurological symptoms and more with kidney stones. Acid maltase deficiency, or Pompe disease, results in muscle weakness and cardiomyopathy, not typically neurological symptoms. Given the context provided, the symptoms align most closely with Lesch-Nyhan syndrome, suggesting a deficiency in HGPRTase. This is supported by the consensus understanding of the condition.",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      0,
+      5
+    ],
+    "coverage_rates": [
+      0.0,
+      16.666666666666664,
+      0.0,
+      83.33333333333334
+    ],
+    "total_successes": 6
+  },
+  "normal_results": []
+}

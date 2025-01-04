@@ -1,0 +1,134 @@
+{
+  "question": "All are TRUE about protease activated receptors, EXCEPT:",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Family of three seven transmembrane protein",
+    "opb": "Activated by thrombin",
+    "opc": "Releases PGE2",
+    "opd": "Protects epithelial cells"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Receptors, Proteinase-Activated",
+        "Cells",
+        "Integral Membrane Proteins"
+      ],
+      [
+        "Receptors, Proteinase-Activated",
+        "Cells",
+        "Integral Membrane Proteins"
+      ],
+      [
+        "Receptors, Proteinase-Activated",
+        "Cells",
+        "Thrombin"
+      ],
+      [
+        "Receptors, Proteinase-Activated",
+        "mast cell",
+        "Thrombin"
+      ],
+      [
+        "Receptors, Proteinase-Activated",
+        "Cells",
+        "Dinoprostone"
+      ],
+      [
+        "Receptors, Proteinase-Activated",
+        "Prostaglandin Production",
+        "Dinoprostone"
+      ],
+      [
+        "Receptors, Proteinase-Activated",
+        "Epithelial Cells"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Receptors, Proteinase-Activated)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Integral Membrane Proteins)",
+      "(Receptors, Proteinase-Activated)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Integral Membrane Proteins)",
+      "(Receptors, Proteinase-Activated)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Thrombin)",
+      "(Receptors, Proteinase-Activated)-INTERACTS_WITH->(mast cell)-INTERACTS_WITH->(Thrombin)",
+      "(Receptors, Proteinase-Activated)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Dinoprostone)",
+      "(Receptors, Proteinase-Activated)-CAUSES->(Prostaglandin Production)-ASSOCIATED_WITH->(Dinoprostone)",
+      "(Receptors, Proteinase-Activated)-INTERACTS_WITH->(Epithelial Cells)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Receptors, Proteinase-Activated)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Dinoprostone)",
+      "(Receptors, Proteinase-Activated)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Thrombin)",
+      "(Receptors, Proteinase-Activated)-INTERACTS_WITH->(mast cell)-INTERACTS_WITH->(Thrombin)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Protease activated receptors\" -> \"family of four seven transmembrane proteins\" -> \"not family of three\" -> 95%",
+    "CHAIN: \"Protease activated receptors\" -> \"activated by thrombin\" -> \"signal transduction\" -> 90%",
+    "CHAIN: \"Protease activated receptors\" -> \"possible release of PGE2\" -> \"unclear mechanism\" -> 70%",
+    "CHAIN: \"Protease activated receptors\" -> \"protects epithelial cells\" -> \"cellular defense\" -> 85%"
+  ],
+  "enhanced_information": "Protease activated receptors (PARs) are a family of four seven transmembrane proteins, not three, which contradicts option opa. They are indeed activated by thrombin, supporting option opb, as confirmed by evidence showing interaction with thrombin. While PARs can be involved in pathways that might lead to the release of PGE2, the mechanism is not well-defined, making option opc less certain. PARs play a role in protecting epithelial cells, aligning with option opd, as they are involved in cellular defense mechanisms. Therefore, the statement that PARs are a family of three seven transmembrane proteins is incorrect.",
+  "analysis": "Protease activated receptors (PARs) are indeed a family of four seven transmembrane proteins, not three, which makes option opa incorrect. They are activated by thrombin, confirming option opb as true. While PARs can be involved in pathways that might lead to the release of PGE2, this is not a well-defined or primary function, making option opc less certain. PARs do play a role in protecting epithelial cells, supporting option opd. Therefore, the statement that PARs are a family of three seven transmembrane proteins is incorrect, making opa the correct choice for the exception.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      25.0,
+      25.0,
+      25.0,
+      25.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

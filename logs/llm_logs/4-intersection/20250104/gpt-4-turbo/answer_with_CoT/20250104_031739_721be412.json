@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250104_031739",
+  "model": "gpt-4-turbo",
+  "interaction_type": "answer_with_CoT",
+  "question_id": "721be412",
+  "question_text": "Which of the following drug causes Pseudotumour cerebri -",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert using chain-of-thought reasoning."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.\n            You are a medical expert determining the final answer.\n\n                ### Instructions:\n                - Use standard medical knowledge as the primary guide.\n                - Consider enhanced information only if it aligns with consensus.\n                - If conflicting or unclear, present the most likely correct answer based on known facts.\n                - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.\n            ### Question    \n            Which of the following drug causes Pseudotumour cerebri -\n\n            ### Options\n            opa. Sparfloxacin\nopb. Tetracycline\nopc. Gentamicin\nopd. Clofazimine\n\n### Reasoning Chains for Validation:\n- CHAIN: \"Tetracycline\" -> \"inhibition of cerebrospinal fluid absorption\" -> \"increased intracranial pressure\" -> \"Pseudotumour cerebri\" -> 85%\n- CHAIN: \"Sparfloxacin\" -> \"no known effect on cerebrospinal fluid\" -> \"unlikely to cause Pseudotumour cerebri\" -> 10%\n- CHAIN: \"Gentamicin\" -> \"primarily affects renal function and auditory nerves\" -> \"no significant impact on cerebrospinal fluid dynamics\" -> \"unlikely to cause Pseudotumour cerebri\" -> 10%\n- CHAIN: \"Clofazimine\" -> \"used for leprosy and inflammatory conditions\" -> \"no reported cases linking to Pseudotumour cerebri\" -> \"unlikely to cause Pseudotumour cerebri\" -> 10%\n\n### Retrieved Validation Paths:\n- (Clofazimine)-TREATS->(Leprosy)\n- (Leprosy)-CAUSES->(Disease)-CAUSES->(Pseudotumor Cerebri)\n\n            ### Task:\n                1. Identify the core medical principle and the most likely correct option based on consensus.\n                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.\n                3. Provide a final analysis and a confidence score (0-100%).\n                \n                ### Output Format:\n                {\n                  \"final_analysis\": \"Step-by-step reasoning, prioritizing medical consensus and acknowledging complexity if present.\",\n                  \"answer\": \"Option key (e.g. opa, opb, ...)\",\n                  \"confidence\": A number between 0-100\n                }\n            "
+    }
+  ],
+  "response": "### Core Medical Principle:\nPseudotumor cerebri, also known as idiopathic intracranial hypertension, is a condition characterized by increased intracranial pressure without an apparent cause. Certain medications are known to be associated with this condition due to their effects on cerebrospinal fluid dynamics.\n\n### Analysis of Options:\n- **Sparfloxacin**: This is a fluoroquinolone antibiotic. There is no substantial evidence or known mechanism linking Sparfloxacin to alterations in cerebrospinal fluid dynamics or increased intracranial pressure that would lead to pseudotumor cerebri.\n  \n- **Tetracycline**: Tetracycline antibiotics are well-documented in medical literature to be associated with pseudotumor cerebri. The proposed mechanism involves the inhibition of cerebrospinal fluid absorption at the arachnoid granulations, leading to increased intracranial pressure.\n\n- **Gentamicin**: This is an aminoglycoside antibiotic primarily affecting renal function and auditory nerves. There is no significant evidence linking Gentamicin to changes in cerebrospinal fluid dynamics or pseudotumor cerebri.\n\n- **Clofazimine**: Used primarily for the treatment of leprosy and certain inflammatory dermatological conditions, Clofazimine has no reported cases or mechanisms linking it to pseudotumor cerebri.\n\n### Final Analysis:\nBased on the known effects of these drugs on cerebrospinal fluid dynamics and intracranial pressure, Tetracycline is the most likely to cause pseudotumor cerebri. This conclusion is supported by a well-established medical consensus and documented cases in pharmacological and medical literature. While the other drugs listed have their specific side effects and uses, none are commonly associated with pseudotumor cerebri as Tetracycline is.\n\n```json\n{\n  \"final_analysis\": \"Tetracycline is well-documented to be associated with pseudotumor cerebri, primarily through its effect on the inhibition of cerebrospinal fluid absorption, leading to increased intracranial pressure. This is a recognized side effect in medical literature, distinguishing it from the other options which lack such associations.\",\n  \"answer\": \"opb\",\n  \"confidence\": 85\n}\n```",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": true,
+    "has_enhanced_info": true,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

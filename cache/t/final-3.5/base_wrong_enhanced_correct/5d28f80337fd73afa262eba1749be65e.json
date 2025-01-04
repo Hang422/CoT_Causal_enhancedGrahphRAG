@@ -1,0 +1,112 @@
+{
+  "question": "Which of the following drugs is used to treat both diabetes mellitus and diabetes insipidus",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Chlorpropamide",
+    "opb": "Glibenclamide",
+    "opc": "Glicazide",
+    "opd": "Glipizide"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Chlorpropamide",
+        "Diabetes Mellitus"
+      ],
+      [
+        "Diabetes Mellitus",
+        "Diabetes Insipidus"
+      ],
+      [
+        "Glyburide",
+        "Diabetes Mellitus"
+      ],
+      [
+        "Diabetes Mellitus",
+        "Diabetes Insipidus"
+      ],
+      [
+        "Diabetes Mellitus",
+        "Diabetes Insipidus"
+      ],
+      [
+        "Glipizide",
+        "Diabetes Mellitus"
+      ],
+      [
+        "Diabetes Mellitus",
+        "Diabetes Insipidus"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "COMPLICATES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "COMPLICATES"
+      ],
+      [
+        "COMPLICATES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "COMPLICATES"
+      ]
+    ],
+    "paths": [
+      "(Chlorpropamide)-TREATS->(Diabetes Mellitus)",
+      "(Diabetes Mellitus)-COMPLICATES->(Diabetes Insipidus)",
+      "(Glyburide)-TREATS->(Diabetes Mellitus)",
+      "(Diabetes Mellitus)-COMPLICATES->(Diabetes Insipidus)",
+      "(Diabetes Mellitus)-COMPLICATES->(Diabetes Insipidus)",
+      "(Glipizide)-TREATS->(Diabetes Mellitus)",
+      "(Diabetes Mellitus)-COMPLICATES->(Diabetes Insipidus)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Chlorpropamide)-TREATS->(Diabetes Mellitus)",
+      "(Glyburide)-TREATS->(Diabetes Mellitus)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Chlorpropamide\" -> \"used to treat diabetes mellitus\" -> \"possible treatment for diabetes insipidus\" -> 70% CHAIN: \"Glibenclamide\" -> \"used to treat diabetes mellitus\" -> \"not typically used for diabetes insipidus\" -> 60% CHAIN: \"Glicazide\" -> \"used to treat diabetes mellitus\" -> \"not typically used for diabetes insipidus\" -> 60% CHAIN: \"Glipizide\" -> \"used to treat diabetes mellitus\" -> \"not typically used for diabetes insipidus\" -> 70%"
+  ],
+  "enhanced_information": "Chlorpropamide is used to treat both diabetes mellitus and diabetes insipidus. Evidence supports its use in treating diabetes mellitus, and there is a possible link to treating diabetes insipidus. Glibenclamide, glicazide, and glipizide are primarily used for diabetes mellitus and not typically for diabetes insipidus.",
+  "analysis": "Chlorpropamide is a drug that is used to treat both diabetes mellitus and diabetes insipidus. While the primary indication is for diabetes mellitus, there is some evidence supporting its use in diabetes insipidus as well. On the other hand, glibenclamide, glicazide, and glipizide are primarily used for diabetes mellitus and are not typically indicated for diabetes insipidus.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      7
+    ],
+    "coverage_rates": [
+      100.0
+    ],
+    "total_successes": 7
+  },
+  "normal_results": []
+}

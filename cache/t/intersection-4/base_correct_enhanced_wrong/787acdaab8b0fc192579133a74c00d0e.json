@@ -1,0 +1,143 @@
+{
+  "question": "Enzymes not used in glycogen metabolism",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Glycogen phosphorylase B",
+    "opb": "Glycogen synthase I",
+    "opc": "Glycogen synthase C",
+    "opd": "Glycogen synthase D"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Enzymes",
+        "Confusion"
+      ],
+      [
+        "Enzymes",
+        "Confusion"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Enzymes)-CAUSES->(Confusion)",
+      "(Enzymes)-CAUSES->(Confusion)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Glycogen (Starch) Synthase",
+        "Cells",
+        "Enzymes"
+      ],
+      [
+        "Glycogen (Starch) Synthase",
+        "Liver",
+        "Enzymes"
+      ],
+      [
+        "Glycogen (Starch) Synthase",
+        "Cells",
+        "Enzymes"
+      ],
+      [
+        "Glycogen (Starch) Synthase",
+        "Cells",
+        "Enzymes"
+      ],
+      [
+        "Glycogen (Starch) Synthase",
+        "Liver",
+        "Enzymes"
+      ],
+      [
+        "Glycogen (Starch) Synthase",
+        "Cells",
+        "Enzymes"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Glycogen (Starch) Synthase)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Enzymes)",
+      "(Glycogen (Starch) Synthase)-PART_OF->(Liver)-LOCATION_OF->(Enzymes)",
+      "(Glycogen (Starch) Synthase)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Enzymes)",
+      "(Glycogen (Starch) Synthase)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Enzymes)",
+      "(Glycogen (Starch) Synthase)-PART_OF->(Liver)-LOCATION_OF->(Enzymes)",
+      "(Glycogen (Starch) Synthase)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Enzymes)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Enzymes)-CAUSES->(Confusion)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Glycogen phosphorylase B\" -> \"breaks down glycogen into glucose-1-phosphate\" -> \"used in glycogen metabolism\" -> 95%",
+    "CHAIN: \"Glycogen synthase I\" -> \"catalyzes the conversion of glucose to glycogen\" -> \"used in glycogen synthesis\" -> 95%",
+    "CHAIN: \"Glycogen synthase C\" -> \"not a recognized enzyme in standard biochemistry\" -> \"possible confusion or mislabeling\" -> \"unclear role in glycogen metabolism\" -> 30%",
+    "CHAIN: \"Glycogen synthase D\" -> \"not a recognized enzyme in standard biochemistry\" -> \"possible confusion or mislabeling\" -> \"unclear role in glycogen metabolism\" -> 30%"
+  ],
+  "enhanced_information": "Glycogen phosphorylase B and Glycogen synthase I are both recognized enzymes involved in glycogen metabolism. Glycogen phosphorylase B facilitates the breakdown of glycogen into glucose-1-phosphate, while Glycogen synthase I catalyzes the conversion of glucose to glycogen. Both are essential in the metabolic pathways of glycogen. However, Glycogen synthase C and Glycogen synthase D are not recognized enzymes in standard biochemistry, indicating a possible mislabeling or confusion. There is no evidence supporting their role in glycogen metabolism, aligning with the broad evidence path suggesting that enzyme names can cause confusion. Therefore, the correct answer to the question regarding enzymes not used in glycogen metabolism would be Glycogen synthase C and Glycogen synthase D.",
+  "analysis": "In addressing the question of which enzymes are not used in glycogen metabolism, we start by identifying the roles of the enzymes listed. Glycogen phosphorylase B is well-documented in biochemistry for its role in breaking down glycogen into glucose-1-phosphate, a crucial step in glycogenolysis. Similarly, Glycogen synthase I is known for its role in the synthesis of glycogen from glucose, which is a key process in glycogenesis. Both these enzymes are integral to glycogen metabolism. On the other hand, Glycogen synthase C and Glycogen synthase D are not recognized in standard biochemical literature as enzymes involved in glycogen metabolism. There is no evidence or consensus in the scientific community supporting the existence or function of these enzymes in relation to glycogen. Therefore, based on the consensus and known biochemical roles, Glycogen synthase C and Glycogen synthase D are the correct answers as enzymes not used in glycogen metabolism.",
+  "answer": "opc, opd",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      2,
+      2
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      50.0,
+      50.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

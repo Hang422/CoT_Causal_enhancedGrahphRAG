@@ -1,0 +1,226 @@
+{
+  "question": "Thaliomide is used in all except ?",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "ENL",
+    "opb": "HIV neuropathy",
+    "opc": "HIV associated ulcer",
+    "opd": "Behcet's syndrome"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Thalidomide",
+        "Behcet Syndrome"
+      ],
+      [
+        "Thalidomide",
+        "HIV"
+      ],
+      [
+        "Behcet Syndrome",
+        "Symptoms",
+        "Neuropathy due to human immunodeficiency virus"
+      ],
+      [
+        "Neuropathy due to human immunodeficiency virus",
+        "Disease",
+        "HIV"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Thalidomide)-TREATS->(Behcet Syndrome)",
+      "(Thalidomide)-TREATS->(HIV)",
+      "(Behcet Syndrome)-CAUSES->(Symptoms)-MANIFESTATION_OF->(Neuropathy due to human immunodeficiency virus)",
+      "(Neuropathy due to human immunodeficiency virus)-PREDISPOSES->(Disease)-PROCESS_OF->(HIV)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Behcet Syndrome",
+        "Pathogenesis",
+        "Fibroblast Growth Factor",
+        "Thalidomide"
+      ],
+      [
+        "Behcet Syndrome",
+        "Pathogenesis",
+        "Fibroblast Growth Factor",
+        "Thalidomide"
+      ],
+      [
+        "Behcet Syndrome",
+        "Pathogenesis",
+        "VEGFA",
+        "Thalidomide"
+      ],
+      [
+        "Behcet Syndrome",
+        "Pathogenesis",
+        "VEGFA",
+        "Thalidomide"
+      ],
+      [
+        "Behcet Syndrome",
+        "Pathogenesis",
+        "MLLT1 gene|MLLT1",
+        "Thalidomide"
+      ],
+      [
+        "Behcet Syndrome",
+        "Pathogenesis",
+        "Fibroblast Growth Factor",
+        "Thalidomide"
+      ],
+      [
+        "Behcet Syndrome",
+        "Pathogenesis",
+        "Fibroblast Growth Factor",
+        "Thalidomide"
+      ],
+      [
+        "Behcet Syndrome",
+        "Pathogenesis",
+        "VEGFA",
+        "Thalidomide"
+      ],
+      [
+        "Behcet Syndrome",
+        "Pathogenesis",
+        "VEGFA",
+        "Thalidomide"
+      ],
+      [
+        "Behcet Syndrome",
+        "Pathogenesis",
+        "MLLT1 gene|MLLT1",
+        "Thalidomide"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Behcet Syndrome)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Fibroblast Growth Factor)-INTERACTS_WITH->(Thalidomide)",
+      "(Behcet Syndrome)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Fibroblast Growth Factor)-INTERACTS_WITH->(Thalidomide)",
+      "(Behcet Syndrome)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(VEGFA)-INTERACTS_WITH->(Thalidomide)",
+      "(Behcet Syndrome)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(VEGFA)-INTERACTS_WITH->(Thalidomide)",
+      "(Behcet Syndrome)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(MLLT1 gene|MLLT1)-INTERACTS_WITH->(Thalidomide)",
+      "(Behcet Syndrome)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Fibroblast Growth Factor)-INTERACTS_WITH->(Thalidomide)",
+      "(Behcet Syndrome)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Fibroblast Growth Factor)-INTERACTS_WITH->(Thalidomide)",
+      "(Behcet Syndrome)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(VEGFA)-INTERACTS_WITH->(Thalidomide)",
+      "(Behcet Syndrome)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(VEGFA)-INTERACTS_WITH->(Thalidomide)",
+      "(Behcet Syndrome)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(MLLT1 gene|MLLT1)-INTERACTS_WITH->(Thalidomide)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Behcet Syndrome)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(MLLT1 gene|MLLT1)-INTERACTS_WITH->(Thalidomide)",
+      "(Behcet Syndrome)-CAUSES->(Symptoms)-MANIFESTATION_OF->(Neuropathy due to human immunodeficiency virus)",
+      "(Behcet Syndrome)-MANIFESTATION_OF/PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Fibroblast Growth Factor)-INTERACTS_WITH->(Thalidomide)",
+      "(Neuropathy due to human immunodeficiency virus)-PREDISPOSES->(Disease)-PROCESS_OF->(HIV)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Thalidomide is used for ENL\" -> \"Thalidomide is effective in treating ENL\" -> \"Thalidomide is not indicated for HIV neuropathy\" -> 85%",
+    "CHAIN: \"Thalidomide is used for Behcet's syndrome\" -> \"Thalidomide can help manage symptoms of Behcet's syndrome\" -> \"Thalidomide is not used for HIV associated ulcer\" -> 80%",
+    "CHAIN: \"Thalidomide is effective for ENL\" -> \"Thalidomide is not effective for HIV neuropathy\" -> \"Thalidomide is not indicated for HIV associated ulcer\" -> 75%",
+    "CHAIN: \"Thalidomide is used for Behcet's syndrome\" -> \"Thalidomide is not used for HIV neuropathy\" -> \"Thalidomide is not indicated for HIV associated ulcer\" -> 70%"
+  ],
+  "enhanced_information": "Thalidomide is primarily used for treating erythema nodosum leprosum (ENL) and has shown efficacy in managing symptoms of Behcet's syndrome. However, it is not indicated for HIV neuropathy or HIV-associated ulcers. The reasoning chains correctly identify that thalidomide is effective for ENL and Behcet's syndrome, while it is not used for HIV-related conditions. The evidence paths regarding Behcet's syndrome and its association with thalidomide support its use in that context but do not provide relevant support for HIV neuropathy or ulcers. Therefore, the correct answer is that thalidomide is not used for HIV neuropathy or HIV-associated ulcers.",
+  "analysis": "Thalidomide is primarily indicated for conditions such as erythema nodosum leprosum (ENL) and has shown efficacy in treating symptoms of Behcet's syndrome. However, it is not indicated for HIV neuropathy or HIV-associated ulcers. The enhanced information confirms that thalidomide is effective for ENL and Behcet's syndrome, while it lacks indications for HIV-related conditions. Therefore, the correct answer is that thalidomide is not used for HIV neuropathy, which is option opb. This aligns with established medical knowledge and consensus regarding the therapeutic uses of thalidomide.",
+  "answer": "opb",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      4,
+      0,
+      2
+    ],
+    "coverage_rates": [
+      0.0,
+      66.66666666666666,
+      0.0,
+      33.33333333333333
+    ],
+    "total_successes": 6
+  },
+  "normal_results": []
+}

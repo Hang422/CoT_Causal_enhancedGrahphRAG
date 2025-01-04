@@ -1,0 +1,198 @@
+{
+  "question": "A patient on lithium therapy was found to be hypeensive also. Which of the following antihypeensive drugs is contraindicated in a patient on lithium therapy in order to prevent toxicity?",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Clonidine",
+    "opb": "Beta blockers",
+    "opc": "Calcium channel blockers",
+    "opd": "Diuretics"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Lithium",
+        "Hypertensive disease"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREVENTS"
+      ]
+    ],
+    "paths": [
+      "(Lithium)-PREVENTS->(Hypertensive disease)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Pharmaceutical Preparations",
+        "Angiotensin-Converting Enzyme Inhibitors",
+        "Lithium"
+      ],
+      [
+        "Pharmaceutical Preparations",
+        "Lymphocyte",
+        "Lithium"
+      ],
+      [
+        "Pharmaceutical Preparations",
+        "Cells",
+        "Lithium"
+      ],
+      [
+        "Lithium",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Lithium",
+        "Antimanic Agents",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Lithium",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Lithium",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Lithium",
+        "Antimanic Agents",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Lithium",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Hypertensive disease",
+        "Vasospasm",
+        "Diuretics"
+      ],
+      [
+        "Hypertensive disease",
+        "Vasospasm",
+        "Diuretics"
+      ],
+      [
+        "Hypertensive disease",
+        "Hypovolemia",
+        "Diuretics"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Pharmaceutical Preparations)-INTERACTS_WITH->(Angiotensin-Converting Enzyme Inhibitors)-INTERACTS_WITH->(Lithium)",
+      "(Pharmaceutical Preparations)-INTERACTS_WITH->(Lymphocyte)-LOCATION_OF->(Lithium)",
+      "(Pharmaceutical Preparations)-PART_OF->(Cells)-LOCATION_OF->(Lithium)",
+      "(Lithium)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Lithium)-INTERACTS_WITH->(Antimanic Agents)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Lithium)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Lithium)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Lithium)-INTERACTS_WITH->(Antimanic Agents)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Lithium)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Hypertensive disease)-CAUSES->(Vasospasm)-ASSOCIATED_WITH->(Diuretics)",
+      "(Hypertensive disease)-PREDISPOSES->(Vasospasm)-ASSOCIATED_WITH->(Diuretics)",
+      "(Hypertensive disease)-CAUSES->(Hypovolemia)-ASSOCIATED_WITH->(Diuretics)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Hypertensive disease)-CAUSES->(Hypovolemia)-ASSOCIATED_WITH->(Diuretics)",
+      "(Lithium)-INTERACTS_WITH/ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)-Antagonists)",
+      "(Pharmaceutical Preparations)-INTERACTS_WITH->(Angiotensin-Converting Enzyme Inhibitors)-INTERACTS_WITH->(Lithium)",
+      "(Pharmaceutical Preparations)-INTERACTS_WITH->(Lymphocyte)-LOCATION_OF->(Lithium)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Lithium therapy\" -> \"increased risk of toxicity\" -> \"certain antihypertensives can affect lithium levels\" -> \"Clonidine can increase lithium levels\" -> \"Clonidine contraindicated\" -> 85%",
+    "CHAIN: \"Patient on lithium\" -> \"develops hypertension\" -> \"requires antihypertensive medication\" -> \"some drugs interact with lithium\" -> \"Beta blockers do not significantly affect lithium\" -> \"Beta blockers safe\" -> 90%",
+    "CHAIN: \"Lithium therapy\" -> \"monitoring for toxicity is essential\" -> \"Calcium channel blockers generally safe\" -> \"Calcium channel blockers do not affect lithium levels\" -> \"Calcium channel blockers safe\" -> 90%",
+    "CHAIN: \"Patient on lithium\" -> \"hypertension management needed\" -> \"Diuretics can affect lithium clearance\" -> \"Diuretics may increase lithium levels\" -> \"Diuretics contraindicated\" -> 80%"
+  ],
+  "enhanced_information": "In patients on lithium therapy, certain antihypertensive medications can affect lithium levels and increase the risk of toxicity. Clonidine is known to potentially increase lithium levels, making it contraindicated in these patients. Beta blockers do not significantly affect lithium levels and are considered safe. Calcium channel blockers are also generally safe as they do not impact lithium levels. However, diuretics can affect lithium clearance and may lead to increased lithium levels, thus they are also contraindicated. Therefore, both Clonidine and diuretics should be avoided in patients on lithium therapy to prevent toxicity.",
+  "analysis": "In patients undergoing lithium therapy, it is crucial to monitor and manage potential drug interactions that could lead to increased lithium levels and toxicity. Among the options provided, clonidine is known to potentially increase lithium levels, making it contraindicated. Diuretics can also affect lithium clearance, leading to increased levels and toxicity, thus they are also contraindicated. Beta blockers and calcium channel blockers do not significantly impact lithium levels and are generally considered safe. Therefore, both clonidine and diuretics are contraindicated, but since the question asks for one specific antihypertensive drug that is contraindicated, the best answer is clonidine due to its direct effect on increasing lithium levels. This aligns with the consensus in pharmacology regarding the management of patients on lithium therapy.",
+  "answer": "opa",
+  "confidence": 85.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      3,
+      0,
+      2
+    ],
+    "coverage_rates": [
+      0.0,
+      60.0,
+      0.0,
+      40.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

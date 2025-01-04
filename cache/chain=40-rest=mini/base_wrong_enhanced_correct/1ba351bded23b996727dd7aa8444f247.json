@@ -1,0 +1,126 @@
+{
+  "question": "All will predispose to atherosclerosis, except",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Homocystinemia",
+    "opb": "Fibrinogen",
+    "opc": "Calcium",
+    "opd": "Lipoprotein A"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "calcium",
+        "Vascular calcification"
+      ],
+      [
+        "Vascular calcification",
+        "Arteriosclerosis"
+      ],
+      [
+        "Lipoprotein (a)",
+        "Adverse event",
+        "Myocardial Infarction",
+        "Cholesterol deposition"
+      ],
+      [
+        "Lipoprotein (a)",
+        "Coronary Arteriosclerosis",
+        "Myocardial Infarction",
+        "Cholesterol deposition"
+      ],
+      [
+        "Lipoprotein (a)",
+        "Coronary Arteriosclerosis",
+        "Obesity",
+        "Cholesterol deposition"
+      ],
+      [
+        "Cholesterol deposition",
+        "Arteriosclerosis"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES",
+        "PREDISPOSES"
+      ],
+      [
+        "PREDISPOSES"
+      ]
+    ],
+    "paths": [
+      "(calcium)-CAUSES->(Vascular calcification)",
+      "(Vascular calcification)-CAUSES->(Arteriosclerosis)",
+      "(Lipoprotein (a))-PREDISPOSES->(Adverse event)-CAUSES->(Myocardial Infarction)-CAUSES->(Cholesterol deposition)",
+      "(Lipoprotein (a))-PREDISPOSES->(Coronary Arteriosclerosis)-CAUSES->(Myocardial Infarction)-CAUSES->(Cholesterol deposition)",
+      "(Lipoprotein (a))-PREDISPOSES->(Coronary Arteriosclerosis)-CAUSES->(Obesity)-PREDISPOSES->(Cholesterol deposition)",
+      "(Cholesterol deposition)-PREDISPOSES->(Arteriosclerosis)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(calcium)-CAUSES->(Vascular calcification)",
+      "(Cholesterol deposition)-PREDISPOSES->(Arteriosclerosis)",
+      "(Lipoprotein (a))-PREDISPOSES->(Adverse event)-CAUSES->(Myocardial Infarction)-CAUSES->(Cholesterol deposition)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Homocystinemia\" -> \"increased endothelial damage\" -> \"increased atherosclerosis risk\" -> 95%",
+    "CHAIN: \"Fibrinogen\" -> \"increased blood clot formation\" -> \"increased atherosclerosis risk\" -> 90%",
+    "CHAIN: \"Calcium\" -> \"possible role in vascular calcification\" -> \"unclear direct link to atherosclerosis\" -> 60%",
+    "CHAIN: \"Lipoprotein A\" -> \"increased cholesterol deposition\" -> \"increased atherosclerosis risk\" -> 95%"
+  ],
+  "enhanced_information": "Homocystinemia is associated with increased endothelial damage and a higher risk of atherosclerosis, aligning with consensus (95% confidence). Fibrinogen contributes to increased blood clot formation, which is also linked to atherosclerosis (90% confidence). Lipoprotein A is known to predispose individuals to atherosclerosis through increased cholesterol deposition (95% confidence). However, while calcium is involved in vascular calcification, its direct link to atherosclerosis is less clear and is often considered less significant in the context of atherosclerosis risk (60% confidence). Therefore, calcium is the option that does not strongly predispose to atherosclerosis compared to the others.",
+  "analysis": "Atherosclerosis is a complex condition influenced by various biochemical factors. Homocystinemia is well-established as a risk factor due to its role in endothelial damage. Fibrinogen is also recognized for its contribution to thrombosis, which can exacerbate atherosclerosis. Lipoprotein A is known to increase cholesterol deposition in arterial walls, further promoting atherosclerosis. In contrast, while calcium is involved in vascular health and can contribute to calcification, its direct role in predisposing individuals to atherosclerosis is less clear and is often considered less significant compared to the other factors listed. Therefore, calcium is the most likely option that does not strongly predispose to atherosclerosis compared to the others.",
+  "answer": "opc",
+  "confidence": 80.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      2,
+      2
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      50.0,
+      50.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

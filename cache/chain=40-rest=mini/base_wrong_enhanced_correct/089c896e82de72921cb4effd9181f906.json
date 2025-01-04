@@ -1,0 +1,224 @@
+{
+  "question": "A 40-year-old male comes with complaint of indigestion and decreased appetite. He has a history of being treated for duodenal ulcer 4 years back. Investigation reveals elevation of gastrin levels. Which of the following statement is true regarding gastrin?",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Secreted by parietal cells of stomach",
+    "opb": "Secreted by alpha ceils of pancreas",
+    "opc": "Decreases bicarbonate content in pancreatic secretion",
+    "opd": "It gets stimulated by endoluminal peptides in stomach"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Gastrins",
+        "Obesity",
+        "paracrine",
+        "Pancreas"
+      ],
+      [
+        "Gastrins",
+        "Disease",
+        "immune resistance",
+        "Pancreas"
+      ],
+      [
+        "Gastrins",
+        "Disease",
+        "Respiration",
+        "Pancreas"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Gastrins)-TREATS->(Obesity)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Pancreas)",
+      "(Gastrins)-TREATS->(Disease)-MANIFESTATION_OF->(immune resistance)-PROCESS_OF->(Pancreas)",
+      "(Gastrins)-TREATS->(Disease)-MANIFESTATION_OF->(Respiration)-PROCESS_OF->(Pancreas)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Gastrins",
+        "Cells",
+        "Gastrin-Secreting Cells"
+      ],
+      [
+        "Gastrins",
+        "Melanoma Cell",
+        "Gastrin-Secreting Cells"
+      ],
+      [
+        "Gastrin-Secreting Cells",
+        "Stomach"
+      ],
+      [
+        "Stomach",
+        "Diastasis",
+        "Peptides"
+      ],
+      [
+        "Stomach",
+        "Pathogenesis",
+        "Peptides"
+      ],
+      [
+        "Gastrins",
+        "Cells",
+        "Parietal Cells, Gastric"
+      ],
+      [
+        "Parietal Cells, Gastric",
+        "Cells",
+        "Gastrin-Secreting Cells"
+      ],
+      [
+        "Parietal Cells, Gastric",
+        "Gastrin|GAST",
+        "Gastrin-Secreting Cells"
+      ],
+      [
+        "Pancreas",
+        "Cells",
+        "Gastrin-Secreting Cells"
+      ],
+      [
+        "Pancreas",
+        "Genes",
+        "Gastrin-Secreting Cells"
+      ],
+      [
+        "Gastrins",
+        "Cells",
+        "Bicarbonates"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "LOCATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PART_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Gastrins)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Gastrin-Secreting Cells)",
+      "(Gastrins)-INTERACTS_WITH->(Melanoma Cell)-INTERACTS_WITH->(Gastrin-Secreting Cells)",
+      "(Gastrin-Secreting Cells)-PART_OF->(Stomach)",
+      "(Stomach)-LOCATION_OF->(Diastasis)-ASSOCIATED_WITH->(Peptides)",
+      "(Stomach)-LOCATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Peptides)",
+      "(Gastrins)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Parietal Cells, Gastric)",
+      "(Parietal Cells, Gastric)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Gastrin-Secreting Cells)",
+      "(Parietal Cells, Gastric)-INTERACTS_WITH->(Gastrin|GAST)-INTERACTS_WITH->(Gastrin-Secreting Cells)",
+      "(Pancreas)-PART_OF->(Cells)-INTERACTS_WITH->(Gastrin-Secreting Cells)",
+      "(Pancreas)-LOCATION_OF->(Genes)-PART_OF->(Gastrin-Secreting Cells)",
+      "(Gastrins)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Bicarbonates)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Gastrins)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Parietal Cells, Gastric)",
+      "(Gastrins)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Bicarbonates)",
+      "(Gastrin-Secreting Cells)-PART_OF->(Stomach)",
+      "(Gastrins)-TREATS->(Obesity)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Pancreas)",
+      "(Gastrins)-TREATS->(Disease)-MANIFESTATION_OF->(immune resistance)-PROCESS_OF->(Pancreas)",
+      "(Gastrins)-TREATS->(Disease)-MANIFESTATION_OF->(Respiration)-PROCESS_OF->(Pancreas)",
+      "(Gastrins)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Gastrin-Secreting Cells)",
+      "(Gastrins)-INTERACTS_WITH->(Melanoma Cell)-INTERACTS_WITH->(Gastrin-Secreting Cells)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Gastrin\" -> \"secreted by G cells in stomach\" -> \"stimulated by peptides in stomach\" -> 90%",
+    "CHAIN: \"Gastrin\" -> \"stimulated by endoluminal peptides\" -> \"increased gastric acid secretion\" -> 85%",
+    "CHAIN: \"Gastrin\" -> \"elevated levels\" -> \"possible Zollinger-Ellison syndrome\" -> 80%",
+    "CHAIN: \"Gastrin\" -> \"not secreted by parietal cells\" -> \"secreted by G cells\" -> 95%",
+    "CHAIN: \"Gastrin\" -> \"not secreted by alpha cells of pancreas\" -> \"secreted by G cells in stomach\" -> 95%",
+    "CHAIN: \"Gastrin\" -> \"does not decrease bicarbonate content\" -> \"increases gastric acid secretion\" -> 90%"
+  ],
+  "enhanced_information": "Gastrin is a hormone secreted by G cells in the gastric mucosa, not by parietal cells or alpha cells of the pancreas. It is primarily stimulated by the presence of peptides in the stomach, which leads to increased gastric acid secretion. Elevated gastrin levels can indicate conditions such as Zollinger-Ellison syndrome. Importantly, gastrin does not decrease bicarbonate content in pancreatic secretions; rather, it promotes gastric acid secretion. Therefore, the correct statement regarding gastrin is that it is stimulated by endoluminal peptides in the stomach.",
+  "analysis": "Gastrin is a hormone produced by G cells in the gastric mucosa, not by parietal cells or alpha cells of the pancreas. It is primarily stimulated by the presence of peptides in the stomach, which aligns with the statement that gastrin gets stimulated by endoluminal peptides in the stomach. The other options are incorrect: parietal cells secrete hydrochloric acid, not gastrin; alpha cells of the pancreas secrete glucagon, not gastrin; and gastrin does not decrease bicarbonate content in pancreatic secretions but rather promotes gastric acid secretion. Therefore, the most accurate statement regarding gastrin is that it is stimulated by endoluminal peptides in the stomach.",
+  "answer": "opd",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      3,
+      0,
+      0,
+      2,
+      2,
+      1
+    ],
+    "coverage_rates": [
+      37.5,
+      0.0,
+      0.0,
+      25.0,
+      25.0,
+      12.5
+    ],
+    "total_successes": 8
+  },
+  "normal_results": []
+}

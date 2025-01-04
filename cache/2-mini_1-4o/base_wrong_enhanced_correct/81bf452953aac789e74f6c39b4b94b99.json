@@ -1,0 +1,359 @@
+{
+  "question": "A 40 year old male patient complains of diminished vision during night and dryness of eyes. Patient gives history of recurrent bacterial infections. Ophthalmic examination reveals white triangular plaques on conjunctiva. This patient is suffering from deficiency of:",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Vitamin D",
+    "opb": "Vitamin B",
+    "opc": "Vitamin A",
+    "opd": "Vitamin C"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Low Vision",
+        "Blind Vision",
+        "Night Blindness"
+      ],
+      [
+        "Low Vision",
+        "Disease",
+        "Night Blindness"
+      ],
+      [
+        "Low Vision",
+        "Choroidal Neovascularization",
+        "Night Blindness"
+      ],
+      [
+        "Night Blindness",
+        "Blind Vision",
+        "Vitamin A Deficiency"
+      ],
+      [
+        "Night Blindness",
+        "Deficiency, Vitamin",
+        "Vitamin A Deficiency"
+      ],
+      [
+        "Night Blindness",
+        "Anemia",
+        "Vitamin A Deficiency"
+      ],
+      [
+        "Vitamin A Deficiency",
+        "Disease",
+        "paracrine",
+        "Eye"
+      ],
+      [
+        "Vitamin A Deficiency",
+        "Disease",
+        "Hearing",
+        "Eye"
+      ],
+      [
+        "Vitamin A Deficiency",
+        "Disease",
+        "Neutrophil Infiltration",
+        "Eye"
+      ],
+      [
+        "Xerophthalmia",
+        "Infection",
+        "Biological Transport, Active",
+        "conjunctiva"
+      ],
+      [
+        "Xerophthalmia",
+        "Infection",
+        "Blood Circulation",
+        "conjunctiva"
+      ],
+      [
+        "Xerophthalmia",
+        "Infection",
+        "Immunity",
+        "conjunctiva"
+      ],
+      [
+        "Bacterial Infections",
+        "Disease",
+        "Immune System Diseases"
+      ],
+      [
+        "Xerophthalmia",
+        "Vitamin A Deficiency"
+      ],
+      [
+        "Vitamin A Deficiency",
+        "Disease",
+        "drug clearance",
+        "conjunctiva"
+      ],
+      [
+        "Vitamin A Deficiency",
+        "Disease",
+        "Immunity",
+        "conjunctiva"
+      ],
+      [
+        "Vitamin A Deficiency",
+        "Disease",
+        "physiological aspects",
+        "conjunctiva"
+      ],
+      [
+        "Eye health",
+        "Blind Vision",
+        "Vitamin A Deficiency"
+      ],
+      [
+        "Eye health",
+        "Diabetes",
+        "Vitamin A Deficiency"
+      ],
+      [
+        "Vitamin A",
+        "Vitamin A Deficiency"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "PREDISPOSES"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Low Vision)-CAUSES->(Blind Vision)-CAUSES->(Night Blindness)",
+      "(Low Vision)-PREDISPOSES->(Disease)-CAUSES->(Night Blindness)",
+      "(Low Vision)-PREDISPOSES->(Choroidal Neovascularization)-CAUSES->(Night Blindness)",
+      "(Night Blindness)-CAUSES->(Blind Vision)-CAUSES->(Vitamin A Deficiency)",
+      "(Night Blindness)-PREDISPOSES->(Deficiency, Vitamin)-CAUSES->(Vitamin A Deficiency)",
+      "(Night Blindness)-CAUSES->(Anemia)-PREDISPOSES->(Vitamin A Deficiency)",
+      "(Vitamin A Deficiency)-CAUSES->(Disease)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Eye)",
+      "(Vitamin A Deficiency)-CAUSES->(Disease)-MANIFESTATION_OF->(Hearing)-PROCESS_OF->(Eye)",
+      "(Vitamin A Deficiency)-CAUSES->(Disease)-MANIFESTATION_OF->(Neutrophil Infiltration)-PROCESS_OF->(Eye)",
+      "(Xerophthalmia)-CAUSES->(Infection)-MANIFESTATION_OF->(Biological Transport, Active)-PROCESS_OF->(conjunctiva)",
+      "(Xerophthalmia)-CAUSES->(Infection)-MANIFESTATION_OF->(Blood Circulation)-PROCESS_OF->(conjunctiva)",
+      "(Xerophthalmia)-CAUSES->(Infection)-MANIFESTATION_OF->(Immunity)-PROCESS_OF->(conjunctiva)",
+      "(Bacterial Infections)-CAUSES->(Disease)-CAUSES->(Immune System Diseases)",
+      "(Xerophthalmia)-CAUSES->(Vitamin A Deficiency)",
+      "(Vitamin A Deficiency)-CAUSES->(Disease)-MANIFESTATION_OF->(drug clearance)-PROCESS_OF->(conjunctiva)",
+      "(Vitamin A Deficiency)-CAUSES->(Disease)-MANIFESTATION_OF->(Immunity)-PROCESS_OF->(conjunctiva)",
+      "(Vitamin A Deficiency)-CAUSES->(Disease)-MANIFESTATION_OF->(physiological aspects)-PROCESS_OF->(conjunctiva)",
+      "(Eye health)-CAUSES->(Blind Vision)-CAUSES->(Vitamin A Deficiency)",
+      "(Eye health)-PREDISPOSES->(Diabetes)-CAUSES->(Vitamin A Deficiency)",
+      "(Vitamin A)-TREATS->(Vitamin A Deficiency)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Eye",
+        "conjunctiva"
+      ],
+      [
+        "conjunctiva",
+        "Vitamin A Deficiency"
+      ],
+      [
+        "Immune System Diseases",
+        "Virus",
+        "CD4 gene|CD4",
+        "Vitamin A"
+      ],
+      [
+        "Immune System Diseases",
+        "Disease",
+        "Liver Dysfunction",
+        "Vitamin A"
+      ],
+      [
+        "Eye",
+        "Xerophthalmia"
+      ],
+      [
+        "conjunctiva",
+        "Vitamin A Deficiency"
+      ],
+      [
+        "Eye",
+        "Vitamin A"
+      ]
+    ],
+    "relationships": [
+      [
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "COMPLICATES",
+        "PREDISPOSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "LOCATION_OF"
+      ],
+      [
+        "LOCATION_OF"
+      ],
+      [
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Eye)-PART_OF->(conjunctiva)",
+      "(conjunctiva)-LOCATION_OF->(Vitamin A Deficiency)",
+      "(Immune System Diseases)-INTERACTS_WITH->(Virus)-LOCATION_OF->(CD4 gene|CD4)-INTERACTS_WITH->(Vitamin A)",
+      "(Immune System Diseases)-COMPLICATES->(Disease)-PREDISPOSES->(Liver Dysfunction)-ASSOCIATED_WITH->(Vitamin A)",
+      "(Eye)-LOCATION_OF->(Xerophthalmia)",
+      "(conjunctiva)-LOCATION_OF->(Vitamin A Deficiency)",
+      "(Eye)-LOCATION_OF->(Vitamin A)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Night Blindness)-CAUSES->(Blind Vision)-CAUSES->(Vitamin A Deficiency)",
+      "(conjunctiva)-LOCATION_OF->(Vitamin A Deficiency)",
+      "(Night Blindness)-PREDISPOSES->(Deficiency, Vitamin)-CAUSES->(Vitamin A Deficiency)",
+      "(Night Blindness)-CAUSES->(Anemia)-PREDISPOSES->(Vitamin A Deficiency)",
+      "(Eye health)-CAUSES->(Blind Vision)-CAUSES->(Vitamin A Deficiency)",
+      "(Vitamin A Deficiency)-CAUSES->(Disease)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Eye)",
+      "(Vitamin A Deficiency)-CAUSES->(Disease)-MANIFESTATION_OF->(Hearing)-PROCESS_OF->(Eye)",
+      "(Vitamin A Deficiency)-CAUSES->(Disease)-MANIFESTATION_OF->(Neutrophil Infiltration)-PROCESS_OF->(Eye)",
+      "(Vitamin A Deficiency)-CAUSES->(Disease)-MANIFESTATION_OF->(drug clearance)-PROCESS_OF->(conjunctiva)",
+      "(Vitamin A Deficiency)-CAUSES->(Disease)-MANIFESTATION_OF->(Immunity)-PROCESS_OF->(conjunctiva)",
+      "(Vitamin A Deficiency)-CAUSES->(Disease)-MANIFESTATION_OF->(physiological aspects)-PROCESS_OF->(conjunctiva)",
+      "(Xerophthalmia)-CAUSES->(Vitamin A Deficiency)",
+      "(Eye health)-PREDISPOSES->(Diabetes)-CAUSES->(Vitamin A Deficiency)",
+      "(Vitamin A)-TREATS->(Vitamin A Deficiency)",
+      "(Eye)-LOCATION_OF->(Vitamin A)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Diminished vision during night\" -> \"possible night blindness\" -> \"associated with Vitamin A deficiency\" -> \"dryness of eyes indicates possible xerophthalmia\" -> \"white triangular plaques on conjunctiva suggest Bitot's spots\" -> \"consistent with Vitamin A deficiency\" -> 95%",
+    "CHAIN: \"Recurrent bacterial infections\" -> \"possible immune dysfunction\" -> \"Vitamin A is important for immune function\" -> \"deficiency may lead to increased infections\" -> \"supports diagnosis of Vitamin A deficiency\" -> 90%",
+    "CHAIN: \"Dryness of eyes\" -> \"xerophthalmia\" -> \"often caused by Vitamin A deficiency\" -> \"white triangular plaques on conjunctiva\" -> \"Bitot's spots indicate Vitamin A deficiency\" -> 92%",
+    "CHAIN: \"40 year old male patient\" -> \"complains of diminished vision\" -> \"suggests possible deficiency\" -> \"dryness of eyes and recurrent infections\" -> \"Vitamin A is crucial for eye health\" -> \"strongly indicates Vitamin A deficiency\" -> 93%"
+  ],
+  "enhanced_information": "The patient's symptoms of diminished vision during night (night blindness), dryness of eyes, and recurrent bacterial infections strongly indicate a deficiency in Vitamin A. Night blindness is a classic symptom of Vitamin A deficiency, which is essential for maintaining proper vision, particularly in low-light conditions. The dryness of the eyes suggests xerophthalmia, a condition often caused by Vitamin A deficiency. The presence of white triangular plaques on the conjunctiva, known as Bitot's spots, further supports this diagnosis. Additionally, Vitamin A plays a crucial role in immune function, and its deficiency can lead to increased susceptibility to infections. Therefore, the evidence aligns with a diagnosis of Vitamin A deficiency as the underlying cause of the patient's symptoms.",
+  "analysis": "The patient's symptoms of night blindness, dryness of eyes, and recurrent bacterial infections are indicative of a Vitamin A deficiency. Night blindness is a well-known symptom of Vitamin A deficiency, as this vitamin is crucial for the synthesis of rhodopsin, a pigment in the retina that is essential for vision in low-light conditions. The dryness of the eyes and the presence of white triangular plaques on the conjunctiva, known as Bitot's spots, are classic signs of xerophthalmia, which is directly linked to Vitamin A deficiency. Additionally, Vitamin A is important for maintaining the integrity of mucosal surfaces and immune function, explaining the recurrent bacterial infections. Therefore, the most likely correct option is Vitamin A deficiency.",
+  "answer": "opc",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      6,
+      2,
+      4,
+      3
+    ],
+    "coverage_rates": [
+      40.0,
+      13.333333333333334,
+      26.666666666666668,
+      20.0
+    ],
+    "total_successes": 15
+  },
+  "normal_results": []
+}

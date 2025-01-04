@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_004115",
+  "model": "gpt-4o",
+  "interaction_type": "reasoning_chain",
+  "question_id": "3036f2d1",
+  "question_text": "L-Dopa is combined with carbidopa in the treatment of parkinsonism to -",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            L-Dopa is combined with carbidopa in the treatment of parkinsonism to -\n\n            ### Options\n    opa. Decrease the efficacy of levodopa\nopb. Decrease the efficacy of levodopa\nopc. Increase the dose of levodopa required\nopd. Inhibit conversion of levodopa to dopamine in the CNS\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"L-Dopa\" -> \"converted to dopamine in periphery\" -> \"reduced availability in CNS\" -> \"carbidopa inhibits peripheral conversion\" -> \"increased L-Dopa in CNS\" -> 95%\n\nCHAIN: \"L-Dopa\" -> \"converted to dopamine in periphery\" -> \"side effects due to peripheral dopamine\" -> \"carbidopa inhibits peripheral conversion\" -> \"reduced side effects\" -> 90%\n\nCHAIN: \"L-Dopa\" -> \"requires conversion to dopamine in CNS\" -> \"carbidopa does not cross blood-brain barrier\" -> \"no inhibition of CNS conversion\" -> 85%\n\nCHAIN: \"L-Dopa\" -> \"increased dopamine in CNS\" -> \"improved motor symptoms in Parkinson's\" -> \"carbidopa enhances CNS availability\" -> 90%",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o",
+    "temperature": 0.0
+  }
+}

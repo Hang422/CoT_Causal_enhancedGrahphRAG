@@ -1,0 +1,190 @@
+{
+  "question": "Pilocarpine reduce the intraocular pressure in persons with closed angle glaucoma by:",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Reducing aqueous humor secretion",
+    "opb": "Contracting iris sphincter muscle",
+    "opc": "Increasing aqueous humor outflow",
+    "opd": "Relaxing ciliary muscle"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Pilocarpine",
+        "Disease",
+        "Ocular-Ophthalmoplegia, Sympathetic",
+        "Miosis disorder"
+      ],
+      [
+        "Pilocarpine",
+        "comatose",
+        "Ocular-Ophthalmoplegia, Sympathetic",
+        "Miosis disorder"
+      ],
+      [
+        "Pilocarpine",
+        "Syndrome",
+        "Ocular-Ophthalmoplegia, Sympathetic",
+        "Miosis disorder"
+      ],
+      [
+        "Pilocarpine",
+        "Symptoms",
+        "Illusions",
+        "Miosis disorder"
+      ],
+      [
+        "Miosis disorder",
+        "Complication",
+        "Pupillary block"
+      ],
+      [
+        "Pilocarpine",
+        "Epilepsy",
+        "Contraction"
+      ],
+      [
+        "Pilocarpine",
+        "Hypertensive disease",
+        "Contraction"
+      ],
+      [
+        "Pilocarpine",
+        "Presbyopia",
+        "Contraction"
+      ],
+      [
+        "Pilocarpine",
+        "Tuberculosis",
+        "Contraction"
+      ],
+      [
+        "Pilocarpine",
+        "cardiac arrhythmia",
+        "Contraction"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Pilocarpine)-TREATS->(Disease)-CAUSES->(Ocular-Ophthalmoplegia, Sympathetic)-CAUSES->(Miosis disorder)",
+      "(Pilocarpine)-TREATS->(comatose)-CAUSES->(Ocular-Ophthalmoplegia, Sympathetic)-CAUSES->(Miosis disorder)",
+      "(Pilocarpine)-TREATS->(Syndrome)-CAUSES->(Ocular-Ophthalmoplegia, Sympathetic)-CAUSES->(Miosis disorder)",
+      "(Pilocarpine)-TREATS->(Symptoms)-PREDISPOSES->(Illusions)-CAUSES->(Miosis disorder)",
+      "(Miosis disorder)-CAUSES->(Complication)-CAUSES->(Pupillary block)",
+      "(Pilocarpine)-CAUSES->(Epilepsy)-PREDISPOSES->(Contraction)",
+      "(Pilocarpine)-TREATS->(Hypertensive disease)-CAUSES->(Contraction)",
+      "(Pilocarpine)-TREATS->(Presbyopia)-CAUSES->(Contraction)",
+      "(Pilocarpine)-TREATS->(Tuberculosis)-CAUSES->(Contraction)",
+      "(Pilocarpine)-TREATS->(cardiac arrhythmia)-CAUSES->(Contraction)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Pilocarpine",
+        "Functional disorder",
+        "Muscarinic Acetylcholine Receptor"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Pilocarpine)-TREATS->(Functional disorder)-ASSOCIATED_WITH->(Muscarinic Acetylcholine Receptor)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Pilocarpine)-TREATS->(Symptoms)-PREDISPOSES->(Illusions)-CAUSES->(Miosis disorder)",
+      "(Pilocarpine)-CAUSES->(Epilepsy)-PREDISPOSES->(Contraction)",
+      "(Pilocarpine)-TREATS->(Hypertensive disease)-CAUSES->(Contraction)",
+      "(Pilocarpine)-TREATS->(Presbyopia)-CAUSES->(Contraction)",
+      "(Pilocarpine)-TREATS->(Tuberculosis)-CAUSES->(Contraction)",
+      "(Pilocarpine)-TREATS->(cardiac arrhythmia)-CAUSES->(Contraction)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Pilocarpine\" -> \"stimulates muscarinic receptors\" -> \"contracts iris sphincter muscle\" -> \"opens the angle of the anterior chamber\" -> \"increases aqueous humor outflow\" -> 85%",
+    "CHAIN: \"Pilocarpine\" -> \"increases ciliary muscle contraction\" -> \"facilitates aqueous humor drainage\" -> \"reduces intraocular pressure\" -> 80%",
+    "CHAIN: \"Pilocarpine\" -> \"induces miosis\" -> \"reduces pupillary block\" -> \"enhances aqueous humor outflow\" -> \"lowers intraocular pressure\" -> 90%",
+    "CHAIN: \"Pilocarpine\" -> \"causes contraction of the ciliary muscle\" -> \"increases the size of the trabecular meshwork\" -> \"improves aqueous humor drainage\" -> \"decreases intraocular pressure\" -> 75%"
+  ],
+  "enhanced_information": "Pilocarpine reduces intraocular pressure in closed angle glaucoma primarily by stimulating muscarinic receptors, which leads to contraction of the iris sphincter muscle and ciliary muscle. This contraction induces miosis, which opens the angle of the anterior chamber, thereby enhancing aqueous humor outflow. The consensus supports that the primary mechanism involves increasing aqueous humor drainage rather than reducing its secretion. The reasoning chains indicating increased outflow and ciliary muscle contraction are aligned with this understanding, while the option suggesting reduced secretion is incorrect. Evidence paths related to contraction are relevant but do not directly clarify the mechanism of action in glaucoma treatment.",
+  "analysis": "Pilocarpine is a muscarinic agonist that primarily acts to reduce intraocular pressure in closed angle glaucoma by increasing the outflow of aqueous humor. The contraction of the iris sphincter muscle leads to miosis, which helps to open the angle of the anterior chamber, facilitating better drainage of aqueous humor. While it also contracts the ciliary muscle, which can aid in increasing outflow, the most direct and significant effect in the context of closed angle glaucoma is the enhancement of aqueous humor outflow. Therefore, the best-supported option is 'opc. Increasing aqueous humor outflow.' The other options either misrepresent the mechanism or are less relevant to the primary action of pilocarpine in this specific condition.",
+  "answer": "opc",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      0,
+      2,
+      1
+    ],
+    "coverage_rates": [
+      25.0,
+      0.0,
+      50.0,
+      25.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

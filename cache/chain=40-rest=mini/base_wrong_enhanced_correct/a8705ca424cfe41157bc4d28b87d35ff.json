@@ -1,0 +1,221 @@
+{
+  "question": "Actions of cholecystokinin include which one of the following?",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Contraction of gall bladder",
+    "opb": "Secretion of pancreatic juice rich in enzymes",
+    "opc": "Increases the secretion of enterokinase",
+    "opd": "All"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Cholecystokinin",
+        "fluid secretion",
+        "Gallbladder"
+      ],
+      [
+        "Cholecystokinin",
+        "uptake",
+        "Gallbladder"
+      ],
+      [
+        "Cholecystokinin",
+        "fluid secretion",
+        "Pancreas"
+      ],
+      [
+        "Cholecystokinin",
+        "Vasodilation",
+        "Pancreas"
+      ],
+      [
+        "Cholecystokinin",
+        "uptake",
+        "Pancreas"
+      ],
+      [
+        "Cholecystokinin",
+        "fluid secretion",
+        "Gallbladder"
+      ],
+      [
+        "Cholecystokinin",
+        "uptake",
+        "Gallbladder"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Cholecystokinin)-CAUSES->(fluid secretion)-PROCESS_OF->(Gallbladder)",
+      "(Cholecystokinin)-CAUSES->(uptake)-PROCESS_OF->(Gallbladder)",
+      "(Cholecystokinin)-CAUSES->(fluid secretion)-PROCESS_OF->(Pancreas)",
+      "(Cholecystokinin)-CAUSES->(Vasodilation)-PROCESS_OF->(Pancreas)",
+      "(Cholecystokinin)-CAUSES->(uptake)-PROCESS_OF->(Pancreas)",
+      "(Cholecystokinin)-CAUSES->(fluid secretion)-PROCESS_OF->(Gallbladder)",
+      "(Cholecystokinin)-CAUSES->(uptake)-PROCESS_OF->(Gallbladder)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Gallbladder",
+        "Contraction"
+      ],
+      [
+        "Cholecystokinin",
+        "Cells",
+        "ENTEROPEPTIDASE"
+      ],
+      [
+        "Gallbladder",
+        "Pathogenesis",
+        "Enzymes"
+      ],
+      [
+        "Gallbladder",
+        "Lipopolysaccharides",
+        "Enzymes"
+      ],
+      [
+        "Contraction",
+        "Genes",
+        "Enzymes"
+      ],
+      [
+        "Contraction",
+        "APEX1 protein, human|APEX1",
+        "Enzymes"
+      ],
+      [
+        "Enzymes",
+        "Cells",
+        "ENTEROPEPTIDASE"
+      ],
+      [
+        "Enzymes",
+        "Cells",
+        "ENTEROPEPTIDASE"
+      ]
+    ],
+    "relationships": [
+      [
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "LOCATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PART_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Gallbladder)-LOCATION_OF->(Contraction)",
+      "(Cholecystokinin)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(ENTEROPEPTIDASE)",
+      "(Gallbladder)-LOCATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Enzymes)",
+      "(Gallbladder)-LOCATION_OF->(Lipopolysaccharides)-INTERACTS_WITH->(Enzymes)",
+      "(Contraction)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Enzymes)",
+      "(Contraction)-ASSOCIATED_WITH->(APEX1 protein, human|APEX1)-INTERACTS_WITH->(Enzymes)",
+      "(Enzymes)-PART_OF->(Cells)-INTERACTS_WITH->(ENTEROPEPTIDASE)",
+      "(Enzymes)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(ENTEROPEPTIDASE)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Cholecystokinin)-CAUSES->(fluid secretion)-PROCESS_OF->(Gallbladder)",
+      "(Cholecystokinin)-CAUSES->(uptake)-PROCESS_OF->(Gallbladder)",
+      "(Cholecystokinin)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(ENTEROPEPTIDASE)",
+      "(Gallbladder)-LOCATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Enzymes)",
+      "(Gallbladder)-LOCATION_OF->(Lipopolysaccharides)-INTERACTS_WITH->(Enzymes)",
+      "(Contraction)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Enzymes)",
+      "(Contraction)-ASSOCIATED_WITH->(APEX1 protein, human|APEX1)-INTERACTS_WITH->(Enzymes)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Cholecystokinin\" -> \"stimulates gall bladder\" -> \"contraction of gall bladder\" -> 95%",
+    "CHAIN: \"Cholecystokinin\" -> \"stimulates pancreas\" -> \"secretion of pancreatic juice\" -> \"rich in enzymes\" -> 90%",
+    "CHAIN: \"Cholecystokinin\" -> \"possible effect on enterokinase\" -> \"unclear increase in secretion\" -> 50%",
+    "CHAIN: \"Cholecystokinin\" -> \"contraction of gall bladder\" -> \"secretion of pancreatic juice rich in enzymes\" -> \"no clear effect on enterokinase\" -> 85%"
+  ],
+  "enhanced_information": "Cholecystokinin (CCK) is a hormone that plays a crucial role in digestion. It is well-established that CCK stimulates the contraction of the gallbladder, facilitating the release of bile into the intestine (CHAIN: 'Cholecystokinin' -> 'stimulates gall bladder' -> 'contraction of gall bladder'). Additionally, CCK promotes the secretion of pancreatic juice that is rich in digestive enzymes, aiding in the digestion of fats and proteins (CHAIN: 'Cholecystokinin' -> 'stimulates pancreas' -> 'secretion of pancreatic juice' -> 'rich in enzymes'). However, the effect of CCK on enterokinase (also known as enteropeptidase) is less clear; while CCK interacts with cells that produce enterokinase, there is no strong consensus that it significantly increases its secretion (CHAIN: 'Cholecystokinin' -> 'possible effect on enterokinase' -> 'unclear increase in secretion'). Therefore, while options a and b are correct, option c lacks strong support. Thus, the best answer is option d, 'All', as it encompasses the confirmed actions of CCK, despite the uncertainty regarding enterokinase.",
+  "analysis": "Cholecystokinin (CCK) is a well-known hormone involved in the digestive process. It is primarily recognized for two key actions: stimulating the contraction of the gallbladder (which aids in the release of bile) and promoting the secretion of pancreatic juice that is rich in digestive enzymes. These two actions are well-supported by medical literature. However, the role of CCK in increasing the secretion of enterokinase is less clear. While CCK may interact with the cells that produce enterokinase, there is insufficient evidence to definitively state that it significantly increases its secretion. Therefore, while options a and b are correct, option c is not strongly supported. Given that options a and b are confirmed actions of CCK, the best-supported answer is option d, 'All', as it includes the confirmed actions despite the uncertainty regarding enterokinase. Thus, the final answer is option d, with a high confidence level due to the strong support for the first two actions.",
+  "answer": "opd",
+  "confidence": 85.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      1,
+      1,
+      4
+    ],
+    "coverage_rates": [
+      25.0,
+      12.5,
+      12.5,
+      50.0
+    ],
+    "total_successes": 8
+  },
+  "normal_results": []
+}

@@ -1,0 +1,88 @@
+{
+  "question": "Starvation and diabetes mellitus can lead on to ketoacidosis which of the following features is in our of ketoacidosis due to diabetes mellitus.",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Increase in glucagon/insulin ratio, increased CAMP and increased blood glucose",
+    "opb": "Decreased insulin, increased free fatty acid which is equivalent to blood glucose",
+    "opc": "Decreased insulin, increased free fatty acid which is not equivalent to blood glucose",
+    "opd": "Elevated insulin and free fatty acid, equivalent to blood glucose"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Fatty Acids, Nonesterified",
+        "Blood Glucose"
+      ],
+      [
+        "Fatty Acids, Nonesterified",
+        "Blood Glucose"
+      ],
+      [
+        "Fatty Acids, Nonesterified",
+        "Blood Glucose"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Fatty Acids, Nonesterified)-INTERACTS_WITH->(Blood Glucose)",
+      "(Fatty Acids, Nonesterified)-INTERACTS_WITH->(Blood Glucose)",
+      "(Fatty Acids, Nonesterified)-INTERACTS_WITH->(Blood Glucose)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Fatty Acids, Nonesterified)-INTERACTS_WITH->(Blood Glucose)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Decreased insulin\" -> \"Increased glucagon/insulin ratio\" -> \"Increased cAMP\" -> \"Increased blood glucose\" -> 90%",
+    "CHAIN: \"Decreased insulin\" -> \"Increased free fatty acid\" -> \"Not equivalent to blood glucose\" -> 80%",
+    "CHAIN: \"Decreased insulin\" -> \"Increased free fatty acid\" -> \"Equivalent to blood glucose\" -> 60%",
+    "CHAIN: \"Elevated insulin\" -> \"Increased free fatty acid\" -> \"Equivalent to blood glucose\" -> 50%"
+  ],
+  "enhanced_information": "In ketoacidosis due to diabetes mellitus, the key feature is a decreased insulin level, leading to an increased glucagon/insulin ratio. This results in increased cAMP levels and elevated blood glucose, as the body shifts to using free fatty acids for energy due to lack of insulin. This aligns with option 'opa', which correctly describes the biochemical changes: increased glucagon/insulin ratio, increased cAMP, and increased blood glucose. The evidence path indicating interaction between nonesterified fatty acids and blood glucose supports the metabolic shift towards fatty acid utilization, but it is not directly equivalent to blood glucose levels. Therefore, option 'opc' is partially correct in noting that increased free fatty acids are not equivalent to blood glucose. Options 'opb' and 'opd' are incorrect as they either misrepresent the relationship between free fatty acids and blood glucose or incorrectly state insulin levels. The consensus supports 'opa' as the most accurate description of ketoacidosis in diabetes mellitus.",
+  "analysis": "In diabetic ketoacidosis, the primary biochemical changes include a decreased insulin level, leading to an increased glucagon/insulin ratio. This hormonal imbalance results in increased cAMP levels and elevated blood glucose, as the body shifts to using free fatty acids for energy due to the lack of insulin. This aligns with option 'opa', which correctly describes these changes: increased glucagon/insulin ratio, increased cAMP, and increased blood glucose. Option 'opc' is partially correct in noting that increased free fatty acids are not equivalent to blood glucose, but it does not fully capture the key features of diabetic ketoacidosis. Options 'opb' and 'opd' are incorrect as they either misrepresent the relationship between free fatty acids and blood glucose or incorrectly state insulin levels. Therefore, based on standard medical knowledge and consensus, 'opa' is the most accurate description of ketoacidosis in diabetes mellitus.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333
+    ],
+    "total_successes": 3
+  },
+  "normal_results": []
+}

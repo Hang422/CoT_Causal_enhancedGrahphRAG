@@ -1,0 +1,169 @@
+{
+  "question": "Hypermagnesemia may be observed in:",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Hyperparathyroidism",
+    "opb": "Diabetes mellitus",
+    "opc": "Kwashiorkor",
+    "opd": "Primary aldosteronism"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Diabetes Mellitus",
+        "Renal Insufficiency"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Diabetes Mellitus)-CAUSES->(Renal Insufficiency)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Renal Reabsorption",
+        "calcium ion",
+        "Symptoms",
+        "hypermagnesemia"
+      ],
+      [
+        "Renal Reabsorption",
+        "calcium ion",
+        "Symptoms",
+        "hypermagnesemia"
+      ],
+      [
+        "Renal Reabsorption",
+        "Kidney",
+        "Symptoms",
+        "hypermagnesemia"
+      ],
+      [
+        "Kwashiorkor",
+        "Disease",
+        "Hopping",
+        "Electrolytes"
+      ],
+      [
+        "Kwashiorkor",
+        "Disease",
+        "Hopping",
+        "Electrolytes"
+      ],
+      [
+        "Kwashiorkor",
+        "Disease",
+        "Hopping",
+        "Electrolytes"
+      ],
+      [
+        "Conn Syndrome",
+        "Pathogenesis",
+        "Aldosterone"
+      ],
+      [
+        "Conn Syndrome",
+        "Hypertrophy, Left Ventricular",
+        "Aldosterone"
+      ]
+    ],
+    "relationships": [
+      [
+        "ASSOCIATED_WITH",
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "PREVENTS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PROCESS_OF",
+        "LOCATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "ISA",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Renal Reabsorption)-ASSOCIATED_WITH->(calcium ion)-TREATS->(Symptoms)-ASSOCIATED_WITH->(hypermagnesemia)",
+      "(Renal Reabsorption)-ASSOCIATED_WITH->(calcium ion)-PREVENTS->(Symptoms)-ASSOCIATED_WITH->(hypermagnesemia)",
+      "(Renal Reabsorption)-PROCESS_OF->(Kidney)-LOCATION_OF->(Symptoms)-ASSOCIATED_WITH->(hypermagnesemia)",
+      "(Kwashiorkor)-CAUSES->(Disease)-MANIFESTATION_OF->(Hopping)-ASSOCIATED_WITH->(Electrolytes)",
+      "(Kwashiorkor)-PREDISPOSES->(Disease)-MANIFESTATION_OF->(Hopping)-ASSOCIATED_WITH->(Electrolytes)",
+      "(Kwashiorkor)-ISA->(Disease)-MANIFESTATION_OF->(Hopping)-ASSOCIATED_WITH->(Electrolytes)",
+      "(Conn Syndrome)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Aldosterone)",
+      "(Conn Syndrome)-CAUSES->(Hypertrophy, Left Ventricular)-ASSOCIATED_WITH->(Aldosterone)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Diabetes Mellitus)-CAUSES->(Renal Insufficiency)",
+      "(Conn Syndrome)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Aldosterone)",
+      "(Conn Syndrome)-CAUSES->(Hypertrophy, Left Ventricular)-ASSOCIATED_WITH->(Aldosterone)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Hyperparathyroidism\" -> \"increased parathyroid hormone\" -> \"increased renal reabsorption of magnesium\" -> \"hypermagnesemia\" -> 70%",
+    "CHAIN: \"Diabetes mellitus\" -> \"possible renal impairment\" -> \"decreased magnesium excretion\" -> \"hypermagnesemia\" -> 60%",
+    "CHAIN: \"Kwashiorkor\" -> \"protein malnutrition\" -> \"possible electrolyte imbalance\" -> \"unclear magnesium levels\" -> 50%",
+    "CHAIN: \"Primary aldosteronism\" -> \"increased aldosterone\" -> \"increased renal excretion of magnesium\" -> \"unlikely hypermagnesemia\" -> 40%"
+  ],
+  "enhanced_information": "Hypermagnesemia is typically associated with conditions that lead to decreased renal excretion of magnesium. In hyperparathyroidism, increased parathyroid hormone can lead to increased renal reabsorption of magnesium, potentially causing hypermagnesemia, although this is not a common presentation. Diabetes mellitus can lead to renal impairment, which may decrease magnesium excretion and result in hypermagnesemia, supported by the evidence path linking diabetes to renal insufficiency. Kwashiorkor, characterized by protein malnutrition, can cause electrolyte imbalances, but its direct effect on magnesium levels is unclear and not typically associated with hypermagnesemia. Primary aldosteronism, characterized by increased aldosterone, usually results in increased renal excretion of magnesium, making hypermagnesemia unlikely. Therefore, the most plausible condition for hypermagnesemia among the options is diabetes mellitus due to its potential to cause renal impairment.",
+  "analysis": "Hypermagnesemia is typically associated with conditions that lead to decreased renal excretion of magnesium. In the context of the given options, diabetes mellitus (opb) is the most plausible condition for hypermagnesemia. This is because diabetes can lead to renal impairment, which may decrease magnesium excretion and result in elevated magnesium levels. While hyperparathyroidism (opa) can theoretically increase magnesium reabsorption, it is not commonly associated with hypermagnesemia. Kwashiorkor (opc) and primary aldosteronism (opd) are less likely to cause hypermagnesemia, as kwashiorkor is not typically linked to this condition, and primary aldosteronism usually results in increased magnesium excretion. Therefore, based on the potential for renal impairment in diabetes mellitus, option opb is the best-supported choice.",
+  "answer": "opb",
+  "confidence": 85.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      25.0,
+      25.0,
+      25.0,
+      25.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250104_012346",
+  "model": "gpt-4o-mini",
+  "interaction_type": "answer_with_enhancement_without_enhancer",
+  "question_id": "3b4898a2",
+  "question_text": "Steroids are indicated in all of the following forms of tuberculosis except:",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on enhanced information."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.\n                    You are a medical expert determining the final answer.\n\n            ### Instructions:\n            - Use standard medical knowledge as the primary guide.\n            - Consider enhanced information only if it aligns with consensus.\n            - If conflicting or unclear, present the most likely correct answer based on known facts.\n            - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.\n\n\n                    ### Question\n                    Steroids are indicated in all of the following forms of tuberculosis except:\n\n                    ### Options\n                    opa. Meningitis\nopb. Pericarditis\nopc. Ileo-caecal tuberculosis\nopd. Adrenal involvement\n\n### Enhanced Information (For Contextual Support):\nSteroids are indicated in certain forms of tuberculosis to manage inflammation and complications. In the case of meningitis, steroids are used to reduce inflammation and improve neurological outcomes. For pericarditis, steroids help decrease pericardial inflammation and lower the risk of cardiac complications. However, in ileo-caecal tuberculosis, steroids are generally contraindicated due to the risk of exacerbating the infection and worsening the disease. In adrenal involvement, steroids are indicated to address adrenal insufficiency and restore hormonal balance. Therefore, the correct answer is that steroids are not indicated in ileo-caecal tuberculosis.\n\n                    ### Task:\n                1. Identify the core medical principle and the most likely correct option based on consensus.\n                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.\n                3. Provide a final analysis and a confidence score (0-100%).\n\n                ### Output Format:\n                {\n                  \"final_analysis\": \"Step-by-step reasoning, prioritizing medical consensus and acknowledging complexity if present.\",\n                  \"answer\": \"Option key (e.g. opa, opb, ...)\",\n                  \"confidence\": A number between 0-100\n                }\n                    "
+    }
+  ],
+  "response": "{\n  \"final_analysis\": \"In the management of tuberculosis (TB), the use of steroids is indicated in certain forms to mitigate inflammation and prevent complications. In cases of TB meningitis, steroids are crucial for reducing inflammation and improving outcomes. Similarly, in pericarditis associated with TB, steroids can help manage inflammation and prevent complications such as cardiac tamponade. In cases of adrenal involvement, steroids are necessary to treat adrenal insufficiency. However, in ileo-caecal tuberculosis, the use of steroids is generally contraindicated as they can exacerbate the infection and worsen the disease. Therefore, the consensus in medical literature supports that steroids are not indicated in ileo-caecal tuberculosis. Thus, the correct answer is option c (ileo-caecal tuberculosis).\",\n  \"answer\": \"opc\",\n  \"confidence\": 95\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": true,
+    "has_enhanced_info": true,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

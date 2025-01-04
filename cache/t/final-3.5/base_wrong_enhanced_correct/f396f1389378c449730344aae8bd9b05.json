@@ -1,0 +1,63 @@
+{
+  "question": "In a patient of liver disease, which maneuvers, may lead to the development of hyperammonemia?",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Protein restriction",
+    "opb": "The use of neomycin",
+    "opc": "The use of loop diuretics",
+    "opd": "A branched-chain amino acid-enriched protein mixture"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Loop Diuretics",
+        "Hypovolemia"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Loop Diuretics)-CAUSES->(Hypovolemia)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Loop Diuretics)-CAUSES->(Hypovolemia)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: Liver disease -> impaired ammonia metabolism -> hyperammonemia -> 80% CHAIN: Protein restriction -> decreased ammonia production -> decreased risk of hyperammonemia -> 70% CHAIN: The use of neomycin -> decreased intestinal ammonia production -> decreased risk of hyperammonemia -> 60% CHAIN: The use of loop diuretics -> volume depletion -> decreased renal blood flow -> impaired ammonia excretion -> hyperammonemia -> 70% CHAIN: A branched-chain amino acid-enriched protein mixture -> increased ammonia production -> increased risk of hyperammonemia -> 80%"
+  ],
+  "enhanced_information": "In a patient with liver disease, maneuvers that may lead to the development of hyperammonemia include the use of loop diuretics, which can cause hypovolemia leading to decreased renal blood flow and impaired ammonia excretion.",
+  "analysis": "In a patient with liver disease, hyperammonemia can occur due to impaired ammonia excretion. Loop diuretics can lead to hypovolemia, reducing renal blood flow and exacerbating ammonia accumulation. Protein restriction, neomycin, and a branched-chain amino acid-enriched protein mixture are not directly associated with hyperammonemia in liver disease.",
+  "answer": "opc",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1
+    ],
+    "coverage_rates": [
+      100.0
+    ],
+    "total_successes": 1
+  },
+  "normal_results": []
+}

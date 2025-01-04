@@ -1,0 +1,261 @@
+{
+  "question": "Ivermectin is indicated in all of the following except:",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Ascaris",
+    "opb": "Filariasis",
+    "opc": "Malaria",
+    "opd": "Oncocerciasis"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Ivermectin",
+        "Parasitic Diseases"
+      ],
+      [
+        "Parasitic Diseases",
+        "Disease",
+        "Onchocerciasis"
+      ],
+      [
+        "Parasitic Diseases",
+        "Infection",
+        "Onchocerciasis"
+      ],
+      [
+        "Onchocerciasis",
+        "Infection",
+        "Filariasis"
+      ],
+      [
+        "Filariasis",
+        "Disease",
+        "Malaria"
+      ],
+      [
+        "Filariasis",
+        "Symptoms",
+        "Malaria"
+      ],
+      [
+        "Filariasis",
+        "Obstruction",
+        "Malaria"
+      ],
+      [
+        "Ivermectin",
+        "Onchocerciasis"
+      ],
+      [
+        "Parasitic Diseases",
+        "Disease",
+        "Onchocerciasis"
+      ],
+      [
+        "Parasitic Diseases",
+        "Infection",
+        "Onchocerciasis"
+      ],
+      [
+        "Onchocerciasis",
+        "Infection",
+        "Filariasis"
+      ],
+      [
+        "Onchocerciasis",
+        "Infection",
+        "Filariasis"
+      ],
+      [
+        "Filariasis",
+        "Disease",
+        "Malaria"
+      ],
+      [
+        "Filariasis",
+        "Symptoms",
+        "Malaria"
+      ],
+      [
+        "Filariasis",
+        "Obstruction",
+        "Malaria"
+      ],
+      [
+        "Ivermectin",
+        "Onchocerciasis"
+      ],
+      [
+        "Onchocerciasis",
+        "Infection",
+        "Filariasis"
+      ],
+      [
+        "Filariasis",
+        "Disease",
+        "Malaria"
+      ],
+      [
+        "Filariasis",
+        "Symptoms",
+        "Malaria"
+      ],
+      [
+        "Filariasis",
+        "Obstruction",
+        "Malaria"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Ivermectin)-TREATS->(Parasitic Diseases)",
+      "(Parasitic Diseases)-CAUSES->(Disease)-CAUSES->(Onchocerciasis)",
+      "(Parasitic Diseases)-CAUSES->(Infection)-CAUSES->(Onchocerciasis)",
+      "(Onchocerciasis)-CAUSES->(Infection)-CAUSES->(Filariasis)",
+      "(Filariasis)-CAUSES->(Disease)-CAUSES->(Malaria)",
+      "(Filariasis)-CAUSES->(Symptoms)-CAUSES->(Malaria)",
+      "(Filariasis)-CAUSES->(Obstruction)-CAUSES->(Malaria)",
+      "(Ivermectin)-TREATS->(Onchocerciasis)",
+      "(Parasitic Diseases)-CAUSES->(Disease)-CAUSES->(Onchocerciasis)",
+      "(Parasitic Diseases)-CAUSES->(Infection)-CAUSES->(Onchocerciasis)",
+      "(Onchocerciasis)-CAUSES->(Infection)-CAUSES->(Filariasis)",
+      "(Onchocerciasis)-CAUSES->(Infection)-CAUSES->(Filariasis)",
+      "(Filariasis)-CAUSES->(Disease)-CAUSES->(Malaria)",
+      "(Filariasis)-CAUSES->(Symptoms)-CAUSES->(Malaria)",
+      "(Filariasis)-CAUSES->(Obstruction)-CAUSES->(Malaria)",
+      "(Ivermectin)-TREATS->(Onchocerciasis)",
+      "(Onchocerciasis)-CAUSES->(Infection)-CAUSES->(Filariasis)",
+      "(Filariasis)-CAUSES->(Disease)-CAUSES->(Malaria)",
+      "(Filariasis)-CAUSES->(Symptoms)-CAUSES->(Malaria)",
+      "(Filariasis)-CAUSES->(Obstruction)-CAUSES->(Malaria)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Ivermectin)-TREATS->(Parasitic Diseases)",
+      "(Ivermectin)-TREATS->(Onchocerciasis)",
+      "(Filariasis)-CAUSES->(Disease)-CAUSES->(Malaria)",
+      "(Filariasis)-CAUSES->(Symptoms)-CAUSES->(Malaria)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Ivermectin is an antiparasitic medication\" -> \"effective against certain parasitic infections\" -> \"indicated for Onchocerciasis\" -> \"indicated for Filariasis\" -> \"not indicated for Malaria\" -> 95%",
+    "CHAIN: \"Ivermectin treats various parasitic infections\" -> \"approved for use in Onchocerciasis\" -> \"approved for use in Filariasis\" -> \"not effective against Plasmodium species\" -> \"Malaria is caused by Plasmodium\" -> 90%",
+    "CHAIN: \"Ivermectin is used for specific parasitic diseases\" -> \"effective for Ascaris\" -> \"effective for Onchocerciasis\" -> \"effective for Filariasis\" -> \"ineffective for Malaria\" -> 85%",
+    "CHAIN: \"Ivermectin is indicated for certain infections\" -> \"indicated for Onchocerciasis\" -> \"indicated for Filariasis\" -> \"not indicated for Malaria\" -> \"Malaria requires different treatment\" -> 92%"
+  ],
+  "enhanced_information": "Ivermectin is an antiparasitic medication indicated for specific parasitic infections. It is effective against Onchocerciasis and Filariasis, both of which are caused by filarial worms. However, it is not indicated for Malaria, which is caused by Plasmodium species and requires different treatment options. The reasoning chains correctly identify that Ivermectin is not effective against Malaria, aligning with the consensus that it is not used for this condition. Therefore, the correct answer is that Ivermectin is indicated in all of the following except Malaria.",
+  "analysis": "Ivermectin is an antiparasitic medication primarily used to treat infections caused by certain parasites. It is effective against Onchocerciasis (river blindness) and Filariasis, both of which are caused by filarial worms. It is also used for treating Ascaris infections, which are caused by roundworms. However, Ivermectin is not indicated for Malaria, as Malaria is caused by Plasmodium species, which are protozoan parasites, and requires antimalarial drugs such as chloroquine or artemisinin-based therapies. Therefore, based on standard medical knowledge and consensus, Ivermectin is not used for treating Malaria.",
+  "answer": "opc",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      4,
+      3,
+      2,
+      3
+    ],
+    "coverage_rates": [
+      33.33333333333333,
+      25.0,
+      16.666666666666664,
+      25.0
+    ],
+    "total_successes": 12
+  },
+  "normal_results": []
+}

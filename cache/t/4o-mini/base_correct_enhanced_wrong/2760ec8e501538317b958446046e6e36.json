@@ -1,0 +1,173 @@
+{
+  "question": "In circulatory biomechanics which of the following is true?",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Blood viscosity is increased in anemia",
+    "opb": "Blood viscosity is decreased in polycythemia",
+    "opc": "Cardiac output is increased in anemia",
+    "opd": "Cardiac output is decreased in Beri-Beri"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Anemia",
+        "Streptococcus pneumoniae",
+        "Pharmaceutical Preparations",
+        "Erythrocytes"
+      ],
+      [
+        "Anemia",
+        "Adverse event",
+        "Pharmaceutical Preparations",
+        "Erythrocytes"
+      ],
+      [
+        "Anemia",
+        "Virus",
+        "Pharmaceutical Preparations",
+        "Erythrocytes"
+      ],
+      [
+        "Erythrocytes",
+        "Virus",
+        "Anemia"
+      ],
+      [
+        "Erythrocytes",
+        "Pharmaceutical Preparations",
+        "Anemia"
+      ],
+      [
+        "Erythrocytes",
+        "Virus",
+        "Anemia"
+      ],
+      [
+        "Red Blood Cell Count measurement",
+        "Thrombus",
+        "Blood Viscosity"
+      ],
+      [
+        "Erythrocytes",
+        "Hemoglobin",
+        "Blood Viscosity"
+      ],
+      [
+        "Erythrocytes",
+        "Hemoglobin",
+        "Blood Viscosity"
+      ],
+      [
+        "Erythrocytes",
+        "Plasma Proteins",
+        "Blood Viscosity"
+      ]
+    ],
+    "relationships": [
+      [
+        "PROCESS_OF",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "LOCATION_OF",
+        "CAUSES"
+      ],
+      [
+        "LOCATION_OF",
+        "CAUSES"
+      ],
+      [
+        "PART_OF",
+        "CAUSES"
+      ],
+      [
+        "DIAGNOSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "CAUSES"
+      ],
+      [
+        "LOCATION_OF",
+        "CAUSES"
+      ],
+      [
+        "INTERACTS_WITH",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Anemia)-PROCESS_OF->(Streptococcus pneumoniae)-LOCATION_OF->(Pharmaceutical Preparations)-INTERACTS_WITH->(Erythrocytes)",
+      "(Anemia)-CAUSES->(Adverse event)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Erythrocytes)",
+      "(Anemia)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Pharmaceutical Preparations)-INTERACTS_WITH->(Erythrocytes)",
+      "(Erythrocytes)-LOCATION_OF->(Virus)-CAUSES->(Anemia)",
+      "(Erythrocytes)-LOCATION_OF->(Pharmaceutical Preparations)-CAUSES->(Anemia)",
+      "(Erythrocytes)-PART_OF->(Virus)-CAUSES->(Anemia)",
+      "(Red Blood Cell Count measurement)-DIAGNOSES->(Thrombus)-MANIFESTATION_OF->(Blood Viscosity)",
+      "(Erythrocytes)-INTERACTS_WITH->(Hemoglobin)-CAUSES->(Blood Viscosity)",
+      "(Erythrocytes)-LOCATION_OF->(Hemoglobin)-CAUSES->(Blood Viscosity)",
+      "(Erythrocytes)-INTERACTS_WITH->(Plasma Proteins)-CAUSES->(Blood Viscosity)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Erythrocytes)-LOCATION_OF/PART_OF->(Virus)-CAUSES->(Anemia)",
+      "(Erythrocytes)-LOCATION_OF->(Pharmaceutical Preparations)-CAUSES->(Anemia)",
+      "(Red Blood Cell Count measurement)-DIAGNOSES->(Thrombus)-MANIFESTATION_OF->(Blood Viscosity)",
+      "(Erythrocytes)-INTERACTS_WITH/LOCATION_OF->(Hemoglobin)-CAUSES->(Blood Viscosity)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Anemia leads to decreased red blood cell count\" -> \"Decreased red blood cells result in lower blood viscosity\" -> \"Blood viscosity is decreased in anemia\" -> 85%",
+    "CHAIN: \"Polycythemia leads to increased red blood cell count\" -> \"Increased red blood cells result in higher blood viscosity\" -> \"Blood viscosity is increased in polycythemia\" -> 90%",
+    "CHAIN: \"Anemia can lead to compensatory mechanisms\" -> \"Compensatory mechanisms include increased heart rate\" -> \"Increased heart rate can lead to increased cardiac output\" -> 80%",
+    "CHAIN: \"Beri-Beri affects cardiovascular function\" -> \"Beri-Beri can lead to decreased cardiac output due to heart muscle impairment\" -> \"Cardiac output is decreased in Beri-Beri\" -> 90%"
+  ],
+  "enhanced_information": "In circulatory biomechanics, the following points are clarified: 1. Anemia leads to a decreased red blood cell count, which results in lower blood viscosity, thus blood viscosity is decreased in anemia (contradicting option opa). 2. Polycythemia is characterized by an increased red blood cell count, leading to higher blood viscosity, confirming that blood viscosity is increased in polycythemia (contradicting option opb). 3. Anemia can trigger compensatory mechanisms, including increased heart rate, which can lead to increased cardiac output, supporting option opc. 4. Beri-Beri can impair cardiovascular function, leading to decreased cardiac output, thus confirming option opd. Therefore, the correct statements are that blood viscosity is decreased in anemia (not increased) and increased in polycythemia, while cardiac output can be increased in anemia and decreased in Beri-Beri.",
+  "analysis": "In circulatory biomechanics, it is established that anemia results in a decreased red blood cell count, which leads to lower blood viscosity. Therefore, option opa is incorrect. Polycythemia, characterized by an increased red blood cell count, results in higher blood viscosity, making option opb incorrect. Anemia can lead to compensatory mechanisms such as increased heart rate, which can result in increased cardiac output, supporting option opc as potentially correct. Lastly, Beri-Beri, which affects cardiovascular function, can lead to decreased cardiac output, confirming option opd as correct. Given the analysis, the most accurate statements are that blood viscosity is decreased in anemia and increased in polycythemia, while cardiac output can be increased in anemia and decreased in Beri-Beri. Therefore, the best-supported option is opd, as it aligns with the known effects of Beri-Beri on cardiac output.",
+  "answer": "opd",
+  "confidence": 85.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      2,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      50.0,
+      50.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

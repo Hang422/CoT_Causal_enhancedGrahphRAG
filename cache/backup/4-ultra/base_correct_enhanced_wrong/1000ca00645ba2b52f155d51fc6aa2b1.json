@@ -1,0 +1,78 @@
+{
+  "question": "Shock causes:",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Stagnant hypoxia",
+    "opb": "Anemic hypoxia",
+    "opc": "Hypoxic hypoxia",
+    "opd": "Histotoxic hypoxia"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Shock",
+        "Hemorrhage"
+      ]
+    ],
+    "relationships": [
+      [
+        "MANIFESTATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Shock)-MANIFESTATION_OF->(Hemorrhage)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Shock)-MANIFESTATION_OF->(Hemorrhage)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Shock\" -> \"decreased tissue perfusion\" -> \"inadequate oxygen delivery to tissues\" -> \"Hypoxic hypoxia\" -> 95%",
+    "CHAIN: \"Shock\" -> \"reduced cardiac output\" -> \"lowered blood flow to organs\" -> \"insufficient oxygen supply\" -> \"Hypoxic hypoxia\" -> 95%",
+    "CHAIN: \"Shock\" -> \"blood pooling in extremities and organs\" -> \"reduced effective circulating blood volume\" -> \"decreased oxygen transport\" -> \"Hypoxic hypoxia\" -> 95%",
+    "CHAIN: \"Shock\" -> \"vasoconstriction\" -> \"diminished blood flow to peripheral tissues\" -> \"reduced oxygen availability\" -> \"Hypoxic hypoxia\" -> 95%",
+    "CHAIN: \"Shock\" -> \"possible blood loss or fluid loss\" -> \"potential decrease in total hemoglobin\" -> \"Anemic hypoxia\" -> 70%",
+    "CHAIN: \"Shock\" -> \"possible toxin release from bacteria or damaged cells\" -> \"potential interference with cellular oxygen use\" -> \"Histotoxic hypoxia\" -> 60%"
+  ],
+  "enhanced_information": "Shock primarily causes hypoxic hypoxia, which results from inadequate oxygen delivery to tissues due to decreased tissue perfusion. This can occur through mechanisms such as reduced cardiac output, vasoconstriction, or blood pooling. While anemic hypoxia and histotoxic hypoxia can also occur in specific contexts of shock, they are not the primary types of hypoxia resulting from most shock states.",
+  "analysis": "Shock is a critical condition characterized by inadequate tissue perfusion and oxygenation. Among the types of hypoxia listed, hypoxic hypoxia is the most directly related to the primary mechanism of shock. Hypoxic hypoxia occurs when there is insufficient oxygen supply to the tissues, which aligns with the decreased tissue perfusion seen in shock. This can result from various causes such as low cardiac output or significant blood loss leading to reduced oxygen delivery. While other forms of hypoxia like anemic hypoxia (due to reduced oxygen-carrying capacity of the blood) and histotoxic hypoxia (where cells are unable to use oxygen) can occur in specific scenarios related to shock, they are not the primary or most common outcomes. Therefore, based on standard medical knowledge and the consensus on the primary effects of shock, hypoxic hypoxia is the correct answer.",
+  "answer": "opc",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      100.0,
+      0.0
+    ],
+    "total_successes": 1
+  },
+  "normal_results": []
+}

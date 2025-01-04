@@ -1,0 +1,209 @@
+{
+  "question": "Which among the following drug is contra-indicated in renal failure?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Pethidine",
+    "opb": "Morphine",
+    "opc": "Fentanyl",
+    "opd": "Atracurium"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "normeperidine",
+        "Kidney Failure"
+      ],
+      [
+        "Kidney Failure",
+        "Infection",
+        "Respiratory Depression"
+      ],
+      [
+        "Kidney Failure",
+        "hypoglycemia",
+        "Respiratory Depression"
+      ],
+      [
+        "Kidney Failure",
+        "Pulmonary Edema",
+        "Respiratory Depression"
+      ],
+      [
+        "Kidney Failure",
+        "Obesity",
+        "Respiratory Depression"
+      ],
+      [
+        "Kidney Failure",
+        "Adverse effects",
+        "Respiratory Depression"
+      ],
+      [
+        "Atracurium",
+        "Disease",
+        "Excretory function"
+      ],
+      [
+        "Atracurium",
+        "Kidney Failure, Chronic",
+        "Excretory function"
+      ],
+      [
+        "Atracurium",
+        "Liver diseases",
+        "Excretory function"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ]
+    ],
+    "paths": [
+      "(normeperidine)-TREATS->(Kidney Failure)",
+      "(Kidney Failure)-CAUSES->(Infection)-CAUSES->(Respiratory Depression)",
+      "(Kidney Failure)-CAUSES->(hypoglycemia)-CAUSES->(Respiratory Depression)",
+      "(Kidney Failure)-CAUSES->(Pulmonary Edema)-CAUSES->(Respiratory Depression)",
+      "(Kidney Failure)-PREDISPOSES->(Obesity)-CAUSES->(Respiratory Depression)",
+      "(Kidney Failure)-CAUSES->(Adverse effects)-MANIFESTATION_OF->(Respiratory Depression)",
+      "(Atracurium)-TREATS->(Disease)-MANIFESTATION_OF->(Excretory function)",
+      "(Atracurium)-TREATS->(Kidney Failure, Chronic)-MANIFESTATION_OF->(Excretory function)",
+      "(Atracurium)-TREATS->(Liver diseases)-MANIFESTATION_OF->(Excretory function)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Meperidine",
+        "Pharmaceutical Preparations",
+        "CYP2C19 gene|CYP2C19",
+        "normeperidine"
+      ],
+      [
+        "Kidney Failure",
+        "Pathogenesis",
+        "DMD",
+        "Morphine"
+      ],
+      [
+        "Kidney Failure",
+        "Pathogenesis",
+        "OPRM1 gene|OPRM1",
+        "Morphine"
+      ],
+      [
+        "Kidney Failure",
+        "Pathogenesis",
+        "DMD",
+        "Morphine"
+      ]
+    ],
+    "relationships": [
+      [
+        "ISA",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Meperidine)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(CYP2C19 gene|CYP2C19)-INTERACTS_WITH->(normeperidine)",
+      "(Kidney Failure)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(DMD)-INTERACTS_WITH->(Morphine)",
+      "(Kidney Failure)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(OPRM1 gene|OPRM1)-INTERACTS_WITH->(Morphine)",
+      "(Kidney Failure)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(DMD)-INTERACTS_WITH->(Morphine)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Atracurium)-TREATS->(Kidney Failure, Chronic)-MANIFESTATION_OF->(Excretory function)",
+      "(Kidney Failure)-MANIFESTATION_OF/PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(DMD)-INTERACTS_WITH->(Morphine)",
+      "(Kidney Failure)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(OPRM1 gene|OPRM1)-INTERACTS_WITH->(Morphine)",
+      "(normeperidine)-TREATS->(Kidney Failure)",
+      "(Atracurium)-TREATS->(Disease)-MANIFESTATION_OF->(Excretory function)",
+      "(Atracurium)-TREATS->(Liver diseases)-MANIFESTATION_OF->(Excretory function)",
+      "(Meperidine)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(CYP2C19 gene|CYP2C19)-INTERACTS_WITH->(normeperidine)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Pethidine\" -> \"metabolized to norpethidine\" -> \"norpethidine is neurotoxic\" -> \"accumulates in renal failure\" -> \"increased risk of seizures\" -> 95%",
+    "CHAIN: \"Morphine\" -> \"metabolized to morphine-6-glucuronide\" -> \"morphine-6-glucuronide is renally excreted\" -> \"accumulates in renal failure\" -> \"increased risk of respiratory depression and sedation\" -> 90%",
+    "CHAIN: \"Fentanyl\" -> \"primarily metabolized by liver\" -> \"minimal renal metabolism\" -> \"less accumulation in renal failure\" -> \"safer in renal failure compared to morphine and pethidine\" -> 85%",
+    "CHAIN: \"Atracurium\" -> \"undergoes Hofmann elimination\" -> \"independent of renal function\" -> \"does not accumulate in renal failure\" -> \"safe to use in renal failure\" -> 90%"
+  ],
+  "enhanced_information": "Pethidine is contra-indicated in renal failure due to the accumulation of its neurotoxic metabolite, norpethidine, increasing seizure risks. Morphine also poses risks from morphine-6-glucuronide accumulation but is less severe compared to Pethidine. Fentanyl and Atracurium are safer in renal failure, with Fentanyl metabolized primarily by the liver and Atracurium undergoing Hofmann elimination, independent of renal function.",
+  "analysis": "Pethidine is contra-indicated in renal failure due to the risk of accumulation of its neurotoxic metabolite, norpethidine, which can lead to seizures. This aligns with the core medical principle of avoiding drugs that accumulate harmful metabolites in renal failure. Morphine, while also having risks, is less severe in comparison. Fentanyl and Atracurium are safer alternatives in this context.",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      1,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      40.0,
+      20.0,
+      20.0,
+      20.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

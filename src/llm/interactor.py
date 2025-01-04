@@ -162,13 +162,19 @@ class LLMLogger:
         }
 
         # Interaction types
+        # Add this to the interaction_types dictionary in LLMLogger.__init__
         self.interaction_types = {
             'direct_answer': 'direct_answer',
             'reasoning_chain': 'reasoning_chain',
-            'enhancement': 'enhancement',
-            'answer_with_enhancement': 'answer_with_enhancement',
+            'enhancement_with_chain_complete_with_chain': 'enhancement_with_chain_complete_with_chain',
+            'enhancement_with_chain_kg_only': 'enhancement_with_chain_kg_only',
+            'enhancement_with_chain_without_enhancer': 'enhancement_with_chain_without_enhancer',
+            'answer_with_enhancement_causal_only': 'answer_with_enhancement_causal_only',
+            'answer_with_enhancement_kg_only': 'answer_with_enhancement_kg_only',
+            'answer_with_enhancement_without_enhancer': 'answer_with_enhancement_without_enhancer',  # Add this line
+            'answer_with_enhancement_complete_with_chain': 'answer_with_enhancement_complete_with_chain',
             'answer_with_CoT': 'answer_with_CoT',
-            'answer_normal_rag': 'answer_normal_rag',
+            'answer_normal_rag': 'answer_normal_rag'
         }
 
         self._create_log_directories()
@@ -403,21 +409,22 @@ Question: {question.question}
                 Correct: "Insulin" -> "decreased blood glucose" -> "improved metabolism" -> 90%
                 Incorrect: "Insulin decreases blood glucose" in one step.
             - End with a confidence percentage (0-100%).
-            
-            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., "possible", "unclear") and slightly lower confidence. However, do this only if necessary. If unsure, it is acceptable to show a plausible chain with moderate confidence.
-            
+
+            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., 
+            "possible", "unclear") and slightly lower confidence. However, do this only if necessary. If unsure, 
+            it is acceptable to show a plausible chain with moderate confidence.
+
             ### Question
             {question.question}
-            
+
             ### Options
     """
         for key, text in question.options.items():
             prompt += f"{key}. {text}\n"
-            """
+        prompt += """
             ### Instructions:
             - Keep steps simple, each step just one state or outcome.
             - '->' separates each step.
-            - If chains seem tricky, you can still produce the best possible reasoning based on standard medical knowledge without over-penalizing uncertainty, unless there's a direct known contradiction.
             
             ### Output Format:
             Start each chain with "CHAIN:" on a new line.
@@ -460,63 +467,152 @@ Question: {question.question}
             logging.error(f"Error in reasoning chain generation: {str(e)}", exc_info=True)
             question.reasoning_chain = []
 
-    def enhance_information(self, question: MedicalQuestion) -> None:
-        """Enhancement with standardized processing"""
+    def enhance_information(self, question: MedicalQuestion, flag:str) -> None:
+        """
+        Enhancement with standardized processing:
+        1. We have an 'enhanced_graph' containing multiple evidence paths (strings).
+        2. We want to prune/merge these paths so that only the medically relevant and
+           question-focused info is retained.
+        3. Then produce a concise "enhanced_information" summary that aligns with standard medical knowledge
+           and truly helps in answering the question.
+
+        If no paths are available, skip.
+        """
+
+        if not question.enhanced_graph.paths:
+            return
+
+        # 构建角色设定
+        if question.topic_name:
+            system_prompt = f"You are a medical expert specializing in {question.topic_name}."
+        else:
+            system_prompt = "You are a medical expert."
+
+        # 构建用户提示
+        user_prompt = f"""
+    You have retrieved multiple evidence paths (see below) from a knowledge graph search. 
+    They may be correct in their own right but can be broad or tangential to the question. 
+    Your goal is to integrate the relevant portions with standard medical knowledge, 
+    and produce a short summary ('enhanced_information') that helps answer the question accurately.
+
+    ## Question
+    {question.question}
+
+    ## Options
+    """
+        # 列出选项
+        for key, text in question.options.items():
+            user_prompt += f"{key}. {text}\n"
+
+        # 列出增强图路径
+        user_prompt += "\n## Retrieved Evidence Paths\n"
+        for path_str in question.enhanced_graph.paths:
+            user_prompt += f"{path_str}\n"
+
+        # 具体指令
+        user_prompt += """
+    ## Instructions
+    1. Review each evidence path: If it contradicts well-established medical facts, ignore/flag it.
+    2. If certain paths are irrelevant to the question, ignore them.
+    3. Summarize only the key, correct, and question-relevant pieces of info.
+    4. If some aspects are uncertain, note them briefly, but still focus on a consensus-based conclusion.
+    5. Output the final result as valid JSON:
+    {
+      "enhanced_information": "Your short, clinically relevant summary that uses the most pertinent evidence and standard knowledge."
+    }
+    """
+
+        # 组装
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt}
+        ]
+
+        try:
+            result = self._get_completion(messages, "enhancement" + flag, question)
+            question.enhanced_information = result.get("enhanced_information", "")
+        except Exception as e:
+            logging.error(f"Error in enhancement: {str(e)}")
+            question.enhanced_information = ""
+
+    def enhance_information_with_chain(self, question: MedicalQuestion, flag:str) -> None:
+        """Enhancement with standardized processing:
+           Use standard medical knowledge and retrieved evidence paths to prune and verify the reasoning chains.
+           The retrieved paths might be broad but are correct; do not be misled by irrelevant details.
+           After verification, produce a concise, consensus-aligned enhanced_information."""
+
+        # 如果没有增强图路径，无需处理
         if len(question.enhanced_graph.paths) == 0:
             return
+
         if question.topic_name is not None:
-            prompt = f"You are a medical expert specializing in the field of {question.topic_name}."
+            prompt = f"You are a medical expert specializing in {question.topic_name}."
         else:
-            prompt = f"You are a medical expert."
+            prompt = "You are a medical expert."
 
         prompt += f"""
-                            You are a medical expert. Integrate reasoning chains, retrieved evidence, and standard medical knowledge into a concise summary.
+        Your task:
+        - You have per-option reasoning chains (from previous step).
+        - You have retrieved evidence paths (enhanced graph info) that are correct but may be broad and not directly addressing the key point.
+        - Use standard medical/biochemical consensus to evaluate each chain.
+        - If a chain step contradicts consensus, correct or remove it.
+        - Check evidence paths: if they provide relevant support or clarify consensus, incorporate them.
+        - If paths are too broad or not relevant, do not let them mislead you.
+        - Aim to produce a final "enhanced_information" that:
+          1. Reflects corrected, consensus-aligned reasoning for each option,
+          2. Integrates helpful evidence from paths,
+          3. Excludes misleading or irrelevant info,
+          4. Focuses on what best helps answer the question correctly.
 
-                            ### Key Principles:
-                            - Standard medical consensus is primary.
-                            - If reasoning chains or paths contradict well-known facts, note the contradiction and lean on standard consensus.
-                            - If evidence is unclear, acknowledge uncertainty but still provide the most likely explanation.
+        ### Question
+        {question.question}
 
-                            ### Question
-                            {question.question}
-
-                            ### Options
-                            """
+        ### Options
+        """
         for key, text in question.options.items():
             prompt += f"{key}. {text}\n"
 
-        if question.enhanced_information:
-            prompt += f"\n### Enhanced Information (For Contextual Support):\n{question.enhanced_information}\n"
+        if question.reasoning_chain:
+            prompt += "\n### Reasoning Chains per Option:\n"
+            for chain in question.reasoning_chain:
+                prompt += f"{chain}\n"
+
+        if question.enhanced_graph and len(question.enhanced_graph.paths) > 0:
+            prompt += "\n### Retrieved Evidence Paths (broad but correct):\n"
+            for path in question.enhanced_graph.paths:
+                prompt += f"{path}\n"
 
         prompt += """
-                            ### Instructions:
-                        1. Evaluate the chains and evidence against standard medical knowledge.
-                        2. If contradictions exist, highlight them and rely on known best practices.
-                        3. If evidence is sparse or conflicting, it's acceptable to present a most plausible conclusion and note any uncertainty.
-                        4. Provide a short, clinically relevant summary focusing on the best-supported conclusion.
+        ### Instructions:
+        1. Recall standard consensus facts relevant to the question.
+        2. For each option's chain, compare steps to consensus and paths:
+           - Remove/adjust steps contradicting known facts.
+           - If paths confirm or clarify a point aligned with consensus, use them.
+           - Ignore irrelevant or overly broad paths that don't help.
+        3. If uncertain, note uncertainty but choose the best consensus-supported interpretation.
+        4. Output a short "enhanced_information" summarizing the corrected reasoning and relevant evidence that truly aids in final answer determination.
 
-                        ### Output Format:
-                        {
-                          "enhanced_information": "Your concise summary aligned with medical consensus and acknowledging uncertainties if needed."
-                        }
-                            """
-
+        ### Output Format:
+        {
+          "enhanced_information": "A concise, consensus-aligned summary integrating corrected reasoning and relevant evidence."
+        }
+        """
 
         try:
             messages = [
                 {"role": "system",
-                 "content": "You are a medical expert making decisions based on enhanced information."},
+                 "content": "You are a medical expert making decisions based on enhanced information and careful verification."},
                 {"role": "user", "content": prompt}
             ]
 
-            result = self._get_completion(messages, "enhancement", question)
+            result = self._get_completion(messages, "enhancement_with_chain" + flag, question)
             question.enhanced_information = result.get("enhanced_information", "")
 
         except Exception as e:
             logging.error(f"Error in enhancement: {str(e)}")
             question.enhanced_information = ""
 
-    def answer_with_enhanced_information(self, question: MedicalQuestion) -> None:
+    def answer_with_enhanced_information(self, question: MedicalQuestion, flag: str) -> None:
         """Final answer with standardized processing"""
         if question.topic_name is not None:
             prompt = f"You are a medical expert specializing in the field of {question.topic_name}."
@@ -569,7 +665,7 @@ Question: {question.question}
                 1. Identify the core medical principle and the most likely correct option based on consensus.
                 2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.
                 3. Provide a final analysis and a confidence score (0-100%).
-                
+
                 ### Output Format:
                 {
                   "final_analysis": "Step-by-step reasoning, prioritizing medical consensus and acknowledging complexity if present.",
@@ -585,7 +681,7 @@ Question: {question.question}
                 {"role": "user", "content": prompt}
             ]
 
-            result = self._get_completion(messages, "answer_with_enhancement", question)
+            result = self._get_completion(messages, "answer_with_enhancement" + flag, question)
             _update_question_from_result(question, result)
 
         except Exception as e:
@@ -595,14 +691,12 @@ Question: {question.question}
     def answer_with_cot(self, question: MedicalQuestion) -> None:
         """Answer using chain-of-thought reasoning with graph paths and reasoning chains"""
         if question.topic_name is not None:
-            prompt = f"You are a medical expert specializing in {question.topic_name}."
+            prompt = f"You are a medical expert specializing in the field of {question.topic_name}."
         else:
             prompt = f"You are a medical expert."
 
-        # 当 enhanced_graph 为空时，仅使用基础格式
         if len(question.enhanced_graph.paths) == 0:
-            prompt += f"""
-            Please help answer this {'' if not question.is_multi_choice else 'multiple choice'} question:
+            prompt += f"""Please help answer this {'' if not question.is_multi_choice else 'multiple choice'} question:
 
             Question: {question.question}
             """
@@ -612,28 +706,24 @@ Question: {question.question}
                     prompt += f"{key}. {text}\n"
 
             prompt += """
-            ### Output Format
-            Provide your response in valid JSON format:
-            {   
-                "final_analysis": "Your concise analysis following the above structure",
-                "answer": "Option key from the available options (only key, like opa)",
-                "confidence": Score between 0-100 based on alignment with established medical facts
-            }
-            """
+                    ### Output Format
+                    Provide your response in valid JSON format:
+                    {   
+                        "final_analysis": "Your concise analysis following the above structure",
+                        "answer": "Option key from the available options (only key,like opa)",
+                        "confidence": Score between 0-100 based on alignment with established medical facts
+                    }
+                    """
         else:
-            # 当有enhanced_graph和reasoning_chain时，加以利用
             prompt += f"""
             You are a medical expert determining the final answer.
 
-            ### Instructions:
-            - Start by recalling standard medical and biochemical (or relevant domain) consensus facts.
-            - You have reasoning chains (the model's internal logic steps) and retrieved validation paths (enhanced graph information).
-            - Use the reasoning chains and validation paths as references, but always prioritize widely accepted medical consensus.
-            - If a reasoning chain or a graph path conflicts with standard knowledge, favor the standard consensus and note the conflict.
-            - The final answer should be based on what is most likely correct according to standard medical facts.
-            - If uncertain, choose the best-supported option and reflect that in the confidence score.
-
-            ### Question
+                ### Instructions:
+                - Use standard medical knowledge as the primary guide.
+                - Consider enhanced information only if it aligns with consensus.
+                - If conflicting or unclear, present the most likely correct answer based on known facts.
+                - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.
+            ### Question    
             {question.question}
 
             ### Options
@@ -642,32 +732,28 @@ Question: {question.question}
                 prompt += f"{key}. {text}\n"
 
             if question.reasoning_chain:
-                prompt += "\n### Reasoning Chains (for verification):\n"
+                prompt += "\n### Reasoning Chains for Validation:\n"
                 for chain in question.reasoning_chain:
                     prompt += f"- {chain}\n"
 
-            if question.enhanced_graph and question.enhanced_graph.paths:
-                prompt += "\n### Retrieved Validation Paths (from enhanced graph):\n"
+            if question.enhanced_graph and len(question.enhanced_graph.paths) > 0:
+                prompt += "\n### Retrieved Validation Paths:\n"
                 for path in question.enhanced_graph.paths:
                     prompt += f"- {path}\n"
 
             prompt += """
             ### Task:
-            1. Identify the key medical principle relevant to the question and confirm it against standard consensus.
-            2. Check the reasoning chains and validation paths:
-               - If they align with consensus, use them to support the conclusion.
-               - If they conflict with known facts, disregard or correct them.
-            3. Pick the most likely correct option based on this evaluation.
-            4. Provide a final analysis explaining the chosen answer and a confidence score (0-100).
-
-            ### Output Format:
-            {
-              "final_analysis": "Step-by-step reasoning referencing known medical facts, verifying with reasoning chains and graph paths, and resolving conflicts by relying on consensus.",
-              "answer": "Option key (e.g. opa, opb, ...)",
-              "confidence": A number between 0-100
-            }
+                1. Identify the core medical principle and the most likely correct option based on consensus.
+                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.
+                3. Provide a final analysis and a confidence score (0-100%).
+                
+                ### Output Format:
+                {
+                  "final_analysis": "Step-by-step reasoning, prioritizing medical consensus and acknowledging complexity if present.",
+                  "answer": "Option key (e.g. opa, opb, ...)",
+                  "confidence": A number between 0-100
+                }
             """
-
         try:
             messages = [
                 {"role": "system", "content": "You are a medical expert using chain-of-thought reasoning."},
@@ -708,10 +794,15 @@ Question: {question.question}
 
         prompt += """
     ### Instructions:
-    1. Analyze the retrieved medical relationships and their relevance to the question
-    2. Consider how these relationships support or relate to the different options
-    3. Determine the most likely correct answer based on medical knowledge and retrieved evidence
-
+            - Use standard medical knowledge as the primary guide.
+            - Consider enhanced information only if it aligns with consensus.
+            - If conflicting or unclear, present the most likely correct answer based on known facts.
+            - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.
+    ### Task:
+                1. Identify the core medical principle and the most likely correct option based on consensus.
+                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.
+                3. Provide a final analysis and a confidence score (0-100%).
+                
     ### Output Format
     Provide your response in valid JSON format:
     {   

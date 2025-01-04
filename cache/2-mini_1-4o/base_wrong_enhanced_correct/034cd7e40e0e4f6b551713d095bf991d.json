@@ -1,0 +1,76 @@
+{
+  "question": "Which of the following is not carried in dorsal column of spinal cord:March 2011",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Proprioception",
+    "opb": "Vibratory sense",
+    "opc": "Heat sensation",
+    "opd": "Touch"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Dorsal funiculus",
+        "SLIT2 gene|SLIT3|SLIT2",
+        "Endothelium",
+        "Therapeutic tactile stimulation"
+      ]
+    ],
+    "relationships": [
+      [
+        "LOCATION_OF",
+        "PART_OF",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Dorsal funiculus)-LOCATION_OF->(SLIT2 gene|SLIT3|SLIT2)-PART_OF->(Endothelium)-LOCATION_OF->(Therapeutic tactile stimulation)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Dorsal funiculus)-LOCATION_OF->(SLIT2 gene|SLIT3|SLIT2)-PART_OF->(Endothelium)-LOCATION_OF->(Therapeutic tactile stimulation)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Dorsal column function\" -> \"Carries proprioception\" -> \"Carries vibratory sense\" -> \"Does not carry heat sensation\" -> 95%",
+    "CHAIN: \"Dorsal column pathway\" -> \"Transmits touch sensation\" -> \"Transmits proprioception\" -> \"Does not transmit heat sensation\" -> 90%",
+    "CHAIN: \"Dorsal column\" -> \"Involved in fine touch\" -> \"Involved in proprioception\" -> \"Not involved in heat sensation\" -> 85%",
+    "CHAIN: \"Dorsal column\" -> \"Carries sensory modalities\" -> \"Includes touch and proprioception\" -> \"Excludes heat sensation\" -> 80%"
+  ],
+  "enhanced_information": "The dorsal column of the spinal cord is responsible for transmitting proprioception, vibratory sense, and fine touch. It does not carry heat sensation, which is transmitted via the spinothalamic tract. Therefore, the correct answer to the question is that heat sensation is not carried in the dorsal column. The reasoning chains correctly identify that the dorsal column is involved in proprioception and touch while excluding heat sensation, aligning with established physiological consensus.",
+  "analysis": "The dorsal column of the spinal cord is primarily responsible for transmitting sensory modalities such as proprioception, vibratory sense, and fine touch. These modalities are carried by the fasciculus gracilis and fasciculus cuneatus within the dorsal column-medial lemniscal pathway. Heat sensation, on the other hand, is transmitted via the spinothalamic tract, which is part of the anterolateral system. This distinction is well-established in neurophysiology, and there is a clear consensus that heat sensation is not carried by the dorsal column. Therefore, the most likely correct answer is that heat sensation is not carried in the dorsal column.",
+  "answer": "opc",
+  "confidence": 100.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      1,
+      0
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      100.0,
+      0.0
+    ],
+    "total_successes": 1
+  },
+  "normal_results": []
+}

@@ -1,0 +1,108 @@
+{
+  "question": "Following is not true concerning amyloidosis (NOT RELATED)",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Amyloidosis associated with multiple myeloma has the poorest prognosis",
+    "opb": "Fine - needle biopsy of subcutaneous abdominal fat is a simple & reliable method for diagnosing secondary systemic amyloidosis",
+    "opc": "Hepatic amyloid disease produces hepatomegaly but rarely jaundice",
+    "opd": "Amyloidosis of the spleen is associated with severe anemia"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Fine-needle biopsy",
+        "Symptoms",
+        "Sphincter",
+        "Diagnosis"
+      ],
+      [
+        "Fine-needle biopsy",
+        "Symptoms",
+        "Sphincter",
+        "Diagnosis"
+      ],
+      [
+        "Fine-needle biopsy",
+        "Disease",
+        "Sphincter",
+        "Diagnosis"
+      ],
+      [
+        "Spleen",
+        "Splenomegaly"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES",
+        "LOCATION_OF"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Fine-needle biopsy)-TREATS->(Symptoms)-CAUSES->(Sphincter)-LOCATION_OF->(Diagnosis)",
+      "(Fine-needle biopsy)-TREATS->(Symptoms)-ASSOCIATED_WITH->(Sphincter)-LOCATION_OF->(Diagnosis)",
+      "(Fine-needle biopsy)-TREATS->(Disease)-MANIFESTATION_OF->(Sphincter)-LOCATION_OF->(Diagnosis)",
+      "(Spleen)-LOCATION_OF->(Splenomegaly)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Spleen)-LOCATION_OF->(Splenomegaly)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Amyloidosis associated with multiple myeloma\" -> \"generally has a poor prognosis\" -> \"due to aggressive nature of multiple myeloma\" -> 80%",
+    "CHAIN: \"Fine-needle biopsy of subcutaneous abdominal fat\" -> \"is a common method for diagnosing secondary systemic amyloidosis\" -> \"is considered simple and reliable\" -> 90%",
+    "CHAIN: \"Hepatic amyloid disease\" -> \"can cause hepatomegaly\" -> \"may lead to jaundice in some cases\" -> \"but rarely does\" -> 70%",
+    "CHAIN: \"Amyloidosis of the spleen\" -> \"can lead to splenomegaly\" -> \"is not typically associated with severe anemia\" -> \"anemia is more related to other causes\" -> 75%"
+  ],
+  "enhanced_information": "1. Amyloidosis associated with multiple myeloma generally has a poor prognosis due to the aggressive nature of multiple myeloma, which is well-supported by clinical consensus. 2. Fine-needle biopsy of subcutaneous abdominal fat is indeed a common and reliable method for diagnosing secondary systemic amyloidosis, aligning with established diagnostic practices. 3. Hepatic amyloid disease can cause hepatomegaly, and while jaundice can occur, it is not common, thus the statement about it rarely causing jaundice is somewhat misleading but not entirely false. 4. Amyloidosis of the spleen can lead to splenomegaly, but it is not typically associated with severe anemia; anemia is more often related to other underlying conditions. Therefore, the statement regarding amyloidosis of the spleen being associated with severe anemia is the least accurate and is the correct answer to the question.",
+  "analysis": "To determine which statement about amyloidosis is not true, we analyze each option based on established medical knowledge. Option 'opa' states that amyloidosis associated with multiple myeloma has the poorest prognosis, which is supported by clinical consensus. Option 'opb' mentions that fine-needle biopsy of subcutaneous abdominal fat is a reliable method for diagnosing secondary systemic amyloidosis, which is also well-supported in the literature. Option 'opc' discusses hepatic amyloid disease causing hepatomegaly but rarely jaundice; while jaundice can occur, it is indeed less common, making this statement somewhat misleading but not entirely false. Finally, option 'opd' claims that amyloidosis of the spleen is associated with severe anemia. This is the least accurate statement, as anemia is not a typical direct consequence of splenic amyloidosis. Therefore, the most likely correct answer is 'opd', as it misrepresents the relationship between splenic amyloidosis and anemia.",
+  "answer": "opd",
+  "confidence": 85.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      0,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      50.0,
+      0.0,
+      50.0
+    ],
+    "total_successes": 2
+  },
+  "normal_results": []
+}

@@ -1,0 +1,148 @@
+{
+  "question": "HMP shunt occurs in all organs except ?",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Liver",
+    "opb": "Adipose tissue",
+    "opc": "RBC",
+    "opd": "Brain"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Body tissue",
+        "Liver"
+      ],
+      [
+        "Adipose tissue",
+        "Genes",
+        "Erythrocytes"
+      ],
+      [
+        "Adipose tissue",
+        "Genes",
+        "Erythrocytes"
+      ],
+      [
+        "Adipose tissue",
+        "Pharmaceutical Preparations",
+        "Erythrocytes"
+      ],
+      [
+        "Erythrocytes",
+        "Brain"
+      ],
+      [
+        "Liver",
+        "Estrone",
+        "Adipose tissue"
+      ],
+      [
+        "Liver",
+        "TNF gene|TNF",
+        "Adipose tissue"
+      ],
+      [
+        "Liver",
+        "Genes",
+        "Adipose tissue"
+      ],
+      [
+        "Body tissue",
+        "Liver"
+      ]
+    ],
+    "relationships": [
+      [
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "PART_OF"
+      ]
+    ],
+    "paths": [
+      "(Body tissue)-PART_OF->(Liver)",
+      "(Adipose tissue)-LOCATION_OF->(Genes)-PART_OF->(Erythrocytes)",
+      "(Adipose tissue)-LOCATION_OF->(Genes)-INTERACTS_WITH->(Erythrocytes)",
+      "(Adipose tissue)-LOCATION_OF->(Pharmaceutical Preparations)-INTERACTS_WITH->(Erythrocytes)",
+      "(Erythrocytes)-PART_OF->(Brain)",
+      "(Liver)-LOCATION_OF->(Estrone)-PART_OF->(Adipose tissue)",
+      "(Liver)-LOCATION_OF->(TNF gene|TNF)-PART_OF->(Adipose tissue)",
+      "(Liver)-LOCATION_OF->(Genes)-PART_OF->(Adipose tissue)",
+      "(Body tissue)-PART_OF->(Liver)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Adipose tissue)-LOCATION_OF->(Genes)-INTERACTS_WITH/PART_OF->(Erythrocytes)",
+      "(Liver)-LOCATION_OF->(TNF gene|TNF)-PART_OF->(Adipose tissue)",
+      "(Liver)-LOCATION_OF->(Genes)-PART_OF->(Adipose tissue)",
+      "(Erythrocytes)-PART_OF->(Brain)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"HMP shunt\" -> \"occurs in various tissues\" -> \"liver utilizes HMP shunt\" -> \"adipose tissue utilizes HMP shunt\" -> \"RBCs utilize HMP shunt\" -> \"brain does not utilize HMP shunt\" -> 85%",
+    "CHAIN: \"HMP shunt\" -> \"important for NADPH production\" -> \"liver involved in lipid metabolism\" -> \"adipose tissue involved in fat storage\" -> \"RBCs require NADPH for protection\" -> \"brain primarily uses aerobic metabolism\" -> \"brain does not rely on HMP shunt\" -> 80%",
+    "CHAIN: \"HMP shunt\" -> \"found in most tissues\" -> \"liver has high activity\" -> \"adipose tissue has moderate activity\" -> \"RBCs have essential activity\" -> \"brain has limited or no activity\" -> \"brain is the exception\" -> 90%"
+  ],
+  "enhanced_information": "The HMP shunt (hexose monophosphate shunt) is a metabolic pathway that occurs in various tissues, primarily for the production of NADPH and ribose-5-phosphate. It is active in the liver, adipose tissue, and red blood cells (RBCs), where it plays crucial roles in lipid metabolism and antioxidant defense. However, the brain primarily relies on aerobic metabolism and has limited or no activity of the HMP shunt, making it the exception among the listed organs. Therefore, the correct answer is that the HMP shunt occurs in all organs except the brain.",
+  "analysis": "The HMP shunt, also known as the pentose phosphate pathway, is crucial for generating NADPH and ribose-5-phosphate, and it is active in several tissues. The liver and adipose tissue utilize this pathway for lipid metabolism and other biosynthetic processes. Red blood cells (RBCs) also rely on the HMP shunt for maintaining reduced glutathione levels, which is vital for protecting against oxidative stress. However, the brain primarily utilizes aerobic metabolism and has a limited capacity for the HMP shunt. Therefore, among the options provided, the brain is the organ where the HMP shunt is least active or absent. This aligns with the consensus in biochemistry regarding the metabolic pathways utilized by different tissues. Thus, the most likely correct answer is that the HMP shunt occurs in all organs except the brain.",
+  "answer": "opd",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      3,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      60.0,
+      20.0,
+      20.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

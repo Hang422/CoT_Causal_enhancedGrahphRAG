@@ -1,0 +1,220 @@
+{
+  "question": "Drug which do not cause hyperprolactinemia:",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Bromocriptine",
+    "opb": "Haloperidol",
+    "opc": "Reserpine",
+    "opd": "Chlorpromazine"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Prolactin level",
+        "Disease",
+        "Hyperprolactinemia"
+      ],
+      [
+        "Prolactin level",
+        "Hypogonadism",
+        "Hyperprolactinemia"
+      ],
+      [
+        "Prolactin level",
+        "Lactational amenorrhea",
+        "Hyperprolactinemia"
+      ],
+      [
+        "Prolactin level",
+        "Disease",
+        "Hyperprolactinemia"
+      ],
+      [
+        "Prolactin level",
+        "Hypogonadism",
+        "Hyperprolactinemia"
+      ],
+      [
+        "Prolactin level",
+        "Lactational amenorrhea",
+        "Hyperprolactinemia"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Prolactin level)-PREDISPOSES->(Disease)-CAUSES->(Hyperprolactinemia)",
+      "(Prolactin level)-PREDISPOSES->(Hypogonadism)-CAUSES->(Hyperprolactinemia)",
+      "(Prolactin level)-PREDISPOSES->(Lactational amenorrhea)-CAUSES->(Hyperprolactinemia)",
+      "(Prolactin level)-PREDISPOSES->(Disease)-CAUSES->(Hyperprolactinemia)",
+      "(Prolactin level)-PREDISPOSES->(Hypogonadism)-CAUSES->(Hyperprolactinemia)",
+      "(Prolactin level)-PREDISPOSES->(Lactational amenorrhea)-CAUSES->(Hyperprolactinemia)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Bromocriptine",
+        "Pharmaceutical Preparations",
+        "Dopamine"
+      ],
+      [
+        "Haloperidol",
+        "Pharmaceutical Preparations",
+        "Dopamine Antagonists"
+      ],
+      [
+        "Haloperidol",
+        "Pharmaceutical Preparations",
+        "Dopamine Antagonists"
+      ],
+      [
+        "Dopamine Antagonists",
+        "Pharmaceutical Preparations",
+        "Prolactin level"
+      ],
+      [
+        "Dopamine Antagonists",
+        "Pharmaceutical Preparations",
+        "Prolactin level"
+      ],
+      [
+        "Chlorpromazine",
+        "Pharmaceutical Preparations",
+        "Dopamine Antagonists"
+      ],
+      [
+        "Chlorpromazine",
+        "Pharmaceutical Preparations",
+        "Dopamine Antagonists"
+      ],
+      [
+        "Dopamine Antagonists",
+        "Pharmaceutical Preparations",
+        "Prolactin level"
+      ],
+      [
+        "Dopamine Antagonists",
+        "Pharmaceutical Preparations",
+        "Prolactin level"
+      ]
+    ],
+    "relationships": [
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "CAUSES"
+      ],
+      [
+        "INTERACTS_WITH",
+        "CAUSES"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "CAUSES"
+      ],
+      [
+        "INTERACTS_WITH",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Bromocriptine)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Dopamine)",
+      "(Haloperidol)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Dopamine Antagonists)",
+      "(Haloperidol)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Dopamine Antagonists)",
+      "(Dopamine Antagonists)-ISA->(Pharmaceutical Preparations)-CAUSES->(Prolactin level)",
+      "(Dopamine Antagonists)-INTERACTS_WITH->(Pharmaceutical Preparations)-CAUSES->(Prolactin level)",
+      "(Chlorpromazine)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Dopamine Antagonists)",
+      "(Chlorpromazine)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Dopamine Antagonists)",
+      "(Dopamine Antagonists)-ISA->(Pharmaceutical Preparations)-CAUSES->(Prolactin level)",
+      "(Dopamine Antagonists)-INTERACTS_WITH->(Pharmaceutical Preparations)-CAUSES->(Prolactin level)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Bromocriptine)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Dopamine)",
+      "(Haloperidol)-INTERACTS_WITH/ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Dopamine Antagonists)",
+      "(Chlorpromazine)-INTERACTS_WITH/ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Dopamine Antagonists)",
+      "(Prolactin level)-PREDISPOSES->(Disease)-CAUSES->(Hyperprolactinemia)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Bromocriptine\" -> \"dopamine agonist\" -> \"inhibits prolactin secretion\" -> \"does not cause hyperprolactinemia\" -> 95%",
+    "CHAIN: \"Haloperidol\" -> \"dopamine antagonist\" -> \"increases prolactin levels\" -> \"causes hyperprolactinemia\" -> 90%",
+    "CHAIN: \"Reserpine\" -> \"depletes monoamines\" -> \"may affect dopamine levels\" -> \"possible increase in prolactin\" -> \"unclear\" -> 70%",
+    "CHAIN: \"Chlorpromazine\" -> \"dopamine antagonist\" -> \"increases prolactin levels\" -> \"causes hyperprolactinemia\" -> 90%"
+  ],
+  "enhanced_information": "Bromocriptine is a dopamine agonist that inhibits prolactin secretion, thus it does not cause hyperprolactinemia. Haloperidol and Chlorpromazine are both dopamine antagonists that increase prolactin levels, leading to hyperprolactinemia. Reserpine depletes monoamines, which may affect dopamine levels and could potentially lead to increased prolactin, but the effect is unclear. Therefore, the only drug listed that does not cause hyperprolactinemia is Bromocriptine.",
+  "analysis": "The question asks which drug does not cause hyperprolactinemia. Bromocriptine is a dopamine agonist, which means it stimulates dopamine receptors. Dopamine inhibits prolactin secretion, so Bromocriptine actually reduces prolactin levels and is used to treat conditions like hyperprolactinemia. On the other hand, Haloperidol and Chlorpromazine are dopamine antagonists, which block dopamine receptors and can lead to increased prolactin levels, causing hyperprolactinemia. Reserpine works by depleting monoamines, including dopamine, which could potentially lead to increased prolactin levels, although its effect on prolactin is less direct and not as well characterized as the other two. Therefore, based on standard pharmacological knowledge, Bromocriptine is the drug that does not cause hyperprolactinemia.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      3,
+      0,
+      3
+    ],
+    "coverage_rates": [
+      14.285714285714285,
+      42.857142857142854,
+      0.0,
+      42.857142857142854
+    ],
+    "total_successes": 7
+  },
+  "normal_results": []
+}

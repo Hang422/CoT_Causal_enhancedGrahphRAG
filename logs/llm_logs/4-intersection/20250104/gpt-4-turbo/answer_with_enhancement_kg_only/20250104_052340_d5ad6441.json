@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250104_052340",
+  "model": "gpt-4-turbo",
+  "interaction_type": "answer_with_enhancement_kg_only",
+  "question_id": "d5ad6441",
+  "question_text": "Drug of choice for attention deficit hyperactivity disorder is:-",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on enhanced information."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.\n                    You are a medical expert determining the final answer.\n\n            ### Instructions:\n            - Use standard medical knowledge as the primary guide.\n            - Consider enhanced information only if it aligns with consensus.\n            - If conflicting or unclear, present the most likely correct answer based on known facts.\n            - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.\n\n\n                    ### Question\n                    Drug of choice for attention deficit hyperactivity disorder is:-\n\n                    ### Options\n                    opa. Haloperidol\nopb. Imipramine\nopc. Alprazolam\nopd. Methylphenidate\n\n### Enhanced Information (For Contextual Support):\nMethylphenidate is the drug of choice for attention deficit hyperactivity disorder (ADHD) as it stimulates the central nervous system, increasing dopamine and norepinephrine levels in the brain, which are crucial neurotransmitters for improving attention and focus in ADHD patients. This is supported by evidence paths linking dopamine and norepinephrine to the treatment of ADHD. Other options such as Haloperidol, an antipsychotic, and Imipramine, a tricyclic antidepressant, are less suitable. Haloperidol is primarily used for schizophrenia and not typically for ADHD, and while Imipramine is sometimes used off-label for ADHD, it is less effective than stimulants. Alprazolam, a benzodiazepine, is primarily used for anxiety disorders and is not indicated for ADHD, as it does not improve the core symptoms of attention or cognitive functions in ADHD patients.\n\n                    ### Task:\n                1. Identify the core medical principle and the most likely correct option based on consensus.\n                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.\n                3. Provide a final analysis and a confidence score (0-100%).\n\n                ### Output Format:\n                {\n                  \"final_analysis\": \"Step-by-step reasoning, prioritizing medical consensus and acknowledging complexity if present.\",\n                  \"answer\": \"Option key (e.g. opa, opb, ...)\",\n                  \"confidence\": A number between 0-100\n                }\n                    "
+    }
+  ],
+  "response": "{\n  \"final_analysis\": \"The primary treatment for attention deficit hyperactivity disorder (ADHD) involves the use of central nervous system stimulants, which have been extensively studied and are widely recognized for their efficacy in improving the core symptoms of ADHD, such as inattention, hyperactivity, and impulsivity. Methylphenidate is one of the most commonly prescribed medications for this condition. It works by increasing the levels of dopamine and norepinephrine in the brain, which helps to enhance attention and focus. The other drugs listed, such as Haloperidol (an antipsychotic), Imipramine (a tricyclic antidepressant), and Alprazolam (a benzodiazepine), are not primarily used for ADHD. Haloperidol is typically used for psychotic disorders, Imipramine may be used off-label but is less effective compared to stimulants, and Alprazolam is used for anxiety disorders and does not address the core symptoms of ADHD. Therefore, based on the consensus in medical guidelines and literature, Methylphenidate is the most appropriate and effective choice among the options provided.\",\n  \"answer\": \"opd\",\n  \"confidence\": 95\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": true,
+    "has_enhanced_info": true,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

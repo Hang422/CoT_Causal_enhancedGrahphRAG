@@ -1,0 +1,256 @@
+{
+  "question": "A Patient who is on antihypertensive drug develops a dry cough. Which of the following drug might be responsible for the condition:",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Diuretics",
+    "opb": "ACE inhibitors",
+    "opc": "Calcium channel blockers",
+    "opd": "Beta blockers"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Bradykinin",
+        "Symptoms",
+        "Non-productive cough"
+      ],
+      [
+        "Bradykinin",
+        "Coughing",
+        "Non-productive cough"
+      ],
+      [
+        "Bradykinin",
+        "Disease",
+        "Non-productive cough"
+      ],
+      [
+        "Diuretics",
+        "Disease",
+        "imbalance"
+      ],
+      [
+        "Diuretics",
+        "Obesity",
+        "imbalance"
+      ],
+      [
+        "Diuretics",
+        "Myocardial Infarction",
+        "imbalance"
+      ],
+      [
+        "imbalance",
+        "Disease",
+        "Non-productive cough"
+      ],
+      [
+        "imbalance",
+        "Symptoms",
+        "Non-productive cough"
+      ],
+      [
+        "imbalance",
+        "Virus Diseases",
+        "Non-productive cough"
+      ],
+      [
+        "Electrolytes",
+        "Disease",
+        "Non-productive cough"
+      ],
+      [
+        "Electrolytes",
+        "COVID-19",
+        "Non-productive cough"
+      ],
+      [
+        "Calcium Channel Blockers",
+        "Vasodilation"
+      ],
+      [
+        "Vasodilation",
+        "Pancreas",
+        "Pancreatitis",
+        "Disease",
+        "Non-productive cough"
+      ],
+      [
+        "Vasodilation",
+        "Pancreas",
+        "Pancreatitis",
+        "Symptoms",
+        "Non-productive cough"
+      ],
+      [
+        "Vasodilation",
+        "Pancreas",
+        "Pancreatitis",
+        "Pleural effusion disorder",
+        "Non-productive cough"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "COMPLICATES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "PROCESS_OF",
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PROCESS_OF",
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PROCESS_OF",
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Bradykinin)-CAUSES->(Symptoms)-CAUSES->(Non-productive cough)",
+      "(Bradykinin)-CAUSES->(Coughing)-CAUSES->(Non-productive cough)",
+      "(Bradykinin)-TREATS->(Disease)-CAUSES->(Non-productive cough)",
+      "(Diuretics)-CAUSES->(Disease)-CAUSES->(imbalance)",
+      "(Diuretics)-CAUSES->(Obesity)-CAUSES->(imbalance)",
+      "(Diuretics)-CAUSES->(Myocardial Infarction)-CAUSES->(imbalance)",
+      "(imbalance)-CAUSES->(Disease)-CAUSES->(Non-productive cough)",
+      "(imbalance)-CAUSES->(Symptoms)-CAUSES->(Non-productive cough)",
+      "(imbalance)-CAUSES->(Virus Diseases)-CAUSES->(Non-productive cough)",
+      "(Electrolytes)-COMPLICATES->(Disease)-CAUSES->(Non-productive cough)",
+      "(Electrolytes)-TREATS->(COVID-19)-CAUSES->(Non-productive cough)",
+      "(Calcium Channel Blockers)-CAUSES->(Vasodilation)",
+      "(Vasodilation)-PROCESS_OF->(Pancreas)-CAUSES->(Pancreatitis)-CAUSES->(Disease)-CAUSES->(Non-productive cough)",
+      "(Vasodilation)-PROCESS_OF->(Pancreas)-CAUSES->(Pancreatitis)-CAUSES->(Symptoms)-CAUSES->(Non-productive cough)",
+      "(Vasodilation)-PROCESS_OF->(Pancreas)-CAUSES->(Pancreatitis)-CAUSES->(Pleural effusion disorder)-CAUSES->(Non-productive cough)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Angiotensin-Converting Enzyme Inhibitors",
+        "Pathogenesis",
+        "Bradykinin"
+      ],
+      [
+        "Angiotensin-Converting Enzyme Inhibitors",
+        "Adhesions",
+        "Bradykinin"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREVENTS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREVENTS",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Angiotensin-Converting Enzyme Inhibitors)-PREVENTS->(Pathogenesis)-ASSOCIATED_WITH->(Bradykinin)",
+      "(Angiotensin-Converting Enzyme Inhibitors)-PREVENTS->(Adhesions)-ASSOCIATED_WITH->(Bradykinin)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Diuretics)-CAUSES->(Disease)-CAUSES->(imbalance)",
+      "(Diuretics)-CAUSES->(Obesity)-CAUSES->(imbalance)",
+      "(Diuretics)-CAUSES->(Myocardial Infarction)-CAUSES->(imbalance)",
+      "(Electrolytes)-COMPLICATES->(Disease)-CAUSES->(Non-productive cough)",
+      "(Electrolytes)-TREATS->(COVID-19)-CAUSES->(Non-productive cough)",
+      "(Calcium Channel Blockers)-CAUSES->(Vasodilation)",
+      "(Bradykinin)-CAUSES->(Symptoms)-CAUSES->(Non-productive cough)",
+      "(Bradykinin)-CAUSES->(Coughing)-CAUSES->(Non-productive cough)",
+      "(Bradykinin)-TREATS->(Disease)-CAUSES->(Non-productive cough)",
+      "(imbalance)-CAUSES->(Disease)-CAUSES->(Non-productive cough)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"ACE inhibitors\" -> \"increased bradykinin\" -> \"dry cough\" -> 95%",
+    "CHAIN: \"Diuretics\" -> \"possible electrolyte imbalance\" -> \"unclear relation to dry cough\" -> 40%",
+    "CHAIN: \"Calcium channel blockers\" -> \"vasodilation\" -> \"unclear relation to dry cough\" -> 30%",
+    "CHAIN: \"Beta blockers\" -> \"bronchoconstriction\" -> \"possible cough\" -> 50%"
+  ],
+  "enhanced_information": "The most likely antihypertensive drug responsible for a dry cough is ACE inhibitors. This is due to their mechanism of action, which increases bradykinin levels, a peptide that can lead to a non-productive cough in some patients. The reasoning chain for ACE inhibitors is thus: 'ACE inhibitors' -> 'increased bradykinin' -> 'dry cough' -> 95% confidence. Other options, such as diuretics, calcium channel blockers, and beta blockers, do not have a strong or direct association with causing a dry cough. Diuretics may cause electrolyte imbalances, but this connection to cough is unclear and weak (40%). Calcium channel blockers primarily cause vasodilation without a clear link to cough (30%). Beta blockers can cause bronchoconstriction, which may lead to cough in some cases, but this is not a common side effect (50%). Therefore, the evidence strongly supports that ACE inhibitors are the most likely cause of the dry cough.",
+  "analysis": "The core medical principle here is the side effect profile of antihypertensive medications. Among the options provided, ACE inhibitors are well-documented to cause a dry cough due to their mechanism of action, which involves the accumulation of bradykinin. This is a common and recognized side effect, making ACE inhibitors the most likely culprit in this scenario. Diuretics, calcium channel blockers, and beta blockers do not have a strong association with causing a dry cough, with their side effects being unrelated or less common in this context. Therefore, based on established pharmacological knowledge and clinical experience, ACE inhibitors are the most likely cause of the dry cough in this patient. The reasoning is supported by a high level of consensus in the medical community regarding this side effect.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      3,
+      2,
+      0
+    ],
+    "coverage_rates": [
+      28.57142857142857,
+      42.857142857142854,
+      28.57142857142857,
+      0.0
+    ],
+    "total_successes": 7
+  },
+  "normal_results": []
+}

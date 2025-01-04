@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_152457",
+  "model": "gpt-4-turbo",
+  "interaction_type": "reasoning_chain",
+  "question_id": "9812895c",
+  "question_text": "Following is not true concerning amyloidosis (NOT RELATED)",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            Following is not true concerning amyloidosis (NOT RELATED)\n\n            ### Options\n    opa. Amyloidosis associated with multiple myeloma has the poorest prognosis\nopb. Fine - needle biopsy of subcutaneous abdominal fat is a simple & reliable method for diagnosing secondary systemic amyloidosis\nopc. Hepatic amyloid disease produces hepatomegaly but rarely jaundice\nopd. Amyloidosis of the spleen is associated with severe anemia\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"Amyloidosis associated with multiple myeloma\" -> \"poor prognosis due to complications like renal failure and infections\" -> \"considered one of the types with poorer outcomes\" -> 95%\n\nCHAIN: \"Fine-needle biopsy of subcutaneous abdominal fat\" -> \"used to detect amyloid proteins\" -> \"effective for diagnosing systemic amyloidosis, including secondary types\" -> 90%\n\nCHAIN: \"Hepatic amyloid disease\" -> \"amyloid deposits in liver\" -> \"leads to hepatomegaly\" -> \"rarely causes jaundice due to preserved liver function\" -> 92%\n\nCHAIN: \"Amyloidosis of the spleen\" -> \"amyloid deposits in spleen\" -> \"may cause splenomegaly\" -> \"does not typically cause severe anemia\" -> \"severe anemia usually results from other complications\" -> 85%",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

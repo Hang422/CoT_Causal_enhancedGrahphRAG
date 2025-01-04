@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250102_235912",
+  "model": "gpt-4o-mini",
+  "interaction_type": "reasoning_chain",
+  "question_id": "d5ad6441",
+  "question_text": "Drug of choice for attention deficit hyperactivity disorder is:-",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            Drug of choice for attention deficit hyperactivity disorder is:-\n\n            ### Options\n    opa. Haloperidol\nopb. Imipramine\nopc. Alprazolam\nopd. Methylphenidate\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"Attention deficit hyperactivity disorder (ADHD) treatment guidelines\" -> \"Stimulant medications are first-line treatments\" -> \"Methylphenidate is a commonly used stimulant\" -> \"Methylphenidate improves attention and reduces hyperactivity\" -> 95%\n\nCHAIN: \"Attention deficit hyperactivity disorder (ADHD) symptoms\" -> \"Need for effective management options\" -> \"Methylphenidate is FDA-approved for ADHD\" -> \"Methylphenidate is widely prescribed\" -> 90%\n\nCHAIN: \"Haloperidol is an antipsychotic\" -> \"Not typically used for ADHD\" -> \"Imipramine is a tricyclic antidepressant\" -> \"Not first-line for ADHD\" -> \"Alprazolam is a benzodiazepine\" -> \"Not indicated for ADHD\" -> \"Methylphenidate is the preferred choice\" -> 85%\n\nCHAIN: \"Methylphenidate is a central nervous system stimulant\" -> \"Effective in increasing attention span\" -> \"Reduces impulsivity in ADHD patients\" -> \"Recommended by clinical guidelines\" -> 92%",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

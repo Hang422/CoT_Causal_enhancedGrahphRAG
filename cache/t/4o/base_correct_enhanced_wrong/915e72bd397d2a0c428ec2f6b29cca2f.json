@@ -1,0 +1,142 @@
+{
+  "question": "Which is not secreted by stomach?",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Lipase",
+    "opb": "Pepsinogens",
+    "opc": "HCI",
+    "opd": "None"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Lipase",
+        "Fat absorption",
+        "Pancreas"
+      ],
+      [
+        "Pancreas",
+        "Pancreatitis",
+        "Neutrophil Infiltration",
+        "Stomach"
+      ],
+      [
+        "Pepsin A",
+        "Chronic sinusitis NOS",
+        "Neutrophil Infiltration",
+        "Stomach"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Lipase)-CAUSES->(Fat absorption)-PROCESS_OF->(Pancreas)",
+      "(Pancreas)-CAUSES->(Pancreatitis)-MANIFESTATION_OF->(Neutrophil Infiltration)-PROCESS_OF->(Stomach)",
+      "(Pepsin A)-TREATS->(Chronic sinusitis NOS)-MANIFESTATION_OF->(Neutrophil Infiltration)-PROCESS_OF->(Stomach)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Pepsinogens",
+        "Parietal Cells, Gastric",
+        "Stomach"
+      ],
+      [
+        "Pepsinogens",
+        "Chief Cell",
+        "Stomach"
+      ],
+      [
+        "Pepsinogens",
+        "Cells",
+        "Stomach"
+      ],
+      [
+        "Parietal Cells, Gastric",
+        "Stomach"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "PART_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "PART_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "PART_OF"
+      ],
+      [
+        "PART_OF"
+      ]
+    ],
+    "paths": [
+      "(Pepsinogens)-INTERACTS_WITH->(Parietal Cells, Gastric)-PART_OF->(Stomach)",
+      "(Pepsinogens)-INTERACTS_WITH->(Chief Cell)-PART_OF->(Stomach)",
+      "(Pepsinogens)-INTERACTS_WITH->(Cells)-PART_OF->(Stomach)",
+      "(Parietal Cells, Gastric)-PART_OF->(Stomach)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Pepsinogens)-INTERACTS_WITH->(Parietal Cells, Gastric)-PART_OF->(Stomach)",
+      "(Pepsinogens)-INTERACTS_WITH->(Chief Cell)-PART_OF->(Stomach)",
+      "(Pepsinogens)-INTERACTS_WITH->(Cells)-PART_OF->(Stomach)",
+      "(Lipase)-CAUSES->(Fat absorption)-PROCESS_OF->(Pancreas)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Lipase\" -> \"produced by pancreas\" -> \"not secreted by stomach\" -> 95%",
+    "CHAIN: \"Pepsinogens\" -> \"produced by stomach\" -> \"converted to pepsin\" -> \"secreted by stomach\" -> 95%",
+    "CHAIN: \"HCl\" -> \"produced by parietal cells in stomach\" -> \"secreted by stomach\" -> 95%",
+    "CHAIN: \"None\" -> \"all options considered\" -> \"lipase not secreted by stomach\" -> \"none incorrect\" -> 90%"
+  ],
+  "enhanced_information": "Lipase is primarily produced by the pancreas and not secreted by the stomach, aligning with the consensus that pancreatic lipase is involved in fat digestion. Pepsinogens are produced by chief cells in the stomach and are secreted into the gastric lumen, where they are converted to pepsin, confirming their secretion by the stomach. Hydrochloric acid (HCl) is produced by parietal cells in the stomach and is secreted into the gastric lumen, supporting its role in stomach secretion. Therefore, the correct answer is that lipase is not secreted by the stomach, as supported by the consensus and evidence paths indicating its association with the pancreas.",
+  "analysis": "The stomach is responsible for secreting several substances that aid in digestion. Pepsinogens are secreted by the chief cells in the stomach and are converted to pepsin, an enzyme that digests proteins. Hydrochloric acid (HCl) is secreted by the parietal cells in the stomach and creates an acidic environment necessary for pepsin activity. Lipase, on the other hand, is primarily secreted by the pancreas, not the stomach, although there is a minor amount of gastric lipase produced by the stomach. However, the primary source of lipase for digestion is pancreatic lipase. Therefore, based on standard medical knowledge and consensus, lipase is not considered a major secretion of the stomach.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      2,
+      1,
+      0
+    ],
+    "coverage_rates": [
+      40.0,
+      40.0,
+      20.0,
+      0.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

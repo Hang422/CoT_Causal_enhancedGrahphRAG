@@ -1,0 +1,71 @@
+{
+  "question": "True about zafirlukast is :",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "It inhibit lipooxygenase pathway",
+    "opb": "It blocks LT receptor",
+    "opc": "It can be administered orally",
+    "opd": "All of these"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "zafirlukast",
+        "Obstruction"
+      ],
+      [
+        "zafirlukast",
+        "Obstruction"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(zafirlukast)-TREATS->(Obstruction)",
+      "(zafirlukast)-TREATS->(Obstruction)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(zafirlukast)-TREATS->(Obstruction)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: Zafirlukast -> blocks LT receptor -> 90% CHAIN: Zafirlukast -> can be administered orally -> 95% CHAIN: Zafirlukast -> inhibits lipooxygenase pathway -> 70% CHAIN: Zafirlukast -> blocks LT receptor -> can be administered orally -> 90%"
+  ],
+  "enhanced_information": "Zafirlukast blocks LT receptor, can be administered orally, and does not inhibit the lipooxygenase pathway. Evidence suggests it is used to treat obstruction.",
+  "analysis": "Zafirlukast is a leukotriene receptor antagonist, blocking LT receptor, and it can be administered orally. It does not inhibit the lipooxygenase pathway. The most likely correct option based on consensus is that zafirlukast blocks LT receptor and can be administered orally.",
+  "answer": "opd",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2
+    ],
+    "coverage_rates": [
+      100.0
+    ],
+    "total_successes": 2
+  },
+  "normal_results": []
+}

@@ -1,0 +1,318 @@
+{
+  "question": "Adrenal insufficiency in not associated with -",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Hyponatremia",
+    "opb": "Hyperkalemia",
+    "opc": "Hypoglycemia",
+    "opd": "Metabolic alkalosis"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "potassium",
+        "Hypertensive disease",
+        "hyperkalemia"
+      ],
+      [
+        "potassium",
+        "Kidney Diseases",
+        "hyperkalemia"
+      ],
+      [
+        "potassium",
+        "Diabetic Ketoacidosis",
+        "hyperkalemia"
+      ],
+      [
+        "Excretory function",
+        "Pancreas",
+        "Pancreatitis",
+        "Disease",
+        "hyperkalemia"
+      ],
+      [
+        "Excretory function",
+        "Pancreas",
+        "Pancreatitis",
+        "Hypertensive disease",
+        "hyperkalemia"
+      ],
+      [
+        "Aldosterone",
+        "Excretory function"
+      ],
+      [
+        "Excretory function",
+        "Pancreas",
+        "Pancreatitis",
+        "Disease",
+        "Metabolic acidosis"
+      ],
+      [
+        "Aldosterone",
+        "Disease",
+        "Metabolic acidosis"
+      ],
+      [
+        "Metabolic acidosis",
+        "Disease",
+        "Metabolic alkalosis"
+      ],
+      [
+        "Metabolic acidosis",
+        "Syndrome",
+        "Metabolic alkalosis"
+      ],
+      [
+        "Metabolic acidosis",
+        "Hypercalcemia",
+        "Metabolic alkalosis"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "PROCESS_OF",
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PROCESS_OF",
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "PROCESS_OF",
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "PREDISPOSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(potassium)-CAUSES->(Hypertensive disease)-CAUSES->(hyperkalemia)",
+      "(potassium)-TREATS->(Kidney Diseases)-CAUSES->(hyperkalemia)",
+      "(potassium)-TREATS->(Diabetic Ketoacidosis)-CAUSES->(hyperkalemia)",
+      "(Excretory function)-PROCESS_OF->(Pancreas)-CAUSES->(Pancreatitis)-CAUSES->(Disease)-CAUSES->(hyperkalemia)",
+      "(Excretory function)-PROCESS_OF->(Pancreas)-CAUSES->(Pancreatitis)-CAUSES->(Hypertensive disease)-CAUSES->(hyperkalemia)",
+      "(Aldosterone)-CAUSES->(Excretory function)",
+      "(Excretory function)-PROCESS_OF->(Pancreas)-CAUSES->(Pancreatitis)-CAUSES->(Disease)-CAUSES->(Metabolic acidosis)",
+      "(Aldosterone)-CAUSES->(Disease)-PREDISPOSES->(Metabolic acidosis)",
+      "(Metabolic acidosis)-CAUSES->(Disease)-CAUSES->(Metabolic alkalosis)",
+      "(Metabolic acidosis)-CAUSES->(Syndrome)-CAUSES->(Metabolic alkalosis)",
+      "(Metabolic acidosis)-CAUSES->(Hypercalcemia)-CAUSES->(Metabolic alkalosis)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Adrenal gland hypofunction",
+        "Pathogenesis",
+        "Aldosterone"
+      ],
+      [
+        "Adrenal gland hypofunction",
+        "Pathogenesis",
+        "Aldosterone"
+      ],
+      [
+        "Adrenal gland hypofunction",
+        "Pathogenesis",
+        "Aldosterone"
+      ],
+      [
+        "Adrenal gland hypofunction",
+        "Pathogenesis",
+        "Aldosterone"
+      ],
+      [
+        "Aldosterone",
+        "uptake",
+        "potassium"
+      ],
+      [
+        "Aldosterone",
+        "Excretory function",
+        "potassium"
+      ],
+      [
+        "Adrenal gland hypofunction",
+        "Inflammation",
+        "Hydrocortisone"
+      ],
+      [
+        "Adrenal gland hypofunction",
+        "Adverse effects",
+        "Hydrocortisone"
+      ],
+      [
+        "Adrenal gland hypofunction",
+        "Pathogenesis",
+        "Aldosterone"
+      ],
+      [
+        "Adrenal gland hypofunction",
+        "Pathogenesis",
+        "Aldosterone"
+      ],
+      [
+        "Adrenal gland hypofunction",
+        "Pathogenesis",
+        "Aldosterone"
+      ],
+      [
+        "Adrenal gland hypofunction",
+        "Pathogenesis",
+        "Aldosterone"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "COMPLICATES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Adrenal gland hypofunction)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Aldosterone)",
+      "(Adrenal gland hypofunction)-CAUSES->(Pathogenesis)-ASSOCIATED_WITH->(Aldosterone)",
+      "(Adrenal gland hypofunction)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Aldosterone)",
+      "(Adrenal gland hypofunction)-CAUSES->(Pathogenesis)-ASSOCIATED_WITH->(Aldosterone)",
+      "(Aldosterone)-CAUSES->(uptake)-ASSOCIATED_WITH->(potassium)",
+      "(Aldosterone)-CAUSES->(Excretory function)-ASSOCIATED_WITH->(potassium)",
+      "(Adrenal gland hypofunction)-PREDISPOSES->(Inflammation)-ASSOCIATED_WITH->(Hydrocortisone)",
+      "(Adrenal gland hypofunction)-COMPLICATES->(Adverse effects)-ASSOCIATED_WITH->(Hydrocortisone)",
+      "(Adrenal gland hypofunction)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Aldosterone)",
+      "(Adrenal gland hypofunction)-CAUSES->(Pathogenesis)-ASSOCIATED_WITH->(Aldosterone)",
+      "(Adrenal gland hypofunction)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Aldosterone)",
+      "(Adrenal gland hypofunction)-CAUSES->(Pathogenesis)-ASSOCIATED_WITH->(Aldosterone)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(potassium)-CAUSES->(Hypertensive disease)-CAUSES->(hyperkalemia)",
+      "(potassium)-TREATS->(Kidney Diseases)-CAUSES->(hyperkalemia)",
+      "(potassium)-TREATS->(Diabetic Ketoacidosis)-CAUSES->(hyperkalemia)",
+      "(Metabolic acidosis)-CAUSES->(Disease)-CAUSES->(Metabolic alkalosis)",
+      "(Metabolic acidosis)-CAUSES->(Syndrome)-CAUSES->(Metabolic alkalosis)",
+      "(Metabolic acidosis)-CAUSES->(Hypercalcemia)-CAUSES->(Metabolic alkalosis)",
+      "(Excretory function)-PROCESS_OF->(Pancreas)-CAUSES->(Pancreatitis)-CAUSES->(Disease)-CAUSES->(hyperkalemia)",
+      "(Excretory function)-PROCESS_OF->(Pancreas)-CAUSES->(Pancreatitis)-CAUSES->(Hypertensive disease)-CAUSES->(hyperkalemia)",
+      "(Aldosterone)-CAUSES->(Disease)-PREDISPOSES->(Metabolic acidosis)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Adrenal insufficiency\" -> \"decreased aldosterone\" -> \"decreased sodium reabsorption\" -> \"hyponatremia\" -> 95%",
+    "CHAIN: \"Adrenal insufficiency\" -> \"decreased aldosterone\" -> \"decreased potassium excretion\" -> \"hyperkalemia\" -> 95%",
+    "CHAIN: \"Adrenal insufficiency\" -> \"decreased cortisol\" -> \"decreased gluconeogenesis\" -> \"hypoglycemia\" -> 90%",
+    "CHAIN: \"Adrenal insufficiency\" -> \"decreased aldosterone\" -> \"decreased hydrogen ion excretion\" -> \"metabolic acidosis\" -> 85%",
+    "CHAIN: \"Adrenal insufficiency\" -> \"decreased aldosterone\" -> \"possible metabolic acidosis\" -> \"not metabolic alkalosis\" -> 90%"
+  ],
+  "enhanced_information": "Adrenal insufficiency is characterized by decreased production of adrenal hormones, particularly cortisol and aldosterone. This leads to several physiological changes: 1) Decreased aldosterone results in decreased sodium reabsorption, causing hyponatremia. 2) Decreased aldosterone also leads to decreased potassium excretion, resulting in hyperkalemia. 3) Decreased cortisol impairs gluconeogenesis, which can lead to hypoglycemia. 4) Contrary to the reasoning chain, adrenal insufficiency is associated with metabolic acidosis due to decreased aldosterone, not metabolic alkalosis. Therefore, the correct answer is that adrenal insufficiency is not associated with metabolic alkalosis.",
+  "analysis": "Adrenal insufficiency leads to a deficiency in cortisol and aldosterone. This results in several physiological changes: 1) Hyponatremia occurs due to decreased sodium reabsorption from the kidneys, which is a direct effect of low aldosterone levels. 2) Hyperkalemia is also a consequence of decreased aldosterone, as it normally promotes potassium excretion. 3) Hypoglycemia can occur due to low cortisol levels, which are essential for gluconeogenesis and maintaining blood glucose levels. 4) Metabolic alkalosis is not typically associated with adrenal insufficiency; rather, metabolic acidosis is more common due to the effects of low aldosterone on acid-base balance. Therefore, the correct answer is that adrenal insufficiency is not associated with metabolic alkalosis.",
+  "answer": "opd",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      4,
+      1,
+      3,
+      3
+    ],
+    "coverage_rates": [
+      8.333333333333332,
+      33.33333333333333,
+      8.333333333333332,
+      25.0,
+      25.0
+    ],
+    "total_successes": 12
+  },
+  "normal_results": []
+}

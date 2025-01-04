@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_151853",
+  "model": "gpt-4-turbo",
+  "interaction_type": "reasoning_chain",
+  "question_id": "073155f2",
+  "question_text": "Asprin is not given in a patient who is already on heparin because aspirin causes :",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            Asprin is not given in a patient who is already on heparin because aspirin causes :\n\n            ### Options\n    opa. Platelet dysfunction\nopb. Aspirin inhibits the action of heparin\nopc. Enhanced hypersensitivity of heparin\nopd. Therapy of heparin cannot be monitored\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"Aspirin\" -> \"inhibits cyclooxygenase enzyme\" -> \"reduces thromboxane A2 production\" -> \"impairs platelet aggregation\" -> \"increases bleeding risk\" -> \"Platelet dysfunction\" -> 95%\n\nCHAIN: \"Aspirin\" -> \"inhibits cyclooxygenase enzyme\" -> \"reduces thromboxane A2 production\" -> \"impairs platelet aggregation\" -> \"Platelet dysfunction\" -> \"exacerbates anticoagulant effect of heparin\" -> \"increased risk of bleeding\" -> 95%\n\nCHAIN: \"Aspirin\" -> \"inhibits cyclooxygenase enzyme\" -> \"Platelet dysfunction\" -> \"increased bleeding risk when combined with heparin\" -> 95%\n\nCHAIN: \"Aspirin\" -> \"no direct effect on heparin mechanism\" -> \"Aspirin inhibits the action of heparin\" -> \"unclear\" -> 10%\n\nCHAIN: \"Heparin\" -> \"acts on antithrombin III\" -> \"inhibits thrombin and factor Xa\" -> \"Aspirin has no effect on this pathway\" -> \"Aspirin inhibits the action of heparin\" -> \"incorrect\" -> 5%\n\nCHAIN: \"Heparin\" -> \"monitored by measuring aPTT\" -> \"Aspirin does not alter aPTT\" -> \"Therapy of heparin cannot be monitored\" -> \"incorrect\" -> 5%\n\nCHAIN: \"Aspirin\" -> \"no known effect on heparin hypersensitivity\" -> \"Enhanced hypersensitivity of heparin\" -> \"incorrect\" -> 5%",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

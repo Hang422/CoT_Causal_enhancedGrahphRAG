@@ -1,0 +1,135 @@
+{
+  "question": "Metoclopramide has the following actions EXCEPT:",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Increase lower esophageal sphincter tone",
+    "opb": "Prokinetic action is blocked by atropine",
+    "opc": "Increase gastric peristalsis",
+    "opd": "Increase large intestinal peristalsis"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Atropine",
+        "Disease",
+        "Obstruction"
+      ],
+      [
+        "Atropine",
+        "Obesity",
+        "Obstruction"
+      ],
+      [
+        "Atropine",
+        "Myocardial Infarction",
+        "Obstruction"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Atropine)-TREATS->(Disease)-CAUSES->(Obstruction)",
+      "(Atropine)-TREATS->(Obesity)-CAUSES->(Obstruction)",
+      "(Atropine)-TREATS->(Myocardial Infarction)-CAUSES->(Obstruction)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Obstruction",
+        "EPHB2|MAPK1",
+        "myometrium",
+        "Metoclopramide"
+      ],
+      [
+        "Obstruction",
+        "MUC7|MCOLN1",
+        "myometrium",
+        "Metoclopramide"
+      ],
+      [
+        "Obstruction",
+        "Genes",
+        "myometrium",
+        "Metoclopramide"
+      ]
+    ],
+    "relationships": [
+      [
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Obstruction)-ASSOCIATED_WITH->(EPHB2|MAPK1)-PART_OF->(myometrium)-LOCATION_OF->(Metoclopramide)",
+      "(Obstruction)-ASSOCIATED_WITH->(MUC7|MCOLN1)-PART_OF->(myometrium)-LOCATION_OF->(Metoclopramide)",
+      "(Obstruction)-ASSOCIATED_WITH->(Genes)-PART_OF->(myometrium)-LOCATION_OF->(Metoclopramide)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Atropine)-TREATS->(Disease)-CAUSES->(Obstruction)",
+      "(Atropine)-TREATS->(Obesity)-CAUSES->(Obstruction)",
+      "(Atropine)-TREATS->(Myocardial Infarction)-CAUSES->(Obstruction)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Metoclopramide\" -> \"increases lower esophageal sphincter tone\" -> \"reduces gastroesophageal reflux\" -> 95%",
+    "CHAIN: \"Metoclopramide\" -> \"has prokinetic action\" -> \"increases gastric peristalsis\" -> \"enhances gastric emptying\" -> 90%",
+    "CHAIN: \"Atropine\" -> \"blocks cholinergic receptors\" -> \"inhibits prokinetic action of metoclopramide\" -> \"possible\" -> 70%",
+    "CHAIN: \"Metoclopramide\" -> \"increases large intestinal peristalsis\" -> \"enhances bowel motility\" -> \"unclear\" -> 60%"
+  ],
+  "enhanced_information": "Metoclopramide is known to increase lower esophageal sphincter tone, which helps reduce gastroesophageal reflux (CHAIN: 95% confidence). It also has a prokinetic action that increases gastric peristalsis, enhancing gastric emptying (CHAIN: 90% confidence). However, the assertion that atropine blocks the prokinetic action of metoclopramide is not entirely accurate; while atropine does block cholinergic receptors, its effect on metoclopramide's action is not definitive (CHAIN: 70% confidence). Lastly, metoclopramide's effect on large intestinal peristalsis is less clear and not a primary action of the drug (CHAIN: 60% confidence). Therefore, the correct answer to the question is that metoclopramide does not significantly increase large intestinal peristalsis.",
+  "analysis": "Metoclopramide is primarily known for its prokinetic effects, which include increasing lower esophageal sphincter tone and enhancing gastric peristalsis. The assertion that atropine blocks the prokinetic action of metoclopramide is not entirely accurate, as atropine primarily affects cholinergic pathways, and metoclopramide's mechanism involves dopamine receptor antagonism, which is not directly blocked by atropine. Additionally, while metoclopramide does have some effects on intestinal motility, its primary actions are more pronounced in the stomach rather than the large intestine. Therefore, the statement that metoclopramide increases large intestinal peristalsis is the least supported by consensus, making it the correct answer to the question.",
+  "answer": "opd",
+  "confidence": 85.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      2,
+      0
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      100.0,
+      0.0
+    ],
+    "total_successes": 2
+  },
+  "normal_results": []
+}

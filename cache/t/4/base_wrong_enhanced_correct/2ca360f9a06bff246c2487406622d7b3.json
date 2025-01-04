@@ -1,0 +1,424 @@
+{
+  "question": "Metastatic calcification is most commonly seen in (NOTRELATED)",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Cornea",
+    "opb": "Extensor tendon",
+    "opc": "Lungs",
+    "opd": "Renal tubules"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "calcium",
+        "Muscle Contraction",
+        "Lung"
+      ],
+      [
+        "calcium",
+        "physiological aspects",
+        "Lung"
+      ],
+      [
+        "calcium",
+        "Excretory function",
+        "Lung"
+      ],
+      [
+        "calcium",
+        "Fecal Excretion",
+        "Lung"
+      ],
+      [
+        "calcium",
+        "uptake",
+        "Lung"
+      ],
+      [
+        "Metastatic calcification",
+        "Disease",
+        "Hyperphosphatemia"
+      ],
+      [
+        "Metastatic calcification",
+        "Kidney Failure",
+        "Hyperphosphatemia"
+      ],
+      [
+        "Hypercalcemia",
+        "Excretory function",
+        "Renal tubule structure"
+      ],
+      [
+        "Metastatic calcification",
+        "Disease",
+        "calcification"
+      ],
+      [
+        "Metastatic calcification",
+        "Tumoral calcinosis",
+        "calcification"
+      ],
+      [
+        "Metastatic calcification",
+        "Syndrome",
+        "calcification"
+      ],
+      [
+        "Metastatic calcification",
+        "Kidney Failure",
+        "calcification"
+      ],
+      [
+        "Metastatic calcification",
+        "Hypercalcemia",
+        "calcification"
+      ],
+      [
+        "calcification",
+        "Disease",
+        "paracrine",
+        "Cornea"
+      ],
+      [
+        "calcification",
+        "Disease",
+        "Respiration",
+        "Cornea"
+      ],
+      [
+        "calcification",
+        "Disease",
+        "Excretory function",
+        "Cornea"
+      ],
+      [
+        "calcification",
+        "Disease",
+        "Neutrophil Infiltration",
+        "Cornea"
+      ],
+      [
+        "Metastatic calcification",
+        "Disease",
+        "imbalance"
+      ],
+      [
+        "Metastatic calcification",
+        "Pulmonary Edema",
+        "imbalance"
+      ],
+      [
+        "Metastatic calcification",
+        "Respiratory Failure",
+        "imbalance"
+      ],
+      [
+        "Metastatic calcification",
+        "Heart failure",
+        "imbalance"
+      ],
+      [
+        "Metastatic calcification",
+        "Syndrome",
+        "imbalance"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "COMPLICATES",
+        "CAUSES"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "COMPLICATES",
+        "PREDISPOSES"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(calcium)-CAUSES->(Muscle Contraction)-PROCESS_OF->(Lung)",
+      "(calcium)-CAUSES->(physiological aspects)-PROCESS_OF->(Lung)",
+      "(calcium)-CAUSES->(Excretory function)-PROCESS_OF->(Lung)",
+      "(calcium)-CAUSES->(Fecal Excretion)-PROCESS_OF->(Lung)",
+      "(calcium)-CAUSES->(uptake)-PROCESS_OF->(Lung)",
+      "(Metastatic calcification)-CAUSES->(Disease)-CAUSES->(Hyperphosphatemia)",
+      "(Metastatic calcification)-COMPLICATES->(Kidney Failure)-CAUSES->(Hyperphosphatemia)",
+      "(Hypercalcemia)-MANIFESTATION_OF->(Excretory function)-PROCESS_OF->(Renal tubule structure)",
+      "(Metastatic calcification)-CAUSES->(Disease)-CAUSES->(calcification)",
+      "(Metastatic calcification)-CAUSES->(Tumoral calcinosis)-CAUSES->(calcification)",
+      "(Metastatic calcification)-CAUSES->(Syndrome)-CAUSES->(calcification)",
+      "(Metastatic calcification)-COMPLICATES->(Kidney Failure)-PREDISPOSES->(calcification)",
+      "(Metastatic calcification)-MANIFESTATION_OF->(Hypercalcemia)-CAUSES->(calcification)",
+      "(calcification)-CAUSES->(Disease)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Cornea)",
+      "(calcification)-CAUSES->(Disease)-MANIFESTATION_OF->(Respiration)-PROCESS_OF->(Cornea)",
+      "(calcification)-CAUSES->(Disease)-MANIFESTATION_OF->(Excretory function)-PROCESS_OF->(Cornea)",
+      "(calcification)-MANIFESTATION_OF->(Disease)-MANIFESTATION_OF->(Neutrophil Infiltration)-PROCESS_OF->(Cornea)",
+      "(Metastatic calcification)-CAUSES->(Disease)-CAUSES->(imbalance)",
+      "(Metastatic calcification)-CAUSES->(Pulmonary Edema)-CAUSES->(imbalance)",
+      "(Metastatic calcification)-CAUSES->(Respiratory Failure)-CAUSES->(imbalance)",
+      "(Metastatic calcification)-CAUSES->(Heart failure)-CAUSES->(imbalance)",
+      "(Metastatic calcification)-CAUSES->(Syndrome)-CAUSES->(imbalance)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Metastatic calcification",
+        "APEX1 protein, human|APEX1",
+        "Cells",
+        "Body tissue"
+      ],
+      [
+        "Metastatic calcification",
+        "Complication",
+        "Genes",
+        "Body tissue"
+      ],
+      [
+        "Metastatic calcification",
+        "APEX1 protein, human|APEX1",
+        "Cells",
+        "Body tissue"
+      ],
+      [
+        "Body tissue",
+        "Blood",
+        "blood filtration"
+      ],
+      [
+        "Body tissue",
+        "Tissue membrane",
+        "blood filtration"
+      ],
+      [
+        "Hyperphosphatemia",
+        "Complication",
+        "calcium"
+      ],
+      [
+        "Hyperphosphatemia",
+        "Complication",
+        "calcium"
+      ],
+      [
+        "imbalance",
+        "Vasodilation",
+        "Tumor tissue sample",
+        "Calcium measurement"
+      ],
+      [
+        "imbalance",
+        "Fibrinolysis",
+        "Nerve",
+        "Calcium measurement"
+      ],
+      [
+        "imbalance",
+        "glucose homeostasis",
+        "Tumor tissue sample",
+        "Calcium measurement"
+      ]
+    ],
+    "relationships": [
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH",
+        "PART_OF"
+      ],
+      [
+        "ISA",
+        "ASSOCIATED_WITH",
+        "PART_OF"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "PART_OF"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "PROCESS_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "PROCESS_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "PROCESS_OF",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Metastatic calcification)-ASSOCIATED_WITH->(APEX1 protein, human|APEX1)-INTERACTS_WITH->(Cells)-PART_OF->(Body tissue)",
+      "(Metastatic calcification)-ISA->(Complication)-ASSOCIATED_WITH->(Genes)-PART_OF->(Body tissue)",
+      "(Metastatic calcification)-ASSOCIATED_WITH->(APEX1 protein, human|APEX1)-PART_OF->(Cells)-PART_OF->(Body tissue)",
+      "(Body tissue)-PART_OF->(Blood)-LOCATION_OF->(blood filtration)",
+      "(Body tissue)-PART_OF->(Tissue membrane)-LOCATION_OF->(blood filtration)",
+      "(Hyperphosphatemia)-CAUSES->(Complication)-ASSOCIATED_WITH->(calcium)",
+      "(Hyperphosphatemia)-PREDISPOSES->(Complication)-ASSOCIATED_WITH->(calcium)",
+      "(imbalance)-MANIFESTATION_OF->(Vasodilation)-PROCESS_OF->(Tumor tissue sample)-LOCATION_OF->(Calcium measurement)",
+      "(imbalance)-MANIFESTATION_OF->(Fibrinolysis)-PROCESS_OF->(Nerve)-LOCATION_OF->(Calcium measurement)",
+      "(imbalance)-MANIFESTATION_OF->(glucose homeostasis)-PROCESS_OF->(Tumor tissue sample)-LOCATION_OF->(Calcium measurement)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(calcium)-CAUSES->(Muscle Contraction)-PROCESS_OF->(Lung)",
+      "(calcium)-CAUSES->(physiological aspects)-PROCESS_OF->(Lung)",
+      "(calcium)-CAUSES->(Excretory function)-PROCESS_OF->(Lung)",
+      "(calcium)-CAUSES->(Fecal Excretion)-PROCESS_OF->(Lung)",
+      "(calcium)-CAUSES->(uptake)-PROCESS_OF->(Lung)",
+      "(Metastatic calcification)-CAUSES->(Disease)-CAUSES->(Hyperphosphatemia)",
+      "(Metastatic calcification)-COMPLICATES->(Kidney Failure)-CAUSES->(Hyperphosphatemia)",
+      "(Hypercalcemia)-MANIFESTATION_OF->(Excretory function)-PROCESS_OF->(Renal tubule structure)",
+      "(Metastatic calcification)-CAUSES->(Disease)-CAUSES->(calcification)",
+      "(Metastatic calcification)-CAUSES->(Tumoral calcinosis)-CAUSES->(calcification)",
+      "(Metastatic calcification)-CAUSES->(Syndrome)-CAUSES->(calcification)",
+      "(Metastatic calcification)-COMPLICATES->(Kidney Failure)-PREDISPOSES->(calcification)",
+      "(Metastatic calcification)-MANIFESTATION_OF->(Hypercalcemia)-CAUSES->(calcification)",
+      "(Metastatic calcification)-CAUSES->(Disease)-CAUSES->(imbalance)",
+      "(Metastatic calcification)-CAUSES->(Pulmonary Edema)-CAUSES->(imbalance)",
+      "(Metastatic calcification)-CAUSES->(Respiratory Failure)-CAUSES->(imbalance)",
+      "(Metastatic calcification)-CAUSES->(Heart failure)-CAUSES->(imbalance)",
+      "(Metastatic calcification)-CAUSES->(Syndrome)-CAUSES->(imbalance)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Metastatic calcification\" -> \"occurs in tissues with normal metabolism\" -> \"common in tissues exposed to high calcium or phosphate\" -> \"lungs often affected due to blood filtration and pH changes\" -> \"lungs\" -> 85%",
+    "CHAIN: \"Metastatic calcification\" -> \"related to hypercalcemia or hyperphosphatemia\" -> \"renal tubules involved in calcium and phosphate regulation\" -> \"calcification occurs if renal function is impaired\" -> \"renal tubules\" -> 80%",
+    "CHAIN: \"Metastatic calcification\" -> \"calcium deposits in non-bone tissues\" -> \"cornea exposed to calcium in blood\" -> \"possible but less common for calcification\" -> \"cornea\" -> 60%",
+    "CHAIN: \"Metastatic calcification\" -> \"associated with systemic mineral imbalance\" -> \"extensor tendons less likely to interact with high calcium levels\" -> \"unlikely site for calcification\" -> \"extensor tendon\" -> 40%"
+  ],
+  "enhanced_information": "Metastatic calcification primarily occurs in tissues like the lungs and renal tubules, which are directly involved in blood filtration and mineral metabolism. The lungs are affected due to their role in gas exchange and potential pH changes, while renal tubules are involved due to their regulation of calcium and phosphate, especially under conditions of renal impairment. Cornea and extensor tendons are less commonly affected, with the cornea's specialized structure and the tendons' minimal direct interaction with calcium regulation making them less likely sites for calcification.",
+  "analysis": "Renal tubules are directly involved in the regulation of calcium and phosphate, essential factors in the development of metastatic calcification. This makes them a more likely site for such calcifications compared to lungs, cornea, and extensor tendons.",
+  "answer": "opd",
+  "confidence": 85.0,
+  "chain_coverage": {
+    "success_counts": [
+      3,
+      3,
+      2,
+      2
+    ],
+    "coverage_rates": [
+      30.0,
+      30.0,
+      20.0,
+      20.0
+    ],
+    "total_successes": 10
+  },
+  "normal_results": []
+}

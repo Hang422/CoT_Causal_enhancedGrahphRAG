@@ -1,0 +1,236 @@
+{
+  "question": "Which of the following drug is used in this test?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Tolazoline",
+    "opb": "Clonidine",
+    "opc": "Bismuth",
+    "opd": "Oxymetazoline"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Central alpha-2 Adrenergic Agonist [EPC]",
+        "Sleep disturbances",
+        "Hypertensive disease"
+      ],
+      [
+        "Central alpha-2 Adrenergic Agonist [EPC]",
+        "Inflammation",
+        "Hypertensive disease"
+      ],
+      [
+        "Hypertensive disease",
+        "Symptoms",
+        "Diagnostic tests"
+      ],
+      [
+        "Anti-Diarrheal",
+        "Disease",
+        "Symptoms",
+        "Diagnostic tests"
+      ],
+      [
+        "Anti-Diarrheal",
+        "Acute diarrhea",
+        "Symptoms",
+        "Diagnostic tests"
+      ],
+      [
+        "Anti-Diarrheal",
+        "Colitis, Microscopic",
+        "Symptoms",
+        "Diagnostic tests"
+      ],
+      [
+        "Anti-Diarrheal",
+        "Diarrhea",
+        "Symptoms",
+        "Diagnostic tests"
+      ],
+      [
+        "Anti-Diarrheal",
+        "Food Allergy",
+        "Symptoms",
+        "Diagnostic tests"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Central alpha-2 Adrenergic Agonist [EPC])-TREATS->(Sleep disturbances)-CAUSES->(Hypertensive disease)",
+      "(Central alpha-2 Adrenergic Agonist [EPC])-PREVENTS->(Inflammation)-CAUSES->(Hypertensive disease)",
+      "(Hypertensive disease)-CAUSES->(Symptoms)-CAUSES->(Diagnostic tests)",
+      "(Anti-Diarrheal)-TREATS->(Disease)-CAUSES->(Symptoms)-CAUSES->(Diagnostic tests)",
+      "(Anti-Diarrheal)-TREATS->(Acute diarrhea)-CAUSES->(Symptoms)-CAUSES->(Diagnostic tests)",
+      "(Anti-Diarrheal)-TREATS->(Colitis, Microscopic)-CAUSES->(Symptoms)-CAUSES->(Diagnostic tests)",
+      "(Anti-Diarrheal)-PREVENTS->(Diarrhea)-CAUSES->(Symptoms)-CAUSES->(Diagnostic tests)",
+      "(Anti-Diarrheal)-TREATS->(Food Allergy)-CAUSES->(Symptoms)-CAUSES->(Diagnostic tests)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Tolazoline",
+        "Hypoxia",
+        "KLK3 gene|KLK3",
+        "Adrenergic alpha-Antagonists"
+      ],
+      [
+        "Tolazoline",
+        "Pressors",
+        "Pharmaceutical Preparations",
+        "Adrenergic alpha-Antagonists"
+      ],
+      [
+        "Tolazoline",
+        "Pressors",
+        "Calcium Channel Blockers",
+        "Adrenergic alpha-Antagonists"
+      ],
+      [
+        "Tolazoline",
+        "Pressors",
+        "Antihypertensive Agents",
+        "Adrenergic alpha-Antagonists"
+      ],
+      [
+        "Tolazoline",
+        "Pressors",
+        "Adrenergic beta-Antagonists",
+        "Adrenergic alpha-Antagonists"
+      ],
+      [
+        "Oxymetazoline",
+        "Hypertrophy",
+        "CA2",
+        "Adrenergic alpha-Agonists"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Tolazoline)-TREATS->(Hypoxia)-ASSOCIATED_WITH->(KLK3 gene|KLK3)-INTERACTS_WITH->(Adrenergic alpha-Antagonists)",
+      "(Tolazoline)-INTERACTS_WITH->(Pressors)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic alpha-Antagonists)",
+      "(Tolazoline)-INTERACTS_WITH->(Pressors)-INTERACTS_WITH->(Calcium Channel Blockers)-INTERACTS_WITH->(Adrenergic alpha-Antagonists)",
+      "(Tolazoline)-INTERACTS_WITH->(Pressors)-INTERACTS_WITH->(Antihypertensive Agents)-INTERACTS_WITH->(Adrenergic alpha-Antagonists)",
+      "(Tolazoline)-INTERACTS_WITH->(Pressors)-INTERACTS_WITH->(Adrenergic beta-Antagonists)-INTERACTS_WITH->(Adrenergic alpha-Antagonists)",
+      "(Oxymetazoline)-TREATS->(Hypertrophy)-ASSOCIATED_WITH->(CA2)-INTERACTS_WITH->(Adrenergic alpha-Agonists)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Tolazoline)-INTERACTS_WITH->(Pressors)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic alpha-Antagonists)",
+      "(Tolazoline)-TREATS->(Hypoxia)-ASSOCIATED_WITH->(KLK3 gene|KLK3)-INTERACTS_WITH->(Adrenergic alpha-Antagonists)",
+      "(Tolazoline)-INTERACTS_WITH->(Pressors)-INTERACTS_WITH->(Calcium Channel Blockers)-INTERACTS_WITH->(Adrenergic alpha-Antagonists)",
+      "(Tolazoline)-INTERACTS_WITH->(Pressors)-INTERACTS_WITH->(Antihypertensive Agents)-INTERACTS_WITH->(Adrenergic alpha-Antagonists)",
+      "(Tolazoline)-INTERACTS_WITH->(Pressors)-INTERACTS_WITH->(Adrenergic beta-Antagonists)-INTERACTS_WITH->(Adrenergic alpha-Antagonists)",
+      "(Oxymetazoline)-TREATS->(Hypertrophy)-ASSOCIATED_WITH->(CA2)-INTERACTS_WITH->(Adrenergic alpha-Agonists)",
+      "(Central alpha-2 Adrenergic Agonist [EPC])-TREATS->(Sleep disturbances)-CAUSES->(Hypertensive disease)",
+      "(Central alpha-2 Adrenergic Agonist [EPC])-PREVENTS->(Inflammation)-CAUSES->(Hypertensive disease)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Tolazoline\" -> \"alpha-adrenergic antagonist\" -> \"used in vasodilatory therapies\" -> \"possible use in diagnostic tests involving vascular responses\" -> 75%",
+    "CHAIN: \"Clonidine\" -> \"alpha-2 adrenergic agonist\" -> \"used primarily for hypertension\" -> \"unlikely used in diagnostic tests directly\" -> 20%",
+    "CHAIN: \"Bismuth\" -> \"used in gastrointestinal treatments\" -> \"commonly associated with anti-diarrheal and antimicrobial treatments\" -> \"not typically used in diagnostic tests\" -> 10%",
+    "CHAIN: \"Oxymetazoline\" -> \"alpha-adrenergic agonist\" -> \"used as a topical decongestant\" -> \"unlikely used in diagnostic tests\" -> 15%"
+  ],
+  "enhanced_information": "Tolazoline, an alpha-adrenergic antagonist used in vasodilatory therapies, is the most plausible drug for use in diagnostic tests involving vascular responses among the given options. This is supported by its pharmacological properties and interactions with other cardiovascular agents, aligning with its potential application in vascular diagnostic testing.",
+  "analysis": "Tolazoline, as an alpha-adrenergic antagonist, is used in diagnostic tests to evaluate vascular responses by inducing vasodilation. This aligns with both standard pharmacological knowledge and the enhanced information provided, making it the most suitable choice among the given options.",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      2,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      20.0,
+      40.0,
+      20.0,
+      20.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

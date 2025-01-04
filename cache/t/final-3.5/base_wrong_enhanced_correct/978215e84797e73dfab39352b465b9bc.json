@@ -1,0 +1,124 @@
+{
+  "question": "Which of these following statements is wrong about Tacrolimus?",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "It is one of the macrolide antibiotic",
+    "opb": "It can be safely administered with any nephrotoxic drug",
+    "opc": "Glucose intolerance is a well known side effect",
+    "opd": "It is used as prophylaxis for transplant rejection"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Tacrolimus",
+        "Toxic nephropathy"
+      ],
+      [
+        "Tacrolimus",
+        "Adverse effects",
+        "impaired glucose tolerance"
+      ],
+      [
+        "Tacrolimus",
+        "Disease",
+        "impaired glucose tolerance"
+      ],
+      [
+        "Tacrolimus",
+        "Obesity",
+        "impaired glucose tolerance"
+      ],
+      [
+        "Tacrolimus",
+        "Infection",
+        "impaired glucose tolerance"
+      ],
+      [
+        "Tacrolimus",
+        "Myocardial Infarction",
+        "impaired glucose tolerance"
+      ],
+      [
+        "impaired glucose tolerance",
+        "Adverse effects"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Tacrolimus)-TREATS->(Toxic nephropathy)",
+      "(Tacrolimus)-CAUSES->(Adverse effects)-CAUSES->(impaired glucose tolerance)",
+      "(Tacrolimus)-CAUSES->(Disease)-PREDISPOSES->(impaired glucose tolerance)",
+      "(Tacrolimus)-TREATS->(Obesity)-CAUSES->(impaired glucose tolerance)",
+      "(Tacrolimus)-TREATS->(Infection)-CAUSES->(impaired glucose tolerance)",
+      "(Tacrolimus)-TREATS->(Myocardial Infarction)-PREDISPOSES->(impaired glucose tolerance)",
+      "(impaired glucose tolerance)-CAUSES->(Adverse effects)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Tacrolimus)-CAUSES->(Disease)-PREDISPOSES->(impaired glucose tolerance)",
+      "(Tacrolimus)-TREATS->(Obesity)-CAUSES->(impaired glucose tolerance)",
+      "(Tacrolimus)-TREATS->(Infection)-CAUSES->(impaired glucose tolerance)",
+      "(Tacrolimus)-TREATS->(Myocardial Infarction)-PREDISPOSES->(impaired glucose tolerance)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: Tacrolimus -> immunosuppressant -> used in organ transplant recipients -> 95% CHAIN: Tacrolimus -> not a macrolide antibiotic -> 90% CHAIN: Tacrolimus -> nephrotoxicity risk -> avoid concomitant use with other nephrotoxic drugs -> 85% CHAIN: Tacrolimus -> glucose intolerance -> known side effect -> 95%"
+  ],
+  "enhanced_information": "Tacrolimus is not a macrolide antibiotic, it is used as prophylaxis for transplant rejection, and glucose intolerance is a well-known side effect. It should not be safely administered with any nephrotoxic drug due to its own nephrotoxicity risk. Evidence paths confirm the association of Tacrolimus with glucose intolerance.",
+  "analysis": "Tacrolimus is not a macrolide antibiotic; it is a calcineurin inhibitor used for transplant rejection. Glucose intolerance is a known side effect of Tacrolimus. Due to its own nephrotoxicity risk, it should not be safely administered with any nephrotoxic drug.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      3
+    ],
+    "coverage_rates": [
+      100.0
+    ],
+    "total_successes": 3
+  },
+  "normal_results": []
+}

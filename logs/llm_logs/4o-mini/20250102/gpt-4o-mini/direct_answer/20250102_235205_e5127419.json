@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250102_235205",
+  "model": "gpt-4o-mini",
+  "interaction_type": "direct_answer",
+  "question_id": "e5127419",
+  "question_text": "The patient is being administered i.v. quinine following which he developed restlessness and sweating, the most likely cause is :",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on medical knowledge."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.Please help answer this multiple choice question:\n\nQuestion: The patient is being administered i.v. quinine following which he developed restlessness and sweating, the most likely cause is :\n\nOptions:\nopa. Hypoglycemia\nopb. Cinchonism\nopc. Arrhythmias\nopd. Sweating\n\n        ### Output Format\n        Provide your response in valid JSON format:\n        {   \n            \"final_analysis\": \"Your concise analysis following the above structure\",\n            \"answer\": \"Option key from the available options (only key,like opa)\",\n            \"confidence\": Score between 0-100 based on alignment with established medical facts\n        }\n        "
+    }
+  ],
+  "response": "{\n    \"final_analysis\": \"The symptoms of restlessness and sweating following the administration of intravenous quinine are indicative of cinchonism, which is a known side effect of quinine. Cinchonism can present with a variety of symptoms including tinnitus, headache, nausea, and sweating. Hypoglycemia and arrhythmias are less likely to present with these specific symptoms, and 'sweating' alone does not explain the combination of symptoms.\",\n    \"answer\": \"opb\",\n    \"confidence\": 90\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

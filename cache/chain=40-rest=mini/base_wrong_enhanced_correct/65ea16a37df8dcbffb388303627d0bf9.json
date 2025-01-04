@@ -1,0 +1,149 @@
+{
+  "question": "Nyctalopia is due to deficiency of",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Vitamin A",
+    "opb": "Vitamin B",
+    "opc": "Vitamin C",
+    "opd": "Vitamin E"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Night Blindness",
+        "Anemia",
+        "Malnutrition"
+      ],
+      [
+        "Night Blindness",
+        "Cirrhosis",
+        "Malnutrition"
+      ],
+      [
+        "Night Blindness",
+        "Zinc deficiency",
+        "Malnutrition"
+      ],
+      [
+        "Malnutrition",
+        "Vitamin A Deficiency"
+      ],
+      [
+        "Night Blindness",
+        "Blind Vision",
+        "Vitamin A Deficiency"
+      ],
+      [
+        "Night Blindness",
+        "Deficiency, Vitamin",
+        "Vitamin A Deficiency"
+      ],
+      [
+        "Night Blindness",
+        "Anemia",
+        "Vitamin A Deficiency"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "COMPLICATES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "PREDISPOSES"
+      ]
+    ],
+    "paths": [
+      "(Night Blindness)-CAUSES->(Anemia)-CAUSES->(Malnutrition)",
+      "(Night Blindness)-COMPLICATES->(Cirrhosis)-CAUSES->(Malnutrition)",
+      "(Night Blindness)-PREDISPOSES->(Zinc deficiency)-CAUSES->(Malnutrition)",
+      "(Malnutrition)-CAUSES->(Vitamin A Deficiency)",
+      "(Night Blindness)-CAUSES->(Blind Vision)-CAUSES->(Vitamin A Deficiency)",
+      "(Night Blindness)-PREDISPOSES->(Deficiency, Vitamin)-CAUSES->(Vitamin A Deficiency)",
+      "(Night Blindness)-CAUSES->(Anemia)-PREDISPOSES->(Vitamin A Deficiency)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Retina",
+        "Vitamin A Deficiency"
+      ]
+    ],
+    "relationships": [
+      [
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Retina)-LOCATION_OF->(Vitamin A Deficiency)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Malnutrition)-CAUSES->(Vitamin A Deficiency)",
+      "(Night Blindness)-CAUSES->(Blind Vision)-CAUSES->(Vitamin A Deficiency)",
+      "(Night Blindness)-PREDISPOSES->(Deficiency, Vitamin)-CAUSES->(Vitamin A Deficiency)",
+      "(Night Blindness)-CAUSES->(Anemia)-PREDISPOSES->(Vitamin A Deficiency)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Nyctalopia\" -> \"impaired night vision\" -> \"retinal function affected\" -> \"Vitamin A deficiency\" -> 95%",
+    "CHAIN: \"Nyctalopia\" -> \"rod cell dysfunction\" -> \"retinal health compromised\" -> \"Vitamin A deficiency\" -> 90%",
+    "CHAIN: \"Nyctalopia\" -> \"visual pigment rhodopsin affected\" -> \"Vitamin A deficiency\" -> 85%",
+    "CHAIN: \"Nyctalopia\" -> \"possible nutritional deficiency\" -> \"Vitamin A deficiency\" -> 80%",
+    "CHAIN: \"Nyctalopia\" -> \"Vitamin A deficiency\" -> \"impaired night vision\" -> 90%"
+  ],
+  "enhanced_information": "Nyctalopia, or night blindness, is primarily caused by a deficiency in Vitamin A, which is essential for the synthesis of rhodopsin, a visual pigment in rod cells that is crucial for low-light vision. The reasoning chains consistently point to Vitamin A deficiency as the primary cause, with high confidence levels (90-95%). Evidence paths support this by linking malnutrition and night blindness directly to Vitamin A deficiency. Other vitamins (B, C, E) are not associated with nyctalopia, confirming that the correct answer is Vitamin A.",
+  "analysis": "Nyctalopia, or night blindness, is primarily linked to a deficiency in Vitamin A. This vitamin is crucial for the production of rhodopsin, a pigment found in the rod cells of the retina that is essential for vision in low-light conditions. The consensus in medical literature strongly supports that Vitamin A deficiency leads to impaired night vision, while deficiencies in Vitamins B, C, and E do not have a direct association with nyctalopia. Therefore, based on established medical knowledge and the enhanced information provided, the most likely correct answer is Vitamin A.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      0,
+      2,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      25.0,
+      0.0,
+      50.0,
+      25.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

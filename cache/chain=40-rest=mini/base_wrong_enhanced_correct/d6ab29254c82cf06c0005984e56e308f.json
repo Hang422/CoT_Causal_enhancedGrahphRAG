@@ -1,0 +1,92 @@
+{
+  "question": "Drug the choice for hyperthyroidism in first trimester of pregnancy is",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Methimazole",
+    "opb": "Propylthiouraril",
+    "opc": "Carbimazole",
+    "opd": "Perchlorate"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Carbimazole",
+        "Disease",
+        "Virus",
+        "Enzymes",
+        "Methimazole"
+      ],
+      [
+        "Carbimazole",
+        "Respiratory Failure",
+        "Virus",
+        "Enzymes",
+        "Methimazole"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Carbimazole)-TREATS->(Disease)-ASSOCIATED_WITH->(Virus)-LOCATION_OF->(Enzymes)-INTERACTS_WITH->(Methimazole)",
+      "(Carbimazole)-TREATS->(Respiratory Failure)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Enzymes)-INTERACTS_WITH->(Methimazole)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Carbimazole)-TREATS->(Disease)-ASSOCIATED_WITH->(Virus)-LOCATION_OF->(Enzymes)-INTERACTS_WITH->(Methimazole)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Methimazole\" -> \"crosses placenta\" -> \"risk of fetal abnormalities\" -> \"not preferred in first trimester\" -> 70%",
+    "CHAIN: \"Propylthiouracil\" -> \"less placental transfer\" -> \"lower risk of fetal abnormalities\" -> \"preferred in first trimester\" -> 90%",
+    "CHAIN: \"Carbimazole\" -> \"metabolized to methimazole\" -> \"similar risks as methimazole\" -> \"not preferred in first trimester\" -> 70%",
+    "CHAIN: \"Perchlorate\" -> \"less commonly used\" -> \"potential for fetal harm\" -> \"not preferred in pregnancy\" -> 60%"
+  ],
+  "enhanced_information": "In the management of hyperthyroidism during the first trimester of pregnancy, Propylthiouracil (PTU) is the preferred choice due to its lower placental transfer and reduced risk of fetal abnormalities compared to Methimazole and Carbimazole, which are associated with higher risks due to their ability to cross the placenta. Methimazole and Carbimazole are metabolized to methimazole, thus sharing similar risks, making them not preferred in early pregnancy. Perchlorate is less commonly used and poses potential risks to fetal development, further supporting the preference for PTU. Therefore, the consensus strongly favors Propylthiouracil as the safest option for treating hyperthyroidism in the first trimester.",
+  "analysis": "In the management of hyperthyroidism during the first trimester of pregnancy, Propylthiouracil (PTU) is the preferred medication. This is due to its lower placental transfer compared to Methimazole and Carbimazole, which are associated with a higher risk of fetal abnormalities. Methimazole and Carbimazole are both contraindicated in early pregnancy because they can cross the placenta and have been linked to teratogenic effects. Perchlorate is not commonly used and carries potential risks to fetal development as well. Therefore, the consensus in the medical community strongly supports the use of Propylthiouracil as the safest option for treating hyperthyroidism in the first trimester. This aligns with the enhanced information provided, which emphasizes the importance of minimizing risks to the developing fetus during this critical period.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      1,
+      0
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      100.0,
+      0.0
+    ],
+    "total_successes": 1
+  },
+  "normal_results": []
+}

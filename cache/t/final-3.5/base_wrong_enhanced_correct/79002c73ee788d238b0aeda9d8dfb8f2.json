@@ -1,0 +1,182 @@
+{
+  "question": "Drug which do not cause hyperprolactinemia:",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Bromocriptine",
+    "opb": "Haloperidol",
+    "opc": "Reserpine",
+    "opd": "Chlorpromazine"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Dopamine",
+        "Hyperprolactinemia"
+      ],
+      [
+        "Dopamine Antagonists",
+        "Hyperprolactinemia"
+      ],
+      [
+        "Catecholamines",
+        "Disease",
+        "Hyperprolactinemia"
+      ],
+      [
+        "Dopamine Antagonists",
+        "Hyperprolactinemia"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Dopamine)-TREATS->(Hyperprolactinemia)",
+      "(Dopamine Antagonists)-TREATS->(Hyperprolactinemia)",
+      "(Catecholamines)-TREATS->(Disease)-CAUSES->(Hyperprolactinemia)",
+      "(Dopamine Antagonists)-TREATS->(Hyperprolactinemia)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Bromocriptine",
+        "Pharmaceutical Preparations",
+        "Dopamine"
+      ],
+      [
+        "Haloperidol",
+        "Pharmaceutical Preparations",
+        "Dopamine Antagonists"
+      ],
+      [
+        "Haloperidol",
+        "Pharmaceutical Preparations",
+        "Dopamine Antagonists"
+      ],
+      [
+        "Reserpine",
+        "Pharmaceutical Preparations",
+        "Energy Metabolism",
+        "Catecholamines"
+      ],
+      [
+        "Reserpine",
+        "Pharmaceutical Preparations",
+        "Blood Circulation",
+        "Catecholamines"
+      ],
+      [
+        "Reserpine",
+        "Disease",
+        "Blood Circulation",
+        "Catecholamines"
+      ],
+      [
+        "Chlorpromazine",
+        "Pharmaceutical Preparations",
+        "Dopamine Antagonists"
+      ],
+      [
+        "Chlorpromazine",
+        "Pharmaceutical Preparations",
+        "Dopamine Antagonists"
+      ]
+    ],
+    "relationships": [
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "ISA",
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Bromocriptine)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Dopamine)",
+      "(Haloperidol)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Dopamine Antagonists)",
+      "(Haloperidol)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Dopamine Antagonists)",
+      "(Reserpine)-ISA->(Pharmaceutical Preparations)-CAUSES->(Energy Metabolism)-ASSOCIATED_WITH->(Catecholamines)",
+      "(Reserpine)-ISA->(Pharmaceutical Preparations)-CAUSES->(Blood Circulation)-ASSOCIATED_WITH->(Catecholamines)",
+      "(Reserpine)-TREATS->(Disease)-MANIFESTATION_OF->(Blood Circulation)-ASSOCIATED_WITH->(Catecholamines)",
+      "(Chlorpromazine)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Dopamine Antagonists)",
+      "(Chlorpromazine)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Dopamine Antagonists)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Dopamine)-TREATS->(Hyperprolactinemia)",
+      "(Dopamine Antagonists)-TREATS->(Hyperprolactinemia)",
+      "(Reserpine)-TREATS->(Disease)-MANIFESTATION_OF->(Blood Circulation)-ASSOCIATED_WITH->(Catecholamines)",
+      "(Bromocriptine)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Dopamine)",
+      "(Haloperidol)-INTERACTS_WITH/ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Dopamine Antagonists)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: Bromocriptine -> dopamine agonist -> does not cause hyperprolactinemia -> 95% CHAIN: Haloperidol -> dopamine antagonist -> can cause hyperprolactinemia -> 90% CHAIN: Reserpine -> depletes catecholamines -> can cause hyperprolactinemia -> 85% CHAIN: Chlorpromazine -> dopamine antagonist -> can cause hyperprolactinemia -> 95%"
+  ],
+  "enhanced_information": "Bromocriptine, a dopamine agonist, does not cause hyperprolactinemia. Haloperidol, a dopamine antagonist, can cause hyperprolactinemia. Reserpine, which depletes catecholamines, can also cause hyperprolactinemia. Chlorpromazine, another dopamine antagonist, can cause hyperprolactinemia.",
+  "analysis": "Hyperprolactinemia is commonly associated with dopamine antagonists and medications that deplete catecholamines. Bromocriptine, being a dopamine agonist, does not cause hyperprolactinemia. Haloperidol, reserpine, and chlorpromazine are known to cause hyperprolactinemia.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      8
+    ],
+    "coverage_rates": [
+      100.0
+    ],
+    "total_successes": 8
+  },
+  "normal_results": []
+}

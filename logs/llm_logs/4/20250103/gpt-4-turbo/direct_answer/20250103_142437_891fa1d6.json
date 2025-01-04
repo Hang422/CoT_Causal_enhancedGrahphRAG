@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_142437",
+  "model": "gpt-4-turbo",
+  "interaction_type": "direct_answer",
+  "question_id": "891fa1d6",
+  "question_text": "Which of the following antitussive can lead to hallucinations",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on medical knowledge."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.Please help answer this multiple choice question:\n\nQuestion: Which of the following antitussive can lead to hallucinations\n\nOptions:\nopa. Morphine\nopb. Dextromethorphan\nopc. Diphenhydramine\nopd. Aprepitant\n\n        ### Output Format\n        Provide your response in valid JSON format:\n        {   \n            \"final_analysis\": \"Your concise analysis following the above structure\",\n            \"answer\": \"Option key from the available options (only key,like opa)\",\n            \"confidence\": Score between 0-100 based on alignment with established medical facts\n        }\n        "
+    }
+  ],
+  "response": "{\n    \"final_analysis\": \"Dextromethorphan, commonly used as an antitussive in cough medications, can lead to hallucinations, especially at high doses. It acts on the central nervous system and can cause dissociative effects similar to those of ketamine and phencyclidine (PCP). The other options listed do not typically cause hallucinations as a primary side effect. Morphine, an opioid, primarily causes respiratory depression and euphoria. Diphenhydramine, an antihistamine, can cause sedation and sometimes delirium in high doses but is less likely to cause hallucinations. Aprepitant is used to prevent nausea and vomiting; it does not typically affect the central nervous system in a way that would lead to hallucinations.\",\n    \"answer\": \"opb\",\n    \"confidence\": 95\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

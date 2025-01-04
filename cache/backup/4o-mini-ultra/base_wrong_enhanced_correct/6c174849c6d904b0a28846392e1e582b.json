@@ -1,0 +1,114 @@
+{
+  "question": "Characteristics of glycoprotein:",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Protein linked with glycosidic bond",
+    "opb": "Core protein",
+    "opc": "Sugar residues are long in carbohydrate poion of glycoprotein",
+    "opd": "None"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Glycoproteins",
+        "Cells",
+        "Proteins"
+      ],
+      [
+        "Glycoproteins",
+        "Cells",
+        "Proteins"
+      ],
+      [
+        "Glycoproteins",
+        "Cells",
+        "Proteins"
+      ],
+      [
+        "Glycoproteins",
+        "Cells",
+        "Proteins"
+      ],
+      [
+        "Glycoproteins",
+        "mast cell",
+        "Proteins"
+      ]
+    ],
+    "relationships": [
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Glycoproteins)-PART_OF->(Cells)-LOCATION_OF->(Proteins)",
+      "(Glycoproteins)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Proteins)",
+      "(Glycoproteins)-PART_OF->(Cells)-INTERACTS_WITH->(Proteins)",
+      "(Glycoproteins)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Proteins)",
+      "(Glycoproteins)-INTERACTS_WITH->(mast cell)-INTERACTS_WITH->(Proteins)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Glycoproteins)-INTERACTS_WITH/PART_OF->(Cells)-INTERACTS_WITH/LOCATION_OF->(Proteins)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Glycoprotein\" -> \"contains protein and carbohydrate components\" -> \"protein linked with glycosidic bond\" -> 95%",
+    "CHAIN: \"Glycoprotein\" -> \"has a core protein\" -> \"sugar residues attached to the core\" -> 90%",
+    "CHAIN: \"Glycoprotein\" -> \"sugar residues are present\" -> \"sugar residues can vary in length\" -> \"some may be long\" -> 85%",
+    "CHAIN: \"Glycoprotein\" -> \"is a type of biomolecule\" -> \"not all proteins are glycoproteins\" -> \"some proteins lack carbohydrate components\" -> 80%"
+  ],
+  "enhanced_information": "Glycoproteins are biomolecules that consist of a protein core linked to carbohydrate moieties via glycosidic bonds. The first option is correct as it states that glycoproteins contain proteins linked with glycosidic bonds, which is a defining characteristic. The second option is also accurate, as glycoproteins have a core protein to which sugar residues are attached. The third option, while partially true, is misleading; while glycoproteins can have sugar residues of varying lengths, it is not universally accurate to state that they are 'long' in all cases. Therefore, the first two options are aligned with consensus, while the third option is too broad and should be excluded. The evidence path indicating that glycoproteins interact with cells and are part of proteins supports the understanding of their biological significance.",
+  "analysis": "Glycoproteins are indeed characterized by the presence of a core protein that is linked to carbohydrate moieties through glycosidic bonds. The first option (opa) correctly identifies that glycoproteins consist of proteins linked with glycosidic bonds, which is a fundamental aspect of their structure. The second option (opb) also accurately describes that glycoproteins have a core protein. The third option (opc) suggests that sugar residues are long in the carbohydrate portion of glycoproteins, which is not universally true as the length of sugar residues can vary significantly. Therefore, while options one and two are correct, option three is misleading. Given this analysis, the best-supported options are the first two, but since the question asks for characteristics of glycoproteins, the first option is the most definitive and clear. Thus, I will select option 'opa' as the best answer.",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      0,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      100.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 1
+  },
+  "normal_results": []
+}

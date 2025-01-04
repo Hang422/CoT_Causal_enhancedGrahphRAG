@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250102_235118",
+  "model": "gpt-4o-mini",
+  "interaction_type": "reasoning_chain",
+  "question_id": "27e71ff1",
+  "question_text": "A 50 years old man was recently diagnosed to be having coronary artery disease. There was no added risk factors except for a LDL value of 150-165mgs/dl. The single drug most appropriate for initial therapy is",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            A 50 years old man was recently diagnosed to be having coronary artery disease. There was no added risk factors except for a LDL value of 150-165mgs/dl. The single drug most appropriate for initial therapy is\n\n            ### Options\n    opa. Gemfibrozil\nopb. Nicotinic acid\nopc. Bile acid binding resins\nopd. Statins (Any)\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"Patient diagnosed with coronary artery disease\" -> \"LDL cholesterol level of 150-165 mg/dL\" -> \"Statins recommended for LDL reduction\" -> \"Statins proven to reduce cardiovascular events\" -> 95%\n\nCHAIN: \"Patient has coronary artery disease\" -> \"LDL level is elevated\" -> \"Statins are first-line therapy for high LDL\" -> \"Statins lower LDL cholesterol effectively\" -> 90%\n\nCHAIN: \"Coronary artery disease diagnosed\" -> \"LDL cholesterol is a risk factor\" -> \"Statins are effective in lowering LDL\" -> \"Statins reduce risk of heart attacks\" -> 92%\n\nCHAIN: \"50-year-old man with coronary artery disease\" -> \"LDL cholesterol between 150-165 mg/dL\" -> \"Statins are the most appropriate initial therapy\" -> \"Statins have strong evidence for efficacy\" -> 93%",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "question": "Folic acid metabolism is inhibited by :  a) Sulfonamides b) Methotrexate c) Nitrous oxide d) Trimethoprim e) 5–Flucytosine",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "acd",
+    "opb": "abd",
+    "opc": "bde",
+    "opd": "ace"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Methotrexate",
+        "Hypertension, Pulmonary",
+        "Dihydrofolate Reductase"
+      ],
+      [
+        "Nitrous Oxide",
+        "Pharmaceutical Preparations",
+        "APP gene",
+        "Vitamin B 12"
+      ],
+      [
+        "Nitrous Oxide",
+        "Pharmaceutical Preparations",
+        "Alleles",
+        "Vitamin B 12"
+      ],
+      [
+        "Nitrous Oxide",
+        "Pharmaceutical Preparations",
+        "NDUFB3|TNFAIP1",
+        "Vitamin B 12"
+      ],
+      [
+        "Nitrous Oxide",
+        "Anesthetics",
+        "Genes",
+        "Vitamin B 12"
+      ],
+      [
+        "Nitrous Oxide",
+        "Anesthetics",
+        "APP gene",
+        "Vitamin B 12"
+      ],
+      [
+        "Trimethoprim",
+        "Hypersensitivity",
+        "Dihydrofolate Reductase"
+      ],
+      [
+        "Fluorouracil",
+        "Thymidylate Synthase"
+      ],
+      [
+        "Trimethoprim",
+        "Pharmaceutical Preparations",
+        "Methotrexate"
+      ],
+      [
+        "Nitrous Oxide",
+        "Pharmaceutical Preparations",
+        "alginic acid compound",
+        "Sulfonamides"
+      ],
+      [
+        "Nitrous Oxide",
+        "Escherichia coli",
+        "alginic acid compound",
+        "Sulfonamides"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Methotrexate)-TREATS->(Hypertension, Pulmonary)-ASSOCIATED_WITH->(Dihydrofolate Reductase)",
+      "(Nitrous Oxide)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(APP gene)-INTERACTS_WITH->(Vitamin B 12)",
+      "(Nitrous Oxide)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Alleles)-INTERACTS_WITH->(Vitamin B 12)",
+      "(Nitrous Oxide)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(NDUFB3|TNFAIP1)-INTERACTS_WITH->(Vitamin B 12)",
+      "(Nitrous Oxide)-INTERACTS_WITH->(Anesthetics)-INTERACTS_WITH->(Genes)-INTERACTS_WITH->(Vitamin B 12)",
+      "(Nitrous Oxide)-INTERACTS_WITH->(Anesthetics)-INTERACTS_WITH->(APP gene)-INTERACTS_WITH->(Vitamin B 12)",
+      "(Trimethoprim)-TREATS->(Hypersensitivity)-ASSOCIATED_WITH->(Dihydrofolate Reductase)",
+      "(Fluorouracil)-INTERACTS_WITH->(Thymidylate Synthase)",
+      "(Trimethoprim)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Methotrexate)",
+      "(Nitrous Oxide)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(alginic acid compound)-INTERACTS_WITH->(Sulfonamides)",
+      "(Nitrous Oxide)-TREATS->(Escherichia coli)-LOCATION_OF->(alginic acid compound)-INTERACTS_WITH->(Sulfonamides)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Nitrous Oxide)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(APP gene)-INTERACTS_WITH->(Vitamin B 12)",
+      "(Nitrous Oxide)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Alleles)-INTERACTS_WITH->(Vitamin B 12)",
+      "(Nitrous Oxide)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(NDUFB3|TNFAIP1)-INTERACTS_WITH->(Vitamin B 12)",
+      "(Nitrous Oxide)-INTERACTS_WITH->(Anesthetics)-INTERACTS_WITH->(Genes)-INTERACTS_WITH->(Vitamin B 12)",
+      "(Nitrous Oxide)-INTERACTS_WITH->(Anesthetics)-INTERACTS_WITH->(APP gene)-INTERACTS_WITH->(Vitamin B 12)",
+      "(Nitrous Oxide)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(alginic acid compound)-INTERACTS_WITH->(Sulfonamides)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Sulfonamides\" -> \"inhibit bacterial folate synthesis\" -> \"potentially affects human folate metabolism\" -> 70%",
+    "CHAIN: \"Methotrexate\" -> \"inhibits dihydrofolate reductase\" -> \"reduces folate availability\" -> 90%",
+    "CHAIN: \"Nitrous oxide\" -> \"inhibits vitamin B12 metabolism\" -> \"may indirectly affect folate metabolism\" -> 60%",
+    "CHAIN: \"Trimethoprim\" -> \"inhibits bacterial dihydrofolate reductase\" -> \"reduces folate synthesis in bacteria\" -> 80%",
+    "CHAIN: \"5-Flucytosine\" -> \"inhibits fungal DNA synthesis\" -> \"does not directly affect folate metabolism\" -> 50%",
+    "CHAIN: \"Sulfonamides\" + \"Trimethoprim\" + \"Methotrexate\" -> \"all inhibit folate metabolism\" -> \"strong evidence for inhibition\" -> 85%",
+    "CHAIN: \"Nitrous oxide\" + \"5-Flucytosine\" -> \"unclear effects on folate metabolism\" -> \"possible indirect effects\" -> 55%",
+    "CHAIN: \"Methotrexate\" + \"Trimethoprim\" + \"Sulfonamides\" -> \"strongly inhibit folate metabolism\" -> \"high confidence in inhibition\" -> 90%"
+  ],
+  "enhanced_information": "Folic acid metabolism can be inhibited by several agents through different mechanisms. Sulfonamides inhibit dihydropteroate synthase, leading to decreased folate synthesis, which indirectly affects folic acid metabolism. Methotrexate and Trimethoprim both inhibit dihydrofolate reductase, directly reducing tetrahydrofolate levels and thus inhibiting folic acid metabolism. Nitrous oxide oxidizes vitamin B12, impairing methionine synthase, which can indirectly affect folate metabolism. 5-Flucytosine is converted to 5-fluorouracil, which inhibits thymidylate synthase, but its effect on folate metabolism is less direct and not as well established. Based on these mechanisms, the most consensus-supported option is 'abd' (Sulfonamides, Methotrexate, Trimethoprim) as all three are known to inhibit folic acid metabolism through well-documented pathways.",
+  "analysis": "Folic acid metabolism is primarily affected by agents that inhibit key enzymes involved in its synthesis and conversion. Sulfonamides inhibit dihydropteroate synthase, which is crucial for folate synthesis. Methotrexate and Trimethoprim both inhibit dihydrofolate reductase, leading to decreased levels of tetrahydrofolate, a critical cofactor in folate metabolism. Nitrous oxide affects vitamin B12, which can indirectly impact folate metabolism, but its primary action is not a direct inhibition of folate metabolism. 5-Flucytosine's effect on folate metabolism is less direct and not as well established as the others. Therefore, the most supported option based on the mechanisms of action is 'abd' (Sulfonamides, Methotrexate, Trimethoprim), as all three are known to inhibit folic acid metabolism through well-documented pathways.",
+  "answer": "opb",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      16.666666666666664,
+      16.666666666666664,
+      16.666666666666664,
+      16.666666666666664,
+      0.0,
+      0.0,
+      16.666666666666664,
+      16.666666666666664
+    ],
+    "total_successes": 6
+  },
+  "normal_results": []
+}

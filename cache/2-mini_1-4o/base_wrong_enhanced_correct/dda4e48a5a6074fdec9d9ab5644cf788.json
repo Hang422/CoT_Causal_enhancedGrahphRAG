@@ -1,0 +1,160 @@
+{
+  "question": "True statement regarding insulin:",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Produced by alpha cells of pancreas",
+    "opb": "Two polypeptide chains are bound by disulfide linkages",
+    "opc": "Shifts potassium outside the cell",
+    "opd": "S.c insulin tl/2 is 60 mins"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Hormones",
+        "Disease",
+        "paracrine",
+        "Pancreas"
+      ],
+      [
+        "Hormones",
+        "Disease",
+        "Respiration",
+        "Pancreas"
+      ],
+      [
+        "Hormones",
+        "Disease",
+        "Physiologic Function",
+        "Pancreas"
+      ],
+      [
+        "Insulin",
+        "Energy Metabolism",
+        "Pancreas"
+      ],
+      [
+        "Insulin",
+        "physiological aspects",
+        "Pancreas"
+      ],
+      [
+        "Insulin",
+        "Excretory function",
+        "Pancreas"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Hormones)-CAUSES->(Disease)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Pancreas)",
+      "(Hormones)-CAUSES->(Disease)-MANIFESTATION_OF->(Respiration)-PROCESS_OF->(Pancreas)",
+      "(Hormones)-CAUSES->(Disease)-MANIFESTATION_OF->(Physiologic Function)-PROCESS_OF->(Pancreas)",
+      "(Insulin)-CAUSES->(Energy Metabolism)-PROCESS_OF->(Pancreas)",
+      "(Insulin)-CAUSES->(physiological aspects)-PROCESS_OF->(Pancreas)",
+      "(Insulin)-CAUSES->(Excretory function)-PROCESS_OF->(Pancreas)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Serum potassium assay",
+        "Heart Arrest",
+        "Genes",
+        "Cells"
+      ],
+      [
+        "Serum potassium assay",
+        "Accelerated atrioventricular conduction",
+        "Cyclic AMP-Dependent Protein Kinases",
+        "Cells"
+      ]
+    ],
+    "relationships": [
+      [
+        "DIAGNOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "DIAGNOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Serum potassium assay)-DIAGNOSES->(Heart Arrest)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Cells)",
+      "(Serum potassium assay)-DIAGNOSES->(Accelerated atrioventricular conduction)-ASSOCIATED_WITH->(Cyclic AMP-Dependent Protein Kinases)-INTERACTS_WITH->(Cells)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Insulin)-CAUSES->(Energy Metabolism)-PROCESS_OF->(Pancreas)",
+      "(Insulin)-CAUSES->(physiological aspects)-PROCESS_OF->(Pancreas)",
+      "(Insulin)-CAUSES->(Excretory function)-PROCESS_OF->(Pancreas)",
+      "(Serum potassium assay)-DIAGNOSES->(Accelerated atrioventricular conduction)-ASSOCIATED_WITH->(Cyclic AMP-Dependent Protein Kinases)-INTERACTS_WITH->(Cells)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Insulin is a hormone\" -> \"produced by beta cells of the pancreas\" -> \"not produced by alpha cells\" -> \"option a is incorrect\" -> 95%",
+    "CHAIN: s\" -> \"connected by disulfide linkages\" -> \"this is a true statement\" -> \"option b is correct\" -> 90%",
+    "CHAIN: \"Insulin facilitates cellular uptake of glucose\" -> \"also affects potassium levels\" -> \"shifts potassium into the cell\" -> \"option c is incorrect\" -> 90%",
+    "CHAIN: \"Subcutaneous insulin has a half-life\" -> \"approximately 60 minutes\" -> \"this is a true statement\" -> \"option d is correct\" -> 85%"
+  ],
+  "enhanced_information": "Insulin is a hormone produced by beta cells of the pancreas, not alpha cells, making option a incorrect. Insulin consists of two polypeptide chains linked by disulfide bonds, confirming option b as correct. Insulin facilitates the uptake of glucose into cells and actually shifts potassium into the cell, which means option c is incorrect. The half-life of subcutaneous insulin is approximately 60 minutes, supporting option d as correct. Therefore, the true statements regarding insulin are options b and d.",
+  "analysis": "Insulin is a hormone produced by the beta cells of the pancreas, not the alpha cells, which produce glucagon. Therefore, option a is incorrect. Insulin is composed of two polypeptide chains, A and B, which are linked by disulfide bonds, making option b correct. Insulin promotes the uptake of glucose and potassium into cells, not the shift of potassium outside the cell, so option c is incorrect. The half-life of subcutaneous insulin is approximately 60 minutes, which supports option d as correct. Based on standard medical knowledge, the true statements regarding insulin are options b and d.",
+  "answer": "opb",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      0,
+      1,
+      0
+    ],
+    "coverage_rates": [
+      66.66666666666666,
+      0.0,
+      33.33333333333333,
+      0.0
+    ],
+    "total_successes": 3
+  },
+  "normal_results": []
+}

@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_223655",
+  "model": "gpt-4o-mini",
+  "interaction_type": "enhancement_with_chain_complete_with_chain",
+  "question_id": "635cf5f3",
+  "question_text": "A person on anti-tubercular drugs complained of deafness and tinnitus in one ear. Drug implicated is?",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on enhanced information and careful verification."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in Pharmacology.\n        Your task:\n        - You have per-option reasoning chains (from previous step).\n        - You have retrieved evidence paths (enhanced graph info) that are correct but may be broad and not directly addressing the key point.\n        - Use standard medical/biochemical consensus to evaluate each chain.\n        - If a chain step contradicts consensus, correct or remove it.\n        - Check evidence paths: if they provide relevant support or clarify consensus, incorporate them.\n        - If paths are too broad or not relevant, do not let them mislead you.\n        - Aim to produce a final \"enhanced_information\" that:\n          1. Reflects corrected, consensus-aligned reasoning for each option,\n          2. Integrates helpful evidence from paths,\n          3. Excludes misleading or irrelevant info,\n          4. Focuses on what best helps answer the question correctly.\n\n        ### Question\n        A person on anti-tubercular drugs complained of deafness and tinnitus in one ear. Drug implicated is?\n\n        ### Options\n        opa. Streptomycin\nopb. Isoniazid\nopc. Ethambutol\nopd. Rifampicin\n\n### Reasoning Chains per Option:\nCHAIN: \"Streptomycin\" -> \"ototoxicity\" -> \"deafness\" -> \"tinnitus\" -> 95%\nCHAIN: \"Isoniazid\" -> \"peripheral neuropathy\" -> \"unclear link to deafness\" -> 40%\nCHAIN: \"Ethambutol\" -> \"optic neuritis\" -> \"visual disturbances\" -> \"no direct link to deafness\" -> 30%\nCHAIN: \"Rifampicin\" -> \"hepatotoxicity\" -> \"no direct link to deafness\" -> 20%\n\n### Retrieved Evidence Paths (broad but correct):\n(isoniazid)-TREATS->(Peripheral Neuropathy)\n(Ethambutol)-TREATS->(Optic Neuritis)\n(Streptomycin)-TREATS->(Infection)-CAUSES->(Disease)-CAUSES->(Ototoxicity)\n(Streptomycin)-TREATS->(Tuberculosis)-CAUSES->(Disease)-CAUSES->(Ototoxicity)\n(Streptomycin)-TREATS->(Infection)-CAUSES->(Kidney Diseases)-CAUSES->(Ototoxicity)\n(Deafness)-CAUSES->(Disease)-CAUSES->(Tinnitus)\n(Deafness)-CAUSES->(Symptoms)-CAUSES->(Tinnitus)\n(Deafness)-CAUSES->(Otosclerosis)-CAUSES->(Tinnitus)\n(Peripheral Neuropathy)-CAUSES->(Disease)-CAUSES->(Deafness)\n\n        ### Instructions:\n        1. Recall standard consensus facts relevant to the question.\n        2. For each option's chain, compare steps to consensus and paths:\n           - Remove/adjust steps contradicting known facts.\n           - If paths confirm or clarify a point aligned with consensus, use them.\n           - Ignore irrelevant or overly broad paths that don't help.\n        3. If uncertain, note uncertainty but choose the best consensus-supported interpretation.\n        4. Output a short \"enhanced_information\" summarizing the corrected reasoning and relevant evidence that truly aids in final answer determination.\n\n        ### Output Format:\n        {\n          \"enhanced_information\": \"A concise, consensus-aligned summary integrating corrected reasoning and relevant evidence.\"\n        }\n        "
+    }
+  ],
+  "response": "{\n  \"enhanced_information\": \"The drug implicated in causing deafness and tinnitus in a patient on anti-tubercular therapy is Streptomycin. This drug is known for its ototoxicity, which can lead to hearing loss and tinnitus. The reasoning chain for Streptomycin is supported by the evidence that it treats tuberculosis and is associated with ototoxic effects. In contrast, Isoniazid primarily causes peripheral neuropathy with no clear link to deafness, Ethambutol is associated with optic neuritis and visual disturbances, and Rifampicin is linked to hepatotoxicity without a direct connection to hearing issues. Therefore, the most likely cause of the symptoms described is Streptomycin.\"\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": true,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

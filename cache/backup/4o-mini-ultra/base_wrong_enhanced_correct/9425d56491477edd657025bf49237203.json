@@ -1,0 +1,185 @@
+{
+  "question": "Which of the following peptides are not produced by the renal system?",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Renin",
+    "opb": "Angiotensin I",
+    "opc": "Erythropoietin",
+    "opd": "1,25DHCC"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Erythropoietin",
+        "Cytoprotection",
+        "Kidney"
+      ],
+      [
+        "Erythropoietin",
+        "Immunity",
+        "Kidney"
+      ],
+      [
+        "Erythropoietin",
+        "biological adaptation to stress",
+        "Kidney"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Erythropoietin)-CAUSES->(Cytoprotection)-PROCESS_OF->(Kidney)",
+      "(Erythropoietin)-CAUSES->(Immunity)-PROCESS_OF->(Kidney)",
+      "(Erythropoietin)-CAUSES->(biological adaptation to stress)-PROCESS_OF->(Kidney)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Angiotensin I",
+        "Myocytes, Smooth Muscle",
+        "Angiotensinogen"
+      ],
+      [
+        "Angiotensinogen",
+        "Cells",
+        "Renin"
+      ],
+      [
+        "Angiotensinogen",
+        "Insulin Resistance",
+        "Renin"
+      ],
+      [
+        "Vitamin D2",
+        "Pharmaceutical Preparations",
+        "Calcifediol"
+      ],
+      [
+        "Vitamin D2",
+        "HIV",
+        "Calcifediol"
+      ],
+      [
+        "Vitamin D2",
+        "Cholecalciferol",
+        "Calcifediol"
+      ],
+      [
+        "Vitamin D2",
+        "Vitamin supplementation",
+        "Calcifediol"
+      ],
+      [
+        "Vitamin D2",
+        "Subgroup A Nepoviruses",
+        "Calcifediol"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Angiotensin I)-INTERACTS_WITH->(Myocytes, Smooth Muscle)-INTERACTS_WITH->(Angiotensinogen)",
+      "(Angiotensinogen)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Renin)",
+      "(Angiotensinogen)-ASSOCIATED_WITH->(Insulin Resistance)-ASSOCIATED_WITH->(Renin)",
+      "(Vitamin D2)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Calcifediol)",
+      "(Vitamin D2)-TREATS->(HIV)-LOCATION_OF->(Calcifediol)",
+      "(Vitamin D2)-INTERACTS_WITH->(Cholecalciferol)-INTERACTS_WITH->(Calcifediol)",
+      "(Vitamin D2)-INTERACTS_WITH->(Vitamin supplementation)-INTERACTS_WITH->(Calcifediol)",
+      "(Vitamin D2)-TREATS->(Subgroup A Nepoviruses)-LOCATION_OF->(Calcifediol)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Angiotensinogen)-ASSOCIATED_WITH->(Insulin Resistance)-ASSOCIATED_WITH->(Renin)",
+      "(Angiotensinogen)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Renin)",
+      "(Erythropoietin)-CAUSES->(Cytoprotection)-PROCESS_OF->(Kidney)",
+      "(Erythropoietin)-CAUSES->(Immunity)-PROCESS_OF->(Kidney)",
+      "(Erythropoietin)-CAUSES->(biological adaptation to stress)-PROCESS_OF->(Kidney)",
+      "(Angiotensin I)-INTERACTS_WITH->(Myocytes, Smooth Muscle)-INTERACTS_WITH->(Angiotensinogen)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Renin\" -> \"produced by juxtaglomerular cells\" -> \"part of the renal system\" -> 95%",
+    "CHAIN: \"Angiotensin I\" -> \"produced from angiotensinogen\" -> \"requires renin for conversion\" -> \"not directly produced by renal system\" -> 85%",
+    "CHAIN: \"Erythropoietin\" -> \"produced by interstitial fibroblasts in kidneys\" -> \"part of the renal system\" -> 90%",
+    "CHAIN: \"1,25DHCC\" -> \"active form of vitamin D\" -> \"produced in kidneys from calcidiol\" -> \"part of the renal system\" -> 90%",
+    "CHAIN: \"Angiotensin I\" -> \"not produced by renal system\" -> \"produced by liver\" -> 80%"
+  ],
+  "enhanced_information": "Renin is produced by juxtaglomerular cells in the kidneys, confirming it is part of the renal system. Angiotensin I is not directly produced by the renal system; it is formed from angiotensinogen, which is produced by the liver, and requires renin for its conversion. Erythropoietin is produced by interstitial fibroblasts in the kidneys, making it part of the renal system. 1,25-Dihydroxycholecalciferol (1,25DHCC), the active form of vitamin D, is produced in the kidneys from calcidiol, thus also part of the renal system. Therefore, the peptide not produced by the renal system is Angiotensin I.",
+  "analysis": "To determine which peptide is not produced by the renal system, we analyze each option: Renin is produced by juxtaglomerular cells in the kidneys, confirming it is part of the renal system. Angiotensin I is formed from angiotensinogen, which is produced by the liver, and requires renin for its conversion; thus, it is not directly produced by the renal system. Erythropoietin is produced by interstitial fibroblasts in the kidneys, making it part of the renal system. 1,25-Dihydroxycholecalciferol (1,25DHCC) is produced in the kidneys from calcidiol, confirming it is also part of the renal system. Therefore, the peptide that is not produced by the renal system is Angiotensin I, as it is a product of a reaction involving a liver-derived precursor and renin from the kidneys.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      2,
+      1,
+      1,
+      0
+    ],
+    "coverage_rates": [
+      0.0,
+      50.0,
+      25.0,
+      25.0,
+      0.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

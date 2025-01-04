@@ -1,0 +1,202 @@
+{
+  "question": "Growth Hormone may be beneficial in the following, except:",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "In children with constitutional growth delay.",
+    "opb": "In treatment of osteoporosis.",
+    "opc": "Laron type dwarfism.",
+    "opd": "Panhypopituitarism."
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Somatotropin",
+        "Bone Density"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Somatotropin)-CAUSES->(Bone Density)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Osteoporosis",
+        "Pathogenesis",
+        "Genes",
+        "Bone Density"
+      ],
+      [
+        "Osteoporosis",
+        "Pathogenesis",
+        "Luteinizing Hormone",
+        "Bone Density"
+      ],
+      [
+        "Bone Density",
+        "Disease",
+        "Pathogenesis",
+        "Somatotropin"
+      ],
+      [
+        "Bone Density",
+        "Disease",
+        "Pathogenesis",
+        "Somatotropin"
+      ],
+      [
+        "Laron Syndrome",
+        "Disease",
+        "Insulin Resistance",
+        "Growth Hormone Receptor"
+      ],
+      [
+        "Laron Syndrome",
+        "Disease",
+        "Insulin Resistance",
+        "Growth Hormone Receptor"
+      ],
+      [
+        "Growth Hormone Receptor",
+        "Cells",
+        "Somatotropin"
+      ],
+      [
+        "Growth Hormone Receptor",
+        "Lymphocyte",
+        "Somatotropin"
+      ],
+      [
+        "receptor",
+        "T-Lymphocyte",
+        "Somatotropin"
+      ],
+      [
+        "receptor",
+        "Cells",
+        "Somatotropin"
+      ],
+      [
+        "Panhypopituitarism",
+        "Complication",
+        "Somatotropin"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "CAUSES"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "CAUSES"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "PREDISPOSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "COMPLICATES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "ISA",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Osteoporosis)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Genes)-CAUSES->(Bone Density)",
+      "(Osteoporosis)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Luteinizing Hormone)-CAUSES->(Bone Density)",
+      "(Bone Density)-MANIFESTATION_OF->(Disease)-CAUSES->(Pathogenesis)-ASSOCIATED_WITH->(Somatotropin)",
+      "(Bone Density)-PREDISPOSES->(Disease)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Somatotropin)",
+      "(Laron Syndrome)-CAUSES->(Disease)-COMPLICATES->(Insulin Resistance)-ASSOCIATED_WITH->(Growth Hormone Receptor)",
+      "(Laron Syndrome)-ISA->(Disease)-MANIFESTATION_OF->(Insulin Resistance)-ASSOCIATED_WITH->(Growth Hormone Receptor)",
+      "(Growth Hormone Receptor)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Somatotropin)",
+      "(Growth Hormone Receptor)-INTERACTS_WITH->(Lymphocyte)-INTERACTS_WITH->(Somatotropin)",
+      "(receptor)-INTERACTS_WITH->(T-Lymphocyte)-LOCATION_OF->(Somatotropin)",
+      "(receptor)-PART_OF->(Cells)-INTERACTS_WITH->(Somatotropin)",
+      "(Panhypopituitarism)-CAUSES->(Complication)-ASSOCIATED_WITH->(Somatotropin)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Panhypopituitarism)-CAUSES->(Complication)-ASSOCIATED_WITH->(Somatotropin)",
+      "(Osteoporosis)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Luteinizing Hormone)-CAUSES->(Bone Density)",
+      "(Bone Density)-MANIFESTATION_OF/PREDISPOSES->(Disease)-CAUSES/PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Somatotropin)",
+      "(Laron Syndrome)-CAUSES/ISA->(Disease)-COMPLICATES/MANIFESTATION_OF->(Insulin Resistance)-ASSOCIATED_WITH->(Growth Hormone Receptor)",
+      "(Somatotropin)-CAUSES->(Bone Density)",
+      "(Growth Hormone Receptor)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Somatotropin)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Constitutional growth delay\" -> \"deficiency in growth hormone secretion\" -> \"Growth Hormone supplementation\" -> \"improvement in growth rate\" -> 95%",
+    "CHAIN: \"Osteoporosis\" -> \"decreased bone density\" -> \"Growth Hormone increases bone formation\" -> \"possible improvement in bone density\" -> 70%",
+    "CHAIN: \"Laron type dwarfism\" -> \"genetic mutation in growth hormone receptor\" -> \"Growth Hormone ineffective due to receptor insensitivity\" -> \"no benefit from Growth Hormone\" -> 10%",
+    "CHAIN: \"Panhypopituitarism\" -> \"deficiency of multiple pituitary hormones including Growth Hormone\" -> \"Growth Hormone replacement\" -> \"improvement in growth and metabolism\" -> 90%"
+  ],
+  "enhanced_information": "Growth Hormone (GH) is beneficial in treating constitutional growth delay and panhypopituitarism. In Laron type dwarfism, GH is ineffective due to genetic mutation causing GH receptor insensitivity. The use of GH in osteoporosis is not well-established and remains under investigation, despite its theoretical basis on bone metabolism.",
+  "analysis": "Growth Hormone is ineffective in Laron type dwarfism due to a genetic mutation causing insensitivity to GH at the receptor level. This aligns with medical consensus and the genetic pathology of the condition.",
+  "answer": "opc",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      3,
+      3,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      42.857142857142854,
+      42.857142857142854,
+      14.285714285714285
+    ],
+    "total_successes": 7
+  },
+  "normal_results": []
+}

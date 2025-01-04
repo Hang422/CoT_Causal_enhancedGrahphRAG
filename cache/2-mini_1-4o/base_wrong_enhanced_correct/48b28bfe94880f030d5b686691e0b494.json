@@ -1,0 +1,205 @@
+{
+  "question": "A 52 year old male presents to his physician with a chief complaint of a substantial increase in the size of his breasts over the past few months. Three months ago he was diagnosed with hypeension, and placed on antihypeensive medication. Which of the following medications was most likely prescribed?",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Captopril",
+    "opb": "Furosemide",
+    "opc": "Hydrochlorothiazide",
+    "opd": "Spironolactone"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Gynecomastia",
+        "imbalance"
+      ],
+      [
+        "Pharmaceutical Preparations",
+        "Adaptive Immunity",
+        "Breast tissue sample"
+      ],
+      [
+        "Potassium Sparing Diuretics",
+        "Fibrosis",
+        "Hypertrophy of Breast"
+      ],
+      [
+        "Spironolactone",
+        "Symptoms",
+        "Hypertrophy of Breast"
+      ],
+      [
+        "Spironolactone",
+        "Fibrosis",
+        "Hypertrophy of Breast"
+      ],
+      [
+        "Spironolactone",
+        "Obstruction",
+        "Hypertrophy of Breast"
+      ],
+      [
+        "Antihypertensive Agents",
+        "Disease",
+        "Gynecomastia"
+      ],
+      [
+        "Antihypertensive Agents",
+        "Adverse effects",
+        "Gynecomastia"
+      ],
+      [
+        "Antihypertensive Agents",
+        "Obesity",
+        "Gynecomastia"
+      ],
+      [
+        "Spironolactone",
+        "Gynecomastia"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Gynecomastia)-CAUSES->(imbalance)",
+      "(Pharmaceutical Preparations)-CAUSES->(Adaptive Immunity)-PROCESS_OF->(Breast tissue sample)",
+      "(Potassium Sparing Diuretics)-TREATS->(Fibrosis)-CAUSES->(Hypertrophy of Breast)",
+      "(Spironolactone)-CAUSES->(Symptoms)-CAUSES->(Hypertrophy of Breast)",
+      "(Spironolactone)-CAUSES->(Fibrosis)-CAUSES->(Hypertrophy of Breast)",
+      "(Spironolactone)-CAUSES->(Obstruction)-CAUSES->(Hypertrophy of Breast)",
+      "(Antihypertensive Agents)-CAUSES->(Disease)-CAUSES->(Gynecomastia)",
+      "(Antihypertensive Agents)-PREDISPOSES->(Adverse effects)-CAUSES->(Gynecomastia)",
+      "(Antihypertensive Agents)-TREATS->(Obesity)-CAUSES->(Gynecomastia)",
+      "(Spironolactone)-CAUSES->(Gynecomastia)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Gynecomastia",
+        "Adverse effects",
+        "Genes",
+        "Aldosterone Antagonists",
+        "Potassium Sparing Diuretics"
+      ],
+      [
+        "Gynecomastia",
+        "Adverse effects",
+        "Genes",
+        "Aldosterone Antagonists",
+        "Potassium Sparing Diuretics"
+      ],
+      [
+        "Pharmaceutical Preparations",
+        "Antihypertensive Agents"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH",
+        "ISA"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH",
+        "ISA"
+      ],
+      [
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Gynecomastia)-CAUSES->(Adverse effects)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Aldosterone Antagonists)-ISA->(Potassium Sparing Diuretics)",
+      "(Gynecomastia)-PREDISPOSES->(Adverse effects)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Aldosterone Antagonists)-ISA->(Potassium Sparing Diuretics)",
+      "(Pharmaceutical Preparations)-INTERACTS_WITH->(Antihypertensive Agents)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Spironolactone)-CAUSES->(Symptoms)-CAUSES->(Hypertrophy of Breast)",
+      "(Spironolactone)-CAUSES->(Obstruction)-CAUSES->(Hypertrophy of Breast)",
+      "(Spironolactone)-CAUSES->(Fibrosis)-CAUSES->(Hypertrophy of Breast)",
+      "(Spironolactone)-CAUSES->(Gynecomastia)",
+      "(Pharmaceutical Preparations)-CAUSES->(Adaptive Immunity)-PROCESS_OF->(Breast tissue sample)",
+      "(Potassium Sparing Diuretics)-TREATS->(Fibrosis)-CAUSES->(Hypertrophy of Breast)",
+      "(Pharmaceutical Preparations)-INTERACTS_WITH->(Antihypertensive Agents)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"52 year old male with gynecomastia\" -> \"possible hormonal imbalance\" -> \"antihypertensive medication could cause side effects\" -> \"Spironolactone is known to cause gynecomastia\" -> 85%",
+    "CHAIN: \"Patient diagnosed with hypertension\" -> \"prescribed antihypertensive medication\" -> \"medications can have side effects\" -> \"Spironolactone can lead to breast tissue enlargement\" -> 90%",
+    "CHAIN: \"Antihypertensive medication prescribed\" -> \"possible side effects include gynecomastia\" -> \"Spironolactone is a potassium-sparing diuretic\" -> \"known to cause breast enlargement in males\" -> 80%",
+    "CHAIN: \"Patient presents with enlarged breasts\" -> \"consider medications that can cause this effect\" -> \"Spironolactone is a common antihypertensive\" -> \"associated with gynecomastia\" -> 75%"
+  ],
+  "enhanced_information": "In a 52-year-old male presenting with gynecomastia, the most likely antihypertensive medication prescribed is Spironolactone. This potassium-sparing diuretic is known to cause breast tissue enlargement due to its anti-androgenic effects, leading to hormonal imbalances that can result in gynecomastia. Other antihypertensive medications like Captopril, Furosemide, and Hydrochlorothiazide are less commonly associated with this side effect. The reasoning chains correctly identify Spironolactone's role in causing gynecomastia, supported by evidence that links it directly to breast tissue hypertrophy. Therefore, Spironolactone is the most probable medication prescribed in this case.",
+  "analysis": "Gynecomastia, or the enlargement of breast tissue in males, can be a side effect of certain medications. In the context of antihypertensive drugs, Spironolactone is well-known for causing gynecomastia due to its anti-androgenic properties. It acts as a potassium-sparing diuretic and can lead to hormonal imbalances that promote breast tissue growth. Other antihypertensive medications listed, such as Captopril (an ACE inhibitor), Furosemide (a loop diuretic), and Hydrochlorothiazide (a thiazide diuretic), are not commonly associated with gynecomastia. Therefore, based on standard medical knowledge and the enhanced information provided, Spironolactone is the most likely medication prescribed to this patient, leading to his symptoms.",
+  "answer": "opd",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      1,
+      3,
+      3
+    ],
+    "coverage_rates": [
+      12.5,
+      12.5,
+      37.5,
+      37.5
+    ],
+    "total_successes": 8
+  },
+  "normal_results": []
+}

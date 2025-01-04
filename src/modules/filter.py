@@ -6,7 +6,8 @@ from typing import Optional
 from src.modules.MedicalQuestion import MedicalQuestion
 from config import config
 from src.graphrag.query_processor import QueryProcessor
-from src.graphrag.graph_enhancer import GraphEnhancer
+
+
 def load_question_from_json(file_path: Path) -> Optional[MedicalQuestion]:
     """从JSON文件加载Question对象"""
     try:
@@ -286,7 +287,6 @@ def filter_questions_by_paths(input_path: str, output_path: str) -> None:
 
     # Initialize query processor
     query_processor = QueryProcessor()
-    enhancer = GraphEnhancer()
 
     # Create output directory
     output_dir = Path(output_path)
@@ -319,7 +319,6 @@ def filter_questions_by_paths(input_path: str, output_path: str) -> None:
 
                 # Generate initial causal graph
                 query_processor.generate_initial_causal_graph(question)
-                question.initial_causal_graph.paths = enhancer.merge_paths(question.initial_causal_graph.paths)
 
                 # Check if question has valid paths in the graph
                 if (hasattr(question.initial_causal_graph, 'paths') and
@@ -342,7 +341,109 @@ def filter_questions_by_paths(input_path: str, output_path: str) -> None:
     logger.info(f"Filtered out {processed_count - saved_count} questions")
 
 
+def clean_original_files(directory: str):
+   """清理original目录下的json文件,保留所有属性但置空"""
+   from pathlib import Path
+   import json
+
+   original_dir = config.paths["cache"]/ Path(directory) / 'data' / 'original'
+   if not original_dir.exists():
+       raise ValueError(f"Original directory not found: {original_dir}")
+
+   for file in original_dir.glob('*.json'):
+       with open(file, 'r', encoding='utf-8') as f:
+           data = json.load(f)
+
+       clean_data = {
+           "question": data["question"],
+           "is_multi_choice": data["is_multi_choice"],
+           "correct_answer": data["correct_answer"],
+           "options": data["options"],
+           "topic_name": data["topic_name"],
+           "analysis": "",
+           "answer": "",
+           "confidence": 0.0,
+           "normal_results": [],
+           "chain_coverage": {},
+           "reasoning_chain": [],
+           "initial_causal_graph": {"nodes": [], "relationships": [], "paths": []},
+           "causal_graph": {"nodes": [], "relationships": [], "paths": []},
+           "knowledge_graph": {"nodes": [], "relationships": [], "paths": []},
+           "enhanced_graph": {"nodes": [], "relationships": [], "paths": []},
+           "enhanced_information": ""
+       }
+
+       with open(file, 'w', encoding='utf-8') as f:
+           json.dump(clean_data, f, indent=2, ensure_ascii=False)
+
+
+def cleanup_reasoning_cache(cache_dir: str) -> None:
+    """
+    Compare enhanced and original directories, then remove corresponding files
+    from reasoning directory that are missing in enhanced.
+
+    Args:
+        cache_dir (str): Name of the directory under cache (e.g., '40-ultra')
+    """
+    try:
+        # Construct paths
+        base_path = config.paths["cache"] / cache_dir / 'data'
+        original_path = base_path / 'original'
+        enhanced_path = base_path / 'enhanced'
+        reasoning_path = base_path / 'reasoning'
+
+        # Verify directories exist
+        if not all(p.exists() for p in [original_path, enhanced_path, reasoning_path]):
+            raise FileNotFoundError("One or more required directories not found")
+
+        # Get sets of question IDs from original and enhanced
+        def get_question_ids(directory: Path) -> set:
+            questions = set()
+            for file_path in directory.glob('*.json'):
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        data = json.load(f)
+                        questions.add(data['question'])
+                except (json.JSONDecodeError, KeyError, Exception) as e:
+                    print(f"Error reading {file_path}: {str(e)}")
+                    continue
+            return questions
+
+        original_questions = get_question_ids(original_path)
+        enhanced_questions = get_question_ids(enhanced_path)
+
+        # Find questions that are in original but not in enhanced
+        missing_questions = original_questions - enhanced_questions
+
+        # Delete corresponding files from reasoning directory
+        deleted_count = 0
+        for file_path in reasoning_path.glob('*.json'):
+            try:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    if data['question'] in missing_questions:
+                        file_path.unlink()
+                        deleted_count += 1
+            except (json.JSONDecodeError, KeyError, Exception) as e:
+                print(f"Error processing {file_path}: {str(e)}")
+                continue
+
+        print(f"Process completed:")
+        print(f"Total questions in original: {len(original_questions)}")
+        print(f"Total questions in enhanced: {len(enhanced_questions)}")
+        print(f"Questions missing from enhanced: {len(missing_questions)}")
+        print(f"Files deleted from reasoning: {deleted_count}")
+
+        # Optional: Create a backup of deleted files
+        backup_dir = base_path / 'reasoning_backup'
+        if not backup_dir.exists() and deleted_count > 0:
+            shutil.copytree(reasoning_path, backup_dir)
+            print(f"Backup created at: {backup_dir}")
+
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
 # Example usage:
+
 
 if __name__ == "__main__":
     # 示例调用
@@ -351,8 +452,11 @@ if __name__ == "__main__":
     # # compare_enhanced_with_baseline(path)
     # filter_by_coverage('1-final-4o-mini', threshold=0.5)  # 覆盖率过滤
     # compare_enhanced_with_baseline(path)
-    # # extract_wrong_questions('2-final','derelict')
-    # filter_by_enhanced_paths('1-4omini-4', '1-4')
-    path = Path(config.paths["cache"], 'total', 'data','original')
-    output = Path(config.paths["cache"], 'total_filtered', 'data' ,'original')
-    filter_questions_by_paths(path, output)
+    # extract_wrong_questions('4o-intersection','enhanced')
+    # filter_by_enhanced_paths('4o-mini-intersection', '4o-mini-t')
+    # path = Path(config.paths["cache"], 'total')
+    # output = Path(config.paths["cache"], 'total_filtered')
+    # filter_by_enhanced_paths('total_filtered_3.5', 'final-3.5')
+    filter_by_enhanced_paths('random', 'final-4o')
+    # clean_original_files('4o-mini-ultra')
+

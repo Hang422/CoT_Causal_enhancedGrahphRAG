@@ -1,0 +1,170 @@
+{
+  "question": "In circulatory biomechanics which of the following is true?",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Blood viscosity is increased in anemia",
+    "opb": "Blood viscosity is decreased in polycythemia",
+    "opc": "Cardiac output is increased in anemia",
+    "opd": "Cardiac output is decreased in Beri-Beri"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Anemia",
+        "Pathogenesis",
+        "Genes",
+        "Bone Marrow",
+        "Red Blood Cell Count measurement"
+      ],
+      [
+        "Anemia",
+        "Pathogenesis",
+        "Genes",
+        "Bone Marrow",
+        "Red Blood Cell Count measurement"
+      ],
+      [
+        "Red Blood Cell Count measurement",
+        "Thrombus",
+        "Blood Viscosity"
+      ],
+      [
+        "Blood Viscosity",
+        "Cerebral cortex",
+        "Deoxyglucose",
+        "Perfusion (procedure)"
+      ],
+      [
+        "Blood Viscosity",
+        "Cerebral cortex",
+        "Ouabain",
+        "Perfusion (procedure)"
+      ],
+      [
+        "Polycythemia",
+        "Leak NOS",
+        "Genes",
+        "Erythrocytes"
+      ],
+      [
+        "Polycythemia",
+        "Premature Birth",
+        "Genes",
+        "Erythrocytes"
+      ],
+      [
+        "Erythrocytes",
+        "Hemoglobin",
+        "Blood Viscosity"
+      ],
+      [
+        "Erythrocytes",
+        "Hemoglobin",
+        "Blood Viscosity"
+      ]
+    ],
+    "relationships": [
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "DIAGNOSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "PROCESS_OF",
+        "LOCATION_OF",
+        "ISA"
+      ],
+      [
+        "PROCESS_OF",
+        "LOCATION_OF",
+        "ISA"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "PART_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "CAUSES"
+      ],
+      [
+        "LOCATION_OF",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Anemia)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Genes)-PART_OF->(Bone Marrow)-LOCATION_OF->(Red Blood Cell Count measurement)",
+      "(Anemia)-CAUSES->(Pathogenesis)-ASSOCIATED_WITH->(Genes)-PART_OF->(Bone Marrow)-LOCATION_OF->(Red Blood Cell Count measurement)",
+      "(Red Blood Cell Count measurement)-DIAGNOSES->(Thrombus)-MANIFESTATION_OF->(Blood Viscosity)",
+      "(Blood Viscosity)-PROCESS_OF->(Cerebral cortex)-LOCATION_OF->(Deoxyglucose)-ISA->(Perfusion (procedure))",
+      "(Blood Viscosity)-PROCESS_OF->(Cerebral cortex)-LOCATION_OF->(Ouabain)-ISA->(Perfusion (procedure))",
+      "(Polycythemia)-CAUSES->(Leak NOS)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Erythrocytes)",
+      "(Polycythemia)-PREDISPOSES->(Premature Birth)-ASSOCIATED_WITH->(Genes)-PART_OF->(Erythrocytes)",
+      "(Erythrocytes)-INTERACTS_WITH->(Hemoglobin)-CAUSES->(Blood Viscosity)",
+      "(Erythrocytes)-LOCATION_OF->(Hemoglobin)-CAUSES->(Blood Viscosity)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Red Blood Cell Count measurement)-DIAGNOSES->(Thrombus)-MANIFESTATION_OF->(Blood Viscosity)",
+      "(Erythrocytes)-INTERACTS_WITH/LOCATION_OF->(Hemoglobin)-CAUSES->(Blood Viscosity)",
+      "(Blood Viscosity)-PROCESS_OF->(Cerebral cortex)-LOCATION_OF->(Deoxyglucose)-ISA->(Perfusion (procedure))",
+      "(Blood Viscosity)-PROCESS_OF->(Cerebral cortex)-LOCATION_OF->(Ouabain)-ISA->(Perfusion (procedure))"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Anemia\" -> \"decreased red blood cell count\" -> \"decreased blood viscosity\" -> \"increased cardiac output to maintain perfusion\" -> 85%",
+    "CHAIN: \"Polycythemia\" -> \"increased red blood cell count\" -> \"increased blood viscosity\" -> \"possible decrease in cardiac output\" -> 70%",
+    "CHAIN: \"Beri-Beri\" -> \"impaired cardiovascular function\" -> \"decreased cardiac output\" -> \"possible compensatory mechanisms\" -> 80%"
+  ],
+  "enhanced_information": "In circulatory biomechanics, the following points are aligned with consensus: 1. Anemia is characterized by a decreased red blood cell count, which leads to decreased blood viscosity, not increased (thus, option opa is incorrect). This decrease in viscosity can result in increased cardiac output to maintain adequate tissue perfusion (supporting option opc). 2. Polycythemia involves an increased red blood cell count, which raises blood viscosity, potentially leading to decreased cardiac output due to increased resistance (thus, option opb is incorrect). 3. Beri-Beri, particularly the wet form, is associated with impaired cardiovascular function and can lead to decreased cardiac output (supporting option opd). Therefore, the correct statements are that cardiac output is increased in anemia and decreased in Beri-Beri.",
+  "analysis": "In circulatory biomechanics, the viscosity of blood is influenced by the concentration of red blood cells. Anemia, characterized by a low red blood cell count, results in decreased blood viscosity. This reduction in viscosity can lead to an increase in cardiac output as the heart compensates to maintain adequate tissue perfusion. Therefore, option opc, which states that cardiac output is increased in anemia, is correct. Polycythemia, on the other hand, involves an increased red blood cell count, leading to higher blood viscosity and potentially decreased cardiac output due to increased resistance, making option opb incorrect. Beri-Beri, particularly the wet form, is associated with cardiovascular dysfunction and can lead to decreased cardiac output, supporting option opd. However, the most direct and clear statement based on the physiological response to anemia is that cardiac output is increased, making opc the best-supported option.",
+  "answer": "opc",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      3,
+      2,
+      0
+    ],
+    "coverage_rates": [
+      60.0,
+      40.0,
+      0.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

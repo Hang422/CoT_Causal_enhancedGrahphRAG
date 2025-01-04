@@ -1,0 +1,160 @@
+{
+  "question": "Which of the following about phenytoin is true ?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "It follows zero order kinetics",
+    "opb": "Not an hepatic enzyme inducer",
+    "opc": "It is excreted unchanged in urine",
+    "opd": "It is not teratogenic"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Phenytoin",
+        "Disease",
+        "Hypertension, Portal",
+        "Measurement of liver enzyme"
+      ],
+      [
+        "Phenytoin",
+        "Obesity",
+        "Hypertension, Portal",
+        "Measurement of liver enzyme"
+      ],
+      [
+        "Phenytoin",
+        "Hypertensive disease",
+        "Hypertension, Portal",
+        "Measurement of liver enzyme"
+      ],
+      [
+        "Phenytoin",
+        "Disease",
+        "paracrine",
+        "Liver"
+      ],
+      [
+        "Phenytoin",
+        "Disease",
+        "drug clearance",
+        "Liver"
+      ],
+      [
+        "Phenytoin",
+        "Disease",
+        "Thermotolerance",
+        "Liver"
+      ],
+      [
+        "Phenytoin",
+        "Teratogenesis"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Phenytoin)-CAUSES->(Disease)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)",
+      "(Phenytoin)-TREATS->(Obesity)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)",
+      "(Phenytoin)-TREATS->(Hypertensive disease)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)",
+      "(Phenytoin)-CAUSES->(Disease)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Liver)",
+      "(Phenytoin)-CAUSES->(Disease)-MANIFESTATION_OF->(drug clearance)-PROCESS_OF->(Liver)",
+      "(Phenytoin)-CAUSES->(Disease)-MANIFESTATION_OF->(Thermotolerance)-PROCESS_OF->(Liver)",
+      "(Phenytoin)-CAUSES->(Teratogenesis)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Measurement of liver enzyme",
+        "Virus",
+        "Pharmaceutical Preparations"
+      ]
+    ],
+    "relationships": [
+      [
+        "DIAGNOSES",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Measurement of liver enzyme)-DIAGNOSES->(Virus)-LOCATION_OF->(Pharmaceutical Preparations)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Phenytoin)-CAUSES->(Teratogenesis)",
+      "(Phenytoin)-CAUSES->(Disease)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)",
+      "(Phenytoin)-TREATS->(Obesity)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)",
+      "(Phenytoin)-TREATS->(Hypertensive disease)-CAUSES->(Hypertension, Portal)-CAUSES->(Measurement of liver enzyme)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Phenytoin\" -> \"zero order kinetics\" -> \"constant rate of elimination\" -> \"saturation of metabolic pathways\" -> 90%",
+    "CHAIN: \"Phenytoin\" -> \"hepatic enzyme inducer\" -> \"increased metabolism of other drugs\" -> 95%",
+    "CHAIN: \"Phenytoin\" -> \"metabolized in liver\" -> \"not excreted unchanged in urine\" -> 95%",
+    "CHAIN: \"Phenytoin\" -> \"teratogenic effects\" -> \"risk of fetal malformations\" -> 95%"
+  ],
+  "enhanced_information": "Phenytoin is known to follow zero-order kinetics at therapeutic levels, meaning its elimination rate is constant and can become saturated, which supports option 'opa'. It is also a hepatic enzyme inducer, increasing the metabolism of other drugs, contradicting option 'opb'. Phenytoin is primarily metabolized in the liver and is not excreted unchanged in urine, which contradicts option 'opc'. Additionally, phenytoin is teratogenic and poses risks of fetal malformations, contradicting option 'opd'. Therefore, the only true statement is that phenytoin follows zero-order kinetics.",
+  "analysis": "Phenytoin is a well-known antiepileptic drug that exhibits zero-order kinetics at therapeutic levels, meaning that its elimination does not follow the typical first-order kinetics where the rate of elimination is proportional to the drug concentration. This characteristic supports option 'opa'. Additionally, phenytoin is a hepatic enzyme inducer, which contradicts option 'opb'. It is primarily metabolized in the liver and is not excreted unchanged in urine, which contradicts option 'opc'. Furthermore, phenytoin is known to be teratogenic, posing risks of fetal malformations, which contradicts option 'opd'. Therefore, the only accurate statement regarding phenytoin is that it follows zero-order kinetics, making option 'opa' the correct choice.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      2,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      50.0,
+      25.0,
+      25.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

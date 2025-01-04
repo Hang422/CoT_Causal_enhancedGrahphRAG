@@ -1,0 +1,88 @@
+{
+  "question": "Starvation and diabetes mellitus can lead on to ketoacidosis which of the following features is in our of ketoacidosis due to diabetes mellitus.",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Increase in glucagon/insulin ratio, increased CAMP and increased blood glucose",
+    "opb": "Decreased insulin, increased free fatty acid which is equivalent to blood glucose",
+    "opc": "Decreased insulin, increased free fatty acid which is not equivalent to blood glucose",
+    "opd": "Elevated insulin and free fatty acid, equivalent to blood glucose"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Fatty Acids, Nonesterified",
+        "Blood Glucose"
+      ],
+      [
+        "Fatty Acids, Nonesterified",
+        "Blood Glucose"
+      ],
+      [
+        "Fatty Acids, Nonesterified",
+        "Blood Glucose"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Fatty Acids, Nonesterified)-INTERACTS_WITH->(Blood Glucose)",
+      "(Fatty Acids, Nonesterified)-INTERACTS_WITH->(Blood Glucose)",
+      "(Fatty Acids, Nonesterified)-INTERACTS_WITH->(Blood Glucose)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Fatty Acids, Nonesterified)-INTERACTS_WITH->(Blood Glucose)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Decreased insulin\" -> \"increased glucagon/insulin ratio\" -> \"increased cAMP\" -> \"increased blood glucose\" -> 90%",
+    "CHAIN: \"Decreased insulin\" -> \"increased free fatty acid\" -> \"not equivalent to blood glucose\" -> 70%",
+    "CHAIN: \"Decreased insulin\" -> \"increased free fatty acid\" -> \"equivalent to blood glucose\" -> 60%",
+    "CHAIN: \"Elevated insulin\" -> \"increased free fatty acid\" -> \"equivalent to blood glucose\" -> 50%"
+  ],
+  "enhanced_information": "In ketoacidosis due to diabetes mellitus, the key feature is a decreased insulin level leading to an increased glucagon/insulin ratio. This results in increased cAMP levels and subsequently increased blood glucose levels. This aligns with the consensus that in diabetes mellitus, insulin deficiency leads to increased lipolysis, raising free fatty acid levels, which are not directly equivalent to blood glucose but contribute to ketone body production. The evidence path indicating interaction between fatty acids and blood glucose supports the understanding that increased free fatty acids are a consequence of insulin deficiency, contributing to the metabolic disturbances seen in ketoacidosis. Therefore, the correct feature of ketoacidosis due to diabetes mellitus is an increase in the glucagon/insulin ratio, increased cAMP, and increased blood glucose, as described in option opa.",
+  "analysis": "In diabetic ketoacidosis (DKA), the primary biochemical disturbance is due to insulin deficiency. This deficiency leads to an increased glucagon/insulin ratio, which in turn increases cyclic AMP (cAMP) levels. The elevated cAMP promotes gluconeogenesis and glycogenolysis, resulting in increased blood glucose levels. Additionally, the lack of insulin allows for increased lipolysis, raising free fatty acid levels, which are then converted into ketone bodies, contributing to ketoacidosis. The enhanced information aligns with the standard medical understanding that the key features of DKA include an increased glucagon/insulin ratio, increased cAMP, and increased blood glucose levels. Therefore, option opa accurately describes the biochemical changes in ketoacidosis due to diabetes mellitus.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333
+    ],
+    "total_successes": 3
+  },
+  "normal_results": []
+}

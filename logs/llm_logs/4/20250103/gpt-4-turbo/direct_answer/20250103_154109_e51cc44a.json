@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_154109",
+  "model": "gpt-4-turbo",
+  "interaction_type": "direct_answer",
+  "question_id": "e51cc44a",
+  "question_text": "Phenylketonuria caused by deficiency of",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on medical knowledge."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Biochemistry.Please help answer this multiple choice question:\n\nQuestion: Phenylketonuria caused by deficiency of\n\nOptions:\nopa. Tyrosine transaminase\nopb. Tyrosine hydroxylase\nopc. Phenylalanine hydroxylase\nopd. Phenylketonuria hydroxylase\n\n        ### Output Format\n        Provide your response in valid JSON format:\n        {   \n            \"final_analysis\": \"Your concise analysis following the above structure\",\n            \"answer\": \"Option key from the available options (only key,like opa)\",\n            \"confidence\": Score between 0-100 based on alignment with established medical facts\n        }\n        "
+    }
+  ],
+  "response": "{\n    \"final_analysis\": \"Phenylketonuria (PKU) is a genetic disorder characterized by a deficiency in the enzyme phenylalanine hydroxylase. This enzyme is crucial for the metabolism of the amino acid phenylalanine, converting it into tyrosine. A deficiency in this enzyme leads to the accumulation of phenylalanine, which can cause various health issues including intellectual disability and other neurological problems if not managed properly.\",\n    \"answer\": \"opc\",\n    \"confidence\": 100\n}",
+  "metadata": {
+    "topic": "Biochemistry",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

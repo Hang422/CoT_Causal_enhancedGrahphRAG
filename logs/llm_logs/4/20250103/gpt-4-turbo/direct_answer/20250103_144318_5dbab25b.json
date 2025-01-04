@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_144318",
+  "model": "gpt-4-turbo",
+  "interaction_type": "direct_answer",
+  "question_id": "5dbab25b",
+  "question_text": "Drug used in triple drug therapy of H. Pylori:",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on medical knowledge."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.Please help answer this multiple choice question:\n\nQuestion: Drug used in triple drug therapy of H. Pylori:\n\nOptions:\nopa. Metronidazole\nopb. Erythromycin\nopc. Ciprofloxacin\nopd. Aminoglycosides\n\n        ### Output Format\n        Provide your response in valid JSON format:\n        {   \n            \"final_analysis\": \"Your concise analysis following the above structure\",\n            \"answer\": \"Option key from the available options (only key,like opa)\",\n            \"confidence\": Score between 0-100 based on alignment with established medical facts\n        }\n        "
+    }
+  ],
+  "response": "{\n    \"final_analysis\": \"The triple therapy for H. pylori typically includes a proton pump inhibitor (PPI) and two antibiotics to increase the eradication rate of the bacterium. Among the antibiotics listed, Metronidazole is commonly used in combination with other antibiotics such as Clarithromycin or Amoxicillin as part of this regimen. Erythromycin, Ciprofloxacin, and Aminoglycosides are not standard choices for H. pylori eradication in triple therapy.\",\n    \"answer\": \"opa\",\n    \"confidence\": 95\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

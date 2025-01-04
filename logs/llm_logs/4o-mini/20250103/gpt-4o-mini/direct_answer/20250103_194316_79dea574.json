@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_194316",
+  "model": "gpt-4o-mini",
+  "interaction_type": "direct_answer",
+  "question_id": "79dea574",
+  "question_text": "A 6-month-old male baby comes with vomiting, lethargy and severe jaundice when weaning was staed with fruit juice. Which of the following enzymes is defective?",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on medical knowledge."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Biochemistry.Please help answer this multiple choice question:\n\nQuestion: A 6-month-old male baby comes with vomiting, lethargy and severe jaundice when weaning was staed with fruit juice. Which of the following enzymes is defective?\n\nOptions:\nopa. Fructokinase\nopb. Aldolase A\nopc. Aldolase B\nopd. Sucrase\n\n        ### Output Format\n        Provide your response in valid JSON format:\n        {   \n            \"final_analysis\": \"Your concise analysis following the above structure\",\n            \"answer\": \"Option key from the available options (only key,like opa)\",\n            \"confidence\": Score between 0-100 based on alignment with established medical facts\n        }\n        "
+    }
+  ],
+  "response": "{\n    \"final_analysis\": \"The symptoms of vomiting, lethargy, and severe jaundice in a 6-month-old baby after the introduction of fruit juice suggest a metabolic disorder related to carbohydrate metabolism. The introduction of fruit juice, which contains fructose, points towards a potential issue with fructose metabolism. Aldolase B is the enzyme responsible for the breakdown of fructose in the liver, and its deficiency leads to hereditary fructose intolerance, which can present with the symptoms described. Therefore, the defective enzyme is likely Aldolase B.\",\n    \"answer\": \"opc\",\n    \"confidence\": 90\n}",
+  "metadata": {
+    "topic": "Biochemistry",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "question": "Calcitonin is used in all of the following conditions, EXCEPT:",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Hypervitaminosis D",
+    "opb": "Postmenopausal osteoporosis",
+    "opc": "Paget's disease",
+    "opd": "Fanconi syndrome"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Calcitonin",
+        "Hypercalcemia"
+      ],
+      [
+        "Calcitonin",
+        "Disease",
+        "Fanconi Syndrome"
+      ],
+      [
+        "Calcitonin",
+        "Familial hypophosphatemic bone disease",
+        "Fanconi Syndrome"
+      ],
+      [
+        "Calcitonin",
+        "Rare Diseases",
+        "Fanconi Syndrome"
+      ],
+      [
+        "Calcitonin",
+        "Functional disorder",
+        "Fanconi Syndrome"
+      ],
+      [
+        "Calcitonin",
+        "Hyperparathyroidism",
+        "Fanconi Syndrome"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREVENTS"
+      ],
+      [
+        "PREVENTS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Calcitonin)-PREVENTS->(Hypercalcemia)",
+      "(Calcitonin)-PREVENTS->(Disease)-CAUSES->(Fanconi Syndrome)",
+      "(Calcitonin)-TREATS->(Familial hypophosphatemic bone disease)-CAUSES->(Fanconi Syndrome)",
+      "(Calcitonin)-TREATS->(Rare Diseases)-CAUSES->(Fanconi Syndrome)",
+      "(Calcitonin)-TREATS->(Functional disorder)-CAUSES->(Fanconi Syndrome)",
+      "(Calcitonin)-TREATS->(Hyperparathyroidism)-CAUSES->(Fanconi Syndrome)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Bone and Bones",
+        "PET/CT scan",
+        "Recurrence (disease attribute)",
+        "Osteitis Deformans"
+      ],
+      [
+        "Bone and Bones",
+        "PET/CT scan",
+        "Bone Diseases",
+        "Osteitis Deformans"
+      ],
+      [
+        "Bone and Bones",
+        "PET/CT scan",
+        "Hyperparathyroidism",
+        "Osteitis Deformans"
+      ]
+    ],
+    "relationships": [
+      [
+        "LOCATION_OF",
+        "DIAGNOSES",
+        "CAUSES"
+      ],
+      [
+        "LOCATION_OF",
+        "DIAGNOSES",
+        "CAUSES"
+      ],
+      [
+        "LOCATION_OF",
+        "DIAGNOSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Bone and Bones)-LOCATION_OF->(PET/CT scan)-DIAGNOSES->(Recurrence (disease attribute))-CAUSES->(Osteitis Deformans)",
+      "(Bone and Bones)-LOCATION_OF->(PET/CT scan)-DIAGNOSES->(Bone Diseases)-CAUSES->(Osteitis Deformans)",
+      "(Bone and Bones)-LOCATION_OF->(PET/CT scan)-DIAGNOSES->(Hyperparathyroidism)-CAUSES->(Osteitis Deformans)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Calcitonin)-PREVENTS->(Disease)-CAUSES->(Fanconi Syndrome)",
+      "(Calcitonin)-TREATS->(Familial hypophosphatemic bone disease)-CAUSES->(Fanconi Syndrome)",
+      "(Calcitonin)-TREATS->(Rare Diseases)-CAUSES->(Fanconi Syndrome)",
+      "(Calcitonin)-TREATS->(Functional disorder)-CAUSES->(Fanconi Syndrome)",
+      "(Calcitonin)-TREATS->(Hyperparathyroidism)-CAUSES->(Fanconi Syndrome)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Calcitonin\" -> \"inhibits osteoclast activity\" -> \"reduces bone resorption\" -> \"beneficial in postmenopausal osteoporosis\" -> 90%",
+    "CHAIN: \"Calcitonin\" -> \"reduces bone turnover\" -> \"effective in Paget's disease\" -> 90%",
+    "CHAIN: \"Calcitonin\" -> \"may help in hypercalcemia\" -> \"not typically used in hypervitaminosis D\" -> \"unclear if effective\" -> 70%",
+    "CHAIN: \"Calcitonin\" -> \"not indicated for Fanconi syndrome\" -> \"no direct effect on renal tubular function\" -> 85%"
+  ],
+  "enhanced_information": "Calcitonin is a hormone that primarily inhibits osteoclast activity, leading to reduced bone resorption, making it beneficial in conditions like postmenopausal osteoporosis and Paget's disease. In postmenopausal osteoporosis, calcitonin helps to mitigate bone loss, while in Paget's disease, it reduces excessive bone turnover. However, calcitonin is not indicated for hypervitaminosis D, as this condition typically involves hypercalcemia and calcitonin is not a standard treatment for this. Additionally, calcitonin does not have a direct effect on renal tubular function, thus it is not indicated for Fanconi syndrome. Therefore, the correct answer is that calcitonin is not used in hypervitaminosis D.",
+  "analysis": "Calcitonin is primarily used to treat conditions characterized by increased bone resorption, such as postmenopausal osteoporosis and Paget's disease. It works by inhibiting osteoclast activity, which is beneficial in these conditions. Hypervitaminosis D, on the other hand, leads to increased calcium levels and is not treated with calcitonin; instead, management typically focuses on addressing the underlying cause of vitamin D excess and managing hypercalcemia. Fanconi syndrome, a renal tubular disorder, does not have a direct indication for calcitonin either. However, the most clear and established contraindication for calcitonin is in hypervitaminosis D, making it the best answer for the question. Therefore, the correct answer is that calcitonin is not used in hypervitaminosis D.",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333
+    ],
+    "total_successes": 3
+  },
+  "normal_results": []
+}

@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250104_003123",
+  "model": "gpt-4o-mini",
+  "interaction_type": "answer_normal_rag",
+  "question_id": "79002c73",
+  "question_text": "Drug which do not cause hyperprolactinemia:",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on retrieved medical knowledge."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.Please help answer this multiple choice question:\n\n    Question: Drug which do not cause hyperprolactinemia:\n\n    Options:\n    opa. Bromocriptine\nopb. Haloperidol\nopc. Reserpine\nopd. Chlorpromazine\n\n### Retrieved Similar Medical Knowledge:\n- Axotomy TREATS Hyperalgesia, Thermal\n- Bromocriptine PREVENTS Hyperprolactinemia\n- Disease INTERACTS_WITH Dobrava-Belgrade Virus\n- Protoplasts PART_OF Streptococcus, group H\n- Ligation CAUSES Neonatal meningitis\n- PSMD10|DNALI1|GSTO1|GOSR1|TMED5|IL27 PART_OF Tumor Viruses, Murine\n- Bromocriptine TREATS Extrapyramidal sign\n- Atypical antipsychotic CAUSES Hyperprolactinemia\n- Apolipoprotein E gene|APOE PREDISPOSES Coronary Arteriosclerosis\n- Lobe PART_OF Entire gastrocolic ligament\n\n    ### Instructions:\n            - Use standard medical knowledge as the primary guide.\n            - Consider enhanced information only if it aligns with consensus.\n            - If conflicting or unclear, present the most likely correct answer based on known facts.\n            - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.\n    ### Task:\n                1. Identify the core medical principle and the most likely correct option based on consensus.\n                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.\n                3. Provide a final analysis and a confidence score (0-100%).\n                \n    ### Output Format\n    Provide your response in valid JSON format:\n    {   \n        \"final_analysis\": \"Your analysis of how the retrieved relationships support the answer\",\n        \"answer\": \"Option key from the available options (only key, like opa)\",\n        \"confidence\": Score between 0-100 based on evidence strength and relevance\n    }\n    "
+    }
+  ],
+  "response": "{\n    \"final_analysis\": \"Bromocriptine is a dopamine agonist that is known to prevent hyperprolactinemia by inhibiting prolactin secretion. In contrast, Haloperidol, Reserpine, and Chlorpromazine are known to cause hyperprolactinemia due to their dopaminergic antagonistic effects. Therefore, the only drug listed that does not cause hyperprolactinemia is Bromocriptine.\",\n    \"answer\": \"opa\",\n    \"confidence\": 95\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": true,
+    "has_enhanced_info": true,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

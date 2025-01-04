@@ -1,0 +1,71 @@
+{
+  "question": "All of the following are true about Sickle cell disease, Except:",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Single nucleotide change results in change of Glutamine to Valine",
+    "opb": "RFLP results from a single base change",
+    "opc": "'Sticky patch' is generated as a result of replacement of a non polar residue with a polar residue",
+    "opd": "HbS confers resistance against malaria in heterozygotes"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Glutamine",
+        "Sickle Cell Anemia"
+      ],
+      [
+        "Surgical Replantation",
+        "Sickle Cell Anemia"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Glutamine)-TREATS->(Sickle Cell Anemia)",
+      "(Surgical Replantation)-CAUSES->(Sickle Cell Anemia)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Glutamine)-TREATS->(Sickle Cell Anemia)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: Single nucleotide change results in change of Glutamine to Valine -> Characteristic of Sickle cell disease -> 95% CHAIN: RFLP results from a single base change -> Associated with Sickle cell disease -> 90% CHAIN: 'Sticky patch' is generated as a result of replacement of a nonpolar residue with a polar residue -> Feature of Sickle cell disease -> 85% CHAIN: HbS confers resistance against malaria in heterozygotes -> Not a characteristic of Sickle cell disease -> 95%"
+  ],
+  "enhanced_information": "HbS confers resistance against malaria in heterozygotes is not a characteristic of Sickle cell disease. The single nucleotide change resulting in the substitution of Glutamine to Valine, the generation of a 'sticky patch' due to residue replacement, and the association of RFLP with a single base change are all features of Sickle cell disease.",
+  "analysis": "Sickle cell disease is caused by a single nucleotide change resulting in the substitution of Glutamine to Valine, generating a 'sticky patch' due to residue replacement, and is associated with RFLP resulting from a single base change. However, the statement that HbS confers resistance against malaria in heterozygotes is not a characteristic of Sickle cell disease but rather a potential benefit of carrying the sickle cell trait.",
+  "answer": "opd",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2
+    ],
+    "coverage_rates": [
+      100.0
+    ],
+    "total_successes": 2
+  },
+  "normal_results": []
+}

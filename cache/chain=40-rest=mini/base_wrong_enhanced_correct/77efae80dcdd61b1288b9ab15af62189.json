@@ -1,0 +1,201 @@
+{
+  "question": "A 10 year old child with aggressive, self mutilating behavior and poor concentration is brought with presenting complaints of joint pain and reduced urinary output. Child's presentation is most likely due to the deficiency of which enzyme?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "HGPase",
+    "opb": "Adenosine Deaminase",
+    "opc": "APase",
+    "opd": "Acid Maltase"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Disorder of purine metabolism",
+        "Disease",
+        "Arthralgia"
+      ],
+      [
+        "Hyperuricemia",
+        "Kidney Diseases",
+        "Lesch-Nyhan Syndrome"
+      ],
+      [
+        "Hyperuricemia",
+        "imbalance",
+        "Lesch-Nyhan Syndrome"
+      ],
+      [
+        "Hyperuricemia",
+        "Obesity",
+        "Lesch-Nyhan Syndrome"
+      ],
+      [
+        "Neurologic Symptoms",
+        "Disease",
+        "Arthralgia"
+      ],
+      [
+        "Neurologic Symptoms",
+        "Symptoms",
+        "Arthralgia"
+      ],
+      [
+        "Neurologic Symptoms",
+        "Fatigue",
+        "Arthralgia"
+      ],
+      [
+        "Metabolic Diseases",
+        "Kidney Diseases",
+        "Lesch-Nyhan Syndrome"
+      ],
+      [
+        "Metabolic Diseases",
+        "Enzyme Deficiency",
+        "Lesch-Nyhan Syndrome"
+      ],
+      [
+        "Metabolic Diseases",
+        "imbalance",
+        "Lesch-Nyhan Syndrome"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "PREDISPOSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Disorder of purine metabolism)-CAUSES->(Disease)-CAUSES->(Arthralgia)",
+      "(Hyperuricemia)-CAUSES->(Kidney Diseases)-CAUSES->(Lesch-Nyhan Syndrome)",
+      "(Hyperuricemia)-CAUSES->(imbalance)-CAUSES->(Lesch-Nyhan Syndrome)",
+      "(Hyperuricemia)-CAUSES->(Obesity)-PREDISPOSES->(Lesch-Nyhan Syndrome)",
+      "(Neurologic Symptoms)-CAUSES->(Disease)-CAUSES->(Arthralgia)",
+      "(Neurologic Symptoms)-CAUSES->(Symptoms)-CAUSES->(Arthralgia)",
+      "(Neurologic Symptoms)-CAUSES->(Fatigue)-CAUSES->(Arthralgia)",
+      "(Metabolic Diseases)-CAUSES->(Kidney Diseases)-CAUSES->(Lesch-Nyhan Syndrome)",
+      "(Metabolic Diseases)-CAUSES->(Enzyme Deficiency)-CAUSES->(Lesch-Nyhan Syndrome)",
+      "(Metabolic Diseases)-CAUSES->(imbalance)-CAUSES->(Lesch-Nyhan Syndrome)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Neurologic Symptoms",
+        "Pathogenesis",
+        "Genes",
+        "Liver",
+        "Disorder of purine metabolism"
+      ],
+      [
+        "Neurologic Symptoms",
+        "Atherosclerosis",
+        "Genes",
+        "Liver",
+        "Disorder of purine metabolism"
+      ]
+    ],
+    "relationships": [
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Neurologic Symptoms)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Genes)-PART_OF->(Liver)-LOCATION_OF->(Disorder of purine metabolism)",
+      "(Neurologic Symptoms)-PREDISPOSES->(Atherosclerosis)-ASSOCIATED_WITH->(Genes)-PART_OF->(Liver)-LOCATION_OF->(Disorder of purine metabolism)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Neurologic Symptoms)-CAUSES->(Symptoms)-CAUSES->(Arthralgia)",
+      "(Disorder of purine metabolism)-CAUSES->(Disease)-CAUSES->(Arthralgia)",
+      "(Neurologic Symptoms)-CAUSES->(Disease)-CAUSES->(Arthralgia)",
+      "(Neurologic Symptoms)-CAUSES->(Fatigue)-CAUSES->(Arthralgia)",
+      "(Hyperuricemia)-CAUSES->(imbalance)-CAUSES->(Lesch-Nyhan Syndrome)",
+      "(Metabolic Diseases)-CAUSES->(imbalance)-CAUSES->(Lesch-Nyhan Syndrome)",
+      "(Neurologic Symptoms)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Genes)-PART_OF->(Liver)-LOCATION_OF->(Disorder of purine metabolism)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Aggressive behavior\" -> \"Self-mutilation\" -> \"Neurological symptoms\" -> \"Gout-like symptoms\" -> \"Joint pain\" -> \"Reduced urinary output\" -> \"Lesch-Nyhan syndrome\" -> \"HGPRT deficiency\" -> 95%",
+    "CHAIN: \"Aggressive behavior\" -> \"Self-mutilation\" -> \"Neurological symptoms\" -> \"Purine metabolism disorder\" -> \"Joint pain\" -> \"Reduced urinary output\" -> \"Lesch-Nyhan syndrome\" -> \"HGPRT deficiency\" -> 90%",
+    "CHAIN: \"Aggressive behavior\" -> \"Self-mutilation\" -> \"Poor concentration\" -> \"Joint pain\" -> \"Reduced urinary output\" -> \"Hyperuricemia\" -> \"Lesch-Nyhan syndrome\" -> \"HGPRT deficiency\" -> 85%",
+    "CHAIN: \"Aggressive behavior\" -> \"Self-mutilation\" -> \"Neurological symptoms\" -> \"Joint pain\" -> \"Reduced urinary output\" -> \"Possible metabolic disorder\" -> \"HGPRT deficiency\" -> 80%"
+  ],
+  "enhanced_information": "The child's symptoms of aggressive behavior, self-mutilation, poor concentration, joint pain, and reduced urinary output are indicative of Lesch-Nyhan syndrome, which is caused by a deficiency of the enzyme hypoxanthine-guanine phosphoribosyltransferase (HGPRT). This condition is a disorder of purine metabolism leading to hyperuricemia, which can cause joint pain (arthralgia) and is associated with neurological symptoms. The reasoning chains correctly identify the connection between these symptoms and HGPRT deficiency, aligning with the consensus that Lesch-Nyhan syndrome is characterized by these manifestations. Other options (Adenosine Deaminase, APase, Acid Maltase) do not correlate with the presented symptoms and are not relevant to this clinical picture.",
+  "analysis": "The child's symptoms of aggressive behavior, self-mutilation, poor concentration, joint pain, and reduced urinary output strongly suggest a metabolic disorder related to purine metabolism. These symptoms align with Lesch-Nyhan syndrome, which is specifically caused by a deficiency of the enzyme hypoxanthine-guanine phosphoribosyltransferase (HGPRT). This deficiency leads to an accumulation of uric acid, resulting in hyperuricemia, which can cause joint pain, and the neurological symptoms observed in the child. The other options provided (Adenosine Deaminase, APase, Acid Maltase) do not correlate with the clinical presentation described. Therefore, the most likely enzyme deficiency responsible for this child's symptoms is HGPRT deficiency, which is not explicitly listed in the options but is implied by the context. However, since the closest option related to the purine metabolism pathway is HGPase (hypoxanthine-guanine phosphoribosyltransferase), I will select that as the best-supported answer despite the naming discrepancy.",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      2,
+      1,
+      2
+    ],
+    "coverage_rates": [
+      0.0,
+      40.0,
+      20.0,
+      40.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

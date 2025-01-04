@@ -1,0 +1,209 @@
+{
+  "question": "Hyperkalemia is not caused by:",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "salbutamol",
+    "opb": "ACE Inhibitors",
+    "opc": "Cyclosporine",
+    "opd": "GM-CSF"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "beta-2 Adrenergic Receptors",
+        "Tachycardia",
+        "Myocardial Infarction",
+        "Functional disorder",
+        "GLUCOSE TOLERANCE",
+        "Cells"
+      ],
+      [
+        "beta-2 Adrenergic Receptors",
+        "Tachycardia",
+        "Myocardial Infarction",
+        "Diabetes",
+        "GLUCOSE TOLERANCE",
+        "Cells"
+      ],
+      [
+        "Cyclosporine",
+        "Excretory function"
+      ],
+      [
+        "Excretory function",
+        "Pancreas",
+        "Pancreatitis",
+        "Disease",
+        "hyperkalemia"
+      ],
+      [
+        "Excretory function",
+        "Pancreas",
+        "Pancreatitis",
+        "Hypertensive disease",
+        "hyperkalemia"
+      ],
+      [
+        "Granulocyte-Macrophage Colony-Stimulating Factor",
+        "physiological aspects",
+        "Bone Marrow"
+      ],
+      [
+        "Granulocyte-Macrophage Colony-Stimulating Factor",
+        "Immunity",
+        "Bone Marrow"
+      ],
+      [
+        "Granulocyte-Macrophage Colony-Stimulating Factor",
+        "uptake",
+        "Bone Marrow"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "COMPLICATES",
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "PROCESS_OF",
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PROCESS_OF",
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(beta-2 Adrenergic Receptors)-CAUSES->(Tachycardia)-CAUSES->(Myocardial Infarction)-CAUSES->(Functional disorder)-MANIFESTATION_OF->(GLUCOSE TOLERANCE)-PROCESS_OF->(Cells)",
+      "(beta-2 Adrenergic Receptors)-CAUSES->(Tachycardia)-COMPLICATES->(Myocardial Infarction)-CAUSES->(Diabetes)-MANIFESTATION_OF->(GLUCOSE TOLERANCE)-PROCESS_OF->(Cells)",
+      "(Cyclosporine)-CAUSES->(Excretory function)",
+      "(Excretory function)-PROCESS_OF->(Pancreas)-CAUSES->(Pancreatitis)-CAUSES->(Disease)-CAUSES->(hyperkalemia)",
+      "(Excretory function)-PROCESS_OF->(Pancreas)-CAUSES->(Pancreatitis)-CAUSES->(Hypertensive disease)-CAUSES->(hyperkalemia)",
+      "(Granulocyte-Macrophage Colony-Stimulating Factor)-CAUSES->(physiological aspects)-PROCESS_OF->(Bone Marrow)",
+      "(Granulocyte-Macrophage Colony-Stimulating Factor)-CAUSES->(Immunity)-PROCESS_OF->(Bone Marrow)",
+      "(Granulocyte-Macrophage Colony-Stimulating Factor)-CAUSES->(uptake)-PROCESS_OF->(Bone Marrow)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Albuterol",
+        "Obstruction",
+        "beta-2 Adrenergic Receptors"
+      ],
+      [
+        "Albuterol",
+        "Anaphylaxis",
+        "beta-2 Adrenergic Receptors"
+      ],
+      [
+        "Albuterol",
+        "Functional disorder",
+        "beta-2 Adrenergic Receptors"
+      ],
+      [
+        "Serum potassium assay",
+        "hyperkalemia"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "DIAGNOSES"
+      ]
+    ],
+    "paths": [
+      "(Albuterol)-TREATS->(Obstruction)-ASSOCIATED_WITH->(beta-2 Adrenergic Receptors)",
+      "(Albuterol)-TREATS->(Anaphylaxis)-ASSOCIATED_WITH->(beta-2 Adrenergic Receptors)",
+      "(Albuterol)-TREATS->(Functional disorder)-ASSOCIATED_WITH->(beta-2 Adrenergic Receptors)",
+      "(Serum potassium assay)-DIAGNOSES->(hyperkalemia)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Albuterol)-TREATS->(Obstruction)-ASSOCIATED_WITH->(beta-2 Adrenergic Receptors)",
+      "(Albuterol)-TREATS->(Anaphylaxis)-ASSOCIATED_WITH->(beta-2 Adrenergic Receptors)",
+      "(Albuterol)-TREATS->(Functional disorder)-ASSOCIATED_WITH->(beta-2 Adrenergic Receptors)",
+      "(Cyclosporine)-CAUSES->(Excretory function)",
+      "(Granulocyte-Macrophage Colony-Stimulating Factor)-CAUSES->(physiological aspects)-PROCESS_OF->(Bone Marrow)",
+      "(Granulocyte-Macrophage Colony-Stimulating Factor)-CAUSES->(Immunity)-PROCESS_OF->(Bone Marrow)",
+      "(Granulocyte-Macrophage Colony-Stimulating Factor)-CAUSES->(uptake)-PROCESS_OF->(Bone Marrow)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Salbutamol\" -> \"stimulates beta-2 adrenergic receptors\" -> \"increases potassium uptake into cells\" -> \"decreases serum potassium levels\" -> 85%",
+    "CHAIN: \"ACE Inhibitors\" -> \"reduce aldosterone secretion\" -> \"decrease potassium excretion in kidneys\" -> \"can cause hyperkalemia\" -> 90%",
+    "CHAIN: \"Cyclosporine\" -> \"inhibits renal potassium excretion\" -> \"can lead to hyperkalemia\" -> 80%",
+    "CHAIN: \"GM-CSF\" -> \"stimulates bone marrow production of blood cells\" -> \"does not directly affect potassium levels\" -> \"not a cause of hyperkalemia\" -> 95%"
+  ],
+  "enhanced_information": "Hyperkalemia is a condition characterized by elevated serum potassium levels. Evaluating the options: \n\n1. **Salbutamol**: This medication stimulates beta-2 adrenergic receptors, leading to increased potassium uptake into cells, which decreases serum potassium levels. Therefore, salbutamol does not cause hyperkalemia. \n\n2. **ACE Inhibitors**: These drugs reduce aldosterone secretion, which decreases potassium excretion in the kidneys, potentially leading to hyperkalemia. This aligns with consensus that ACE inhibitors can indeed cause hyperkalemia. \n\n3. **Cyclosporine**: This immunosuppressant can inhibit renal potassium excretion, which may result in hyperkalemia. This is consistent with known pharmacological effects of cyclosporine. \n\n4. **GM-CSF (Granulocyte-Macrophage Colony-Stimulating Factor)**: This factor primarily stimulates bone marrow production of blood cells and does not have a direct effect on potassium levels, thus it is not a cause of hyperkalemia. \n\nIn summary, salbutamol and GM-CSF are not causes of hyperkalemia, but salbutamol actively decreases potassium levels, while GM-CSF does not affect them. Therefore, the best answer to the question is salbutamol, as it actively works against hyperkalemia.",
+  "analysis": "Hyperkalemia is characterized by elevated serum potassium levels. Evaluating the options: Salbutamol (opa) is known to decrease serum potassium levels by promoting potassium uptake into cells, thus it does not cause hyperkalemia. ACE inhibitors (opb) can lead to hyperkalemia by reducing aldosterone levels, which decreases potassium excretion. Cyclosporine (opc) can also cause hyperkalemia by inhibiting renal potassium excretion. GM-CSF (opd) does not have a direct effect on potassium levels and is not associated with causing hyperkalemia. Therefore, while both salbutamol and GM-CSF do not cause hyperkalemia, salbutamol actively works to lower potassium levels, making it the most definitive answer to the question. Thus, the best answer is salbutamol (opa).",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      0,
+      2,
+      2
+    ],
+    "coverage_rates": [
+      33.33333333333333,
+      0.0,
+      33.33333333333333,
+      33.33333333333333
+    ],
+    "total_successes": 6
+  },
+  "normal_results": []
+}

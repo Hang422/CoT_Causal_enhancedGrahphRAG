@@ -1,0 +1,251 @@
+{
+  "question": "Which of the following drug leads to above side effect",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Busulfan",
+    "opb": "Bleomycin",
+    "opc": "Doxorubicin",
+    "opd": "Actinomycin"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Alkylating Agents",
+        "Disease",
+        "Bone Marrow Suppression"
+      ],
+      [
+        "Alkylating Agents",
+        "Anemia",
+        "Bone Marrow Suppression"
+      ],
+      [
+        "Bone Marrow Suppression",
+        "Hypertensive disease",
+        "arterial stiffness",
+        "Lung"
+      ],
+      [
+        "Bone Marrow Suppression",
+        "Inflammation",
+        "paracrine",
+        "Lung"
+      ],
+      [
+        "Bone Marrow Suppression",
+        "Alzheimer's Disease",
+        "Cholesterol Homeostasis",
+        "Lung"
+      ],
+      [
+        "Bone Marrow Suppression",
+        "Inflammation",
+        "immune resistance",
+        "Lung"
+      ],
+      [
+        "Bone Marrow Suppression",
+        "Alzheimer's Disease",
+        "Adaptive Immunity",
+        "Lung"
+      ],
+      [
+        "Antineoplastic Agents",
+        "Disease",
+        "Bone Marrow Suppression"
+      ],
+      [
+        "Antineoplastic Agents",
+        "Syndrome",
+        "Bone Marrow Suppression"
+      ],
+      [
+        "Antineoplastic Agents",
+        "Pathogenesis",
+        "Bone Marrow Suppression"
+      ],
+      [
+        "Antineoplastic Agents",
+        "Systemic disease",
+        "Bone Marrow Suppression"
+      ],
+      [
+        "Antineoplastic Agents",
+        "Adverse reactions",
+        "Bone Marrow Suppression"
+      ],
+      [
+        "Bone Marrow Suppression",
+        "Hypertensive disease",
+        "Disease",
+        "Mucositis"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "PREDISPOSES"
+      ],
+      [
+        "COMPLICATES",
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "COMPLICATES",
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Alkylating Agents)-TREATS->(Disease)-CAUSES->(Bone Marrow Suppression)",
+      "(Alkylating Agents)-PREDISPOSES->(Anemia)-PREDISPOSES->(Bone Marrow Suppression)",
+      "(Bone Marrow Suppression)-COMPLICATES->(Hypertensive disease)-CAUSES->(arterial stiffness)-PROCESS_OF->(Lung)",
+      "(Bone Marrow Suppression)-CAUSES->(Inflammation)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Lung)",
+      "(Bone Marrow Suppression)-CAUSES->(Alzheimer's Disease)-MANIFESTATION_OF->(Cholesterol Homeostasis)-PROCESS_OF->(Lung)",
+      "(Bone Marrow Suppression)-CAUSES->(Inflammation)-MANIFESTATION_OF->(immune resistance)-PROCESS_OF->(Lung)",
+      "(Bone Marrow Suppression)-CAUSES->(Alzheimer's Disease)-MANIFESTATION_OF->(Adaptive Immunity)-PROCESS_OF->(Lung)",
+      "(Antineoplastic Agents)-CAUSES->(Disease)-CAUSES->(Bone Marrow Suppression)",
+      "(Antineoplastic Agents)-CAUSES->(Syndrome)-CAUSES->(Bone Marrow Suppression)",
+      "(Antineoplastic Agents)-TREATS->(Pathogenesis)-CAUSES->(Bone Marrow Suppression)",
+      "(Antineoplastic Agents)-TREATS->(Systemic disease)-CAUSES->(Bone Marrow Suppression)",
+      "(Antineoplastic Agents)-TREATS->(Adverse reactions)-CAUSES->(Bone Marrow Suppression)",
+      "(Bone Marrow Suppression)-COMPLICATES->(Hypertensive disease)-CAUSES->(Disease)-CAUSES->(Mucositis)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Busulfan",
+        "Graft acceptance",
+        "Melphalan",
+        "Alkylating Agents"
+      ],
+      [
+        "Busulfan",
+        "Functional disorder",
+        "Melphalan",
+        "Alkylating Agents"
+      ],
+      [
+        "Actinomycin",
+        "Cells",
+        "Antineoplastic Agents"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Busulfan)-CAUSES->(Graft acceptance)-ASSOCIATED_WITH->(Melphalan)-INTERACTS_WITH->(Alkylating Agents)",
+      "(Busulfan)-TREATS->(Functional disorder)-ASSOCIATED_WITH->(Melphalan)-INTERACTS_WITH->(Alkylating Agents)",
+      "(Actinomycin)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Antineoplastic Agents)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Busulfan)-TREATS->(Functional disorder)-ASSOCIATED_WITH->(Melphalan)-INTERACTS_WITH->(Alkylating Agents)",
+      "(Actinomycin)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Antineoplastic Agents)",
+      "(Busulfan)-CAUSES->(Graft acceptance)-ASSOCIATED_WITH->(Melphalan)-INTERACTS_WITH->(Alkylating Agents)",
+      "(Alkylating Agents)-TREATS->(Disease)-CAUSES->(Bone Marrow Suppression)",
+      "(Alkylating Agents)-PREDISPOSES->(Anemia)-PREDISPOSES->(Bone Marrow Suppression)",
+      "(Antineoplastic Agents)-CAUSES->(Disease)-CAUSES->(Bone Marrow Suppression)",
+      "(Antineoplastic Agents)-CAUSES->(Syndrome)-CAUSES->(Bone Marrow Suppression)",
+      "(Antineoplastic Agents)-TREATS->(Pathogenesis)-CAUSES->(Bone Marrow Suppression)",
+      "(Antineoplastic Agents)-TREATS->(Systemic disease)-CAUSES->(Bone Marrow Suppression)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Busulfan\" -> \"alkylating agent\" -> \"causes myelosuppression\" -> \"possible pulmonary toxicity\" -> 85%",
+    "CHAIN: \"Bleomycin\" -> \"antitumor antibiotic\" -> \"causes pulmonary fibrosis\" -> \"increased risk of lung damage\" -> 90%",
+    "CHAIN: \"Doxorubicin\" -> \"anthracycline antibiotic\" -> \"causes cardiotoxicity\" -> \"possible heart failure\" -> 80%",
+    "CHAIN: \"Actinomycin\" -> \"antineoplastic agent\" -> \"causes myelosuppression\" -> \"possible mucositis\" -> 75%"
+  ],
+  "enhanced_information": "Busulfan is an alkylating agent known to cause myelosuppression, which can lead to complications such as pulmonary toxicity, although this is less common. Bleomycin is an antitumor antibiotic that is well-documented to cause pulmonary fibrosis, significantly increasing the risk of lung damage. Doxorubicin, an anthracycline antibiotic, is primarily associated with cardiotoxicity and potential heart failure, not pulmonary issues. Actinomycin, an antineoplastic agent, can cause myelosuppression and mucositis but is not specifically linked to pulmonary toxicity. Therefore, the drug most directly associated with the side effect of pulmonary toxicity is Bleomycin.",
+  "analysis": "The question asks which drug leads to pulmonary toxicity as a side effect. Based on standard medical knowledge, Bleomycin is well-documented to cause pulmonary fibrosis, which is a significant pulmonary toxicity. While Busulfan can lead to myelosuppression and has some association with pulmonary complications, it is not as directly linked to pulmonary toxicity as Bleomycin. Doxorubicin is primarily associated with cardiotoxicity, and Actinomycin is linked to myelosuppression and mucositis but not specifically to pulmonary issues. Therefore, the most likely correct answer, based on the consensus in pharmacology, is Bleomycin (option opb).",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      3,
+      0,
+      0,
+      3
+    ],
+    "coverage_rates": [
+      50.0,
+      0.0,
+      0.0,
+      50.0
+    ],
+    "total_successes": 6
+  },
+  "normal_results": []
+}

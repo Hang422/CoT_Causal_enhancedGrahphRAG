@@ -1,0 +1,360 @@
+{
+  "question": "Steroids are indicated in all of the following forms of tuberculosis except:",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Meningitis",
+    "opb": "Pericarditis",
+    "opc": "Ileo-caecal tuberculosis",
+    "opd": "Adrenal involvement"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Tuberculosis, Meningeal",
+        "Disease",
+        "physiological aspects",
+        "Meninges"
+      ],
+      [
+        "Tuberculosis, Meningeal",
+        "Disease",
+        "Lymphangiogenesis",
+        "Meninges"
+      ],
+      [
+        "Tuberculosis, Meningeal",
+        "Disease",
+        "Neutrophil Infiltration",
+        "Meninges"
+      ],
+      [
+        "Pericarditis, Tuberculous",
+        "Heart failure",
+        "uptake",
+        "Pericardial sac structure"
+      ],
+      [
+        "Pericarditis, Tuberculous",
+        "HIV Infections",
+        "uptake",
+        "Pericardial sac structure"
+      ],
+      [
+        "Steroids",
+        "Inflammation"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "COMPLICATES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Tuberculosis, Meningeal)-CAUSES->(Disease)-MANIFESTATION_OF->(physiological aspects)-PROCESS_OF->(Meninges)",
+      "(Tuberculosis, Meningeal)-CAUSES->(Disease)-MANIFESTATION_OF->(Lymphangiogenesis)-PROCESS_OF->(Meninges)",
+      "(Tuberculosis, Meningeal)-CAUSES->(Disease)-MANIFESTATION_OF->(Neutrophil Infiltration)-PROCESS_OF->(Meninges)",
+      "(Pericarditis, Tuberculous)-CAUSES->(Heart failure)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Pericardial sac structure)",
+      "(Pericarditis, Tuberculous)-COMPLICATES->(HIV Infections)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Pericardial sac structure)",
+      "(Steroids)-TREATS->(Inflammation)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Meninges",
+        "Inflammation",
+        "ELAVL2 gene|ELAVL2",
+        "Steroids"
+      ],
+      [
+        "Meninges",
+        "Inflammation",
+        "IL13 gene|IL13",
+        "Steroids"
+      ],
+      [
+        "Inflammation",
+        "IL13 gene|IL13",
+        "Steroids"
+      ],
+      [
+        "Inflammation",
+        "ELAVL2 gene|ELAVL2",
+        "Steroids"
+      ],
+      [
+        "Inflammation",
+        "IL13 gene|IL13",
+        "Steroids"
+      ],
+      [
+        "Inflammation",
+        "ELAVL2 gene|ELAVL2",
+        "Steroids"
+      ],
+      [
+        "Pericardial sac structure",
+        "Pathogenesis",
+        "IL13 gene|IL13",
+        "Steroids"
+      ],
+      [
+        "Pericardial sac structure",
+        "Kidney",
+        "Blood - brain barrier anatomy",
+        "Steroids"
+      ],
+      [
+        "Inflammation",
+        "IL13 gene|IL13",
+        "Steroids"
+      ],
+      [
+        "Inflammation",
+        "ELAVL2 gene|ELAVL2",
+        "Steroids"
+      ],
+      [
+        "Inflammation",
+        "IL13 gene|IL13",
+        "Steroids"
+      ],
+      [
+        "Inflammation",
+        "ELAVL2 gene|ELAVL2",
+        "Steroids"
+      ],
+      [
+        "Intestinal tract infectious disease NOS",
+        "Pathogenesis",
+        "ELAVL2 gene|ELAVL2",
+        "Steroids"
+      ],
+      [
+        "Intestinal tract infectious disease NOS",
+        "Pathogenesis",
+        "ELAVL2 gene|ELAVL2",
+        "Steroids"
+      ],
+      [
+        "Adrenal Glands",
+        "Prednisone",
+        "Adrenal hormone preparation"
+      ],
+      [
+        "Adrenal Glands",
+        "Adrenal Cortex Hormones",
+        "Adrenal hormone preparation"
+      ],
+      [
+        "Adrenal hormone preparation",
+        "Pharmaceutical Preparations",
+        "ELAVL2 gene|ELAVL2",
+        "Steroids"
+      ],
+      [
+        "Adrenal hormone preparation",
+        "Pharmaceutical Preparations",
+        "IL13 gene|IL13",
+        "Steroids"
+      ],
+      [
+        "Inflammation",
+        "IL13 gene|IL13",
+        "Steroids"
+      ],
+      [
+        "Inflammation",
+        "ELAVL2 gene|ELAVL2",
+        "Steroids"
+      ]
+    ],
+    "relationships": [
+      [
+        "LOCATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "LOCATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "LOCATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PART_OF",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Meninges)-LOCATION_OF->(Inflammation)-ASSOCIATED_WITH->(ELAVL2 gene|ELAVL2)-INTERACTS_WITH->(Steroids)",
+      "(Meninges)-LOCATION_OF->(Inflammation)-ASSOCIATED_WITH->(IL13 gene|IL13)-INTERACTS_WITH->(Steroids)",
+      "(Inflammation)-ASSOCIATED_WITH->(IL13 gene|IL13)-INTERACTS_WITH->(Steroids)",
+      "(Inflammation)-ASSOCIATED_WITH->(ELAVL2 gene|ELAVL2)-INTERACTS_WITH->(Steroids)",
+      "(Inflammation)-ASSOCIATED_WITH->(IL13 gene|IL13)-INTERACTS_WITH->(Steroids)",
+      "(Inflammation)-ASSOCIATED_WITH->(ELAVL2 gene|ELAVL2)-INTERACTS_WITH->(Steroids)",
+      "(Pericardial sac structure)-LOCATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(IL13 gene|IL13)-INTERACTS_WITH->(Steroids)",
+      "(Pericardial sac structure)-PART_OF->(Kidney)-PART_OF->(Blood - brain barrier anatomy)-LOCATION_OF->(Steroids)",
+      "(Inflammation)-ASSOCIATED_WITH->(IL13 gene|IL13)-INTERACTS_WITH->(Steroids)",
+      "(Inflammation)-ASSOCIATED_WITH->(ELAVL2 gene|ELAVL2)-INTERACTS_WITH->(Steroids)",
+      "(Inflammation)-ASSOCIATED_WITH->(IL13 gene|IL13)-INTERACTS_WITH->(Steroids)",
+      "(Inflammation)-ASSOCIATED_WITH->(ELAVL2 gene|ELAVL2)-INTERACTS_WITH->(Steroids)",
+      "(Intestinal tract infectious disease NOS)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(ELAVL2 gene|ELAVL2)-INTERACTS_WITH->(Steroids)",
+      "(Intestinal tract infectious disease NOS)-CAUSES->(Pathogenesis)-ASSOCIATED_WITH->(ELAVL2 gene|ELAVL2)-INTERACTS_WITH->(Steroids)",
+      "(Adrenal Glands)-LOCATION_OF->(Prednisone)-INTERACTS_WITH->(Adrenal hormone preparation)",
+      "(Adrenal Glands)-LOCATION_OF->(Adrenal Cortex Hormones)-INTERACTS_WITH->(Adrenal hormone preparation)",
+      "(Adrenal hormone preparation)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(ELAVL2 gene|ELAVL2)-INTERACTS_WITH->(Steroids)",
+      "(Adrenal hormone preparation)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(IL13 gene|IL13)-INTERACTS_WITH->(Steroids)",
+      "(Inflammation)-ASSOCIATED_WITH->(IL13 gene|IL13)-INTERACTS_WITH->(Steroids)",
+      "(Inflammation)-ASSOCIATED_WITH->(ELAVL2 gene|ELAVL2)-INTERACTS_WITH->(Steroids)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Adrenal Glands)-LOCATION_OF->(Prednisone)-INTERACTS_WITH->(Adrenal hormone preparation)",
+      "(Adrenal Glands)-LOCATION_OF->(Adrenal Cortex Hormones)-INTERACTS_WITH->(Adrenal hormone preparation)",
+      "(Meninges)-LOCATION_OF->(Inflammation)-ASSOCIATED_WITH->(ELAVL2 gene|ELAVL2)-INTERACTS_WITH->(Steroids)",
+      "(Meninges)-LOCATION_OF->(Inflammation)-ASSOCIATED_WITH->(IL13 gene|IL13)-INTERACTS_WITH->(Steroids)",
+      "(Pericardial sac structure)-LOCATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(IL13 gene|IL13)-INTERACTS_WITH->(Steroids)",
+      "(Pericardial sac structure)-PART_OF->(Kidney)-PART_OF->(Blood - brain barrier anatomy)-LOCATION_OF->(Steroids)",
+      "(Pericarditis, Tuberculous)-CAUSES->(Heart failure)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Pericardial sac structure)",
+      "(Pericarditis, Tuberculous)-COMPLICATES->(HIV Infections)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Pericardial sac structure)",
+      "(Steroids)-TREATS->(Inflammation)",
+      "(Inflammation)-ASSOCIATED_WITH->(IL13 gene|IL13)-INTERACTS_WITH->(Steroids)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Tuberculous meningitis\" -> \"inflammation of meninges\" -> \"steroids reduce inflammation\" -> \"steroids indicated\" -> 95%",
+    "CHAIN: \"Tuberculous pericarditis\" -> \"inflammation of pericardium\" -> \"steroids reduce inflammation\" -> \"steroids indicated\" -> 90%",
+    "CHAIN: \"Ileo-caecal tuberculosis\" -> \"localized intestinal infection\" -> \"steroids not typically used\" -> \"steroids not indicated\" -> 85%",
+    "CHAIN: \"Adrenal tuberculosis\" -> \"adrenal gland involvement\" -> \"steroids mimic adrenal hormones\" -> \"steroids not primarily for inflammation\" -> \"steroids not indicated\" -> 80%"
+  ],
+  "enhanced_information": "Steroids are indicated in certain forms of tuberculosis to manage inflammation. In tuberculous meningitis, steroids are recommended to reduce inflammation of the meninges, which is supported by evidence showing their effectiveness in this context. Similarly, in tuberculous pericarditis, steroids are indicated to manage inflammation of the pericardium, as they can help prevent complications such as heart failure. However, in ileo-caecal tuberculosis, steroids are not typically used as they do not address the localized infection effectively and may worsen the condition. For adrenal involvement, while steroids mimic adrenal hormones, they are not primarily indicated for treating inflammation in adrenal tuberculosis. Therefore, the correct answer is that steroids are not indicated in ileo-caecal tuberculosis.",
+  "analysis": "In the context of tuberculosis, the use of steroids is primarily aimed at managing inflammatory complications associated with the disease. In tuberculous meningitis (opa) and tuberculous pericarditis (opb), steroids are indicated to reduce inflammation and prevent serious complications. However, in ileo-caecal tuberculosis (opc), the use of steroids is not recommended as they do not effectively address the localized infection and may exacerbate the condition. For adrenal involvement (opd), while steroids may be used to replace adrenal hormones, they are not indicated for treating the inflammation associated with adrenal tuberculosis. Therefore, the most appropriate answer is ileo-caecal tuberculosis, where steroids are not indicated. This aligns with the consensus in medical literature regarding the management of these conditions.",
+  "answer": "opc",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      4,
+      4,
+      1,
+      4
+    ],
+    "coverage_rates": [
+      30.76923076923077,
+      30.76923076923077,
+      7.6923076923076925,
+      30.76923076923077
+    ],
+    "total_successes": 13
+  },
+  "normal_results": []
+}

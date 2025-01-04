@@ -1,0 +1,229 @@
+{
+  "question": "All of the following side effects are produced by Cisplatin except",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Ototoxicity",
+    "opb": "Nephrotoxicity",
+    "opc": "Coasting effect",
+    "opd": "Pulmonary fibrosis"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Chemotherapeutic agent",
+        "Ototoxicity"
+      ],
+      [
+        "Chemotherapeutic agent",
+        "Toxic nephropathy"
+      ],
+      [
+        "Toxic nephropathy",
+        "Adverse effects",
+        "uptake",
+        "Renal tubule structure"
+      ],
+      [
+        "Toxic nephropathy",
+        "Virus Diseases",
+        "uptake",
+        "Renal tubule structure"
+      ],
+      [
+        "Toxic nephropathy",
+        "Degenerative abnormality",
+        "Physiological Processes",
+        "Renal tubule structure"
+      ],
+      [
+        "Toxic nephropathy",
+        "Disease",
+        "Excretory function",
+        "Renal tubule structure"
+      ],
+      [
+        "Toxic nephropathy",
+        "Disease",
+        "Respiration",
+        "Renal tubule structure"
+      ],
+      [
+        "Cisplatin",
+        "Disease",
+        "Pulmonary Fibrosis"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "COMPLICATES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "COMPLICATES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Chemotherapeutic agent)-CAUSES->(Ototoxicity)",
+      "(Chemotherapeutic agent)-CAUSES->(Toxic nephropathy)",
+      "(Toxic nephropathy)-CAUSES->(Adverse effects)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Renal tubule structure)",
+      "(Toxic nephropathy)-CAUSES->(Virus Diseases)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Renal tubule structure)",
+      "(Toxic nephropathy)-CAUSES->(Degenerative abnormality)-MANIFESTATION_OF->(Physiological Processes)-PROCESS_OF->(Renal tubule structure)",
+      "(Toxic nephropathy)-COMPLICATES->(Disease)-MANIFESTATION_OF->(Excretory function)-PROCESS_OF->(Renal tubule structure)",
+      "(Toxic nephropathy)-COMPLICATES->(Disease)-MANIFESTATION_OF->(Respiration)-PROCESS_OF->(Renal tubule structure)",
+      "(Cisplatin)-CAUSES->(Disease)-CAUSES->(Pulmonary Fibrosis)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Auditory system",
+        "Therapeutic procedure",
+        "Hearing Loss, High-Frequency"
+      ],
+      [
+        "Auditory system",
+        "Detection",
+        "Hearing Loss, High-Frequency"
+      ],
+      [
+        "Auditory system",
+        "Excision",
+        "Hearing Loss, High-Frequency"
+      ],
+      [
+        "Renal tubule structure",
+        "Kidney Failure, Acute"
+      ],
+      [
+        "Pulmonary Fibrosis",
+        "Infiltration",
+        "Bleomycin"
+      ],
+      [
+        "Pulmonary Fibrosis",
+        "Fibrosis",
+        "Bleomycin"
+      ],
+      [
+        "Pulmonary Fibrosis",
+        "Complication",
+        "Bleomycin"
+      ]
+    ],
+    "relationships": [
+      [
+        "LOCATION_OF",
+        "CAUSES"
+      ],
+      [
+        "LOCATION_OF",
+        "TREATS"
+      ],
+      [
+        "LOCATION_OF",
+        "CAUSES"
+      ],
+      [
+        "LOCATION_OF"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "ISA",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Auditory system)-LOCATION_OF->(Therapeutic procedure)-CAUSES->(Hearing Loss, High-Frequency)",
+      "(Auditory system)-LOCATION_OF->(Detection)-TREATS->(Hearing Loss, High-Frequency)",
+      "(Auditory system)-LOCATION_OF->(Excision)-CAUSES->(Hearing Loss, High-Frequency)",
+      "(Renal tubule structure)-LOCATION_OF->(Kidney Failure, Acute)",
+      "(Pulmonary Fibrosis)-CAUSES->(Infiltration)-ASSOCIATED_WITH->(Bleomycin)",
+      "(Pulmonary Fibrosis)-ISA->(Fibrosis)-ASSOCIATED_WITH->(Bleomycin)",
+      "(Pulmonary Fibrosis)-CAUSES->(Complication)-ASSOCIATED_WITH->(Bleomycin)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Cisplatin)-CAUSES->(Disease)-CAUSES->(Pulmonary Fibrosis)",
+      "(Toxic nephropathy)-CAUSES->(Adverse effects)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Renal tubule structure)",
+      "(Chemotherapeutic agent)-CAUSES->(Ototoxicity)",
+      "(Chemotherapeutic agent)-CAUSES->(Toxic nephropathy)",
+      "(Pulmonary Fibrosis)-CAUSES->(Infiltration)-ASSOCIATED_WITH->(Bleomycin)",
+      "(Pulmonary Fibrosis)-ISA->(Fibrosis)-ASSOCIATED_WITH->(Bleomycin)",
+      "(Pulmonary Fibrosis)-CAUSES->(Complication)-ASSOCIATED_WITH->(Bleomycin)",
+      "(Toxic nephropathy)-CAUSES->(Virus Diseases)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Renal tubule structure)",
+      "(Toxic nephropathy)-CAUSES->(Degenerative abnormality)-MANIFESTATION_OF->(Physiological Processes)-PROCESS_OF->(Renal tubule structure)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Cisplatin is a chemotherapeutic agent\" -> \"known to cause ototoxicity\" -> \"due to damage to the auditory system\" -> \"associated with high-frequency hearing loss\" -> 95%",
+    "CHAIN: \"Cisplatin is a chemotherapeutic agent\" -> \"known to cause nephrotoxicity\" -> \"due to accumulation in renal tubules\" -> \"leading to acute kidney injury\" -> 90%",
+    "CHAIN: \"Cisplatin is a chemotherapeutic agent\" -> \"not associated with coasting effect\" -> \"coasting effect is related to certain other drugs\" -> \"such as those with delayed toxicity\" -> 85%",
+    "CHAIN: \"Cisplatin is a chemotherapeutic agent\" -> \"not typically associated with pulmonary fibrosis\" -> \"pulmonary fibrosis is more common with other agents\" -> \"such as bleomycin\" -> 80%"
+  ],
+  "enhanced_information": "Cisplatin is a chemotherapeutic agent known to cause ototoxicity and nephrotoxicity. Ototoxicity occurs due to damage to the auditory system, often resulting in high-frequency hearing loss. Nephrotoxicity is attributed to the accumulation of Cisplatin in renal tubules, leading to acute kidney injury. The coasting effect, which refers to delayed toxicity seen with certain other drugs, is not associated with Cisplatin. Additionally, pulmonary fibrosis is more commonly linked to agents like bleomycin rather than Cisplatin. Therefore, the correct answer is that Cisplatin does not produce pulmonary fibrosis, aligning with the consensus that this side effect is primarily associated with other chemotherapeutic agents.",
+  "analysis": "Cisplatin is a well-known chemotherapeutic agent that is associated with several side effects, including ototoxicity and nephrotoxicity. Ototoxicity is characterized by damage to the auditory system, leading to hearing loss, while nephrotoxicity results from the drug's accumulation in the kidneys, potentially causing acute kidney injury. The term 'coasting effect' typically refers to a delayed toxicity seen with certain other chemotherapeutic agents, but it is not a recognized side effect of Cisplatin. Pulmonary fibrosis is primarily associated with other drugs, such as bleomycin, rather than Cisplatin. Therefore, the side effect that is not produced by Cisplatin is pulmonary fibrosis. This conclusion aligns with established medical knowledge and consensus regarding the side effects of Cisplatin. Thus, the correct answer is option 'opd'.",
+  "answer": "opd",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      3,
+      0,
+      2
+    ],
+    "coverage_rates": [
+      28.57142857142857,
+      42.857142857142854,
+      0.0,
+      28.57142857142857
+    ],
+    "total_successes": 7
+  },
+  "normal_results": []
+}

@@ -1,0 +1,103 @@
+{
+  "question": "In humans, where does depolarisation of cardiac ventricular muscle stas from?",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Posterobasal pa of ventricle",
+    "opb": "Left side of inter ventricular septum",
+    "opc": "Uppermost pa of interventricular septum",
+    "opd": "Basal poion of ventricle"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Myocardium",
+        "Structure of purkinje fibers"
+      ],
+      [
+        "Structure of purkinje fibers",
+        "Myocardium",
+        "Structure of myocardium of ventricle"
+      ],
+      [
+        "Structure of myocardium of ventricle",
+        "Heart",
+        "Ventricular septum"
+      ],
+      [
+        "Bundle of His",
+        "Heart",
+        "Ventricular septum"
+      ]
+    ],
+    "relationships": [
+      [
+        "PART_OF"
+      ],
+      [
+        "PART_OF",
+        "PART_OF"
+      ],
+      [
+        "PART_OF",
+        "PART_OF"
+      ],
+      [
+        "PART_OF",
+        "PART_OF"
+      ]
+    ],
+    "paths": [
+      "(Myocardium)-PART_OF->(Structure of purkinje fibers)",
+      "(Structure of purkinje fibers)-PART_OF->(Myocardium)-PART_OF->(Structure of myocardium of ventricle)",
+      "(Structure of myocardium of ventricle)-PART_OF->(Heart)-PART_OF->(Ventricular septum)",
+      "(Bundle of His)-PART_OF->(Heart)-PART_OF->(Ventricular septum)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Structure of myocardium of ventricle)-PART_OF->(Heart)-PART_OF->(Ventricular septum)",
+      "(Structure of purkinje fibers)-PART_OF->(Myocardium)-PART_OF->(Structure of myocardium of ventricle)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Depolarization in cardiac muscle\" -> \"Initiates at the Purkinje fibers\" -> \"Spreads through the ventricular myocardium\" -> \"Typically starts at the left side of the interventricular septum\" -> 85%",
+    "CHAIN: \"Cardiac action potential\" -> \"Begins at the sinoatrial node\" -> \"Conducts through the atrioventricular node\" -> \"Travels down the bundle of His\" -> \"Emerges at the left side of the interventricular septum\" -> 80%",
+    "CHAIN: \"Ventricular depolarization\" -> \"Triggered by electrical impulses\" -> \"Originates from the interventricular septum\" -> \"Specifically from the left side\" -> 90%",
+    "CHAIN: \"Electrical conduction system of the heart\" -> \"Includes the bundle branches\" -> \"Left bundle branch depolarizes first\" -> \"Leads to depolarization of the left side of the interventricular septum\" -> 75%"
+  ],
+  "enhanced_information": "In humans, depolarization of cardiac ventricular muscle primarily starts at the left side of the interventricular septum. This is supported by the electrical conduction system of the heart, where the left bundle branch depolarizes first, leading to the initiation of ventricular depolarization. The depolarization spreads through the ventricular myocardium, including the Purkinje fibers, which facilitate rapid conduction. Therefore, the most accurate option is 'opb. Left side of inter ventricular septum.'",
+  "analysis": "In the human heart, the depolarization of the cardiac ventricular muscle begins at the left side of the interventricular septum. This is due to the structure of the heart's conduction system, where the left bundle branch, which is part of the conduction pathway, depolarizes first. This initiates the overall process of ventricular depolarization, which then spreads throughout the ventricular myocardium. The enhanced information aligns with this understanding, confirming that the left side of the interventricular septum is indeed the starting point for depolarization. Therefore, the most accurate option is 'opb. Left side of inter ventricular septum.'",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      3,
+      1,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      75.0,
+      25.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

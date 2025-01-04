@@ -1,0 +1,347 @@
+{
+  "question": "Myoclonus in children is best treated by :",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Clonazepam",
+    "opb": "Sodium Valproate",
+    "opc": "Phenobarbitone",
+    "opd": "Ethosuximide"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Myoclonus",
+        "Epilepsy"
+      ],
+      [
+        "Clonazepam",
+        "Myoclonus"
+      ],
+      [
+        "Phenobarbital",
+        "Seizures",
+        "Epilepsies, Myoclonic"
+      ],
+      [
+        "Phenobarbital",
+        "Epilepsy",
+        "Epilepsies, Myoclonic"
+      ],
+      [
+        "Phenobarbital",
+        "Epilepsy, Generalized",
+        "Epilepsies, Myoclonic"
+      ],
+      [
+        "Ethosuximide",
+        "Myoclonus"
+      ],
+      [
+        "Seizures",
+        "Myoclonus"
+      ],
+      [
+        "Myoclonus",
+        "Epilepsies, Myoclonic"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Myoclonus)-CAUSES->(Epilepsy)",
+      "(Clonazepam)-TREATS->(Myoclonus)",
+      "(Phenobarbital)-CAUSES->(Seizures)-CAUSES->(Epilepsies, Myoclonic)",
+      "(Phenobarbital)-TREATS->(Epilepsy)-CAUSES->(Epilepsies, Myoclonic)",
+      "(Phenobarbital)-TREATS->(Epilepsy, Generalized)-PREDISPOSES->(Epilepsies, Myoclonic)",
+      "(Ethosuximide)-TREATS->(Myoclonus)",
+      "(Seizures)-CAUSES->(Myoclonus)",
+      "(Myoclonus)-CAUSES->(Epilepsies, Myoclonic)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Epilepsy",
+        "Pathogenesis",
+        "Melatonin",
+        "Clonazepam"
+      ],
+      [
+        "Epilepsy",
+        "Pathogenesis",
+        "Melatonin",
+        "Clonazepam"
+      ],
+      [
+        "Epilepsies, Myoclonic",
+        "Disease",
+        "Pathogenesis",
+        "Melatonin",
+        "Clonazepam"
+      ],
+      [
+        "Epilepsies, Myoclonic",
+        "Disease",
+        "Pathogenesis",
+        "Melatonin",
+        "Clonazepam"
+      ],
+      [
+        "Myoclonus",
+        "Disease",
+        "uptake",
+        "Anticonvulsants"
+      ],
+      [
+        "Myoclonus",
+        "Disease",
+        "uptake",
+        "Anticonvulsants"
+      ],
+      [
+        "Treated with",
+        "Atherosclerosis",
+        "Disease",
+        "drug clearance",
+        "Sodium Valproate"
+      ],
+      [
+        "Treated with",
+        "Atherosclerosis",
+        "Disease",
+        "drug clearance",
+        "Sodium Valproate"
+      ],
+      [
+        "Anticonvulsants",
+        "Sodium Valproate"
+      ],
+      [
+        "Seizures",
+        "Disease",
+        "drug clearance",
+        "Sodium Valproate"
+      ],
+      [
+        "Seizures",
+        "Disease",
+        "drug clearance",
+        "Sodium Valproate"
+      ],
+      [
+        "Myoclonus",
+        "Pathogenesis",
+        "IMPACT gene",
+        "Phenobarbital"
+      ],
+      [
+        "Myoclonus",
+        "Pathogenesis",
+        "CYP2C9 gene|CYP2C9",
+        "Phenobarbital"
+      ],
+      [
+        "Epilepsies, Myoclonic",
+        "Complication",
+        "Genes",
+        "Mucous Membrane",
+        "First line treatment"
+      ],
+      [
+        "Epilepsies, Myoclonic",
+        "Complication",
+        "Genes",
+        "Skeletal muscle structure",
+        "First line treatment"
+      ],
+      [
+        "Myoclonus",
+        "Pathogenesis",
+        "CPA1",
+        "Ethosuximide"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "ISA",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "COMPLICATES",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Epilepsy)-CAUSES->(Pathogenesis)-ASSOCIATED_WITH->(Melatonin)-INTERACTS_WITH->(Clonazepam)",
+      "(Epilepsy)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Melatonin)-INTERACTS_WITH->(Clonazepam)",
+      "(Epilepsies, Myoclonic)-PREDISPOSES->(Disease)-CAUSES->(Pathogenesis)-ASSOCIATED_WITH->(Melatonin)-INTERACTS_WITH->(Clonazepam)",
+      "(Epilepsies, Myoclonic)-ISA->(Disease)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Melatonin)-INTERACTS_WITH->(Clonazepam)",
+      "(Myoclonus)-CAUSES->(Disease)-MANIFESTATION_OF->(uptake)-ASSOCIATED_WITH->(Anticonvulsants)",
+      "(Myoclonus)-ASSOCIATED_WITH->(Disease)-MANIFESTATION_OF->(uptake)-ASSOCIATED_WITH->(Anticonvulsants)",
+      "(Treated with)-TREATS->(Atherosclerosis)-ISA->(Disease)-MANIFESTATION_OF->(drug clearance)-ASSOCIATED_WITH->(Sodium Valproate)",
+      "(Treated with)-TREATS->(Atherosclerosis)-COMPLICATES->(Disease)-MANIFESTATION_OF->(drug clearance)-ASSOCIATED_WITH->(Sodium Valproate)",
+      "(Anticonvulsants)-INTERACTS_WITH->(Sodium Valproate)",
+      "(Seizures)-MANIFESTATION_OF->(Disease)-MANIFESTATION_OF->(drug clearance)-ASSOCIATED_WITH->(Sodium Valproate)",
+      "(Seizures)-CAUSES->(Disease)-MANIFESTATION_OF->(drug clearance)-ASSOCIATED_WITH->(Sodium Valproate)",
+      "(Myoclonus)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(IMPACT gene)-INTERACTS_WITH->(Phenobarbital)",
+      "(Myoclonus)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(CYP2C9 gene|CYP2C9)-INTERACTS_WITH->(Phenobarbital)",
+      "(Epilepsies, Myoclonic)-PREDISPOSES->(Complication)-ASSOCIATED_WITH->(Genes)-PART_OF->(Mucous Membrane)-LOCATION_OF->(First line treatment)",
+      "(Epilepsies, Myoclonic)-PREDISPOSES->(Complication)-ASSOCIATED_WITH->(Genes)-PART_OF->(Skeletal muscle structure)-LOCATION_OF->(First line treatment)",
+      "(Myoclonus)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(CPA1)-INTERACTS_WITH->(Ethosuximide)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Clonazepam)-TREATS->(Myoclonus)",
+      "(Ethosuximide)-TREATS->(Myoclonus)",
+      "(Myoclonus)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(IMPACT gene)-INTERACTS_WITH->(Phenobarbital)",
+      "(Myoclonus)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(CYP2C9 gene|CYP2C9)-INTERACTS_WITH->(Phenobarbital)",
+      "(Myoclonus)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(CPA1)-INTERACTS_WITH->(Ethosuximide)",
+      "(Phenobarbital)-CAUSES->(Seizures)-CAUSES->(Epilepsies, Myoclonic)",
+      "(Seizures)-CAUSES/MANIFESTATION_OF->(Disease)-MANIFESTATION_OF->(drug clearance)-ASSOCIATED_WITH->(Sodium Valproate)",
+      "(Anticonvulsants)-INTERACTS_WITH->(Sodium Valproate)",
+      "(Phenobarbital)-TREATS->(Epilepsy)-CAUSES->(Epilepsies, Myoclonic)",
+      "(Phenobarbital)-TREATS->(Epilepsy, Generalized)-PREDISPOSES->(Epilepsies, Myoclonic)",
+      "(Epilepsy)-CAUSES/PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Melatonin)-INTERACTS_WITH->(Clonazepam)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Myoclonus in children\" -> \"often associated with epilepsy\" -> \"Clonazepam is effective for myoclonic seizures\" -> \"Clonazepam reduces myoclonic jerks\" -> 85%",
+    "CHAIN: \"Myoclonus in children\" -> \"can be treated with anticonvulsants\" -> \"Sodium Valproate is used for various seizure types\" -> \"Sodium Valproate may help in some myoclonic cases\" -> 75%",
+    "CHAIN: \"Myoclonus in children\" -> \"Phenobarbitone is a barbiturate anticonvulsant\" -> \"less effective for myoclonic seizures\" -> \"not the first-line treatment\" -> 60%",
+    "CHAIN: \"Myoclonus in children\" -> \"Ethosuximide primarily treats absence seizures\" -> \"not typically effective for myoclonus\" -> \"not recommended for myoclonic seizures\" -> 50%"
+  ],
+  "enhanced_information": "Myoclonus in children is often associated with epilepsy and can be effectively treated with certain anticonvulsants. Clonazepam is recognized as an effective treatment for myoclonic seizures, as it reduces myoclonic jerks and is commonly used in clinical practice. Sodium Valproate is also used for various seizure types, including some myoclonic cases, but is not as effective as Clonazepam for this specific condition. Phenobarbital is a barbiturate anticonvulsant that is less effective for myoclonic seizures and is not considered a first-line treatment. Ethosuximide primarily treats absence seizures and is not recommended for myoclonic seizures. Therefore, the best treatment option for myoclonus in children is Clonazepam, supported by its established efficacy in managing myoclonic seizures.",
+  "analysis": "Myoclonus in children, particularly when associated with epilepsy, is best treated with medications that specifically target myoclonic seizures. Clonazepam is well-documented in clinical practice as an effective treatment for myoclonic jerks, making it a first-line option. Sodium Valproate is also used for myoclonic seizures but is generally considered less effective than Clonazepam for this specific type of seizure. Phenobarbital is not typically used for myoclonus and is less effective, while Ethosuximide is primarily indicated for absence seizures and does not address myoclonic seizures. Therefore, based on the consensus in pharmacological treatment for myoclonus, Clonazepam is the most appropriate choice. The reasoning aligns with established medical guidelines and clinical experience, leading to a high confidence in this conclusion.",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      4,
+      4,
+      3,
+      4
+    ],
+    "coverage_rates": [
+      26.666666666666668,
+      26.666666666666668,
+      20.0,
+      26.666666666666668
+    ],
+    "total_successes": 15
+  },
+  "normal_results": []
+}

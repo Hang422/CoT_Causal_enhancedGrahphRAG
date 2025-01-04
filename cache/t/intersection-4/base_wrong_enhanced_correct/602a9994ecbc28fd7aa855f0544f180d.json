@@ -1,0 +1,184 @@
+{
+  "question": "Propronolol is useful in all except -",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Atrial flutter",
+    "opb": "Parkinsonian tremor",
+    "opc": "Thyrotoxicosis",
+    "opd": "HOCM"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Propranolol",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Propranolol",
+        "Antihypertensive Agents",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Propranolol",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Propranolol",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Propranolol",
+        "Antihypertensive Agents",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Propranolol",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Propranolol",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Propranolol",
+        "Antihypertensive Agents",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Propranolol",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Propranolol",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Propranolol",
+        "Antihypertensive Agents",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Propranolol",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Antagonists"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Propranolol)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Propranolol)-INTERACTS_WITH->(Antihypertensive Agents)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Propranolol)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Propranolol)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Propranolol)-INTERACTS_WITH->(Antihypertensive Agents)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Propranolol)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Propranolol)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Propranolol)-INTERACTS_WITH->(Antihypertensive Agents)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Propranolol)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Propranolol)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Propranolol)-INTERACTS_WITH->(Antihypertensive Agents)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Propranolol)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Propranolol)-INTERACTS_WITH/ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)-Antagonists)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Propranolol\" -> \"non-selective beta-blocker\" -> \"reduces sympathetic nervous system activity\" -> \"decreases heart rate and contractility\" -> \"useful in atrial flutter\" -> 95%",
+    "CHAIN: \"Propranolol\" -> \"non-selective beta-blocker\" -> \"reduces sympathetic nervous system activity\" -> \"decreases tremors\" -> \"useful in Parkinsonian tremor\" -> 80%",
+    "CHAIN: \"Propranolol\" -> \"non-selective beta-blocker\" -> \"reduces sympathetic nervous system activity\" -> \"decreases thyroid hormone effects\" -> \"useful in thyrotoxicosis\" -> 90%",
+    "CHAIN: \"Propranolol\" -> \"non-selective beta-blocker\" -> \"reduces sympathetic nervous system activity\" -> \"decreases heart rate and contractility\" -> \"may worsen outflow obstruction in HOCM\" -> \"not useful in HOCM\" -> 95%"
+  ],
+  "enhanced_information": "Propranolol, a non-selective beta-blocker, effectively reduces heart rate and contractility, beneficial in atrial flutter and thyrotoxicosis. It is not recommended for Parkinsonian tremor, where dopamine deficiency is the primary issue, and may worsen conditions like HOCM by increasing outflow obstruction.",
+  "analysis": "Propranolol is effective in conditions like atrial flutter and thyrotoxicosis due to its beta-blocking effects. While it can be used in HOCM under specific circumstances, it is not effective for Parkinsonian tremor, which involves a different pathophysiological mechanism (dopamine deficiency). Therefore, the most accurate answer, based on medical consensus and the pharmacological action of propranolol, is that it is not useful for Parkinsonian tremor.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      25.0,
+      25.0,
+      25.0,
+      25.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

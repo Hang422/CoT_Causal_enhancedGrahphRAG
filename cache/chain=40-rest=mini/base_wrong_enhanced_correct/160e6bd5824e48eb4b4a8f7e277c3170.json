@@ -1,0 +1,134 @@
+{
+  "question": "Which of the following results in increase in secretion of ADH?",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Hypervolemia",
+    "opb": "Hypeension",
+    "opc": "Hypovolemia",
+    "opd": "Decrease osmolarity"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Pressoreceptors",
+        "Brain",
+        "Nerve",
+        "Stimulation procedure"
+      ],
+      [
+        "Pressoreceptors",
+        "Medulla",
+        "Bone Marrow",
+        "Stimulation procedure"
+      ],
+      [
+        "Stimulation procedure",
+        "Disease",
+        "Diastasis",
+        "Alcohol dehydrogenase"
+      ],
+      [
+        "Stimulation procedure",
+        "Disease",
+        "Diastasis",
+        "Alcohol dehydrogenase"
+      ],
+      [
+        "Hypothalamic structure",
+        "Diastasis",
+        "Alcohol dehydrogenase"
+      ],
+      [
+        "Hypothalamic structure",
+        "Pathogenesis",
+        "Alcohol dehydrogenase"
+      ]
+    ],
+    "relationships": [
+      [
+        "PART_OF",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "LOCATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "LOCATION_OF",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Pressoreceptors)-PART_OF->(Brain)-PART_OF->(Nerve)-LOCATION_OF->(Stimulation procedure)",
+      "(Pressoreceptors)-PART_OF->(Medulla)-PART_OF->(Bone Marrow)-LOCATION_OF->(Stimulation procedure)",
+      "(Stimulation procedure)-TREATS->(Disease)-MANIFESTATION_OF->(Diastasis)-ASSOCIATED_WITH->(Alcohol dehydrogenase)",
+      "(Stimulation procedure)-PREDISPOSES->(Disease)-MANIFESTATION_OF->(Diastasis)-ASSOCIATED_WITH->(Alcohol dehydrogenase)",
+      "(Hypothalamic structure)-LOCATION_OF->(Diastasis)-ASSOCIATED_WITH->(Alcohol dehydrogenase)",
+      "(Hypothalamic structure)-LOCATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Alcohol dehydrogenase)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Hypothalamic structure)-LOCATION_OF->(Diastasis)-ASSOCIATED_WITH->(Alcohol dehydrogenase)",
+      "(Hypothalamic structure)-LOCATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Alcohol dehydrogenase)",
+      "(Stimulation procedure)-PREDISPOSES/TREATS->(Disease)-MANIFESTATION_OF->(Diastasis)-ASSOCIATED_WITH->(Alcohol dehydrogenase)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Hypovolemia\" -> \"decreased blood volume\" -> \"activation of baroreceptors\" -> \"stimulation of hypothalamus\" -> \"increased ADH secretion\" -> 95%",
+    "CHAIN: \"Hypervolemia\" -> \"increased blood volume\" -> \"decreased ADH secretion\" -> 10%",
+    "CHAIN: \"Hypertension\" -> \"increased blood pressure\" -> \"decreased ADH secretion\" -> 10%",
+    "CHAIN: \"Decrease osmolarity\" -> \"decreased plasma osmolarity\" -> \"decreased ADH secretion\" -> 10%"
+  ],
+  "enhanced_information": "ADH (antidiuretic hormone) secretion is primarily regulated by blood volume and plasma osmolarity. In the case of hypovolemia, decreased blood volume activates baroreceptors, leading to stimulation of the hypothalamus and increased ADH secretion, which is consistent with the consensus (95% confidence). Conversely, hypervolemia and hypertension both result in increased blood volume and pressure, which lead to decreased ADH secretion (10% confidence each). A decrease in plasma osmolarity also results in decreased ADH secretion (10% confidence). Therefore, the only option that results in an increase in ADH secretion is hypovolemia.",
+  "analysis": "ADH secretion is primarily influenced by blood volume and plasma osmolarity. In cases of hypovolemia, where there is a decrease in blood volume, baroreceptors are activated, leading to increased secretion of ADH to promote water retention and restore blood volume. Conversely, hypervolemia and hypertension, which indicate increased blood volume and pressure, typically result in decreased ADH secretion. A decrease in plasma osmolarity also leads to reduced ADH secretion as the body does not need to conserve water under these conditions. Therefore, the only option that aligns with the known physiological response of increased ADH secretion is hypovolemia. This reasoning is consistent with the consensus in the field, leading to a high confidence in the conclusion.",
+  "answer": "opc",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      3,
+      0,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      100.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 3
+  },
+  "normal_results": []
+}

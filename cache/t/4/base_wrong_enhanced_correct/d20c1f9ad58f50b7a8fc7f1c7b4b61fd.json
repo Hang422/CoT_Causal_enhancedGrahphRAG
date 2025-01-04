@@ -1,0 +1,143 @@
+{
+  "question": "During labor and delivery, a specific hormone causes uterine contractions. This hormone is produced in which one of the following anatomical locations?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Hypothalamus",
+    "opb": "Anterior pituitary",
+    "opc": "Posterior pituitary",
+    "opd": "Adrenal cortex"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Pituitary Hormones, Anterior",
+        "Cells",
+        "Hormones"
+      ],
+      [
+        "Hormones",
+        "Oxytocin"
+      ],
+      [
+        "Pituitary Gland, Posterior",
+        "Hypothalamic structure",
+        "Oxytocin"
+      ],
+      [
+        "Pituitary Gland, Posterior",
+        "Functional disorder",
+        "Oxytocin"
+      ],
+      [
+        "Pituitary Gland, Posterior",
+        "Diastasis",
+        "Oxytocin"
+      ],
+      [
+        "Release (procedure)",
+        "Inflammation",
+        "Oxytocin"
+      ],
+      [
+        "Release (procedure)",
+        "Inflammation",
+        "Oxytocin"
+      ],
+      [
+        "Adrenal Cortex",
+        "Adrenal Cortex Hormones"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "LOCATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Pituitary Hormones, Anterior)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Hormones)",
+      "(Hormones)-INTERACTS_WITH->(Oxytocin)",
+      "(Pituitary Gland, Posterior)-PART_OF->(Hypothalamic structure)-LOCATION_OF->(Oxytocin)",
+      "(Pituitary Gland, Posterior)-LOCATION_OF->(Functional disorder)-ASSOCIATED_WITH->(Oxytocin)",
+      "(Pituitary Gland, Posterior)-LOCATION_OF->(Diastasis)-ASSOCIATED_WITH->(Oxytocin)",
+      "(Release (procedure))-CAUSES->(Inflammation)-ASSOCIATED_WITH->(Oxytocin)",
+      "(Release (procedure))-TREATS->(Inflammation)-ASSOCIATED_WITH->(Oxytocin)",
+      "(Adrenal Cortex)-LOCATION_OF->(Adrenal Cortex Hormones)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Pituitary Gland, Posterior)-PART_OF->(Hypothalamic structure)-LOCATION_OF->(Oxytocin)",
+      "(Adrenal Cortex)-LOCATION_OF->(Adrenal Cortex Hormones)",
+      "(Pituitary Gland, Posterior)-LOCATION_OF->(Functional disorder)-ASSOCIATED_WITH->(Oxytocin)",
+      "(Pituitary Gland, Posterior)-LOCATION_OF->(Diastasis)-ASSOCIATED_WITH->(Oxytocin)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Hypothalamus\" -> \"produces oxytocin-releasing factors\" -> \"stimulates posterior pituitary\" -> \"unclear direct production of contraction-causing hormone\" -> 40%",
+    "CHAIN: \"Anterior pituitary\" -> \"produces various hormones\" -> \"does not produce oxytocin\" -> \"not responsible for uterine contractions\" -> 10%",
+    "CHAIN: \"Posterior pituitary\" -> \"stores and releases oxytocin\" -> \"oxytocin causes uterine contractions\" -> 95%",
+    "CHAIN: \"Adrenal cortex\" -> \"produces corticosteroids\" -> \"not involved in production of oxytocin\" -> \"not responsible for uterine contractions\" -> 10%"
+  ],
+  "enhanced_information": "The hormone responsible for causing uterine contractions during labor and delivery is oxytocin. Oxytocin is stored and released by the posterior pituitary gland, not directly produced there. The hypothalamus produces oxytocin and then transports it to the posterior pituitary for storage and release when needed. The anterior pituitary does not produce oxytocin; it is involved in the secretion of other hormones. The adrenal cortex is responsible for producing corticosteroids and is not involved in the production or release of oxytocin. Therefore, the correct anatomical location associated with the production of the hormone causing uterine contractions is the posterior pituitary, as it is the site from which oxytocin is released during labor.",
+  "analysis": "The hormone responsible for causing uterine contractions during labor and delivery is oxytocin. Oxytocin is synthesized in the hypothalamus and then transported to the posterior pituitary gland where it is stored and released when needed. The question specifically asks about the production location of the hormone, not where it is stored or released. Therefore, the correct answer is the hypothalamus, as it is the site of oxytocin production. The posterior pituitary only stores and releases the hormone but does not synthesize it. The anterior pituitary and adrenal cortex are not involved in the production of oxytocin.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      2,
+      2,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      40.0,
+      40.0,
+      20.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

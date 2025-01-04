@@ -1,0 +1,235 @@
+{
+  "question": "Depression is not a side effect of",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Propanolol",
+    "opb": "Oral contraceptives",
+    "opc": "Reserpine",
+    "opd": "Flupenthixol"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Propranolol",
+        "Anxiety"
+      ],
+      [
+        "Anxiety",
+        "Syndrome",
+        "Mental Depression"
+      ],
+      [
+        "Anxiety",
+        "Cerebral Infarction",
+        "Mental Depression"
+      ],
+      [
+        "Anxiety",
+        "Disease",
+        "Mental Depression"
+      ],
+      [
+        "Mental Depression",
+        "Obesity",
+        "Adverse effects"
+      ],
+      [
+        "Mental Depression",
+        "Heart failure",
+        "Adverse effects"
+      ],
+      [
+        "Mental Depression",
+        "Epilepsy",
+        "Adverse effects"
+      ],
+      [
+        "Mental Depression",
+        "Obesity",
+        "Depressive Symptoms"
+      ],
+      [
+        "Mental Depression",
+        "Inflammation",
+        "Depressive Symptoms"
+      ],
+      [
+        "Mental Depression",
+        "Diastasis",
+        "Depressive Symptoms"
+      ],
+      [
+        "Antipsychotic Agents",
+        "Depressive Symptoms"
+      ],
+      [
+        "Depressive Symptoms",
+        "Syndrome",
+        "Mental Depression"
+      ],
+      [
+        "Depressive Symptoms",
+        "Pain",
+        "Mental Depression"
+      ],
+      [
+        "Depressive Symptoms",
+        "Depressive episode, unspecified",
+        "Mental Depression"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "COMPLICATES"
+      ],
+      [
+        "CAUSES",
+        "COMPLICATES"
+      ],
+      [
+        "CAUSES",
+        "PREDISPOSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "COMPLICATES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "PREDISPOSES"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "PREDISPOSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "COMPLICATES"
+      ],
+      [
+        "CAUSES",
+        "PREDISPOSES"
+      ],
+      [
+        "PREDISPOSES",
+        "COMPLICATES"
+      ]
+    ],
+    "paths": [
+      "(Propranolol)-TREATS->(Anxiety)",
+      "(Anxiety)-CAUSES->(Syndrome)-COMPLICATES->(Mental Depression)",
+      "(Anxiety)-CAUSES->(Cerebral Infarction)-COMPLICATES->(Mental Depression)",
+      "(Anxiety)-CAUSES->(Disease)-PREDISPOSES->(Mental Depression)",
+      "(Mental Depression)-CAUSES->(Obesity)-CAUSES->(Adverse effects)",
+      "(Mental Depression)-CAUSES->(Heart failure)-CAUSES->(Adverse effects)",
+      "(Mental Depression)-COMPLICATES->(Epilepsy)-CAUSES->(Adverse effects)",
+      "(Mental Depression)-CAUSES->(Obesity)-CAUSES->(Depressive Symptoms)",
+      "(Mental Depression)-MANIFESTATION_OF->(Inflammation)-PREDISPOSES->(Depressive Symptoms)",
+      "(Mental Depression)-MANIFESTATION_OF->(Diastasis)-PREDISPOSES->(Depressive Symptoms)",
+      "(Antipsychotic Agents)-CAUSES->(Depressive Symptoms)",
+      "(Depressive Symptoms)-CAUSES->(Syndrome)-COMPLICATES->(Mental Depression)",
+      "(Depressive Symptoms)-CAUSES->(Pain)-PREDISPOSES->(Mental Depression)",
+      "(Depressive Symptoms)-PREDISPOSES->(Depressive episode, unspecified)-COMPLICATES->(Mental Depression)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Flupenthixol",
+        "MAPT",
+        "Cells",
+        "Antipsychotic Agents"
+      ],
+      [
+        "Flupenthixol",
+        "MAPT",
+        "Cells",
+        "Antipsychotic Agents"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Flupenthixol)-INTERACTS_WITH->(MAPT)-PART_OF->(Cells)-LOCATION_OF->(Antipsychotic Agents)",
+      "(Flupenthixol)-INTERACTS_WITH->(MAPT)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Antipsychotic Agents)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Propranolol)-TREATS->(Anxiety)",
+      "(Mental Depression)-MANIFESTATION_OF->(Inflammation)-PREDISPOSES->(Depressive Symptoms)",
+      "(Mental Depression)-MANIFESTATION_OF->(Diastasis)-PREDISPOSES->(Depressive Symptoms)",
+      "(Flupenthixol)-INTERACTS_WITH->(MAPT)-INTERACTS_WITH/PART_OF->(Cells)-LOCATION_OF->(Antipsychotic Agents)",
+      "(Anxiety)-CAUSES->(Syndrome)-COMPLICATES->(Mental Depression)",
+      "(Anxiety)-CAUSES->(Cerebral Infarction)-COMPLICATES->(Mental Depression)",
+      "(Anxiety)-CAUSES->(Disease)-PREDISPOSES->(Mental Depression)",
+      "(Mental Depression)-CAUSES->(Obesity)-CAUSES->(Adverse effects)",
+      "(Mental Depression)-CAUSES->(Heart failure)-CAUSES->(Adverse effects)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Propranolol\" -> \"commonly used for anxiety\" -> \"not typically associated with depression\" -> 85%",
+    "CHAIN: \"Oral contraceptives\" -> \"hormonal changes can affect mood\" -> \"some may experience depression\" -> \"not a common side effect\" -> 70%",
+    "CHAIN: \"Reserpine\" -> \"known to deplete monoamines\" -> \"associated with depression\" -> \"likely to cause depressive symptoms\" -> 90%",
+    "CHAIN: \"Flupenthixol\" -> \"antipsychotic medication\" -> \"can cause depressive symptoms\" -> \"not uncommon to see depression\" -> 80%"
+  ],
+  "enhanced_information": "Propranolol is primarily used for anxiety and is not typically associated with depression, making it the least likely option to cause depressive symptoms. Oral contraceptives can influence mood due to hormonal changes, and while some users may experience depression, it is not a common side effect. Reserpine is known to deplete monoamines, which are crucial for mood regulation, and is associated with causing depressive symptoms. Flupenthixol, an antipsychotic, can also lead to depressive symptoms, making it a potential cause of depression. Therefore, the best-supported conclusion is that depression is not a side effect of Propranolol.",
+  "analysis": "Propranolol, a non-selective beta-blocker, is primarily used for cardiovascular conditions and anxiety. While it can cause fatigue and other mood changes, it is not commonly associated with depression as a direct side effect. Oral contraceptives can affect mood due to hormonal changes, and some users report depressive symptoms. Reserpine is well-documented to cause depression due to its mechanism of depleting monoamines, which are important for mood regulation. Flupenthixol, an antipsychotic, can also lead to depressive symptoms in some cases. Based on this information, propranolol is the least likely to cause depression, making it the most appropriate answer.",
+  "answer": "opa",
+  "confidence": 85.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      1,
+      1,
+      3
+    ],
+    "coverage_rates": [
+      28.57142857142857,
+      14.285714285714285,
+      14.285714285714285,
+      42.857142857142854
+    ],
+    "total_successes": 7
+  },
+  "normal_results": []
+}

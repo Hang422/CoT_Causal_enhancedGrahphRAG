@@ -1,0 +1,213 @@
+{
+  "question": "Negative BMR is observed with:",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Pituitary disturbance",
+    "opb": "Thyroid disturbance",
+    "opc": "Parathyroid",
+    "opd": "All of the above"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Thyrotropin",
+        "Disease",
+        "Heart failure",
+        "thyroid function"
+      ],
+      [
+        "Thyrotropin",
+        "Obesity",
+        "Heart failure",
+        "thyroid function"
+      ],
+      [
+        "Thyrotropin",
+        "Myocardial Infarction",
+        "Heart failure",
+        "thyroid function"
+      ],
+      [
+        "Thyrotropin",
+        "Disease",
+        "Mental Retardation",
+        "thyroid function"
+      ],
+      [
+        "calcium",
+        "Obesity",
+        "Energy Metabolism"
+      ],
+      [
+        "calcium",
+        "Autoimmune Diseases",
+        "Energy Metabolism"
+      ],
+      [
+        "calcium",
+        "Heart failure",
+        "Energy Metabolism"
+      ],
+      [
+        "calcium",
+        "Hypoxia",
+        "Energy Metabolism"
+      ],
+      [
+        "Thyroid Hormones",
+        "Metabolic Rates"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "PREVENTS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Thyrotropin)-TREATS->(Disease)-CAUSES->(Heart failure)-MANIFESTATION_OF->(thyroid function)",
+      "(Thyrotropin)-TREATS->(Obesity)-CAUSES->(Heart failure)-MANIFESTATION_OF->(thyroid function)",
+      "(Thyrotropin)-TREATS->(Myocardial Infarction)-CAUSES->(Heart failure)-MANIFESTATION_OF->(thyroid function)",
+      "(Thyrotropin)-TREATS->(Disease)-MANIFESTATION_OF->(Mental Retardation)-MANIFESTATION_OF->(thyroid function)",
+      "(calcium)-CAUSES->(Obesity)-MANIFESTATION_OF->(Energy Metabolism)",
+      "(calcium)-TREATS->(Autoimmune Diseases)-MANIFESTATION_OF->(Energy Metabolism)",
+      "(calcium)-TREATS->(Heart failure)-MANIFESTATION_OF->(Energy Metabolism)",
+      "(calcium)-PREVENTS->(Hypoxia)-MANIFESTATION_OF->(Energy Metabolism)",
+      "(Thyroid Hormones)-CAUSES->(Metabolic Rates)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "thyroid function",
+        "Gonadal Steroid Hormones",
+        "Pharmaceutical Preparations",
+        "Metabolic Rates"
+      ],
+      [
+        "thyroid function",
+        "Gonadal Steroid Hormones",
+        "Pharmaceutical Preparations",
+        "Metabolic Rates"
+      ],
+      [
+        "thyroid function",
+        "Thyroxine",
+        "Pharmaceutical Preparations",
+        "Metabolic Rates"
+      ]
+    ],
+    "relationships": [
+      [
+        "ASSOCIATED_WITH",
+        "ISA",
+        "CAUSES"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH",
+        "CAUSES"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "ISA",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(thyroid function)-ASSOCIATED_WITH->(Gonadal Steroid Hormones)-ISA->(Pharmaceutical Preparations)-CAUSES->(Metabolic Rates)",
+      "(thyroid function)-ASSOCIATED_WITH->(Gonadal Steroid Hormones)-INTERACTS_WITH->(Pharmaceutical Preparations)-CAUSES->(Metabolic Rates)",
+      "(thyroid function)-ASSOCIATED_WITH->(Thyroxine)-ISA->(Pharmaceutical Preparations)-CAUSES->(Metabolic Rates)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(thyroid function)-ASSOCIATED_WITH->(Gonadal Steroid Hormones)-INTERACTS_WITH/ISA->(Pharmaceutical Preparations)-CAUSES->(Metabolic Rates)",
+      "(Thyroid Hormones)-CAUSES->(Metabolic Rates)",
+      "(calcium)-CAUSES->(Obesity)-MANIFESTATION_OF->(Energy Metabolism)",
+      "(calcium)-TREATS->(Autoimmune Diseases)-MANIFESTATION_OF->(Energy Metabolism)",
+      "(calcium)-TREATS->(Heart failure)-MANIFESTATION_OF->(Energy Metabolism)",
+      "(calcium)-PREVENTS->(Hypoxia)-MANIFESTATION_OF->(Energy Metabolism)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Pituitary disturbance\" -> \"altered secretion of TSH\" -> \"disrupted thyroid function\" -> \"altered metabolic rate\" -> \"negative BMR\" -> 75%",
+    "CHAIN: \"Thyroid disturbance\" -> \"decreased thyroid hormone production\" -> \"lowered metabolic rate\" -> \"negative BMR\" -> 85%",
+    "CHAIN: \"Parathyroid disturbance\" -> \"altered calcium and phosphorus metabolism\" -> \"indirect effect on energy metabolism\" -> \"possible negative BMR\" -> 60%",
+    "CHAIN: \"Pituitary disturbance\" -> \"impaired ACTH secretion\" -> \"reduced cortisol levels\" -> \"decreased metabolism\" -> \"negative BMR\" -> 70%",
+    "CHAIN: \"Thyroid disturbance\" -> \"increased thyroid hormone production\" -> \"increased metabolic rate\" -> \"positive BMR\" -> \"unclear effect on negative BMR\" -> 50%",
+    "CHAIN: \"Parathyroid disturbance\" -> \"disrupted calcium regulation\" -> \"possible impact on cellular processes\" -> \"unclear direct link to BMR\" -> \"possible negative BMR\" -> 55%",
+    "CHAIN: \"All of the above\" -> \"combined endocrine disruptions\" -> \"overall disturbed metabolic processes\" -> \"negative BMR\" -> 80%"
+  ],
+  "enhanced_information": "Disturbances in the pituitary and thyroid glands are directly linked to changes in metabolic rates, potentially leading to a negative BMR. Pituitary disturbances affect TSH and ACTH levels, influencing thyroid function and cortisol levels, respectively, both of which are crucial for metabolic rate regulation. Thyroid disturbances, particularly decreased thyroid hormone production, directly lower metabolic rates. Parathyroid disturbances indirectly affect energy metabolism through calcium regulation but have a less direct impact on BMR. Evidence strongly supports the significant roles of thyroid and pituitary disturbances in affecting BMR.",
+  "analysis": "The question pertains to the observation of a negative Basal Metabolic Rate (BMR), which is influenced by hormonal disturbances affecting metabolism. The pituitary gland, through its secretion of thyroid-stimulating hormone (TSH) and adrenocorticotropic hormone (ACTH), has a significant impact on metabolic rates by influencing both thyroid function and cortisol levels. Disturbances in the pituitary gland can therefore lead to altered metabolic rates. Similarly, the thyroid gland, through its production of thyroid hormones, directly regulates metabolic rates, and disturbances here can lead to a decreased BMR. The parathyroid glands, while important in calcium regulation, have a less direct impact on BMR compared to the thyroid and pituitary glands. Given the direct roles of the pituitary and thyroid glands in regulating metabolic rates, disturbances in these glands are more likely to result in observable changes in BMR. Therefore, the options that include both pituitary and thyroid disturbances as causes of negative BMR are considered. Among the given options, 'All of the above' includes the disturbances in both pituitary and thyroid glands, aligning with the consensus that these disturbances can lead to a negative BMR.",
+  "answer": "opd",
+  "confidence": 85.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      50.0,
+      0.0,
+      25.0,
+      0.0,
+      25.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

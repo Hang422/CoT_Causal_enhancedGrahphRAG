@@ -1,0 +1,166 @@
+{
+  "question": "In which of the following patients would enalapril be the best first line agent for high blood pressure control ?",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "A 62 year old man with renal artery stenosis",
+    "opb": "A 32 year old pregnant female",
+    "opc": "A 41 year old woman with hyperkalemia",
+    "opd": "A 56 year old diabetic woman"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Enalapril",
+        "Disease",
+        "Renal Artery Stenosis"
+      ],
+      [
+        "Enalapril",
+        "Obesity",
+        "Renal Artery Stenosis"
+      ],
+      [
+        "Enalapril",
+        "Hypertensive disease",
+        "Renal Artery Stenosis"
+      ],
+      [
+        "Renal Artery Stenosis",
+        "Kidney Failure"
+      ],
+      [
+        "Enalapril",
+        "hyperkalemia"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS",
+        "COMPLICATES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Enalapril)-CAUSES->(Disease)-CAUSES->(Renal Artery Stenosis)",
+      "(Enalapril)-PREVENTS->(Obesity)-CAUSES->(Renal Artery Stenosis)",
+      "(Enalapril)-PREVENTS->(Hypertensive disease)-COMPLICATES->(Renal Artery Stenosis)",
+      "(Renal Artery Stenosis)-CAUSES->(Kidney Failure)",
+      "(Enalapril)-CAUSES->(hyperkalemia)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Angiotensin-Converting Enzyme Inhibitors",
+        "Pharmaceutical Preparations",
+        "Angiotensin II"
+      ],
+      [
+        "Angiotensin-Converting Enzyme Inhibitors",
+        "Pathogenesis",
+        "Angiotensin II"
+      ],
+      [
+        "Enalapril",
+        "Fatty degeneration",
+        "Angiotensin II"
+      ],
+      [
+        "Enalapril",
+        "Abnormal renal function",
+        "Angiotensin II"
+      ],
+      [
+        "Serum potassium assay",
+        "hyperkalemia"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "DIAGNOSES"
+      ]
+    ],
+    "paths": [
+      "(Angiotensin-Converting Enzyme Inhibitors)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Angiotensin II)",
+      "(Angiotensin-Converting Enzyme Inhibitors)-CAUSES->(Pathogenesis)-ASSOCIATED_WITH->(Angiotensin II)",
+      "(Enalapril)-TREATS->(Fatty degeneration)-ASSOCIATED_WITH->(Angiotensin II)",
+      "(Enalapril)-CAUSES->(Abnormal renal function)-ASSOCIATED_WITH->(Angiotensin II)",
+      "(Serum potassium assay)-DIAGNOSES->(hyperkalemia)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Enalapril)-CAUSES->(hyperkalemia)",
+      "(Enalapril)-CAUSES->(Disease)-CAUSES->(Renal Artery Stenosis)",
+      "(Enalapril)-PREVENTS->(Obesity)-CAUSES->(Renal Artery Stenosis)",
+      "(Enalapril)-PREVENTS->(Hypertensive disease)-COMPLICATES->(Renal Artery Stenosis)",
+      "(Enalapril)-TREATS->(Fatty degeneration)-ASSOCIATED_WITH->(Angiotensin II)",
+      "(Enalapril)-CAUSES->(Abnormal renal function)-ASSOCIATED_WITH->(Angiotensin II)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Enalapril is an ACE inhibitor\" -> \"reduces blood pressure by inhibiting angiotensin II\" -> \"beneficial in diabetic patients\" -> \"56 year old diabetic woman\" -> 85%",
+    "CHAIN: \"Enalapril is contraindicated in renal artery stenosis\" -> \"62 year old man with renal artery stenosis\" -> \"risk of renal failure\" -> \"not suitable\" -> 10%",
+    "CHAIN: \"Enalapril is contraindicated in pregnancy\" -> \"32 year old pregnant female\" -> \"risk of fetal harm\" -> \"not suitable\" -> 5%",
+    "CHAIN: \"Enalapril can increase potassium levels\" -> \"41 year old woman with hyperkalemia\" -> \"risk of worsening hyperkalemia\" -> \"not suitable\" -> 15%"
+  ],
+  "enhanced_information": "Enalapril is an ACE inhibitor that is effective in managing hypertension, particularly in patients with diabetes due to its renal protective effects. However, it is contraindicated in certain conditions. For the options: 1) A 62-year-old man with renal artery stenosis: Enalapril is contraindicated due to the risk of renal failure. 2) A 32-year-old pregnant female: Enalapril is contraindicated in pregnancy due to potential fetal harm. 3) A 41-year-old woman with hyperkalemia: Enalapril can exacerbate hyperkalemia, making it unsuitable. 4) A 56-year-old diabetic woman: Enalapril is beneficial for hypertension in diabetic patients, aligning with consensus. Therefore, the best first-line agent for high blood pressure control among the options is the 56-year-old diabetic woman.",
+  "analysis": "Enalapril is an ACE inhibitor commonly used to manage hypertension, especially in patients with diabetes due to its renal protective effects. However, it is contraindicated in certain conditions: 1) In patients with renal artery stenosis, enalapril can lead to renal failure. 2) It is contraindicated in pregnancy due to the risk of fetal harm. 3) Enalapril can exacerbate hyperkalemia, making it unsuitable for patients with this condition. 4) In diabetic patients, enalapril is beneficial as it helps in controlling blood pressure and offers renal protection. Therefore, among the given options, the 56-year-old diabetic woman is the most appropriate candidate for enalapril as a first-line agent for hypertension control.",
+  "answer": "opd",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      2,
+      0,
+      2
+    ],
+    "coverage_rates": [
+      33.33333333333333,
+      33.33333333333333,
+      0.0,
+      33.33333333333333
+    ],
+    "total_successes": 6
+  },
+  "normal_results": []
+}

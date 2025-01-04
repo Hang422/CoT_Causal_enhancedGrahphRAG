@@ -1,0 +1,80 @@
+{
+  "question": "Drugs causing hypokalemia are : a) Amphotericin B b) Insulin c) Cyclosporine d) Carbenoxolone e) NSAIDs",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "ace",
+    "opb": "ac",
+    "opc": "abd",
+    "opd": "acd"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Insulin",
+        "GLUCOSE TOLERANCE",
+        "Cells"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Insulin)-CAUSES->(GLUCOSE TOLERANCE)-PROCESS_OF->(Cells)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Insulin)-CAUSES->(GLUCOSE TOLERANCE)-PROCESS_OF->(Cells)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Amphotericin B\" -> \"increased renal potassium excretion\" -> \"hypokalemia\" -> 95%",
+    "CHAIN: \"Insulin\" -> \"drives potassium into cells\" -> \"decreased serum potassium levels\" -> \"hypokalemia\" -> 90%",
+    "CHAIN: \"Cyclosporine\" -> \"renal vasoconstriction\" -> \"decreased renal blood flow\" -> \"possible hypokalemia\" -> 70%",
+    "CHAIN: \"Carbenoxolone\" -> \"aldosterone-like effects\" -> \"increased potassium excretion\" -> \"hypokalemia\" -> 85%",
+    "CHAIN: \"NSAIDs\" -> \"inhibition of prostaglandin synthesis\" -> \"reduced renal blood flow\" -> \"possible hypokalemia\" -> 60%",
+    "CHAIN: Final answer: \"ac\" -> 90%"
+  ],
+  "enhanced_information": "Amphotericin B is known to cause hypokalemia due to increased renal potassium excretion, making it a strong candidate. Insulin also causes hypokalemia by driving potassium into cells, which is well-documented. Cyclosporine's potential to cause hypokalemia is less direct; it primarily causes renal vasoconstriction, which can lead to decreased renal blood flow but is not a common cause of hypokalemia. Carbenoxolone mimics aldosterone, leading to increased potassium excretion and hypokalemia. NSAIDs can reduce renal blood flow through inhibition of prostaglandin synthesis, but they are not typically associated with hypokalemia. Therefore, the most consensus-aligned options for drugs causing hypokalemia are Amphotericin B, Insulin, and Carbenoxolone, leading to the conclusion that the correct answer is 'ac'.",
+  "analysis": "To determine which drugs cause hypokalemia, we analyze each option based on established pharmacological knowledge. Amphotericin B is well-known for causing hypokalemia due to its effects on renal potassium handling. Insulin also causes hypokalemia by promoting the intracellular shift of potassium. Carbenoxolone, which mimics aldosterone, can lead to increased potassium excretion and thus hypokalemia. Cyclosporine is less commonly associated with hypokalemia; its primary effects are related to renal vasoconstriction rather than direct potassium loss. NSAIDs are not typically linked to hypokalemia; they may affect renal blood flow but do not directly cause potassium loss. Therefore, the drugs that are most clearly associated with hypokalemia are Amphotericin B, Insulin, and Carbenoxolone. This leads us to conclude that the correct answer is 'ac'.",
+  "answer": "opc",
+  "confidence": 85.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      0.0,
+      100.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 1
+  },
+  "normal_results": []
+}

@@ -1,0 +1,239 @@
+{
+  "question": "Pulmonary fibrosis is a complication of: March 2011, March 2012, September 2012, March 2013",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Methotrexate",
+    "opb": "Doxorubicin",
+    "opc": "Cisplatin",
+    "opd": "Busulfan"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Cisplatin",
+        "Toxic nephropathy"
+      ],
+      [
+        "Toxic nephropathy",
+        "Adverse effects",
+        "Chronic Obstructive Airway Disease",
+        "Respiratory physiology"
+      ],
+      [
+        "Toxic nephropathy",
+        "Virus Diseases",
+        "Chronic Obstructive Airway Disease",
+        "Respiratory physiology"
+      ],
+      [
+        "Toxic nephropathy",
+        "Disease",
+        "Chronic Obstructive Airway Disease",
+        "Respiratory physiology"
+      ],
+      [
+        "Toxic nephropathy",
+        "Inflammatory Response",
+        "Chronic Obstructive Airway Disease",
+        "Respiratory physiology"
+      ],
+      [
+        "Alkylating Agents",
+        "Graft acceptance",
+        "Lung"
+      ],
+      [
+        "Alkylating Agents",
+        "uptake",
+        "Lung"
+      ],
+      [
+        "Alkylating Agents",
+        "Physiological Processes",
+        "Lung"
+      ],
+      [
+        "Alkylating Agents",
+        "Transformation, function",
+        "Lung"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "COMPLICATES",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Cisplatin)-CAUSES->(Toxic nephropathy)",
+      "(Toxic nephropathy)-CAUSES->(Adverse effects)-CAUSES->(Chronic Obstructive Airway Disease)-MANIFESTATION_OF->(Respiratory physiology)",
+      "(Toxic nephropathy)-CAUSES->(Virus Diseases)-CAUSES->(Chronic Obstructive Airway Disease)-MANIFESTATION_OF->(Respiratory physiology)",
+      "(Toxic nephropathy)-COMPLICATES->(Disease)-CAUSES->(Chronic Obstructive Airway Disease)-MANIFESTATION_OF->(Respiratory physiology)",
+      "(Toxic nephropathy)-CAUSES->(Inflammatory Response)-MANIFESTATION_OF->(Chronic Obstructive Airway Disease)-MANIFESTATION_OF->(Respiratory physiology)",
+      "(Alkylating Agents)-CAUSES->(Graft acceptance)-PROCESS_OF->(Lung)",
+      "(Alkylating Agents)-CAUSES->(uptake)-PROCESS_OF->(Lung)",
+      "(Alkylating Agents)-CAUSES->(Physiological Processes)-PROCESS_OF->(Lung)",
+      "(Alkylating Agents)-CAUSES->(Transformation, function)-PROCESS_OF->(Lung)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Lung",
+        "Pulmonary Fibrosis"
+      ],
+      [
+        "Respiratory physiology",
+        "Pharmaceutical Preparations",
+        "Pulmonary Fibrosis"
+      ],
+      [
+        "Respiratory physiology",
+        "Pharmaceutical Preparations",
+        "Pulmonary Fibrosis"
+      ],
+      [
+        "Respiratory physiology",
+        "Pharmaceutical Preparations",
+        "Pulmonary Fibrosis"
+      ],
+      [
+        "Busulfan",
+        "Graft acceptance",
+        "Melphalan",
+        "Alkylating Agents"
+      ],
+      [
+        "Busulfan",
+        "Functional disorder",
+        "Melphalan",
+        "Alkylating Agents"
+      ],
+      [
+        "Lung",
+        "Pulmonary Fibrosis"
+      ]
+    ],
+    "relationships": [
+      [
+        "LOCATION_OF"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "PREVENTS"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "CAUSES"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "COMPLICATES"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Lung)-LOCATION_OF->(Pulmonary Fibrosis)",
+      "(Respiratory physiology)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-PREVENTS->(Pulmonary Fibrosis)",
+      "(Respiratory physiology)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-CAUSES->(Pulmonary Fibrosis)",
+      "(Respiratory physiology)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-COMPLICATES->(Pulmonary Fibrosis)",
+      "(Busulfan)-CAUSES->(Graft acceptance)-ASSOCIATED_WITH->(Melphalan)-INTERACTS_WITH->(Alkylating Agents)",
+      "(Busulfan)-TREATS->(Functional disorder)-ASSOCIATED_WITH->(Melphalan)-INTERACTS_WITH->(Alkylating Agents)",
+      "(Lung)-LOCATION_OF->(Pulmonary Fibrosis)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Busulfan)-TREATS->(Functional disorder)-ASSOCIATED_WITH->(Melphalan)-INTERACTS_WITH->(Alkylating Agents)",
+      "(Busulfan)-CAUSES->(Graft acceptance)-ASSOCIATED_WITH->(Melphalan)-INTERACTS_WITH->(Alkylating Agents)",
+      "(Cisplatin)-CAUSES->(Toxic nephropathy)",
+      "(Respiratory physiology)-ASSOCIATED_WITH->(Pharmaceutical Preparations)-CAUSES/COMPLICATES/PREVENTS->(Pulmonary Fibrosis)",
+      "(Lung)-LOCATION_OF->(Pulmonary Fibrosis)",
+      "(Alkylating Agents)-CAUSES->(Graft acceptance)-PROCESS_OF->(Lung)",
+      "(Alkylating Agents)-CAUSES->(uptake)-PROCESS_OF->(Lung)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Methotrexate\" -> \"inhibits DNA synthesis\" -> \"can cause lung toxicity\" -> \"pulmonary fibrosis\" -> 85%",
+    "CHAIN: \"Doxorubicin\" -> \"causes oxidative stress\" -> \"can lead to lung damage\" -> \"possible pulmonary fibrosis\" -> 70%",
+    "CHAIN: \"Cisplatin\" -> \"causes nephrotoxicity\" -> \"may affect lung function\" -> \"possible pulmonary fibrosis\" -> 65%",
+    "CHAIN: \"Busulfan\" -> \"alkylating agent\" -> \"associated with pulmonary toxicity\" -> \"pulmonary fibrosis\" -> 80%"
+  ],
+  "enhanced_information": "Pulmonary fibrosis can be a complication of several chemotherapeutic agents. Methotrexate is known to inhibit DNA synthesis and can cause lung toxicity, leading to pulmonary fibrosis in some patients. Doxorubicin, while primarily associated with cardiotoxicity, can cause oxidative stress and potential lung damage, but its direct link to pulmonary fibrosis is less established. Cisplatin is primarily known for nephrotoxicity and does not have a strong consensus link to pulmonary fibrosis. Busulfan, an alkylating agent, is well-documented to be associated with pulmonary toxicity and can lead to pulmonary fibrosis. Therefore, the strongest consensus supports Methotrexate and Busulfan as agents that can cause pulmonary fibrosis, with Busulfan being particularly noted for this complication.",
+  "analysis": "Pulmonary fibrosis is a known complication of certain chemotherapeutic agents. Among the options provided, Methotrexate and Busulfan are both associated with pulmonary toxicity. Methotrexate can lead to lung toxicity, including pulmonary fibrosis, particularly in patients receiving high doses or prolonged therapy. However, Busulfan is more specifically recognized for its association with pulmonary fibrosis, often referred to as 'Busulfan lung.' While Doxorubicin and Cisplatin have their own toxicities, they are not as strongly linked to pulmonary fibrosis as Methotrexate and Busulfan. Given the stronger consensus regarding Busulfan's direct association with pulmonary fibrosis, it is the most likely correct answer. Therefore, the best-supported option is Busulfan.",
+  "answer": "opd",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      0,
+      3,
+      3
+    ],
+    "coverage_rates": [
+      14.285714285714285,
+      0.0,
+      42.857142857142854,
+      42.857142857142854
+    ],
+    "total_successes": 7
+  },
+  "normal_results": []
+}

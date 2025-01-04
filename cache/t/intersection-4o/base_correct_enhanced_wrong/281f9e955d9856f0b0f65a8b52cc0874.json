@@ -1,0 +1,72 @@
+{
+  "question": "An elderly male presented with longstanding progressive increase in nose size with hardened. On clinical examination it was thought to be end stage of chronic acne rosacea. Your diagnosis is NOT RELATED - ENT",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Rhinosporidiosis",
+    "opb": "Rhinophyma",
+    "opc": "Atrophic rhinitis",
+    "opd": "Strawberry nose"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Mycoses",
+        "Rhinosporidiosis"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Mycoses)-CAUSES->(Rhinosporidiosis)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Mycoses)-CAUSES->(Rhinosporidiosis)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Elderly male\" -> \"progressive increase in nose size\" -> \"hardened nose\" -> \"end stage of chronic acne rosacea\" -> \"Rhinophyma\" -> 90%",
+    "CHAIN: \"Elderly male\" -> \"progressive increase in nose size\" -> \"hardened nose\" -> \"possible fungal infection\" -> \"Rhinosporidiosis\" -> 60%",
+    "CHAIN: \"Elderly male\" -> \"progressive increase in nose size\" -> \"hardened nose\" -> \"chronic nasal condition\" -> \"Atrophic rhinitis\" -> 50%",
+    "CHAIN: \"Elderly male\" -> \"progressive increase in nose size\" -> \"hardened nose\" -> \"appearance similar to strawberry\" -> \"Strawberry nose\" -> 40%"
+  ],
+  "enhanced_information": "Rhinophyma is the most likely diagnosis for the described condition, as it is the end stage of chronic acne rosacea characterized by a progressive increase in nose size and hardening, particularly in elderly males. This aligns with standard medical consensus. Rhinosporidiosis, while a possible cause of nasal changes, is a fungal infection that typically presents with nasal polyps rather than a hardened, enlarged nose, and is less likely in this context. Atrophic rhinitis involves nasal atrophy and crusting, not enlargement, and is not consistent with the symptoms described. 'Strawberry nose' is not a recognized medical condition and does not fit the clinical picture. The evidence path linking mycoses to rhinosporidiosis is correct but not directly relevant to the primary diagnosis of rhinophyma in this scenario.",
+  "analysis": "The clinical presentation described is consistent with rhinophyma, which is the end stage of chronic acne rosacea characterized by a progressive increase in nose size and hardening, particularly in elderly males. This aligns with standard medical knowledge. Rhinosporidiosis, while it can cause nasal changes, typically presents with nasal polyps and is a fungal infection, making it less likely in this context. Atrophic rhinitis involves nasal atrophy and crusting, not enlargement, and does not match the symptoms described. 'Strawberry nose' is not a recognized medical condition and does not fit the clinical picture. Therefore, the diagnosis of rhinophyma is the most likely and consistent with the symptoms described, and the task is to identify the option that is NOT related to the condition. Since rhinophyma is related, the correct answer is rhinosporidiosis, which is not related to the described condition of rhinophyma.",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      0.0,
+      100.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 1
+  },
+  "normal_results": []
+}

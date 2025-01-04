@@ -1,0 +1,100 @@
+{
+  "question": "Mark the true statement regarding use of Lithium in maniac-depressive psychosis?",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Monotherapy for acute episodes",
+    "opb": "Monitoring of serum concentration is not useful for guiding dose adjustment",
+    "opc": "Can result in leucocytosis",
+    "opd": "Can result in hypehyroidism on long term use"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Lithium",
+        "Adverse effects"
+      ],
+      [
+        "Lithium",
+        "Hypothyroidism"
+      ],
+      [
+        "Hypothyroidism",
+        "Hyperthyroidism"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Lithium)-CAUSES->(Adverse effects)",
+      "(Lithium)-PREDISPOSES->(Hypothyroidism)",
+      "(Hypothyroidism)-CAUSES->(Hyperthyroidism)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Blood Cell Count",
+        "Leukocytosis"
+      ]
+    ],
+    "relationships": [
+      [
+        "DIAGNOSES"
+      ]
+    ],
+    "paths": [
+      "(Blood Cell Count)-DIAGNOSES->(Leukocytosis)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Lithium)-PREDISPOSES->(Hypothyroidism)",
+      "(Lithium)-CAUSES->(Adverse effects)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Lithium is used in bipolar disorder\" -> \"Effective for acute manic episodes\" -> \"Can be used as monotherapy\" -> 85%",
+    "CHAIN: \"Monitoring serum concentration is standard practice\" -> \"Guides dose adjustment\" -> \"Important for efficacy and safety\" -> 90%",
+    "CHAIN: \"Lithium can affect blood cell counts\" -> \"Leucocytosis is a possible side effect\" -> \"Not commonly reported\" -> 70%",
+    "CHAIN: \"Long-term use of Lithium can affect thyroid function\" -> \"Hypothyroidism is a known risk\" -> \"Hyperthyroidism is less common\" -> 75%"
+  ],
+  "enhanced_information": "Lithium is a first-line treatment for acute manic episodes in bipolar disorder and can be used as monotherapy, making option (a) true. Monitoring serum concentration of lithium is crucial for guiding dose adjustments to ensure efficacy and safety, contradicting option (b). While lithium can affect blood cell counts, leucocytosis is not a common side effect, which makes option (c) less reliable. Long-term use of lithium is associated with hypothyroidism, but hyperthyroidism is less common and not a standard risk, thus option (d) is misleading. Therefore, the correct statement regarding the use of lithium in manic-depressive psychosis is that it can be used as monotherapy for acute episodes.",
+  "analysis": "Lithium is indeed a first-line treatment for acute manic episodes in bipolar disorder, and it can be used as monotherapy, which supports option (a). Monitoring serum concentration of lithium is critical for ensuring therapeutic levels and avoiding toxicity, making option (b) incorrect. While lithium can affect blood cell counts, leucocytosis is not a common side effect, which makes option (c) less reliable. Long-term use of lithium is more commonly associated with hypothyroidism rather than hyperthyroidism, thus option (d) is misleading. Therefore, the most accurate statement regarding the use of lithium in manic-depressive psychosis is that it can be used as monotherapy for acute episodes.",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      2,
+      2
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      50.0,
+      50.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

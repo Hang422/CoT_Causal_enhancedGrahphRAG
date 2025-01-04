@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250102_235429",
+  "model": "gpt-4o-mini",
+  "interaction_type": "direct_answer",
+  "question_id": "1000ca00",
+  "question_text": "Shock causes:",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on medical knowledge."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Physiology.Please help answer this multiple choice question:\n\nQuestion: Shock causes:\n\nOptions:\nopa. Stagnant hypoxia\nopb. Anemic hypoxia\nopc. Hypoxic hypoxia\nopd. Histotoxic hypoxia\n\n        ### Output Format\n        Provide your response in valid JSON format:\n        {   \n            \"final_analysis\": \"Your concise analysis following the above structure\",\n            \"answer\": \"Option key from the available options (only key,like opa)\",\n            \"confidence\": Score between 0-100 based on alignment with established medical facts\n        }\n        "
+    }
+  ],
+  "response": "{\n    \"final_analysis\": \"Shock can lead to stagnant hypoxia due to inadequate blood flow and oxygen delivery to tissues, resulting in a lack of oxygen despite normal oxygen content in the blood. This is primarily due to reduced perfusion and can occur in various types of shock, such as hypovolemic or cardiogenic shock.\",\n    \"answer\": \"opa\",\n    \"confidence\": 85\n}",
+  "metadata": {
+    "topic": "Physiology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

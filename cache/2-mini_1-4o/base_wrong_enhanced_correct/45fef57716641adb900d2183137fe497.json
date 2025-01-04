@@ -1,0 +1,191 @@
+{
+  "question": "Which of the following dings is not used for anxiety?",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Propanolol",
+    "opb": "Aiprazolam",
+    "opc": "Buspirone",
+    "opd": "Haloperidol"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Propranolol",
+        "Anxiety"
+      ],
+      [
+        "Anxiety",
+        "Disease",
+        "physical symptom"
+      ],
+      [
+        "Anxiety",
+        "Hypertensive disease",
+        "physical symptom"
+      ],
+      [
+        "Anxiety",
+        "Syndrome",
+        "physical symptom"
+      ],
+      [
+        "Antipsychotic Agents",
+        "Anxiety"
+      ],
+      [
+        "Anxiety",
+        "Disease",
+        "Schizophrenia"
+      ],
+      [
+        "Anxiety",
+        "Obesity",
+        "Schizophrenia"
+      ],
+      [
+        "Haloperidol",
+        "Irritable Bowel Syndrome",
+        "Anxiety"
+      ],
+      [
+        "Haloperidol",
+        "Chronic Obstructive Airway Disease",
+        "Anxiety"
+      ],
+      [
+        "Haloperidol",
+        "Hypertensive disease",
+        "Anxiety"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "COMPLICATES"
+      ],
+      [
+        "CAUSES",
+        "COMPLICATES"
+      ],
+      [
+        "TREATS",
+        "COMPLICATES"
+      ],
+      [
+        "TREATS",
+        "COMPLICATES"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES"
+      ]
+    ],
+    "paths": [
+      "(Propranolol)-TREATS->(Anxiety)",
+      "(Anxiety)-CAUSES->(Disease)-CAUSES->(physical symptom)",
+      "(Anxiety)-CAUSES->(Hypertensive disease)-CAUSES->(physical symptom)",
+      "(Anxiety)-CAUSES->(Syndrome)-CAUSES->(physical symptom)",
+      "(Antipsychotic Agents)-TREATS->(Anxiety)",
+      "(Anxiety)-CAUSES->(Disease)-COMPLICATES->(Schizophrenia)",
+      "(Anxiety)-CAUSES->(Obesity)-COMPLICATES->(Schizophrenia)",
+      "(Haloperidol)-TREATS->(Irritable Bowel Syndrome)-COMPLICATES->(Anxiety)",
+      "(Haloperidol)-TREATS->(Chronic Obstructive Airway Disease)-COMPLICATES->(Anxiety)",
+      "(Haloperidol)-TREATS->(Hypertensive disease)-PREDISPOSES->(Anxiety)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Haloperidol",
+        "Pharmaceutical Preparations",
+        "Antipsychotic Agents"
+      ],
+      [
+        "Haloperidol",
+        "Pharmaceutical Preparations",
+        "Antipsychotic Agents"
+      ]
+    ],
+    "relationships": [
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Haloperidol)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Antipsychotic Agents)",
+      "(Haloperidol)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Antipsychotic Agents)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Propranolol)-TREATS->(Anxiety)",
+      "(Haloperidol)-TREATS->(Irritable Bowel Syndrome)-COMPLICATES->(Anxiety)",
+      "(Haloperidol)-TREATS->(Chronic Obstructive Airway Disease)-COMPLICATES->(Anxiety)",
+      "(Haloperidol)-TREATS->(Hypertensive disease)-PREDISPOSES->(Anxiety)",
+      "(Antipsychotic Agents)-TREATS->(Anxiety)",
+      "(Haloperidol)-INTERACTS_WITH/ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Antipsychotic Agents)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Propranolol\" -> \"used for performance anxiety\" -> \"reduces physical symptoms of anxiety\" -> 85%",
+    "CHAIN: \"Alprazolam\" -> \"benzodiazepine medication\" -> \"commonly prescribed for anxiety disorders\" -> 95%",
+    "CHAIN: \"Buspirone\" -> \"anxiolytic medication\" -> \"used for generalized anxiety disorder\" -> 90%",
+    "CHAIN: \"Haloperidol\" -> \"antipsychotic medication\" -> \"not primarily used for anxiety\" -> \"used for schizophrenia and acute psychosis\" -> 80%",
+    "CHAIN: \"Haloperidol\" -> \"not indicated for anxiety treatment\" -> \"conflicts with common anxiety treatment guidelines\" -> 75%"
+  ],
+  "enhanced_information": "Propranolol is primarily used for performance anxiety and reduces physical symptoms associated with anxiety, but it is not a first-line treatment for anxiety disorders. Alprazolam is a benzodiazepine commonly prescribed for anxiety disorders, making it a valid treatment option. Buspirone is an anxiolytic specifically indicated for generalized anxiety disorder, confirming its use in anxiety treatment. Haloperidol, an antipsychotic, is not primarily indicated for anxiety and is used for conditions like schizophrenia and acute psychosis, aligning with the consensus that it is not a treatment for anxiety. Therefore, the drug not used for anxiety is Haloperidol.",
+  "analysis": "In the context of treating anxiety, propranolol is used to manage physical symptoms of anxiety, particularly in performance situations, but is not a first-line treatment for anxiety disorders. Alprazolam is a benzodiazepine and is commonly prescribed for anxiety disorders, making it a valid treatment option. Buspirone is an anxiolytic specifically indicated for generalized anxiety disorder, confirming its use in anxiety treatment. Haloperidol, on the other hand, is an antipsychotic medication primarily used for conditions like schizophrenia and acute psychosis. It is not typically used for treating anxiety, aligning with the consensus that it is not a treatment for anxiety. Therefore, the drug not used for anxiety is Haloperidol.",
+  "answer": "opd",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      0,
+      0,
+      3,
+      1
+    ],
+    "coverage_rates": [
+      33.33333333333333,
+      0.0,
+      0.0,
+      50.0,
+      16.666666666666664
+    ],
+    "total_successes": 6
+  },
+  "normal_results": []
+}

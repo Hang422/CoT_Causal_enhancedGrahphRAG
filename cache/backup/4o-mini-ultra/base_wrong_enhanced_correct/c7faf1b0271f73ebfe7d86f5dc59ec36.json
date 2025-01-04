@@ -1,0 +1,158 @@
+{
+  "question": "Pulmonary fibrosis is a complication of: March 2011, March 2012, September 2012, March 2013",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Methotrexate",
+    "opb": "Doxorubicin",
+    "opc": "Cisplatin",
+    "opd": "Busulfan"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Cisplatin",
+        "Toxic nephropathy"
+      ],
+      [
+        "Alkylating Agents",
+        "Graft acceptance",
+        "Lung"
+      ],
+      [
+        "Alkylating Agents",
+        "uptake",
+        "Lung"
+      ],
+      [
+        "Alkylating Agents",
+        "Physiological Processes",
+        "Lung"
+      ],
+      [
+        "Alkylating Agents",
+        "Transformation, function",
+        "Lung"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Cisplatin)-CAUSES->(Toxic nephropathy)",
+      "(Alkylating Agents)-CAUSES->(Graft acceptance)-PROCESS_OF->(Lung)",
+      "(Alkylating Agents)-CAUSES->(uptake)-PROCESS_OF->(Lung)",
+      "(Alkylating Agents)-CAUSES->(Physiological Processes)-PROCESS_OF->(Lung)",
+      "(Alkylating Agents)-CAUSES->(Transformation, function)-PROCESS_OF->(Lung)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Lung",
+        "Pulmonary Fibrosis"
+      ],
+      [
+        "Busulfan",
+        "Graft acceptance",
+        "Melphalan",
+        "Alkylating Agents"
+      ],
+      [
+        "Busulfan",
+        "Functional disorder",
+        "Melphalan",
+        "Alkylating Agents"
+      ],
+      [
+        "Lung",
+        "Pulmonary Fibrosis"
+      ]
+    ],
+    "relationships": [
+      [
+        "LOCATION_OF"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Lung)-LOCATION_OF->(Pulmonary Fibrosis)",
+      "(Busulfan)-CAUSES->(Graft acceptance)-ASSOCIATED_WITH->(Melphalan)-INTERACTS_WITH->(Alkylating Agents)",
+      "(Busulfan)-TREATS->(Functional disorder)-ASSOCIATED_WITH->(Melphalan)-INTERACTS_WITH->(Alkylating Agents)",
+      "(Lung)-LOCATION_OF->(Pulmonary Fibrosis)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Busulfan)-TREATS->(Functional disorder)-ASSOCIATED_WITH->(Melphalan)-INTERACTS_WITH->(Alkylating Agents)",
+      "(Busulfan)-CAUSES->(Graft acceptance)-ASSOCIATED_WITH->(Melphalan)-INTERACTS_WITH->(Alkylating Agents)",
+      "(Cisplatin)-CAUSES->(Toxic nephropathy)",
+      "(Lung)-LOCATION_OF->(Pulmonary Fibrosis)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Methotrexate\" -> \"inhibits DNA synthesis\" -> \"potential lung toxicity\" -> \"pulmonary fibrosis\" -> 85%",
+    "CHAIN: \"Doxorubicin\" -> \"causes oxidative stress\" -> \"lung tissue damage\" -> \"possible pulmonary fibrosis\" -> 70%",
+    "CHAIN: \"Cisplatin\" -> \"causes nephrotoxicity\" -> \"possible lung injury\" -> \"unclear link to pulmonary fibrosis\" -> 60%",
+    "CHAIN: \"Busulfan\" -> \"alkylating agent\" -> \"lung toxicity\" -> \"pulmonary fibrosis\" -> 80%"
+  ],
+  "enhanced_information": "Pulmonary fibrosis can be a complication of several chemotherapeutic agents. Methotrexate is known to inhibit DNA synthesis and has been associated with lung toxicity, leading to pulmonary fibrosis in some patients. Doxorubicin can cause oxidative stress and lung tissue damage, which may result in pulmonary fibrosis, although the link is less direct. Cisplatin is primarily recognized for its nephrotoxicity and has an unclear association with pulmonary fibrosis, making it less likely to be a direct cause. Busulfan, an alkylating agent, is well-documented to cause lung toxicity and is strongly associated with pulmonary fibrosis. Therefore, the most consensus-supported options for causing pulmonary fibrosis are Methotrexate and Busulfan, with Busulfan being particularly notable for its established link to this complication.",
+  "analysis": "Pulmonary fibrosis is a known complication of certain chemotherapeutic agents. Among the options provided, Methotrexate and Busulfan are both associated with lung toxicity. However, Busulfan is particularly well-documented for its strong association with pulmonary fibrosis, often referred to as Busulfan lung. Methotrexate can also lead to lung toxicity, but the evidence supporting Busulfan's direct link to pulmonary fibrosis is more robust. Doxorubicin and Cisplatin have less clear associations with pulmonary fibrosis, making them less likely candidates. Therefore, based on the consensus in the medical literature, Busulfan is the most likely correct answer for causing pulmonary fibrosis.",
+  "answer": "opd",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      0,
+      1,
+      3
+    ],
+    "coverage_rates": [
+      20.0,
+      0.0,
+      20.0,
+      60.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

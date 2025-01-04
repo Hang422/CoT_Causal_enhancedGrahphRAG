@@ -1,0 +1,102 @@
+{
+  "question": "Characteristics of glycoprotein:",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Protein linked with glycosidic bond",
+    "opb": "Core protein",
+    "opc": "Sugar residues are long in carbohydrate poion of glycoprotein",
+    "opd": "None"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Glycoproteins",
+        "Carbohydrates"
+      ],
+      [
+        "Glycoproteins",
+        "Cells",
+        "Proteins"
+      ],
+      [
+        "Glycoproteins",
+        "Cells",
+        "Proteins"
+      ],
+      [
+        "Glycoproteins",
+        "T-Lymphocyte",
+        "Proteins"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Glycoproteins)-INTERACTS_WITH->(Carbohydrates)",
+      "(Glycoproteins)-PART_OF->(Cells)-LOCATION_OF->(Proteins)",
+      "(Glycoproteins)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Proteins)",
+      "(Glycoproteins)-INTERACTS_WITH->(T-Lymphocyte)-INTERACTS_WITH->(Proteins)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Glycoproteins)-INTERACTS_WITH/PART_OF->(Cells)-LOCATION_OF->(Proteins)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Glycoproteins consist of proteins\" -> \"Proteins can be linked to carbohydrates\" -> \"Linkage occurs via glycosidic bonds\" -> \"Glycoproteins have a protein linked with glycosidic bond\" -> 95%",
+    "CHAIN: \"Glycoproteins are composed of a core protein\" -> \"Core protein serves as a scaffold\" -> \"Carbohydrate moieties attach to the core protein\" -> \"Core protein is a characteristic of glycoproteins\" -> 90%",
+    "CHAIN: \"Glycoproteins contain sugar residues\" -> \"Sugar residues can vary in length\" -> \"Some glycoproteins have long carbohydrate portions\" -> \"Long sugar residues are a characteristic of glycoproteins\" -> 85%",
+    "CHAIN: \"Glycoproteins are defined by their structure\" -> \"They consist of both protein and carbohydrate components\" -> \"If a statement contradicts this, it is likely incorrect\" -> \"None of the options contradict the definition of glycoproteins\" -> 80%"
+  ],
+  "enhanced_information": "Glycoproteins are characterized by the presence of a protein component linked to carbohydrate moieties via glycosidic bonds. The core protein serves as a scaffold for the attachment of these carbohydrate chains, which can vary in length, with some glycoproteins having long sugar residues. Therefore, the correct characteristics of glycoproteins include: 1) they consist of a protein linked with glycosidic bonds, 2) they have a core protein, and 3) they can contain long sugar residues. All options provided are consistent with the definition and characteristics of glycoproteins.",
+  "analysis": "Glycoproteins are indeed characterized by the presence of a protein component that is linked to carbohydrate moieties through glycosidic bonds. The core protein serves as a scaffold for these carbohydrate chains, which can vary in length. Given the options provided: 'opa' correctly states that glycoproteins are proteins linked with glycosidic bonds, 'opb' mentions the core protein, and 'opc' notes that sugar residues can be long. All these statements are accurate representations of glycoprotein characteristics. However, since the question asks for characteristics of glycoproteins, the best option that encompasses the essence of glycoproteins is 'opa', as it directly addresses the fundamental linkage of protein and carbohydrate. Therefore, while all options are correct, 'opa' is the most fundamental characteristic. The reasoning is based on the primary definition of glycoproteins, which emphasizes the glycosidic bond linking the protein and carbohydrate components.",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      0,
+      0,
+      1
+    ],
+    "coverage_rates": [
+      50.0,
+      0.0,
+      0.0,
+      50.0
+    ],
+    "total_successes": 2
+  },
+  "normal_results": []
+}

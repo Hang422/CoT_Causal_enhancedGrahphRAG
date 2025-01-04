@@ -1,0 +1,262 @@
+{
+  "question": "The function of vitamin A is/are related to which of the following?",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Retinol",
+    "opb": "Retinal",
+    "opc": "Retinoic acids",
+    "opd": "All of the above"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Vitamin A",
+        "Disease",
+        "arterial stiffness",
+        "Retina"
+      ],
+      [
+        "Vitamin A",
+        "Disease",
+        "paracrine",
+        "Retina"
+      ],
+      [
+        "Vitamin A",
+        "Disease",
+        "uptake",
+        "Retina"
+      ],
+      [
+        "Vitamin A",
+        "Disease",
+        "arterial stiffness",
+        "Retina"
+      ],
+      [
+        "Vitamin A",
+        "Disease",
+        "paracrine",
+        "Retina"
+      ],
+      [
+        "Vitamin A",
+        "Disease",
+        "uptake",
+        "Retina"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Vitamin A)-CAUSES->(Disease)-CAUSES->(arterial stiffness)-PROCESS_OF->(Retina)",
+      "(Vitamin A)-CAUSES->(Disease)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Retina)",
+      "(Vitamin A)-CAUSES->(Disease)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Retina)",
+      "(Vitamin A)-CAUSES->(Disease)-CAUSES->(arterial stiffness)-PROCESS_OF->(Retina)",
+      "(Vitamin A)-CAUSES->(Disease)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Retina)",
+      "(Vitamin A)-CAUSES->(Disease)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Retina)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Retina",
+        "Liver",
+        "Retinoids"
+      ],
+      [
+        "Retina",
+        "Tract",
+        "Retinoids"
+      ],
+      [
+        "Retina",
+        "Diastasis",
+        "Rhodopsin"
+      ],
+      [
+        "Retina",
+        "Pathogenesis",
+        "Rhodopsin"
+      ],
+      [
+        "Rhodopsin",
+        "Cells",
+        "Retinoids"
+      ],
+      [
+        "Vitamin A",
+        "Cells",
+        "Retinoids"
+      ],
+      [
+        "Vitamin A",
+        "Cultured Cells",
+        "Retinoids"
+      ],
+      [
+        "Retinoids",
+        "Disease",
+        "Liver Dysfunction",
+        "Vitamin A"
+      ],
+      [
+        "Retinoids",
+        "Disease",
+        "Liver Dysfunction",
+        "Vitamin A"
+      ],
+      [
+        "Skin cell",
+        "Cells",
+        "Vitamin A"
+      ],
+      [
+        "Skin cell",
+        "Ovarian Follicle",
+        "Vitamin A"
+      ]
+    ],
+    "relationships": [
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "LOCATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Retina)-PART_OF->(Liver)-LOCATION_OF->(Retinoids)",
+      "(Retina)-PART_OF->(Tract)-LOCATION_OF->(Retinoids)",
+      "(Retina)-LOCATION_OF->(Diastasis)-ASSOCIATED_WITH->(Rhodopsin)",
+      "(Retina)-LOCATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Rhodopsin)",
+      "(Rhodopsin)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Retinoids)",
+      "(Vitamin A)-PART_OF->(Cells)-LOCATION_OF->(Retinoids)",
+      "(Vitamin A)-INTERACTS_WITH->(Cultured Cells)-LOCATION_OF->(Retinoids)",
+      "(Retinoids)-TREATS->(Disease)-PREDISPOSES->(Liver Dysfunction)-ASSOCIATED_WITH->(Vitamin A)",
+      "(Retinoids)-CAUSES->(Disease)-CAUSES->(Liver Dysfunction)-ASSOCIATED_WITH->(Vitamin A)",
+      "(Skin cell)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Vitamin A)",
+      "(Skin cell)-PART_OF->(Ovarian Follicle)-LOCATION_OF->(Vitamin A)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Vitamin A)-CAUSES->(Disease)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Retina)",
+      "(Vitamin A)-CAUSES->(Disease)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Retina)",
+      "(Vitamin A)-CAUSES->(Disease)-CAUSES->(arterial stiffness)-PROCESS_OF->(Retina)",
+      "(Retina)-PART_OF->(Liver)-LOCATION_OF->(Retinoids)",
+      "(Retina)-PART_OF->(Tract)-LOCATION_OF->(Retinoids)",
+      "(Vitamin A)-PART_OF->(Cells)-LOCATION_OF->(Retinoids)",
+      "(Vitamin A)-INTERACTS_WITH->(Cultured Cells)-LOCATION_OF->(Retinoids)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Vitamin A\" -> \"exists in several forms\" -> \"includes retinol\" -> \"includes retinal\" -> \"includes retinoic acids\" -> \"all forms are functionally related\" -> 95%",
+    "CHAIN: \"Vitamin A\" -> \"essential for vision\" -> \"retinal is a key component of rhodopsin\" -> \"rhodopsin is crucial for phototransduction\" -> \"retinol and retinoic acids also play roles\" -> 90%",
+    "CHAIN: \"Vitamin A\" -> \"involved in gene expression\" -> \"retinoic acids act as hormones\" -> \"regulate transcription of target genes\" -> \"includes retinol and retinal in metabolic processes\" -> 85%",
+    "CHAIN: \"Vitamin A\" -> \"supports immune function\" -> \"retinol is important for immune cell function\" -> \"retinal and retinoic acids also contribute\" -> \"all forms support immune health\" -> 88%",
+    "CHAIN: \"Vitamin A\" -> \"important for skin health\" -> \"retinoic acids promote skin cell turnover\" -> \"retinol is used in dermatology\" -> \"retinal also has skin benefits\" -> \"all forms contribute to skin health\" -> 90%"
+  ],
+  "enhanced_information": "Vitamin A exists in several forms, including retinol, retinal, and retinoic acids, all of which are functionally related. Retinal is essential for vision as it is a key component of rhodopsin, which is crucial for phototransduction. Retinol and retinoic acids also play significant roles in gene expression, immune function, and skin health. Retinoic acids act as hormones that regulate transcription of target genes, while retinol is important for immune cell function and skin cell turnover. Therefore, all forms of vitamin A contribute to these vital biological functions, confirming that the correct answer is 'All of the above.'",
+  "analysis": "Vitamin A is a group of compounds that includes retinol, retinal, and retinoic acids, each playing distinct but related roles in the body. Retinol is crucial for immune function and skin health, retinal is essential for vision as it forms part of the visual pigment rhodopsin, and retinoic acids are involved in gene expression and cellular differentiation. These functions are well-documented in medical literature, and all forms of vitamin A contribute to these biological processes. Therefore, the most comprehensive and correct answer is that the function of vitamin A is related to all of these forms.",
+  "answer": "opd",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      2,
+      0,
+      1,
+      3
+    ],
+    "coverage_rates": [
+      25.0,
+      25.0,
+      0.0,
+      12.5,
+      37.5
+    ],
+    "total_successes": 8
+  },
+  "normal_results": []
+}

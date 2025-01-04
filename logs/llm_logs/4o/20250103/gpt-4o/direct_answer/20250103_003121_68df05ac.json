@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_003121",
+  "model": "gpt-4o",
+  "interaction_type": "direct_answer",
+  "question_id": "68df05ac",
+  "question_text": "Aminoglycoside affects ?",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on medical knowledge."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.Please help answer this multiple choice question:\n\nQuestion: Aminoglycoside affects ?\n\nOptions:\nopa. Outer hair cells in basal area\nopb. Inner hair cells in basal area\nopc. Outer hair cells in apical area\nopd. Inner hair cells in apical area\n\n        ### Output Format\n        Provide your response in valid JSON format:\n        {   \n            \"final_analysis\": \"Your concise analysis following the above structure\",\n            \"answer\": \"Option key from the available options (only key,like opa)\",\n            \"confidence\": Score between 0-100 based on alignment with established medical facts\n        }\n        "
+    }
+  ],
+  "response": "```json\n{\n    \"final_analysis\": \"Aminoglycosides are known to cause ototoxicity, primarily affecting the outer hair cells in the cochlea. The damage is most pronounced in the basal turn of the cochlea, which is responsible for high-frequency sound detection. This is why patients often experience high-frequency hearing loss first. Therefore, the outer hair cells in the basal area are most affected by aminoglycoside toxicity.\",\n    \"answer\": \"opa\",\n    \"confidence\": 95\n}\n```",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o",
+    "temperature": 0.0
+  }
+}

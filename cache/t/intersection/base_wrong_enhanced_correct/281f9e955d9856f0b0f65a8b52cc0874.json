@@ -1,0 +1,151 @@
+{
+  "question": "An elderly male presented with longstanding progressive increase in nose size with hardened. On clinical examination it was thought to be end stage of chronic acne rosacea. Your diagnosis is NOT RELATED - ENT",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Rhinosporidiosis",
+    "opb": "Rhinophyma",
+    "opc": "Atrophic rhinitis",
+    "opd": "Strawberry nose"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Rhinophyma",
+        "Obstruction",
+        "Biological Transport, Active",
+        "Nose"
+      ],
+      [
+        "Rhinophyma",
+        "Complication",
+        "Biological Transport, Active",
+        "Nose"
+      ],
+      [
+        "Rhinophyma",
+        "Complication",
+        "Blood Circulation",
+        "Nose"
+      ],
+      [
+        "Rhinophyma",
+        "Obstruction",
+        "Physiologic Function",
+        "Nose"
+      ],
+      [
+        "Rhinophyma",
+        "Obstruction",
+        "blood outflow",
+        "Nose"
+      ],
+      [
+        "Differential Diagnosis",
+        "Rare Diseases",
+        "Rhinophyma"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Rhinophyma)-CAUSES->(Obstruction)-MANIFESTATION_OF->(Biological Transport, Active)-PROCESS_OF->(Nose)",
+      "(Rhinophyma)-CAUSES->(Complication)-MANIFESTATION_OF->(Biological Transport, Active)-PROCESS_OF->(Nose)",
+      "(Rhinophyma)-CAUSES->(Complication)-MANIFESTATION_OF->(Blood Circulation)-PROCESS_OF->(Nose)",
+      "(Rhinophyma)-CAUSES->(Obstruction)-MANIFESTATION_OF->(Physiologic Function)-PROCESS_OF->(Nose)",
+      "(Rhinophyma)-CAUSES->(Obstruction)-MANIFESTATION_OF->(blood outflow)-PROCESS_OF->(Nose)",
+      "(Differential Diagnosis)-TREATS->(Rare Diseases)-CAUSES->(Rhinophyma)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Nose",
+        "Rhinophyma"
+      ]
+    ],
+    "relationships": [
+      [
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Nose)-LOCATION_OF->(Rhinophyma)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Rhinophyma)-CAUSES->(Obstruction)-MANIFESTATION_OF->(Biological Transport, Active)-PROCESS_OF->(Nose)",
+      "(Differential Diagnosis)-TREATS->(Rare Diseases)-CAUSES->(Rhinophyma)",
+      "(Nose)-LOCATION_OF->(Rhinophyma)",
+      "(Rhinophyma)-CAUSES->(Complication)-MANIFESTATION_OF->(Biological Transport, Active)-PROCESS_OF->(Nose)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Longstanding progressive increase in nose size\" -> \"Possible skin condition\" -> \"Rhinophyma is a common condition in elderly males\" -> \"Hardened tissue on the nose\" -> \"Diagnosis of rhinophyma\" -> 85%",
+    "CHAIN: \"Elderly male with nose enlargement\" -> \"Consideration of chronic skin conditions\" -> \"Rhinophyma is associated with rosacea\" -> \"Nose appears enlarged and hardened\" -> \"Diagnosis of rhinophyma\" -> 90%",
+    "CHAIN: \"Nose size increase with hardening\" -> \"Possible differential diagnoses\" -> \"Rhinophyma is a specific type of rosacea\" -> \"Common in older males\" -> \"Diagnosis of rhinophyma\" -> 88%",
+    "CHAIN: \"Progressive nose enlargement\" -> \"Consideration of non-ENT conditions\" -> \"Rhinophyma fits the description\" -> \"Associated with chronic rosacea\" -> \"Diagnosis of rhinophyma\" -> 87%",
+    "CHAIN: \"Elderly male with hardened nose\" -> \"Longstanding condition\" -> \"Rhinophyma is a possibility\" -> \"Not related to ENT infections\" -> \"Diagnosis of rhinophyma\" -> 90%"
+  ],
+  "enhanced_information": "The clinical presentation of longstanding progressive increase in nose size with hardened tissue is most consistent with rhinophyma, a condition commonly associated with chronic rosacea, particularly in elderly males. Rhinophyma is characterized by thickening and enlargement of the nasal skin, often resulting from untreated rosacea. The reasoning chains correctly identify rhinophyma as a likely diagnosis, supported by its association with chronic skin conditions and its prevalence in older males. The evidence paths confirm that rhinophyma manifests as a complication of rosacea, reinforcing its relevance. Other options such as rhinosporidiosis, atrophic rhinitis, and strawberry nose do not align with the described symptoms and are less likely diagnoses in this context.",
+  "analysis": "The clinical presentation of a longstanding progressive increase in nose size with hardened tissue is most consistent with rhinophyma, which is a known complication of chronic acne rosacea. Rhinophyma is characterized by the thickening and enlargement of the nasal skin, particularly in elderly males, and is directly associated with untreated or severe cases of rosacea. The other options, such as rhinosporidiosis, atrophic rhinitis, and strawberry nose, do not match the described symptoms or the typical clinical course of rhinophyma. Therefore, based on the consensus in dermatological and pharmacological literature, rhinophyma is the most likely diagnosis in this case.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      0,
+      1,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      66.66666666666666,
+      0.0,
+      33.33333333333333,
+      0.0,
+      0.0
+    ],
+    "total_successes": 3
+  },
+  "normal_results": []
+}

@@ -1,0 +1,219 @@
+{
+  "question": "Chloroquine is useful in",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Discoid lupus erythematous",
+    "opb": "Rheumatoid ahritis",
+    "opc": "Infectious mononucleosis",
+    "opd": "All of the above"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Chloroquine",
+        "Infection",
+        "Immunity"
+      ],
+      [
+        "Chloroquine",
+        "Diabetes Mellitus, Insulin-Dependent",
+        "Immunity"
+      ],
+      [
+        "Chloroquine",
+        "Hypertensive disease",
+        "Immunity"
+      ],
+      [
+        "Chloroquine",
+        "Symptoms",
+        "Immunity"
+      ],
+      [
+        "Chloroquine",
+        "hypoglycemia",
+        "Immunity"
+      ],
+      [
+        "Chloroquine",
+        "Infectious Mononucleosis"
+      ],
+      [
+        "Infectious Mononucleosis",
+        "Virus Diseases"
+      ],
+      [
+        "Chloroquine",
+        "Rheumatoid Arthritis"
+      ],
+      [
+        "Rheumatoid Arthritis",
+        "Psoriasis",
+        "Lupus Erythematosus, Discoid"
+      ],
+      [
+        "Rheumatoid Arthritis",
+        "Arthritis, Psoriatic",
+        "Lupus Erythematosus, Discoid"
+      ],
+      [
+        "Rheumatoid Arthritis",
+        "Pathogenesis",
+        "Lupus Erythematosus, Discoid"
+      ],
+      [
+        "Rheumatoid Arthritis",
+        "Hyperthyroidism",
+        "Lupus Erythematosus, Discoid"
+      ],
+      [
+        "Rheumatoid Arthritis",
+        "Edema",
+        "Lupus Erythematosus, Discoid"
+      ],
+      [
+        "Lupus Erythematosus, Discoid",
+        "Lymphohistiocytosis, Hemophagocytic",
+        "Infectious Mononucleosis"
+      ],
+      [
+        "Lupus Erythematosus, Discoid",
+        "Syndrome",
+        "Infectious Mononucleosis"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "COMPLICATES"
+      ],
+      [
+        "CAUSES",
+        "COMPLICATES"
+      ],
+      [
+        "CAUSES",
+        "PREDISPOSES"
+      ],
+      [
+        "PREDISPOSES",
+        "COMPLICATES"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "COMPLICATES",
+        "COMPLICATES"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Chloroquine)-PREDISPOSES->(Infection)-MANIFESTATION_OF->(Immunity)",
+      "(Chloroquine)-TREATS->(Diabetes Mellitus, Insulin-Dependent)-MANIFESTATION_OF->(Immunity)",
+      "(Chloroquine)-TREATS->(Hypertensive disease)-MANIFESTATION_OF->(Immunity)",
+      "(Chloroquine)-TREATS->(Symptoms)-MANIFESTATION_OF->(Immunity)",
+      "(Chloroquine)-TREATS->(hypoglycemia)-MANIFESTATION_OF->(Immunity)",
+      "(Chloroquine)-TREATS->(Infectious Mononucleosis)",
+      "(Infectious Mononucleosis)-CAUSES->(Virus Diseases)",
+      "(Chloroquine)-TREATS->(Rheumatoid Arthritis)",
+      "(Rheumatoid Arthritis)-CAUSES->(Psoriasis)-COMPLICATES->(Lupus Erythematosus, Discoid)",
+      "(Rheumatoid Arthritis)-CAUSES->(Arthritis, Psoriatic)-COMPLICATES->(Lupus Erythematosus, Discoid)",
+      "(Rheumatoid Arthritis)-CAUSES->(Pathogenesis)-PREDISPOSES->(Lupus Erythematosus, Discoid)",
+      "(Rheumatoid Arthritis)-PREDISPOSES->(Hyperthyroidism)-COMPLICATES->(Lupus Erythematosus, Discoid)",
+      "(Rheumatoid Arthritis)-CAUSES->(Edema)-MANIFESTATION_OF->(Lupus Erythematosus, Discoid)",
+      "(Lupus Erythematosus, Discoid)-COMPLICATES->(Lymphohistiocytosis, Hemophagocytic)-COMPLICATES->(Infectious Mononucleosis)",
+      "(Lupus Erythematosus, Discoid)-CAUSES->(Syndrome)-MANIFESTATION_OF->(Infectious Mononucleosis)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Chloroquine)-TREATS->(Infectious Mononucleosis)",
+      "(Chloroquine)-TREATS->(Rheumatoid Arthritis)",
+      "(Chloroquine)-PREDISPOSES->(Infection)-MANIFESTATION_OF->(Immunity)",
+      "(Chloroquine)-TREATS->(Diabetes Mellitus, Insulin-Dependent)-MANIFESTATION_OF->(Immunity)",
+      "(Chloroquine)-TREATS->(Hypertensive disease)-MANIFESTATION_OF->(Immunity)",
+      "(Chloroquine)-TREATS->(hypoglycemia)-MANIFESTATION_OF->(Immunity)",
+      "(Chloroquine)-TREATS->(Symptoms)-MANIFESTATION_OF->(Immunity)",
+      "(Infectious Mononucleosis)-CAUSES->(Virus Diseases)",
+      "(Lupus Erythematosus, Discoid)-COMPLICATES->(Lymphohistiocytosis, Hemophagocytic)-COMPLICATES->(Infectious Mononucleosis)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Chloroquine\" -> \"antimalarial properties\" -> \"effective against malaria\" -> 90%",
+    "CHAIN: \"Chloroquine\" -> \"anti-inflammatory effects\" -> \"useful in rheumatoid arthritis\" -> 85%",
+    "CHAIN: \"Chloroquine\" -> \"modulates immune response\" -> \"potential benefit in discoid lupus erythematosus\" -> 80%",
+    "CHAIN: \"Chloroquine\" -> \"not indicated for infectious mononucleosis\" -> \"limited use in viral infections\" -> 70%",
+    "CHAIN: \"Chloroquine\" -> \"useful in rheumatoid arthritis\" -> \"useful in discoid lupus erythematosus\" -> \"not useful in infectious mononucleosis\" -> \"not all of the above\" -> 75%"
+  ],
+  "enhanced_information": "Chloroquine is primarily known for its antimalarial properties and has anti-inflammatory effects that make it useful in treating rheumatoid arthritis and discoid lupus erythematosus. However, it is not indicated for infectious mononucleosis, as it has limited efficacy in viral infections. Therefore, the correct options are that chloroquine is useful in discoid lupus erythematosus and rheumatoid arthritis, but not in infectious mononucleosis. Thus, the answer is not 'all of the above.'",
+  "analysis": "Chloroquine is primarily recognized for its antimalarial properties, but it also has anti-inflammatory effects that make it useful in certain autoimmune conditions. Specifically, it is indicated for the treatment of discoid lupus erythematosus and rheumatoid arthritis. However, it is not effective for infectious mononucleosis, which is caused by the Epstein-Barr virus and does not respond to chloroquine. Therefore, while chloroquine is beneficial for discoid lupus erythematosus and rheumatoid arthritis, it is not useful for infectious mononucleosis. Given the options, the correct answer cannot be 'all of the above' since one of the conditions listed (infectious mononucleosis) is not treated with chloroquine. Thus, the best-supported answer is that chloroquine is useful in discoid lupus erythematosus and rheumatoid arthritis, but not in infectious mononucleosis.",
+  "answer": "opd",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      1,
+      2,
+      3
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      16.666666666666664,
+      33.33333333333333,
+      50.0
+    ],
+    "total_successes": 6
+  },
+  "normal_results": []
+}

@@ -1,0 +1,107 @@
+{
+  "question": "Which of the following drug causes Pseudotumour cerebri -",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Sparfloxacin",
+    "opb": "Tetracycline",
+    "opc": "Gentamicin",
+    "opd": "Clofazimine"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Ototoxicity",
+        "Disease",
+        "Pseudotumor Cerebri"
+      ],
+      [
+        "Clofazimine",
+        "Disease",
+        "Discoloration of skin"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Ototoxicity)-CAUSES->(Disease)-CAUSES->(Pseudotumor Cerebri)",
+      "(Clofazimine)-TREATS->(Disease)-CAUSES->(Discoloration of skin)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Discoloration of skin",
+        "Disease",
+        "Pseudotumor Cerebri"
+      ],
+      [
+        "Discoloration of skin",
+        "Disease",
+        "Pseudotumor Cerebri"
+      ]
+    ],
+    "relationships": [
+      [
+        "ISA",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "ISA",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Discoloration of skin)-ISA->(Disease)-MANIFESTATION_OF->(Pseudotumor Cerebri)",
+      "(Discoloration of skin)-ISA->(Disease)-CAUSES->(Pseudotumor Cerebri)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Clofazimine)-TREATS->(Disease)-CAUSES->(Discoloration of skin)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Tetracycline\" -> \"increased intracranial pressure\" -> \"Pseudotumour cerebri\" -> 95%",
+    "CHAIN: \"Sparfloxacin\" -> \"antibiotic effect\" -> \"no known link to Pseudotumour cerebri\" -> 20%",
+    "CHAIN: \"Gentamicin\" -> \"ototoxicity\" -> \"no known link to Pseudotumour cerebri\" -> 10%",
+    "CHAIN: \"Clofazimine\" -> \"skin discoloration\" -> \"no known link to Pseudotumour cerebri\" -> 15%"
+  ],
+  "enhanced_information": "Among the options, Tetracycline is known to be associated with increased intracranial pressure, which can lead to Pseudotumour cerebri. This aligns with the consensus that Tetracycline can cause this condition. The other options, Sparfloxacin, Gentamicin, and Clofazimine, do not have established links to Pseudotumour cerebri, as they are primarily associated with other effects (antibiotic action, ototoxicity, and skin discoloration, respectively). Therefore, the most supported conclusion is that Tetracycline is the drug that causes Pseudotumour cerebri.",
+  "analysis": "Pseudotumour cerebri, also known as idiopathic intracranial hypertension, is a condition characterized by increased intracranial pressure without an identifiable cause. Among the listed drugs, Tetracycline has been documented in medical literature to be associated with this condition due to its potential to increase intracranial pressure. The other options, Sparfloxacin, Gentamicin, and Clofazimine, do not have a recognized association with Pseudotumour cerebri. Therefore, based on established pharmacological knowledge and consensus, Tetracycline is the most likely drug to cause Pseudotumour cerebri.",
+  "answer": "opb",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      1,
+      2
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      33.33333333333333,
+      66.66666666666666
+    ],
+    "total_successes": 3
+  },
+  "normal_results": []
+}

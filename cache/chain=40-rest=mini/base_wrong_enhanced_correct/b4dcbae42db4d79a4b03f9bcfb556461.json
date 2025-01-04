@@ -1,0 +1,72 @@
+{
+  "question": "The only Sugar normaly absorbed in the intestine against a concentration gradient is :",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Xylose",
+    "opb": "Mannose",
+    "opc": "Glucose",
+    "opd": "Ribose"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Glucose",
+        "Biological Transport, Active"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Glucose)-CAUSES->(Biological Transport, Active)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Glucose)-CAUSES->(Biological Transport, Active)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Glucose\" -> \"active transport\" -> \"against concentration gradient\" -> \"SGLT1 transporter\" -> 95%",
+    "CHAIN: \"Xylose\" -> \"passive diffusion\" -> \"along concentration gradient\" -> \"no active transport\" -> 60%",
+    "CHAIN: \"Mannose\" -> \"passive diffusion\" -> \"along concentration gradient\" -> \"no active transport\" -> 60%",
+    "CHAIN: \"Ribose\" -> \"passive diffusion\" -> \"along concentration gradient\" -> \"no active transport\" -> 60%"
+  ],
+  "enhanced_information": "The only sugar normally absorbed in the intestine against a concentration gradient is glucose. This process occurs via active transport through the SGLT1 transporter, which allows glucose to be absorbed even when intestinal concentrations are lower than in the blood. In contrast, xylose, mannose, and ribose are absorbed primarily through passive diffusion along their concentration gradients, with no active transport mechanisms involved. Therefore, the correct answer is glucose.",
+  "analysis": "The core medical principle here is the mechanism of sugar absorption in the intestine. Glucose is uniquely absorbed against a concentration gradient through active transport via the SGLT1 transporter, which is a well-established physiological process. In contrast, xylose, mannose, and ribose do not utilize active transport mechanisms and are absorbed passively along their concentration gradients. This distinction is critical in understanding intestinal absorption of sugars. Given the consensus in the literature and the enhanced information provided, glucose is the only sugar that fits the criteria of being absorbed against a concentration gradient. Therefore, the most likely correct answer is glucose.",
+  "answer": "opc",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      0,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      100.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 1
+  },
+  "normal_results": []
+}

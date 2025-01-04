@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250104_012351",
+  "model": "gpt-4o-mini",
+  "interaction_type": "answer_with_CoT",
+  "question_id": "3b4898a2",
+  "question_text": "Steroids are indicated in all of the following forms of tuberculosis except:",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert using chain-of-thought reasoning."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.\n            You are a medical expert determining the final answer.\n\n                ### Instructions:\n                - Use standard medical knowledge as the primary guide.\n                - Consider enhanced information only if it aligns with consensus.\n                - If conflicting or unclear, present the most likely correct answer based on known facts.\n                - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.\n            ### Question    \n            Steroids are indicated in all of the following forms of tuberculosis except:\n\n            ### Options\n            opa. Meningitis\nopb. Pericarditis\nopc. Ileo-caecal tuberculosis\nopd. Adrenal involvement\n\n### Reasoning Chains for Validation:\n- CHAIN: Meningitis -> \"Steroids indicated to reduce inflammation\" -> \"Improved neurological outcomes\" -> 90% CHAIN: Pericarditis -> \"Steroids indicated to reduce pericardial inflammation\" -> \"Decreased risk of cardiac complications\" -> 90% CHAIN: Ileo-caecal tuberculosis -> \"Steroids not typically indicated\" -> \"Risk of exacerbating infection\" -> 80% CHAIN: Adrenal involvement -> \"Steroids indicated for adrenal insufficiency\" -> \"Restoration of hormonal balance\" -> 90%\n- CHAIN: Meningitis -> \"Steroids indicated to reduce inflammation\" -> \"Improved neurological outcomes\" -> 90% CHAIN: Pericarditis -> \"Steroids indicated to reduce pericardial inflammation\" -> \"Decreased risk of cardiac complications\" -> 90% CHAIN: Ileo-caecal tuberculosis -> \"Steroids not indicated\" -> \"Potential for worsening disease\" -> 75% CHAIN: Adrenal involvement -> \"Steroids indicated for adrenal insufficiency\" -> \"Restoration of hormonal balance\" -> 90%\n- CHAIN: Meningitis -> \"Steroids indicated to reduce inflammation\" -> \"Improved neurological outcomes\" -> 90% CHAIN: Pericarditis -> \"Steroids indicated to reduce pericardial inflammation\" -> \"Decreased risk of cardiac complications\" -> 90% CHAIN: Ileo-caecal tuberculosis -> \"Steroids contraindicated\" -> \"Risk of worsening infection\" -> 70% CHAIN: Adrenal involvement -> \"Steroids indicated for adrenal insufficiency\" -> \"Restoration of hormonal balance\" -> 90%\n\n### Retrieved Validation Paths:\n- (Pericarditis)-ISA->(Inflammation)-ASSOCIATED_WITH->(ELAVL2 gene|ELAVL2)-INTERACTS_WITH->(Steroids)\n- (Pericarditis)-ISA->(Inflammation)-ASSOCIATED_WITH->(IL13 gene|IL13)-INTERACTS_WITH->(Steroids)\n- (Steroids)-TREATS->(Disease)-CAUSES->(Cardiac complication)\n- (Steroids)-TREATS->(Hypertensive disease)-CAUSES->(Cardiac complication)\n- (Steroids)-TREATS->(Disease)-CAUSES->(Communicable Diseases)\n- (Steroids)-TREATS->(Lymphohistiocytosis, Hemophagocytic)-CAUSES->(Communicable Diseases)\n\n            ### Task:\n                1. Identify the core medical principle and the most likely correct option based on consensus.\n                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.\n                3. Provide a final analysis and a confidence score (0-100%).\n                \n                ### Output Format:\n                {\n                  \"final_analysis\": \"Step-by-step reasoning, prioritizing medical consensus and acknowledging complexity if present.\",\n                  \"answer\": \"Option key (e.g. opa, opb, ...)\",\n                  \"confidence\": A number between 0-100\n                }\n            "
+    }
+  ],
+  "response": "{\n  \"final_analysis\": \"In the context of tuberculosis, steroids are used to manage inflammatory complications associated with the disease. In cases of meningitis and pericarditis, steroids are indicated to reduce inflammation and improve outcomes. For adrenal involvement, steroids are necessary to address adrenal insufficiency. However, in ileo-caecal tuberculosis, the use of steroids is generally contraindicated as they can exacerbate the infection and lead to complications. Therefore, the correct answer is that steroids are not indicated in ileo-caecal tuberculosis.\",\n  \"answer\": \"opc\",\n  \"confidence\": 90\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": true,
+    "has_enhanced_info": true,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

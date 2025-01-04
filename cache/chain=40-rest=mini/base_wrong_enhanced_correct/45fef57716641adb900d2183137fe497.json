@@ -1,0 +1,192 @@
+{
+  "question": "Which of the following dings is not used for anxiety?",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Propanolol",
+    "opb": "Aiprazolam",
+    "opc": "Buspirone",
+    "opd": "Haloperidol"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Adrenergic beta-Antagonists",
+        "Anxiety"
+      ],
+      [
+        "Benzodiazepines",
+        "Anxiety"
+      ],
+      [
+        "Anti-Anxiety Agents",
+        "Anxiety"
+      ],
+      [
+        "Antipsychotic Agents",
+        "Anxiety"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Adrenergic beta-Antagonists)-CAUSES->(Anxiety)",
+      "(Benzodiazepines)-TREATS->(Anxiety)",
+      "(Anti-Anxiety Agents)-CAUSES->(Anxiety)",
+      "(Antipsychotic Agents)-TREATS->(Anxiety)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Propranolol",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Propranolol",
+        "Pharmaceutical Preparations",
+        "Adrenergic beta-Antagonists"
+      ],
+      [
+        "Alprazolam",
+        "Disease",
+        "Virus",
+        "Pharmaceutical Preparations",
+        "Benzodiazepines"
+      ],
+      [
+        "Alprazolam",
+        "Chronic Disease",
+        "Virus",
+        "Pharmaceutical Preparations",
+        "Benzodiazepines"
+      ],
+      [
+        "Buspirone",
+        "Pharmaceutical Preparations",
+        "Anti-Anxiety Agents"
+      ],
+      [
+        "Buspirone",
+        "Tranquilizing Agents",
+        "Anti-Anxiety Agents"
+      ],
+      [
+        "Haloperidol",
+        "Pharmaceutical Preparations",
+        "Antipsychotic Agents"
+      ],
+      [
+        "Haloperidol",
+        "Pharmaceutical Preparations",
+        "Antipsychotic Agents"
+      ]
+    ],
+    "relationships": [
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Propranolol)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Propranolol)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)",
+      "(Alprazolam)-TREATS->(Disease)-ASSOCIATED_WITH->(Virus)-LOCATION_OF->(Pharmaceutical Preparations)-INTERACTS_WITH->(Benzodiazepines)",
+      "(Alprazolam)-TREATS->(Chronic Disease)-INTERACTS_WITH->(Virus)-LOCATION_OF->(Pharmaceutical Preparations)-INTERACTS_WITH->(Benzodiazepines)",
+      "(Buspirone)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Anti-Anxiety Agents)",
+      "(Buspirone)-ISA->(Tranquilizing Agents)-INTERACTS_WITH->(Anti-Anxiety Agents)",
+      "(Haloperidol)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Antipsychotic Agents)",
+      "(Haloperidol)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Antipsychotic Agents)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Benzodiazepines)-TREATS->(Anxiety)",
+      "(Adrenergic beta-Antagonists)-CAUSES->(Anxiety)",
+      "(Anti-Anxiety Agents)-CAUSES->(Anxiety)",
+      "(Antipsychotic Agents)-TREATS->(Anxiety)",
+      "(Propranolol)-INTERACTS_WITH/ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Adrenergic beta-Antagonists)-Antagonists)",
+      "(Buspirone)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Anti-Anxiety Agents)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Propanolol\" -> \"beta-blocker\" -> \"used for anxiety\" -> 80%",
+    "CHAIN: \"Alprazolam\" -> \"benzodiazepine\" -> \"used for anxiety\" -> 95%",
+    "CHAIN: \"Buspirone\" -> \"anxiolytic\" -> \"used for anxiety\" -> 90%",
+    "CHAIN: \"Haloperidol\" -> \"antipsychotic\" -> \"not typically used for anxiety\" -> 85%"
+  ],
+  "enhanced_information": "Propranolol is a beta-blocker primarily used for cardiovascular issues, but it can be used off-label for performance anxiety, making its role in anxiety treatment somewhat nuanced. Alprazolam is a benzodiazepine widely recognized for its efficacy in treating anxiety disorders. Buspirone is an anxiolytic specifically indicated for anxiety treatment. Haloperidol, an antipsychotic, is not typically used for anxiety and is primarily indicated for schizophrenia and acute psychosis. Therefore, the drug not used for anxiety is Haloperidol.",
+  "analysis": "In evaluating the options provided, we consider the primary uses of each medication. Propranolol (option opa) is a beta-blocker that can be used off-label for performance anxiety, although it is not a first-line treatment for generalized anxiety disorders. Alprazolam (option opb) is a benzodiazepine that is widely used for anxiety disorders, making it a clear choice for anxiety treatment. Buspirone (option opc) is specifically indicated for anxiety and is used as an anxiolytic. Haloperidol (option opd), on the other hand, is an antipsychotic medication primarily used for treating schizophrenia and acute psychosis, and it is not indicated for anxiety treatment. Therefore, the drug that is not used for anxiety is Haloperidol. This conclusion aligns with standard medical knowledge and consensus regarding the indications for these medications.",
+  "answer": "opd",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      2,
+      2,
+      2
+    ],
+    "coverage_rates": [
+      25.0,
+      25.0,
+      25.0,
+      25.0
+    ],
+    "total_successes": 8
+  },
+  "normal_results": []
+}

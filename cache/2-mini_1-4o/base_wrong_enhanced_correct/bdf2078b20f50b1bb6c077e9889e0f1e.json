@@ -1,0 +1,354 @@
+{
+  "question": "Warfarin induced skin necrosis is seen in ?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Protein C deficiency",
+    "opb": "Protein S deficiency",
+    "opc": "Hemophillia",
+    "opd": "Antithrombin III deficiency"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Blood Coagulation Factor",
+        "Thrombosis"
+      ],
+      [
+        "Vitamin K",
+        "Thrombosis"
+      ],
+      [
+        "Thrombosis",
+        "Disease",
+        "Skin necrosis"
+      ],
+      [
+        "Thrombosis",
+        "Infection",
+        "Skin necrosis"
+      ],
+      [
+        "Thrombosis",
+        "Disorder of artery",
+        "Skin necrosis"
+      ],
+      [
+        "Skin necrosis",
+        "Septicemia",
+        "Protein C Deficiency"
+      ],
+      [
+        "Skin necrosis",
+        "Purpura Fulminans",
+        "Protein C Deficiency"
+      ],
+      [
+        "Skin necrosis",
+        "Disease",
+        "Protein S Deficiency"
+      ],
+      [
+        "Skin necrosis",
+        "Nephrotic Syndrome",
+        "Protein S Deficiency"
+      ],
+      [
+        "Blood Coagulation Factor",
+        "Thrombophilia",
+        "Skin necrosis"
+      ],
+      [
+        "Blood Coagulation Factor",
+        "Disseminated Intravascular Coagulation",
+        "Skin necrosis"
+      ],
+      [
+        "Skin necrosis",
+        "Rare Diseases",
+        "Hemophilia A"
+      ],
+      [
+        "Skin necrosis",
+        "Disease",
+        "Hemophilia A"
+      ],
+      [
+        "Skin necrosis",
+        "Bronchopleural fistula",
+        "Hemophilia A"
+      ],
+      [
+        "Blood Coagulation Factor",
+        "Thrombophilia",
+        "Skin necrosis"
+      ],
+      [
+        "Blood Coagulation Factor",
+        "Disseminated Intravascular Coagulation",
+        "Skin necrosis"
+      ],
+      [
+        "Skin necrosis",
+        "Disease",
+        "Antithrombin III Deficiency"
+      ],
+      [
+        "Skin necrosis",
+        "Nephrotic Syndrome",
+        "Antithrombin III Deficiency"
+      ],
+      [
+        "Skin necrosis",
+        "Thrombosis",
+        "Antithrombin III Deficiency"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "COMPLICATES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "COMPLICATES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "PREDISPOSES"
+      ],
+      [
+        "COMPLICATES",
+        "COMPLICATES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "COMPLICATES",
+        "CAUSES"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Blood Coagulation Factor)-CAUSES->(Thrombosis)",
+      "(Vitamin K)-PREDISPOSES->(Thrombosis)",
+      "(Thrombosis)-CAUSES->(Disease)-CAUSES->(Skin necrosis)",
+      "(Thrombosis)-CAUSES->(Infection)-CAUSES->(Skin necrosis)",
+      "(Thrombosis)-CAUSES->(Disorder of artery)-CAUSES->(Skin necrosis)",
+      "(Skin necrosis)-CAUSES->(Septicemia)-CAUSES->(Protein C Deficiency)",
+      "(Skin necrosis)-COMPLICATES->(Purpura Fulminans)-CAUSES->(Protein C Deficiency)",
+      "(Skin necrosis)-CAUSES->(Disease)-CAUSES->(Protein S Deficiency)",
+      "(Skin necrosis)-COMPLICATES->(Nephrotic Syndrome)-CAUSES->(Protein S Deficiency)",
+      "(Blood Coagulation Factor)-TREATS->(Thrombophilia)-CAUSES->(Skin necrosis)",
+      "(Blood Coagulation Factor)-TREATS->(Disseminated Intravascular Coagulation)-CAUSES->(Skin necrosis)",
+      "(Skin necrosis)-CAUSES->(Rare Diseases)-CAUSES->(Hemophilia A)",
+      "(Skin necrosis)-CAUSES->(Disease)-PREDISPOSES->(Hemophilia A)",
+      "(Skin necrosis)-COMPLICATES->(Bronchopleural fistula)-COMPLICATES->(Hemophilia A)",
+      "(Blood Coagulation Factor)-TREATS->(Thrombophilia)-CAUSES->(Skin necrosis)",
+      "(Blood Coagulation Factor)-TREATS->(Disseminated Intravascular Coagulation)-CAUSES->(Skin necrosis)",
+      "(Skin necrosis)-CAUSES->(Disease)-CAUSES->(Antithrombin III Deficiency)",
+      "(Skin necrosis)-COMPLICATES->(Nephrotic Syndrome)-CAUSES->(Antithrombin III Deficiency)",
+      "(Skin necrosis)-MANIFESTATION_OF->(Thrombosis)-CAUSES->(Antithrombin III Deficiency)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Warfarin",
+        "Complication",
+        "Blood Coagulation Factor"
+      ],
+      [
+        "Warfarin",
+        "Complication",
+        "Blood Coagulation Factor"
+      ],
+      [
+        "Warfarin",
+        "Pharmaceutical Preparations",
+        "Vitamin K"
+      ],
+      [
+        "Warfarin",
+        "Pharmaceutical Preparations",
+        "Vitamin K"
+      ],
+      [
+        "Vitamin K",
+        "Body tissue",
+        "Protein C measurement"
+      ],
+      [
+        "Warfarin",
+        "Complication",
+        "Blood Coagulation Factor"
+      ],
+      [
+        "Warfarin",
+        "Complication",
+        "Blood Coagulation Factor"
+      ],
+      [
+        "Warfarin",
+        "Complication",
+        "Blood Coagulation Factor"
+      ],
+      [
+        "Warfarin",
+        "Complication",
+        "Blood Coagulation Factor"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREVENTS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "PREVENTS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREVENTS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Warfarin)-PREVENTS->(Complication)-ASSOCIATED_WITH->(Blood Coagulation Factor)",
+      "(Warfarin)-PREDISPOSES->(Complication)-ASSOCIATED_WITH->(Blood Coagulation Factor)",
+      "(Warfarin)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Vitamin K)",
+      "(Warfarin)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Vitamin K)",
+      "(Vitamin K)-PART_OF->(Body tissue)-LOCATION_OF->(Protein C measurement)",
+      "(Warfarin)-PREVENTS->(Complication)-ASSOCIATED_WITH->(Blood Coagulation Factor)",
+      "(Warfarin)-PREDISPOSES->(Complication)-ASSOCIATED_WITH->(Blood Coagulation Factor)",
+      "(Warfarin)-PREVENTS->(Complication)-ASSOCIATED_WITH->(Blood Coagulation Factor)",
+      "(Warfarin)-PREDISPOSES->(Complication)-ASSOCIATED_WITH->(Blood Coagulation Factor)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Warfarin)-PREDISPOSES/PREVENTS->(Complication)-ASSOCIATED_WITH->(Blood Coagulation Factor)",
+      "(Skin necrosis)-CAUSES->(Septicemia)-CAUSES->(Protein C Deficiency)",
+      "(Skin necrosis)-COMPLICATES->(Purpura Fulminans)-CAUSES->(Protein C Deficiency)",
+      "(Skin necrosis)-CAUSES->(Disease)-CAUSES->(Protein S Deficiency)",
+      "(Skin necrosis)-COMPLICATES->(Nephrotic Syndrome)-CAUSES->(Protein S Deficiency)",
+      "(Blood Coagulation Factor)-TREATS->(Thrombophilia)-CAUSES->(Skin necrosis)",
+      "(Blood Coagulation Factor)-TREATS->(Disseminated Intravascular Coagulation)-CAUSES->(Skin necrosis)",
+      "(Skin necrosis)-CAUSES->(Disease)-CAUSES->(Antithrombin III Deficiency)",
+      "(Skin necrosis)-COMPLICATES->(Nephrotic Syndrome)-CAUSES->(Antithrombin III Deficiency)",
+      "(Skin necrosis)-MANIFESTATION_OF->(Thrombosis)-CAUSES->(Antithrombin III Deficiency)",
+      "(Warfarin)-INTERACTS_WITH/ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Vitamin K)",
+      "(Vitamin K)-PREDISPOSES->(Thrombosis)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Warfarin use\" -> \"inhibition of vitamin K dependent clotting factors\" -> \"increased risk of thrombosis\" -> \"possible skin necrosis\" -> \"Protein C deficiency\" -> 85%",
+    "CHAIN: \"Warfarin use\" -> \"inhibition of vitamin K dependent proteins\" -> \"decreased Protein C levels\" -> \"thrombotic events\" -> \"skin necrosis\" -> \"Protein S deficiency\" -> 80%",
+    "CHAIN: \"Warfarin use\" -> \"inhibition of clotting factors\" -> \"risk of skin necrosis\" -> \"not associated with Hemophilia\" -> \"unclear\" -> 50%",
+    "CHAIN: \"Warfarin use\" -> \"inhibition of coagulation factors\" -> \"increased risk of skin necrosis\" -> \"not typically associated with Antithrombin III deficiency\" -> \"unclear\" -> 50%"
+  ],
+  "enhanced_information": "Warfarin-induced skin necrosis is primarily associated with deficiencies in Protein C and Protein S. Warfarin inhibits vitamin K-dependent clotting factors, leading to a decrease in Protein C levels, which can precipitate thrombosis and subsequent skin necrosis. Protein C deficiency is a well-established risk factor for this complication, as it can lead to purpura fulminans, a severe form of skin necrosis. Protein S deficiency also contributes to this risk, as it is a cofactor for Protein C. In contrast, Hemophilia and Antithrombin III deficiency are not typically associated with warfarin-induced skin necrosis. Hemophilia primarily affects the intrinsic pathway of coagulation and does not lead to skin necrosis in the context of warfarin use. Antithrombin III deficiency is more related to thrombotic events but does not directly correlate with skin necrosis due to warfarin. Therefore, the most relevant options are Protein C and Protein S deficiencies.",
+  "analysis": "Warfarin-induced skin necrosis is a rare but serious complication that occurs due to the imbalance in coagulation factors when warfarin therapy is initiated. Warfarin inhibits vitamin K-dependent clotting factors, including factors II, VII, IX, and X, as well as proteins C and S. Protein C is a natural anticoagulant, and its levels drop faster than the procoagulant factors when warfarin is started, leading to a transient hypercoagulable state. This is particularly problematic in individuals with an underlying Protein C deficiency, as they are unable to adequately counteract the procoagulant effects, leading to thrombosis and skin necrosis. While Protein S deficiency can also contribute to this risk, Protein C deficiency is more directly implicated in the pathogenesis of warfarin-induced skin necrosis. Hemophilia and Antithrombin III deficiency are not typically associated with this condition. Therefore, the most likely correct answer is Protein C deficiency.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      5,
+      3,
+      3,
+      3
+    ],
+    "coverage_rates": [
+      35.714285714285715,
+      21.428571428571427,
+      21.428571428571427,
+      21.428571428571427
+    ],
+    "total_successes": 14
+  },
+  "normal_results": []
+}

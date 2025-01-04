@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_155218",
+  "model": "gpt-4-turbo",
+  "interaction_type": "reasoning_chain",
+  "question_id": "056c5fb4",
+  "question_text": "Drug of choice for gonococcal as well as non gonococcal urethritis is",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            Drug of choice for gonococcal as well as non gonococcal urethritis is\n\n            ### Options\n    opa. Clindamycin\nopb. Cefepime\nopc. Metronidazole\nopd. Azithromycin\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"Azithromycin\" -> \"effective against Chlamydia trachomatis\" -> \"treats non-gonococcal urethritis\" -> \"also effective against Neisseria gonorrhoeae\" -> \"treats gonococcal urethritis\" -> 95%\n\nCHAIN: \"Cefepime\" -> \"broad-spectrum antibiotic\" -> \"not first-line for Chlamydia trachomatis\" -> \"less effective for non-gonococcal urethritis\" -> \"effective against Neisseria gonorrhoeae\" -> \"not optimal for dual treatment of gonococcal and non-gonococcal urethritis\" -> 60%\n\nCHAIN: \"Metronidazole\" -> \"effective against anaerobic bacteria\" -> \"not effective against Neisseria gonorrhoeae or Chlamydia trachomatis\" -> \"not suitable for treating gonococcal or non-gonococcal urethritis\" -> 10%\n\nCHAIN: \"Clindamycin\" -> \"effective against anaerobic bacteria and some protozoa\" -> \"not effective against Neisseria gonorrhoeae\" -> \"not effective against Chlamydia trachomatis\" -> \"not suitable for treating gonococcal or non-gonococcal urethritis\" -> 10%",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

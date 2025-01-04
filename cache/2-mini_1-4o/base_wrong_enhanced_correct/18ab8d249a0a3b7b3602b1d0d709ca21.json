@@ -1,0 +1,273 @@
+{
+  "question": "A 43-year-old 190 cm man post a flight to Chennai presents with left-sided chest discomfort and dyspnea. On chest X-ray, there is a small area devoid of lung markings in the apex of the left lung. Diagnosis is?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Spontaneous pneumothorax",
+    "opb": "Myocardial infarction",
+    "opc": "Acute cor pulmonale",
+    "opd": "Aortic dissection"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Providing presence (regime/therapy)",
+        "COVID-19",
+        "Pneumothorax"
+      ],
+      [
+        "Pneumothorax",
+        "Spontaneous pneumothorax NOS"
+      ],
+      [
+        "Dyspnea",
+        "Respiration",
+        "Heart"
+      ],
+      [
+        "Radiography, Thoracic",
+        "Disease",
+        "Myocardial Infarction"
+      ],
+      [
+        "Radiography, Thoracic",
+        "Infection",
+        "Myocardial Infarction"
+      ],
+      [
+        "Radiography, Thoracic",
+        "Symptoms",
+        "Myocardial Infarction"
+      ],
+      [
+        "Providing presence (regime/therapy)",
+        "Infiltration",
+        "Dissection of aorta"
+      ],
+      [
+        "Providing presence (regime/therapy)",
+        "Aneurysm",
+        "Dissection of aorta"
+      ],
+      [
+        "Providing presence (regime/therapy)",
+        "COVID-19",
+        "Dissection of aorta"
+      ],
+      [
+        "Radiography, Thoracic",
+        "Pneumothorax"
+      ],
+      [
+        "Pneumothorax",
+        "Respiratory Distress Syndrome, Adult",
+        "Acute cor pulmonale"
+      ],
+      [
+        "Pneumothorax",
+        "Asphyxia",
+        "Acute cor pulmonale"
+      ],
+      [
+        "Pneumothorax",
+        "Pneumonia",
+        "Acute cor pulmonale"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Providing presence (regime/therapy))-TREATS->(COVID-19)-CAUSES->(Pneumothorax)",
+      "(Pneumothorax)-CAUSES->(Spontaneous pneumothorax NOS)",
+      "(Dyspnea)-MANIFESTATION_OF->(Respiration)-PROCESS_OF->(Heart)",
+      "(Radiography, Thoracic)-CAUSES->(Disease)-CAUSES->(Myocardial Infarction)",
+      "(Radiography, Thoracic)-CAUSES->(Infection)-CAUSES->(Myocardial Infarction)",
+      "(Radiography, Thoracic)-CAUSES->(Symptoms)-CAUSES->(Myocardial Infarction)",
+      "(Providing presence (regime/therapy))-CAUSES->(Infiltration)-CAUSES->(Dissection of aorta)",
+      "(Providing presence (regime/therapy))-TREATS->(Aneurysm)-CAUSES->(Dissection of aorta)",
+      "(Providing presence (regime/therapy))-TREATS->(COVID-19)-PREDISPOSES->(Dissection of aorta)",
+      "(Radiography, Thoracic)-CAUSES->(Pneumothorax)",
+      "(Pneumothorax)-CAUSES->(Respiratory Distress Syndrome, Adult)-CAUSES->(Acute cor pulmonale)",
+      "(Pneumothorax)-CAUSES->(Asphyxia)-CAUSES->(Acute cor pulmonale)",
+      "(Pneumothorax)-CAUSES->(Pneumonia)-CAUSES->(Acute cor pulmonale)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Radiography, Thoracic",
+        "Obstruction",
+        "neuropeptide Y|NPY",
+        "Cells",
+        "brain tissue surgical material",
+        "Providing presence (regime/therapy)"
+      ],
+      [
+        "Radiography, Thoracic",
+        "Pathological Dilatation",
+        "neuropeptide Y|NPY",
+        "Cells",
+        "brain tissue surgical material",
+        "Providing presence (regime/therapy)"
+      ],
+      [
+        "Heart",
+        "Radiography, Thoracic"
+      ],
+      [
+        "Radiography, Thoracic",
+        "Obstruction",
+        "neuropeptide Y|NPY",
+        "Cells",
+        "brain tissue surgical material",
+        "Providing presence (regime/therapy)"
+      ],
+      [
+        "Radiography, Thoracic",
+        "Pathological Dilatation",
+        "neuropeptide Y|NPY",
+        "Cells",
+        "brain tissue surgical material",
+        "Providing presence (regime/therapy)"
+      ]
+    ],
+    "relationships": [
+      [
+        "DIAGNOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "DIAGNOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "LOCATION_OF"
+      ],
+      [
+        "DIAGNOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "DIAGNOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Radiography, Thoracic)-DIAGNOSES->(Obstruction)-ASSOCIATED_WITH->(neuropeptide Y|NPY)-INTERACTS_WITH->(Cells)-PART_OF->(brain tissue surgical material)-LOCATION_OF->(Providing presence (regime/therapy))",
+      "(Radiography, Thoracic)-DIAGNOSES->(Pathological Dilatation)-ASSOCIATED_WITH->(neuropeptide Y|NPY)-INTERACTS_WITH->(Cells)-PART_OF->(brain tissue surgical material)-LOCATION_OF->(Providing presence (regime/therapy))",
+      "(Heart)-LOCATION_OF->(Radiography, Thoracic)",
+      "(Radiography, Thoracic)-DIAGNOSES->(Obstruction)-ASSOCIATED_WITH->(neuropeptide Y|NPY)-INTERACTS_WITH->(Cells)-PART_OF->(brain tissue surgical material)-LOCATION_OF->(Providing presence (regime/therapy))",
+      "(Radiography, Thoracic)-DIAGNOSES->(Pathological Dilatation)-ASSOCIATED_WITH->(neuropeptide Y|NPY)-INTERACTS_WITH->(Cells)-PART_OF->(brain tissue surgical material)-LOCATION_OF->(Providing presence (regime/therapy))"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Pneumothorax)-CAUSES->(Spontaneous pneumothorax NOS)",
+      "(Radiography, Thoracic)-CAUSES->(Pneumothorax)",
+      "(Radiography, Thoracic)-CAUSES->(Disease)-CAUSES->(Myocardial Infarction)",
+      "(Radiography, Thoracic)-CAUSES->(Infection)-CAUSES->(Myocardial Infarction)",
+      "(Radiography, Thoracic)-CAUSES->(Symptoms)-CAUSES->(Myocardial Infarction)",
+      "(Pneumothorax)-CAUSES->(Respiratory Distress Syndrome, Adult)-CAUSES->(Acute cor pulmonale)",
+      "(Pneumothorax)-CAUSES->(Asphyxia)-CAUSES->(Acute cor pulmonale)",
+      "(Pneumothorax)-CAUSES->(Pneumonia)-CAUSES->(Acute cor pulmonale)",
+      "(Providing presence (regime/therapy))-TREATS->(COVID-19)-PREDISPOSES->(Dissection of aorta)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Left-sided chest discomfort and dyspnea\" -> \"possible lung pathology\" -> \"chest X-ray shows area devoid of lung markings\" -> \"suggests presence of air in pleural space\" -> \"indicates possible pneumothorax\" -> \"most consistent with spontaneous pneumothorax\" -> 85%",
+    "CHAIN: \"Left-sided chest discomfort and dyspnea\" -> \"could indicate cardiac or pulmonary issue\" -> \"chest X-ray shows area devoid of lung markings\" -> \"not typical for myocardial infarction\" -> \"less likely to be myocardial infarction\" -> \"considering other options\" -> 70%",
+    "CHAIN: \"Left-sided chest discomfort and dyspnea\" -> \"possible lung pathology\" -> \"chest X-ray shows area devoid of lung markings\" -> \"suggests presence of air in pleural space\" -> \"not consistent with aortic dissection\" -> \"aortic dissection typically presents with different symptoms\" -> 60%",
+    "CHAIN: \"Left-sided chest discomfort and dyspnea\" -> \"possible lung pathology\" -> \"chest X-ray shows area devoid of lung markings\" -> \"indicates possible pneumothorax\" -> \"acute cor pulmonale unlikely without other signs\" -> \"less likely to be acute cor pulmonale\" -> 65%"
+  ],
+  "enhanced_information": "The patient's presentation of left-sided chest discomfort and dyspnea, combined with the chest X-ray findings of an area devoid of lung markings in the apex of the left lung, strongly suggests the presence of air in the pleural space, indicative of a pneumothorax. The reasoning chain for spontaneous pneumothorax is consistent with this interpretation, as the absence of lung markings typically correlates with pneumothorax. Myocardial infarction is less likely given the X-ray findings, which do not support this diagnosis. Aortic dissection typically presents with different symptoms, such as severe, tearing chest pain, and is not supported by the X-ray findings. Acute cor pulmonale is unlikely without other signs of respiratory distress or underlying lung disease. Therefore, the most likely diagnosis is spontaneous pneumothorax, supported by the X-ray evidence and clinical presentation.",
+  "analysis": "The patient's symptoms of left-sided chest discomfort and dyspnea, along with the chest X-ray finding of an area devoid of lung markings in the apex of the left lung, are indicative of a pneumothorax. A pneumothorax occurs when air enters the pleural space, causing part of the lung to collapse, which is consistent with the absence of lung markings on the X-ray. The patient's tall stature and recent flight could be risk factors for a spontaneous pneumothorax, as changes in atmospheric pressure during flights can precipitate this condition. Myocardial infarction, aortic dissection, and acute cor pulmonale are less likely given the specific X-ray findings and the clinical presentation. Therefore, the most likely diagnosis is a spontaneous pneumothorax.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      3,
+      3,
+      2,
+      2
+    ],
+    "coverage_rates": [
+      30.0,
+      30.0,
+      20.0,
+      20.0
+    ],
+    "total_successes": 10
+  },
+  "normal_results": []
+}

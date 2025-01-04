@@ -1,0 +1,214 @@
+{
+  "question": "Which of the following causes retinal pigmentation?",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Quinine",
+    "opb": "Chloroquine",
+    "opc": "Mefloquine",
+    "opd": "Atovaquone"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Chloroquine",
+        "Disease",
+        "arterial stiffness",
+        "Retina"
+      ],
+      [
+        "Chloroquine",
+        "Disease",
+        "uptake",
+        "Retina"
+      ],
+      [
+        "Chloroquine",
+        "Disease",
+        "biological adaptation to stress",
+        "Retina"
+      ],
+      [
+        "Quinine",
+        "Disease",
+        "arterial stiffness",
+        "Retina"
+      ],
+      [
+        "Quinine",
+        "Disease",
+        "uptake",
+        "Retina"
+      ],
+      [
+        "Quinine",
+        "Disease",
+        "biological adaptation to stress",
+        "Retina"
+      ],
+      [
+        "Mefloquine",
+        "Symptoms",
+        "voltage gated channel",
+        "Retina"
+      ],
+      [
+        "Mefloquine",
+        "Epilepsy",
+        "voltage gated channel",
+        "Retina"
+      ],
+      [
+        "Mefloquine",
+        "Symptoms",
+        "paracrine",
+        "Retina"
+      ],
+      [
+        "atovaquone",
+        "Disease",
+        "arterial stiffness",
+        "Retina"
+      ],
+      [
+        "atovaquone",
+        "Chronic Disease",
+        "arterial stiffness",
+        "Retina"
+      ],
+      [
+        "atovaquone",
+        "COVID-19",
+        "arterial stiffness",
+        "Retina"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Chloroquine)-TREATS->(Disease)-CAUSES->(arterial stiffness)-PROCESS_OF->(Retina)",
+      "(Chloroquine)-TREATS->(Disease)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Retina)",
+      "(Chloroquine)-TREATS->(Disease)-MANIFESTATION_OF->(biological adaptation to stress)-PROCESS_OF->(Retina)",
+      "(Quinine)-TREATS->(Disease)-CAUSES->(arterial stiffness)-PROCESS_OF->(Retina)",
+      "(Quinine)-TREATS->(Disease)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Retina)",
+      "(Quinine)-TREATS->(Disease)-MANIFESTATION_OF->(biological adaptation to stress)-PROCESS_OF->(Retina)",
+      "(Mefloquine)-TREATS->(Symptoms)-MANIFESTATION_OF->(voltage gated channel)-PROCESS_OF->(Retina)",
+      "(Mefloquine)-TREATS->(Epilepsy)-MANIFESTATION_OF->(voltage gated channel)-PROCESS_OF->(Retina)",
+      "(Mefloquine)-TREATS->(Symptoms)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Retina)",
+      "(atovaquone)-TREATS->(Disease)-CAUSES->(arterial stiffness)-PROCESS_OF->(Retina)",
+      "(atovaquone)-TREATS->(Chronic Disease)-CAUSES->(arterial stiffness)-PROCESS_OF->(Retina)",
+      "(atovaquone)-TREATS->(COVID-19)-PREDISPOSES->(arterial stiffness)-PROCESS_OF->(Retina)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Chloroquine)-TREATS->(Disease)-CAUSES->(arterial stiffness)-PROCESS_OF->(Retina)",
+      "(Chloroquine)-TREATS->(Disease)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Retina)",
+      "(Chloroquine)-TREATS->(Disease)-MANIFESTATION_OF->(biological adaptation to stress)-PROCESS_OF->(Retina)",
+      "(Quinine)-TREATS->(Disease)-CAUSES->(arterial stiffness)-PROCESS_OF->(Retina)",
+      "(Quinine)-TREATS->(Disease)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Retina)",
+      "(Quinine)-TREATS->(Disease)-MANIFESTATION_OF->(biological adaptation to stress)-PROCESS_OF->(Retina)",
+      "(Mefloquine)-TREATS->(Symptoms)-MANIFESTATION_OF->(voltage gated channel)-PROCESS_OF->(Retina)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Chloroquine\" -> \"accumulation in retinal pigment epithelium\" -> \"retinal pigmentation\" -> 95%",
+    "CHAIN: \"Quinine\" -> \"possible retinal toxicity\" -> \"unclear effect on pigmentation\" -> 40%",
+    "CHAIN: \"Mefloquine\" -> \"no known effect on retinal pigmentation\" -> 10%",
+    "CHAIN: \"Atovaquone\" -> \"no known effect on retinal pigmentation\" -> 10%"
+  ],
+  "enhanced_information": "Chloroquine is known to accumulate in the retinal pigment epithelium, leading to retinal pigmentation changes, which aligns with the consensus that it can cause retinal toxicity. Quinine has been associated with possible retinal toxicity, but its effect on pigmentation is unclear and not well-established. Mefloquine and Atovaquone have no known effects on retinal pigmentation, as supported by the consensus. Therefore, the most significant cause of retinal pigmentation among the options is Chloroquine.",
+  "analysis": "Chloroquine is well-documented to accumulate in the retinal pigment epithelium, leading to retinal pigmentation changes and potential retinal toxicity. This aligns with established medical knowledge regarding its side effects. Quinine has some association with retinal toxicity, but its specific impact on pigmentation is not well-defined. Mefloquine and Atovaquone are not known to cause retinal pigmentation changes. Therefore, based on the consensus and the enhanced information provided, Chloroquine is the most significant cause of retinal pigmentation among the options listed.",
+  "answer": "opb",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      25.0,
+      25.0,
+      25.0,
+      25.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

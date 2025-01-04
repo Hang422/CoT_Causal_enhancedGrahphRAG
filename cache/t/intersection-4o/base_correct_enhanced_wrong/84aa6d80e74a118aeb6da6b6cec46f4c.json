@@ -1,0 +1,72 @@
+{
+  "question": "Pilocarpine reduce the intraocular pressure in persons with closed angle glaucoma by:",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Reducing aqueous humor secretion",
+    "opb": "Contracting iris sphincter muscle",
+    "opc": "Increasing aqueous humor outflow",
+    "opd": "Relaxing ciliary muscle"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Pupil",
+        "Cornea"
+      ]
+    ],
+    "relationships": [
+      [
+        "PART_OF"
+      ]
+    ],
+    "paths": [
+      "(Pupil)-PART_OF->(Cornea)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Pupil)-PART_OF->(Cornea)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Pilocarpine\" -> \"contracts iris sphincter muscle\" -> \"pulls iris away from trabecular meshwork\" -> \"increases aqueous humor outflow\" -> \"reduces intraocular pressure\" -> 95%",
+    "CHAIN: \"Pilocarpine\" -> \"contracts iris sphincter muscle\" -> \"narrows pupil\" -> \"increases angle between iris and cornea\" -> \"increases aqueous humor outflow\" -> \"reduces intraocular pressure\" -> 90%",
+    "CHAIN: \"Pilocarpine\" -> \"increases aqueous humor outflow\" -> \"reduces intraocular pressure\" -> 85%",
+    "CHAIN: \"Pilocarpine\" -> \"contracts iris sphincter muscle\" -> \"increases aqueous humor outflow\" -> \"reduces intraocular pressure\" -> 90%"
+  ],
+  "enhanced_information": "Pilocarpine reduces intraocular pressure in closed-angle glaucoma primarily by increasing aqueous humor outflow. This is achieved through the contraction of the iris sphincter muscle, which pulls the iris away from the trabecular meshwork, thereby facilitating increased outflow of aqueous humor. This mechanism aligns with the consensus understanding of pilocarpine's action in glaucoma treatment. The retrieved evidence path regarding the pupil being part of the cornea is not directly relevant to the mechanism of action of pilocarpine in this context and is therefore not included in the reasoning.",
+  "analysis": "Pilocarpine is a cholinergic agonist that primarily works by contracting the iris sphincter muscle, which is part of the mechanism that increases aqueous humor outflow. In the context of closed-angle glaucoma, this contraction helps to pull the iris away from the trabecular meshwork, thereby facilitating the drainage of aqueous humor and reducing intraocular pressure. This aligns with the consensus understanding of pilocarpine's action in treating glaucoma. While increasing aqueous humor outflow is the ultimate goal, the direct action of pilocarpine is on the iris sphincter muscle, which indirectly leads to increased outflow. Therefore, the most accurate description of pilocarpine's action in this context is the contraction of the iris sphincter muscle.",
+  "answer": "opb",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      0.0,
+      100.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 1
+  },
+  "normal_results": []
+}

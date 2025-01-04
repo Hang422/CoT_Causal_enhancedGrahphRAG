@@ -1,0 +1,187 @@
+{
+  "question": "Drug of choice for relapsing remitting multiple sclerosis is:",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Alpha IEN",
+    "opb": "Beta IFN",
+    "opc": "Gamma IFN",
+    "opd": "Natalizumab"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Relapse",
+        "Disease",
+        "Immunity",
+        "Immunologic Adjuvants"
+      ],
+      [
+        "Relapse",
+        "Disease",
+        "Antiinflammatory Effect",
+        "Immunologic Adjuvants"
+      ],
+      [
+        "Multiple Sclerosis",
+        "Disease",
+        "uptake",
+        "Immunologic Adjuvants"
+      ],
+      [
+        "Multiple Sclerosis",
+        "Disease",
+        "uptake",
+        "Immunologic Adjuvants"
+      ],
+      [
+        "Immunologic Adjuvants",
+        "Complication",
+        "natalizumab"
+      ],
+      [
+        "Immunologic Adjuvants",
+        "Complication",
+        "natalizumab"
+      ],
+      [
+        "Relapse",
+        "Adhesions",
+        "Genes",
+        "Cells",
+        "Recombinant Interleukin-6"
+      ],
+      [
+        "Relapse",
+        "Adhesions",
+        "Genes",
+        "Bone Marrow Stem Cell",
+        "Recombinant Interleukin-6"
+      ],
+      [
+        "Multiple Sclerosis",
+        "Proteins",
+        "Cells",
+        "Recombinant Interleukin-6"
+      ],
+      [
+        "Multiple Sclerosis",
+        "Proteins",
+        "Cells",
+        "Recombinant Interleukin-6"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "COMPLICATES",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREVENTS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Relapse)-CAUSES->(Disease)-MANIFESTATION_OF->(Immunity)-ASSOCIATED_WITH->(Immunologic Adjuvants)",
+      "(Relapse)-CAUSES->(Disease)-MANIFESTATION_OF->(Antiinflammatory Effect)-ASSOCIATED_WITH->(Immunologic Adjuvants)",
+      "(Multiple Sclerosis)-COMPLICATES->(Disease)-MANIFESTATION_OF->(uptake)-ASSOCIATED_WITH->(Immunologic Adjuvants)",
+      "(Multiple Sclerosis)-MANIFESTATION_OF->(Disease)-MANIFESTATION_OF->(uptake)-ASSOCIATED_WITH->(Immunologic Adjuvants)",
+      "(Immunologic Adjuvants)-PREVENTS->(Complication)-ASSOCIATED_WITH->(natalizumab)",
+      "(Immunologic Adjuvants)-TREATS->(Complication)-ASSOCIATED_WITH->(natalizumab)",
+      "(Relapse)-CAUSES->(Adhesions)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Recombinant Interleukin-6)",
+      "(Relapse)-CAUSES->(Adhesions)-ASSOCIATED_WITH->(Genes)-PART_OF->(Bone Marrow Stem Cell)-INTERACTS_WITH->(Recombinant Interleukin-6)",
+      "(Multiple Sclerosis)-ASSOCIATED_WITH->(Proteins)-PART_OF->(Cells)-INTERACTS_WITH->(Recombinant Interleukin-6)",
+      "(Multiple Sclerosis)-ASSOCIATED_WITH->(Proteins)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Recombinant Interleukin-6)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Multiple Sclerosis)-ASSOCIATED_WITH->(Proteins)-INTERACTS_WITH/PART_OF->(Cells)-INTERACTS_WITH->(Recombinant Interleukin-6)-6)",
+      "(Relapse)-CAUSES->(Adhesions)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Recombinant Interleukin-6)",
+      "(Relapse)-CAUSES->(Adhesions)-ASSOCIATED_WITH->(Genes)-PART_OF->(Bone Marrow Stem Cell)-INTERACTS_WITH->(Recombinant Interleukin-6)",
+      "(Relapse)-CAUSES->(Disease)-MANIFESTATION_OF->(Immunity)-ASSOCIATED_WITH->(Immunologic Adjuvants)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Relapsing remitting multiple sclerosis\" -> \"requires disease-modifying therapy\" -> \"Beta IFN is a first-line treatment\" -> \"widely accepted in clinical guidelines\" -> 95%",
+    "CHAIN: \"Relapsing remitting multiple sclerosis\" -> \"treatment options include various immunomodulators\" -> \"Natalizumab is effective for severe cases\" -> \"not first-line for all patients\" -> 85%",
+    "CHAIN: \"Relapsing remitting multiple sclerosis\" -> \"Beta IFN reduces relapse rates\" -> \"improves long-term outcomes\" -> \"considered standard of care\" -> 90%",
+    "CHAIN: \"Relapsing remitting multiple sclerosis\" -> \"Gamma IFN is not commonly used\" -> \"less evidence for efficacy\" -> \"not preferred\" -> 80%"
+  ],
+  "enhanced_information": "In the management of relapsing-remitting multiple sclerosis (RRMS), disease-modifying therapies (DMTs) are essential. Beta interferon (Beta IFN) is widely recognized as a first-line treatment option, supported by clinical guidelines and evidence demonstrating its efficacy in reducing relapse rates and improving long-term outcomes. Natalizumab is effective for severe cases of RRMS but is not considered a first-line treatment for all patients due to its risk profile and potential for serious side effects. Gamma interferon (Gamma IFN) is not commonly used in RRMS management and lacks sufficient evidence for efficacy, making it a less preferred option. Therefore, the most appropriate drug of choice for RRMS is Beta IFN, as it aligns with established medical consensus.",
+  "analysis": "In the management of relapsing-remitting multiple sclerosis (RRMS), disease-modifying therapies (DMTs) are crucial for reducing relapse rates and improving patient outcomes. Beta interferon (Beta IFN) is widely recognized as a first-line treatment option for RRMS. It has been extensively studied and is supported by clinical guidelines due to its efficacy and safety profile. Natalizumab, while effective, is typically reserved for more severe cases or when patients do not respond to first-line treatments due to its risk of serious side effects, such as progressive multifocal leukoencephalopathy (PML). Gamma interferon (Gamma IFN) is not used in the treatment of RRMS and lacks evidence of efficacy. Therefore, based on standard medical knowledge and consensus, Beta IFN is the most appropriate drug of choice for RRMS.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      3,
+      2,
+      0
+    ],
+    "coverage_rates": [
+      0.0,
+      60.0,
+      40.0,
+      0.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

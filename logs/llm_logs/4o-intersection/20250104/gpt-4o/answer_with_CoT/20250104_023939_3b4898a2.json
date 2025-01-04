@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250104_023939",
+  "model": "gpt-4o",
+  "interaction_type": "answer_with_CoT",
+  "question_id": "3b4898a2",
+  "question_text": "Steroids are indicated in all of the following forms of tuberculosis except:",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert using chain-of-thought reasoning."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.\n            You are a medical expert determining the final answer.\n\n                ### Instructions:\n                - Use standard medical knowledge as the primary guide.\n                - Consider enhanced information only if it aligns with consensus.\n                - If conflicting or unclear, present the most likely correct answer based on known facts.\n                - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.\n            ### Question    \n            Steroids are indicated in all of the following forms of tuberculosis except:\n\n            ### Options\n            opa. Meningitis\nopb. Pericarditis\nopc. Ileo-caecal tuberculosis\nopd. Adrenal involvement\n\n### Reasoning Chains for Validation:\n- CHAIN: \"Tuberculous meningitis\" -> \"inflammation of meninges\" -> \"steroids reduce inflammation\" -> \"steroids indicated\" -> 95%\n- CHAIN: \"Tuberculous pericarditis\" -> \"inflammation of pericardium\" -> \"steroids reduce inflammation\" -> \"steroids indicated\" -> 90%\n- CHAIN: \"Ileo-caecal tuberculosis\" -> \"localized intestinal infection\" -> \"steroids not typically used\" -> \"steroids not indicated\" -> 85%\n- CHAIN: \"Adrenal tuberculosis\" -> \"adrenal gland involvement\" -> \"steroids mimic adrenal hormones\" -> \"steroids not primarily for inflammation\" -> \"steroids not indicated\" -> 80%\n\n### Retrieved Validation Paths:\n- (Adrenal Glands)-LOCATION_OF->(Prednisone)-INTERACTS_WITH->(Adrenal hormone preparation)\n- (Adrenal Glands)-LOCATION_OF->(Adrenal Cortex Hormones)-INTERACTS_WITH->(Adrenal hormone preparation)\n- (Steroids)-TREATS->(Inflammation)\n- (Adrenal hormone preparation)-TREATS->(Disease)-CAUSES->(Inflammation)\n- (Adrenal hormone preparation)-TREATS->(Infection)-CAUSES->(Inflammation)\n- (Adrenal hormone preparation)-TREATS->(Adverse effects)-COMPLICATES->(Inflammation)\n- (Inflammation)-ASSOCIATED_WITH->(IL13 gene|IL13)-INTERACTS_WITH->(Steroids)\n- (Inflammation)-ASSOCIATED_WITH->(ELAVL2 gene|ELAVL2)-INTERACTS_WITH->(Steroids)\n- (Pericarditis, Tuberculous)-CAUSES->(Congestive heart failure)-CAUSES->(Inflammation)\n\n            ### Task:\n                1. Identify the core medical principle and the most likely correct option based on consensus.\n                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.\n                3. Provide a final analysis and a confidence score (0-100%).\n                \n                ### Output Format:\n                {\n                  \"final_analysis\": \"Step-by-step reasoning, prioritizing medical consensus and acknowledging complexity if present.\",\n                  \"answer\": \"Option key (e.g. opa, opb, ...)\",\n                  \"confidence\": A number between 0-100\n                }\n            "
+    }
+  ],
+  "response": "```json\n{\n  \"final_analysis\": \"Steroids are commonly used in tuberculosis cases where inflammation can lead to severe complications or where the immune response needs modulation. In tuberculous meningitis, steroids are indicated to reduce inflammation of the meninges and prevent neurological complications. Similarly, in tuberculous pericarditis, steroids help reduce inflammation of the pericardium and prevent constrictive pericarditis. In cases of adrenal involvement, the primary concern is adrenal insufficiency due to destruction of the adrenal glands, and treatment involves hormone replacement rather than anti-inflammatory steroids. Ileo-caecal tuberculosis is primarily a localized intestinal infection, and steroids are not typically indicated as they do not address the primary pathology and could potentially worsen the infection by suppressing the immune response. Therefore, the most likely correct answer is that steroids are not indicated in ileo-caecal tuberculosis.\",\n  \"answer\": \"opc\",\n  \"confidence\": 90\n}\n```",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": true,
+    "has_enhanced_info": true,
+    "model_config": "gpt-4o",
+    "temperature": 0.0
+  }
+}

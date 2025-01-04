@@ -1,0 +1,233 @@
+{
+  "question": "Aspirin is contraindicated in?",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Fever",
+    "opb": "Peptic ulcer",
+    "opc": "Unstable angina",
+    "opd": "Myalgia"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Gastric hemorrhage",
+        "Gastric ulcer",
+        "Peptic Ulcer"
+      ],
+      [
+        "Gastric hemorrhage",
+        "Hypovolemic Shock",
+        "Peptic Ulcer"
+      ],
+      [
+        "Gastric hemorrhage",
+        "Melena",
+        "Peptic Ulcer"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Gastric hemorrhage)-CAUSES->(Gastric ulcer)-CAUSES->(Peptic Ulcer)",
+      "(Gastric hemorrhage)-CAUSES->(Hypovolemic Shock)-CAUSES->(Peptic Ulcer)",
+      "(Gastric hemorrhage)-CAUSES->(Melena)-CAUSES->(Peptic Ulcer)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Aspirin",
+        "Pharmaceutical Preparations",
+        "Prostaglandins"
+      ],
+      [
+        "Aspirin",
+        "Pathogenesis",
+        "Prostaglandins"
+      ],
+      [
+        "Aspirin",
+        "Pharmaceutical Preparations",
+        "Antiplatelet"
+      ],
+      [
+        "Aspirin",
+        "Pharmaceutical Preparations",
+        "Antiplatelet"
+      ],
+      [
+        "Antipyretic Effect",
+        "Interleukin-1 beta",
+        "Fever"
+      ],
+      [
+        "Antipyretic Effect",
+        "Interleukin-1 beta",
+        "Fever"
+      ],
+      [
+        "Aspirin",
+        "Pharmaceutical Preparations",
+        "Antiplatelet"
+      ],
+      [
+        "Aspirin",
+        "Pharmaceutical Preparations",
+        "Antiplatelet"
+      ],
+      [
+        "Antiplatelet",
+        "Phosphotransferases",
+        "T-Lymphocyte",
+        "Endothelium",
+        "Clot formation"
+      ],
+      [
+        "Antiplatelet",
+        "P2RY12 gene|P2RY12",
+        "T-Lymphocyte",
+        "Transplanted tissue",
+        "Clot formation"
+      ],
+      [
+        "Clot formation",
+        "Diabetes",
+        "Unstable angina"
+      ],
+      [
+        "Clot formation",
+        "Diabetes",
+        "Unstable angina"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "CAUSES"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "TREATS"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "DIAGNOSES",
+        "COMPLICATES"
+      ],
+      [
+        "DIAGNOSES",
+        "PREDISPOSES"
+      ]
+    ],
+    "paths": [
+      "(Aspirin)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Prostaglandins)",
+      "(Aspirin)-ASSOCIATED_WITH->(Pathogenesis)-ASSOCIATED_WITH->(Prostaglandins)",
+      "(Aspirin)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Antiplatelet)",
+      "(Aspirin)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Antiplatelet)",
+      "(Antipyretic Effect)-ASSOCIATED_WITH->(Interleukin-1 beta)-CAUSES->(Fever)",
+      "(Antipyretic Effect)-ASSOCIATED_WITH->(Interleukin-1 beta)-TREATS->(Fever)",
+      "(Aspirin)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Antiplatelet)",
+      "(Aspirin)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Antiplatelet)",
+      "(Antiplatelet)-INTERACTS_WITH->(Phosphotransferases)-INTERACTS_WITH->(T-Lymphocyte)-PART_OF->(Endothelium)-LOCATION_OF->(Clot formation)",
+      "(Antiplatelet)-INTERACTS_WITH->(P2RY12 gene|P2RY12)-INTERACTS_WITH->(T-Lymphocyte)-PART_OF->(Transplanted tissue)-LOCATION_OF->(Clot formation)",
+      "(Clot formation)-DIAGNOSES->(Diabetes)-COMPLICATES->(Unstable angina)",
+      "(Clot formation)-DIAGNOSES->(Diabetes)-PREDISPOSES->(Unstable angina)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Aspirin)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Prostaglandins)",
+      "(Aspirin)-ASSOCIATED_WITH->(Pathogenesis)-ASSOCIATED_WITH->(Prostaglandins)",
+      "(Aspirin)-INTERACTS_WITH/ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Antiplatelet)",
+      "(Antipyretic Effect)-ASSOCIATED_WITH->(Interleukin-1 beta)-1 beta)->(Fever)",
+      "(Clot formation)-DIAGNOSES->(Diabetes)-COMPLICATES/PREDISPOSES->(Unstable angina)",
+      "(Gastric hemorrhage)-CAUSES->(Gastric ulcer)-CAUSES->(Peptic Ulcer)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Aspirin\" -> \"inhibits prostaglandins\" -> \"reduces gastric mucosal protection\" -> \"increased risk of gastric bleeding\" -> \"peptic ulcer exacerbation\" -> 95%",
+    "CHAIN: \"Aspirin\" -> \"antiplatelet effect\" -> \"increased bleeding risk\" -> \"peptic ulcer bleeding\" -> 90%",
+    "CHAIN: \"Aspirin\" -> \"antipyretic effect\" -> \"reduces fever\" -> \"fever management\" -> 60%",
+    "CHAIN: \"Aspirin\" -> \"anti-inflammatory effect\" -> \"reduces myalgia\" -> \"myalgia management\" -> 70%",
+    "CHAIN: \"Aspirin\" -> \"antiplatelet effect\" -> \"prevents clot formation\" -> \"beneficial in unstable angina\" -> 80%"
+  ],
+  "enhanced_information": "Aspirin is contraindicated primarily in patients with peptic ulcers due to its ability to inhibit prostaglandins, which are crucial for maintaining gastric mucosal protection, thereby increasing the risk of gastric bleeding and exacerbating existing ulcers. The antiplatelet effect of aspirin also raises the risk of bleeding complications in these patients. In contrast, aspirin is beneficial in managing unstable angina due to its antiplatelet properties, and it is used for fever and myalgia management, making options related to fever and myalgia not contraindicated. Therefore, the correct answer is that aspirin is contraindicated in peptic ulcer.",
+  "analysis": "Aspirin is known to inhibit prostaglandins, which play a crucial role in protecting the gastric mucosa. This inhibition can lead to an increased risk of gastric bleeding, particularly in patients with peptic ulcers. Therefore, the use of aspirin is contraindicated in individuals with peptic ulcers due to the potential for exacerbating the condition and increasing the risk of complications. In contrast, aspirin is commonly used to manage fever and myalgia, and it is beneficial in the treatment of unstable angina due to its antiplatelet effects. Thus, the most appropriate answer, based on established medical knowledge, is that aspirin is contraindicated in peptic ulcer disease.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      1,
+      1,
+      0,
+      3
+    ],
+    "coverage_rates": [
+      28.57142857142857,
+      14.285714285714285,
+      14.285714285714285,
+      0.0,
+      42.857142857142854
+    ],
+    "total_successes": 7
+  },
+  "normal_results": []
+}

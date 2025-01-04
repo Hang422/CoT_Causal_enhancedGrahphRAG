@@ -1,0 +1,258 @@
+{
+  "question": "WHO recommended regime for the treatment of Brucella infection is ?",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Streptomycin with doxycycline",
+    "opb": "Rifampicin with doxycycline",
+    "opc": "Rifampicin with ciprofloxacin",
+    "opd": "Streptomycin with erythromycin"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Bacteria",
+        "Infection",
+        "Brucella"
+      ],
+      [
+        "Bacteria",
+        "Endocarditis",
+        "Brucella"
+      ],
+      [
+        "Bacteria",
+        "INFECTIOUS PROCESS",
+        "Brucella"
+      ],
+      [
+        "Bacteria",
+        "Orchitis",
+        "Brucella"
+      ],
+      [
+        "Bacteria",
+        "Anemia",
+        "Brucella"
+      ],
+      [
+        "Streptomycin",
+        "Infection",
+        "Brucellosis"
+      ],
+      [
+        "Streptomycin",
+        "Tuberculosis",
+        "Brucellosis"
+      ],
+      [
+        "DNA Gyrase",
+        "Antimicrobial activity",
+        "Disease",
+        "Brucella"
+      ],
+      [
+        "DNA Gyrase",
+        "Antimicrobial activity",
+        "Infection",
+        "Brucella"
+      ],
+      [
+        "DNA Gyrase",
+        "Antimicrobial activity",
+        "Pneumonia",
+        "Brucella"
+      ],
+      [
+        "DNA Gyrase",
+        "Antimicrobial activity",
+        "Respiratory Tract Infections",
+        "Brucella"
+      ],
+      [
+        "Ciprofloxacin",
+        "Brucellosis"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES"
+      ],
+      [
+        "CAUSES",
+        "PREDISPOSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PREDISPOSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PREDISPOSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PREDISPOSES",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Bacteria)-CAUSES->(Infection)-PROCESS_OF->(Brucella)",
+      "(Bacteria)-CAUSES->(Endocarditis)-PROCESS_OF->(Brucella)",
+      "(Bacteria)-CAUSES->(INFECTIOUS PROCESS)-PROCESS_OF->(Brucella)",
+      "(Bacteria)-CAUSES->(Orchitis)-PROCESS_OF->(Brucella)",
+      "(Bacteria)-CAUSES->(Anemia)-PROCESS_OF->(Brucella)",
+      "(Streptomycin)-TREATS->(Infection)-CAUSES->(Brucellosis)",
+      "(Streptomycin)-TREATS->(Tuberculosis)-PREDISPOSES->(Brucellosis)",
+      "(DNA Gyrase)-CAUSES->(Antimicrobial activity)-PREDISPOSES->(Disease)-PROCESS_OF->(Brucella)",
+      "(DNA Gyrase)-CAUSES->(Antimicrobial activity)-PREDISPOSES->(Infection)-PROCESS_OF->(Brucella)",
+      "(DNA Gyrase)-CAUSES->(Antimicrobial activity)-PREDISPOSES->(Pneumonia)-PROCESS_OF->(Brucella)",
+      "(DNA Gyrase)-CAUSES->(Antimicrobial activity)-PREDISPOSES->(Respiratory Tract Infections)-PROCESS_OF->(Brucella)",
+      "(Ciprofloxacin)-TREATS->(Brucellosis)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Streptomycin",
+        "Disease",
+        "Actinobacteria class",
+        "Antibiotics, Aminoglycoside"
+      ],
+      [
+        "Streptomycin",
+        "Disease",
+        "Salmonella typhimurium",
+        "Antibiotics, Aminoglycoside"
+      ],
+      [
+        "Streptomycin",
+        "Disease",
+        "Actinobacteria class",
+        "Antibiotics, Aminoglycoside"
+      ],
+      [
+        "Antibiotics, Aminoglycoside",
+        "Disease",
+        "Brucella"
+      ],
+      [
+        "Antibiotics, Aminoglycoside",
+        "Infection",
+        "Brucella"
+      ],
+      [
+        "Antibiotics, Aminoglycoside",
+        "Disease",
+        "Brucella"
+      ]
+    ],
+    "relationships": [
+      [
+        "ASSOCIATED_WITH",
+        "PROCESS_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "PROCESS_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "ASSOCIATED_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "PROCESS_OF"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "PROCESS_OF"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Streptomycin)-ASSOCIATED_WITH->(Disease)-PROCESS_OF->(Actinobacteria class)-LOCATION_OF->(Antibiotics, Aminoglycoside)",
+      "(Streptomycin)-ASSOCIATED_WITH->(Disease)-PROCESS_OF->(Salmonella typhimurium)-LOCATION_OF->(Antibiotics, Aminoglycoside)",
+      "(Streptomycin)-ASSOCIATED_WITH->(Disease)-ASSOCIATED_WITH->(Actinobacteria class)-LOCATION_OF->(Antibiotics, Aminoglycoside)",
+      "(Antibiotics, Aminoglycoside)-ASSOCIATED_WITH->(Disease)-PROCESS_OF->(Brucella)",
+      "(Antibiotics, Aminoglycoside)-ASSOCIATED_WITH->(Infection)-PROCESS_OF->(Brucella)",
+      "(Antibiotics, Aminoglycoside)-ASSOCIATED_WITH->(Disease)-ASSOCIATED_WITH->(Brucella)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Ciprofloxacin)-TREATS->(Brucellosis)",
+      "(Streptomycin)-ASSOCIATED_WITH->(Disease)-ASSOCIATED_WITH/PROCESS_OF->(Actinobacteria class)-LOCATION_OF->(Antibiotics, Aminoglycoside)",
+      "(Streptomycin)-ASSOCIATED_WITH->(Disease)-PROCESS_OF->(Salmonella typhimurium)-LOCATION_OF->(Antibiotics, Aminoglycoside)",
+      "(Streptomycin)-TREATS->(Infection)-CAUSES->(Brucellosis)",
+      "(Streptomycin)-TREATS->(Tuberculosis)-PREDISPOSES->(Brucellosis)",
+      "(Antibiotics, Aminoglycoside)-ASSOCIATED_WITH->(Disease)-ASSOCIATED_WITH/PROCESS_OF->(Brucella)",
+      "(Antibiotics, Aminoglycoside)-ASSOCIATED_WITH->(Infection)-PROCESS_OF->(Brucella)",
+      "(Bacteria)-CAUSES->(Infection)-PROCESS_OF->(Brucella)",
+      "(Bacteria)-CAUSES->(Endocarditis)-PROCESS_OF->(Brucella)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: Brucella infection -> Intracellular pathogen -> Requires antibiotics that penetrate cells -> 90% CHAIN: Streptomycin -> Aminoglycoside antibiotic -> Effective against Brucella -> 80% CHAIN: Doxycycline -> Tetracycline antibiotic -> Inhibits protein synthesis in bacteria -> Effective against Brucella -> 85% CHAIN: Streptomycin with doxycycline -> WHO recommended regime for Brucella infection -> 95% CHAIN: Rifampicin -> Inhibits bacterial RNA synthesis -> Effective against Brucella -> 80% CHAIN: Ciprofloxacin -> Fluoroquinolone antibiotic -> Inhibits bacterial DNA gyrase -> Effective against Brucella -> 75% CHAIN: Rifampicin with ciprofloxacin -> Possible alternative regime for Brucella infection -> 70% CHAIN: Erythromycin -> Macrolide antibiotic -> Limited efficacy against Brucella -> Not recommended by WHO -> 90%"
+  ],
+  "enhanced_information": "The WHO recommended regime for the treatment of Brucella infection is Streptomycin with doxycycline. Streptomycin is an aminoglycoside antibiotic effective against Brucella, and doxycycline, a tetracycline antibiotic, inhibits protein synthesis in bacteria, also effective against Brucella. This combination is supported by WHO guidelines.",
+  "analysis": "The core medical principle for treating Brucella infection is the combination of Streptomycin, an aminoglycoside antibiotic effective against Brucella, with doxycycline, a tetracycline antibiotic that inhibits protein synthesis in bacteria. This combination is in line with WHO guidelines and is a well-established treatment regimen for Brucella infections.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      6
+    ],
+    "coverage_rates": [
+      100.0
+    ],
+    "total_successes": 6
+  },
+  "normal_results": []
+}

@@ -1,0 +1,112 @@
+{
+  "question": "Mark the true statement regarding use of Lithium in maniac-depressive psychosis?",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Monotherapy for acute episodes",
+    "opb": "Monitoring of serum concentration is not useful for guiding dose adjustment",
+    "opc": "Can result in leucocytosis",
+    "opd": "Can result in hypehyroidism on long term use"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Lithium",
+        "Leukocytosis"
+      ],
+      [
+        "Leukocytosis",
+        "Myocardial Infarction",
+        "Adverse effects"
+      ],
+      [
+        "Leukocytosis",
+        "Disease",
+        "Adverse effects"
+      ],
+      [
+        "Leukocytosis",
+        "Infection",
+        "Adverse effects"
+      ],
+      [
+        "Lithium",
+        "Hypothyroidism"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES"
+      ]
+    ],
+    "paths": [
+      "(Lithium)-TREATS->(Leukocytosis)",
+      "(Leukocytosis)-CAUSES->(Myocardial Infarction)-CAUSES->(Adverse effects)",
+      "(Leukocytosis)-PREDISPOSES->(Disease)-CAUSES->(Adverse effects)",
+      "(Leukocytosis)-PREDISPOSES->(Infection)-CAUSES->(Adverse effects)",
+      "(Lithium)-PREDISPOSES->(Hypothyroidism)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Lithium)-TREATS->(Leukocytosis)",
+      "(Lithium)-PREDISPOSES->(Hypothyroidism)",
+      "(Leukocytosis)-CAUSES->(Myocardial Infarction)-CAUSES->(Adverse effects)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Lithium is used in the treatment of bipolar disorder\" -> \"Effective for acute manic episodes\" -> \"Can be used as monotherapy\" -> 85%",
+    "CHAIN: \"Monitoring serum concentration of Lithium is standard practice\" -> \"Helps to avoid toxicity\" -> \"Guides dose adjustment\" -> 90%",
+    "CHAIN: \"Lithium can affect blood cell counts\" -> \"May lead to leucocytosis\" -> \"Possible side effect\" -> 70%",
+    "CHAIN: \"Long-term use of Lithium can affect thyroid function\" -> \"Can result in hypothyroidism\" -> \"Not typically associated with hyperthyroidism\" -> 80%"
+  ],
+  "enhanced_information": "Lithium is indeed used as a monotherapy for acute manic episodes in bipolar disorder, making option (a) true. Monitoring serum concentration of Lithium is crucial for avoiding toxicity and guiding dose adjustments, contradicting option (b). While Lithium can affect blood cell counts, it is more commonly associated with leukocytosis rather than being a direct cause, which makes option (c) less definitive. Long-term use of Lithium is primarily linked to hypothyroidism, not hyperthyroidism, thus option (d) is incorrect. Therefore, the correct statement regarding the use of Lithium in manic-depressive psychosis is that it can be used as monotherapy for acute episodes.",
+  "analysis": "Lithium is a well-established treatment for bipolar disorder, particularly effective in managing acute manic episodes. It is commonly used as monotherapy for these episodes, supporting option (a) as true. Monitoring serum lithium levels is critical to prevent toxicity and guide dosage adjustments, which contradicts option (b). While lithium can lead to changes in white blood cell counts, it is more accurately associated with leukocytosis rather than being a direct cause, making option (c) less definitive. Long-term use of lithium is more commonly linked to hypothyroidism rather than hyperthyroidism, thus option (d) is incorrect. Therefore, the most accurate statement regarding the use of lithium in manic-depressive psychosis is that it can be used as monotherapy for acute episodes.",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      2,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      66.66666666666666,
+      33.33333333333333
+    ],
+    "total_successes": 3
+  },
+  "normal_results": []
+}

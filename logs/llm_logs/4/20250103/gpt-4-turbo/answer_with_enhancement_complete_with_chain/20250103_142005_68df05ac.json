@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_142005",
+  "model": "gpt-4-turbo",
+  "interaction_type": "answer_with_enhancement_complete_with_chain",
+  "question_id": "68df05ac",
+  "question_text": "Aminoglycoside affects ?",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on enhanced information."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.\n                    You are a medical expert determining the final answer.\n\n            ### Instructions:\n            - Use standard medical knowledge as the primary guide.\n            - Consider enhanced information only if it aligns with consensus.\n            - If conflicting or unclear, present the most likely correct answer based on known facts.\n            - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.\n\n\n                    ### Question\n                    Aminoglycoside affects ?\n\n                    ### Options\n                    opa. Outer hair cells in basal area\nopb. Inner hair cells in basal area\nopc. Outer hair cells in apical area\nopd. Inner hair cells in apical area\n\n### Enhanced Information (For Contextual Support):\nAminoglycosides predominantly damage the outer hair cells in the basal area of the cochlea. This effect is due to the higher susceptibility of outer hair cells to the ototoxic effects of these antibiotics, with damage typically initiating in the region responsible for high-frequency sound processing.\n\n                    ### Task:\n                1. Identify the core medical principle and the most likely correct option based on consensus.\n                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.\n                3. Provide a final analysis and a confidence score (0-100%).\n\n                ### Output Format:\n                {\n                  \"final_analysis\": \"Step-by-step reasoning, prioritizing medical consensus and acknowledging complexity if present.\",\n                  \"answer\": \"Option key (e.g. opa, opb, ...)\",\n                  \"confidence\": A number between 0-100\n                }\n                    "
+    }
+  ],
+  "response": "{\n  \"final_analysis\": \"Aminoglycosides are a class of antibiotics known for their potential ototoxic effects, which can lead to hearing loss. The ototoxicity primarily affects the hair cells in the cochlea of the inner ear. The enhanced information provided aligns with standard medical knowledge indicating that aminoglycosides predominantly damage the outer hair cells in the basal area of the cochlea. This region is responsible for processing high-frequency sounds, and the outer hair cells are more susceptible to damage from these antibiotics. Therefore, based on the consensus in medical literature and the specific information provided, the most likely correct answer is that aminoglycosides affect the outer hair cells in the basal area.\",\n  \"answer\": \"opa\",\n  \"confidence\": 95\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": true,
+    "has_enhanced_info": true,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

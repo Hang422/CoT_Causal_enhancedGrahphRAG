@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250104_020646",
+  "model": "gpt-4o",
+  "interaction_type": "answer_with_enhancement_without_enhancer",
+  "question_id": "3214e91b",
+  "question_text": "Which of the following most often causes cholestatic jaundice:",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on enhanced information."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.\n                    You are a medical expert determining the final answer.\n\n            ### Instructions:\n            - Use standard medical knowledge as the primary guide.\n            - Consider enhanced information only if it aligns with consensus.\n            - If conflicting or unclear, present the most likely correct answer based on known facts.\n            - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.\n\n\n                    ### Question\n                    Which of the following most often causes cholestatic jaundice:\n\n                    ### Options\n                    opa. INH\nopb. Erythromycin estolate\nopc. Pyrazinamide\nopd. Ethionamide\n\n### Enhanced Information (For Contextual Support):\nCholestatic jaundice is most commonly associated with drugs that impair bile flow. Erythromycin estolate is known to cause cholestatic jaundice due to its effect on liver enzyme inhibition, leading to impaired bile flow. This aligns with the consensus that erythromycin estolate is a well-documented cause of cholestatic jaundice. INH (isoniazid), pyrazinamide, and ethionamide are more commonly associated with hepatocellular damage and hepatitis, which can lead to jaundice, but not specifically cholestatic jaundice. The evidence paths broadly support the association of these drugs with liver enzyme interactions and hepatitis, but they do not specifically address cholestatic jaundice. Therefore, erythromycin estolate is the most likely cause of cholestatic jaundice among the options provided.\n\n                    ### Task:\n                1. Identify the core medical principle and the most likely correct option based on consensus.\n                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.\n                3. Provide a final analysis and a confidence score (0-100%).\n\n                ### Output Format:\n                {\n                  \"final_analysis\": \"Step-by-step reasoning, prioritizing medical consensus and acknowledging complexity if present.\",\n                  \"answer\": \"Option key (e.g. opa, opb, ...)\",\n                  \"confidence\": A number between 0-100\n                }\n                    "
+    }
+  ],
+  "response": "```json\n{\n  \"final_analysis\": \"Cholestatic jaundice is a condition where there is an impairment in bile flow, often due to drug-induced liver injury. Among the options provided, erythromycin estolate is well-documented in medical literature as a cause of cholestatic jaundice. This is due to its ability to inhibit liver enzymes, leading to impaired bile flow. In contrast, INH (isoniazid), pyrazinamide, and ethionamide are more commonly associated with hepatocellular damage and hepatitis, which can result in jaundice but not specifically cholestatic jaundice. Therefore, based on standard medical knowledge and consensus, erythromycin estolate is the most likely cause of cholestatic jaundice among the options provided.\",\n  \"answer\": \"opb\",\n  \"confidence\": 95\n}\n```",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": true,
+    "has_enhanced_info": true,
+    "model_config": "gpt-4o",
+    "temperature": 0.0
+  }
+}

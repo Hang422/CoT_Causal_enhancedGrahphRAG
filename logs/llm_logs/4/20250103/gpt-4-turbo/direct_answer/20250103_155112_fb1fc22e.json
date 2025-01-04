@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_155112",
+  "model": "gpt-4-turbo",
+  "interaction_type": "direct_answer",
+  "question_id": "fb1fc22e",
+  "question_text": "Drug of choice for peptic ulcer disease caused by chronic use of NSAIDS:",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on medical knowledge."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.Please help answer this multiple choice question:\n\nQuestion: Drug of choice for peptic ulcer disease caused by chronic use of NSAIDS:\n\nOptions:\nopa. Pirenzepine\nopb. Loratadine\nopc. Misoprostol\nopd. Esomeprazole\n\n        ### Output Format\n        Provide your response in valid JSON format:\n        {   \n            \"final_analysis\": \"Your concise analysis following the above structure\",\n            \"answer\": \"Option key from the available options (only key,like opa)\",\n            \"confidence\": Score between 0-100 based on alignment with established medical facts\n        }\n        "
+    }
+  ],
+  "response": "{\n    \"final_analysis\": \"Misoprostol is the drug of choice for peptic ulcer disease caused by chronic use of NSAIDs. It is a prostaglandin analog that helps in protecting the gastric lining by increasing mucus and bicarbonate production and enhancing blood flow, thereby reducing the risk of ulcers. Esomeprazole, a proton pump inhibitor, is also used for treating NSAID-induced ulcers, but Misoprostol is specifically indicated when prevention of these ulcers is required, especially in high-risk patients. Pirenzepine and Loratadine are not appropriate for this condition; Pirenzepine is an antimuscarinic agent used less commonly for peptic ulcers, and Loratadine is an antihistamine used for allergies.\",\n    \"answer\": \"opc\",\n    \"confidence\": 95\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

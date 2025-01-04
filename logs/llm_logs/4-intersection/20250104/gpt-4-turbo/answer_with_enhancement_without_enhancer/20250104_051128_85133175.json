@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250104_051128",
+  "model": "gpt-4-turbo",
+  "interaction_type": "answer_with_enhancement_without_enhancer",
+  "question_id": "85133175",
+  "question_text": "Hyperprolactinemia is a side effect of",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on enhanced information."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.\n                    You are a medical expert determining the final answer.\n\n            ### Instructions:\n            - Use standard medical knowledge as the primary guide.\n            - Consider enhanced information only if it aligns with consensus.\n            - If conflicting or unclear, present the most likely correct answer based on known facts.\n            - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.\n\n\n                    ### Question\n                    Hyperprolactinemia is a side effect of\n\n                    ### Options\n                    opa. Bromocriptine\nopb. Levodopa\nopc. Amantadine\nopd. Metoclopramide\n\n### Enhanced Information (For Contextual Support):\nHyperprolactinemia is most likely caused by Metoclopramide, which blocks dopamine receptors, leading to increased prolactin release. Bromocriptine, Levodopa, and Amantadine, which either act as dopamine agonists or increase dopamine levels, are unlikely to cause hyperprolactinemia as they typically decrease prolactin release.\n\n                    ### Task:\n                1. Identify the core medical principle and the most likely correct option based on consensus.\n                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.\n                3. Provide a final analysis and a confidence score (0-100%).\n\n                ### Output Format:\n                {\n                  \"final_analysis\": \"Step-by-step reasoning, prioritizing medical consensus and acknowledging complexity if present.\",\n                  \"answer\": \"Option key (e.g. opa, opb, ...)\",\n                  \"confidence\": A number between 0-100\n                }\n                    "
+    }
+  ],
+  "response": "### Core Medical Principle:\nHyperprolactinemia refers to an abnormally high level of prolactin in the blood. Prolactin is a hormone produced by the pituitary gland that primarily regulates lactation (milk production) but also affects other functions such as reproductive health and metabolism. Drugs that interfere with dopamine, a neurotransmitter that inhibits prolactin secretion, can lead to hyperprolactinemia.\n\n### Analysis of Options:\n- **opa. Bromocriptine**: This is a dopamine agonist primarily used to treat disorders like Parkinson's disease and hyperprolactinemia itself. By mimicking dopamine, it reduces prolactin levels, thus it is not likely to cause hyperprolactinemia.\n  \n- **opb. Levodopa**: Used in the treatment of Parkinson’s disease, it is converted into dopamine in the body, which should theoretically reduce prolactin levels. Therefore, it is unlikely to cause hyperprolactinemia.\n  \n- **opc. Amantadine**: Also used to treat Parkinson's disease, it increases dopamine release. Similar to levodopa, it would typically decrease prolactin levels, making it an unlikely cause of hyperprolactinemia.\n  \n- **opd. Metoclopramide**: This drug is used as an antiemetic and for gastroparesis. It works by blocking dopamine receptors in the gastrointestinal tract but also affects the brain, which can lead to increased prolactin levels by preventing dopamine from inhibiting prolactin release.\n\n### Conclusion:\nBased on the mechanism of action of the drugs listed, Metoclopramide is the most likely to cause hyperprolactinemia because it blocks dopamine receptors, leading to an increase in prolactin levels. This aligns with standard medical knowledge and the enhanced information provided.\n\n### Final Analysis:\nMetoclopramide is known to cause hyperprolactinemia due to its antagonistic effects on dopamine receptors, which inhibits the normal suppression of prolactin secretion by dopamine. The other options, being associated with increased dopamine activity, would typically lower prolactin levels and thus are not associated with causing hyperprolactinemia.\n\n```json\n{\n  \"final_analysis\": \"Metoclopramide, by blocking dopamine receptors, inhibits the dopamine-mediated suppression of prolactin secretion, leading to hyperprolactinemia. This mechanism is well-documented in medical literature, making it the most likely cause among the options provided.\",\n  \"answer\": \"opd\",\n  \"confidence\": 95\n}\n```",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": true,
+    "has_enhanced_info": true,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

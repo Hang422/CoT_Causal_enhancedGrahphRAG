@@ -1,0 +1,138 @@
+{
+  "question": "Drug indicated in case of subarachnoid hemorrhage:",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Nimodipine",
+    "opb": "Amlodipine",
+    "opc": "Diltiazem",
+    "opd": "Verapamil"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Subarachnoid Hemorrhage",
+        "Vasospasm"
+      ],
+      [
+        "Subarachnoid Hemorrhage",
+        "Vasospasm"
+      ],
+      [
+        "Calcium Channel Blockers",
+        "Cerebral Vasospasm"
+      ],
+      [
+        "Nimodipine",
+        "Cerebral Vasospasm"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Subarachnoid Hemorrhage)-CAUSES->(Vasospasm)",
+      "(Subarachnoid Hemorrhage)-CAUSES->(Vasospasm)",
+      "(Calcium Channel Blockers)-TREATS->(Cerebral Vasospasm)",
+      "(Nimodipine)-TREATS->(Cerebral Vasospasm)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Subarachnoid Hemorrhage",
+        "Vasodilation",
+        "Calcium Channel Blockers"
+      ],
+      [
+        "Subarachnoid Hemorrhage",
+        "Disease",
+        "Obstetric Labor, Premature",
+        "Amlodipine"
+      ],
+      [
+        "Subarachnoid Hemorrhage",
+        "Disease",
+        "Obstetric Labor, Premature",
+        "Amlodipine"
+      ]
+    ],
+    "relationships": [
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "COMPLICATES",
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Subarachnoid Hemorrhage)-MANIFESTATION_OF->(Vasodilation)-ASSOCIATED_WITH->(Calcium Channel Blockers)",
+      "(Subarachnoid Hemorrhage)-COMPLICATES->(Disease)-CAUSES->(Obstetric Labor, Premature)-ASSOCIATED_WITH->(Amlodipine)",
+      "(Subarachnoid Hemorrhage)-MANIFESTATION_OF->(Disease)-CAUSES->(Obstetric Labor, Premature)-ASSOCIATED_WITH->(Amlodipine)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Nimodipine)-TREATS->(Cerebral Vasospasm)",
+      "(Subarachnoid Hemorrhage)-COMPLICATES/MANIFESTATION_OF->(Disease)-CAUSES->(Obstetric Labor, Premature)-ASSOCIATED_WITH->(Amlodipine)",
+      "(Calcium Channel Blockers)-TREATS->(Cerebral Vasospasm)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Subarachnoid hemorrhage\" -> \"risk of vasospasm\" -> \"need for vasodilator therapy\" -> \"Nimodipine indicated\" -> 95%",
+    "CHAIN: \"Subarachnoid hemorrhage\" -> \"increased intracranial pressure\" -> \"requirement for blood pressure management\" -> \"Nimodipine used to prevent complications\" -> 90%",
+    "CHAIN: \"Subarachnoid hemorrhage\" -> \"vasospasm occurs in 30- -> 70%",
+    "CHAIN: \"Subarachnoid hemorrhage\" -> \"Nimodipine is a calcium channel blocker\" -> \"specifically indicated for cerebral vasospasm\" -> \"improves cerebral blood flow\" -> 90%",
+    "CHAIN: \"Subarachnoid hemorrhage\" -> \"Amlodipine, Diltiazem, and Verapamil are calcium channel blockers\" -> \"not specifically indicated for vasospasm prevention\" -> \"less effective than Nimodipine\" -> 80%"
+  ],
+  "enhanced_information": "Nimodipine is the drug indicated for subarachnoid hemorrhage due to its specific efficacy in preventing cerebral vasospasm, a common complication following this condition. The reasoning chain correctly identifies that subarachnoid hemorrhage leads to vasospasm, necessitating vasodilator therapy, and that Nimodipine, a calcium channel blocker, is specifically indicated for this purpose. Other calcium channel blockers such as Amlodipine, Diltiazem, and Verapamil are not specifically indicated for vasospasm prevention and are considered less effective than Nimodipine in this context. Evidence supports that Nimodipine treats cerebral vasospasm, confirming its role in managing complications from subarachnoid hemorrhage.",
+  "analysis": "Subarachnoid hemorrhage is a serious condition that can lead to cerebral vasospasm, a complication that can cause further brain damage. The primary goal in managing this complication is to prevent or treat the vasospasm. Nimodipine, a calcium channel blocker, is specifically indicated for this purpose due to its ability to selectively dilate cerebral blood vessels and improve neurological outcomes. Other calcium channel blockers like Amlodipine, Diltiazem, and Verapamil are not specifically indicated for this condition and do not have the same efficacy in preventing cerebral vasospasm. Therefore, based on standard medical knowledge and consensus, Nimodipine is the drug of choice for subarachnoid hemorrhage.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      0,
+      1,
+      3,
+      1
+    ],
+    "coverage_rates": [
+      16.666666666666664,
+      0.0,
+      16.666666666666664,
+      50.0,
+      16.666666666666664
+    ],
+    "total_successes": 6
+  },
+  "normal_results": []
+}

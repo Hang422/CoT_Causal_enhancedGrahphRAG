@@ -1,0 +1,119 @@
+{
+  "question": "Which among the following drug is contra-indicated in renal failure?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Pethidine",
+    "opb": "Morphine",
+    "opc": "Fentanyl",
+    "opd": "Atracurium"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "normeperidine",
+        "Kidney Failure"
+      ],
+      [
+        "Atracurium",
+        "Disease",
+        "Excretory function"
+      ],
+      [
+        "Atracurium",
+        "Kidney Failure, Chronic",
+        "Excretory function"
+      ],
+      [
+        "Atracurium",
+        "Liver diseases",
+        "Excretory function"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ]
+    ],
+    "paths": [
+      "(normeperidine)-TREATS->(Kidney Failure)",
+      "(Atracurium)-TREATS->(Disease)-MANIFESTATION_OF->(Excretory function)",
+      "(Atracurium)-TREATS->(Kidney Failure, Chronic)-MANIFESTATION_OF->(Excretory function)",
+      "(Atracurium)-TREATS->(Liver diseases)-MANIFESTATION_OF->(Excretory function)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Meperidine",
+        "Pharmaceutical Preparations",
+        "CYP2C19 gene|CYP2C19",
+        "normeperidine"
+      ]
+    ],
+    "relationships": [
+      [
+        "ISA",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Meperidine)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(CYP2C19 gene|CYP2C19)-INTERACTS_WITH->(normeperidine)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Atracurium)-TREATS->(Kidney Failure, Chronic)-MANIFESTATION_OF->(Excretory function)",
+      "(normeperidine)-TREATS->(Kidney Failure)",
+      "(Atracurium)-TREATS->(Disease)-MANIFESTATION_OF->(Excretory function)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Pethidine\" -> \"metabolized to normeperidine\" -> \"accumulation in renal failure\" -> \"neurotoxicity risk\" -> 95%",
+    "CHAIN: \"Morphine\" -> \"metabolized to active metabolites\" -> \"accumulation in renal failure\" -> \"increased sedation risk\" -> 85%",
+    "CHAIN: \"Fentanyl\" -> \"minimal active metabolites\" -> \"less accumulation in renal failure\" -> \"safer option\" -> 70%",
+    "CHAIN: \"Atracurium\" -> \"Hofmann elimination\" -> \"independent of renal function\" -> \"safe in renal failure\" -> 90%"
+  ],
+  "enhanced_information": "Pethidine is contraindicated in renal failure due to its metabolism to normeperidine, which can accumulate and lead to neurotoxicity. Morphine is also problematic as it is metabolized to active metabolites that can accumulate in renal failure, increasing the risk of sedation. Fentanyl, however, has minimal active metabolites and is considered safer in renal failure due to less accumulation. Atracurium is metabolized via Hofmann elimination and is independent of renal function, making it safe for use in patients with renal failure. Therefore, both Pethidine and Morphine are contraindicated in renal failure, while Fentanyl and Atracurium are safer alternatives.",
+  "analysis": "In patients with renal failure, the accumulation of drug metabolites can lead to increased toxicity and adverse effects. Pethidine is contraindicated due to its metabolite normeperidine, which can cause neurotoxicity. Morphine is also problematic as it is metabolized to active metabolites that can accumulate in renal failure, leading to increased sedation and respiratory depression. Fentanyl is generally considered safer in renal failure because it has minimal active metabolites and does not significantly accumulate. Atracurium is metabolized through a process that is independent of renal function, making it safe for use in these patients. Therefore, both Pethidine and Morphine are contraindicated in renal failure, while Fentanyl and Atracurium are safer alternatives. Given this information, the most likely correct answer is Pethidine as it is specifically contraindicated in renal failure due to its toxic metabolite. Morphine is also problematic but is not as strictly contraindicated as Pethidine. Thus, the best-supported option is Pethidine.",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      0,
+      0,
+      1
+    ],
+    "coverage_rates": [
+      66.66666666666666,
+      0.0,
+      0.0,
+      33.33333333333333
+    ],
+    "total_successes": 3
+  },
+  "normal_results": []
+}

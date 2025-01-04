@@ -1,0 +1,121 @@
+{
+  "question": "Which is not secreted by stomach?",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Lipase",
+    "opb": "Pepsinogens",
+    "opc": "HCI",
+    "opd": "None"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Lipase",
+        "Fat absorption",
+        "Pancreas"
+      ],
+      [
+        "Pancreas",
+        "Pancreatitis",
+        "Neutrophil Infiltration",
+        "Stomach"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Lipase)-CAUSES->(Fat absorption)-PROCESS_OF->(Pancreas)",
+      "(Pancreas)-CAUSES->(Pancreatitis)-MANIFESTATION_OF->(Neutrophil Infiltration)-PROCESS_OF->(Stomach)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Pepsinogens",
+        "Parietal Cells, Gastric",
+        "Stomach"
+      ],
+      [
+        "Pepsinogens",
+        "Chief Cell",
+        "Stomach"
+      ],
+      [
+        "Pepsinogens",
+        "Cells",
+        "Stomach"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "PART_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "PART_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "PART_OF"
+      ]
+    ],
+    "paths": [
+      "(Pepsinogens)-INTERACTS_WITH->(Parietal Cells, Gastric)-PART_OF->(Stomach)",
+      "(Pepsinogens)-INTERACTS_WITH->(Chief Cell)-PART_OF->(Stomach)",
+      "(Pepsinogens)-INTERACTS_WITH->(Cells)-PART_OF->(Stomach)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Pepsinogens)-INTERACTS_WITH->(Parietal Cells, Gastric)-PART_OF->(Stomach)",
+      "(Pepsinogens)-INTERACTS_WITH->(Chief Cell)-PART_OF->(Stomach)",
+      "(Pepsinogens)-INTERACTS_WITH->(Cells)-PART_OF->(Stomach)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Lipase\" -> \"produced by pancreas\" -> \"not secreted by stomach\" -> 95%",
+    "CHAIN: \"Pepsinogens\" -> \"secreted by stomach\" -> \"converted to pepsin\" -> 90%",
+    "CHAIN: \"HCl\" -> \"secreted by stomach\" -> \"aids digestion\" -> 90%",
+    "CHAIN: \"None\" -> \"all options considered\" -> \"lipase not secreted by stomach\" -> 85%"
+  ],
+  "enhanced_information": "Lipase is primarily produced by the pancreas and not secreted by the stomach, aligning with the consensus that the stomach does not secrete lipase. Pepsinogens are secreted by the stomach, specifically by chief cells, and are converted to pepsin, which is supported by evidence paths showing interactions with gastric cells. Hydrochloric acid (HCl) is also secreted by the stomach and plays a role in digestion. Therefore, the correct answer is that lipase is not secreted by the stomach.",
+  "analysis": "The stomach is known to secrete pepsinogens and hydrochloric acid (HCl). Pepsinogens are secreted by the chief cells and are converted into pepsin, an enzyme that aids in protein digestion. Hydrochloric acid is secreted by the parietal cells and helps maintain the acidic environment necessary for pepsin activity. While the stomach does produce a small amount of gastric lipase, the primary source of lipase is the pancreas, which secretes pancreatic lipase into the small intestine. Therefore, based on standard medical knowledge, lipase is not primarily secreted by the stomach, making it the correct answer to the question.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      1,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      66.66666666666666,
+      33.33333333333333,
+      0.0,
+      0.0
+    ],
+    "total_successes": 3
+  },
+  "normal_results": []
+}

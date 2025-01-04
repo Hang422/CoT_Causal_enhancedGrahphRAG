@@ -1,0 +1,129 @@
+{
+  "question": "Which of the following is not an action of epinephrine when administered intravenously in a high dose?",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Increases liver glycogenolysis",
+    "opb": "Causes broachiolar constriction",
+    "opc": "Evokes extrasystoles in the heart",
+    "opd": "Produces restlessness and anxiety"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Epinephrine",
+        "Cells",
+        "beta-adrenergic receptor"
+      ],
+      [
+        "Epinephrine",
+        "Tachycardia",
+        "beta-adrenergic receptor"
+      ],
+      [
+        "Epinephrine",
+        "Cells",
+        "alpha-adrenergic receptor"
+      ],
+      [
+        "Epinephrine",
+        "Pathogenesis",
+        "alpha-adrenergic receptor"
+      ],
+      [
+        "Epinephrine",
+        "Cells",
+        "beta-2 Adrenergic Receptors"
+      ],
+      [
+        "Epinephrine",
+        "Pathogenesis",
+        "beta-2 Adrenergic Receptors"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Epinephrine)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(beta-adrenergic receptor)",
+      "(Epinephrine)-CAUSES->(Tachycardia)-ASSOCIATED_WITH->(beta-adrenergic receptor)",
+      "(Epinephrine)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(alpha-adrenergic receptor)",
+      "(Epinephrine)-ASSOCIATED_WITH->(Pathogenesis)-ASSOCIATED_WITH->(alpha-adrenergic receptor)",
+      "(Epinephrine)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(beta-2 Adrenergic Receptors)",
+      "(Epinephrine)-ASSOCIATED_WITH->(Pathogenesis)-ASSOCIATED_WITH->(beta-2 Adrenergic Receptors)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Epinephrine)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(beta-adrenergic receptor)",
+      "(Epinephrine)-CAUSES->(Tachycardia)-ASSOCIATED_WITH->(beta-adrenergic receptor)",
+      "(Epinephrine)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(alpha-adrenergic receptor)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Epinephrine administered intravenously\" -> \"stimulates beta-adrenergic receptors\" -> \"increases heart rate and contractility\" -> \"evokes extrasystoles in the heart\" -> 90%",
+    "CHAIN: \"Epinephrine administered intravenously\" -> \"stimulates alpha-adrenergic receptors\" -> \"increases liver glycogenolysis\" -> 90%",
+    "CHAIN: \"Epinephrine administered intravenously\" -> \"stimulates beta-2 adrenergic receptors\" -> \"causes bronchodilation\" -> \"possible confusion with bronchiolar constriction\" -> 70%",
+    "CHAIN: \"Epinephrine administered intravenously\" -> \"activates the central nervous system\" -> \"produces restlessness and anxiety\" -> 90%",
+    "CHAIN: \"Epinephrine administered intravenously\" -> \"causes vasoconstriction\" -> \"increases blood pressure\" -> \"not related to bronchiolar constriction\" -> 85%"
+  ],
+  "enhanced_information": "Epinephrine, when administered intravenously in high doses, primarily stimulates beta-adrenergic receptors, leading to increased heart rate and contractility, which can evoke extrasystoles in the heart. It also stimulates alpha-adrenergic receptors, resulting in increased liver glycogenolysis. Importantly, epinephrine stimulates beta-2 adrenergic receptors, causing bronchodilation, not bronchiolar constriction. Additionally, it activates the central nervous system, which can produce restlessness and anxiety. Therefore, the action that is not associated with high-dose epinephrine is 'causes bronchiolar constriction,' as it actually causes bronchodilation.",
+  "analysis": "Epinephrine, when administered in high doses intravenously, primarily acts on both alpha and beta adrenergic receptors. It increases liver glycogenolysis through alpha-adrenergic stimulation, evokes extrasystoles in the heart due to beta-1 adrenergic stimulation, and can cause restlessness and anxiety by stimulating the central nervous system. Importantly, epinephrine stimulates beta-2 adrenergic receptors, which leads to bronchodilation, not bronchiolar constriction. Therefore, the action that is not associated with high-dose epinephrine is 'causes bronchiolar constriction,' as it actually causes bronchodilation.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      1,
+      1,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      0.0,
+      0.0
+    ],
+    "total_successes": 3
+  },
+  "normal_results": []
+}

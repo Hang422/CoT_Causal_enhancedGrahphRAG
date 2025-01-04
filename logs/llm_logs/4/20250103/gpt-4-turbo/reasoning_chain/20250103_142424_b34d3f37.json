@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_142424",
+  "model": "gpt-4-turbo",
+  "interaction_type": "reasoning_chain",
+  "question_id": "b34d3f37",
+  "question_text": "A 34-year-old female has a history of intermittent episodes of severe abdominal pain. She has had multiple abdominal surgeries and exploratory procedures with no abnormal findings. Her urine appears dark during an attack and gets even darker if exposed to sunlight. The attacks seem to peak after she takes erythromycin, because of her penicillin allergy. This patient most likely has difficulty in synthesizing which one of the following?",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            A 34-year-old female has a history of intermittent episodes of severe abdominal pain. She has had multiple abdominal surgeries and exploratory procedures with no abnormal findings. Her urine appears dark during an attack and gets even darker if exposed to sunlight. The attacks seem to peak after she takes erythromycin, because of her penicillin allergy. This patient most likely has difficulty in synthesizing which one of the following?\n\n            ### Options\n    opa. Heme\nopb. Creatine phosphate\nopc. Cysteine\nopd. Thymine\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"Intermittent severe abdominal pain\" -> \"History of multiple abdominal surgeries with no abnormal findings\" -> \"Dark urine that darkens further on exposure to sunlight\" -> \"Symptoms exacerbated by erythromycin\" -> \"Indicative of porphyria\" -> \"Porphyria involves defective heme synthesis\" -> \"Difficulty in synthesizing heme\" -> 95%\n\nCHAIN: \"Dark urine that darkens in sunlight\" -> \"Sign of porphyrins in urine\" -> \"Porphyrins are intermediates in heme synthesis pathway\" -> \"Erythromycin known to induce porphyria attacks\" -> \"Porphyria attacks due to accumulation of porphyrins\" -> \"Problem in heme synthesis pathway\" -> \"Difficulty in synthesizing heme\" -> 92%\n\nCHAIN: \"Severe abdominal pain\" -> \"No findings in abdominal explorations\" -> \"Dark urine during attacks\" -> \"Urine darkens with sunlight exposure\" -> \"Characteristic of porphyrin accumulation\" -> \"Erythromycin exacerbates condition\" -> \"Erythromycin triggers porphyria in susceptible individuals\" -> \"Impaired heme synthesis in porphyria\" -> \"Difficulty in synthesizing heme\" -> 90%\n\nCHAIN: \"History of abdominal pain and surgeries\" -> \"No abnormalities found in explorations\" -> \"Dark urine, worsens with sunlight\" -> \"Symptoms worsen with erythromycin use\" -> \"Erythromycin can precipitate porphyria\" -> \"Porphyria linked to heme synthesis defect\" -> \"Difficulty in synthesizing heme\" -> 93%",
+  "metadata": {
+    "topic": "Biochemistry",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

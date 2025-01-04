@@ -1,0 +1,211 @@
+{
+  "question": "Propronolol is useful in all except -",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Atrial flutter",
+    "opb": "Parkinsonian tremor",
+    "opc": "Thyrotoxicosis",
+    "opd": "HOCM"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Propranolol",
+        "Hypertensive disease",
+        "Atrial Flutter"
+      ],
+      [
+        "Propranolol",
+        "Fibrillation",
+        "Atrial Flutter"
+      ],
+      [
+        "Propranolol",
+        "Atrial Fibrillation",
+        "Atrial Flutter"
+      ],
+      [
+        "Propranolol",
+        "Coronary heart disease",
+        "Atrial Flutter"
+      ],
+      [
+        "Propranolol",
+        "Myopathy",
+        "Atrial Flutter"
+      ],
+      [
+        "Propranolol",
+        "Tremor",
+        "Parkinsonian tremor"
+      ],
+      [
+        "Propranolol",
+        "Cerebrovascular accident",
+        "Parkinsonian tremor"
+      ],
+      [
+        "Parkinsonian tremor",
+        "Resting Tremor",
+        "Parkinson Disease",
+        "Tremor"
+      ],
+      [
+        "Parkinsonian tremor",
+        "Resting Tremor",
+        "Disease",
+        "Tremor"
+      ],
+      [
+        "Propranolol",
+        "Thyrotoxicosis"
+      ],
+      [
+        "Thyrotoxicosis",
+        "Tachycardia"
+      ],
+      [
+        "Propranolol",
+        "Hypertrophic Cardiomyopathy"
+      ],
+      [
+        "Propranolol",
+        "Tremor",
+        "Parkinsonian tremor"
+      ],
+      [
+        "Propranolol",
+        "Cerebrovascular accident",
+        "Parkinsonian tremor"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "PREDISPOSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Propranolol)-TREATS->(Hypertensive disease)-CAUSES->(Atrial Flutter)",
+      "(Propranolol)-TREATS->(Fibrillation)-CAUSES->(Atrial Flutter)",
+      "(Propranolol)-TREATS->(Atrial Fibrillation)-CAUSES->(Atrial Flutter)",
+      "(Propranolol)-TREATS->(Coronary heart disease)-CAUSES->(Atrial Flutter)",
+      "(Propranolol)-PREDISPOSES->(Myopathy)-PREDISPOSES->(Atrial Flutter)",
+      "(Propranolol)-CAUSES->(Tremor)-CAUSES->(Parkinsonian tremor)",
+      "(Propranolol)-TREATS->(Cerebrovascular accident)-CAUSES->(Parkinsonian tremor)",
+      "(Parkinsonian tremor)-CAUSES->(Resting Tremor)-CAUSES->(Parkinson Disease)-CAUSES->(Tremor)",
+      "(Parkinsonian tremor)-CAUSES->(Resting Tremor)-MANIFESTATION_OF->(Disease)-CAUSES->(Tremor)",
+      "(Propranolol)-TREATS->(Thyrotoxicosis)",
+      "(Thyrotoxicosis)-CAUSES->(Tachycardia)",
+      "(Propranolol)-TREATS->(Hypertrophic Cardiomyopathy)",
+      "(Propranolol)-CAUSES->(Tremor)-CAUSES->(Parkinsonian tremor)",
+      "(Propranolol)-TREATS->(Cerebrovascular accident)-CAUSES->(Parkinsonian tremor)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Propranolol)-TREATS->(Hypertensive disease)-CAUSES->(Atrial Flutter)",
+      "(Propranolol)-TREATS->(Fibrillation)-CAUSES->(Atrial Flutter)",
+      "(Propranolol)-TREATS->(Atrial Fibrillation)-CAUSES->(Atrial Flutter)",
+      "(Propranolol)-TREATS->(Coronary heart disease)-CAUSES->(Atrial Flutter)",
+      "(Propranolol)-PREDISPOSES->(Myopathy)-PREDISPOSES->(Atrial Flutter)",
+      "(Propranolol)-TREATS->(Cerebrovascular accident)-CAUSES->(Parkinsonian tremor)",
+      "(Parkinsonian tremor)-CAUSES->(Resting Tremor)-CAUSES->(Parkinson Disease)-CAUSES->(Tremor)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Propranolol\" -> \"used for atrial flutter\" -> \"reduces heart rate\" -> \"improves symptoms\" -> 90%",
+    "CHAIN: \"Propranolol\" -> \"used for Parkinsonian tremor\" -> \"reduces tremors\" -> \"improves motor function\" -> 80%",
+    "CHAIN: \"Propranolol\" -> \"used for thyrotoxicosis\" -> \"reduces symptoms like tachycardia\" -> \"improves patient comfort\" -> 85%",
+    "CHAIN: \"Propranolol\" -> \"used for HOCM\" -> \"reduces outflow obstruction\" -> \"improves exercise tolerance\" -> 90%",
+    "CHAIN: \"Propranolol\" -> \"not typically used for Parkinsonian tremor\" -> \"limited efficacy\" -> \"unclear benefit\" -> 70%"
+  ],
+  "enhanced_information": "Propranolol is a non-selective beta-blocker with established uses in various conditions. It is effective in treating atrial flutter by reducing heart rate and improving symptoms. In the case of thyrotoxicosis, propranolol helps alleviate symptoms such as tachycardia, enhancing patient comfort. However, while it has been suggested for Parkinsonian tremor, its efficacy is limited and not typically recommended, making it less useful for this condition. Propranolol is also beneficial in hypertrophic obstructive cardiomyopathy (HOCM) by reducing outflow obstruction and improving exercise tolerance. Therefore, the option where propranolol is not useful is Parkinsonian tremor.",
+  "analysis": "Propranolol is a non-selective beta-blocker that is widely used for various medical conditions. It is effective in managing atrial flutter by controlling heart rate, and it is also beneficial in thyrotoxicosis by alleviating symptoms like tachycardia. In hypertrophic obstructive cardiomyopathy (HOCM), propranolol helps reduce the outflow obstruction and improves exercise tolerance. However, while propranolol has been suggested for use in Parkinsonian tremor, its effectiveness is limited and it is not a first-line treatment for this condition. Therefore, the option where propranolol is least useful is Parkinsonian tremor, making it the correct answer. This aligns with the consensus in pharmacology regarding the use of propranolol in these conditions.",
+  "answer": "opb",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      2,
+      2,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      14.285714285714285,
+      28.57142857142857,
+      28.57142857142857,
+      14.285714285714285,
+      14.285714285714285
+    ],
+    "total_successes": 7
+  },
+  "normal_results": []
+}

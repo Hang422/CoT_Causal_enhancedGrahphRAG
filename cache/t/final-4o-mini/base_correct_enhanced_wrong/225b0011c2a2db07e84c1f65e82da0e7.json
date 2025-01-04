@@ -1,0 +1,162 @@
+{
+  "question": "Triamterene causes",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Better glucose tolerance",
+    "opb": "Muscle cramps",
+    "opc": "Decrease in urea level",
+    "opd": "Hypokalemia"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Potassium Sparing Diuretics",
+        "Disease",
+        "Kidney Failure, Chronic",
+        "Potassium retention"
+      ],
+      [
+        "Potassium Sparing Diuretics",
+        "Disease",
+        "Kidney Diseases",
+        "Potassium retention"
+      ],
+      [
+        "Potassium Sparing Diuretics",
+        "Hypertensive disease",
+        "Kidney Diseases",
+        "Potassium retention"
+      ],
+      [
+        "Electrolytes",
+        "Disease",
+        "Muscle Cramp"
+      ],
+      [
+        "Electrolytes",
+        "Dehydration",
+        "Muscle Cramp"
+      ],
+      [
+        "Electrolytes",
+        "Syndrome",
+        "Muscle Cramp"
+      ],
+      [
+        "Electrolytes",
+        "imbalance",
+        "Muscle Cramp"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "PREDISPOSES"
+      ],
+      [
+        "COMPLICATES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Potassium Sparing Diuretics)-TREATS->(Disease)-CAUSES->(Kidney Failure, Chronic)-CAUSES->(Potassium retention)",
+      "(Potassium Sparing Diuretics)-TREATS->(Disease)-CAUSES->(Kidney Diseases)-PREDISPOSES->(Potassium retention)",
+      "(Potassium Sparing Diuretics)-TREATS->(Hypertensive disease)-CAUSES->(Kidney Diseases)-PREDISPOSES->(Potassium retention)",
+      "(Electrolytes)-COMPLICATES->(Disease)-CAUSES->(Muscle Cramp)",
+      "(Electrolytes)-TREATS->(Dehydration)-CAUSES->(Muscle Cramp)",
+      "(Electrolytes)-TREATS->(Syndrome)-CAUSES->(Muscle Cramp)",
+      "(Electrolytes)-PREVENTS->(imbalance)-CAUSES->(Muscle Cramp)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Triamterene",
+        "Potassium Sparing Diuretics"
+      ],
+      [
+        "Triamterene",
+        "Potassium Sparing Diuretics"
+      ]
+    ],
+    "relationships": [
+      [
+        "ISA"
+      ],
+      [
+        "ISA"
+      ]
+    ],
+    "paths": [
+      "(Triamterene)-ISA->(Potassium Sparing Diuretics)",
+      "(Triamterene)-ISA->(Potassium Sparing Diuretics)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Triamterene)-ISA->(Potassium Sparing Diuretics)",
+      "(Electrolytes)-COMPLICATES->(Disease)-CAUSES->(Muscle Cramp)",
+      "(Electrolytes)-TREATS->(Dehydration)-CAUSES->(Muscle Cramp)",
+      "(Electrolytes)-TREATS->(Syndrome)-CAUSES->(Muscle Cramp)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Triamterene\" -> \"potassium-sparing diuretic\" -> \"increased potassium retention\" -> \"decreased risk of hypokalemia\" -> 85%",
+    "CHAIN: \"Triamterene\" -> \"inhibition of sodium reabsorption\" -> \"increased urine output\" -> \"possible electrolyte imbalances\" -> \"muscle cramps\" -> 70%",
+    "CHAIN: \"Triamterene\" -> \"decreased sodium reabsorption\" -> \"increased excretion of urea\" -> \"possible decrease in urea level\" -> 60%",
+    "CHAIN: \"Triamterene\" -> \"potassium-sparing diuretic\" -> \"not typically associated with hypokalemia\" -> \"possible confusion with other diuretics\" -> 75%"
+  ],
+  "enhanced_information": "Triamterene is a potassium-sparing diuretic that primarily works by inhibiting sodium reabsorption in the distal nephron, leading to increased urine output. It is known for its ability to retain potassium, thus reducing the risk of hypokalemia, which is a common side effect of other diuretics. Therefore, the claim that triamterene causes hypokalemia is incorrect. Muscle cramps can occur due to electrolyte imbalances, but triamterene is less likely to cause these imbalances compared to other diuretics. The assertion that triamterene decreases urea levels is also misleading; while it may affect urea excretion, it does not typically lead to a significant decrease in serum urea levels. Overall, triamterene is not associated with better glucose tolerance, muscle cramps, or hypokalemia, aligning with its pharmacological profile as a potassium-sparing agent.",
+  "analysis": "Triamterene is a potassium-sparing diuretic that works by inhibiting sodium reabsorption in the distal nephron, which leads to increased urine output while retaining potassium. This mechanism makes it less likely to cause hypokalemia, a common side effect of other diuretics. Instead, triamterene is known to potentially cause hyperkalemia due to its potassium-sparing properties. Muscle cramps can occur with electrolyte imbalances, but triamterene is less likely to cause these compared to other diuretics. The claim regarding better glucose tolerance is not supported by evidence, and while triamterene may affect urea excretion, it does not typically lead to a significant decrease in serum urea levels. Therefore, the most accurate conclusion is that triamterene does not cause hypokalemia, and the other options are not supported by its pharmacological profile. Thus, the best-supported option is that triamterene does not cause hypokalemia, which is contrary to the claim in option opd.",
+  "answer": "opd",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      1,
+      0,
+      1
+    ],
+    "coverage_rates": [
+      50.0,
+      25.0,
+      0.0,
+      25.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

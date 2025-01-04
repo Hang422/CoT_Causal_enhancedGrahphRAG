@@ -1,0 +1,204 @@
+{
+  "question": "The administration of succinylcholine to a paraplegic patient led to appearance of dysarrythmias, conduction abnormalities and finally cardiac arrest. The most likely cause is :",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Hypercalcemia",
+    "opb": "Hyperkalemia",
+    "opc": "Anaphylaxis",
+    "opd": "Hypermagnesemia"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "potassium",
+        "Hypertensive disease",
+        "hyperkalemia"
+      ],
+      [
+        "potassium",
+        "Kidney Diseases",
+        "hyperkalemia"
+      ],
+      [
+        "potassium",
+        "Diabetic Ketoacidosis",
+        "hyperkalemia"
+      ],
+      [
+        "Abnormal cardiac conduction",
+        "Disease",
+        "Heart Arrest"
+      ],
+      [
+        "Abnormal cardiac conduction",
+        "Cardiovascular Diseases",
+        "Heart Arrest"
+      ],
+      [
+        "Abnormal cardiac conduction",
+        "Myocardial Infarction",
+        "Heart Arrest"
+      ],
+      [
+        "Succinylcholine",
+        "hyperkalemia"
+      ],
+      [
+        "hyperkalemia",
+        "cardiac arrhythmia"
+      ],
+      [
+        "cardiac arrhythmia",
+        "Heart Arrest"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "COMPLICATES",
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(potassium)-CAUSES->(Hypertensive disease)-CAUSES->(hyperkalemia)",
+      "(potassium)-TREATS->(Kidney Diseases)-CAUSES->(hyperkalemia)",
+      "(potassium)-TREATS->(Diabetic Ketoacidosis)-CAUSES->(hyperkalemia)",
+      "(Abnormal cardiac conduction)-CAUSES->(Disease)-CAUSES->(Heart Arrest)",
+      "(Abnormal cardiac conduction)-CAUSES->(Cardiovascular Diseases)-CAUSES->(Heart Arrest)",
+      "(Abnormal cardiac conduction)-COMPLICATES->(Myocardial Infarction)-CAUSES->(Heart Arrest)",
+      "(Succinylcholine)-TREATS->(hyperkalemia)",
+      "(hyperkalemia)-CAUSES->(cardiac arrhythmia)",
+      "(cardiac arrhythmia)-CAUSES->(Heart Arrest)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Muscle Cells",
+        "Insulin",
+        "hyperkalemia"
+      ],
+      [
+        "Muscle Cells",
+        "Insulin",
+        "hyperkalemia"
+      ],
+      [
+        "Succinylcholine",
+        "Pharmaceutical Preparations",
+        "Genes",
+        "Neuromuscular Junction"
+      ],
+      [
+        "Succinylcholine",
+        "Pharmaceutical Preparations",
+        "Protein coding gene",
+        "Neuromuscular Junction"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "TREATS"
+      ],
+      [
+        "LOCATION_OF",
+        "TREATS"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH",
+        "PART_OF"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH",
+        "PART_OF"
+      ]
+    ],
+    "paths": [
+      "(Muscle Cells)-INTERACTS_WITH->(Insulin)-TREATS->(hyperkalemia)",
+      "(Muscle Cells)-LOCATION_OF->(Insulin)-TREATS->(hyperkalemia)",
+      "(Succinylcholine)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Genes)-PART_OF->(Neuromuscular Junction)",
+      "(Succinylcholine)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Protein coding gene)-PART_OF->(Neuromuscular Junction)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Succinylcholine)-TREATS->(hyperkalemia)",
+      "(potassium)-CAUSES->(Hypertensive disease)-CAUSES->(hyperkalemia)",
+      "(potassium)-TREATS->(Kidney Diseases)-CAUSES->(hyperkalemia)",
+      "(potassium)-TREATS->(Diabetic Ketoacidosis)-CAUSES->(hyperkalemia)",
+      "(hyperkalemia)-CAUSES->(cardiac arrhythmia)",
+      "(Succinylcholine)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Genes)-PART_OF->(Neuromuscular Junction)",
+      "(Succinylcholine)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Protein coding gene)-PART_OF->(Neuromuscular Junction)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Succinylcholine administration\" -> \"increased potassium release from muscle cells\" -> \"hyperkalemia\" -> \"dysarrhythmias\" -> \"conduction abnormalities\" -> \"cardiac arrest\" -> 95%",
+    "CHAIN: \"Succinylcholine use in paraplegic patients\" -> \"risk of hyperkalemia due to denervation\" -> \"elevated serum potassium levels\" -> \"dysarrhythmias\" -> \"potential for cardiac arrest\" -> 90%",
+    "CHAIN: \"Succinylcholine\" -> \"causes depolarization of neuromuscular junction\" -> \"increased extracellular potassium\" -> \"hyperkalemia\" -> \"arrhythmias\" -> \"cardiac arrest\" -> 92%",
+    "CHAIN: \"Succinylcholine\" -> \"can lead to potassium release\" -> \"hyperkalemia\" -> \"dysarrhythmias\" -> \"risk of cardiac arrest\" -> 88%",
+    "CHAIN: \"Succinylcholine\" -> \"may cause adverse effects in certain populations\" -> \"paraplegic patients at risk for hyperkalemia\" -> \"dysarrhythmias\" -> \"cardiac arrest\" -> 85%"
+  ],
+  "enhanced_information": "The administration of succinylcholine, particularly in paraplegic patients, is associated with a significant risk of hyperkalemia due to denervation of muscle cells, which leads to increased potassium release into the bloodstream. This elevated serum potassium can cause dysarrhythmias and conduction abnormalities, ultimately resulting in cardiac arrest. The reasoning chains consistently point to hyperkalemia as the most likely cause of the observed cardiac events following succinylcholine administration. Evidence supports that hyperkalemia is a known consequence of succinylcholine use in susceptible populations, confirming the consensus that hyperkalemia is the primary concern in this scenario.",
+  "analysis": "Succinylcholine is a depolarizing neuromuscular blocker that can cause an increase in serum potassium levels, particularly in patients with conditions such as paraplegia, where there is muscle denervation. This denervation leads to upregulation of acetylcholine receptors outside the neuromuscular junction, causing excessive potassium release when succinylcholine is administered. The resulting hyperkalemia can lead to dysarrhythmias, conduction abnormalities, and potentially cardiac arrest. This is a well-documented risk and aligns with the symptoms described in the scenario. Other options like hypercalcemia, anaphylaxis, and hypermagnesemia are less likely to be directly associated with succinylcholine in this context. Therefore, hyperkalemia is the most likely cause of the cardiac events observed.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      3,
+      1,
+      3,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      42.857142857142854,
+      14.285714285714285,
+      42.857142857142854,
+      0.0,
+      0.0
+    ],
+    "total_successes": 7
+  },
+  "normal_results": []
+}

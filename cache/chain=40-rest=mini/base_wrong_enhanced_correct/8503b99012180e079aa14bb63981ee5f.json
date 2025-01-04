@@ -1,0 +1,154 @@
+{
+  "question": "Fosphenytoin different from phenytoin in which of the following-",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Can be used in absence seizures",
+    "opb": "Can be mixed with saline",
+    "opc": "Can be given orally",
+    "opd": "It is the drug of choice for myoclonic seizures"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "fosphenytoin",
+        "Seizures"
+      ],
+      [
+        "fosphenytoin",
+        "Epilepsy",
+        "Epilepsies, Myoclonic"
+      ],
+      [
+        "fosphenytoin",
+        "Seizures",
+        "Epilepsies, Myoclonic"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(fosphenytoin)-TREATS->(Seizures)",
+      "(fosphenytoin)-TREATS->(Epilepsy)-CAUSES->(Epilepsies, Myoclonic)",
+      "(fosphenytoin)-TREATS->(Seizures)-CAUSES->(Epilepsies, Myoclonic)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Seizures",
+        "Pathogenesis",
+        "CYP2C9 gene|CYP2C9",
+        "Phenytoin"
+      ],
+      [
+        "Seizures",
+        "Pathogenesis",
+        "Enzymes",
+        "Phenytoin"
+      ],
+      [
+        "Epilepsies, Myoclonic",
+        "Complication",
+        "CYP2C9 gene|CYP2C9",
+        "Phenytoin"
+      ],
+      [
+        "Epilepsies, Myoclonic",
+        "Complication",
+        "CD79A|LOC102723407",
+        "Phenytoin"
+      ],
+      [
+        "Pharmaceutical Preparations",
+        "Phenytoin"
+      ]
+    ],
+    "relationships": [
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Seizures)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(CYP2C9 gene|CYP2C9)-INTERACTS_WITH->(Phenytoin)",
+      "(Seizures)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Enzymes)-INTERACTS_WITH->(Phenytoin)",
+      "(Epilepsies, Myoclonic)-PREDISPOSES->(Complication)-ASSOCIATED_WITH->(CYP2C9 gene|CYP2C9)-INTERACTS_WITH->(Phenytoin)",
+      "(Epilepsies, Myoclonic)-PREDISPOSES->(Complication)-ASSOCIATED_WITH->(CD79A|LOC102723407)-INTERACTS_WITH->(Phenytoin)",
+      "(Pharmaceutical Preparations)-INTERACTS_WITH->(Phenytoin)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(fosphenytoin)-TREATS->(Seizures)-CAUSES->(Epilepsies, Myoclonic)",
+      "(fosphenytoin)-TREATS->(Seizures)",
+      "(Seizures)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(CYP2C9 gene|CYP2C9)-INTERACTS_WITH->(Phenytoin)",
+      "(Seizures)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Enzymes)-INTERACTS_WITH->(Phenytoin)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Fosphenytoin\" -> \"water-soluble prodrug\" -> \"can be mixed with saline\" -> 95%",
+    "CHAIN: \"Fosphenytoin\" -> \"not effective for absence seizures\" -> \"similar to phenytoin\" -> 90%",
+    "CHAIN: \"Fosphenytoin\" -> \"administered intravenously or intramuscularly\" -> \"not given orally\" -> 95%",
+    "CHAIN: \"Fosphenytoin\" -> \"not the drug of choice for myoclonic seizures\" -> \"similar to phenytoin\" -> 90%"
+  ],
+  "enhanced_information": "Fosphenytoin is a water-soluble prodrug of phenytoin, primarily used for the treatment of seizures. It differs from phenytoin in several key aspects: 1) Fosphenytoin can be mixed with saline, which is not the case for phenytoin, confirming the first option. 2) Fosphenytoin is not effective for absence seizures, aligning with the consensus that it is similar to phenytoin in this regard, thus the second option is incorrect. 3) Fosphenytoin is typically administered intravenously or intramuscularly and is not given orally, making the third option incorrect. 4) Fosphenytoin is not the drug of choice for myoclonic seizures, as other medications are preferred, confirming the fourth option is also incorrect. Therefore, the only correct distinction is that fosphenytoin can be mixed with saline.",
+  "analysis": "Fosphenytoin is a prodrug of phenytoin that is more water-soluble and can be administered in a way that allows for mixing with saline, which is a significant difference from phenytoin. The other options presented are incorrect based on established medical knowledge: fosphenytoin is not effective for absence seizures, it is not typically given orally, and it is not the drug of choice for myoclonic seizures. Therefore, the most accurate distinction is that fosphenytoin can be mixed with saline, confirming option opb as the correct answer.",
+  "answer": "opb",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      2,
+      0,
+      3
+    ],
+    "coverage_rates": [
+      0.0,
+      40.0,
+      0.0,
+      60.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

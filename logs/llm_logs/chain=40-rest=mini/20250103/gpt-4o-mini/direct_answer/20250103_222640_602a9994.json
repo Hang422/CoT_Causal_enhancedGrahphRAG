@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_222640",
+  "model": "gpt-4o-mini",
+  "interaction_type": "direct_answer",
+  "question_id": "602a9994",
+  "question_text": "Propronolol is useful in all except -",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on medical knowledge."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.Please help answer this multiple choice question:\n\nQuestion: Propronolol is useful in all except -\n\nOptions:\nopa. Atrial flutter\nopb. Parkinsonian tremor\nopc. Thyrotoxicosis\nopd. HOCM\n\n        ### Output Format\n        Provide your response in valid JSON format:\n        {   \n            \"final_analysis\": \"Your concise analysis following the above structure\",\n            \"answer\": \"Option key from the available options (only key,like opa)\",\n            \"confidence\": Score between 0-100 based on alignment with established medical facts\n        }\n        "
+    }
+  ],
+  "response": "{\n    \"final_analysis\": \"Propranolol is a non-selective beta-blocker that is effective in managing conditions such as atrial flutter, Parkinsonian tremor, and thyrotoxicosis due to its ability to reduce heart rate and tremors. However, it is not typically used in hypertrophic obstructive cardiomyopathy (HOCM) as it can worsen the outflow obstruction in some patients. Therefore, the correct answer is HOCM.\",\n    \"answer\": \"opd\",\n    \"confidence\": 90\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

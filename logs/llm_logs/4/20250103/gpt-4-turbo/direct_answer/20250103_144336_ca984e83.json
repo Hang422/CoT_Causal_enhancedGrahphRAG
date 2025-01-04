@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_144336",
+  "model": "gpt-4-turbo",
+  "interaction_type": "direct_answer",
+  "question_id": "ca984e83",
+  "question_text": "Levamisole is used as all except -",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on medical knowledge."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.Please help answer this multiple choice question:\n\nQuestion: Levamisole is used as all except -\n\nOptions:\nopa. Single dose in ascariasis\nopb. Immunostimulant\nopc. Paralysis of worms by depolarisation\nopd. Immunodepressant in high doses\n\n        ### Output Format\n        Provide your response in valid JSON format:\n        {   \n            \"final_analysis\": \"Your concise analysis following the above structure\",\n            \"answer\": \"Option key from the available options (only key,like opa)\",\n            \"confidence\": Score between 0-100 based on alignment with established medical facts\n        }\n        "
+    }
+  ],
+  "response": "{\n    \"final_analysis\": \"Levamisole is primarily used as an anthelmintic agent and an immunomodulator. It acts by causing paralysis of worms through depolarization and is also known to stimulate the immune system. While it can act as an immunostimulant, there is no evidence to suggest that it acts as an immunodepressant at high doses. Instead, high doses can lead to side effects such as agranulocytosis and leukopenia, which are harmful but do not classify it as an immunodepressant.\",\n    \"answer\": \"opd\",\n    \"confidence\": 95\n}",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4-turbo",
+    "temperature": 0.0
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "question": "Tamoxifen causes ?",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Osteoporosis",
+    "opb": "Endometrial hyperplasia",
+    "opc": "Ovarian cancer",
+    "opd": "Decreased triglyceride level"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Bone Density",
+        "Osteoporosis"
+      ],
+      [
+        "Triglycerides",
+        "Disease",
+        "Risk factor, cardiovascular"
+      ],
+      [
+        "Triglycerides",
+        "Obesity",
+        "Risk factor, cardiovascular"
+      ],
+      [
+        "Triglycerides",
+        "Hypertensive disease",
+        "Risk factor, cardiovascular"
+      ],
+      [
+        "Triglycerides",
+        "Cardiovascular Diseases",
+        "Risk factor, cardiovascular"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREDISPOSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Bone Density)-PREDISPOSES->(Osteoporosis)",
+      "(Triglycerides)-TREATS->(Disease)-CAUSES->(Risk factor, cardiovascular)",
+      "(Triglycerides)-TREATS->(Obesity)-CAUSES->(Risk factor, cardiovascular)",
+      "(Triglycerides)-TREATS->(Hypertensive disease)-CAUSES->(Risk factor, cardiovascular)",
+      "(Triglycerides)-TREATS->(Cardiovascular Diseases)-CAUSES->(Risk factor, cardiovascular)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Tamoxifen",
+        "agonists",
+        "Estrogen Receptor Inhibitor [EPC]"
+      ],
+      [
+        "Tamoxifen",
+        "Genes",
+        "Selective Estrogen Receptor Modulators"
+      ],
+      [
+        "Tamoxifen",
+        "Steroid hormone",
+        "Selective Estrogen Receptor Modulators"
+      ],
+      [
+        "Tamoxifen",
+        "Cells",
+        "Selective Estrogen Receptor Modulators"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Tamoxifen)-INTERACTS_WITH->(agonists)-INTERACTS_WITH->(Estrogen Receptor Inhibitor [EPC])",
+      "(Tamoxifen)-INTERACTS_WITH->(Genes)-INTERACTS_WITH->(Selective Estrogen Receptor Modulators)",
+      "(Tamoxifen)-INTERACTS_WITH->(Steroid hormone)-INTERACTS_WITH->(Selective Estrogen Receptor Modulators)",
+      "(Tamoxifen)-PART_OF->(Cells)-LOCATION_OF->(Selective Estrogen Receptor Modulators)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Triglycerides)-TREATS->(Disease)-CAUSES->(Risk factor, cardiovascular)",
+      "(Triglycerides)-TREATS->(Obesity)-CAUSES->(Risk factor, cardiovascular)",
+      "(Triglycerides)-TREATS->(Hypertensive disease)-CAUSES->(Risk factor, cardiovascular)",
+      "(Triglycerides)-TREATS->(Cardiovascular Diseases)-CAUSES->(Risk factor, cardiovascular)",
+      "(Tamoxifen)-INTERACTS_WITH->(agonists)-INTERACTS_WITH->(Estrogen Receptor Inhibitor [EPC])"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Tamoxifen\" -> \"Estrogen receptor antagonist\" -> \"Decreased estrogen activity\" -> \"Decreased risk of endometrial hyperplasia\" -> 80% CHAIN: \"Tamoxifen\" -> \"Selective estrogen receptor modulator (SERM)\" -> \"May increase bone density\" -> \"Possible protection against osteoporosis\" -> 70% CHAIN: \"Tamoxifen\" -> \"May increase triglyceride levels\" -> \"Possible increase in cardiovascular risk factors\" -> \"Decreased triglyceride level is less likely\" -> 60% CHAIN: \"Tamoxifen\" -> \"May reduce the risk of ovarian cancer in certain populations\" -> \"Decreased risk of ovarian cancer\" -> 80%"
+  ],
+  "enhanced_information": "Tamoxifen may increase bone density, potentially offering protection against osteoporosis. It can also decrease the risk of endometrial hyperplasia due to its estrogen receptor antagonist activity. While it may increase triglyceride levels, leading to a possible increase in cardiovascular risk factors, the direct effect on decreasing triglyceride levels is less likely. Additionally, Tamoxifen may reduce the risk of ovarian cancer in certain populations.",
+  "analysis": "Tamoxifen is known to increase bone density, potentially protecting against osteoporosis. It also decreases the risk of endometrial hyperplasia due to its estrogen receptor antagonist activity. While it may increase triglyceride levels, the direct effect of decreasing triglyceride levels is less likely. Additionally, Tamoxifen may reduce the risk of ovarian cancer in certain populations.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      4
+    ],
+    "coverage_rates": [
+      100.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

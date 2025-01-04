@@ -1,0 +1,93 @@
+{
+  "question": "Thaliomide is used in all except ?",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "ENL",
+    "opb": "HIV neuropathy",
+    "opc": "HIV associated ulcer",
+    "opd": "Behcet's syndrome"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Thalidomide",
+        "Symptoms",
+        "Neuropathy due to human immunodeficiency virus"
+      ],
+      [
+        "Thalidomide",
+        "HIV"
+      ],
+      [
+        "Thalidomide",
+        "Behcet Syndrome"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREVENTS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Thalidomide)-PREVENTS->(Symptoms)-MANIFESTATION_OF->(Neuropathy due to human immunodeficiency virus)",
+      "(Thalidomide)-TREATS->(HIV)",
+      "(Thalidomide)-TREATS->(Behcet Syndrome)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Thalidomide)-PREVENTS->(Symptoms)-MANIFESTATION_OF->(Neuropathy due to human immunodeficiency virus)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Thalidomide\" -> \"used for ENL\" -> \"effective in treating leprosy\" -> 90%",
+    "CHAIN: \"Thalidomide\" -> \"not indicated for HIV neuropathy\" -> \"limited evidence of efficacy\" -> 85%",
+    "CHAIN: \"Thalidomide\" -> \"not used for HIV associated ulcer\" -> \"no established benefit\" -> 80%",
+    "CHAIN: \"Thalidomide\" -> \"used for Behcet's syndrome\" -> \"reduces inflammatory symptoms\" -> 90%",
+    "CHAIN: \"Thalidomide\" -> \"used in multiple conditions\" -> \"not for HIV neuropathy or ulcer\" -> 75%"
+  ],
+  "enhanced_information": "Thalidomide is effectively used for Erythema Nodosum Leprosum (ENL) and Behcet's syndrome due to its anti-inflammatory properties. It is not indicated for HIV neuropathy, as there is limited evidence supporting its efficacy in this condition. Similarly, thalidomide is not used for HIV-associated ulcers, as there is no established benefit. The retrieved evidence path suggests thalidomide's role in preventing symptoms related to neuropathy, but this does not align with the consensus that it is not effective for HIV neuropathy. Therefore, the correct answer is that thalidomide is used in all except HIV neuropathy.",
+  "analysis": "Thalidomide is a medication known for its anti-inflammatory and immunomodulatory effects. It is effectively used in the treatment of Erythema Nodosum Leprosum (ENL) and Behcet's syndrome, both of which benefit from its properties. However, thalidomide is not indicated for HIV neuropathy, as there is limited evidence supporting its efficacy in this condition. Similarly, it is not used for HIV-associated ulcers, as there is no established benefit. The consensus in medical literature supports the use of thalidomide in ENL and Behcet's syndrome, but not in HIV neuropathy or HIV-associated ulcers. Therefore, the most likely correct answer, based on standard medical knowledge and consensus, is that thalidomide is used in all except HIV neuropathy.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      1,
+      1,
+      0
+    ],
+    "coverage_rates": [
+      0.0,
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      0.0
+    ],
+    "total_successes": 3
+  },
+  "normal_results": []
+}

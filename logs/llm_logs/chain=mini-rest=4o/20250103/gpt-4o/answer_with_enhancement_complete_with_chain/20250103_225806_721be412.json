@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_225806",
+  "model": "gpt-4o",
+  "interaction_type": "answer_with_enhancement_complete_with_chain",
+  "question_id": "721be412",
+  "question_text": "Which of the following drug causes Pseudotumour cerebri -",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert making decisions based on enhanced information."
+    },
+    {
+      "role": "user",
+      "content": "You are a medical expert specializing in the field of Pharmacology.\n                    You are a medical expert determining the final answer.\n\n            ### Instructions:\n            - Use standard medical knowledge as the primary guide.\n            - Consider enhanced information only if it aligns with consensus.\n            - If conflicting or unclear, present the most likely correct answer based on known facts.\n            - It's acceptable to show moderate confidence if the question is complex, but still choose one best answer.\n\n\n                    ### Question\n                    Which of the following drug causes Pseudotumour cerebri -\n\n                    ### Options\n                    opa. Sparfloxacin\nopb. Tetracycline\nopc. Gentamicin\nopd. Clofazimine\n\n### Enhanced Information (For Contextual Support):\nPseudotumor cerebri, also known as idiopathic intracranial hypertension, is a condition characterized by increased intracranial pressure without an obvious cause. Among the listed drugs, tetracycline is well-documented in medical literature to be associated with an increased risk of pseudotumor cerebri. This aligns with the reasoning chain that links tetracycline to increased intracranial pressure and subsequently to pseudotumor cerebri. The other drugs, sparfloxacin, gentamicin, and clofazimine, do not have a known association with pseudotumor cerebri, and the retrieved evidence path for clofazimine does not provide relevant support for such an association. Therefore, the consensus supports tetracycline as the drug most likely to cause pseudotumor cerebri.\n\n                    ### Task:\n                1. Identify the core medical principle and the most likely correct option based on consensus.\n                2. If the evidence is not perfectly clear, pick the best-supported option and explain the reasoning.\n                3. Provide a final analysis and a confidence score (0-100%).\n\n                ### Output Format:\n                {\n                  \"final_analysis\": \"Step-by-step reasoning, prioritizing medical consensus and acknowledging complexity if present.\",\n                  \"answer\": \"Option key (e.g. opa, opb, ...)\",\n                  \"confidence\": A number between 0-100\n                }\n                    "
+    }
+  ],
+  "response": "```json\n{\n  \"final_analysis\": \"Pseudotumor cerebri, or idiopathic intracranial hypertension, is a condition where there is increased intracranial pressure without a clear cause. Certain medications are known to be associated with this condition, and tetracycline is one of the most well-documented drugs linked to pseudotumor cerebri. The mechanism is thought to involve alterations in cerebrospinal fluid dynamics or direct effects on the brain's pressure regulation. The other drugs listed, sparfloxacin, gentamicin, and clofazimine, do not have a recognized association with pseudotumor cerebri in the medical literature. Therefore, based on standard medical knowledge and consensus, tetracycline is the most likely drug to cause pseudotumor cerebri.\",\n  \"answer\": \"opb\",\n  \"confidence\": 95\n}\n```",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": true,
+    "has_enhanced_info": true,
+    "model_config": "gpt-4o",
+    "temperature": 0.0
+  }
+}

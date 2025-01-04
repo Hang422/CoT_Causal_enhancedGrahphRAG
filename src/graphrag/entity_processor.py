@@ -3,46 +3,31 @@ import scispacy
 from scispacy.linking import EntityLinker
 import en_core_sci_md
 import warnings
-from typing import List, Dict, Optional, Set, Tuple
+from typing import List, Set, Optional
 
 
 class EntityProcessor:
-    """Medical entity processor for converting between entity names and UMLS CUIs"""
+    """A simple medical entity processor using scispaCy's UMLS linker with extended filters."""
 
     def __init__(self, threshold: float = 0.9):
         """
-        Initialize the entity processor
-
         Args:
-            threshold: Confidence threshold for entity linking
+            threshold: Confidence threshold for entity linking (0~1).
         """
         self.threshold = threshold
+        self._setup_filters()
         warnings.filterwarnings("ignore", category=FutureWarning)
         warnings.filterwarnings("ignore", category=UserWarning)
         self._initialize_nlp()
-        self._setup_filters()
-
-    def _initialize_nlp(self) -> None:
-        """Initialize NLP pipeline with UMLS linker"""
-        try:
-            self.nlp = en_core_sci_md.load()
-            if 'scispacy_linker' not in self.nlp.pipe_names:
-                self.nlp.add_pipe(
-                    "scispacy_linker",
-                    config={
-                        "resolve_abbreviations": True,
-                        "linker_name": "umls",
-                        "threshold": self.threshold
-                    }
-                )
-            self.linker = self.nlp.get_pipe("scispacy_linker")
-        except Exception as e:
-            raise RuntimeError(f"Failed to initialize NLP pipeline: {str(e)}")
 
     def _setup_filters(self) -> None:
-        """Setup filters for excluding low-information entities"""
+        """
+        Setup filters for excluding low-information entities based on surface text.
+
+        NOTE: You can add or remove terms to suit your domain needs.
+        """
         self.excluded_terms: Set[str] = {
-            # Common medical terms
+            # Common medical terms or overly broad words
             'procedure', 'treatment', 'therapy', 'intervention',
             'examination', 'observation', 'assessment', 'evaluation',
 
@@ -50,7 +35,7 @@ class EntityProcessor:
             'study', 'research', 'analysis', 'investigation',
             'method', 'technique', 'approach', 'protocol',
 
-            # Descriptive terms
+            # Descriptive or vague terms
             'finding', 'result', 'outcome', 'status', 'condition',
             'state', 'situation', 'problem', 'case', 'type',
 
@@ -59,162 +44,119 @@ class EntityProcessor:
             'onset', 'course', 'history',
 
             # People related
-            'patients', 'person', 'doctor', 'physician', 'specialist',
+            'patients', 'patient', 'person', 'doctor', 'physician', 'specialist',
 
             # General terms
             'normal', 'abnormal', 'routine', 'standard', 'regular',
-            'common', 'typical', 'usual', 'general', 'specific'
+            'common', 'typical', 'usual', 'general', 'specific',
+
+            # 其它你认为不需要的低信息量词，可以按需添加...
         }
 
-    def get_cui_name(self, cui: str) -> Optional[str]:
+    def _initialize_nlp(self) -> None:
         """
-        Get canonical name for a CUI
+        Initialize spaCy pipeline with scispaCy UMLS linker.
+        """
+        self.nlp = en_core_sci_md.load()
+        # 如果流水线中还没有scispacy_linker，则添加
+        if "scispacy_linker" not in self.nlp.pipe_names:
+            self.nlp.add_pipe(
+                "scispacy_linker",
+                config={
+                    "resolve_abbreviations": True,
+                    "linker_name": "umls",  # UMLS linker
+                    "threshold": self.threshold
+                },
+            )
+        self.linker: EntityLinker = self.nlp.get_pipe("scispacy_linker")
 
-        Args:
-            cui: UMLS Concept Unique Identifier
+    def _is_low_info_text(self, text: str) -> bool:
+        """
+        Check if the text is in our excluded list (lowercased).
+        """
+        return text.lower() in self.excluded_terms
 
-        Returns:
-            Entity canonical name if found, None otherwise
+    def _is_valid_entity(self, text: str, cui: str, score: float) -> bool:
+        """
+        Decide if an extracted entity is valid based on:
+          - Not in excluded_terms
+          - Linker confidence score >= self.threshold
+        你也可在此根据 semantic type、cui分布等更进一步过滤。
+        """
+        if not text or score < self.threshold:
+            return False
+
+        # 若文本属于低信息词，直接排除
+        if self._is_low_info_text(text):
+            return False
+
+        return True
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # (A) 给定 CUI，获取其语义类型列表（仅保留 type code，如 T007、T047）
+    # ─────────────────────────────────────────────────────────────────────────
+    def get_semantic_types_for_cui(self, cui: str) -> List[str]:
+        """
+        Return a list of semantic type codes (e.g. T007) for a given CUI.
+        If not found, returns an empty list.
         """
         try:
-            return self.linker.kb.cui_to_entity[cui].canonical_name
-        except (KeyError, Exception):
-            return None
+            entity_data = self.linker.kb.cui_to_entity[cui]
+        except KeyError:
+            return []
 
-    def get_name_cui(self, name: str) -> Optional[str]:
+        semantic_codes = []
+        for full_type_str in entity_data.types:
+            # scispaCy 可能返回形如 "T007@Bacterium"
+            if "@" in full_type_str:
+                type_code, _ = full_type_str.split("@", 1)
+                semantic_codes.append(type_code)
+            else:
+                semantic_codes.append(full_type_str)  # 或者直接放进列表
+        return semantic_codes
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # (B) 输入文本，返回其中识别到的 CUI 集合
+    # ─────────────────────────────────────────────────────────────────────────
+    def extract_cuis_from_text(self, text: str) -> Set[str]:
         """
-        Get CUI for an entity name
-
-        Args:
-            name: Entity name to process
-
-        Returns:
-            Best matching CUI or None if no match
-        """
-        if not name or not name.strip():
-            return None
-
-        try:
-            doc = self.nlp(name.strip())
-            best_entity = None
-            best_score = 0
-
-            # 找到最佳匹配的实体
-            for ent in doc.ents:
-                if ent._.kb_ents:
-                    cui, score = ent._.kb_ents[0]
-                    if self._is_valid_entity(ent, cui, score) and score > best_score:
-                        best_entity = (cui, score)
-                        best_score = score
-            return best_entity[0] if best_entity else None
-
-        except Exception as e:
-            return None
-
-    def batch_get_cuis(self, names: List[str], duplicate: bool) -> List[str]:
-        """
-        Convert multiple names to CUIs
-
-        Args:
-            names: List of entity names
-            duplicate: is a set or not
-
-        Returns:
-            List of unique CUIs found
-        """
-        all_cuis = []
-        for name in names:
-            cui = self.get_name_cui(name)
-            if cui:
-                all_cuis.append(cui)
-        return list(set(all_cuis)) if not duplicate else all_cuis  # Remove duplicates
-
-    def batch_get_names(self, cuis: List[str], duplicate: bool) -> List[str]:
-        """
-        Convert multiple CUIs to names
-
-        Args:
-            cuis: List of CUIs
-
-        Returns:
-            List of entity names (excluding None values)
-        """
-        names = []
-        for cui in cuis:
-            name = self.get_cui_name(cui)
-            if name:
-                names.append(name)
-        return list(set(names)) if not duplicate else names
-
-    def process_text(self, text: str) -> List[str]:
-        """
-        Process text and extract valid entity CUIs
-
-        Args:
-            text: Text to process
-            debug: Whether to print debug information
+        Analyze input text, extract UMLS CUIs for recognized entities
+        (filtering by self.threshold and excluded terms).
+        Returns a set of unique CUIs.
         """
         if not text or not text.strip():
-            return []
+            return set()
+        doc = self.nlp(text)
+        found_cuis = set()
 
-        try:
-            doc = self.nlp(text.strip())
-            cuis = []
+        for ent in doc.ents:
+            kb_ents = ent._.kb_ents
+            if kb_ents:
+                top_cui, top_score = kb_ents[0]
+                # 检查是否通过过滤
+                if self._is_valid_entity(ent.text, top_cui, top_score):
+                    found_cuis.add(top_cui)
+        return found_cuis
 
-            for ent in doc.ents:
-                if ent._.kb_ents:
-                    cui, score = ent._.kb_ents[0]
-
-                    if self._is_valid_entity(ent, cui, score):
-                        cuis.append(cui)
-
-            unique_cuis = list(set(cuis))
-
-            return unique_cuis
-
-        except Exception as e:
-
-            return []
-
-    def _is_valid_entity(self, entity, cui: str, score: float, threshold=None) -> bool:
+    # ─────────────────────────────────────────────────────────────────────────
+    # (C) 输入文本，返回其中所有识别到的语义类型 code 的集合
+    # ─────────────────────────────────────────────────────────────────────────
+    def extract_semantic_types_from_text(self, text: str) -> Set[str]:
         """
-        Check if an entity is valid based on filters
+        Extract all CUIs from text, then gather their semantic type codes
+        in a set and return it.
         """
-        if threshold is None:
-            threshold = self.threshold
-        try:
-            # 检查分数
-            if score < threshold:
-                return False
-
-            # 检查实体文本
-            if entity.text.lower() in self.excluded_terms:
-                return False
-
-            # 检查语义类型
-            try:
-                entity_info = self.linker.kb.cui_to_entity[cui]
-                entity_type = entity_info.types
-                semantic_types = {t.split('@')[1] if '@' in t else t for t in entity_type}
-
-                return True
-
-            except KeyError as ke:
-                return False
-
-        except Exception as e:
-            raise
+        cuis = self.extract_cuis_from_text(text)
+        all_type_codes = set()
+        for cui in cuis:
+            stypes = self.get_semantic_types_for_cui(cui)
+            all_type_codes.update(stypes)
+        return all_type_codes
 
 
-if __name__ == '__main__':
-    cuis = ["C0027750",
-            "C0150600",
-            "C0043210",
-            "C0680063",
-            "C0439230",
-            "C0032961",
-            "C0013080"]
-    processor = EntityProcessor()
-    text = "Small Round Cell Tumor"
-    text1 = 'Neuroblastoma'
-    print(processor.batch_get_names(processor.process_text(text), False))
+if __name__ == "__main__":
+    for i in range(3):
+        processor = EntityProcessor()
+        print(list(processor.extract_cuis_from_text('dopamine production'))[0])
+
+

@@ -1,0 +1,166 @@
+{
+  "question": "Which of the following drug is used in this test?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Tolazoline",
+    "opb": "Clonidine",
+    "opc": "Bismuth",
+    "opd": "Oxymetazoline"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Central alpha-2 Adrenergic Agonist [EPC]",
+        "Sleep disturbances",
+        "Symptoms",
+        "Diagnostic tests"
+      ],
+      [
+        "Central alpha-2 Adrenergic Agonist [EPC]",
+        "Inflammation",
+        "Symptoms",
+        "Diagnostic tests"
+      ],
+      [
+        "Gastrointestinal Diseases",
+        "Disease",
+        "paracrine",
+        "Blood Vessels"
+      ],
+      [
+        "Gastrointestinal Diseases",
+        "Disease",
+        "Neutrophil Infiltration",
+        "Blood Vessels"
+      ],
+      [
+        "Gastrointestinal Diseases",
+        "Disease",
+        "uptake",
+        "Blood Vessels"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREVENTS",
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "COMPLICATES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Central alpha-2 Adrenergic Agonist [EPC])-TREATS->(Sleep disturbances)-CAUSES->(Symptoms)-CAUSES->(Diagnostic tests)",
+      "(Central alpha-2 Adrenergic Agonist [EPC])-PREVENTS->(Inflammation)-PREDISPOSES->(Symptoms)-CAUSES->(Diagnostic tests)",
+      "(Gastrointestinal Diseases)-CAUSES->(Disease)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Blood Vessels)",
+      "(Gastrointestinal Diseases)-CAUSES->(Disease)-MANIFESTATION_OF->(Neutrophil Infiltration)-PROCESS_OF->(Blood Vessels)",
+      "(Gastrointestinal Diseases)-COMPLICATES->(Disease)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Blood Vessels)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Tolazoline",
+        "Ischemia",
+        "Genes",
+        "Vasodilator Agents"
+      ],
+      [
+        "Tolazoline",
+        "Hypoxia",
+        "Genes",
+        "Vasodilator Agents"
+      ],
+      [
+        "Tolazoline",
+        "Pressors",
+        "Pharmaceutical Preparations",
+        "Vasodilator Agents"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Tolazoline)-TREATS->(Ischemia)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Vasodilator Agents)",
+      "(Tolazoline)-TREATS->(Hypoxia)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Vasodilator Agents)",
+      "(Tolazoline)-INTERACTS_WITH->(Pressors)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Vasodilator Agents)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Tolazoline)-INTERACTS_WITH->(Pressors)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Vasodilator Agents)",
+      "(Tolazoline)-TREATS->(Ischemia)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Vasodilator Agents)",
+      "(Tolazoline)-TREATS->(Hypoxia)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Vasodilator Agents)",
+      "(Central alpha-2 Adrenergic Agonist [EPC])-TREATS->(Sleep disturbances)-CAUSES->(Symptoms)-CAUSES->(Diagnostic tests)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Tolazoline\" -> \"vasodilator\" -> \"used in pulmonary hypertension tests\" -> 75%",
+    "CHAIN: \"Clonidine\" -> \"alpha-2 adrenergic agonist\" -> \"used in hypertension treatment, not typically in diagnostic tests\" -> 20%",
+    "CHAIN: \"Bismuth\" -> \"used to treat gastrointestinal disorders\" -> \"not used in diagnostic tests for vascular or cardiac conditions\" -> 10%",
+    "CHAIN: \"Oxymetazoline\" -> \"topical decongestant\" -> \"used to relieve nasal congestion, not used in diagnostic tests\" -> 15%"
+  ],
+  "enhanced_information": "Tolazoline is used in pulmonary hypertension tests, supported by its role as a vasodilator and its interactions with vasodilator agents, treating conditions like ischemia and hypoxia. This aligns with medical consensus and is corroborated by evidence paths linking it to relevant vascular effects.",
+  "analysis": "Tolazoline is identified as the correct drug used in the test based on its known use as a vasodilator in pulmonary hypertension tests. This aligns with standard medical knowledge and the enhanced information provided, making it the most likely correct choice among the options.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      1,
+      1,
+      0
+    ],
+    "coverage_rates": [
+      33.33333333333333,
+      33.33333333333333,
+      33.33333333333333,
+      0.0
+    ],
+    "total_successes": 3
+  },
+  "normal_results": []
+}

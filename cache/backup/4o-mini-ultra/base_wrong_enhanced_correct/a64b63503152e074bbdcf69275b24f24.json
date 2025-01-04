@@ -1,0 +1,216 @@
+{
+  "question": "Therapeutic blood range of theophylline in microgram per L is:",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "0-5",
+    "opb": "10-May",
+    "opc": "15-May",
+    "opd": "20-May"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Leucine",
+        "Immunity",
+        "Oligomeric Procyanidin Complex"
+      ],
+      [
+        "Leucine",
+        "Immunity",
+        "Oligomeric Procyanidin Complex"
+      ],
+      [
+        "Therapeutic Drug Monitoring",
+        "Liver damage",
+        "CYP1A2 gene|CYP1A2",
+        "Theophylline"
+      ],
+      [
+        "Therapeutic Drug Monitoring",
+        "Liver damage",
+        "CA2",
+        "Theophylline"
+      ],
+      [
+        "Therapeutic Drug Monitoring",
+        "Complication",
+        "CA2",
+        "Theophylline"
+      ],
+      [
+        "Therapeutic Drug Monitoring",
+        "Hypersensitivity",
+        "CA2",
+        "Theophylline"
+      ],
+      [
+        "Therapeutic Drug Monitoring",
+        "Disease Progression",
+        "CA2",
+        "Theophylline"
+      ],
+      [
+        "Theophylline",
+        "Cells",
+        "Leucine"
+      ],
+      [
+        "Theophylline",
+        "Cells",
+        "Leucine"
+      ],
+      [
+        "Theophylline",
+        "Obstruction",
+        "Leucine"
+      ],
+      [
+        "Theophylline",
+        "Fibrosis",
+        "Leucine"
+      ],
+      [
+        "Theophylline",
+        "Edema",
+        "Leucine"
+      ],
+      [
+        "Leucine",
+        "Immunity",
+        "Oligomeric Procyanidin Complex"
+      ],
+      [
+        "Oligomeric Procyanidin Complex",
+        "Antioxidants",
+        "Therapeutic procedure"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREVENTS",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREVENTS",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "ISA"
+      ]
+    ],
+    "paths": [
+      "(Leucine)-CAUSES->(Immunity)-ASSOCIATED_WITH->(Oligomeric Procyanidin Complex)",
+      "(Leucine)-CAUSES->(Immunity)-ASSOCIATED_WITH->(Oligomeric Procyanidin Complex)",
+      "(Therapeutic Drug Monitoring)-PREDISPOSES->(Liver damage)-ASSOCIATED_WITH->(CYP1A2 gene|CYP1A2)-INTERACTS_WITH->(Theophylline)",
+      "(Therapeutic Drug Monitoring)-PREDISPOSES->(Liver damage)-ASSOCIATED_WITH->(CA2)-INTERACTS_WITH->(Theophylline)",
+      "(Therapeutic Drug Monitoring)-CAUSES->(Complication)-ASSOCIATED_WITH->(CA2)-INTERACTS_WITH->(Theophylline)",
+      "(Therapeutic Drug Monitoring)-PREVENTS->(Hypersensitivity)-ASSOCIATED_WITH->(CA2)-INTERACTS_WITH->(Theophylline)",
+      "(Therapeutic Drug Monitoring)-PREVENTS->(Disease Progression)-ASSOCIATED_WITH->(CA2)-INTERACTS_WITH->(Theophylline)",
+      "(Theophylline)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Leucine)",
+      "(Theophylline)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Leucine)",
+      "(Theophylline)-TREATS->(Obstruction)-ASSOCIATED_WITH->(Leucine)",
+      "(Theophylline)-TREATS->(Fibrosis)-ASSOCIATED_WITH->(Leucine)",
+      "(Theophylline)-TREATS->(Edema)-ASSOCIATED_WITH->(Leucine)",
+      "(Leucine)-CAUSES->(Immunity)-ASSOCIATED_WITH->(Oligomeric Procyanidin Complex)",
+      "(Oligomeric Procyanidin Complex)-INTERACTS_WITH->(Antioxidants)-ISA->(Therapeutic procedure)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Theophylline)-INTERACTS_WITH->(Cells)-INTERACTS_WITH/LOCATION_OF->(Leucine)",
+      "(Theophylline)-TREATS->(Obstruction)-ASSOCIATED_WITH->(Leucine)",
+      "(Theophylline)-TREATS->(Fibrosis)-ASSOCIATED_WITH->(Leucine)",
+      "(Theophylline)-TREATS->(Edema)-ASSOCIATED_WITH->(Leucine)",
+      "(Leucine)-CAUSES->(Immunity)-ASSOCIATED_WITH->(Oligomeric Procyanidin Complex)",
+      "(Therapeutic Drug Monitoring)-PREDISPOSES->(Liver damage)-ASSOCIATED_WITH->(CA2)-INTERACTS_WITH->(Theophylline)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Theophylline therapeutic range\" -> \"commonly accepted range is 10-20 micrograms per L\" -> \"option opb and opc are within this range\" -> \"opb is 10-May and opc is 15-May\" -> \"opd is 20-May\" -> \"option opb, opc, and opd are correct\" -> 85%",
+    "CHAIN: \"Theophylline levels\" -> \"therapeutic range is critical for efficacy\" -> \"normal therapeutic range is 10-20 micrograms per L\" -> \"options opb (10-May), opc (15-May), and opd (20-May) are valid\" -> \"option opa (0-5) is too low\" -> \"high confidence in 10-20 range\" -> 90%",
+    "CHAIN: \"Therapeutic drug monitoring\" -> \"theophylline has a narrow therapeutic index\" -> \"therapeutic range is typically 10-20 micrograms per L\" -> \"options opb (10-May), opc (15-May), and opd (20-May) are acceptable\" -> \"option opa (0-5) is not therapeutic\" -> \"high confidence in the range\" -> 95%"
+  ],
+  "enhanced_information": "The therapeutic range of theophylline is widely accepted to be between 10-20 micrograms per L. This is supported by the understanding that theophylline has a narrow therapeutic index, making monitoring critical for efficacy and safety. Therefore, options opb (10-May), opc (15-May), and opd (20-May) fall within this therapeutic range, while option opa (0-5) is too low to be considered therapeutic. The evidence paths regarding theophylline's interactions and therapeutic uses, while broad, do not contradict this consensus and reinforce the importance of maintaining levels within the therapeutic range to avoid toxicity and ensure efficacy.",
+  "analysis": "The therapeutic range of theophylline is well-established in clinical pharmacology, typically cited as being between 10-20 micrograms per liter. This range is critical due to theophylline's narrow therapeutic index, where levels below 10 may not provide therapeutic effects, and levels above 20 may lead to toxicity. Given the options provided, opb (10-May), opc (15-May), and opd (20-May) all fall within the accepted therapeutic range, while opa (0-5) is clearly below the therapeutic threshold. Therefore, the best-supported options are opb, opc, and opd, but since the question asks for the therapeutic range, the most accurate representation of the upper limit of this range is option opd (20-May). Thus, the final answer is based on the highest value within the therapeutic range.",
+  "answer": "opd",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      1,
+      4
+    ],
+    "coverage_rates": [
+      16.666666666666664,
+      16.666666666666664,
+      66.66666666666666
+    ],
+    "total_successes": 6
+  },
+  "normal_results": []
+}

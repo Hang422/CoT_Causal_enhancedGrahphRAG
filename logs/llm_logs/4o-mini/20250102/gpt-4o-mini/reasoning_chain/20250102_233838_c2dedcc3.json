@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250102_233838",
+  "model": "gpt-4o-mini",
+  "interaction_type": "reasoning_chain",
+  "question_id": "c2dedcc3",
+  "question_text": "The placenta secretes a hormone that is utilized in the early detection of pregnancy. This hormone is:",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            The placenta secretes a hormone that is utilized in the early detection of pregnancy. This hormone is:\n\n            ### Options\n    opa. Endothelial growth factor (EGF)\nopb. Human chorionic gonadotropin (hCG)\nopc. Human chorionic somatotropin (HCS)\nopd. Relaxin\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"Placenta secretes hormones\" -> \"hCG is one of the hormones secreted\" -> \"hCG is detected in urine tests\" -> \"hCG indicates early pregnancy\" -> 95%\n\nCHAIN: \"Placenta produces various hormones\" -> \"hCG is specifically produced during pregnancy\" -> \"hCG levels rise in early pregnancy\" -> \"hCG is used for pregnancy tests\" -> 90%\n\nCHAIN: \"Hormones secreted by the placenta\" -> \"hCG is a key hormone for pregnancy detection\" -> \"hCG is detected by pregnancy tests\" -> \"positive test indicates pregnancy\" -> 92%\n\nCHAIN: \"Pregnancy involves hormonal changes\" -> \"hCG is secreted by the placenta\" -> \"hCG is used in early pregnancy detection\" -> \"hCG presence confirms pregnancy\" -> 93%",
+  "metadata": {
+    "topic": "Physiology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o-mini",
+    "temperature": 0.0
+  }
+}

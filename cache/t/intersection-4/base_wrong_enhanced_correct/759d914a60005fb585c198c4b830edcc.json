@@ -1,0 +1,152 @@
+{
+  "question": "The drug of choice in digitalis induced ventricular arrhythmias is:",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "I.V. Lignocaine",
+    "opb": "Phenytoin",
+    "opc": "Quinidine",
+    "opd": "Procainamide"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Stabilization",
+        "cardiac arrhythmia"
+      ],
+      [
+        "Quinidine",
+        "cardiac arrhythmia"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ]
+    ],
+    "paths": [
+      "(Stabilization)-CAUSES->(cardiac arrhythmia)",
+      "(Quinidine)-TREATS->(cardiac arrhythmia)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Lidocaine",
+        "Corneal epithelial cell",
+        "Body tissue",
+        "Stabilization"
+      ],
+      [
+        "Lidocaine",
+        "Corneal epithelial cell",
+        "Endothelium",
+        "Stabilization"
+      ],
+      [
+        "Lidocaine",
+        "Corneal epithelial cell",
+        "Tissue membrane",
+        "Stabilization"
+      ],
+      [
+        "Ventricular arrhythmia",
+        "Angiotensin II",
+        "heart cell"
+      ],
+      [
+        "Ventricular arrhythmia",
+        "Potassium Channel",
+        "heart cell"
+      ],
+      [
+        "Ventricular arrhythmia",
+        "Ion Channel",
+        "heart cell"
+      ]
+    ],
+    "relationships": [
+      [
+        "PART_OF",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "PART_OF",
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Lidocaine)-PART_OF->(Corneal epithelial cell)-PART_OF->(Body tissue)-LOCATION_OF->(Stabilization)",
+      "(Lidocaine)-PART_OF->(Corneal epithelial cell)-PART_OF->(Endothelium)-LOCATION_OF->(Stabilization)",
+      "(Lidocaine)-PART_OF->(Corneal epithelial cell)-PART_OF->(Tissue membrane)-LOCATION_OF->(Stabilization)",
+      "(Ventricular arrhythmia)-ASSOCIATED_WITH->(Angiotensin II)-INTERACTS_WITH->(heart cell)",
+      "(Ventricular arrhythmia)-ASSOCIATED_WITH->(Potassium Channel)-INTERACTS_WITH->(heart cell)",
+      "(Ventricular arrhythmia)-ASSOCIATED_WITH->(Ion Channel)-INTERACTS_WITH->(heart cell)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Quinidine)-TREATS->(cardiac arrhythmia)",
+      "(Ventricular arrhythmia)-ASSOCIATED_WITH->(Angiotensin II)-INTERACTS_WITH->(heart cell)",
+      "(Lidocaine)-PART_OF->(Corneal epithelial cell)-PART_OF->(Body tissue)-LOCATION_OF->(Stabilization)",
+      "(Lidocaine)-PART_OF->(Corneal epithelial cell)-PART_OF->(Endothelium)-LOCATION_OF->(Stabilization)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Digitalis induced ventricular arrhythmias\" -> \"increased ventricular excitability\" -> \"I.V. Lignocaine administration\" -> \"stabilization of cardiac membrane\" -> \"reduction in arrhythmias\" -> 85%",
+    "CHAIN: \"Digitalis induced ventricular arrhythmias\" -> \"altered ion transport in heart cells\" -> \"Phenytoin administration\" -> \"normalization of ion transport\" -> \"decrease in arrhythmias\" -> 80%",
+    "CHAIN: \"Digitalis induced ventricular arrhythmias\" -> \"enhanced automaticity and reentry circuits\" -> \"Quinidine administration\" -> \"possible worsening of arrhythmias due to increased QT interval\" -> \"unclear effectiveness\" -> 40%",
+    "CHAIN: \"Digitalis induced ventricular arrhythmias\" -> \"disruption in electrical conduction\" -> \"Procainamide administration\" -> \"possible reduction in arrhythmias\" -> \"risk of QT prolongation and arrhythmia exacerbation\" -> 50%"
+  ],
+  "enhanced_information": "I.V. Lignocaine is the preferred treatment for digitalis-induced ventricular arrhythmias due to its ability to stabilize cardiac membranes and reduce excitability without significant QT prolongation. Phenytoin serves as a possible alternative with similar ion channel stabilizing effects. Quinidine and Procainamide, although effective for other arrhythmias, pose risks of QT prolongation and are less suitable for digitalis-induced conditions.",
+  "analysis": "I.V. Lignocaine is the drug of choice for digitalis-induced ventricular arrhythmias due to its effective cardiac membrane stabilization and minimal impact on the QT interval, aligning with both standard medical consensus and enhanced information provided.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      1,
+      1,
+      0
+    ],
+    "coverage_rates": [
+      50.0,
+      25.0,
+      25.0,
+      0.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

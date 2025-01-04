@@ -1,0 +1,191 @@
+{
+  "question": "Which of the following causes retinal pigmentation?",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Quinine",
+    "opb": "Chloroquine",
+    "opc": "Mefloquine",
+    "opd": "Atovaquone"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Chloroquine",
+        "Infection",
+        "Biological Transport, Active",
+        "Pigment Epithelium"
+      ],
+      [
+        "Chloroquine",
+        "Infection",
+        "uptake",
+        "Pigment Epithelium"
+      ],
+      [
+        "Chloroquine",
+        "Disease",
+        "Respiration",
+        "Pigment Epithelium"
+      ],
+      [
+        "Chloroquine",
+        "Disease",
+        "uptake",
+        "Pigment Epithelium"
+      ],
+      [
+        "Chloroquine",
+        "Obesity",
+        "physiological aspects",
+        "Pigment Epithelium"
+      ],
+      [
+        "Mefloquine",
+        "Symptoms",
+        "voltage gated channel",
+        "Retina"
+      ],
+      [
+        "Mefloquine",
+        "Epilepsy",
+        "voltage gated channel",
+        "Retina"
+      ],
+      [
+        "Mefloquine",
+        "Symptoms",
+        "paracrine",
+        "Retina"
+      ],
+      [
+        "Mefloquine",
+        "Pulmonary Fibrosis",
+        "paracrine",
+        "Retina"
+      ],
+      [
+        "Mefloquine",
+        "Alzheimer's Disease",
+        "Cholesterol Homeostasis",
+        "Retina"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Chloroquine)-PREDISPOSES->(Infection)-MANIFESTATION_OF->(Biological Transport, Active)-PROCESS_OF->(Pigment Epithelium)",
+      "(Chloroquine)-PREDISPOSES->(Infection)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Pigment Epithelium)",
+      "(Chloroquine)-TREATS->(Disease)-MANIFESTATION_OF->(Respiration)-PROCESS_OF->(Pigment Epithelium)",
+      "(Chloroquine)-TREATS->(Disease)-MANIFESTATION_OF->(uptake)-PROCESS_OF->(Pigment Epithelium)",
+      "(Chloroquine)-TREATS->(Obesity)-MANIFESTATION_OF->(physiological aspects)-PROCESS_OF->(Pigment Epithelium)",
+      "(Mefloquine)-TREATS->(Symptoms)-MANIFESTATION_OF->(voltage gated channel)-PROCESS_OF->(Retina)",
+      "(Mefloquine)-TREATS->(Epilepsy)-MANIFESTATION_OF->(voltage gated channel)-PROCESS_OF->(Retina)",
+      "(Mefloquine)-TREATS->(Symptoms)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Retina)",
+      "(Mefloquine)-TREATS->(Pulmonary Fibrosis)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Retina)",
+      "(Mefloquine)-TREATS->(Alzheimer's Disease)-MANIFESTATION_OF->(Cholesterol Homeostasis)-PROCESS_OF->(Retina)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Pigment Epithelium",
+        "Retina"
+      ]
+    ],
+    "relationships": [
+      [
+        "PART_OF"
+      ]
+    ],
+    "paths": [
+      "(Pigment Epithelium)-PART_OF->(Retina)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Mefloquine)-TREATS->(Symptoms)-MANIFESTATION_OF->(voltage gated channel)-PROCESS_OF->(Retina)",
+      "(Mefloquine)-TREATS->(Epilepsy)-MANIFESTATION_OF->(voltage gated channel)-PROCESS_OF->(Retina)",
+      "(Mefloquine)-TREATS->(Symptoms)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Retina)",
+      "(Mefloquine)-TREATS->(Pulmonary Fibrosis)-MANIFESTATION_OF->(paracrine)-PROCESS_OF->(Retina)",
+      "(Mefloquine)-TREATS->(Alzheimer's Disease)-MANIFESTATION_OF->(Cholesterol Homeostasis)-PROCESS_OF->(Retina)",
+      "(Chloroquine)-PREDISPOSES->(Infection)-MANIFESTATION_OF->(Biological Transport, Active)-PROCESS_OF->(Pigment Epithelium)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: Chloroquine -> Accumulation in retinal pigment epithelium -> Retinal pigmentation -> 95% CHAIN: Quinine -> Unlikely to cause retinal pigmentation -> 70% CHAIN: Mefloquine -> Potential retinal toxicity -> Possible retinal pigmentation -> 80% CHAIN: Atovaquone -> No known association with retinal pigmentation -> 95%"
+  ],
+  "enhanced_information": "Chloroquine and Mefloquine are known to potentially cause retinal pigmentation due to their accumulation in the retinal pigment epithelium. Quinine is unlikely to cause retinal pigmentation. Atovaquone has no known association with retinal pigmentation. Evidence paths support the potential retinal toxicity of Mefloquine, which aligns with its possible role in causing retinal pigmentation.",
+  "analysis": "Chloroquine and Mefloquine are known to potentially cause retinal pigmentation due to their accumulation in the retinal pigment epithelium. Quinine is unlikely to cause retinal pigmentation. Atovaquone has no known association with retinal pigmentation. Given the enhanced information provided, the most likely correct option causing retinal pigmentation is Mefloquine.",
+  "answer": "opc",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      3
+    ],
+    "coverage_rates": [
+      100.0
+    ],
+    "total_successes": 3
+  },
+  "normal_results": []
+}

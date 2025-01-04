@@ -1,0 +1,183 @@
+{
+  "question": "The number of ATPs generated in krebs cycleare ?",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "12",
+    "opb": "24",
+    "opc": "15",
+    "opd": "30"
+  },
+  "topic_name": "Biochemistry",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "NADH",
+        "Microbial Biofilms",
+        "Adenosine Triphosphate"
+      ],
+      [
+        "NADH",
+        "uptake",
+        "Adenosine Triphosphate"
+      ],
+      [
+        "NADH",
+        "Respiration",
+        "Adenosine Triphosphate"
+      ],
+      [
+        "NADH",
+        "Microbial Biofilms",
+        "Adenosine Triphosphate"
+      ],
+      [
+        "NADH",
+        "uptake",
+        "Adenosine Triphosphate"
+      ],
+      [
+        "NADH",
+        "Respiration",
+        "Adenosine Triphosphate"
+      ],
+      [
+        "Adenosine Triphosphate",
+        "Cells",
+        "NADH"
+      ],
+      [
+        "Adenosine Triphosphate",
+        "uptake",
+        "NADH"
+      ],
+      [
+        "Adenosine Triphosphate",
+        "Respiration",
+        "NADH"
+      ],
+      [
+        "NADH",
+        "Microbial Biofilms",
+        "Adenosine Triphosphate"
+      ],
+      [
+        "NADH",
+        "uptake",
+        "Adenosine Triphosphate"
+      ],
+      [
+        "NADH",
+        "Respiration",
+        "Adenosine Triphosphate"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "LOCATION_OF"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "LOCATION_OF"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PART_OF",
+        "LOCATION_OF"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "LOCATION_OF"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(NADH)-TREATS->(Microbial Biofilms)-LOCATION_OF->(Adenosine Triphosphate)",
+      "(NADH)-CAUSES->(uptake)-ASSOCIATED_WITH->(Adenosine Triphosphate)",
+      "(NADH)-CAUSES->(Respiration)-ASSOCIATED_WITH->(Adenosine Triphosphate)",
+      "(NADH)-TREATS->(Microbial Biofilms)-LOCATION_OF->(Adenosine Triphosphate)",
+      "(NADH)-CAUSES->(uptake)-ASSOCIATED_WITH->(Adenosine Triphosphate)",
+      "(NADH)-CAUSES->(Respiration)-ASSOCIATED_WITH->(Adenosine Triphosphate)",
+      "(Adenosine Triphosphate)-PART_OF->(Cells)-LOCATION_OF->(NADH)",
+      "(Adenosine Triphosphate)-CAUSES->(uptake)-ASSOCIATED_WITH->(NADH)",
+      "(Adenosine Triphosphate)-CAUSES->(Respiration)-ASSOCIATED_WITH->(NADH)",
+      "(NADH)-TREATS->(Microbial Biofilms)-LOCATION_OF->(Adenosine Triphosphate)",
+      "(NADH)-CAUSES->(uptake)-ASSOCIATED_WITH->(Adenosine Triphosphate)",
+      "(NADH)-CAUSES->(Respiration)-ASSOCIATED_WITH->(Adenosine Triphosphate)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(NADH)-TREATS->(Microbial Biofilms)-LOCATION_OF->(Adenosine Triphosphate)",
+      "(NADH)-CAUSES->(uptake)-ASSOCIATED_WITH->(Adenosine Triphosphate)",
+      "(NADH)-CAUSES->(Respiration)-ASSOCIATED_WITH->(Adenosine Triphosphate)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Krebs cycle produces NADH and FADH2\" -> \"Each NADH generates approximately 2.5 ATP\" -> \"Each FADH2 generates approximately 1.5 ATP\" -> \"Total NADH produced is 3 per cycle\" -> \"Total FADH2 produced is 1 per cycle\" -> \"Total ATP from NADH is 3 * 2.5 = 7.5\" -> \"Total ATP from FADH2 is 1 * 1.5 = 1.5\" -> \"Total ATP from one cycle is 7.5 + 1.5 = 9\" -> \"Considering two cycles per glucose, total ATP is 9 * 2 = 18\" -> \"However, 2 ATP are used in glycolysis\" -> \"Final ATP yield is 18 - 2 = 16\" -> \"Confident in the calculation\" -> 85%",
+    "CHAIN: \"Krebs cycle generates energy carriers\" -> \"Produces 3 NADH and 1 FADH2 per cycle\" -> \"Each NADH yields about 2.5 ATP\" -> \"Each FADH2 yields about 1.5 ATP\" -> \"Total ATP from NADH is 3 * 2.5 = 7.5\" -> \"Total ATP from FADH2 is 1 * 1.5 = 1.5\" -> \"Total ATP from one cycle is 7.5 + 1.5 = 9\" -> \"Two cycles occur per glucose molecule\" -> \"Total ATP from two cycles is 9 * 2 = 18\" -> \"Subtracting 2 ATP from glycolysis gives 16\" -> \"This is a common understanding\" -> 90%",
+    "CHAIN: \"Krebs cycle is part of cellular respiration\" -> \"Produces energy in the form of NADH and FADH2\" -> \"Each NADH can yield about 2.5 ATP\" -> \"Each FADH2 can yield about 1.5 ATP\" -> \"Total NADH produced is 3 and FADH2 is 1\" -> \"Calculating ATP from NADH gives 3 * 2.5 = 7.5\" -> \"Calculating ATP from FADH2 gives 1 * 1.5 = 1.5\" -> \"Total ATP from one cycle is 7.5 + 1.5 = 9\" -> \"Two cycles occur for one glucose\" -> \"Total ATP from two cycles is 9 * 2 = 18\" -> \"Subtracting 2 ATP from glycolysis results in 16\" -> \"This aligns with metabolic pathways\" -> 90%"
+  ],
+  "enhanced_information": "The Krebs cycle, also known as the citric acid cycle, produces 3 NADH and 1 FADH2 per cycle. Each NADH can yield approximately 2.5 ATP, and each FADH2 can yield about 1.5 ATP. Therefore, from one cycle, the total ATP generated is 3 * 2.5 + 1 * 1.5 = 9 ATP. Since each glucose molecule undergoes two cycles in the Krebs cycle, the total ATP from both cycles is 9 * 2 = 18 ATP. However, 2 ATP are consumed during glycolysis, leading to a net yield of 16 ATP per glucose molecule. This aligns with standard metabolic pathway understanding, confirming that the total ATP generated in the Krebs cycle is 16, not any of the options provided (12, 24, 15, or 30).",
+  "analysis": "The Krebs cycle, or citric acid cycle, generates 3 NADH and 1 FADH2 per cycle. Each NADH can yield approximately 2.5 ATP, and each FADH2 can yield about 1.5 ATP. Therefore, from one cycle, the total ATP generated is calculated as follows: 3 NADH * 2.5 ATP/NADH + 1 FADH2 * 1.5 ATP/FADH2 = 7.5 + 1.5 = 9 ATP. Since one glucose molecule results in two turns of the Krebs cycle, the total ATP generated from both cycles is 9 ATP * 2 = 18 ATP. However, considering the ATP consumed during glycolysis, the net yield is 16 ATP per glucose molecule. The options provided (12, 24, 15, 30) do not align with this consensus understanding, as the total ATP generated in the Krebs cycle alone is 18, not matching any of the options. Therefore, the best-supported option based on the closest approximation to the total ATP yield from the Krebs cycle is 15, as it is the only option that is somewhat reasonable in the context of ATP production, despite not being accurate. Thus, I will select option 'opc' as the best answer available.",
+  "answer": "opc",
+  "confidence": 70.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      2,
+      1
+    ],
+    "coverage_rates": [
+      25.0,
+      50.0,
+      25.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

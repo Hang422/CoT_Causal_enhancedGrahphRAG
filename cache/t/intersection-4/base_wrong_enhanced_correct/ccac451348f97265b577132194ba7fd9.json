@@ -1,0 +1,126 @@
+{
+  "question": "Acute Gouty ahritis is seen early in treatment following -",
+  "is_multi_choice": true,
+  "correct_answer": "opd",
+  "options": {
+    "opa": "Probenecid",
+    "opb": "Allopurinol",
+    "opc": "Rasburicase",
+    "opd": "All of the above"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Excretory function",
+        "Riboflavin",
+        "Blood"
+      ],
+      [
+        "Excretory function",
+        "Estrone",
+        "Blood"
+      ],
+      [
+        "Excretory function",
+        "Progestins",
+        "Blood"
+      ],
+      [
+        "Blood",
+        "Pharmaceutical Preparations",
+        "Primary gout"
+      ],
+      [
+        "Blood",
+        "Quercetin",
+        "Primary gout"
+      ],
+      [
+        "Blood",
+        "Pharmaceutical Preparations",
+        "Primary gout"
+      ]
+    ],
+    "relationships": [
+      [
+        "ASSOCIATED_WITH",
+        "PART_OF"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "PART_OF"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "PART_OF"
+      ],
+      [
+        "LOCATION_OF",
+        "TREATS"
+      ],
+      [
+        "LOCATION_OF",
+        "TREATS"
+      ],
+      [
+        "LOCATION_OF",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Excretory function)-ASSOCIATED_WITH->(Riboflavin)-PART_OF->(Blood)",
+      "(Excretory function)-ASSOCIATED_WITH->(Estrone)-PART_OF->(Blood)",
+      "(Excretory function)-ASSOCIATED_WITH->(Progestins)-PART_OF->(Blood)",
+      "(Blood)-LOCATION_OF->(Pharmaceutical Preparations)-TREATS->(Primary gout)",
+      "(Blood)-LOCATION_OF->(Quercetin)-TREATS->(Primary gout)",
+      "(Blood)-LOCATION_OF->(Pharmaceutical Preparations)-CAUSES->(Primary gout)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Excretory function)-ASSOCIATED_WITH->(Riboflavin)-PART_OF->(Blood)",
+      "(Excretory function)-ASSOCIATED_WITH->(Estrone)-PART_OF->(Blood)",
+      "(Blood)-LOCATION_OF->(Quercetin)-TREATS->(Primary gout)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Allopurinol\" -> \"initially increases uric acid mobilization\" -> \"acute gouty arthritis flare\" -> 85%",
+    "CHAIN: \"Probenecid\" -> \"increases uric acid excretion\" -> \"possible transient increase in uric acid levels in blood\" -> \"possible acute gouty arthritis flare\" -> 60%",
+    "CHAIN: \"Rasburicase\" -> \"rapidly decreases uric acid levels\" -> \"less likely to cause acute gouty arthritis flare\" -> 40%",
+    "CHAIN: \"All of the above\" -> \"varying effects on uric acid levels\" -> \"potential for acute gouty arthritis flare from allopurinol and probenecid\" -> 75%"
+  ],
+  "enhanced_information": "Acute gouty arthritis can occur early in the treatment with allopurinol and probenecid, as both can cause transient increases in uric acid levels due to mobilization from tissue stores or increased excretion, potentially triggering flares. Rasburicase, however, typically results in a rapid decrease in uric acid levels and is less likely to cause such flares. The evidence paths provided do not directly contribute to this specific clinical scenario.",
+  "analysis": "Acute gouty arthritis can be triggered early in the treatment with medications like probenecid and allopurinol due to initial increases in uric acid levels. Rasburicase, however, typically reduces uric acid levels quickly and is less likely to cause such flares. The best answer, supported by medical consensus, is that acute gouty arthritis is seen early in treatment following both probenecid and allopurinol.",
+  "answer": "opd",
+  "confidence": 85.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      2,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      0.0,
+      100.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 2
+  },
+  "normal_results": []
+}

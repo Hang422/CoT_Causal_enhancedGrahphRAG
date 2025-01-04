@@ -1,0 +1,175 @@
+{
+  "question": "Naltrexone is used to maintain abstinence following opioid withdrawal in addicts. It blocks all of the following featues of opioid use, except -",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Euphoriant effects of opioids",
+    "opb": "Craving for opioids",
+    "opc": "Miosis",
+    "opd": "Respiratory depression"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Opioid Receptor",
+        "Absence of pain sensation",
+        "Ocular-Ophthalmoplegia, Sympathetic",
+        "Miosis disorder"
+      ],
+      [
+        "Opioid Receptor",
+        "hypothermia, natural",
+        "Respiration",
+        "Respiratory Center"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Opioid Receptor)-CAUSES->(Absence of pain sensation)-CAUSES->(Ocular-Ophthalmoplegia, Sympathetic)-CAUSES->(Miosis disorder)",
+      "(Opioid Receptor)-CAUSES->(hypothermia, natural)-MANIFESTATION_OF->(Respiration)-PROCESS_OF->(Respiratory Center)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Opioid Receptor",
+        "Analgesics",
+        "Anesthetics",
+        "Analgesics, Opioid"
+      ],
+      [
+        "Opioid Receptor",
+        "Fibroblasts",
+        "opium alkaloids and derivative combination cough suppressants",
+        "Analgesics, Opioid"
+      ],
+      [
+        "Opioid Receptor",
+        "Neurons",
+        "Anesthetics",
+        "Analgesics, Opioid"
+      ],
+      [
+        "Obstruction",
+        "Genes",
+        "opium alkaloids and derivative combination cough suppressants",
+        "Analgesics, Opioid"
+      ],
+      [
+        "Obstruction",
+        "Phosphocreatine",
+        "Anesthetics",
+        "Analgesics, Opioid"
+      ],
+      [
+        "Obstruction",
+        "Genes",
+        "Anesthetics",
+        "Analgesics, Opioid"
+      ],
+      [
+        "Respiratory Center",
+        "Respiratory Depression"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Opioid Receptor)-INTERACTS_WITH->(Analgesics)-INTERACTS_WITH->(Anesthetics)-INTERACTS_WITH->(Analgesics, Opioid)",
+      "(Opioid Receptor)-INTERACTS_WITH->(Fibroblasts)-LOCATION_OF->(opium alkaloids and derivative combination cough suppressants)-INTERACTS_WITH->(Analgesics, Opioid)",
+      "(Opioid Receptor)-INTERACTS_WITH->(Neurons)-LOCATION_OF->(Anesthetics)-INTERACTS_WITH->(Analgesics, Opioid)",
+      "(Obstruction)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(opium alkaloids and derivative combination cough suppressants)-INTERACTS_WITH->(Analgesics, Opioid)",
+      "(Obstruction)-ASSOCIATED_WITH->(Phosphocreatine)-INTERACTS_WITH->(Anesthetics)-INTERACTS_WITH->(Analgesics, Opioid)",
+      "(Obstruction)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Anesthetics)-INTERACTS_WITH->(Analgesics, Opioid)",
+      "(Respiratory Center)-LOCATION_OF->(Respiratory Depression)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Obstruction)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(opium alkaloids and derivative combination cough suppressants)-INTERACTS_WITH->(Analgesics, Opioid)",
+      "(Obstruction)-ASSOCIATED_WITH->(Phosphocreatine)-INTERACTS_WITH->(Anesthetics)-INTERACTS_WITH->(Analgesics, Opioid)",
+      "(Obstruction)-ASSOCIATED_WITH->(Genes)-INTERACTS_WITH->(Anesthetics)-INTERACTS_WITH->(Analgesics, Opioid)",
+      "(Opioid Receptor)-INTERACTS_WITH->(Analgesics)-INTERACTS_WITH->(Anesthetics)-INTERACTS_WITH->(Analgesics, Opioid)",
+      "(Opioid Receptor)-INTERACTS_WITH->(Fibroblasts)-LOCATION_OF->(opium alkaloids and derivative combination cough suppressants)-INTERACTS_WITH->(Analgesics, Opioid)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Naltrexone administration\" -> \"blocks opioid receptors\" -> \"prevents euphoriant effects of opioids\" -> 95%",
+    "CHAIN: \"Naltrexone administration\" -> \"blocks opioid receptors\" -> \"reduces craving for opioids\" -> 95%",
+    "CHAIN: \"Naltrexone administration\" -> \"blocks opioid receptors\" -> \"does not affect miosis caused by opioids\" -> \"miosis persists\" -> 90%",
+    "CHAIN: \"Naltrexone administration\" -> \"blocks opioid receptors\" -> \"does not directly affect respiratory centers\" -> \"respiratory depression by opioids not prevented\" -> 90%"
+  ],
+  "enhanced_information": "Naltrexone, an opioid antagonist, effectively blocks the euphoriant effects and reduces craving by antagonizing opioid receptors. However, it does not prevent miosis or respiratory depression caused by opioids. The correct answer is that naltrexone does not block respiratory depression.",
+  "analysis": "Naltrexone, as an opioid antagonist, blocks the euphoric effects and reduces cravings by antagonizing opioid receptors. It also prevents respiratory depression by blocking opioid action on these receptors. However, it does not affect miosis, which is mediated through different mechanisms not directly influenced by naltrexone.",
+  "answer": "opc",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      2,
+      2
+    ],
+    "coverage_rates": [
+      0.0,
+      20.0,
+      40.0,
+      40.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

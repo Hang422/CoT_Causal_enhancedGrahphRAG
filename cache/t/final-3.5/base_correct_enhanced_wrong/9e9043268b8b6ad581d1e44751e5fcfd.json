@@ -1,0 +1,104 @@
+{
+  "question": "Drug of choice for pregnant female suspected of having a baby with congenital adrenal hyperplasia",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Dexamethasone",
+    "opb": "Betamethasone",
+    "opc": "Hydrocoisone",
+    "opd": "Prednisolone"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "GLUCOCORTICOID THERAPY",
+        "Adverse event",
+        "Pharmaceutical Preparations"
+      ],
+      [
+        "GLUCOCORTICOID THERAPY",
+        "Disease",
+        "Enterococcus faecalis",
+        "Betamethasone"
+      ],
+      [
+        "GLUCOCORTICOID THERAPY",
+        "Disease",
+        "Enterococcus faecalis",
+        "Betamethasone"
+      ],
+      [
+        "GLUCOCORTICOID THERAPY",
+        "Disease",
+        "Enterococcus faecalis",
+        "Betamethasone"
+      ]
+    ],
+    "relationships": [
+      [
+        "PREVENTS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH",
+        "LOCATION_OF"
+      ],
+      [
+        "COMPLICATES",
+        "ASSOCIATED_WITH",
+        "LOCATION_OF"
+      ]
+    ],
+    "paths": [
+      "(GLUCOCORTICOID THERAPY)-PREVENTS->(Adverse event)-ASSOCIATED_WITH->(Pharmaceutical Preparations)",
+      "(GLUCOCORTICOID THERAPY)-PREDISPOSES->(Disease)-ASSOCIATED_WITH->(Enterococcus faecalis)-LOCATION_OF->(Betamethasone)",
+      "(GLUCOCORTICOID THERAPY)-TREATS->(Disease)-ASSOCIATED_WITH->(Enterococcus faecalis)-LOCATION_OF->(Betamethasone)",
+      "(GLUCOCORTICOID THERAPY)-COMPLICATES->(Disease)-ASSOCIATED_WITH->(Enterococcus faecalis)-LOCATION_OF->(Betamethasone)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(GLUCOCORTICOID THERAPY)-COMPLICATES/PREDISPOSES/TREATS->(Disease)-ASSOCIATED_WITH->(Enterococcus faecalis)-LOCATION_OF->(Betamethasone)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Congenital adrenal hyperplasia (CAH) in a fetus\" -> \"Excessive androgen production\" -> \"Masculinization of external genitalia in female fetus\" -> \"Potential virilization effects\" -> \"Need for prenatal treatment to prevent virilization\" -> \"Antenatal glucocorticoid therapy indicated\" -> \"Drug of choice: Betamethasone\" -> 95%",
+    "CHAIN: \"Congenital adrenal hyperplasia (CAH) in a fetus\" -> \"Excessive androgen production\" -> \"Masculinization of external genitalia in female fetus\" -> \"Potential virilization effects\" -> \"Need for prenatal treatment to prevent virilization\" -> \"Antenatal glucocorticoid therapy indicated\" -> \"Dexamethasone and Betamethasone commonly used\" -> \"Preference for Betamethasone due to lower risk of maternal complications\" -> \"Drug of choice: Betamethasone\" -> 90%"
+  ],
+  "enhanced_information": "For a pregnant female suspected of having a baby with congenital adrenal hyperplasia, the drug of choice for antenatal glucocorticoid therapy to prevent virilization is Betamethasone. This choice is based on the lower risk of maternal complications compared to Dexamethasone, making Betamethasone the preferred option.",
+  "analysis": "The core medical principle for antenatal glucocorticoid therapy in a pregnant female suspected of having a baby with congenital adrenal hyperplasia is to prevent virilization. Betamethasone is the drug of choice due to its lower risk of maternal complications compared to Dexamethasone. This aligns with consensus recommendations.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      1
+    ],
+    "coverage_rates": [
+      50.0,
+      50.0
+    ],
+    "total_successes": 2
+  },
+  "normal_results": []
+}

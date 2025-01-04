@@ -1,0 +1,191 @@
+{
+  "question": "Myoclonus in children is best treated by :",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Clonazepam",
+    "opb": "Sodium Valproate",
+    "opc": "Phenobarbitone",
+    "opd": "Ethosuximide"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Treated with",
+        "Atherosclerosis",
+        "Stenosis, unspecified",
+        "Epilepsies, Myoclonic"
+      ],
+      [
+        "Treated with",
+        "Atherosclerosis",
+        "Epilepsy",
+        "Epilepsies, Myoclonic"
+      ],
+      [
+        "Treated with",
+        "Atherosclerosis",
+        "Functional disorder",
+        "Epilepsies, Myoclonic"
+      ],
+      [
+        "Treated with",
+        "Atherosclerosis",
+        "Seizures",
+        "Epilepsies, Myoclonic"
+      ],
+      [
+        "Treated with",
+        "Atherosclerosis",
+        "Blood Coagulation Disorders",
+        "Epilepsies, Myoclonic"
+      ],
+      [
+        "Myoclonus",
+        "Seizures"
+      ],
+      [
+        "Seizures",
+        "Myoclonus"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "PREDISPOSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Treated with)-TREATS->(Atherosclerosis)-CAUSES->(Stenosis, unspecified)-CAUSES->(Epilepsies, Myoclonic)",
+      "(Treated with)-TREATS->(Atherosclerosis)-CAUSES->(Epilepsy)-CAUSES->(Epilepsies, Myoclonic)",
+      "(Treated with)-TREATS->(Atherosclerosis)-CAUSES->(Functional disorder)-CAUSES->(Epilepsies, Myoclonic)",
+      "(Treated with)-TREATS->(Atherosclerosis)-CAUSES->(Seizures)-CAUSES->(Epilepsies, Myoclonic)",
+      "(Treated with)-TREATS->(Atherosclerosis)-PREDISPOSES->(Blood Coagulation Disorders)-CAUSES->(Epilepsies, Myoclonic)",
+      "(Myoclonus)-CAUSES->(Seizures)",
+      "(Seizures)-CAUSES->(Myoclonus)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Epilepsy",
+        "Pathogenesis",
+        "Melatonin",
+        "Clonazepam"
+      ],
+      [
+        "Epilepsy",
+        "Pathogenesis",
+        "Melatonin",
+        "Clonazepam"
+      ],
+      [
+        "Epilepsy",
+        "Pathogenesis",
+        "Melatonin",
+        "Clonazepam"
+      ],
+      [
+        "Anticonvulsants",
+        "Sodium Valproate"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PREDISPOSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Epilepsy)-CAUSES->(Pathogenesis)-ASSOCIATED_WITH->(Melatonin)-INTERACTS_WITH->(Clonazepam)",
+      "(Epilepsy)-PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Melatonin)-INTERACTS_WITH->(Clonazepam)",
+      "(Epilepsy)-MANIFESTATION_OF->(Pathogenesis)-ASSOCIATED_WITH->(Melatonin)-INTERACTS_WITH->(Clonazepam)",
+      "(Anticonvulsants)-INTERACTS_WITH->(Sodium Valproate)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Anticonvulsants)-INTERACTS_WITH->(Sodium Valproate)",
+      "(Epilepsy)-CAUSES/MANIFESTATION_OF/PREDISPOSES->(Pathogenesis)-ASSOCIATED_WITH->(Melatonin)-INTERACTS_WITH->(Clonazepam)",
+      "(Myoclonus)-CAUSES->(Seizures)",
+      "(Seizures)-CAUSES->(Myoclonus)",
+      "(Treated with)-TREATS->(Atherosclerosis)-CAUSES->(Seizures)-CAUSES->(Epilepsies, Myoclonic)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Myoclonus in children\" -> \"often associated with epilepsy\" -> \"Clonazepam is effective for myoclonic seizures\" -> \"Clonazepam reduces myoclonic jerks\" -> 85%",
+    "CHAIN: \"Myoclonus in children\" -> \"can be treated with anticonvulsants\" -> \"Sodium Valproate is also used for myoclonic seizures\" -> \"Sodium Valproate stabilizes neuronal activity\" -> 80%",
+    "CHAIN: \"Myoclonus in children\" -> \"Phenobarbitone is a barbiturate anticonvulsant\" -> \"less effective for myoclonic seizures\" -> \"not the first-line treatment\" -> 60%",
+    "CHAIN: \"Myoclonus in children\" -> \"Ethosuximide primarily treats absence seizures\" -> \"not typically effective for myoclonus\" -> \"not recommended for this condition\" -> 50%"
+  ],
+  "enhanced_information": "Myoclonus in children is often associated with epilepsy and can be effectively treated with certain anticonvulsants. Clonazepam is recognized as effective for myoclonic seizures, as it reduces myoclonic jerks and is commonly used in clinical practice. Sodium Valproate is also utilized for myoclonic seizures, as it stabilizes neuronal activity and is considered a first-line treatment option. In contrast, Phenobarbitone is less effective for myoclonic seizures and is not recommended as a first-line treatment. Ethosuximide primarily treats absence seizures and is not effective for myoclonus, making it unsuitable for this condition. Therefore, the best treatment options for myoclonus in children are Clonazepam and Sodium Valproate.",
+  "analysis": "Myoclonus in children is often associated with various forms of epilepsy, and the treatment options typically include anticonvulsants. Clonazepam (opa) is known for its effectiveness in reducing myoclonic jerks and is commonly used in clinical practice for this purpose. Sodium Valproate (opb) is also a first-line treatment for myoclonic seizures due to its ability to stabilize neuronal activity. Phenobarbitone (opc) is generally not recommended for myoclonus as it is less effective, and Ethosuximide (opd) is primarily used for absence seizures and does not address myoclonus effectively. Given the consensus that both Clonazepam and Sodium Valproate are effective, Sodium Valproate is often preferred as a first-line treatment due to its broader efficacy and safety profile in pediatric patients. Therefore, the best-supported option for treating myoclonus in children is Sodium Valproate (opb).",
+  "answer": "opb",
+  "confidence": 85.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      2,
+      0,
+      2
+    ],
+    "coverage_rates": [
+      20.0,
+      40.0,
+      0.0,
+      40.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

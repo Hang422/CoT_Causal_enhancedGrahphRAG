@@ -1,0 +1,96 @@
+{
+  "question": "Which is True about dobutamine?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Dobutamine decreases peripheral resistance",
+    "opb": "Acts on D1 and D2 receptors",
+    "opc": "Decrease kidney circulation",
+    "opd": "Has no effect on coronary circulation"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Dobutamine",
+        "Functional disorder",
+        "Receptors, Adrenergic, beta-1"
+      ],
+      [
+        "Dobutamine",
+        "cardiac arrhythmia",
+        "Receptors, Adrenergic, beta-1"
+      ],
+      [
+        "Dobutamine",
+        "Functional disorder",
+        "Dopamine D2 Receptor"
+      ],
+      [
+        "Dobutamine",
+        "Obstruction",
+        "Dopamine D2 Receptor"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ]
+    ],
+    "paths": [
+      "(Dobutamine)-TREATS->(Functional disorder)-ASSOCIATED_WITH->(Receptors, Adrenergic, beta-1)",
+      "(Dobutamine)-TREATS->(cardiac arrhythmia)-ASSOCIATED_WITH->(Receptors, Adrenergic, beta-1)",
+      "(Dobutamine)-TREATS->(Functional disorder)-ASSOCIATED_WITH->(Dopamine D2 Receptor)",
+      "(Dobutamine)-TREATS->(Obstruction)-ASSOCIATED_WITH->(Dopamine D2 Receptor)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Dobutamine)-TREATS->(Obstruction)-ASSOCIATED_WITH->(Dopamine D2 Receptor)",
+      "(Dobutamine)-TREATS->(Functional disorder)-ASSOCIATED_WITH->(Dopamine D2 Receptor)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: Dobutamine -> increases cardiac output -> decreases peripheral resistance -> 80% CHAIN: Dobutamine -> acts on beta-1 adrenergic receptors -> increases heart rate and contractility -> decreases peripheral resistance -> 85% CHAIN: Dobutamine -> does not act on D1 and D2 receptors -> 90% CHAIN: Dobutamine -> increases coronary circulation -> does not decrease kidney circulation -> 80%"
+  ],
+  "enhanced_information": "Dobutamine decreases peripheral resistance, acts on beta-1 adrenergic receptors, does not act on D1 and D2 receptors, increases coronary circulation, and does not decrease kidney circulation. Evidence paths suggest associations with dopamine D2 receptors but are not directly relevant to the specific properties of dobutamine mentioned in the options.",
+  "analysis": "Dobutamine is a beta-1 adrenergic receptor agonist that increases cardiac contractility and heart rate. It does not significantly affect peripheral resistance, acts on beta-1 adrenergic receptors, increases coronary circulation, and does not decrease kidney circulation. The enhanced information confirms these properties and clarifies that dobutamine does not act on D1 and D2 receptors. Therefore, the correct statement is that dobutamine decreases peripheral resistance.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2
+    ],
+    "coverage_rates": [
+      100.0
+    ],
+    "total_successes": 2
+  },
+  "normal_results": []
+}

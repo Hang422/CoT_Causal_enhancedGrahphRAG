@@ -1,0 +1,145 @@
+{
+  "question": "Folic acid metabolism is inhibited by :  a) Sulfonamides b) Methotrexate c) Nitrous oxide d) Trimethoprim e) 5–Flucytosine",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "acd",
+    "opb": "abd",
+    "opc": "bde",
+    "opd": "ace"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Methotrexate",
+        "Hypertension, Pulmonary",
+        "Dihydrofolate Reductase"
+      ],
+      [
+        "Nitrous Oxide",
+        "Pharmaceutical Preparations",
+        "APP gene",
+        "Vitamin B 12"
+      ],
+      [
+        "Nitrous Oxide",
+        "Pharmaceutical Preparations",
+        "Alleles",
+        "Vitamin B 12"
+      ],
+      [
+        "Vitamin B 12",
+        "Genes",
+        "Cells",
+        "5-Methyltetrahydrofolate-Homocysteine S-Methyltransferase"
+      ],
+      [
+        "Vitamin B 12",
+        "Genes",
+        "Cells",
+        "5-Methyltetrahydrofolate-Homocysteine S-Methyltransferase"
+      ],
+      [
+        "Trimethoprim",
+        "Hypersensitivity",
+        "Dihydrofolate Reductase"
+      ],
+      [
+        "Fluorouracil",
+        "Thymidylate Synthase"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "PART_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "TREATS",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Methotrexate)-TREATS->(Hypertension, Pulmonary)-ASSOCIATED_WITH->(Dihydrofolate Reductase)",
+      "(Nitrous Oxide)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(APP gene)-INTERACTS_WITH->(Vitamin B 12)",
+      "(Nitrous Oxide)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Alleles)-INTERACTS_WITH->(Vitamin B 12)",
+      "(Vitamin B 12)-INTERACTS_WITH->(Genes)-PART_OF->(Cells)-INTERACTS_WITH->(5-Methyltetrahydrofolate-Homocysteine S-Methyltransferase)",
+      "(Vitamin B 12)-INTERACTS_WITH->(Genes)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(5-Methyltetrahydrofolate-Homocysteine S-Methyltransferase)",
+      "(Trimethoprim)-TREATS->(Hypersensitivity)-ASSOCIATED_WITH->(Dihydrofolate Reductase)",
+      "(Fluorouracil)-INTERACTS_WITH->(Thymidylate Synthase)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Nitrous Oxide)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(APP gene)-INTERACTS_WITH->(Vitamin B 12)",
+      "(Nitrous Oxide)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Alleles)-INTERACTS_WITH->(Vitamin B 12)",
+      "(Methotrexate)-TREATS->(Hypertension, Pulmonary)-ASSOCIATED_WITH->(Dihydrofolate Reductase)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Sulfonamides\" -> \"inhibit dihydropteroate synthase\" -> \"decreased folate synthesis\" -> \"inhibited folic acid metabolism\" -> 80%",
+    "CHAIN: \"Methotrexate\" -> \"inhibits dihydrofolate reductase\" -> \"decreased tetrahydrofolate\" -> \"inhibited folic acid metabolism\" -> 95%",
+    "CHAIN: \"Nitrous oxide\" -> \"oxidizes vitamin B12\" -> \"impaired methionine synthase\" -> \"inhibited folic acid metabolism\" -> 85%",
+    "CHAIN: \"Trimethoprim\" -> \"inhibits dihydrofolate reductase\" -> \"decreased tetrahydrofolate\" -> \"inhibited folic acid metabolism\" -> 90%",
+    "CHAIN: \"5-Flucytosine\" -> \"converted to 5-fluorouracil\" -> \"inhibits thymidylate synthase\" -> \"possible folate pathway interference\" -> 70%"
+  ],
+  "enhanced_information": "Folic acid metabolism is inhibited by several agents through different mechanisms. Sulfonamides inhibit dihydropteroate synthase, leading to decreased folate synthesis, which is a consensus fact. Methotrexate and Trimethoprim both inhibit dihydrofolate reductase, resulting in decreased tetrahydrofolate and subsequently inhibiting folic acid metabolism. Nitrous oxide can impair vitamin B12 function, which is necessary for folate metabolism, but its direct role in inhibiting folic acid metabolism is less clear and not as widely accepted as the other agents. 5-Flucytosine's mechanism involves conversion to 5-fluorouracil, which primarily affects thymidylate synthase, and while it may interfere with folate pathways, it does not directly inhibit folic acid metabolism. Therefore, the most accurate options based on consensus are: a) Sulfonamides, b) Methotrexate, and d) Trimethoprim. The correct answer is option 'opb' (abd).",
+  "analysis": "Folic acid metabolism is primarily inhibited by agents that interfere with the synthesis or reduction of folate. Sulfonamides inhibit dihydropteroate synthase, leading to decreased folate synthesis, which is a well-established mechanism. Methotrexate and Trimethoprim both inhibit dihydrofolate reductase, which is crucial for converting dihydrofolate to tetrahydrofolate, thus directly impacting folic acid metabolism. Nitrous oxide's role is less clear; it primarily affects vitamin B12 function, which can indirectly influence folate metabolism but is not a direct inhibitor. 5-Flucytosine primarily affects thymidylate synthase and does not directly inhibit folic acid metabolism. Therefore, the most supported options based on consensus are Sulfonamides, Methotrexate, and Trimethoprim, leading to the conclusion that option 'opb' (abd) is the best answer.",
+  "answer": "opb",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      1,
+      2,
+      1,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      20.0,
+      40.0,
+      20.0,
+      20.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

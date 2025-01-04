@@ -1,0 +1,192 @@
+{
+  "question": "Which of the following peptides are not produced by the renal system?",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Renin",
+    "opb": "Angiotensin I",
+    "opc": "Erythropoietin",
+    "opd": "1,25DHCC"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Renin",
+        "Excretory function",
+        "Kidney"
+      ],
+      [
+        "Renin",
+        "Thirst",
+        "Kidney"
+      ],
+      [
+        "Renin",
+        "Excretory function",
+        "Kidney"
+      ],
+      [
+        "Renin",
+        "Thirst",
+        "Kidney"
+      ],
+      [
+        "Erythropoietin",
+        "Cytoprotection",
+        "Kidney"
+      ],
+      [
+        "Erythropoietin",
+        "Immunity",
+        "Kidney"
+      ],
+      [
+        "Erythropoietin",
+        "biological adaptation to stress",
+        "Kidney"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ],
+      [
+        "CAUSES",
+        "PROCESS_OF"
+      ]
+    ],
+    "paths": [
+      "(Renin)-CAUSES->(Excretory function)-PROCESS_OF->(Kidney)",
+      "(Renin)-CAUSES->(Thirst)-PROCESS_OF->(Kidney)",
+      "(Renin)-CAUSES->(Excretory function)-PROCESS_OF->(Kidney)",
+      "(Renin)-CAUSES->(Thirst)-PROCESS_OF->(Kidney)",
+      "(Erythropoietin)-CAUSES->(Cytoprotection)-PROCESS_OF->(Kidney)",
+      "(Erythropoietin)-CAUSES->(Immunity)-PROCESS_OF->(Kidney)",
+      "(Erythropoietin)-CAUSES->(biological adaptation to stress)-PROCESS_OF->(Kidney)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Angiotensin I",
+        "Myocytes, Smooth Muscle",
+        "Angiotensinogen"
+      ],
+      [
+        "Angiotensinogen",
+        "Cells",
+        "Renin"
+      ],
+      [
+        "Angiotensinogen",
+        "Insulin Resistance",
+        "Renin"
+      ],
+      [
+        "Renin",
+        "Cells",
+        "Angiotensin I"
+      ],
+      [
+        "Renin",
+        "monocyte",
+        "Angiotensin I"
+      ]
+    ],
+    "relationships": [
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Angiotensin I)-INTERACTS_WITH->(Myocytes, Smooth Muscle)-INTERACTS_WITH->(Angiotensinogen)",
+      "(Angiotensinogen)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Renin)",
+      "(Angiotensinogen)-ASSOCIATED_WITH->(Insulin Resistance)-ASSOCIATED_WITH->(Renin)",
+      "(Renin)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Angiotensin I)",
+      "(Renin)-INTERACTS_WITH->(monocyte)-INTERACTS_WITH->(Angiotensin I)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Renin)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Angiotensin I)",
+      "(Renin)-INTERACTS_WITH->(monocyte)-INTERACTS_WITH->(Angiotensin I)",
+      "(Angiotensinogen)-ASSOCIATED_WITH->(Insulin Resistance)-ASSOCIATED_WITH->(Renin)",
+      "(Angiotensinogen)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Renin)",
+      "(Renin)-CAUSES->(Excretory function)-PROCESS_OF->(Kidney)",
+      "(Renin)-CAUSES->(Thirst)-PROCESS_OF->(Kidney)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Renin\" -> \"produced by juxtaglomerular cells in kidneys\" -> 100%",
+    "CHAIN: \"Angiotensin I\" -> \"formed from angiotensinogen by renin\" -> \"renin produced by kidneys\" -> \"Angiotensin I indirectly linked to renal system production\" -> 95%",
+    "CHAIN: \"Erythropoietin\" -> \"produced by interstitial fibroblasts in the kidney in response to hypoxia\" -> 100%",
+    "CHAIN: \"1,25DHCC (1,25-dihydroxycholecalciferol or calcitriol)\" -> \"produced by enzymatic conversion in the kidneys from 25-hydroxyvitamin D\" -> 100%"
+  ],
+  "enhanced_information": "Angiotensin I, while related to the renal system through the action of renin, is not produced by the renal system but is synthesized in the blood. Renin, Erythropoietin, and 1,25DHCC are all produced by the kidneys, aligning with standard medical consensus.",
+  "analysis": "The question requires identifying which peptide among the listed options is not produced by the renal system. Renin is a hormone produced by the kidneys that plays a critical role in the renin-angiotensin system, which regulates blood pressure and fluid balance. Erythropoietin, also produced by the kidneys, stimulates the production of red blood cells in response to hypoxia. 1,25-Dihydroxycholecalciferol (1,25DHCC), or calcitriol, is the active form of vitamin D, synthesized in the kidneys from its precursors. Angiotensin I, however, is not directly produced by the kidneys but is instead a product of the action of renin on angiotensinogen, which occurs in the blood. This aligns with the standard medical understanding that while angiotensin I is part of a pathway involving kidney-produced renin, it itself is not synthesized by the kidneys. Therefore, based on the consensus and the roles of these peptides, Angiotensin I is the correct answer as it is not produced by the renal system.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      4,
+      1,
+      0
+    ],
+    "coverage_rates": [
+      16.666666666666664,
+      66.66666666666666,
+      16.666666666666664,
+      0.0
+    ],
+    "total_successes": 6
+  },
+  "normal_results": []
+}

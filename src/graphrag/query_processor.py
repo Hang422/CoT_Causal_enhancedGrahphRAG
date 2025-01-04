@@ -5,8 +5,6 @@ from dataclasses import dataclass
 from config import config
 from src.modules.MedicalQuestion import MedicalQuestion
 from src.graphrag.entity_processor import EntityProcessor
-from src.graphrag.graph_enhancer import GraphEnhancer
-
 from neo4j import GraphDatabase
 from neo4j_graphrag.embeddings import CohereEmbeddings
 from neo4j_graphrag.retrievers import VectorRetriever
@@ -39,7 +37,8 @@ class QueryProcessor:
             neo4j_database='neo4j'
         )
 
-        self.hyper_parameter = 3
+        self.hyper_parameter_cg = 3
+        self.hyper_parameter_kg = 2
 
     def close(self):
         """Close database connection"""
@@ -51,9 +50,6 @@ class QueryProcessor:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.close()
-
-    def process_causal_graph_paths_normal(self, start_cui: str, end_cui: str) -> List[Dict]:
-        pass
 
     def process_causal_graph_paths_enhanced(self, start_cui: str, end_cui: str) -> List[Dict]:
         """Query and process paths in the causal graph."""
@@ -103,7 +99,7 @@ class QueryProcessor:
             # 返回处理后的路径
             sorted_paths = sorted(unique_paths.values(), key=lambda x: x['score'], reverse=True)
 
-            return sorted_paths[:self.hyper_parameter]
+            return sorted_paths[:self.hyper_parameter_cg]
 
     def process_knowledge_graph_paths(self, start_cui: str, end_cui: str) -> List[Dict]:
         """Query and process paths in the knowledge graph."""
@@ -115,7 +111,7 @@ class QueryProcessor:
             [rel IN relationships(path) | type(rel)] AS relationships,
             length(path) AS path_length
         ORDER BY path_length ASC
-        LIMIT 3
+        LIMIT 10
         """
 
         with self.driver.session(database='Knowledge') as session:
@@ -130,20 +126,20 @@ class QueryProcessor:
                 })
 
             # 直接返回最短的3条路径
-            return paths
+            return paths[:self.hyper_parameter_kg]
 
     def generate_initial_causal_graph(self, question: MedicalQuestion) -> None:
         """Enhanced version of process_casual_paths that returns multiple shorter paths"""
         try:
             with self.driver.session(database='causal') as session:
                 # 获取问题中的CUIs
-                question_cuis = set(self.entity_processor.process_text(question.question))
+                question_cuis = set(self.entity_processor.extract_cuis_from_text(question.question))
                 keys = list(question.options.keys())
 
                 # 分别获取每个选项的CUIs
                 options_cuis = set()
                 for key, option_text in question.options.items():  # 直接遍历选项字典
-                    processed_cuis = self.entity_processor.process_text(option_text)
+                    processed_cuis = self.entity_processor.extract_cuis_from_text(option_text)
                     options_cuis.update(set(processed_cuis))  # 使用 update 更新集合
 
                 # 用于去重的集合
@@ -207,61 +203,65 @@ class QueryProcessor:
             for i in range(len(steps) - 1):
                 start = steps[i].strip()
                 end = steps[i + 1].strip()
-
+                # print(f"start {start} end {end}")
                 # 去掉置信度部分（如果存在）
                 if '%' in end:
                     end = end.split('%')[0].strip()
 
                 # 通过entity processor获取CUI
-                start_cuis = self.entity_processor.process_text(start)
-                end_cuis = self.entity_processor.process_text(end)
+                start_cuis = self.entity_processor.extract_cuis_from_text(start)
+                end_cuis = self.entity_processor.extract_cuis_from_text(end)
 
                 if len(start_cuis) == 0 or len(end_cuis) == 0:
                     continue
 
-                for start_cui, end_cui in zip(start_cuis, end_cuis):
-                    if start_cui == end_cui:
-                        continue
+                for start_cui in start_cuis:
+                    is_success = False
+                    if is_success:
+                        break
+                    for end_cui in end_cuis:
+                        if is_success:
+                            continue
 
-                    if start_cui and end_cui:
-                        paths = []
-                        # 查找最短路径
-                        if graph == 'both':
-                            if enhancement:
+                        if start_cui == end_cui:
+                            continue
+
+                        if start_cui and end_cui:
+                            # print(f"start {start_cui} end {end_cui}")
+                            if graph == 'both':
                                 paths = self.process_causal_graph_paths_enhanced(start_cui, end_cui)
-                            else:
-                                paths = self.process_causal_graph_paths_normal(start_cui, end_cui)
-                            if len(paths) > 0:
-                                success_count += 1
-                                for path in paths:
-                                    question.causal_graph.nodes.append(path['node_names'])
-                                    question.causal_graph.relationships.append(path['relationships'])
-                            else:
+                                if len(paths) > 0:
+                                    success_count += 1
+                                    is_success = True
+                                    for path in paths:
+                                        question.causal_graph.nodes.append(path['node_names'])
+                                        question.causal_graph.relationships.append(path['relationships'])
+                                else:
+                                    paths = self.process_knowledge_graph_paths(start_cui, end_cui)
+                                    if len(paths) > 0:
+                                        success_count += 1
+                                        is_success = True
+                                        for path in paths:
+                                            question.knowledge_graph.nodes.append(path['node_names'])
+                                            question.knowledge_graph.relationships.append(path['relationships'])
+
+                            elif graph == 'knowledge':
                                 paths = self.process_knowledge_graph_paths(start_cui, end_cui)
                                 if len(paths) > 0:
                                     success_count += 1
+                                    is_success = True
                                     for path in paths:
                                         question.knowledge_graph.nodes.append(path['node_names'])
                                         question.knowledge_graph.relationships.append(path['relationships'])
 
-                        elif graph == 'knowledge':
-                            paths = self.process_knowledge_graph_paths(start_cui, end_cui)
-                            if len(paths) > 0:
-                                success_count += 1
-                                for path in paths:
-                                    question.knowledge_graph.nodes.append(path['node_names'])
-                                    question.knowledge_graph.relationships.append(path['relationships'])
-
-                        elif graph == 'causal':
-                            if enhancement:
+                            elif graph == 'causal':
                                 paths = self.process_causal_graph_paths_enhanced(start_cui, end_cui)
-                            else:
-                                paths = self.process_causal_graph_paths_normal(start_cui, end_cui)
-                            if len(paths) > 0:
-                                success_count += 1
-                                for path in paths:
-                                    question.causal_graph.nodes.append(path['node_names'])
-                                    question.causal_graph.relationships.append(path['relationships'])
+                                if len(paths) > 0:
+                                    success_count += 1
+                                    is_success = True
+                                    for path in paths:
+                                        question.causal_graph.nodes.append(path['node_names'])
+                                        question.causal_graph.relationships.append(path['relationships'])
 
             chain_success_counts.append(success_count)
 
@@ -314,19 +314,13 @@ class QueryProcessor:
             question.normal_results = []
 
 
-def main():
-    question = MedicalQuestion(
-        question="Sugar restricted to diet was beneficial in presence of unfavorable hygiene was from which study?",
-        options={
-            "opa": "Renin",
-            "opb": "Angiotensin Converting Enzyme",
-            "opc": "Chymase",
-            "opd": "Carboxypeptidase"}, topic_name='null', is_multi_choice=True, correct_answer='opa')
+def test_path_query_consistency():
     processor = QueryProcessor()
-    processor.process_vector_search(question)
-    print(question.normal_results)
-
-
-if __name__ == "__main__":
-    t =     "CHAIN: Cholesterol -> decreases fluidity of the lipid bilayer -> enhances membrane stability -> 80% 2. Cholesterol -> assists in the transport of hormones across the lipid bilayer -> regulates cellular processes -> 75% 3. Cholesterol -> modulates membrane permeability -> influences cell signaling -> 70% 4. Cholesterol -> interacts with phospholipids -> forms lipid rafts -> 80%"
-    print(t.split('->'))
+    entity_processor = EntityProcessor()
+    print(list(entity_processor.extract_cuis_from_text('CHAIN: "Substantia nigra"'))[0],list(entity_processor.extract_cuis_from_text('dopamine production'))[0])
+    print(processor.process_knowledge_graph_paths(list(entity_processor.extract_cuis_from_text('CHAIN: "Substantia nigra"'))[0],list(entity_processor.extract_cuis_from_text('dopamine production'))[0]))
+    print(list(entity_processor.extract_cuis_from_text('Substantia nigra structure'))[0],
+          list(entity_processor.extract_cuis_from_text('Dopamine'))[0])
+    print(processor.process_knowledge_graph_paths(
+        list(entity_processor.extract_cuis_from_text('Substantia nigra structure'))[0],
+        list(entity_processor.extract_cuis_from_text('Dopamine'))[0]))

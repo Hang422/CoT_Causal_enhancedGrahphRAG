@@ -1,0 +1,121 @@
+{
+  "question": "Plasma membrane of cell is bounded to cytoskeleton by which of the following?",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Spectrin",
+    "opb": "Ankyrin",
+    "opc": "Tubulin",
+    "opd": "Laminin"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Spectrin",
+        "Microfilaments",
+        "Cytoskeleton"
+      ],
+      [
+        "Ankyrins",
+        "Cells",
+        "Genes",
+        "Cytoskeleton"
+      ],
+      [
+        "Ankyrins",
+        "Erythrocytes",
+        "Genes",
+        "Cytoskeleton"
+      ],
+      [
+        "Ankyrins",
+        "Cells",
+        "Genes",
+        "Cytoskeleton"
+      ],
+      [
+        "Tubulin",
+        "Cytoskeleton"
+      ],
+      [
+        "Laminin",
+        "Basement membrane",
+        "Cytoskeleton"
+      ]
+    ],
+    "relationships": [
+      [
+        "PART_OF",
+        "PART_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "LOCATION_OF",
+        "PART_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "PART_OF"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "PART_OF"
+      ],
+      [
+        "PART_OF"
+      ],
+      [
+        "PART_OF",
+        "PART_OF"
+      ]
+    ],
+    "paths": [
+      "(Spectrin)-PART_OF->(Microfilaments)-PART_OF->(Cytoskeleton)",
+      "(Ankyrins)-INTERACTS_WITH->(Cells)-LOCATION_OF->(Genes)-PART_OF->(Cytoskeleton)",
+      "(Ankyrins)-INTERACTS_WITH->(Erythrocytes)-INTERACTS_WITH->(Genes)-PART_OF->(Cytoskeleton)",
+      "(Ankyrins)-INTERACTS_WITH->(Cells)-INTERACTS_WITH->(Genes)-PART_OF->(Cytoskeleton)",
+      "(Tubulin)-PART_OF->(Cytoskeleton)",
+      "(Laminin)-PART_OF->(Basement membrane)-PART_OF->(Cytoskeleton)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Ankyrins)-INTERACTS_WITH->(Cells)-INTERACTS_WITH/LOCATION_OF->(Genes)-PART_OF->(Cytoskeleton)",
+      "(Ankyrins)-INTERACTS_WITH->(Erythrocytes)-INTERACTS_WITH->(Genes)-PART_OF->(Cytoskeleton)",
+      "(Tubulin)-PART_OF->(Cytoskeleton)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: Spectrin -> anchors plasma membrane to cytoskeleton -> 80% CHAIN: Ankyrin -> links plasma membrane to cytoskeleton -> 85% CHAIN: Tubulin -> forms microtubules but not directly involved in binding plasma membrane to cytoskeleton -> 70% CHAIN: Laminin -> a glycoprotein in the extracellular matrix, not directly involved in binding plasma membrane to cytoskeleton -> 80%"
+  ],
+  "enhanced_information": "The plasma membrane of a cell is bound to the cytoskeleton primarily by Ankyrin, which links the plasma membrane to the cytoskeleton. Ankyrin interacts with cells and is part of the cytoskeleton. Spectrin also anchors the plasma membrane to the cytoskeleton. Tubulin, although forming microtubules, is not directly involved in binding the plasma membrane to the cytoskeleton. Laminin, a glycoprotein in the extracellular matrix, is not directly involved in this binding process.",
+  "analysis": "The core medical principle is that the plasma membrane of a cell is bound to the cytoskeleton primarily by Ankyrin and Spectrin. Ankyrin plays a crucial role in linking the plasma membrane to the cytoskeleton. While Spectrin also anchors the plasma membrane to the cytoskeleton, Ankyrin is the primary connector. Tubulin, although involved in microtubule formation, is not directly responsible for binding the plasma membrane to the cytoskeleton. Laminin, a glycoprotein in the extracellular matrix, is not directly involved in this binding process.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      4
+    ],
+    "coverage_rates": [
+      100.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

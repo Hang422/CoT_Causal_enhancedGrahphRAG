@@ -1,0 +1,84 @@
+{
+  "question": "More resistance in respiration is due to which of the following?",
+  "is_multi_choice": true,
+  "correct_answer": "opc",
+  "options": {
+    "opa": "Saturation with moisture",
+    "opb": "Increased rate of flow during expiration",
+    "opc": "Increased compression of airway",
+    "opd": "Due to change from linear to turbulent flow"
+  },
+  "topic_name": "Physiology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Airway Resistance",
+        "Symptoms",
+        "Respiration"
+      ],
+      [
+        "Airway Resistance",
+        "Obesity",
+        "Respiration"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "PREDISPOSES",
+        "MANIFESTATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Airway Resistance)-CAUSES->(Symptoms)-MANIFESTATION_OF->(Respiration)",
+      "(Airway Resistance)-PREDISPOSES->(Obesity)-MANIFESTATION_OF->(Respiration)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Airway Resistance)-CAUSES->(Symptoms)-MANIFESTATION_OF->(Respiration)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Increased compression of airway\" -> \"narrowed airway\" -> \"increased resistance\" -> 95%",
+    "CHAIN: \"Change from linear to turbulent flow\" -> \"increased airway resistance\" -> \"more resistance in respiration\" -> 90%",
+    "CHAIN: \"Increased rate of flow during expiration\" -> \"potential for turbulent flow\" -> \"increased resistance\" -> 70%",
+    "CHAIN: \"Saturation with moisture\" -> \"possible increased airway resistance\" -> \"unclear impact on respiration\" -> 50%"
+  ],
+  "enhanced_information": "Increased compression of the airway leads to narrowing, which is a well-established cause of increased airway resistance, making it a primary factor in more resistance during respiration. This aligns with the consensus that airway narrowing increases resistance. A change from linear to turbulent flow also increases airway resistance, as turbulent flow requires more pressure to maintain the same flow rate, thus contributing to increased respiratory resistance. An increased rate of flow during expiration can lead to turbulent flow, which in turn increases resistance, but this is less direct and more conditional. Saturation with moisture can affect airway resistance, but its impact is less clear and not as directly linked to increased resistance in respiration as the other factors. Therefore, increased compression of the airway and the change from linear to turbulent flow are the most consensus-supported causes of increased resistance in respiration.",
+  "analysis": "Increased airway resistance during respiration is primarily due to factors that narrow the airways or increase the effort required to move air through them. Increased compression of the airway (opc) directly leads to narrowing, which is a well-established cause of increased resistance. This is supported by the consensus that airway narrowing increases resistance. A change from linear to turbulent flow (opd) also increases resistance because turbulent flow requires more pressure to maintain the same flow rate. While an increased rate of flow during expiration (opb) can lead to turbulent flow, it is a more indirect cause. Saturation with moisture (opa) has a less clear impact on resistance. Therefore, the most direct and consensus-supported causes of increased resistance are increased compression of the airway and the change from linear to turbulent flow. Given the options, increased compression of the airway is the most direct and primary factor.",
+  "answer": "opc",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "coverage_rates": [
+      0.0,
+      0.0,
+      0.0,
+      100.0
+    ],
+    "total_successes": 1
+  },
+  "normal_results": []
+}

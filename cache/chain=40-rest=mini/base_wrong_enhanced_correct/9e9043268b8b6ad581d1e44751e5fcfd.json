@@ -1,0 +1,133 @@
+{
+  "question": "Drug of choice for pregnant female suspected of having a baby with congenital adrenal hyperplasia",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Dexamethasone",
+    "opb": "Betamethasone",
+    "opc": "Hydrocoisone",
+    "opd": "Prednisolone"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Congenital adrenal hyperplasia",
+        "Virilism"
+      ],
+      [
+        "Congenital adrenal hyperplasia",
+        "Addison's disease",
+        "21-hydroxylase deficiency",
+        "Deficiency of steroid 21-monooxygenase"
+      ],
+      [
+        "Dexamethasone",
+        "Virilism"
+      ],
+      [
+        "Congenital adrenal hyperplasia",
+        "Disease",
+        "Exotropia",
+        "Visual Suppression"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "MANIFESTATION_OF",
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ]
+    ],
+    "paths": [
+      "(Congenital adrenal hyperplasia)-CAUSES->(Virilism)",
+      "(Congenital adrenal hyperplasia)-CAUSES->(Addison's disease)-MANIFESTATION_OF->(21-hydroxylase deficiency)-CAUSES->(Deficiency of steroid 21-monooxygenase)",
+      "(Dexamethasone)-TREATS->(Virilism)",
+      "(Congenital adrenal hyperplasia)-CAUSES->(Disease)-CAUSES->(Exotropia)-MANIFESTATION_OF->(Visual Suppression)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Visual Suppression",
+        "CACNA1A",
+        "Cells",
+        "Dexamethasone"
+      ],
+      [
+        "Visual Suppression",
+        "CACNA1A",
+        "Genes",
+        "Dexamethasone"
+      ]
+    ],
+    "relationships": [
+      [
+        "ASSOCIATED_WITH",
+        "PART_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Visual Suppression)-ASSOCIATED_WITH->(CACNA1A)-PART_OF->(Cells)-INTERACTS_WITH->(Dexamethasone)",
+      "(Visual Suppression)-ASSOCIATED_WITH->(CACNA1A)-INTERACTS_WITH->(Genes)-INTERACTS_WITH->(Dexamethasone)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Dexamethasone)-TREATS->(Virilism)",
+      "(Visual Suppression)-ASSOCIATED_WITH->(CACNA1A)-PART_OF->(Cells)-INTERACTS_WITH->(Dexamethasone)",
+      "(Visual Suppression)-ASSOCIATED_WITH->(CACNA1A)-INTERACTS_WITH->(Genes)-INTERACTS_WITH->(Dexamethasone)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Congenital adrenal hyperplasia\" -> \"risk of virilization in female fetus\" -> \"need to suppress fetal adrenal androgen production\" -> \"Dexamethasone crosses placenta\" -> \"suppresses fetal adrenal gland\" -> 85%",
+    "CHAIN: \"Congenital adrenal hyperplasia\" -> \"21-hydroxylase deficiency\" -> \"excess androgen production\" -> \"Dexamethasone reduces androgen production\" -> \"prevents virilization\" -> 80%",
+    "CHAIN: \"Pregnant female\" -> \"fetal treatment needed\" -> \"Dexamethasone crosses placenta effectively\" -> \"direct fetal effect\" -> \"reduces androgen production\" -> 75%",
+    "CHAIN: \"Congenital adrenal hyperplasia\" -> \"fetal adrenal suppression required\" -> \"Dexamethasone used for fetal treatment\" -> \"effective in reducing virilization risk\" -> 70%"
+  ],
+  "enhanced_information": "In cases of congenital adrenal hyperplasia (CAH), particularly due to 21-hydroxylase deficiency, there is a risk of virilization in female fetuses due to excess androgen production. The drug of choice for managing this condition in pregnant females is Dexamethasone, as it effectively crosses the placenta and suppresses fetal adrenal androgen production, thereby reducing the risk of virilization. The reasoning chains confirm that Dexamethasone is effective in this context, with a consensus supporting its use for fetal treatment in CAH. Other options like Betamethasone, Hydrocortisone, and Prednisolone are not typically used for this specific indication. The evidence paths regarding Dexamethasone's role in treating virilism further support its use in this scenario.",
+  "analysis": "In cases of congenital adrenal hyperplasia (CAH), particularly when caused by 21-hydroxylase deficiency, there is a significant risk of virilization in female fetuses due to excess androgen production. The primary goal in managing this condition during pregnancy is to suppress the fetal adrenal gland's production of androgens. Dexamethasone is the drug of choice in this scenario because it effectively crosses the placenta and reduces the production of androgens by the fetal adrenal glands. Other corticosteroids such as Betamethasone, Hydrocortisone, and Prednisolone are not typically indicated for this specific purpose. The consensus in the medical community supports the use of Dexamethasone for this indication, making it the most appropriate choice. Therefore, the best-supported option is Dexamethasone (option opa).",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      2,
+      0,
+      2
+    ],
+    "coverage_rates": [
+      20.0,
+      40.0,
+      0.0,
+      40.0
+    ],
+    "total_successes": 5
+  },
+  "normal_results": []
+}

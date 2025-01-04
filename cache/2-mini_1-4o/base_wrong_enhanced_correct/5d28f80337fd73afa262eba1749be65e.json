@@ -1,0 +1,112 @@
+{
+  "question": "Which of the following drugs is used to treat both diabetes mellitus and diabetes insipidus",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Chlorpropamide",
+    "opb": "Glibenclamide",
+    "opc": "Glicazide",
+    "opd": "Glipizide"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Chlorpropamide",
+        "Disease",
+        "Tachycardia",
+        "Insulin"
+      ],
+      [
+        "Chlorpropamide",
+        "Disease",
+        "Tachycardia",
+        "Insulin"
+      ],
+      [
+        "Antidiuretic Effect",
+        "Kidney",
+        "Disease",
+        "Diabetes Insipidus"
+      ],
+      [
+        "Antidiuretic Effect",
+        "Kidney",
+        "Disease",
+        "Diabetes Insipidus"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "CAUSES",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF",
+        "ASSOCIATED_WITH"
+      ],
+      [
+        "PROCESS_OF",
+        "LOCATION_OF",
+        "COMPLICATES"
+      ],
+      [
+        "PROCESS_OF",
+        "LOCATION_OF",
+        "PREDISPOSES"
+      ]
+    ],
+    "paths": [
+      "(Chlorpropamide)-TREATS->(Disease)-CAUSES->(Tachycardia)-ASSOCIATED_WITH->(Insulin)",
+      "(Chlorpropamide)-TREATS->(Disease)-MANIFESTATION_OF->(Tachycardia)-ASSOCIATED_WITH->(Insulin)",
+      "(Antidiuretic Effect)-PROCESS_OF->(Kidney)-LOCATION_OF->(Disease)-COMPLICATES->(Diabetes Insipidus)",
+      "(Antidiuretic Effect)-PROCESS_OF->(Kidney)-LOCATION_OF->(Disease)-PREDISPOSES->(Diabetes Insipidus)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Chlorpropamide)-TREATS->(Disease)-CAUSES/MANIFESTATION_OF->(Tachycardia)-ASSOCIATED_WITH->(Insulin)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Chlorpropamide\" -> \"stimulates insulin release\" -> \"lowers blood glucose\" -> \"also has antidiuretic effects\" -> \"used in diabetes insipidus\" -> 85%",
+    "CHAIN: \"Glibenclamide\" -> \"stimulates insulin secretion\" -> \"lowers blood glucose\" -> \"no known effect on diabetes insipidus\" -> \"not used for diabetes insipidus\" -> 70%",
+    "CHAIN: \"Glicazide\" -> \"stimulates insulin release\" -> \"lowers blood glucose\" -> \"no known effect on diabetes insipidus\" -> \"not used for diabetes insipidus\" -> 70%",
+    "CHAIN: \"Glipizide\" -> \"stimulates insulin secretion\" -> \"lowers blood glucose\" -> \"no known effect on diabetes insipidus\" -> \"not used for diabetes insipidus\" -> 70%"
+  ],
+  "enhanced_information": "Chlorpropamide is a sulfonylurea that stimulates insulin release from the pancreas, effectively lowering blood glucose levels, and it also has antidiuretic effects, making it useful in treating both diabetes mellitus and diabetes insipidus. In contrast, Glibenclamide, Glicazide, and Glipizide are also sulfonylureas that primarily stimulate insulin secretion to lower blood glucose but do not have any known effects on diabetes insipidus. Therefore, only Chlorpropamide is used for both conditions.",
+  "analysis": "Chlorpropamide is a first-generation sulfonylurea that is primarily used to treat type 2 diabetes mellitus by stimulating insulin release from the pancreas. Additionally, it has a unique antidiuretic effect that can be beneficial in the treatment of diabetes insipidus, particularly the central type, by enhancing the action of antidiuretic hormone (ADH). This dual action makes it suitable for treating both diabetes mellitus and diabetes insipidus. In contrast, Glibenclamide, Glicazide, and Glipizide are also sulfonylureas but are used exclusively for diabetes mellitus as they do not have the antidiuretic properties needed to treat diabetes insipidus. Therefore, based on standard medical knowledge and consensus, Chlorpropamide is the only drug among the options that is used for both conditions.",
+  "answer": "opa",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      2,
+      0,
+      0,
+      0
+    ],
+    "coverage_rates": [
+      100.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "total_successes": 2
+  },
+  "normal_results": []
+}

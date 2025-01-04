@@ -1,0 +1,249 @@
+{
+  "question": "Treatment for scabies is",
+  "is_multi_choice": true,
+  "correct_answer": "opb",
+  "options": {
+    "opa": "Erythromycin",
+    "opb": "Benzene hexachloride",
+    "opc": "Piperazine",
+    "opd": "Thiabendazole"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Lindane",
+        "Scabies"
+      ],
+      [
+        "Scabies",
+        "Disease",
+        "Parasitic Diseases"
+      ],
+      [
+        "Scabies",
+        "Symptoms",
+        "Parasitic Diseases"
+      ],
+      [
+        "Scabies",
+        "Inflammation",
+        "Parasitic Diseases"
+      ],
+      [
+        "piperazine",
+        "Disease",
+        "Scabies"
+      ],
+      [
+        "piperazine",
+        "Infection",
+        "Scabies"
+      ],
+      [
+        "Anthelmintics",
+        "Infection",
+        "Scabies"
+      ],
+      [
+        "Anthelmintics",
+        "Vasculitis of the skin",
+        "Scabies"
+      ],
+      [
+        "Anthelmintics",
+        "Disease",
+        "Scabies"
+      ],
+      [
+        "Thiabendazole",
+        "Scabies"
+      ],
+      [
+        "Antifungal Agents",
+        "Disease",
+        "Scabies"
+      ],
+      [
+        "Antifungal Agents",
+        "Infection",
+        "Scabies"
+      ],
+      [
+        "Antifungal Agents",
+        "HIV",
+        "Scabies"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "COMPLICATES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ],
+      [
+        "TREATS"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "TREATS",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Lindane)-TREATS->(Scabies)",
+      "(Scabies)-CAUSES->(Disease)-CAUSES->(Parasitic Diseases)",
+      "(Scabies)-CAUSES->(Symptoms)-CAUSES->(Parasitic Diseases)",
+      "(Scabies)-CAUSES->(Inflammation)-CAUSES->(Parasitic Diseases)",
+      "(piperazine)-TREATS->(Disease)-CAUSES->(Scabies)",
+      "(piperazine)-TREATS->(Infection)-CAUSES->(Scabies)",
+      "(Anthelmintics)-CAUSES->(Infection)-CAUSES->(Scabies)",
+      "(Anthelmintics)-CAUSES->(Vasculitis of the skin)-COMPLICATES->(Scabies)",
+      "(Anthelmintics)-TREATS->(Disease)-CAUSES->(Scabies)",
+      "(Thiabendazole)-TREATS->(Scabies)",
+      "(Antifungal Agents)-CAUSES->(Disease)-CAUSES->(Scabies)",
+      "(Antifungal Agents)-CAUSES->(Infection)-CAUSES->(Scabies)",
+      "(Antifungal Agents)-TREATS->(HIV)-CAUSES->(Scabies)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [
+      [
+        "Scabies",
+        "Inflammation",
+        "Enzymes",
+        "Antiparasitic Agents"
+      ],
+      [
+        "Scabies",
+        "Streptomyces albus",
+        "Enzymes",
+        "Antiparasitic Agents"
+      ],
+      [
+        "Antiparasitic Agents",
+        "Pharmaceutical Preparations",
+        "Anthelmintics",
+        "piperazine"
+      ],
+      [
+        "Antiparasitic Agents",
+        "Pharmaceutical Preparations",
+        "Anthelmintics",
+        "piperazine"
+      ]
+    ],
+    "relationships": [
+      [
+        "CAUSES",
+        "ASSOCIATED_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "PROCESS_OF",
+        "LOCATION_OF",
+        "INTERACTS_WITH"
+      ],
+      [
+        "ISA",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ],
+      [
+        "INTERACTS_WITH",
+        "INTERACTS_WITH",
+        "INTERACTS_WITH"
+      ]
+    ],
+    "paths": [
+      "(Scabies)-CAUSES->(Inflammation)-ASSOCIATED_WITH->(Enzymes)-INTERACTS_WITH->(Antiparasitic Agents)",
+      "(Scabies)-PROCESS_OF->(Streptomyces albus)-LOCATION_OF->(Enzymes)-INTERACTS_WITH->(Antiparasitic Agents)",
+      "(Antiparasitic Agents)-ISA->(Pharmaceutical Preparations)-INTERACTS_WITH->(Anthelmintics)-INTERACTS_WITH->(piperazine)",
+      "(Antiparasitic Agents)-INTERACTS_WITH->(Pharmaceutical Preparations)-INTERACTS_WITH->(Anthelmintics)-INTERACTS_WITH->(piperazine)"
+    ]
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Lindane)-TREATS->(Scabies)",
+      "(Thiabendazole)-TREATS->(Scabies)",
+      "(piperazine)-TREATS->(Disease)-CAUSES->(Scabies)",
+      "(piperazine)-TREATS->(Infection)-CAUSES->(Scabies)",
+      "(Anthelmintics)-CAUSES->(Infection)-CAUSES->(Scabies)",
+      "(Anthelmintics)-CAUSES->(Vasculitis of the skin)-COMPLICATES->(Scabies)",
+      "(Anthelmintics)-TREATS->(Disease)-CAUSES->(Scabies)",
+      "(Antifungal Agents)-CAUSES->(Disease)-CAUSES->(Scabies)",
+      "(Antifungal Agents)-CAUSES->(Infection)-CAUSES->(Scabies)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Scabies\" -> \"caused by Sarcoptes scabiei\" -> \"requires topical treatment\" -> \"Benzene hexachloride is a topical insecticide\" -> \"effective against scabies\" -> 95%",
+    "CHAIN: \"Scabies\" -> \"caused by a mite infestation\" -> \"treatment needed to eliminate mites\" -> \"Erythromycin is an antibiotic\" -> \"not effective against mites\" -> 80%",
+    "CHAIN: \"Scabies\" -> \"requires antiparasitic treatment\" -> \"Piperazine is an anthelmintic\" -> \"not indicated for scabies\" -> 75%",
+    "CHAIN: \"Scabies\" -> \"requires topical treatment\" -> \"Thiabendazole is an antifungal\" -> \"not primarily used for scabies\" -> 70%"
+  ],
+  "enhanced_information": "Scabies is caused by the mite Sarcoptes scabiei, necessitating effective topical treatment to eliminate the infestation. Benzene hexachloride (also known as Lindane) is a topical insecticide that is effective against scabies, aligning with consensus recommendations. Erythromycin, an antibiotic, is not effective against mites and is therefore not suitable for treating scabies. Piperazine is an anthelmintic, primarily used for intestinal worm infections, and is not indicated for scabies treatment. Thiabendazole is an antifungal agent and is not primarily used for scabies either. Thus, the most appropriate treatment option for scabies is Benzene hexachloride.",
+  "analysis": "Scabies is an infestation caused by the mite Sarcoptes scabiei, which requires treatment with an effective topical agent to eradicate the mites. Among the options provided, Benzene hexachloride (Lindane) is a well-known topical insecticide used to treat scabies. Erythromycin is an antibiotic and does not target mites, making it ineffective for scabies. Piperazine is used for treating worm infections, not mite infestations. Thiabendazole is primarily an antifungal and is not indicated for scabies treatment. Therefore, based on standard medical knowledge and consensus, Benzene hexachloride is the most appropriate treatment for scabies.",
+  "answer": "opb",
+  "confidence": 95.0,
+  "chain_coverage": {
+    "success_counts": [
+      1,
+      1,
+      4,
+      2
+    ],
+    "coverage_rates": [
+      12.5,
+      12.5,
+      50.0,
+      25.0
+    ],
+    "total_successes": 8
+  },
+  "normal_results": []
+}

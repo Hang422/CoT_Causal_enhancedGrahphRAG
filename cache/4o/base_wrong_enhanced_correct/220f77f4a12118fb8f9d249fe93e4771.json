@@ -1,0 +1,163 @@
+{
+  "question": "Which of the following drug is used in this test?",
+  "is_multi_choice": true,
+  "correct_answer": "opa",
+  "options": {
+    "opa": "Tolazoline",
+    "opb": "Clonidine",
+    "opc": "Bismuth",
+    "opd": "Oxymetazoline"
+  },
+  "topic_name": "Pharmacology",
+  "context": null,
+  "initial_causal_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "causal_graph": {
+    "nodes": [
+      [
+        "Tolazoline",
+        "Hypertensive disease",
+        "Vasodilation"
+      ],
+      [
+        "Tolazoline",
+        "Gastrointestinal Hemorrhage",
+        "Vasodilation"
+      ],
+      [
+        "Tolazoline",
+        "Ischemia",
+        "Vasodilation"
+      ],
+      [
+        "Vasodilation",
+        "Pancreas",
+        "Pancreatitis",
+        "Disease",
+        "Blood Circulation"
+      ],
+      [
+        "Vasodilation",
+        "Pancreas",
+        "Pancreatitis",
+        "Infection",
+        "Blood Circulation"
+      ],
+      [
+        "Vasodilation",
+        "Pancreas",
+        "Pancreatitis",
+        "Endothelial dysfunction",
+        "Blood Circulation"
+      ],
+      [
+        "Blood Circulation",
+        "Pancreas",
+        "Pancreatitis",
+        "Symptoms",
+        "Diagnostic tests"
+      ],
+      [
+        "Ulcer",
+        "Symptoms",
+        "Diagnostic tests"
+      ]
+    ],
+    "relationships": [
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "TREATS",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "PROCESS_OF",
+        "CAUSES",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "PROCESS_OF",
+        "CAUSES",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "PROCESS_OF",
+        "CAUSES",
+        "CAUSES",
+        "MANIFESTATION_OF"
+      ],
+      [
+        "PROCESS_OF",
+        "CAUSES",
+        "CAUSES",
+        "CAUSES"
+      ],
+      [
+        "PREDISPOSES",
+        "CAUSES"
+      ]
+    ],
+    "paths": [
+      "(Tolazoline)-TREATS->(Hypertensive disease)-MANIFESTATION_OF->(Vasodilation)",
+      "(Tolazoline)-TREATS->(Gastrointestinal Hemorrhage)-MANIFESTATION_OF->(Vasodilation)",
+      "(Tolazoline)-TREATS->(Ischemia)-MANIFESTATION_OF->(Vasodilation)",
+      "(Vasodilation)-PROCESS_OF->(Pancreas)-CAUSES->(Pancreatitis)-CAUSES->(Disease)-MANIFESTATION_OF->(Blood Circulation)",
+      "(Vasodilation)-PROCESS_OF->(Pancreas)-CAUSES->(Pancreatitis)-CAUSES->(Infection)-MANIFESTATION_OF->(Blood Circulation)",
+      "(Vasodilation)-PROCESS_OF->(Pancreas)-CAUSES->(Pancreatitis)-CAUSES->(Endothelial dysfunction)-MANIFESTATION_OF->(Blood Circulation)",
+      "(Blood Circulation)-PROCESS_OF->(Pancreas)-CAUSES->(Pancreatitis)-CAUSES->(Symptoms)-CAUSES->(Diagnostic tests)",
+      "(Ulcer)-PREDISPOSES->(Symptoms)-CAUSES->(Diagnostic tests)"
+    ]
+  },
+  "knowledge_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": []
+  },
+  "enhanced_graph": {
+    "nodes": [],
+    "relationships": [],
+    "paths": [
+      "(Tolazoline)-TREATS->(Hypertensive disease)-MANIFESTATION_OF->(Vasodilation)",
+      "(Tolazoline)-TREATS->(Gastrointestinal Hemorrhage)-MANIFESTATION_OF->(Vasodilation)",
+      "(Tolazoline)-TREATS->(Ischemia)-MANIFESTATION_OF->(Vasodilation)",
+      "(Ulcer)-PREDISPOSES->(Symptoms)-CAUSES->(Diagnostic tests)"
+    ]
+  },
+  "reasoning_chain": [
+    "CHAIN: \"Tolazoline\" -> \"vasodilation\" -> \"increased blood flow\" -> \"diagnostic test for pulmonary hypertension\" -> 85%",
+    "CHAIN: \"Clonidine\" -> \"alpha-2 adrenergic agonist\" -> \"decreased sympathetic outflow\" -> \"reduced blood pressure\" -> \"diagnostic test for pheochromocytoma\" -> 80%",
+    "CHAIN: \"Bismuth\" -> \"gastrointestinal protection\" -> \"treatment of ulcers\" -> \"not typically used in diagnostic tests\" -> 60%",
+    "CHAIN: \"Oxymetazoline\" -> \"vasoconstriction\" -> \"reduced nasal congestion\" -> \"not typically used in diagnostic tests\" -> 60%"
+  ],
+  "enhanced_information": "Tolazoline is a vasodilator used in diagnostic tests for pulmonary hypertension due to its ability to increase blood flow, aligning with the consensus that it can be used to assess pulmonary vascular reactivity. The evidence paths support its role in vasodilation, which is relevant to its use in such tests. Clonidine, an alpha-2 adrenergic agonist, is used in diagnostic tests for pheochromocytoma due to its effect on reducing sympathetic outflow and blood pressure, which is consistent with standard medical practice. Bismuth is primarily used for gastrointestinal protection and ulcer treatment, not typically in diagnostic tests, which aligns with consensus. Oxymetazoline is a vasoconstrictor used for reducing nasal congestion and is not typically used in diagnostic tests, consistent with standard medical understanding. Therefore, Tolazoline is the drug used in the diagnostic test for pulmonary hypertension.",
+  "analysis": "The question asks which drug is used in a specific diagnostic test. Based on standard medical knowledge, Tolazoline is known to be used in diagnostic tests for pulmonary hypertension due to its vasodilatory effects, which help assess pulmonary vascular reactivity. Clonidine is used in tests for pheochromocytoma, Bismuth is used for gastrointestinal issues, and Oxymetazoline is a nasal decongestant. Given the context and the enhanced information, Tolazoline is the most likely drug used in a diagnostic test related to pulmonary hypertension. This aligns with the consensus that Tolazoline's vasodilatory properties are useful in such tests.",
+  "answer": "opa",
+  "confidence": 90.0,
+  "chain_coverage": {
+    "success_counts": [
+      3,
+      0,
+      1,
+      0
+    ],
+    "coverage_rates": [
+      75.0,
+      0.0,
+      25.0,
+      0.0
+    ],
+    "total_successes": 4
+  },
+  "normal_results": []
+}

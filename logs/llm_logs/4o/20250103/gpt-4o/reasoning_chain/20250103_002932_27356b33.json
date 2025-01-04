@@ -1,0 +1,26 @@
+{
+  "timestamp": "20250103_002932",
+  "model": "gpt-4o",
+  "interaction_type": "reasoning_chain",
+  "question_id": "27356b33",
+  "question_text": "Redistribution phenomenon is seen in:",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a medical expert generating diagnostic reasoning chains."
+    },
+    {
+      "role": "user",
+      "content": "\n        You are a medical expert. Generate multiple reasoning chains for the following question.\n\n            Each chain:\n            - Uses '->' to connect sequential reasoning states.\n            - Each step is a single state or result, not a complete causal sentence in one step.\n              Example:\n                Correct: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolism\" -> 90%\n                Incorrect: \"Insulin decreases blood glucose\" in one step.\n            - End with a confidence percentage (0-100%).\n\n            If a step clearly conflicts with widely accepted medical knowledge, you may indicate uncertainty (e.g., \n            \"possible\", \"unclear\") and slightly lower confidence. However, do this only if necessary. If unsure, \n            it is acceptable to show a plausible chain with moderate confidence.\n\n            ### Question\n            Redistribution phenomenon is seen in:\n\n            ### Options\n    opa. Halothane\nopb. Ether\nopc. Thiopentone\nopd. All\n\n            ### Instructions:\n            - Keep steps simple, each step just one state or outcome.\n            - '->' separates each step.\n            \n            ### Output Format:\n            Start each chain with \"CHAIN:\" on a new line.\n            Example:\n            CHAIN: \"Insulin\" -> \"decreased blood glucose\" -> \"improved metabolic state\" -> 90%"
+    }
+  ],
+  "response": "CHAIN: \"Thiopentone\" -> \"rapid distribution to brain\" -> \"initial high brain concentration\" -> \"redistribution to muscle and fat\" -> \"decreased brain concentration\" -> 90%\n\nCHAIN: \"Halothane\" -> \"slow induction\" -> \"minimal redistribution\" -> \"unlikely redistribution phenomenon\" -> 60%\n\nCHAIN: \"Ether\" -> \"slow onset\" -> \"prolonged effect\" -> \"unlikely redistribution phenomenon\" -> 60%\n\nCHAIN: \"All\" -> \"includes Thiopentone\" -> \"known for redistribution\" -> \"possible redistribution in others\" -> 70%",
+  "metadata": {
+    "topic": "Pharmacology",
+    "is_multi_choice": true,
+    "has_reasoning_chain": false,
+    "has_enhanced_info": false,
+    "model_config": "gpt-4o",
+    "temperature": 0.0
+  }
+}
