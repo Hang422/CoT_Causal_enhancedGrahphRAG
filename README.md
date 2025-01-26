@@ -182,20 +182,16 @@ The system includes comprehensive evaluation tools:
 Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
+This project is licensed under the MIT License - see the LICENSE file for details.
+Third-Party Components
+The neo4j_graphrag directory contains code from Neo4j:
 
-This project contains multiple components with different licenses:
+Copyright (c) "Neo4j"
+Neo4j Sweden AB [https://neo4j.com]
+Licensed under the Apache License, Version 2.0
+Original code maintained by Neo4j under Apache 2.0 license
 
-1. **Neo4j GraphRAG Component**:
-   - Copyright (c) "Neo4j"
-   - Licensed under the Apache License, Version 2.0
-   - See: https://www.apache.org/licenses/LICENSE-2.0
-   - This component is provided by Neo4j Sweden AB [https://neo4j.com]
-
-2. **Project Core**:
-   - This project is licensed under the MIT License - see the LICENSE file for details.
-
-Note: When using this project, please ensure compliance with all component licenses, particularly when using the Neo4j GraphRAG functionality.
-
+When using this project, please note that while the core project is under MIT license, the Neo4j GraphRAG component follows its original Apache 2.0 license as indicated in its source code headers.
 ## Citation
 
 If you use this work in your research, please cite:
