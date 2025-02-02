@@ -40,7 +40,7 @@ The system consists of several key components:
    - Obtain license for SemMedDB from the National Library of Medicine
    - Contains over 100 million semantic predications from biomedical literature
    - URL: https://lhncbc.nlm.nih.gov/temp/SemRep_SemMedDB_SKR/SemMed.html
-   - For detailed methodology and implementation details, please refer to our paper [paper title forthcoming]
+   - For detailed methodology and implementation details, please refer to our paper https://arxiv.org/abs/2501.14892
 
 2. **Graph Construction Process**
    - **Knowledge Graph**:
